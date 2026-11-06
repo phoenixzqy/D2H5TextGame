@@ -111,7 +111,7 @@ describe('native ordinary class-active allocation/recording/persistence', () => 
     arrange({ 'sorceress.ice_bolt': 1, 'sorceress.ice_blast': 20 });
     const save = snapshotStores(); if (!save) throw new Error('Missing save');
     const before = structuredClone(save.player);
-    expect(save.version).toBe(24);
+    expect(save.version).toBe(32);
     await importIntoStores(JSON.stringify(toJsonSafe(save)));
     expect(player()).toEqual(before);
     expect(playerToCombatUnit(player()).skillOrder).toEqual([FINISHER]);

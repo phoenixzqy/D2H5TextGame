@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 /** Real persistence/adapter; only IndexedDB IO is replaced. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -76,7 +77,7 @@ function fixture(): SaveCurrent {
 }
 
 function savedData(): SaveCurrent {
-  return required(disk.state.record).data as SaveCurrent;
+  return readStoredSaveJson(disk.state.record) as SaveCurrent;
 }
 
 function deferred<T>() {
@@ -141,7 +142,7 @@ describe('equipment rate cache persistence compatibility', () => {
     const { input, expected } = affectedSave();
     const before = structuredClone(input);
     await importIntoStores(JSON.stringify(toJsonSafe(input)));
-    expect(savedData()).toEqual(expected);
+    expect(savedData()).toEqual(toJsonSafe(expected));
     expect(snapshotStores()).toEqual({ ...expected, timestamp: NOW });
     expect(JSON.parse(required(persistence.exportCurrentSave()))).toEqual(toJsonSafe({ ...expected,
       timestamp: NOW, meta: { ...expected.meta,
@@ -153,20 +154,20 @@ describe('equipment rate cache persistence compatibility', () => {
     const { input, expected } = affectedSave();
     expect(await hydrateFromSave()).toBe(true);
     expect(snapshotStores()).toEqual({ ...expected, timestamp: NOW });
-    expect(savedData()).toEqual(input);
+    expect(savedData()).toEqual(toJsonSafe(input));
     await flushSave();
-    expect(savedData()).toEqual({ ...expected, timestamp: NOW, meta: { ...expected.meta,
-      idleState: { ...expected.meta.idleState, lastOnline: NOW } } });
+    expect(savedData()).toEqual(toJsonSafe({ ...expected, timestamp: NOW, meta: { ...expected.meta,
+      idleState: { ...expected.meta.idleState, lastOnline: NOW } } }));
   });
 
   it('startup commits normalized caches alongside ordinary offline reconciliation', async () => {
     const { expected } = affectedSave();
     await initPersistence();
     const persisted = savedData();
-    expect(persisted.player).toEqual(expected.player);
-    expect(persisted.inventory).toEqual(expected.inventory);
-    expect(persisted.mercs).toEqual(expected.mercs);
-    expect(snapshotStores()).toEqual(persisted);
+    expect(persisted.player).toEqual(toJsonSafe(expected.player));
+    expect(persisted.inventory).toEqual(toJsonSafe(expected.inventory));
+    expect(persisted.mercs).toEqual(toJsonSafe(expected.mercs));
+    expect(toJsonSafe(snapshotStores())).toEqual(persisted);
   });
 
   it('leaves old disk/live state intact if a corrected import write fails', async () => {
@@ -180,6 +181,79 @@ describe('equipment rate cache persistence compatibility', () => {
 });
 
 describe('persisted bonus startup reconciliation', () => {
+  it('publishes the actual return interval and committed bonus without persisting the notice', async () => {
+    fixture();
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toEqual({
+      awayMs: 4 * HOUR, bonusPct: 1.32 - 1, windowSeconds: 4800
+    });
+    expect(savedData().meta).not.toHaveProperty('offlineReturn');
+    expect(required(snapshotStores())).not.toHaveProperty('offlineReturn');
+    const diskBefore = structuredClone(disk.state.record);
+    useHydrationStore.getState().dismissOfflineReturn();
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
+    expect(disk.state.record).toEqual(diskBefore);
+    expect(disk.put).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports the newer timestamp gap and retained stronger bonus rather than fresh accrual', async () => {
+    const before = fixture();
+    disk.state.record = { id: 'current', version: before.version, timestamp: NOW - 2 * HOUR,
+      data: { ...before, timestamp: NOW - 2 * HOUR,
+        meta: { ...before.meta, idleState: { ...before.meta.idleState,
+          activeMultiplier: 1.4, multiplierSecondsRemaining: 1500 } } } };
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toEqual({
+      awayMs: 2 * HOUR, bonusPct: 1.4 - 1, windowSeconds: 1500
+    });
+  });
+
+  it.each([59_999, 0, -HOUR])('does not announce a sub-minute or rollback interval (%s ms)', async gap => {
+    const before = fixture();
+    const at = NOW - gap;
+    disk.state.record = { id: 'current', version: before.version, timestamp: at,
+      data: { ...before, timestamp: at, meta: { ...before.meta,
+        idleState: { ...before.meta.idleState, lastOnline: at,
+          activeMultiplier: 1.4, multiplierSecondsRemaining: 1500 } } } };
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
+  });
+
+  it('uses a newer lastOnline anchor and does not refresh a tied old window', async () => {
+    const before = fixture();
+    disk.state.record = { id: 'current', version: before.version, timestamp: before.timestamp,
+      data: { ...before, meta: { ...before.meta, idleState: { ...before.meta.idleState,
+        lastOnline: NOW - HOUR, activeMultiplier: 1.08, multiplierSecondsRemaining: 7 } } } };
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toEqual({
+      awayMs: HOUR, bonusPct: 1.08 - 1, windowSeconds: 7
+    });
+  });
+
+  it('announces the one-minute boundary with its actual twenty-second window', async () => {
+    const before = fixture();
+    disk.state.record = { id: 'current', version: before.version, timestamp: NOW - 60_000,
+      data: { ...before, timestamp: NOW - 60_000, meta: { ...before.meta,
+        idleState: { ...before.meta.idleState, lastOnline: NOW - 60_000 } } } };
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toEqual({
+      awayMs: 60_000, bonusPct: (1 + .08 / 60) - 1, windowSeconds: 20
+    });
+  });
+
+  it.each(['hydrate', 'import', 'delete'] as const)('clears the return notice on a successful exact %s', async operation => {
+    const before = fixture();
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toBeTruthy();
+    if (operation === 'hydrate') await hydrateFromSave();
+    else if (operation === 'import') await importIntoStores(JSON.stringify(before));
+    else await deleteCurrentSave();
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
+    await initPersistence();
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
+  });
+
   it('persists four-hour accrual before exposing the loaded character without awarding raw rewards', async () => {
     const before = fixture();
     await initPersistence();
@@ -197,15 +271,15 @@ describe('persisted bonus startup reconciliation', () => {
     expect(i18n.language).toBe('en');
   });
 
-  it('runs page initialization once across concurrent calls and later remounts', async () => {
+  it('loads one full record across concurrent initialization and later remounts', async () => {
     fixture();
     await Promise.all([initPersistence(), initPersistence()]);
-    expect(disk.get).toHaveBeenCalledTimes(2); // hasSave and loadSave
+    expect(disk.get).toHaveBeenCalledTimes(1); // The validated load also detects an empty disk.
     expect(disk.put).toHaveBeenCalledTimes(1);
     useInventoryStore.getState().addCurrency('rune-shard', 9);
     await initPersistence();
     expect(useInventoryStore.getState().currencies['rune-shard']).toBe(26);
-    expect(disk.get).toHaveBeenCalledTimes(2);
+    expect(disk.get).toHaveBeenCalledTimes(1);
   });
 
   it('holds domain state and locale until the reconciliation write succeeds', async () => {
@@ -222,6 +296,7 @@ describe('persisted bonus startup reconciliation', () => {
       await vi.waitFor(() => { expect(disk.put).toHaveBeenCalledTimes(1); }, { timeout: 250 });
       domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
       expect(useHydrationStore.getState().status).toBe('loading');
+      expect(useHydrationStore.getState().offlineReturn).toBeNull();
       expect(i18n.language).toBe('zh-CN');
     } finally {
       gate.resolve(undefined);
@@ -232,8 +307,9 @@ describe('persisted bonus startup reconciliation', () => {
 
   it('preserves the remaining tuple across same-clock page restarts and legacy timestamp reconciliation', async () => {
     const before = fixture();
+    const record = required(disk.state.record);
     disk.state.record = {
-      ...required(disk.state.record),
+      id: record.id, version: record.version, timestamp: record.timestamp,
       data: { ...before, timestamp: NOW - 2 * HOUR,
         meta: { ...before.meta, idleState: { ...before.meta.idleState,
           activeMultiplier: 1.16, multiplierSecondsRemaining: 7 } } }
@@ -252,8 +328,9 @@ describe('persisted bonus startup reconciliation', () => {
 
   it.each(['storage', 'overflow'] as const)('preserves disk/domain references/locale and blocks writes after %s failure', async failure => {
     const before = fixture();
+    const record = required(disk.state.record);
     if (failure === 'storage') disk.put.mockRejectedValueOnce(new Error('Quota unavailable'));
-    else disk.state.record = { ...required(disk.state.record),
+    else disk.state.record = { id: record.id, version: record.version, timestamp: record.timestamp,
       data: { ...before, timestamp: -Number.MAX_VALUE,
         meta: { ...before.meta, idleState: { ...before.meta.idleState,
           lastOnline: -Number.MAX_VALUE, offlineTime: Number.MAX_VALUE } } }
@@ -265,6 +342,7 @@ describe('persisted bonus startup reconciliation', () => {
     expect(disk.state.record).toEqual(originalDisk);
     expect(i18n.language).toBe('zh-CN');
     expect(useHydrationStore.getState().status).toBe('error');
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
     expect(useSaveStatusStore.getState().error).toMatch(failure === 'storage' ? /Quota/ : /finite/);
     await expect(flushSave()).rejects.toThrow('recovery');
     // Cached initialization doesn't silently retry; exact import is recovery.
@@ -297,6 +375,7 @@ describe('persisted bonus startup reconciliation', () => {
     expect(disk.put).not.toHaveBeenCalled();
     expect(disk.state.record).toBeUndefined();
     expect(usePlayerStore.getState().player).toBeNull();
+    expect(useHydrationStore.getState().offlineReturn).toBeNull();
   });
 });
 
@@ -308,7 +387,7 @@ describe('startup and explicit restore ordering', () => {
     const originalRecord = structuredClone(disk.state.record);
     const gate = deferred<undefined>();
     if (phase === 'read') {
-      disk.get.mockResolvedValueOnce(originalRecord).mockImplementationOnce(async () => {
+      disk.get.mockImplementationOnce(async () => {
         await gate.promise;
         return originalRecord;
       });
@@ -321,7 +400,8 @@ describe('startup and explicit restore ordering', () => {
     const imported = { ...before, player: { ...before.player, name: 'User import' } };
     try {
       await vi.waitFor(() => { expect(phase === 'read' ? disk.get : disk.put)
-        .toHaveBeenCalledTimes(phase === 'read' ? 2 : 1); }, { timeout: 500 });
+        .toHaveBeenCalledTimes(1); }, { timeout: 500 });
+      expect(usePlayerStore.getState().player).toBeNull();
       requested = replacement === 'import'
         ? importIntoStores(JSON.stringify(imported)) : deleteCurrentSave();
       expect(isReplacingSave()).toBe(true);
@@ -588,7 +668,7 @@ describe('persistence at wave transition boundaries', () => {
     const exported = JSON.parse(required(persistence.exportCurrentSave())) as unknown;
     expect(exported).toEqual(toJsonSafe(expected));
     await persistence.flushSave();
-    expect(savedData()).toEqual(expected);
+    expect(savedData()).toEqual(toJsonSafe(expected));
     expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
     expect(useCombatStore.getState()).toBe(recording);
     domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
@@ -815,7 +895,8 @@ describe('successful restore transient combat cleanup', () => {
       if (failure.endsWith('-write')) disk.put.mockRejectedValueOnce(new Error('Write unavailable'));
       if (failure === 'delete') disk.delete.mockRejectedValueOnce(new Error('Delete unavailable'));
       if (failure === 'hydrate-validation') {
-        disk.state.record = { ...required(originalDisk), data: { ...data, player: { ...data.player, level: -1 } } };
+        disk.state.record = { id: 'current', version: data.version, timestamp: data.timestamp,
+          data: { ...data, player: { ...data.player, level: -1 } } };
       }
       try {
         const kind = failure.split('-')[0] as Restore;

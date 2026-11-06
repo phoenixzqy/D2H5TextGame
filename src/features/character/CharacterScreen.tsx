@@ -13,12 +13,13 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait, tItemName } from '@/ui';
-import { useInventoryStore, usePlayerStore } from '@/stores';
+import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
 import type { CoreStats, DamageType } from '@/engine/types/attributes';
 import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
 import { applyStatDraft, type ApplyStatDraftResult } from './applyStatDraft';
+import { composeEquippedPlayerStats, type PlayerVitalityComposition } from '@/engine/progression/equipped-stats';
 
 const RESIST_KEYS: readonly Exclude<DamageType, 'thorns'>[] = [
   'fire',
@@ -40,12 +41,16 @@ const SLOT_ORDER: readonly EquipmentSlot[] = [
   'ring-right',
   'weapon',
   'offhand',
+  'charm',
 ];
 
 export function CharacterScreen() {
   const { t } = useTranslation(['character', 'common', 'inventory', 'damage-types']);
   const player = usePlayerStore((s) => s.player);
   const equipped = useInventoryStore((s) => s.equipped);
+  const questItems = useInventoryStore(s => s.questItems);
+  const questProgress = useMapStore(s => s.questProgress);
+  const questReceipts = useMapStore(s => s.questReceipts);
   const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
 
   if (!player) {
@@ -58,12 +63,13 @@ export function CharacterScreen() {
     );
   }
 
+  const vitality = composeEquippedPlayerStats(player, player.level, equipped, questProgress, questItems, questReceipts).vitality;
   return (
     <ScreenShell testId="character-screen" title={t('character:screen.title')}>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 lg:grid-cols-2 lg:items-start">
         <div className="contents" data-testid="char-top-row">
           <div data-testid="hero-strip">
-            <HeroStrip player={player} />
+            <HeroStrip player={player} vitality={vitality} />
           </div>
           <DerivedStatsPanel player={player} />
         </div>
@@ -88,7 +94,7 @@ export function CharacterScreen() {
   );
 }
 
-function HeroStrip({ player }: { player: Player }) {
+function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVitalityComposition }) {
   const { t } = useTranslation(['character', 'common']);
   const xpMax = Math.max(1, player.experienceToNextLevel);
   const ds = player.derivedStats;
@@ -97,30 +103,43 @@ function HeroStrip({ player }: { player: Player }) {
   return (
     <Panel className="!p-3">
       <div className="flex items-start gap-3 flex-wrap">
-        <GameCard
-          variant="character"
-          size="lg"
-          name={player.name}
-          subtitle={t(`character:classes.${player.class}`)}
-          rarity="unique"
-          image={portrait ?? undefined}
-          stats={[
-            { label: 'STR', value: cs.strength },
-            { label: 'DEX', value: cs.dexterity },
-            { label: 'VIT', value: cs.vitality },
-            { label: 'ENG', value: cs.energy }
-          ]}
-          bars={[
-            { kind: 'hp', current: ds.life, max: Math.max(1, ds.lifeMax) },
-            { kind: 'mp', current: ds.mana, max: Math.max(1, ds.manaMax) }
-          ]}
-          testId="hero-card"
-        />
+        <div className="h-[26rem] w-full max-w-64 shrink-0">
+          <GameCard
+            variant="character"
+            size="lg"
+            fluid
+            className="min-w-0 [&>.border-b]:shrink-0 [&>.border-t]:shrink-0
+                       [&_.truncate]:whitespace-normal [&_.truncate]:break-words
+                       [&>.border-b_.uppercase]:text-sm [&>.border-b_.uppercase]:text-d2-white/80
+                       [&>.border-b_.uppercase]:normal-case [&>.border-b_.uppercase]:tracking-normal
+                       [&>.border-t>.grid]:grid-cols-1
+                       [&>.border-t>.grid>div]:flex-row [&>.border-t>.grid>div]:justify-between
+                       [&>.border-t>.grid>div]:gap-2
+                       [&_.text-micro]:text-sm [&_.text-micro]:text-d2-white/80
+                       [&_.text-micro]:normal-case [&_.text-micro]:tracking-normal
+                       [&_.text-micro]:leading-5"
+            name={player.name}
+            subtitle={t(`character:classes.${player.class}`)}
+            rarity="unique"
+            image={portrait ?? undefined}
+            stats={[
+              { label: t('common:stats.strength'), value: cs.strength },
+              { label: t('common:stats.dexterity'), value: cs.dexterity },
+              { label: t('common:stats.vitality'), value: vitality.sheet },
+              { label: t('common:stats.energy'), value: cs.energy }
+            ]}
+            bars={[
+              { kind: 'hp', current: ds.life, max: Math.max(1, ds.lifeMax) },
+              { kind: 'mp', current: ds.mana, max: Math.max(1, ds.manaMax) }
+            ]}
+            testId="hero-card"
+          />
+        </div>
         <div className="flex-1 min-w-[180px] space-y-2 mt-2">
           <div className="font-serif text-d2-gold text-lg md:text-xl truncate" data-testid="char-name">
             {player.name}
           </div>
-          <div className="text-xs md:text-sm text-d2-white/70">
+          <div className="text-sm text-d2-white/80">
             <span data-testid="char-class">
               {t(`character:classes.${player.class}`)}
             </span>
@@ -147,6 +166,10 @@ type DraftFeedback = ApplyStatDraftResult | 'cancelled' | 'discarded';
 
 function CoreAttributesPanel({ player }: { player: Player }) {
   const { t } = useTranslation(['common', 'character']);
+  const equipped = useInventoryStore(s => s.equipped);
+  const questItems = useInventoryStore(s => s.questItems);
+  const questProgress = useMapStore(s => s.questProgress);
+  const questReceipts = useMapStore(s => s.questReceipts);
   const [draft, setDraft] = useState<{ basis: Player; deltas: CoreStats } | null>(null);
   const [feedback, setFeedback] = useState<DraftFeedback | null>(null);
   const stale = draft !== null && draft.basis !== player;
@@ -155,6 +178,13 @@ function CoreAttributesPanel({ player }: { player: Player }) {
   const total = ATTRIBUTE_KEYS.reduce((sum, stat) => sum + deltas[stat], 0);
   const remaining = Math.max(0, Math.floor(player.statPoints)) - total;
   const message = stale ? 'discarded' : feedback;
+  const current = composeEquippedPlayerStats(player, player.level, equipped, questProgress, questItems, questReceipts);
+  const preview = composeEquippedPlayerStats({ ...player, coreStats: {
+    strength: player.coreStats.strength + deltas.strength,
+    dexterity: player.coreStats.dexterity + deltas.dexterity,
+    vitality: player.coreStats.vitality + deltas.vitality,
+    energy: player.coreStats.energy + deltas.energy
+  } }, player.level, equipped, questProgress, questItems, questReceipts);
   useEffect(() => {
     if (stale) { setDraft(null); setFeedback('discarded'); }
   }, [stale]);
@@ -202,6 +232,14 @@ function CoreAttributesPanel({ player }: { player: Player }) {
             </li>
           ))}
         </ul>
+        <div className="mt-3 space-y-1 break-words text-sm text-d2-white/90" data-testid="char-vitality-composition">
+          <p>{t('character:vitality.effective', { ...current.vitality })}</p>
+          <p>{t('character:vitality.breakdown', { ...current.vitality })}</p>
+          <p>{t('character:vitality.allocation')}</p>
+          {total > 0 && <p className="text-d2-gold" data-testid="char-vitality-preview">{t('character:vitality.preview', {
+            sheet: preview.vitality.sheet, lifeMax: preview.derivedStats.lifeMax
+          })}</p>}
+        </div>
         <div className="flex flex-wrap gap-3 mt-3 text-sm text-d2-white/80">
           <span>{t('character:screen.statPoints')}{': '}
             <span className="text-d2-gold font-bold" data-testid="char-stat-points">{player.statPoints}</span>

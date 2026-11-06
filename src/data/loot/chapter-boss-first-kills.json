@@ -1,0 +1,73 @@
+{
+  "eliteBaseIds": [
+    "items/base/helm-armet",
+    "items/base/helm-giant-conch",
+    "items/base/armor-dusk-shroud",
+    "items/base/armor-archon-plate",
+    "items/base/glove-vampirebone",
+    "items/base/glove-bramble-mitts",
+    "items/base/boot-demonhide",
+    "items/base/boot-myrmidon-greaves",
+    "items/base/belt-demonhide",
+    "items/base/belt-mithril-coil",
+    "items/base/ring-obsidian",
+    "items/base/ring-zircon",
+    "items/base/amu-obsidian",
+    "items/base/amu-zircon",
+    "items/base/wp1h-phase-blade",
+    "items/base/wp1h-legend-sword",
+    "items/base/wp2h-colossus-blade",
+    "items/base/wp2h-thunder-maul",
+    "items/base/sh-monarch",
+    "items/base/sh-sacred-targe"
+  ],
+  "bosses": [
+    {
+      "treasureClassId": "loot/act1-boss",
+      "act": 1,
+      "areaId": "areas/act1-catacombs",
+      "bossId": "monsters/act1.andariel",
+      "randomUnique": "any"
+    },
+    {
+      "treasureClassId": "loot/act2-boss",
+      "act": 2,
+      "areaId": "areas/act2-tomb-of-tal-rasha",
+      "bossId": "monsters/act2.duriel",
+      "randomUnique": "any",
+      "namedUnique": {
+        "id": "items/unique/stone-of-jordan",
+        "chance": 0.05
+      }
+    },
+    {
+      "treasureClassId": "loot/act3-boss",
+      "act": 3,
+      "areaId": "areas/act3-durance-of-hate",
+      "bossId": "monsters/act3.mephisto",
+      "randomUnique": "armor-or-weapon"
+    },
+    {
+      "treasureClassId": "loot/act4-boss",
+      "act": 4,
+      "areaId": "areas/act4-chaos-sanctuary",
+      "bossId": "monsters/act4.diablo",
+      "randomUnique": "elite",
+      "namedUnique": {
+        "id": "items/unique/grandfather",
+        "chance": 0.03
+      }
+    },
+    {
+      "treasureClassId": "loot/act5-boss",
+      "act": 5,
+      "areaId": "areas/act5-throne-of-destruction",
+      "bossId": "monsters/act5.baal",
+      "randomUnique": "any",
+      "hellRune": {
+        "minimum": 23,
+        "maximum": 33
+      }
+    }
+  ]
+}

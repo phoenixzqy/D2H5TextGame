@@ -1,4 +1,6 @@
 import { isCainTownPresent, talkToCain } from '@/features/quests/cainQuestActions';
+import { talkToOrmus } from '@/features/quests/ormusQuestActions';
+import { talkToFara } from '@/features/quests/faraQuestActions';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 /**
@@ -19,6 +21,12 @@ import { loadTownNpcs } from '@/data/loaders/towns';
 import { QuestDeliveryPanel } from './QuestDeliveryPanel';
 import { TownRespecPanel } from './TownRespecPanel';
 import { QuestServicePanel } from './QuestServicePanel';
+import { WarbandEnlistPanel } from './WarbandEnlistPanel';
+import { AnyaTradePanel } from './AnyaTradePanel';
+import { TownEnlistmentPanel } from './TownEnlistmentPanel';
+import { CountedJadeDeliveryPanel } from './CountedJadeDeliveryPanel';
+import { CowQuestActionsPanel } from '@/features/quests/CowQuestActionsPanel';
+import { TOWN_ENLISTMENTS, type TownEnlistmentKey } from '@/engine/map/town-enlistment-quest';
 import { CainIdentifyPanel } from './CainIdentifyPanel';
 import { QuestTitleControls } from './QuestTitleControls';
 import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
@@ -63,13 +71,13 @@ export function TownScreen() {
     >
       {/* Zone-art background */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-        <img
+        <GameImage
           src={getZoneArtUrl(currentAct)}
           alt=""
-          className="w-full h-full object-cover opacity-20"
-          loading="lazy"
-          decoding="async"
-          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          fallbackIcon=""
+          size="fill"
+          className="rounded-none border-0 bg-none"
+          imageClassName="w-full h-full object-cover opacity-20"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-d2-bg/60 to-d2-bg" />
       </div>
@@ -95,6 +103,12 @@ export function TownScreen() {
                       if (npc.id === 'npc/cain' && currentAct === 1) {
                         const result = talkToCain();
                         setTalkFailure(result === 'ok' || result === 'already-read' ? null : result);
+                      } else if (npc.id === 'npc/ormus' && currentAct === 3) {
+                        const result = talkToOrmus();
+                        setTalkFailure(result === 'ok' || result === 'already-read' || result === 'not-eligible' ? null : result);
+                      } else if (npc.id === 'npc/fara' && currentAct === 2) {
+                        const result = talkToFara();
+                        setTalkFailure(result === 'ok' || result === 'already-talked' || result === 'not-eligible' ? null : result);
                       } else { recordNpcTalk(npc.id); setTalkFailure(null); }
                     } catch (error) {
                       if (error instanceof AggregateError) setTalkFailure('restoration-failed');
@@ -138,9 +152,18 @@ export function TownScreen() {
               {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
             </div>
             <QuestDeliveryPanel key={`${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            {currentAct === 3 && selectedNpc.id === 'npc/meshif' && <CountedJadeDeliveryPanel />}
+            {currentAct === 1 && selectedNpc.id === 'npc/akara' && <CowQuestActionsPanel context="town" />}
             <Act5QuestActionsPanel key={`actions:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <TownRespecPanel key={`reset:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <QuestServicePanel key={`services:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            {currentAct === 5 && selectedNpc.id === 'npc/qual-kehk' && <WarbandEnlistPanel />}
+            {currentAct === 5 && selectedNpc.id === 'npc/anya' && <AnyaTradePanel />}
+            {(Object.keys(TOWN_ENLISTMENTS) as TownEnlistmentKey[]).map(key => {
+              const contract = TOWN_ENLISTMENTS[key];
+              return contract.actId === `acts/act${String(currentAct)}` && contract.npc === selectedNpc.id
+                ? <TownEnlistmentPanel key={key} enlistmentKey={key} /> : null;
+            })}
             <CainIdentifyPanel key={`identify:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <div className="flex flex-wrap gap-2">
               <Button

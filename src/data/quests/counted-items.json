@@ -1,0 +1,163 @@
+{
+  "items": [
+    {
+      "key": "alkor",
+      "quest": "quests/side-act3-alkors-experiment",
+      "objective": "obj-collect",
+      "objectiveType": "collect",
+      "itemId": "quest/spider_venom_gland",
+      "sink": "claim",
+      "actId": "acts/act3",
+      "areaId": "areas/act3-spider-forest",
+      "npc": "npc/alkor",
+      "nameKey": "inventory:questItems.counted.alkor.name",
+      "descKey": "inventory:questItems.counted.alkor.desc",
+      "placements": [
+        {
+          "source": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-1",
+          "targetId": "objects/alkor_venom_gland_1"
+        },
+        {
+          "source": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-2",
+          "targetId": "objects/alkor_venom_gland_2"
+        },
+        {
+          "source": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-3",
+          "targetId": "objects/alkor_venom_gland_3"
+        }
+      ]
+    },
+    {
+      "key": "jade",
+      "quest": "quests/side-act3-jade-statuette",
+      "objective": "obj-deliver",
+      "objectiveType": "deliver",
+      "itemId": "quest/jade_trinket",
+      "sink": "town-delivery",
+      "actId": "acts/act3",
+      "areaId": "areas/act3-kurast-bazaar",
+      "npc": "npc/meshif",
+      "nameKey": "inventory:questItems.counted.jade.name",
+      "descKey": "inventory:questItems.counted.jade.desc",
+      "placements": [
+        {
+          "source": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-1",
+          "targetId": "objects/jade_trinket_1"
+        },
+        {
+          "source": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-2",
+          "targetId": "objects/jade_trinket_2"
+        },
+        {
+          "source": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-3",
+          "targetId": "objects/jade_trinket_3"
+        }
+      ]
+    },
+    {
+      "key": "jamella",
+      "quest": "quests/side-act4-jamella-trade",
+      "objective": "obj-collect",
+      "objectiveType": "collect",
+      "itemId": "quest/forge_ember",
+      "sink": "claim",
+      "actId": "acts/act4",
+      "areaId": "areas/act4-river-of-flame",
+      "npc": "npc/jamella",
+      "nameKey": "inventory:questItems.counted.jamella.name",
+      "descKey": "inventory:questItems.counted.jamella.desc",
+      "placements": [
+        {
+          "source": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-1",
+          "targetId": "objects/forge_ember_1"
+        },
+        {
+          "source": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-2",
+          "targetId": "objects/forge_ember_2"
+        },
+        {
+          "source": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-3",
+          "targetId": "objects/forge_ember_3"
+        },
+        {
+          "source": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-4",
+          "targetId": "objects/forge_ember_4"
+        },
+        {
+          "source": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-5",
+          "targetId": "objects/forge_ember_5"
+        }
+      ]
+    },
+    {
+      "key": "malah",
+      "quest": "quests/side-act5-malahs-elixir",
+      "objective": "obj-collect",
+      "objectiveType": "collect",
+      "itemId": "quest/frost_lichen",
+      "sink": "claim",
+      "actId": "acts/act5",
+      "areaId": "areas/act5-ancients-way",
+      "npc": "npc/malah",
+      "nameKey": "inventory:questItems.counted.malah.name",
+      "descKey": "inventory:questItems.counted.malah.desc",
+      "placements": [
+        {
+          "source": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-1",
+          "targetId": "objects/frost_lichen_1"
+        },
+        {
+          "source": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-2",
+          "targetId": "objects/frost_lichen_2"
+        },
+        {
+          "source": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-3",
+          "targetId": "objects/frost_lichen_3"
+        },
+        {
+          "source": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-4",
+          "targetId": "objects/frost_lichen_4"
+        },
+        {
+          "source": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-5",
+          "targetId": "objects/frost_lichen_5"
+        }
+      ]
+    },
+    {
+      "key": "gheed",
+      "quest": "quests/side-act1-gheeds-gamble",
+      "objective": "obj-gamble-5",
+      "objectiveType": "collect",
+      "itemId": "quest/gheed_salvage_lot",
+      "sink": "claim",
+      "actId": "acts/act1",
+      "areaId": "areas/act1-cold-plains",
+      "npc": "npc/gheed",
+      "nameKey": "inventory:questItems.counted.gheed.name",
+      "descKey": "inventory:questItems.counted.gheed.desc",
+      "placements": [
+        {
+          "source": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-1",
+          "targetId": "objects/gheed_salvage_lot_1"
+        },
+        {
+          "source": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-2",
+          "targetId": "objects/gheed_salvage_lot_2"
+        },
+        {
+          "source": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-3",
+          "targetId": "objects/gheed_salvage_lot_3"
+        },
+        {
+          "source": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-4",
+          "targetId": "objects/gheed_salvage_lot_4"
+        },
+        {
+          "source": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-5",
+          "targetId": "objects/gheed_salvage_lot_5"
+        }
+      ]
+    }
+  ]
+}

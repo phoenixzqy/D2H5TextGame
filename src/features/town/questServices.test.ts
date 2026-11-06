@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as towns from '@/data/loaders/towns';
 import { loadQuests } from '@/data/loaders/quests';
+import { createMercFromDef } from '@/stores/mercFactory';
+import { loadMercPool } from '@/data/loaders/mercs';
 import { loadItemBases } from '@/data/loaders/loot';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
@@ -12,8 +14,9 @@ import type { Item, Rarity } from '@/engine/types/items';
 import { usePlayerStore, useInventoryStore, useMapStore, useMercStore, useCombatStore, useMetaStore, useFormationStore } from '@/stores';
 import { __resetPersistenceForTests, exportCurrentSave, snapshotStores, useHydrationStore } from '@/stores/persistence';
 import { reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
+import { claimQuestReward } from '@/features/quests/claimReward';
 import { withQuestTransaction } from '@/features/quests/questTransaction';
-import { questServicesForNpc, questServiceCandidates, useQuestService as applyQuestService } from './questServices';
+import { socketItemCandidate, questServicesForNpc, questServiceCandidates, useQuestService as applyQuestService } from './questServices';
 
 const SIEGE = 'quests/act5-siege-on-harrogath#reward:service';
 const LARZUK = 'quests/side-act5-larzuks-sockets#reward:service';
@@ -109,8 +112,7 @@ beforeEach(() => {
   const hero = createMockPlayer('英雄', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...hero, id: 'hero-exact', equipment: [] });
   useMapStore.setState({ currentAct: 5, currentSubAreaId: null, isActUnlocked: () => true });
-  vi.spyOn(towns, 'loadTownNpcs').mockImplementation(act => act === 5
-    ? ['larzuk', 'anya'].map(id => ({ id: `npc/${id}`, portraitId: id, nameKey: `town.npc.${id}` })) : originalTownNpcs(act));
+  vi.spyOn(towns, 'loadTownNpcs').mockImplementation(originalTownNpcs);
   useInventoryStore.setState({ backpack: [gear()] }); grant(SIEGE);
   validateQuestItemLedger(inventory().questItems, useMapStore.getState().questProgress, useMapStore.getState().questReceipts);
   validateNative24CurrentCampaignRewards(useMapStore.getState(), inventory().questItems, inventory().questServices, useMapStore.getState().endgame);
@@ -420,4 +422,79 @@ describe('shared service transaction publication and rollback', () => {
     expect(save.inventory.backpack).toEqual(inventory().backpack);
     expect(save.inventory.questServices).toEqual(inventory().questServices satisfies QuestServiceLedger);
   });
+});
+
+
+describe('charge-free shared socket candidate resolver', () => {
+  it('resolves the actual backpack reference without a charge or issuance context', () => {
+    const item = required(inventory().backpack[0]);
+    useInventoryStore.setState({ questServices: {} });
+    useMapStore.setState({ currentAct: 1, questProgress: {}, questReceipts: {} });
+    expect(socketItemCandidate(item.id)).toBe(item);
+    expect(questServiceCandidates(SIEGE)).toEqual([]);
+    expect(socketItemCandidate('missing')).toBeUndefined();
+  });
+  it.each(['normal', 'magic', 'rare', 'unique', 'set'] as const)('shares actual %s candidates with the existing consumer', rarity => {
+    const item = gear('selected', rarity), armor = gear('armor', rarity, armorBase.id);
+    useInventoryStore.setState({ backpack: [item, armor] });
+    expect(socketItemCandidate(item.id)).toBe(item);
+    expect(socketItemCandidate(armor.id)).toBe(armor);
+    expect(questServiceCandidates(SIEGE)).toEqual([item, armor]);
+  });
+  it.each(['stash', 'hero-gear', 'merc-gear', 'hero-mirror', 'merc-mirror', 'duplicate', 'legacy-quarantine', 'socket-quarantine', 'equipped'] as const)(
+    'excludes %s from both presentation and service candidates', fault => {
+      const item = required(inventory().backpack[0]);
+      if (fault === 'stash') useInventoryStore.setState({ backpack: [], stash: [item] });
+      if (fault === 'hero-gear') useInventoryStore.setState({ equipped: { weapon: item } });
+      if (fault === 'merc-gear') useMercStore.setState({ mercEquipment: { merc: { weapon: item } } });
+      if (fault === 'hero-mirror') usePlayerStore.setState(state => ({ player: { ...required(state.player), equipment: [item] } }));
+      if (fault === 'merc-mirror') useMercStore.setState({ ownedMercs: [{ ...createMercFromDef(required(loadMercPool().pool[0])), equipment: [item] }] });
+      if (fault === 'duplicate') useInventoryStore.setState({ backpack: [item, { ...item }] });
+      if (fault === 'legacy-quarantine') useInventoryStore.setState({ legacyGearQuarantine: [{ item, origin: { container: 'stash', index: 0 } }] });
+      if (fault === 'socket-quarantine') useInventoryStore.setState({ socketQuarantine: [{ sourceVersion: 18, item, origin: { container: 'stash', index: 0 } }] });
+      if (fault === 'equipped') Object.assign(item, { equipped: true });
+      expect(socketItemCandidate(item.id)).toBeUndefined();
+      expect(questServiceCandidates(SIEGE)).toEqual([]);
+    });
+  it.each(['sockets', 'missing-capacity', 'contents', 'runeword', 'runeword-rarity', 'unknown-base', 'non-gear', 'max-zero'] as const)(
+    'shares %s refusals without changing the item', fault => {
+      const item = gear();
+      if (fault === 'sockets') Object.assign(item, { socketCapacity: 1 });
+      if (fault === 'missing-capacity') Reflect.deleteProperty(item, 'socketCapacity');
+      if (fault === 'contents') Object.assign(item, { socketContents: [{ kind: 'rune', id: 'runes/el' }] });
+      if (fault === 'runeword') Object.assign(item, { runewordId: 'runewords/steel' });
+      if (fault === 'runeword-rarity') Object.assign(item, { rarity: 'runeword' });
+      if (fault === 'unknown-base') Object.assign(item, { baseId: 'missing' });
+      if (fault === 'non-gear') Object.assign(item, { baseId: required([...loadItemBases().values()].find(base => base.type === 'jewelry')).id });
+      if (fault === 'max-zero') Object.assign(item, { baseId: required([...loadItemBases().values()].find(base => base.type === 'weapon' && base.maxSockets === 0)).id });
+      useInventoryStore.setState({ backpack: [item] });
+      const before = bytes();
+      expect(socketItemCandidate(item.id)).toBeUndefined();
+      expect(questServiceCandidates(SIEGE)).toEqual([]);
+      expect(bytes()).toBe(before);
+    });
+});
+
+
+describe('finite Halbu wish reward', () => {
+  it('grants10 wishes alongside the actual Hellforge-backed socket charge once', () => {
+    actualMainSource(FORGE);
+    const side = 'quests/side-act4-halbus-soul'; track(side);
+    useMapStore.getState().updateQuestProgress(side, { rewardClaimed: false });
+    const before = inventory().currencies.wishstone ?? 0;
+    expect(claimQuestReward(side)).toBe('ok');
+    expect(inventory().currencies.wishstone).toBe(before + 10);
+    expect(inventory().questServices[HALBU]).toEqual({ serviceId: 'socket_armor', state: 'available' });
+    expect(claimQuestReward(side)).toBe('already-claimed'); expect(inventory().currencies.wishstone).toBe(before + 10);
+  });
+  it('restores Halbu wishes and charge together after silent claimed publication', () => {
+    actualMainSource(FORGE);
+    const side = 'quests/side-act4-halbus-soul'; track(side);
+    useMapStore.getState().updateQuestProgress(side, { rewardClaimed: false });
+    const before = bytes();
+    const mock = vi.spyOn(useMapStore.getState(), 'markQuestRewardClaimed').mockImplementation(() => undefined);
+    expect(claimQuestReward(side)).toBe('grant-failed'); expect(bytes()).toBe(before);
+    mock.mockRestore(); expect(claimQuestReward(side)).toBe('ok');
+  });
+
 });

@@ -115,7 +115,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(page.getByTestId(`inv-item-${bonnet.id}`)).toHaveCount(0);
 
     await page.locator('#tab-equipment').click();
-    await page.getByTestId('equip-slot-head').click();
+    await page.getByTestId('equip-slot-head-select').click();
     const candidate = page.getByTestId(`equip-picker-row-${bonnet.id}`);
     await expect(candidate).toContainText(name);
     await expectArt(candidate, UNIQUE_ART);
@@ -167,7 +167,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(page.getByTestId('settings-screen')).toBeVisible();
     await navTo(page, 'inventory');
     await page.locator('#tab-equipment').click();
-    await page.getByTestId('equip-slot-head').click();
+    await page.getByTestId('equip-slot-head-select').click();
     await expect(candidate.locator('img')).toHaveCount(0);
     await expect(candidate.getByText('?', { exact: true })).toBeVisible();
     await expect(candidate).toContainText(name);
@@ -175,7 +175,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expectArt(page.getByTestId(`equip-picker-row-${cap.id}`), BASE_ART);
     await page.getByTestId('equip-picker-close').click();
     await page.unroute(`**${UNIQUE_ART}`);
-    await page.getByTestId('equip-slot-head').click();
+    await page.getByTestId('equip-slot-head-select').click();
     await expectArt(candidate, UNIQUE_ART);
     expect(await page.evaluate(() =>
       document.documentElement.scrollWidth - document.documentElement.clientWidth

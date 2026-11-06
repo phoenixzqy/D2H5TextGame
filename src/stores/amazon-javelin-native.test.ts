@@ -91,9 +91,9 @@ for (const rank of [1, 20]) {
   it(`Poison cloud rank${String(rank)} pays once for two direct hits and exact five-second Poison tails`, () => {
     const out = record(nearby('poison-javelin', rank));
     expect(hits(out).filter(e => e.damageType === 'poison').map(e => [e.target,e.amount])).toEqual([
-      ['target',rank === 1 ? 20 : 77],['nearby',rank === 1 ? 26 : 83]]);
+      ['target',rank === 1 ? 20 : 305],['nearby',rank === 1 ? 26 : 311]]);
     expect(out.events.flatMap(e => e.kind === 'status' && e.statusId === 'poison' ? [e.target] : [])).toEqual(['target','nearby']);
-    expect(out.result.enemyTeam.map(u => u.life)).toEqual(rank === 1 ? [1975,1969,2000] : [1908,1897,2000]);
+    expect(out.result.enemyTeam.map(u => u.life)).toEqual(rank === 1 ? [1975,1969,2000] : [1620,1614,2000]);
     expect(out.result.enemyTeam.every(u => !u.statuses.some(s => s.id === 'poison'))).toBe(true);
     expect(out.events.flatMap(e => e.kind === 'mana' && e.reason === 'cast' ? [e.mana] : [])).toEqual([90]);
   });
@@ -102,7 +102,7 @@ for (const rank of [1, 20]) {
     if (!target) throw new Error('Missing native target');
     const out=record({...input,enemyTeam:[target,{...target,id:'diagonal',gridPosition:{row:2,col:2}},
       {...target,id:'far',gridPosition:{row:4,col:4}}]});
-    expect(hits(out).map(e => [e.target,e.amount])).toEqual((rank === 1 ? [81,92,102] : [214,225,235])
+    expect(hits(out).map(e => [e.target,e.amount])).toEqual((rank === 1 ? [81,92,102] : [1506,1517,1527])
       .map((amount,i) => [['target','diagonal','far'][i],amount]));
     expect(out.events.flatMap(e => e.kind === 'status' && e.statusId === 'paralyze' ? [e.target] : [])).toEqual(['target','diagonal','far']);
     expect(out.events.flatMap(e => e.kind === 'mana' && e.reason === 'cast' ? [e.mana] : [])).toEqual([75]);

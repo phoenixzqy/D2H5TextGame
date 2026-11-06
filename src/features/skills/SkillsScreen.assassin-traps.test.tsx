@@ -14,8 +14,8 @@ beforeEach(() => { usePlayerStore.getState().reset(); useHydrationStore.getState
 afterEach(() => { cleanup(); usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('idle'); });
 const cases = [
   ['shock-web', 'Lightning', '闪电', 30, 50, 3], ['charged-bolt-sentry', 'Lightning', '闪电', 40, 60, 4],
-  ['wake-of-fire', 'Fire', '火焰', 60, 85, 5], ['blade-sentinel', 'Physical', '物理', 50, 75, 5],
-  ['lightning-sentry', 'Lightning', '闪电', 75, 110, 6], ['wake-of-inferno', 'Fire', '火焰', 90, 130, 7],
+  ['wake-of-fire', 'Fire', '火焰', 60, 85, 5], ['blade-sentinel', 'Physical', '物理', 50, 75, 120],
+  ['lightning-sentry', 'Lightning', '闪电', 75, 110, 24], ['wake-of-inferno', 'Fire', '火焰', 90, 130, 7],
   ['death-sentry', 'Lightning', '闪电', 85, 125, 7], ['blade-shield', 'Physical', '物理', 95, 135, 8]
 ] as const;
 for (const locale of ['en', 'zh-CN'] as const) for (const [slug, en, zh, min, max, growth] of cases)

@@ -115,3 +115,12 @@ it('does not invent Burn potency or composite behavior for Death Sentry or other
   expect(computeSkillDisplayModel(s, 1).current?.burn).toBeUndefined();
   expect(registeredSkillFromJson(s).effects[0]).not.toHaveProperty('components');
 });
+
+it('Dragon Tail keeps its first rank and exposes invested Fire growth at native and display boundaries', () => {
+  const s = row('dragon-tail');
+  expect(validate(s), JSON.stringify(validate.errors)).toBe(true);
+  expect(registeredSkillFromJson(s).effects[0]).toMatchObject({ kind: 'damage', base: [70, 100], perRank: [120, 120] });
+  for (const [rank, min, max] of [[1, 70, 100], [2, 190, 220], [14, 1630, 1660], [20, 2350, 2380]] as const) {
+    expect(computeSkillDisplayModel(s, rank).current?.damage).toEqual([{ type: 'fire', min, max }]);
+  }
+});

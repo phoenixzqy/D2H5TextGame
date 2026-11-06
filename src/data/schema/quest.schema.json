@@ -82,58 +82,280 @@
       "description": "Authored recipe token (not a namespaced item ID)."
     },
     "objective": {
-      "description": "Closed payloads for the fifteen currently authored objective kinds. Shape validation does not implement the objective.",
-      "oneOf": [
+      "description": "Closed objective payload selected by its authored type; each selected payload retains its complete validation.",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "clear-area",
+            "collect",
+            "deliver",
+            "fetch",
+            "gamble",
+            "hire-mercenary",
+            "interact",
+            "kill",
+            "kill-boss",
+            "kill-boss-group",
+            "rescue",
+            "survive-waves",
+            "talk",
+            "transmute",
+            "use-item",
+            "give"
+          ]
+        }
+      },
+      "allOf": [
         {
-          "$ref": "#/$defs/clearAreaObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "clear-area"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/clearAreaObjective"
+          }
         },
         {
-          "$ref": "#/$defs/collectObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "collect"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/collectObjective"
+          }
         },
         {
-          "$ref": "#/$defs/deliverFilteredObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "deliver"
+              }
+            }
+          },
+          "then": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/deliverFilteredObjective"
+              },
+              {
+                "$ref": "#/$defs/deliverCountedObjective"
+              }
+            ]
+          }
         },
         {
-          "$ref": "#/$defs/deliverCountedObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "fetch"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/fetchObjective"
+          }
         },
         {
-          "$ref": "#/$defs/fetchObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "gamble"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/gambleObjective"
+          }
         },
         {
-          "$ref": "#/$defs/gambleObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "hire-mercenary"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/hireMercenaryObjective"
+          }
         },
         {
-          "$ref": "#/$defs/hireMercenaryObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "interact"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/interactObjective"
+          }
         },
         {
-          "$ref": "#/$defs/interactObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "kill"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/killObjective"
+          }
         },
         {
-          "$ref": "#/$defs/killObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "kill-boss"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/killBossObjective"
+          }
         },
         {
-          "$ref": "#/$defs/killBossObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "kill-boss-group"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/killBossGroupObjective"
+          }
         },
         {
-          "$ref": "#/$defs/killBossGroupObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "rescue"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/rescueObjective"
+          }
         },
         {
-          "$ref": "#/$defs/rescueObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "survive-waves"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/surviveWavesObjective"
+          }
         },
         {
-          "$ref": "#/$defs/surviveWavesObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "talk"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/talkObjective"
+          }
         },
         {
-          "$ref": "#/$defs/talkObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "transmute"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/transmuteObjective"
+          }
         },
         {
-          "$ref": "#/$defs/transmuteObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "use-item"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/useItemObjective"
+          }
         },
         {
-          "$ref": "#/$defs/useItemObjective"
-        },
-        {
-          "$ref": "#/$defs/giveObjective"
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "give"
+              }
+            }
+          },
+          "then": {
+            "$ref": "#/$defs/giveObjective"
+          }
         }
       ]
     },
@@ -163,6 +385,10 @@
         },
         "areaId": {
           "$ref": "#/$defs/areaId"
+        },
+        "count": {
+          "const": 1,
+          "description": "One complete area clear; accepted bounty runs supply its authority."
         }
       }
     },
@@ -270,6 +496,10 @@
         },
         "count": {
           "$ref": "#/$defs/positiveInteger"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId",
+          "description": "Optional canonical area where the counted delivery ingredients are recovered; the delivery NPC remains separate."
         }
       }
     },

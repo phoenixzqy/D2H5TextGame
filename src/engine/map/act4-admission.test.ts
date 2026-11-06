@@ -14,11 +14,11 @@ describe.each(ACT4_ENCOUNTERS)('Act IV original admission $questId', contract =>
   const wave: WaveSpec = { id: 'generated', waveTier: 'boss', source: contract.source,
     ...(chapter ? { presentation: { kind: 'boss', isActBoss: true } } : {}),
     spawns: contract.members.map((archetypeId, index) => ({ archetypeId, index, level: 61,
-      tier: chapter ? 'chapter-boss' : 'boss', ...(chapter ? { chapterBoss: required(boss) }
+      tier: required(contract.memberTiers[index]), ...(chapter ? { chapterBoss: required(boss) }
         : { encounterId: contract.source.encounterId }) })) };
   const originals = contract.members.map((archetypeId, index) => ({ ...buildMonsterUnit({
     def: required(monsters.find(monster => monster.id === archetypeId)), level: 61,
-    tier: chapter ? 'chapter-boss' : 'boss', rng: createRng(4 + index) }), id: `original-${String(index)}` }));
+    tier: required(contract.memberTiers[index]), rng: createRng(4 + index) }), id: `original-${String(index)}` }));
   const hero: CombatUnit = { ...required(originals[0]), id: 'hero', side: 'player', kind: 'hero', life: 7 };
   const victory = { winner: 'player', finalPlayerTeam: [hero], finalEnemyTeam: originals.map(unit => ({ ...unit, life: 0 })) };
   const objectives: Record<string, boolean> = Object.fromEntries<boolean>([...contract.prerequisites.map(id => [id, true] as const), [contract.objectiveId, false] as const,

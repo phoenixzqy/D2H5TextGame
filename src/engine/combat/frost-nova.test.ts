@@ -153,7 +153,7 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
     });
   }
 
-  it('finishes each target in summon-first then insertion order with independent Freeze rolls', () => {
+  it('finishes each hostile in insertion order with independent Freeze rolls', () => {
     const base = quietTargets(snapshot(), ['first-monster', 'taunting-summon', 'last-monster']);
     const input = { ...base, enemyTeam: base.enemyTeam.map(target => target.id === 'taunting-summon'
       ? { ...target, kind: 'summon' as const } : target) };
@@ -161,12 +161,12 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
     expect(recorded.events.filter(e => e.kind === 'damage' || e.kind === 'status').map(e =>
       e.kind === 'damage' ? ['hit', e.target, e.amount] : ['status', e.target, e.statusId]))
       .toEqual([
-        ['hit', 'taunting-summon', 33], ['status', 'taunting-summon', 'chill'], ['status', 'taunting-summon', 'freeze'],
-        ['hit', 'first-monster', 32], ['status', 'first-monster', 'chill'],
+        ['hit', 'first-monster', 33], ['status', 'first-monster', 'chill'], ['status', 'first-monster', 'freeze'],
+        ['hit', 'taunting-summon', 32], ['status', 'taunting-summon', 'chill'],
         ['hit', 'last-monster', 33], ['status', 'last-monster', 'chill']
       ]);
     expect(recorded.result.enemyTeam.map(target => [target.id, target.life]))
-      .toEqual([['first-monster', 468], ['taunting-summon', 467], ['last-monster', 467]]);
+      .toEqual([['first-monster', 467], ['taunting-summon', 468], ['last-monster', 467]]);
     assertReplay(input, recorded);
   });
 

@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "decision": "docs/plans/decisions/P15-throwing-weapon-progression-v1.md",
+  "tiers": [
+    {
+      "baseId": "items/base/weapon-balanced-knife",
+      "from": 8,
+      "to": 21
+    },
+    {
+      "baseId": "items/base/weapon-war-dart",
+      "from": 22,
+      "to": 31
+    },
+    {
+      "baseId": "items/base/weapon-battle-dart",
+      "from": 32,
+      "to": 49
+    },
+    {
+      "baseId": "items/base/weapon-winged-knife",
+      "from": 50,
+      "to": 59
+    },
+    {
+      "baseId": "items/base/weapon-winged-axe",
+      "from": 60,
+      "to": 122
+    }
+  ],
+  "tables": [
+    {
+      "id": "loot/trash-act1",
+      "rarity": "normal",
+      "minLevel": 8,
+      "maxLevel": 58,
+      "weightPerFamily": 127.5
+    },
+    {
+      "id": "loot/trash-act2",
+      "rarity": "normal",
+      "minLevel": 14,
+      "maxLevel": 71,
+      "weightPerFamily": 65.0
+    },
+    {
+      "id": "loot/trash-act3",
+      "rarity": "normal",
+      "minLevel": 26,
+      "maxLevel": 86,
+      "weightPerFamily": 43.75
+    },
+    {
+      "id": "loot/trash-act4",
+      "rarity": "normal",
+      "minLevel": 40,
+      "maxLevel": 101,
+      "weightPerFamily": 52.5
+    },
+    {
+      "id": "loot/trash-act5",
+      "rarity": "normal",
+      "minLevel": 55,
+      "maxLevel": 122,
+      "weightPerFamily": 70.0
+    },
+    {
+      "id": "loot/champion-act1",
+      "rarity": "magic",
+      "minLevel": 9,
+      "maxLevel": 14,
+      "weightPerFamily": 18.75
+    },
+    {
+      "id": "loot/champion-act2",
+      "rarity": "magic",
+      "minLevel": 22,
+      "maxLevel": 28,
+      "weightPerFamily": 18.75
+    },
+    {
+      "id": "loot/champion-act3",
+      "rarity": "magic",
+      "minLevel": 38,
+      "maxLevel": 45,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/champion-act4",
+      "rarity": "magic",
+      "minLevel": 42,
+      "maxLevel": 55,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/champion-act5",
+      "rarity": "magic",
+      "minLevel": 57,
+      "maxLevel": 75,
+      "weightPerFamily": 18.75
+    },
+    {
+      "id": "loot/unique-act1",
+      "rarity": "rare",
+      "minLevel": 10,
+      "maxLevel": 14,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/unique-act2",
+      "rarity": "rare",
+      "minLevel": 22,
+      "maxLevel": 28,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/unique-act3",
+      "rarity": "rare",
+      "minLevel": 38,
+      "maxLevel": 45,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/unique-act4",
+      "rarity": "rare",
+      "minLevel": 43,
+      "maxLevel": 55,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/unique-act5",
+      "rarity": "rare",
+      "minLevel": 58,
+      "maxLevel": 75,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/mini-act1",
+      "rarity": "rare",
+      "minLevel": 10,
+      "maxLevel": 52,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/mini-act2",
+      "rarity": "rare",
+      "minLevel": 22,
+      "maxLevel": 68,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/mini-act3",
+      "rarity": "rare",
+      "minLevel": 38,
+      "maxLevel": 83,
+      "weightPerFamily": 10.0
+    },
+    {
+      "id": "loot/mini-act4",
+      "rarity": "rare",
+      "minLevel": 43,
+      "maxLevel": 96,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/mini-act5",
+      "rarity": "rare",
+      "minLevel": 58,
+      "maxLevel": 115,
+      "weightPerFamily": 12.5
+    },
+    {
+      "id": "loot/act1-boss",
+      "rarity": "rare",
+      "minLevel": 12,
+      "maxLevel": 59,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/act2-boss",
+      "rarity": "rare",
+      "minLevel": 22,
+      "maxLevel": 72,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/act3-boss",
+      "rarity": "rare",
+      "minLevel": 38,
+      "maxLevel": 87,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/act4-boss",
+      "rarity": "rare",
+      "minLevel": 45,
+      "maxLevel": 101,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/act5-boss",
+      "rarity": "rare",
+      "minLevel": 60,
+      "maxLevel": 122,
+      "weightPerFamily": 15.0
+    },
+    {
+      "id": "loot/duriel-q",
+      "rarity": "rare",
+      "minLevel": 22,
+      "maxLevel": 40,
+      "weightPerFamily": 25.0
+    },
+    {
+      "id": "loot/mephisto-q",
+      "rarity": "rare",
+      "minLevel": 38,
+      "maxLevel": 60,
+      "weightPerFamily": 18.75
+    },
+    {
+      "id": "loot/diablo-q",
+      "rarity": "rare",
+      "minLevel": 50,
+      "maxLevel": 75,
+      "weightPerFamily": 18.75
+    }
+  ]
+}

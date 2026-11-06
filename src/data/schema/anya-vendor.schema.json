@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/anya-vendor",
+  "description": "The two finite lifetime Anya unique trades.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "entries"],
+  "properties": {
+    "id": { "const": "vendors/anya_uniques" },
+    "version": { "const": 1 },
+    "entries": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "uniqueId", "ilvl", "stock", "costs"],
+        "properties": {
+          "id": { "enum": ["frostburn-gauntlet", "waterwalk"] },
+          "uniqueId": { "enum": ["items/unique/frostburn-gauntlet", "items/unique/waterwalk"] },
+          "ilvl": { "const": 66 }, "stock": { "const": 1 },
+          "costs": {
+            "type": "object", "additionalProperties": false, "required": ["materials", "currencies"],
+            "properties": {
+              "materials": { "type": "object", "additionalProperties": false, "required": ["materials/scrap"],
+                "properties": { "materials/scrap": { "const": 40 } } },
+              "currencies": { "type": "object", "additionalProperties": false, "required": ["rune-shard"],
+                "properties": { "rune-shard": { "const": 2000 } } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,9 +12,10 @@ import { useMercStore, mercXpForLevel } from '@/stores/mercStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { __resetPersistenceForTests, snapshotStores, useHydrationStore } from '@/stores/persistence';
 import { questToolStatus, recoverQuestTool } from './interactObject';
-import { giveQuestItem, npcQuestDeliveries } from './questDelivery';
-import { canClaim, claimQuestReward, readQuestItem, recoverClaimedQuestRewardItem, questRewardItemRecoveryStatus } from './claimReward';
+import { giveQuestItem, npcQuestDeliveries, questDeliveryCompletions } from './questDelivery';
+import { canClaim, claimQuestReward, readQuestItem, recoverClaimedQuestRewardItem, questRewardItemRecoveryStatus, questRewardItemRecoveryStatuses } from './claimReward';
 import { validateQuestItemLedger, decodeSave } from '@/engine/save/validate';
+import * as saveValidation from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save';
 import { xpTotal } from '@/engine/progression/xp';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
@@ -180,7 +181,7 @@ describe('Golden Bird real exchange chain and Life potion', () => {
     usePlayerStore.getState().gainExperience(1_000_000);
     expect(hero().derivedStats.lifeMax).toBe(deriveEquippedPlayerStats(hero(), hero().level, {}).lifeMax + 20);
     expect(hero().derivedStats.life).toBe(13);
-    expect(loadQuests().find(row => row.id === QUEST)?.rewards).toEqual({ xp: 4000, questItem: 'items/potion_of_life_q' });
+    expect(loadQuests().find(row => row.id === QUEST)?.rewards).toEqual({ xp: 4000, wishstones: 15, questItem: 'items/potion_of_life_q' });
   });
 
   it('repairs a claimed legacy reward only after real exchanges, retaining XP and claimed history', () => {
@@ -209,6 +210,70 @@ describe('Golden Bird real exchange chain and Life potion', () => {
     });
     expect(questRewardItemRecoveryStatus('quests/act2-radaments-lair')).toBe('unavailable');
     expect(recoverClaimedQuestRewardItem('quests/act2-radaments-lair')).toBe('not-eligible');
+  });
+
+  it('batches mixed recovery choices and reads fresh eligibility after real exchanges, recovery and Read', () => {
+    const radament = 'quests/act2-radaments-lair', unknown = 'quests/unknown';
+    const requested = [QUEST, radament, unknown, QUEST];
+    useMapStore.getState().updateQuestProgress(QUEST, { status: 'completed', rewardClaimed: true,
+      objectives: { 'obj-find-figurine': true, 'obj-give-cain': true, 'obj-give-alkor': true } });
+    const flagsOnly = state();
+    const unavailable = questRewardItemRecoveryStatuses(requested);
+    expect(unavailable).toEqual(new Map([[QUEST, 'unavailable'], [radament, 'unavailable'], [unknown, 'unavailable']]));
+    expect(state()).toEqual(flagsOnly);
+    exchanges();
+    const before = state();
+    expect(questRewardItemRecoveryStatuses(requested)).toEqual(
+      new Map([[QUEST, 'ready'], [radament, 'unavailable'], [unknown, 'unavailable']]));
+    expect(state()).toEqual(before);
+    expect(recoverClaimedQuestRewardItem(QUEST)).toBe('ok');
+    expect(questRewardItemRecoveryStatuses(requested).get(QUEST)).toBe('owned');
+    expect(readQuestItem(POTION)).toBe('ok');
+    expect(questRewardItemRecoveryStatuses(requested).get(QUEST)).toBe('consumed');
+    expect(unavailable.get(QUEST)).toBe('unavailable');
+    expect(questRewardItemRecoveryStatuses([]).size).toBe(0);
+  });
+
+  it('revalidates the full recovery ledger after an unrelated invalid source and its repair', () => {
+    exchanges();
+    useMapStore.getState().markQuestRewardClaimed(QUEST);
+    const ledger = useInventoryStore.getState().questItems;
+    expect(questRewardItemRecoveryStatuses([QUEST]).get(QUEST)).toBe('ready');
+    useInventoryStore.setState({ questItems: { ...ledger,
+      unrelated: { itemId: 'quest/jade_figurine', state: 'owned' } } });
+    const invalid = state();
+    expect(questRewardItemRecoveryStatuses([QUEST]).get(QUEST)).toBe('unavailable');
+    expect(recoverClaimedQuestRewardItem(QUEST)).toBe('not-eligible');
+    expect(state()).toEqual(invalid);
+    useInventoryStore.setState({ questItems: ledger });
+    expect(questRewardItemRecoveryStatuses([QUEST]).get(QUEST)).toBe('ready');
+  });
+
+  it('checks multiple real delivery chains with one full validation and keeps non-delivery semantics', () => {
+    exchanges();
+    const tome = 'quests/act3-lam-esens-tome', source = `${tome}#objective:obj-find-tome`;
+    useMapStore.getState().updateQuestProgress(tome, { status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-find-tome': false, 'obj-deliver': false } });
+    useMapStore.getState().setCurrentLocation(3, 'areas/act3-kurast-bazaar');
+    useMapStore.getState().markCleared('areas/act3-kurast-bazaar');
+    expect(recoverQuestTool(source)).toBe('ok');
+    expect(giveQuestItem(source, 'npc/alkor')).toBe('ok');
+    const radament = 'quests/act2-radaments-lair';
+    const quests = [QUEST, tome, radament].map(id => required(loadQuests().find(quest => quest.id === id)));
+    const validate = vi.spyOn(saveValidation, 'validateQuestItemLedger');
+    const before = state();
+    expect(questDeliveryCompletions(quests)).toEqual(new Set([radament, QUEST, tome]));
+    expect(validate).toHaveBeenCalledTimes(1);
+    expect(state()).toEqual(before);
+    const ledger = useInventoryStore.getState().questItems;
+    useInventoryStore.setState({ questItems: { ...ledger,
+      [source]: { itemId: 'quest/lam_esens_tome', state: 'owned' } } });
+    // A held legacy-repair Tome is valid, but cannot prove delivery. Bird stays complete.
+    expect(questDeliveryCompletions(quests)).toEqual(new Set([radament, QUEST]));
+    expect(validate).toHaveBeenCalledTimes(2);
+    useInventoryStore.setState({ questItems: ledger });
+    expect(questDeliveryCompletions(quests)).toEqual(new Set([radament, QUEST, tome]));
+    expect(validate).toHaveBeenCalledTimes(3);
   });
 
   it.each(['owned', 'consumed'] as const)('rejects a current save with a %s Potion but no real hand-ins', itemState => {

@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import json from '../items/material-recipes.json';
-import schema from '../schema/material-recipes.schema.json';
+import { compileAuthoredValidator } from '../authored-validators';
 import { isMaterialLedger, type MaterialLedger } from '@/engine/loot/materials';
 import { materialEconomy } from './materials';
 import type { EquipmentSlot, Rarity } from '@/engine/types/items';
@@ -33,7 +33,7 @@ export interface MaterialRecipeRules {
   readonly insertion: { readonly quantity: number };
 }
 
-const check = new Ajv2020({ strict: true, allErrors: true }).compile<MaterialRecipeRules>(schema);
+const check = compileAuthoredValidator<MaterialRecipeRules>(new Ajv2020({ strict: true, allErrors: true }), 'recipes');
 const onlyEntry = (ledger: MaterialLedger): readonly [string, number] | undefined => {
   const entries = Object.entries(ledger);
   return entries.length === 1 ? entries[0] : undefined;

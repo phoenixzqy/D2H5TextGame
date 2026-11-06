@@ -22,6 +22,40 @@
       "type": "boolean",
       "description": "Explicit authored undead identity. Only literal true qualifies for undead effects; absent legacy definitions remain unclassified. Never infer from names or IDs."
     },
+    "statusImmunities": {
+      "type": "array",
+      "items": { "enum": ["freeze", "poison", "plague", "all-except-stun"] },
+      "uniqueItems": true,
+      "description": "Authored complete status immunities, independent of elemental resistance. Supports Freeze, Poison, Plague or complete rejection except Stun; absent or empty preserves ordinary status acceptance."
+    },
+    "damageImmunities": {
+      "type": "array",
+      "items": { "enum": ["physical", "fire", "cold", "lightning", "poison", "arcane", "thorns"] },
+      "uniqueItems": true,
+      "description": "Explicit damage-type immunity, separate from numeric resistance and status acceptance. Matching direct and periodic damage is zero; resistance penetration does not remove immunity. Absent or empty preserves ordinary mitigation."
+    },
+    "championDamageImmunities": {
+      "$ref": "#/properties/damageImmunities",
+      "description": "Additional explicit damage immunities only when the resolved monster tier is champion. Composed with all-tier damageImmunities; ordinary trash, elite, rare and boss variants do not inherit them."
+    },
+    "stunDurationMultiplier": {
+      "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+      "description": "Authored boss/chapter-boss Stun duration coefficient replacing the generic boss reduction once. Other statuses and non-boss tiers are unaffected."
+    },
+    "critDamage": {
+      "type": "number", "minimum": 1,
+      "description": "Finite critical damage multiplier (1.25 means 125%); overrides the tier default without changing critical chance. Absent retains 1.5 for ordinary tiers or 1.75 for bosses."
+    },
+    "frostAura": {
+      "type": "object", "additionalProperties": false,
+      "description": "Passive cold damage and Chill to living player units, independent of monster actions. First pulse after one interval; wave-local cadence.",
+      "required": ["damage", "intervalMs", "chillDurationMs"],
+      "properties": {
+        "damage": { "type": "number", "minimum": 0 },
+        "intervalMs": { "type": "integer", "minimum": 1000 },
+        "chillDurationMs": { "type": "integer", "minimum": 1000 }
+      }
+    },
     "life": {
       "$ref": "#/$defs/range",
       "description": "Base life at level 1 [min, max]"
@@ -44,8 +78,15 @@
         "type": "string",
         "pattern": "^[a-z0-9-]+$"
       },
-      "minItems": 1,
+      "minItems": 0,
       "description": "Skill IDs this monster can use"
+    },
+    "skillCooldownOverrides": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^monster\\.[a-z][a-z0-9_]*$" },
+      "additionalProperties": { "type": "number", "minimum": 1 },
+      "description": "Monster-specific cooldown seconds keyed by canonical monster.* skill ID. Missing keys retain the shared skill cooldown; transient metadata, not remaining timers."
     },
     "attackSpeed": {
       "type": "number",
@@ -63,11 +104,12 @@
     },
     "enrage": {
       "type": "object", "additionalProperties": false,
-      "description": "Sticky low-life attack-speed multiplier; base stats remain unchanged.",
+      "description": "Sticky low-life attack-speed and optional direct-damage bonuses; base stats remain unchanged.",
       "required": ["lifeFraction", "attackSpeedMultiplier"],
       "properties": {
         "lifeFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
-        "attackSpeedMultiplier": { "type": "number", "minimum": 1 }
+        "attackSpeedMultiplier": { "type": "number", "minimum": 1 },
+        "damagePct": { "type": "number", "minimum": 0, "description": "Additive direct-damage increase in percent (50 means +50%); excludes thorns and settled periodic damage." }
       }
     },
     "magicResist": { "type": "number", "minimum": 0, "description": "Base independent flat magical mitigation" },

@@ -179,6 +179,29 @@ describe('useInventoryStore discard actions', () => {
     expect(useInventoryStore.getState().stash).toEqual([]);
   });
 
+  it('bulkDiscard rechecks current protection in both containers without changing invested items', () => {
+    const ordinary = item('ordinary', 'items/base/helm-cap');
+    const protectedItems: Item[] = [
+      { ...ordinary, id: 'word', rarity: 'runeword', runewordId: 'runewords/lore' },
+      { ...ordinary, id: 'legacy-word', rarity: 'normal', runewordId: 'runewords/lore' },
+      { ...ordinary, id: 'unique', rarity: 'unique' },
+      { ...ordinary, id: 'set', rarity: 'set' },
+      { ...ordinary, id: 'rune', socketContents: [{ kind: 'rune', id: 'runes/el' }] },
+      { ...ordinary, id: 'gem', socketContents: [{ kind: 'gem', id: 'gems/ruby/chipped' }] }
+    ];
+    useInventoryStore.setState({ backpack: [ordinary, ...protectedItems.slice(0, 3)],
+      stash: [item('stash-junk', ordinary.baseId), ...protectedItems.slice(3)] });
+    const before = useInventoryStore.getState();
+    useInventoryStore.getState().bulkDiscard(['ordinary', 'stash-junk', ...protectedItems.map(i => i.id), 'missing', 'ordinary']);
+    const after = useInventoryStore.getState();
+    expect(after).toEqual({ ...before, backpack: protectedItems.slice(0, 3), stash: protectedItems.slice(3) });
+    expect(after.backpack[0]).toBe(protectedItems[0]);
+    expect(after.stash[2]).toBe(protectedItems[5]);
+    // Deliberate individual deletion still uses its existing confirmation flow.
+    useInventoryStore.getState().discardItem('word');
+    expect(useInventoryStore.getState().backpack.map(i => i.id)).toEqual(['legacy-word', 'unique']);
+  });
+
   it('discardItem removes a stash item permanently', () => {
     const helm = item('helm-1', 'items/base/helm-cap');
     useInventoryStore.getState().addItem(helm, true);

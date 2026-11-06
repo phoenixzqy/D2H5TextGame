@@ -7,9 +7,18 @@ import { copyFindItemFinds, type FindItemFind } from '@/engine/skills/find-item'
 import type { ActiveRun } from './combatRunLifecycle';
 import { stageRecordedBattle, type RecordedBattleDefaults, type RecordedBattlePublication } from './recordedBattlePublication';
 import { rememberBattleCommandResult } from './battleCommandCarry';
+import { captureOrmusNativeWitness, bindOrmusWitness, type OrmusNativeWitness } from './ormusRunAuthority';
+import { captureBountyNativeWitness, bindBountyWitness, type BountyNativeWitness } from './bountyRunAuthority';
+import { captureCowNativeWitness, bindCowNativeWitness, type CowNativeWitness } from './cowNativeWitness';
 
 /** Already-composed wave input; run/selection/ownership authority remains with the caller. */
 export interface RecordedWaveStagingInput {
+  /** Cow native result authority is captured before public callbacks. */
+  readonly cowRun?: ActiveRun;
+  /** Issued ordinary run; native witness capture remains outside the engine DTO. */
+  readonly ormusRun?: ActiveRun;
+  /** Accepted bounty run; private proof is captured before display callbacks. */
+  readonly bountyRun?: ActiveRun;
   /** Native paid proof stays outside the serializable/cloned engine snapshot. */
   readonly battleCommandCarry?: BattleCommandCarry;
   readonly replayProfileId?: ReplayProfileId;
@@ -28,9 +37,14 @@ export interface RecordedWaveStagingInput {
 
 /** Complete staged result; an attestation alone never authorizes an inventory debit. */
 export interface StagedRecordedWave {
+  readonly cowNativeWitness?: CowNativeWitness;
+  readonly ormusWitness?: OrmusNativeWitness;
+  readonly bountyWitness?: BountyNativeWitness;
   readonly engineInput: CombatSnapshot;
   readonly attestation: IronGolemPreparationAttestation | null;
   readonly findItemFinds?: readonly FindItemFind[];
+  /** Captured numeric engine result, excluded from public playback. */
+  readonly mercPilferGoldFind?: number;
   readonly waveIdx: number;
   readonly elapsedMs: number;
   readonly recording: NonNullable<ActiveRun['recording']>;
@@ -63,9 +77,16 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
     ...(difficulty !== 'normal' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
   freezeOwnedInput(engineInput);
   const { events, result, battleCommandCarry } = runBattleRecorded(engineInput, input.battleCommandCarry);
+  const cowNativeWitness = input.cowRun ? captureCowNativeWitness(input.cowRun, input.waveIdx, engineInput, result) : undefined;
+  const ormusWitness = input.ormusRun ? captureOrmusNativeWitness(input.ormusRun, input.waveIdx, engineInput, result) : undefined;
+  const bountyWitness = input.bountyRun ? captureBountyNativeWitness(input.bountyRun, input.waveIdx, engineInput, result) : undefined;
   // Own successful searches before naming callbacks or public playback can observe the result.
   const { findItemFinds: recordedFinds = [] } = result;
   const findItemFinds = copyFindItemFinds(recordedFinds);
+  const { mercPilferGoldFind } = result;
+  if (mercPilferGoldFind !== undefined && (!Number.isFinite(mercPilferGoldFind) || mercPilferGoldFind < 0)) {
+    throw new Error('Invalid native Pilfer find');
+  }
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
     terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
@@ -93,10 +114,18 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
     ...(input.ironGolemReplayLocked !== undefined ? { ironGolemReplayLocked: input.ironGolemReplayLocked } : {}),
     ...(input.wavePresentation ? { wavePresentation: input.wavePresentation } : {})
   }, input.defaults);
+  const recording = Object.freeze({ outcome, events: playbackEvents,
+    ...(input.replayProfileId ? { replayProfileId: input.replayProfileId } : {}),
+    ...(input.chapterBoss ? { chapterBoss: Object.freeze({ ...input.chapterBoss }) } : {}) });
+  if (ormusWitness) bindOrmusWitness(ormusWitness, recording);
+  if (bountyWitness) bindBountyWitness(bountyWitness, recording);
+  if (cowNativeWitness) bindCowNativeWitness(cowNativeWitness, recording);
   return Object.freeze({ engineInput, attestation: result.ironGolemPreparation ?? null,
+    ...(cowNativeWitness ? { cowNativeWitness } : {}),
+    ...(ormusWitness ? { ormusWitness } : {}),
+    ...(bountyWitness ? { bountyWitness } : {}),
     ...(findItemFinds.length > 0 ? { findItemFinds } : {}),
+    ...(mercPilferGoldFind !== undefined ? { mercPilferGoldFind } : {}),
     waveIdx: input.waveIdx, elapsedMs: terminal.simClockMs, publication,
-    recording: Object.freeze({ outcome, events: playbackEvents,
-      ...(input.replayProfileId ? { replayProfileId: input.replayProfileId } : {}),
-      ...(input.chapterBoss ? { chapterBoss: Object.freeze({ ...input.chapterBoss }) } : {}) }) });
+    recording });
 }

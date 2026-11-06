@@ -10,40 +10,36 @@ import { useCombatStore } from './combatStore';
 import { combatRunLifecycle } from './combatRunLifecycle';
 import { getMercConfiguredSkillOrder } from './mercToCombatUnit';
 import type { Mercenary } from '@/engine/types/entities';
+import type { MercRecruitmentProgress } from '@/engine/gacha/recruitment-state';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { MercDef } from '@/data/loaders/mercs';
 import { createMercFromDef } from './mercFactory';
+import { executeMercStarUpgrade } from './mercStarActions';
+import { projectMercenaryStars } from '@/engine/progression/merc-stars';
 import { growMercenary, repairMercenaryGrowth } from '@/engine/progression/merc-growth';
 import { useInventoryStore } from './inventoryStore';
 import { BACKPACK_CAPACITY } from './inventoryCapacity';
 import { checkEligibility } from '@/features/inventory/compareEquip';
+import { hasUniqueCharmOwnership } from '@/engine/inventory/equipValidator';
+import { MERC_XP_POLICY } from '@/data/loaders/merc-xp';
 
 /**
  * Mercenary XP curve (canonical).
  *
  * `mercXpForLevel(L)` = XP required to advance **from level L to L+1**.
  *
- * Formula:  `floor(60 * L * 1.30^(L-1))`
- *
- * Rationale:
- *  - L=1 → 60 XP. With Act-1 fallen kills granting ~20-30 XP (× 0.75 merc
- *    share ≈ 15-22 XP/kill) a fielded trainee dings to L2 in 3-4 fights.
- *  - L=10 → 6,362 XP. At ~80 monster XP × 0.75 share ≈ 60/kill, that is
- *    ~106 kills to clear L10→L11 — within the 100-200 kill design target.
- *  - L=99 → ≈ 8.6e14 XP. Comfortably below `Number.MAX_SAFE_INTEGER`
- *    (≈ 9.0e15) so all arithmetic remains exact integer.
- *
- * Inspired by classic D2 monster-XP scaling (per-area XP grows ~1.25-1.35×
- * per level), with a per-level linear `L` factor to keep the early game
- * brisk without trivialising the late game. Curve was tuned by hand to the
- * targets above; if `qa-engineer` runs a sim, we can revisit the 1.30 base.
- *
- * Monotonic: `mercXpForLevel(L+1) > mercXpForLevel(L)` for all L ≥ 1.
+ * Preserve original costs through the authored anchor, then grow as L^2.5
+ * to match later kill rewards. See docs/design/merc-xp-policy.md (BUG-709).
+ * Existing explicit saved thresholds are consumed before using this policy.
  */
 export function mercXpForLevel(level: number): number {
   const L = Math.max(1, level);
-  return Math.floor(60 * L * Math.pow(1.30, L - 1));
+  const { basePerLevel, earlyGrowthBase, growthStartLevel, growthExponent } = MERC_XP_POLICY;
+  const earlyLevel = Math.min(L, growthStartLevel);
+  const earlyCost = Math.floor(basePerLevel * earlyLevel * earlyGrowthBase ** (earlyLevel - 1));
+  return L <= growthStartLevel ? earlyCost
+    : Math.floor(earlyCost * (L / growthStartLevel) ** growthExponent);
 }
 
 /**
@@ -95,6 +91,7 @@ interface MercState {
   mercEquipment: Record<string, MercEquipment>;
   /** Bug #12 — keyed by merc id → XP progress. */
   mercProgress: Record<string, MercProgress>;
+  recruitmentProgress: MercRecruitmentProgress;
   
   // Actions
   addMerc: (merc: Mercenary) => void;
@@ -105,6 +102,8 @@ interface MercState {
   /** Reorder existing owned skills with signature first; refuse busy or invalid requests atomically. */
   setSkillOrder: (mercId: string, order: readonly string[]) => boolean;
   upgradeMerc: (mercId: string) => void;
+  /** Spend 100 owned shards for one star, refusing busy, unowned and capped requests atomically. */
+  upgradeMercStar: (mercId: string) => boolean;
   /**
    * Dismiss a merc only when all equipment has been removed first. Returns
    * false when the merc still has gear so UI can show a blocking warning.
@@ -140,11 +139,14 @@ const initialState = {
   ownedMercs: [] as Mercenary[],
   fieldedMercId: null,
   mercEquipment: {} as Record<string, MercEquipment>,
-  mercProgress: {} as Record<string, MercProgress>
+  mercProgress: {} as Record<string, MercProgress>,
+  recruitmentProgress: {} as MercRecruitmentProgress
 };
 
-function isCompatibleSlot(base: ItemBase | undefined, slot: EquipmentSlot): boolean {
+/** Canonical mercenary slot eligibility shared by native transfers and gear selection. */
+export function isMercEquipmentSlotCompatible(base: ItemBase | undefined, slot: EquipmentSlot): boolean {
   if (!base?.slot) return false;
+  if (slot === 'charm' || base.id === 'items/base/small-charm' || base.type === 'charm' || base.slot === 'charm') return false;
   if (base.slot === slot) return true;
   // Rings are interchangeable across the two ring slots.
   if (base.slot === 'ring-left' || base.slot === 'ring-right') {
@@ -250,6 +252,8 @@ export const useMercStore = create<MercState>((set, get) => ({
     return true;
   },
   
+  upgradeMercStar: executeMercStarUpgrade,
+
   upgradeMerc: (mercId) => { set((state) => {
     const current = state.ownedMercs.find(m => m.id === mercId);
     if (!current) return state;
@@ -288,8 +292,9 @@ export const useMercStore = create<MercState>((set, get) => ({
     const sourceIndex = inventory.backpack.findIndex(item => item.id === requestedItem.id);
     const item = inventory.backpack[sourceIndex];
     if (!item) return { ok: false, reason: 'not_in_backpack' };
-    if (!isCompatibleSlot(loadItemBases().get(item.baseId), slot)) return { ok: false, reason: 'incompatible_slot' };
-    if (!checkEligibility(item, merc).eligible) return { ok: false, reason: 'requirements_not_met' };
+    if (!isMercEquipmentSlotCompatible(loadItemBases().get(item.baseId), slot)) return { ok: false, reason: 'incompatible_slot' };
+    if (!hasUniqueCharmOwnership(inventory, state.mercEquipment)) return { ok: false, reason: 'incompatible_slot' };
+    if (!checkEligibility(item, projectMercenaryStars(merc, state.recruitmentProgress[merc.id.split('#')[0] ?? merc.id]?.stars ?? 0)).eligible) return { ok: false, reason: 'requirements_not_met' };
 
     const current = state.mercEquipment[mercId] ?? {};
     const displaced = current[slot];
@@ -311,6 +316,7 @@ export const useMercStore = create<MercState>((set, get) => ({
     const item = current[slot];
     if (!item) return { ok: false, reason: 'not_found' };
     const inventory = useInventoryStore.getState();
+    if (!hasUniqueCharmOwnership(inventory, state.mercEquipment)) return { ok: false, reason: 'not_found' };
     if (inventory.backpack.length >= BACKPACK_CAPACITY) return { ok: false, reason: 'backpack_full' };
     const backpack = [...inventory.backpack, returnedItem(item)];
     const mercEquipment = { ...state.mercEquipment, [mercId]: { ...current, [slot]: null } };

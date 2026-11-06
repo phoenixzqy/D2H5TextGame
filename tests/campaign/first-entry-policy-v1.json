@@ -1,0 +1,14 @@
+{
+  "id": "first-boss-entry-v1",
+  "costBasis": "combat-only",
+  "menuTimeCalibrated": false,
+  "ceilingSource": "docs/plans/playable-target.md: cumulative act completion centers +25%",
+  "limitation": "Prospective candidates require a matching subsequent native admission and source/lineage review. Completion ceilings are necessary upper bounds only; they do not prove typical or affordable first-entry investment, matched-level power, or balance acceptance.",
+  "acts": [
+    { "act": 1, "combatMsCeiling": 22500000 },
+    { "act": 2, "combatMsCeiling": 54000000 },
+    { "act": 3, "combatMsCeiling": 99000000 },
+    { "act": 4, "combatMsCeiling": 135000000 },
+    { "act": 5, "combatMsCeiling": 180000000 }
+  ]
+}

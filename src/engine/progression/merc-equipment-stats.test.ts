@@ -3,6 +3,7 @@ import type { Mercenary } from '../types/entities';
 import type { DerivedStats } from '../types/attributes';
 import type { Item } from '../types/items';
 import { resolveDamage } from '../combat/damage';
+import { deriveEquippedMercStats } from './merc-equipment-stats';
 import { createRng } from '../rng';
 
 type Gear = Readonly<Record<string, Item | null>>;
@@ -211,4 +212,27 @@ it('adds modifier deltas over noncanonical saved crit/reward/resistance baseline
   expectStats(await compose(owned, gear), { ...owned.derivedStats,
     critChance: 0.3, critDamage: 1.75, magicFind: 24, goldFind: 11,
     resistances: { ...baseline().resistances, fire: 40, cold: -45 } });
+});
+
+
+describe('recruitment stars over natural stats', () => {
+  it.each([1, 3, 5])('projects %d stars additively without filling current resources', stars => {
+    const owned = merc(), before = structuredClone(owned);
+    const actual = deriveEquippedMercStats(owned, {}, stars);
+    const factor = 1 + .08 * stars;
+    for (const key of ['lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
+      'critChance', 'critDamage', 'physDodge', 'magicDodge', 'magicFind', 'goldFind'] as const)
+      expect(actual[key], key).toBeCloseTo(owned.derivedStats[key] * factor, 12);
+    expect(actual.life).toBe(160); expect(actual.mana).toBe(60);
+    expect(owned).toEqual(before);
+  });
+  it('adds equipment rolls once, excluding them from the star multiplier', () => {
+    const owned = merc(), gear = { weapon: sword(), head: cap() };
+    const first = deriveEquippedMercStats(owned, gear, 5);
+    expect(first.attack).toBeCloseTo(25 * 1.4 + 7, 12);
+    expect(first.defense).toBeCloseTo(26 * 1.4 + 6, 12);
+    expect(deriveEquippedMercStats(owned, gear, 5)).toEqual(first);
+    expect(deriveEquippedMercStats(owned, {}, 5).attack).toBeCloseTo(35, 12);
+    expect(deriveEquippedMercStats(owned, {}).attack).toBe(25);
+  });
 });

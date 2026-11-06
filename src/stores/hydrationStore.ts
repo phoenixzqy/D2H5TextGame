@@ -10,9 +10,20 @@ import { create } from 'zustand';
  */
 export type HydrationStatus = 'idle' | 'loading' | 'ready' | 'error';
 
+/** Committed startup receipt for launch feedback; never included in saves. */
+export interface OfflineReturnNotice {
+  readonly awayMs: number;
+  /** Chosen bonus, which may be stronger than this absence's fresh accrual. */
+  readonly bonusPct: number;
+  readonly windowSeconds: number;
+}
+
 interface HydrationState {
   status: HydrationStatus;
   error: string | null;
+  offlineReturn: OfflineReturnNotice | null;
+  /** Dismiss launch feedback without changing gameplay or scheduling a save. */
+  dismissOfflineReturn: () => void;
   setStatus: (status: HydrationStatus, error?: string | null) => void;
 }
 
@@ -23,8 +34,9 @@ interface HydrationState {
 export const useHydrationStore = create<HydrationState>((set) => ({
   status: 'idle',
   error: null,
+  offlineReturn: null,
+  dismissOfflineReturn: () => { set({ offlineReturn: null }); },
   setStatus: (status, error = null) => {
     set({ status, error });
   }
 }));
-

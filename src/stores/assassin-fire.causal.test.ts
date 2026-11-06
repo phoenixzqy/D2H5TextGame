@@ -12,11 +12,12 @@ import { useFormationStore } from './formationStore';
 const cases = [
   { slug: 'fire-blast', first: 51, growth: 5 },
   { slug: 'fists-of-fire', first: 46, growth: 5 },
-  { slug: 'dragon-tail', first: 71, growth: 6 },
+  { slug: 'dragon-tail', first: 71, growth: 120 },
   { slug: 'wake-of-fire', first: 61, growth: 5 },
   { slug: 'wake-of-inferno', first: 92, growth: 7 },
   { slug: 'phoenix-strike', first: 123, growth: 12 }
 ] as const;
+const targetLife = (slug: string) => slug === 'dragon-tail' ? 10000 : 2000;
 const id = (slug: string) => 'skills-assassin-' + slug;
 const canonical = (slug: string) => 'assassin.' + slug.replaceAll('-', '_');
 const hold = (at = 0): ActiveStatus => ({
@@ -72,6 +73,8 @@ function fixture(slug: string, rank = 1, seed = 7) {
   const target: CombatUnit = {
     ...hero,
     id: 'target',
+    life: targetLife(slug),
+    stats: { ...hero.stats, lifeMax: targetLife(slug) },
     side: 'enemy',
     kind: 'monster',
     tier: 'trash',
@@ -155,7 +158,7 @@ for (const s of cases) {
         )
       ).toBe(true);
       const directTotal = trap ? pulseBases.reduce((sum, base) => sum + base + s.growth * (rank - 1), 0) : total;
-      expect(out.result.enemyTeam[0]?.life).toBe(2000 - directTotal - periodic);
+      expect(out.result.enemyTeam[0]?.life).toBe(targetLife(s.slug) - directTotal - periodic);
       expect(out.events.filter((e) => e.kind === 'status').map((e) => e.statusId)).toEqual(
         trap ? ['burn', 'burn', 'burn'] : phoenix ? ['burn', 'chill', 'paralyze'] : ['burn']
       );
@@ -187,7 +190,7 @@ for (const s of cases) {
     } else {
       expect(hits.every(e => e.dodged && e.amount === 0)).toBe(true);
       expect(out.events.filter((e) => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
-      expect(out.result.enemyTeam[0]?.life).toBe(2000);
+      expect(out.result.enemyTeam[0]?.life).toBe(targetLife(s.slug));
     }
     expect(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast')).toHaveLength(1);
     expect(out.result.playerTeam[0]?.mana).toBe(0);
@@ -307,7 +310,7 @@ for (const s of cases) {
         (n, e) => n + (e.kind === 'dot' && e.target === target.id ? e.amount : 0),
         0
       );
-      expect(target.life).toBe(2000 - direct - periodic);
+      expect(target.life).toBe(targetLife(s.slug) - direct - periodic);
       expect(periodic > 0).toBe(hitTargets.has(target.id));
     }
   });
@@ -347,3 +350,29 @@ for (const s of cases) {
     expect(native.skillLevels[canonical(s.slug)]).toBe(20);
   });
 }
+
+// BUG548: paid Fire growth must survive real late-chapter mitigation.
+it('Dragon Tail cap rank damages every target through ordinary Defense and Fire resistance', () => {
+  const f = fixture('dragon-tail', 20);
+  const template = f.input.enemyTeam[0];
+  if (!template) throw new Error('Missing native target');
+  const out = record({ ...f.input, enemyTeam: [190, 363].map((defense, index) => ({
+    ...template, id: 'warded-' + String(index),
+    stats: { ...template.stats, defense, magicResist: 999999,
+      resistances: { ...template.stats.resistances, fire: index === 0 ? 0 : 50 } }
+  })) });
+  const hits = out.events.filter(e => e.kind === 'damage');
+  expect(hits).toHaveLength(2);
+  expect(hits[0]).toMatchObject({ target: 'warded-0', damageType: 'fire', dodged: false, crit: false });
+  expect(hits[1]).toMatchObject({ target: 'warded-1', damageType: 'fire', dodged: false, crit: false });
+  expect(hits[0]?.amount).toBeGreaterThan(2100);
+  expect(hits[1]?.amount).toBeGreaterThan(800);
+  for (const target of out.result.enemyTeam) {
+    const direct = hits.filter(e => e.target === target.id).reduce((sum, e) => sum + e.amount, 0);
+    const burn = out.events.reduce((sum, e) => sum + (e.kind === 'dot' && e.target === target.id ? e.amount : 0), 0);
+    expect(burn).toBe(3 * Math.floor(direct * 0.1));
+    expect(target.life).toBe(10000 - direct - burn);
+  }
+  expect(out.events.filter(e => e.kind === 'action')).toEqual([expect.objectContaining({ skillId: 'assassin.dragon_tail' })]);
+  expect(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast')).toHaveLength(1);
+});

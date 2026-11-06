@@ -8,29 +8,11 @@
 
 import type { Rng } from '../rng';
 import type { MonsterTier } from '../combat/types';
-import { materialEconomy } from '../../data/loaders/materials';
+import { materialEconomy, type MaterialRewardBundle } from '../../data/loaders/materials';
 import { sampleMaterial, type MaterialLedger } from './materials';
 
 /** Difficulty enum used for drop multipliers. */
 export type Difficulty = 'normal' | 'nightmare' | 'hell';
-
-/** Wishstone awards (drop-tables §9). */
-const WISHSTONE_BY_TIER_AND_ACT: Readonly<Record<MonsterTier, number[]>> = {
-  trash: [0, 0, 0, 0, 0],
-  elite: [1, 1, 1, 2, 2],
-  'rare-minion': [1, 1, 1, 2, 2],
-  champion: [0, 0, 1, 1, 1], // expected value 0.4 ≈ 40% chance for 1
-  'rare-elite': [2, 2, 3, 3, 4],
-  boss: [8, 12, 16, 24, 40],
-  'chapter-boss': [8, 12, 16, 24, 40]
-};
-
-/** Difficulty multipliers from drop-tables §9. */
-const DIFFICULTY_MULT: Readonly<Record<Difficulty, number>> = {
-  normal: 1,
-  nightmare: 1.2,
-  hell: 1.5
-};
 
 /** Rune-shard drop calculation (replaces gold). */
 export function rollRuneShards(
@@ -39,19 +21,10 @@ export function rollRuneShards(
   currencyFindPct: number,
   rng: Rng
 ): number {
-  const tierMult: Record<MonsterTier, number> = {
-    trash: 1,
-    elite: 2.5,
-    'rare-minion': 2.5,
-    champion: 4,
-    'rare-elite': 6,
-    boss: 50,
-    'chapter-boss': 50
-  };
-  const base = 5;
-  const variance = 0.7 + rng.next() * 0.6; // [0.7, 1.3)
+  const rules = materialEconomy.currencyRewards.runeShards;
+  const variance = rules.varianceMin + rng.next() * rules.varianceSpan;
   return Math.floor(
-    base * monsterLevel * tierMult[tier] * (1 + currencyFindPct / 100) * variance
+    rules.basePerLevel * monsterLevel * rules.tierMultipliers[tier] * (1 + currencyFindPct / 100) * variance
   );
 }
 
@@ -66,26 +39,46 @@ export interface CurrencyDrops {
   readonly materials: MaterialLedger;
 }
 
-/** All independent drops from a kill. */
+/** Independent drops; a live special-reward policy replaces its material quantities. */
 export function rollCurrencyDrops(
   monsterLevel: number,
   tier: MonsterTier,
   act: 1 | 2 | 3 | 4 | 5,
   difficulty: Difficulty,
   currencyFindPct: number,
-  rng: Rng
+  rng: Rng,
+  bundle?: MaterialRewardBundle
 ): CurrencyDrops {
-  const diff = DIFFICULTY_MULT[difficulty];
-  const wishstoneBase = WISHSTONE_BY_TIER_AND_ACT[tier][act - 1] ?? 0;
-  // Per spec: champion uses 40% chance for 1 wishstone — treat 0/1 entries as percentages.
+  const rules = materialEconomy.currencyRewards.wishstones;
+  const wishstoneBase = rules.byTierAndAct[tier][act - 1] ?? 0;
   let wishstones = 0;
   if (tier === 'champion') {
-    if (rng.chance(0.4)) wishstones = 1;
-  } else if (tier === 'boss' || tier === 'chapter-boss' || tier === 'elite' || tier === 'rare-minion' || tier === 'rare-elite') {
-    wishstones = Math.floor(wishstoneBase * (tier === 'boss' || tier === 'chapter-boss' ? diff : 1));
+    if (rng.chance(rules.championChance)) wishstones = wishstoneBase;
+  } else {
+    wishstones = Math.floor(wishstoneBase *
+      (tier === 'boss' || tier === 'chapter-boss' ? rules.bossDifficultyMultipliers[difficulty] : 1));
   }
 
   const runeUnit = rng.next(), gemUnit = rng.next();
+  if (bundle) {
+    // Keep shard variance before the new quantity/additional-identity draws.
+    const runeShards = rollRuneShards(monsterLevel, tier, currencyFindPct, rng);
+    const runes = bundle.runeQuantityMin === bundle.runeQuantityMax
+      ? bundle.runeQuantityMin : rng.nextInt(bundle.runeQuantityMin, bundle.runeQuantityMax);
+    const gems = bundle.gemQuantityMax === undefined || bundle.gemQuantityMax === bundle.gemQuantity
+      ? bundle.gemQuantity : rng.nextInt(bundle.gemQuantity, bundle.gemQuantityMax);
+    const materials: Record<string, number> = {};
+    for (let index = 0; index < runes; index++) {
+      const id = sampleMaterial('rune', { act: bundle.runePoolAct, difficulty, tier },
+        index === 0 ? runeUnit : rng.next(), { minimum: bundle.runeMinOrdinal, maximum: bundle.runeMaxOrdinal });
+      materials[id] = (materials[id] ?? 0) + 1;
+    }
+    for (let index = 0; index < gems; index++) {
+      const id = sampleMaterial('gem', { act, difficulty, tier }, index === 0 ? gemUnit : rng.next());
+      materials[id] = (materials[id] ?? 0) + 1;
+    }
+    return { runeShards, wishstones, runes, gems, materials };
+  }
   const { rune: runeChance, gem: gemChance } = materialEconomy.independentDropChances[tier];
   const runes = runeUnit < runeChance ? 1 : 0;
   const gems = gemUnit < gemChance ? 1 : 0;

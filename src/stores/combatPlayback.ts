@@ -183,6 +183,30 @@ export function applyEventToTeams(
       }
       break;
     }
+    case 'revive': {
+      // Revival replaces an original row; it never creates summon/reward identity.
+      const targetIndex = teams.enemy.findIndex(unit => unit.id === ev.target);
+      const target = teams.enemy[targetIndex];
+      const source = teams.enemy.find(unit => unit.id === ev.source);
+      if (!target || !source || ev.source === ev.target ||
+        target.side !== 'enemy' || target.kind !== 'monster' ||
+        !Number.isFinite(target.life) || target.life > 0 ||
+        source.side !== 'enemy' || !Number.isFinite(source.life) || !(source.life > 0) ||
+        ev.unit.id !== ev.target || ev.unit.side !== 'enemy' || ev.unit.kind !== 'monster' ||
+        !Number.isFinite(ev.unit.life) || !(ev.unit.life > 0) ||
+        !Number.isFinite(ev.unit.stats.lifeMax) || ev.unit.life > ev.unit.stats.lifeMax) break;
+      // Own every nested DTO field independently of the recording and future rows.
+      const restored = structuredClone(ev.unit);
+      if (statusPlayback) {
+        const byId = new Map(statusPlayback.byId);
+        byId.set(ev.target, []);
+        statusPlayback = { byId, deadIds: statusPlayback.deadIds.filter(id => id !== ev.target) };
+      }
+      const unit = statusPlayback ? { ...restored, statuses: [] } : restored;
+      teams = { player: teams.player,
+        enemy: [...teams.enemy.slice(0, targetIndex), unit, ...teams.enemy.slice(targetIndex + 1)] };
+      break;
+    }
     case 'buff': {
       if (ev.statusBacked) break;
       teams = patchUnit(teams, ev.target, (u) =>

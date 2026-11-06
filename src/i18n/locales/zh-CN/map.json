@@ -1,7 +1,7 @@
 {
   "worldMap": "世界地图",
   "act": "第 {{number}} 章",
-  "recommendedLevel": "推荐等级: {{level}}",
+  "enemyLevels": "敌人等级: {{min}}–{{max}}",
   "challengeMonsters": "挑战循环：每波 {{min}}–{{max}} 只怪物",
   "locked": "锁定",
   "unlocked": "已解锁",

@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveRecord } from './save-adapter';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -51,7 +52,7 @@ afterEach(() => { __resetPersistenceForTests(); vi.useRealTimers(); });
 describe('endgame durable store ownership', () => {
   it('saves root state and restores it through reset/Continue and repeated imports', async () => {
     prepare(); const before = snapshot();
-    expect(before).toMatchObject({ version: 24, endgame: progress });
+    expect(before).toMatchObject({ version: 33, endgame: progress });
     expect(before.map).not.toHaveProperty('endgame');
     const exported = exportCurrentSave();
     if (!exported) throw new Error('Missing export');
@@ -92,8 +93,8 @@ describe('endgame durable store ownership', () => {
     const next = { ...progress, attemptOrdinal: 9 };
     useMapStore.setState({ endgame: next });
     await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
-    expect((disk.state.record?.data as SaveCurrent).endgame).toEqual(next);
-    expect((disk.state.record?.data as SaveCurrent).map).not.toHaveProperty('endgame');
+    expect((readStoredSaveJson(disk.state.record) as SaveCurrent).endgame).toEqual(next);
+    expect((readStoredSaveJson(disk.state.record) as SaveCurrent).map).not.toHaveProperty('endgame');
   });
   it('deletes durable progress along with the character and resets the live domain', async () => {
     prepare(); await flushSave();

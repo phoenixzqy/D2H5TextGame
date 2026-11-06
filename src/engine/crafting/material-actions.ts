@@ -40,6 +40,15 @@ export interface MaterialActionContext {
 }
 /** IDs select live ownership; callers cannot submit a replacement item or random output. */
 export interface MaterialActionSelection { readonly recipeId: string; readonly itemIds?: readonly string[]; readonly materialId?: string }
+/** Native resource deficit; missing is the additional quantity required by this action. */
+export interface MaterialActionShortfall { readonly kind: 'material' | 'currency'; readonly id: string; readonly missing: number }
+/** All deficits after validating participating balances; never a malformed-state refusal. */
+export class MaterialActionShortageError extends Error {
+  constructor(readonly shortfalls: readonly MaterialActionShortfall[]) {
+    super(shortfalls[0]?.kind === 'currency' ? 'Insufficient crafting currency' : 'Insufficient crafting materials');
+    this.name = 'MaterialActionShortageError';
+  }
+}
 interface ActionInput { readonly kind: 'material' | 'currency' | 'item' | 'quarantine'; readonly id: string; readonly quantity: number }
 interface TargetPreimage { readonly id: string; readonly preimage: string }
 /** Prepared once per confirmation and retained through double-click/retry. */
@@ -98,14 +107,24 @@ function currencyBalance(currencies: Readonly<Record<string, number>>, id: strin
 function balances(state: MaterialActionInventory, costs: CraftingBag, output: CraftingBag): Pick<Description, 'materials' | 'currencies'> {
   const materials: Record<string, number> = { ...mergeMaterials(state.materials) };
   const currencies = { ...state.currencies };
+  // Invalid participating balances take precedence over ordinary affordability.
+  for (const id of new Set([...Object.keys(costs.currencies), ...Object.keys(output.currencies)])) currencyBalance(currencies, id);
+  const shortfalls: MaterialActionShortfall[] = [];
+  for (const [id, count] of Object.entries(costs.materials)) {
+    const missing = count - (materials[id] ?? 0);
+    if (missing > 0) shortfalls.push({ kind: 'material', id, missing });
+  }
+  for (const [id, count] of Object.entries(costs.currencies)) {
+    const missing = count - currencyBalance(currencies, id);
+    if (missing > 0) shortfalls.push({ kind: 'currency', id, missing });
+  }
+  if (shortfalls.length) throw new MaterialActionShortageError(shortfalls);
   for (const [id, count] of Object.entries(costs.materials)) {
     const before = materials[id] ?? 0;
-    if (before < count) throw new Error('Insufficient crafting materials');
     if (before === count) Reflect.deleteProperty(materials, id); else materials[id] = before - count;
   }
   for (const [id, count] of Object.entries(costs.currencies)) {
     const before = currencyBalance(currencies, id);
-    if (before < count) throw new Error('Insufficient crafting currency');
     currencies[id] = before - count;
   }
   for (const [id, count] of Object.entries(output.currencies)) {
@@ -127,7 +146,17 @@ function describe(state: MaterialActionInventory, context: MaterialActionContext
   let targets: readonly TargetPreimage[] | undefined;
   if (selection.recipeId === 'actions/salvage') {
     if (!ids.length || selection.materialId !== undefined) throw new Error('Empty or malformed salvage selection');
-    items = ids.map(id => ownedItem(state, context, id, true));
+    // Resolve the whole batch once; repeated ownership remains ambiguous.
+    const owned = new Map<string, CanonicalSocketItem | null>();
+    for (const holder of [state.backpack, state.stash]) {
+      for (const item of holder) owned.set(item.id, owned.has(item.id) ? null : item);
+    }
+    items = ids.map(id => {
+      const item = owned.get(id);
+      if (!item) throw new Error('Missing or duplicate owned material target');
+      targetBase(item, context);
+      return item;
+    });
     let count = 0;
     for (const item of items) {
       const base = targetBase(item, context);
@@ -217,12 +246,21 @@ function requestHash(payload: Omit<MaterialActionRequest, 'requestHash'>): strin
   return sha256(canonicalActionValue(payload));
 }
 
-/** Complete preflight and prepare a stable intent, without rolling output, publishing or advancing ordinal. */
-export function prepareMaterialAction(state: MaterialActionInventory, context: MaterialActionContext, selection: MaterialActionSelection): MaterialActionRequest {
+function validatedSelection(state: MaterialActionInventory, context: MaterialActionContext, selection: MaterialActionSelection) {
   const current = readMaterialActionState(state);
   if (current.ordinal === Number.MAX_SAFE_INTEGER) throw new Error('Material action ordinal exhausted');
-  const description = describe(state, context, selection);
-  const payload = { characterId: context.characterId, ordinal: current.ordinal + 1, recipeId: selection.recipeId,
+  return { ordinal: current.ordinal + 1, description: describe(state, context, selection) };
+}
+
+/** Check native eligibility without preparing an intent, rolling output or changing state. Throws on refusal. */
+export function validateMaterialActionSelection(state: MaterialActionInventory, context: MaterialActionContext, selection: MaterialActionSelection): void {
+  validatedSelection(state, context, selection);
+}
+
+/** Complete preflight and prepare a stable intent, without rolling output, publishing or advancing ordinal. */
+export function prepareMaterialAction(state: MaterialActionInventory, context: MaterialActionContext, selection: MaterialActionSelection): MaterialActionRequest {
+  const { ordinal, description } = validatedSelection(state, context, selection);
+  const payload = { characterId: context.characterId, ordinal, recipeId: selection.recipeId,
     inputs: description.inputs, targets: description.targets };
   return { ...payload, requestHash: requestHash(payload) };
 }

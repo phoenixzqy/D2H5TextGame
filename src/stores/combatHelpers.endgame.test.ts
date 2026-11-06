@@ -107,7 +107,7 @@ describe('native endgame origin and earned settlement authority', () => {
     expect(useInventoryStore.getState().materials).toEqual(expected.materials);
     expect(useInventoryStore.getState().backpack).toEqual(expected.items);
     expect(useInventoryStore.getState().currencies['rune-shard']).toBe(expected.runeShards);
-    expect(useInventoryStore.getState().currencies.wishstone).toBe(expected.wishstones);
+    expect(useInventoryStore.getState().currencies.wishstone ?? 0).toBe(expected.wishstones);
     expect(xp.mock.calls.reduce((sum, [amount]) => sum + amount, 0)).toBe(15 * xpForKill(90));
     expect(useMapStore.getState().questProgress).toBe(before.questProgress);
     expect(useMapStore.getState().questReceipts).toBe(before.questReceipts);

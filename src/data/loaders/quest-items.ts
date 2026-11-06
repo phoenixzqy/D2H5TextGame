@@ -1,6 +1,6 @@
+import { compileAuthoredValidator } from '../authored-validators';
 /** JSON-authored bound quest items; dependencies flow from items to quests only. */
 import Ajv2020 from 'ajv/dist/2020';
-import schema from '../schema/quest-item.schema.json';
 import document from '../quests/items.json';
 import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
@@ -8,6 +8,7 @@ import { questObjectivePrerequisites } from '../../engine/map/questStages';
 import { loadTownNpcs } from './towns';
 import { loadQuestActions, questActionInputs } from './quest-actions';
 import { act5Runtime } from './act5-runtime';
+import { cowRuntime } from './cow-runtime';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -93,23 +94,33 @@ export interface ActionQuestItemDef extends QuestItemBase {
   readonly effect?: never;
 }
 
+/** Closed ingredients consumed by the finite Cow portal recipe, without an output item. */
+export type PortalIngredientDef = QuestItemBase & {
+  readonly kind: 'portalIngredient';
+  readonly consumeActionId: 'actions/act1-open-cow-portal';
+  readonly effect?: never;
+} & ({ readonly id: 'quest/wirts_leg'; readonly sourceObjectiveId: 'obj-find-leg';
+  readonly sourceActionId?: never; readonly requiresAreaClear: true }
+  | { readonly id: 'quest/cow_portal_tome'; readonly sourceActionId: 'actions/act1-receive-cow-tome';
+    readonly sourceObjectiveId?: never; readonly requiresAreaClear?: never });
+
 export type ObjectiveQuestItemDef = QuestEncounterItemDef | QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
-export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ActionQuestItemDef | ObjectiveQuestItemDef;
+export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ActionQuestItemDef | PortalIngredientDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validate = ajv.compile<{ readonly items: readonly QuestItemDef[] }>(schema);
+const validate = compileAuthoredValidator<{ readonly items: readonly QuestItemDef[] }>(ajv, 'questItems');
 
 /** Canonical source identity, independent of gear instances and allocation sequences. */
 export function questItemSource(item: QuestItemDef): string {
-  return questItemSourceWithActions(item, act5Runtime.actions);
+  return questItemSourceWithActions(item, [...act5Runtime.actions, ...Object.values(cowRuntime.actions)]);
 }
 
 /** Resolve a historical item using only the supplied action-source identities. */
 export function questItemSourceWithActions(item: QuestItemDef,
   sourceActions: readonly { readonly id: string; readonly receiptSource: string }[]): string {
-  if (item.kind === 'action') {
+  if (item.kind === 'action' || item.kind === 'portalIngredient' && item.sourceActionId !== undefined) {
     const action = sourceActions.find(row => row.id === item.sourceActionId);
-    if (!action) throw new Error('Missing bound potion source');
+    if (!action) throw new Error('Missing bound quest action source');
     return action.receiptSource;
   }
   return item.kind !== undefined && item.kind !== 'retained'
@@ -145,7 +156,19 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       throw new Error('quests/items.json: duplicate quest item or source');
     }
     const quest = quests.find(row => row.id === item.sourceQuestId);
-    if (item.kind === 'action') {
+    if (item.kind === 'portalIngredient') {
+      const input = cowRuntime.recipe.inputs.find(input => input.itemId === item.id && input.source === source);
+      const portal = exactObjective(quest, cowRuntime.recipe.objectiveId);
+      const leg = exactObjective(quest, 'obj-find-leg');
+      if (!input || item.sourceQuestId !== cowRuntime.questId || item.consumeActionId !== cowRuntime.actions.openPortal.id ||
+        quest?.actId !== cowRuntime.actId || quest.giver !== cowRuntime.actions.receiveTome.npcId ||
+        portal?.type !== 'transmute' || portal.recipe !== cowRuntime.recipe.id ||
+        (item.sourceActionId !== undefined ? item.sourceActionId !== cowRuntime.actions.receiveTome.id || source !== cowRuntime.actions.receiveTome.receiptSource
+          : leg?.type !== 'fetch' || leg.itemId !== item.id || leg.areaId !== cowRuntime.hostAreaId ||
+            leg.targetId !== 'objects/wirts_remains')) {
+        throw new Error('quests/items.json: invalid Cow portal ingredient source/consumer');
+      }
+    } else if (item.kind === 'action') {
       if (item.id !== 'quest/malahs_potion' || item.sourceQuestId !== 'quests/act5-prison-of-ice' ||
         !act5Runtime.actions.some(action => action.id === item.sourceActionId && action.kind === 'potion') ||
         !act5Runtime.actions.some(action => action.id === item.consumeActionId && action.kind === 'thaw')) {
@@ -243,6 +266,16 @@ export function loadQuestItems(): readonly QuestItemDef[] {
         throw new Error('quests/items.json: action/input mismatch');
       }
     }
+  }
+  for (const input of cowRuntime.recipe.inputs) {
+    if (items.filter(item => item.kind === 'portalIngredient' && item.id === input.itemId &&
+      questItemSource(item) === input.source && item.consumeActionId === cowRuntime.actions.openPortal.id).length !== 1) {
+      throw new Error('quests/items.json: missing reciprocal Cow recipe input');
+    }
+  }
+  const cube = items.find(item => item.id === cowRuntime.recipe.requiredTool.itemId);
+  if (cube?.kind !== 'tool' || questItemSource(cube) !== cowRuntime.recipe.requiredTool.source) {
+    throw new Error('quests/items.json: missing retained Cow recipe tool');
   }
   for (const quest of quests) {
     for (const objective of quest.objectives.filter(row => row.type === 'give')) {

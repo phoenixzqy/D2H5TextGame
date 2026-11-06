@@ -31,7 +31,7 @@ describe('closed Khalim recipe and Guardian action graph', () => {
       inputSource: questItemSource(will), itemId: will.id });
     const quest = required(loadQuests().find(row => row.id === 'quests/act3-khalims-will'));
     expect(quest.objectiveStages).toEqual([['obj-heart', 'obj-brain', 'obj-eye', 'obj-flail'], ['obj-transmute']]);
-    expect(quest.rewards).toEqual({ xp: 8000 }); expect(quest.unlocks).toBeNull();
+    expect(quest.rewards).toEqual({ xp: 8000, wishstones: 20 }); expect(quest.unlocks).toBeNull();
   });
 
   it.each(['no-clear', 'no-proof', 'wrong-proof', 'wrong-action', 'two-consumers', 'missing-component', 'wrong-tool'])(

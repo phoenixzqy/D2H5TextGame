@@ -1,6 +1,6 @@
 /** Leaf action definitions depend on quests/areas; reciprocal items are checked by the item loader. */
 import Ajv2020 from 'ajv/dist/2020';
-import schema from '../schema/quest-action.schema.json';
+import { compileAuthoredValidator } from '../authored-validators';
 import document from '../quests/actions.json';
 import { subAreas } from '../index';
 import { loadQuests } from './quests';
@@ -43,7 +43,7 @@ export function questActionInputs(action: QuestItemActionDef): readonly QuestAct
 }
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validate = ajv.compile<{ readonly actions: readonly QuestItemActionDef[] }>(schema);
+const validate = compileAuthoredValidator<{ readonly actions: readonly QuestItemActionDef[] }>(ajv, 'questActions');
 
 /** Read closed authored actions without importing the reciprocal item loader or performing effects. */
 export function loadQuestActions(): readonly QuestItemActionDef[] {

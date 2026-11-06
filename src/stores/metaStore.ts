@@ -5,11 +5,13 @@
 
 import { create } from 'zustand';
 import type { Settings, IdleState, GachaState } from '@/engine/types/save';
+import type { RecruitmentHistoryState } from '@/engine/save/recruitment-state';
 import type { MercDef } from '@/data/loaders/mercs';
 import type { GachaRarity } from '@/engine/gacha/roller';
 import { addRecruitmentCurrency, executeGachaPull, spendRecruitmentCurrency } from './gachaActions';
 import { assertMaterialMutationAllowed } from './waveTransitionGuard';
 import { checkpointIdleBonus } from '@/engine/idle/persisted-bonus';
+import { readStartupLocale } from '@/i18n/localePreference';
 
 /** Result of a single gacha pull surfaced to the UI. */
 export interface GachaPullResult {
@@ -17,6 +19,7 @@ export interface GachaPullResult {
   readonly rarity: GachaRarity;
   /** True when this pull recruited a new merc; false on duplicate. */
   readonly isNew: boolean;
+  readonly shardCount: number;
 }
 
 interface MetaState {
@@ -27,6 +30,7 @@ interface MetaState {
   /** Read the current online bonus without publishing or mutating its basis. */
   readIdleBonus: (now?: number) => IdleState;
   gachaState: GachaState;
+  recruitmentState: RecruitmentHistoryState;
   
   // Actions
   updateSettings: (settings: Partial<Settings>) => void;
@@ -71,9 +75,10 @@ const initialGachaState: GachaState = {
   ownedMercIds: [],
   pityCounter: 0
 };
+const initialRecruitmentState: RecruitmentHistoryState = { srPityCounter: 0, totalPulls: 0, history: [] };
 
 export const useMetaStore = create<MetaState>((set, get) => ({
-  settings: initialSettings,
+  settings: { ...initialSettings, locale: readStartupLocale() },
   idleState: initialIdleState,
   idleBonusAnchor: initialIdleState.lastOnline,
   readIdleBonus: (now = Date.now()) => {
@@ -81,6 +86,7 @@ export const useMetaStore = create<MetaState>((set, get) => ({
     return checkpointIdleBonus({ ...state.idleState, lastOnline: state.idleBonusAnchor }, now);
   },
   gachaState: initialGachaState,
+  recruitmentState: initialRecruitmentState,
   
   updateSettings: (settings) => { set((state) => ({
     settings: {
@@ -204,7 +210,8 @@ export const useMetaStore = create<MetaState>((set, get) => ({
     settings: initialSettings,
     idleState: { ...initialIdleState, lastOnline: now },
     idleBonusAnchor: now,
-    gachaState: initialGachaState
+    gachaState: initialGachaState,
+    recruitmentState: initialRecruitmentState
     });
   }
 }));

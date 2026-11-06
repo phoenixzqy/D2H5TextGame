@@ -1,0 +1,1812 @@
+{
+  "version": 1,
+  "decision": "production/bugs/BUG-792-restore-usable-armor-tier-coverage.md",
+  "predecessorJsonSha256": "da738147aa2cecca8d337ca3dfb1d6e2072233f6145aa9349fa790e211b3c6e5",
+  "ladders": [
+    {
+      "slot": "head",
+      "tiers": [
+        {
+          "baseId": "items/base/helm-cap",
+          "from": 1,
+          "to": 4
+        },
+        {
+          "baseId": "items/base/helm-skull-cap",
+          "from": 5,
+          "to": 21
+        },
+        {
+          "baseId": "items/base/helm-war-hat",
+          "from": 22,
+          "to": 27
+        },
+        {
+          "baseId": "items/base/helm-casque",
+          "from": 28,
+          "to": 44
+        },
+        {
+          "baseId": "items/base/helm-armet",
+          "from": 45,
+          "to": 54
+        },
+        {
+          "baseId": "items/base/helm-giant-conch",
+          "from": 55,
+          "to": 122
+        }
+      ]
+    },
+    {
+      "slot": "chest",
+      "tiers": [
+        {
+          "baseId": "items/base/armor-quilted",
+          "from": 1,
+          "to": 5
+        },
+        {
+          "baseId": "items/base/armor-leather",
+          "from": 6,
+          "to": 24
+        },
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "from": 25,
+          "to": 31
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "from": 32,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "from": 60,
+          "to": 122
+        }
+      ]
+    },
+    {
+      "slot": "gloves",
+      "tiers": [
+        {
+          "baseId": "items/base/glove-leather",
+          "from": 1,
+          "to": 6
+        },
+        {
+          "baseId": "items/base/glove-heavy",
+          "from": 7,
+          "to": 23
+        },
+        {
+          "baseId": "items/base/glove-chain",
+          "from": 24,
+          "to": 29
+        },
+        {
+          "baseId": "items/base/glove-light-gauntlets",
+          "from": 30,
+          "to": 47
+        },
+        {
+          "baseId": "items/base/glove-vampirebone",
+          "from": 48,
+          "to": 57
+        },
+        {
+          "baseId": "items/base/glove-bramble-mitts",
+          "from": 58,
+          "to": 122
+        }
+      ]
+    },
+    {
+      "slot": "boots",
+      "tiers": [
+        {
+          "baseId": "items/base/boot-leather",
+          "from": 1,
+          "to": 6
+        },
+        {
+          "baseId": "items/base/boot-heavy",
+          "from": 7,
+          "to": 23
+        },
+        {
+          "baseId": "items/base/boot-chain",
+          "from": 24,
+          "to": 29
+        },
+        {
+          "baseId": "items/base/boot-light-plated",
+          "from": 30,
+          "to": 47
+        },
+        {
+          "baseId": "items/base/boot-demonhide",
+          "from": 48,
+          "to": 57
+        },
+        {
+          "baseId": "items/base/boot-myrmidon-greaves",
+          "from": 58,
+          "to": 122
+        }
+      ]
+    },
+    {
+      "slot": "belt",
+      "tiers": [
+        {
+          "baseId": "items/base/belt-sash",
+          "from": 1,
+          "to": 6
+        },
+        {
+          "baseId": "items/base/belt-light",
+          "from": 7,
+          "to": 21
+        },
+        {
+          "baseId": "items/base/belt-heavy",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "baseId": "items/base/belt-plated",
+          "from": 30,
+          "to": 47
+        },
+        {
+          "baseId": "items/base/belt-demonhide",
+          "from": 48,
+          "to": 57
+        },
+        {
+          "baseId": "items/base/belt-mithril-coil",
+          "from": 58,
+          "to": 122
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "id": "loot/trash-act1",
+      "originalEntryCount": 47,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 1,
+          "maxLevel": 58
+        },
+        {
+          "slot": "chest",
+          "minLevel": 1,
+          "maxLevel": 58
+        },
+        {
+          "slot": "gloves",
+          "minLevel": 1,
+          "maxLevel": 58
+        },
+        {
+          "slot": "boots",
+          "minLevel": 1,
+          "maxLevel": 58
+        },
+        {
+          "slot": "belt",
+          "minLevel": 1,
+          "maxLevel": 58
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-war-hat",
+          "weight": 127.5,
+          "minLevel": 22,
+          "maxLevel": 27
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 127.5,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 127.5,
+          "minLevel": 45,
+          "maxLevel": 54
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 127.5,
+          "minLevel": 55,
+          "maxLevel": 58
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 127.5,
+          "minLevel": 25,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 127.5,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 127.5,
+          "minLevel": 50,
+          "maxLevel": 58
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-heavy",
+          "weight": 127.5,
+          "minLevel": 7,
+          "maxLevel": 23
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-chain",
+          "weight": 127.5,
+          "minLevel": 24,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-light-gauntlets",
+          "weight": 127.5,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-vampirebone",
+          "weight": 127.5,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-bramble-mitts",
+          "weight": 127.5,
+          "minLevel": 58,
+          "maxLevel": 58
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-heavy",
+          "weight": 127.5,
+          "minLevel": 7,
+          "maxLevel": 23
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-chain",
+          "weight": 127.5,
+          "minLevel": 24,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-light-plated",
+          "weight": 127.5,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-demonhide",
+          "weight": 127.5,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 127.5,
+          "minLevel": 58,
+          "maxLevel": 58
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-heavy",
+          "weight": 127.5,
+          "minLevel": 22,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-plated",
+          "weight": 127.5,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-demonhide",
+          "weight": 127.5,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-mithril-coil",
+          "weight": 127.5,
+          "minLevel": 58,
+          "maxLevel": 58
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act2",
+      "originalEntryCount": 41,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 14,
+          "maxLevel": 71
+        },
+        {
+          "slot": "chest",
+          "minLevel": 14,
+          "maxLevel": 71
+        },
+        {
+          "slot": "gloves",
+          "minLevel": 14,
+          "maxLevel": 71
+        },
+        {
+          "slot": "boots",
+          "minLevel": 14,
+          "maxLevel": 71
+        },
+        {
+          "slot": "belt",
+          "minLevel": 14,
+          "maxLevel": 71
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 65,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 65,
+          "minLevel": 45,
+          "maxLevel": 54
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 65,
+          "minLevel": 55,
+          "maxLevel": 71
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 65,
+          "minLevel": 23,
+          "maxLevel": 24
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 65,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 65,
+          "minLevel": 50,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 65,
+          "minLevel": 60,
+          "maxLevel": 71
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-chain",
+          "weight": 65,
+          "minLevel": 24,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-light-gauntlets",
+          "weight": 65,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-vampirebone",
+          "weight": 65,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-bramble-mitts",
+          "weight": 65,
+          "minLevel": 58,
+          "maxLevel": 71
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-chain",
+          "weight": 65,
+          "minLevel": 24,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-light-plated",
+          "weight": 65,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-demonhide",
+          "weight": 65,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 65,
+          "minLevel": 58,
+          "maxLevel": 71
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-heavy",
+          "weight": 65,
+          "minLevel": 22,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-plated",
+          "weight": 65,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-demonhide",
+          "weight": 65,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-mithril-coil",
+          "weight": 65,
+          "minLevel": 58,
+          "maxLevel": 71
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act3",
+      "originalEntryCount": 36,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 26,
+          "maxLevel": 86
+        },
+        {
+          "slot": "chest",
+          "minLevel": 26,
+          "maxLevel": 86
+        },
+        {
+          "slot": "gloves",
+          "minLevel": 26,
+          "maxLevel": 86
+        },
+        {
+          "slot": "boots",
+          "minLevel": 26,
+          "maxLevel": 86
+        },
+        {
+          "slot": "belt",
+          "minLevel": 26,
+          "maxLevel": 86
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 43.75,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 43.75,
+          "minLevel": 55,
+          "maxLevel": 86
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 43.75,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 43.75,
+          "minLevel": 60,
+          "maxLevel": 86
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-chain",
+          "weight": 43.75,
+          "minLevel": 26,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-light-gauntlets",
+          "weight": 43.75,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-vampirebone",
+          "weight": 43.75,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-bramble-mitts",
+          "weight": 43.75,
+          "minLevel": 58,
+          "maxLevel": 86
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-chain",
+          "weight": 43.75,
+          "minLevel": 26,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-light-plated",
+          "weight": 43.75,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-demonhide",
+          "weight": 43.75,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 43.75,
+          "minLevel": 58,
+          "maxLevel": 86
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-heavy",
+          "weight": 43.75,
+          "minLevel": 26,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-plated",
+          "weight": 43.75,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-demonhide",
+          "weight": 43.75,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-mithril-coil",
+          "weight": 43.75,
+          "minLevel": 58,
+          "maxLevel": 86
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act4",
+      "originalEntryCount": 28,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 40,
+          "maxLevel": 101
+        },
+        {
+          "slot": "chest",
+          "minLevel": 40,
+          "maxLevel": 101
+        },
+        {
+          "slot": "gloves",
+          "minLevel": 40,
+          "maxLevel": 101
+        },
+        {
+          "slot": "boots",
+          "minLevel": 40,
+          "maxLevel": 101
+        },
+        {
+          "slot": "belt",
+          "minLevel": 40,
+          "maxLevel": 101
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 52.5,
+          "minLevel": 55,
+          "maxLevel": 101
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 52.5,
+          "minLevel": 60,
+          "maxLevel": 101
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-light-gauntlets",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-vampirebone",
+          "weight": 52.5,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-light-plated",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 52.5,
+          "minLevel": 58,
+          "maxLevel": 101
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-plated",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-mithril-coil",
+          "weight": 52.5,
+          "minLevel": 58,
+          "maxLevel": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act5",
+      "originalEntryCount": 25,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 55,
+          "maxLevel": 122
+        },
+        {
+          "slot": "chest",
+          "minLevel": 55,
+          "maxLevel": 122
+        },
+        {
+          "slot": "gloves",
+          "minLevel": 55,
+          "maxLevel": 122
+        },
+        {
+          "slot": "boots",
+          "minLevel": 55,
+          "maxLevel": 122
+        },
+        {
+          "slot": "belt",
+          "minLevel": 60,
+          "maxLevel": 122
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 70,
+          "minLevel": 55,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/glove-vampirebone",
+          "weight": 70,
+          "minLevel": 55,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 70,
+          "minLevel": 58,
+          "maxLevel": 122
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act1",
+      "originalEntryCount": 10,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 6,
+          "maxLevel": 14
+        },
+        {
+          "slot": "chest",
+          "minLevel": 7,
+          "maxLevel": 14
+        }
+      ],
+      "additions": []
+    },
+    {
+      "id": "loot/champion-act2",
+      "originalEntryCount": 14,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 16,
+          "maxLevel": 28
+        },
+        {
+          "slot": "chest",
+          "minLevel": 16,
+          "maxLevel": 28
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-skull-cap",
+          "weight": 18.75,
+          "minLevel": 16,
+          "maxLevel": 21
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 18.75,
+          "minLevel": 28,
+          "maxLevel": 28
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 18.75,
+          "minLevel": 16,
+          "maxLevel": 24
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act3",
+      "originalEntryCount": 13,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 28,
+          "maxLevel": 45
+        },
+        {
+          "slot": "chest",
+          "minLevel": 28,
+          "maxLevel": 45
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 15,
+          "minLevel": 28,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 32,
+          "maxLevel": 45
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act4",
+      "originalEntryCount": 15,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 42,
+          "maxLevel": 55
+        },
+        {
+          "slot": "chest",
+          "minLevel": 42,
+          "maxLevel": 55
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 42,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 15,
+          "minLevel": 55,
+          "maxLevel": 55
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 42,
+          "maxLevel": 49
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act5",
+      "originalEntryCount": 14,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 57,
+          "maxLevel": 75
+        },
+        {
+          "slot": "chest",
+          "minLevel": 57,
+          "maxLevel": 75
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 18.75,
+          "minLevel": 57,
+          "maxLevel": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act1",
+      "originalEntryCount": 10,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 7,
+          "maxLevel": 14
+        },
+        {
+          "slot": "chest",
+          "minLevel": 8,
+          "maxLevel": 14
+        }
+      ],
+      "additions": []
+    },
+    {
+      "id": "loot/unique-act2",
+      "originalEntryCount": 14,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 17,
+          "maxLevel": 28
+        },
+        {
+          "slot": "chest",
+          "minLevel": 17,
+          "maxLevel": 28
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-skull-cap",
+          "weight": 15,
+          "minLevel": 17,
+          "maxLevel": 21
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 28,
+          "maxLevel": 28
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 15,
+          "minLevel": 17,
+          "maxLevel": 24
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act3",
+      "originalEntryCount": 13,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 29,
+          "maxLevel": 45
+        },
+        {
+          "slot": "chest",
+          "minLevel": 29,
+          "maxLevel": 45
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 12.5,
+          "minLevel": 29,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 12.5,
+          "minLevel": 29,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 12.5,
+          "minLevel": 32,
+          "maxLevel": 45
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act4",
+      "originalEntryCount": 15,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 43,
+          "maxLevel": 55
+        },
+        {
+          "slot": "chest",
+          "minLevel": 43,
+          "maxLevel": 55
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 12.5,
+          "minLevel": 55,
+          "maxLevel": 55
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 49
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act5",
+      "originalEntryCount": 14,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 58,
+          "maxLevel": 75
+        },
+        {
+          "slot": "chest",
+          "minLevel": 58,
+          "maxLevel": 75
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 15,
+          "minLevel": 58,
+          "maxLevel": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act1",
+      "originalEntryCount": 29,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 7,
+          "maxLevel": 52
+        },
+        {
+          "slot": "chest",
+          "minLevel": 8,
+          "maxLevel": 52
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-war-hat",
+          "weight": 12.5,
+          "minLevel": 22,
+          "maxLevel": 27
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 12.5,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 12.5,
+          "minLevel": 45,
+          "maxLevel": 52
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 12.5,
+          "minLevel": 25,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 12.5,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 12.5,
+          "minLevel": 50,
+          "maxLevel": 52
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act2",
+      "originalEntryCount": 30,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 17,
+          "maxLevel": 68
+        },
+        {
+          "slot": "chest",
+          "minLevel": 17,
+          "maxLevel": 68
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-skull-cap",
+          "weight": 12.5,
+          "minLevel": 17,
+          "maxLevel": 21
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 12.5,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 12.5,
+          "minLevel": 45,
+          "maxLevel": 54
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 12.5,
+          "minLevel": 55,
+          "maxLevel": 68
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 12.5,
+          "minLevel": 17,
+          "maxLevel": 24
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 12.5,
+          "minLevel": 29,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 12.5,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 12.5,
+          "minLevel": 50,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 12.5,
+          "minLevel": 60,
+          "maxLevel": 68
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act3",
+      "originalEntryCount": 21,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 29,
+          "maxLevel": 83
+        },
+        {
+          "slot": "chest",
+          "minLevel": 29,
+          "maxLevel": 83
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 10,
+          "minLevel": 29,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 10,
+          "minLevel": 55,
+          "maxLevel": 83
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 10,
+          "minLevel": 29,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 10,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 10,
+          "minLevel": 60,
+          "maxLevel": 83
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act4",
+      "originalEntryCount": 21,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 43,
+          "maxLevel": 96
+        },
+        {
+          "slot": "chest",
+          "minLevel": 43,
+          "maxLevel": 96
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 12.5,
+          "minLevel": 55,
+          "maxLevel": 96
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 12.5,
+          "minLevel": 60,
+          "maxLevel": 96
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act5",
+      "originalEntryCount": 15,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 58,
+          "maxLevel": 115
+        },
+        {
+          "slot": "chest",
+          "minLevel": 58,
+          "maxLevel": 115
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 12.5,
+          "minLevel": 58,
+          "maxLevel": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/act1-boss",
+      "originalEntryCount": 35,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 9,
+          "maxLevel": 59
+        },
+        {
+          "slot": "chest",
+          "minLevel": 10,
+          "maxLevel": 59
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-war-hat",
+          "weight": 15,
+          "minLevel": 22,
+          "maxLevel": 27
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 15,
+          "minLevel": 45,
+          "maxLevel": 54
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 15,
+          "minLevel": 55,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 15,
+          "minLevel": 25,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 15,
+          "minLevel": 50,
+          "maxLevel": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/act2-boss",
+      "originalEntryCount": 39,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 19,
+          "maxLevel": 72
+        },
+        {
+          "slot": "chest",
+          "minLevel": 19,
+          "maxLevel": 72
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-skull-cap",
+          "weight": 15,
+          "minLevel": 19,
+          "maxLevel": 21
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 28,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-armet",
+          "weight": 15,
+          "minLevel": 45,
+          "maxLevel": 54
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 15,
+          "minLevel": 55,
+          "maxLevel": 72
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 15,
+          "minLevel": 19,
+          "maxLevel": 24
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 15,
+          "minLevel": 29,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 15,
+          "minLevel": 50,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 15,
+          "minLevel": 60,
+          "maxLevel": 72
+        }
+      ]
+    },
+    {
+      "id": "loot/act3-boss",
+      "originalEntryCount": 27,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 31,
+          "maxLevel": 87
+        },
+        {
+          "slot": "chest",
+          "minLevel": 31,
+          "maxLevel": 87
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-casque",
+          "weight": 15,
+          "minLevel": 31,
+          "maxLevel": 44
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 15,
+          "minLevel": 55,
+          "maxLevel": 87
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 15,
+          "minLevel": 31,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 15,
+          "minLevel": 60,
+          "maxLevel": 87
+        }
+      ]
+    },
+    {
+      "id": "loot/act4-boss",
+      "originalEntryCount": 29,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 45,
+          "maxLevel": 101
+        },
+        {
+          "slot": "chest",
+          "minLevel": 45,
+          "maxLevel": 101
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 15,
+          "minLevel": 55,
+          "maxLevel": 101
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 15,
+          "minLevel": 45,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-dusk-shroud",
+          "weight": 15,
+          "minLevel": 56,
+          "maxLevel": 59
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 15,
+          "minLevel": 60,
+          "maxLevel": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/act5-boss",
+      "originalEntryCount": 19,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 60,
+          "maxLevel": 122
+        },
+        {
+          "slot": "chest",
+          "minLevel": 60,
+          "maxLevel": 122
+        }
+      ],
+      "additions": []
+    },
+    {
+      "id": "loot/treasure-goblin",
+      "originalEntryCount": 112,
+      "families": [
+        {
+          "slot": "head",
+          "minLevel": 45,
+          "maxLevel": 99
+        },
+        {
+          "slot": "chest",
+          "minLevel": 1,
+          "maxLevel": 99
+        },
+        {
+          "slot": "boots",
+          "minLevel": 1,
+          "maxLevel": 99
+        },
+        {
+          "slot": "belt",
+          "minLevel": 1,
+          "maxLevel": 99
+        }
+      ],
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/helm-giant-conch",
+          "weight": 10,
+          "minLevel": 55,
+          "maxLevel": 99
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-leather",
+          "weight": 10,
+          "minLevel": 6,
+          "maxLevel": 24
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-chain-mail",
+          "weight": 10,
+          "minLevel": 25,
+          "maxLevel": 31
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-breast-plate",
+          "weight": 10,
+          "minLevel": 32,
+          "maxLevel": 49
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/armor-archon-plate",
+          "weight": 10,
+          "minLevel": 60,
+          "maxLevel": 99
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-heavy",
+          "weight": 10,
+          "minLevel": 7,
+          "maxLevel": 23
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-chain",
+          "weight": 10,
+          "minLevel": 24,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-light-plated",
+          "weight": 10,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-demonhide",
+          "weight": 10,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/boot-myrmidon-greaves",
+          "weight": 10,
+          "minLevel": 58,
+          "maxLevel": 99
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-light",
+          "weight": 10,
+          "minLevel": 7,
+          "maxLevel": 21
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-heavy",
+          "weight": 10,
+          "minLevel": 22,
+          "maxLevel": 29
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-plated",
+          "weight": 10,
+          "minLevel": 30,
+          "maxLevel": 47
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-demonhide",
+          "weight": 10,
+          "minLevel": 48,
+          "maxLevel": 57
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/belt-mithril-coil",
+          "weight": 10,
+          "minLevel": 58,
+          "maxLevel": 99
+        }
+      ]
+    }
+  ]
+}

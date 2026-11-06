@@ -1,5 +1,119 @@
 # Production measurement (P02a01–P02a03)
 
+## Current checkpoint command (v3, P15)
+
+For exactly one prospectively selected attempt from saved state:
+
+```sh
+npm run sim:checkpoint -- \
+  --fixture /absolute/fixture.json \
+  --save /absolute/save.json \
+  --output /absolute/new-report.json
+```
+
+There is no default input, batch or retry. The descriptor fixes raw-save SHA256,
+acquisition evidence/kind, build ID/class/exact level, canonical area/act,
+difficulty, manual/idle, ordinal, pity, sample stage/seed and clock. Supported
+partitions are benchmark 1, screening 1–100, tuning 1–1,000 and holdout
+10,001–11,000. It does not override saved progression, gear or resources.
+`runCheckpointAttempt` uses native generation/combat/playback/rewards, preserves
+nonwins/unreached waves and restores caller state on success/error. Idle requires
+an existing clear in the saved selected difficulty. Process-global IDs remain
+monotonic; use a dedicated quiescent realm. A checkpoint hash does not certify
+earned acquisition or build identity.
+
+Output is exclusive and outside the repository; the fsynced companion
+`<output>.journal.jsonl` preserves settled waves on later failure. The encoded
+v3 report contains source/data/contract manifests, actual RNG streams, native
+input/outcome/resource/reward metrics and cleanup. No campaign successor or
+balance acceptance is granted. See [bounded control evidence](../../../docs/plans/evidence/p15-checkpoint-balance-runner.md).
+
+Completed attempts also retain `attempt.plan`, a detached copy of the exact
+installed native plan captured before playback. It preserves source encounters,
+spawns, levels, tiers, affixes, loot and idle presentation metadata, including
+waves never played after defeat. The existing journal preserves settled waves
+on later errors; it is not a full-plan journal. The outer CLI report remains v3.
+
+The pure population reporter emits v2. Each trial has
+`plannedTargetWaveIndices` and `unreachedTargetWaveIndices`; both are `null` when
+the original plan is unavailable. Target coverage separates:
+
+- `reachedSeeds`: an observed wave has the target role.
+- `notObservedSeeds`: no observed wave has that role (the old v1
+  `unreachedSeeds` meaning).
+- `plannedSeeds` / `absentSeeds`: a known native plan includes / excludes it.
+- `unreachedSeeds`: a known plan includes it, but a failed prefix prevents
+  observing any occurrence.
+- `planUnavailableSeeds`: the original native plan was not recorded.
+
+`plannedWaveCount` and `unreachedWaveCount` cover **known plans only**. Later
+unplayed occurrences count even after an earlier occurrence of the role was
+reached. Reach-rate denominators include every started seed trial. Missing
+historical plans are never reconstructed; area failures, actual rewards and
+correlated-wave treatment remain intact. Coverage does not establish balance
+acceptance. See [role-coverage evidence](../../../docs/plans/evidence/p15-checkpoint-role-coverage.md).
+
+The current [retained-power baseline](../../../docs/plans/evidence/p15-retained-power-baseline.md)
+pins all 210 build/act/role contexts to 183 selected sources plus two existing
+order-only derivatives. Its broader power/acquisition, population and adaptation
+requirements remain open. The earlier
+[source inventory](../../../docs/plans/evidence/p15-checkpoint-source-reuse.md)
+recorded 157 exports and a 121-clear/89-gap split; those are historical inventory
+counts. Use the latest baseline and its preserved boundary/provenance fields,
+not those older counts, for subsequent work. No source freeze performs gameplay.
+
+The [manual ordinal partition](../../../docs/plans/decisions/P15-manual-ordinal-partition-v1.md)
+is source-proven for ordinary manual **plan support**: at fixed remaining inputs,
+ordinals with the same residue modulo 13 yield equal plans in all 29 current
+canonical areas, including their fixed replay transforms. Preserve original
+ordinal, seed, source projection and stateful admission identity in trials.
+This does not imply uniform production residues or any idle/reward reduction.
+Idle retains full ordinal and explicit initial pity; missing historical pity is
+unknown. The single native witness launch failed before game loading and is
+closed with zero plan calls; [evidence](../../../docs/plans/evidence/p15-manual-ordinal-partition.md)
+separates that failure from the source proof. Population/adaptation acceptance
+remains open; do not rerun the spent witness allowance.
+
+Diagnostic self-tests require explicit discovery; do not run the historical
+commands below to verify this adapter:
+
+```sh
+node_modules/.bin/vitest run --workspace vitest.diagnostics.workspace.ts \
+  --project sim-diagnostics \
+  tests/sim/production/checkpoint-fixture.test.ts \
+  tests/sim/production/checkpoint-attempt.test.ts \
+  --poolOptions.threads.maxThreads=1 --poolOptions.threads.minThreads=1
+```
+
+## Contiguous native retries (P15)
+
+`tests/campaign/retry-measurement.ts` operates on the live native successor;
+it never restores between attempts and stops at victory or its declared 1–3
+attempt cap. Before admission, it publishes `retry-policy` containing
+`{ policy: { version: 1, request } }`, a complete detached request declaration,
+and returns it as `result.policy`. Later caller changes cannot rewrite it.
+Journal values and retained adaptation actions are independently detached;
+consumer edits cannot change outcomes or subsequent build decisions. A failed
+initial policy publication leaves native stores/counters unchanged and restores
+the clock. Later failures retain the existing partial-journal/live-successor
+contract. Historical missing policies are unknown. This is a measurement
+boundary, not a population/build-policy choice or balance acceptance; see
+[snapshot evidence](../../../docs/plans/evidence/p15-retry-policy-snapshot.md).
+
+Each retry now retains `attempt.plan`, copied from the exact installed native
+run immediately after admission and validated against native seed, area and
+wave count. The detached `retry-admission` journal includes that full plan
+before playback, preserving later enemies when defeat ends a prefix and after
+native run disposal. Journal edits cannot change the run or retained plans.
+The request policy stays v1; admission/settlement/adaptation behavior is unchanged.
+Missing historical plans remain unknown, with no reconstruction or acceptance
+credit. See [plan-capture evidence](../../../docs/plans/evidence/p15-retry-plan-capture.md).
+
+The following sections document the older v1 fresh-recipe runner and its
+historical discovery setup. They do not describe the v3 command above.
+
+## Historical fresh-recipe runner
+
 This directory validates recipes/provenance and measures bounded fresh runs
 through production creation, combat, recorded playback and reward APIs. It does
 not certify balance, pacing, skills or campaign reachability. The historical

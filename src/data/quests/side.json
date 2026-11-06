@@ -9,10 +9,21 @@
       "giver": "npc/charsi",
       "description": "After giving Charsi the Horadric Malus, present an eligible normal weapon or armor unchanged. Claim a separate Imbue charge, then choose which item to imbue.",
       "objectives": [
-        { "id": "obj-bring-item", "type": "deliver", "itemFilter": "normal", "npcId": "npc/charsi", "description": "Present an eligible normal weapon or armor to Charsi without consuming it." }
+        {
+          "id": "obj-bring-item",
+          "type": "deliver",
+          "itemFilter": "normal",
+          "npcId": "npc/charsi",
+          "description": "Present an eligible normal weapon or armor to Charsi without consuming it."
+        }
       ],
-      "rewards": { "service": "imbue_item" },
-      "prerequisites": ["quests/act1-tools-of-the-trade"]
+      "rewards": {
+        "service": "imbue_item",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act1-tools-of-the-trade"
+      ]
     },
     {
       "id": "quests/side-act1-rogue-merc-unlock",
@@ -20,12 +31,22 @@
       "type": "side",
       "actId": "acts/act1",
       "giver": "npc/kashya",
-      "description": "After avenging the Sisters at the Burial Grounds, Kashya offers to lend you one of her Rogue Scouts as a mercenary.",
+      "description": "Defeat Blood Raven and return to Kashya. In Normal, explicitly enlist a Rogue Scout — Trainee, then separately Claim one-time ensure-owned support in your journal.",
       "objectives": [
-        { "id": "obj-hire", "type": "hire-mercenary", "mercId": "mercs/act1-rogue-trainee", "description": "Hire a Rogue Scout from Kashya." }
+        {
+          "id": "obj-hire",
+          "type": "hire-mercenary",
+          "mercId": "mercs/act1-rogue-trainee",
+          "description": "Enlist or re-enlist a Rogue Scout — Trainee at Kashya."
+        }
       ],
-      "rewards": { "mercenaryUnlock": "mercs/act1-rogue-trainee" },
-      "prerequisites": ["quests/act1-sisters-burial-grounds"]
+      "rewards": {
+        "mercenaryUnlock": "mercs/act1-rogue-trainee",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act1-sisters-burial-grounds"
+      ]
     },
     {
       "id": "quests/side-act1-cains-favor",
@@ -35,22 +56,43 @@
       "giver": "npc/cain",
       "description": "For rescuing him from the ruined village in the Dark Wood, Cain offers to identify your unidentified items free of charge for the rest of your journey.",
       "objectives": [
-        { "id": "obj-talk", "type": "talk", "npcId": "npc/cain", "description": "Speak with Cain in the Rogue Encampment." }
+        {
+          "id": "obj-talk",
+          "type": "talk",
+          "npcId": "npc/cain",
+          "description": "Speak with Cain in the Rogue Encampment."
+        }
       ],
-      "rewards": { "service": "identify_free" },
-      "prerequisites": ["quests/act1-search-for-cain"]
+      "rewards": {
+        "service": "identify_free",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act1-search-for-cain"
+      ]
     },
     {
       "id": "quests/side-act1-gheeds-gamble",
-      "name": "Gheed's Gamble",
+      "name": "Gheed's Salvage Deal",
       "type": "side",
       "actId": "acts/act1",
       "giver": "npc/gheed",
-      "description": "The merchant Gheed loves a wager. Spend gold on his gambling stall five times for a chance at a guaranteed magical item.",
+      "description": "Gheed sees value in five marked salvage lots in the Cold Plains. Recover each on Normal, then Claim in Quests to exchange all five for 1,000 XP and 1 Gem Shard.",
       "objectives": [
-        { "id": "obj-gamble-5", "type": "gamble", "count": 5, "description": "Gamble 5 items at Gheed's stall." }
+        {
+          "id": "obj-gamble-5",
+          "type": "collect",
+          "itemId": "quest/gheed_salvage_lot",
+          "areaId": "areas/act1-cold-plains",
+          "count": 5,
+          "description": "Recover 5 distinct Gheed salvage lots in the Cold Plains on Normal."
+        }
       ],
-      "rewards": { "xp": 1000, "itemDrop": "items/magic_random_act1" }
+      "rewards": {
+        "xp": 1000,
+        "gemShards": 1,
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act1-pandemonium-cow-rumor",
@@ -58,26 +100,50 @@
       "type": "side",
       "actId": "acts/act1",
       "giver": "npc/akara",
-      "description": "Stories whisper of a Secret Cow Level. Transmute Wirt's Leg with a Tome of Town Portal in the Horadric Cube to open a moo-ving portal.",
+      "description": "Recover Wirt's Leg after clearing the Dark Wood on Normal. At Akara, Receive a bound Portal Tome and transmute both with the retained Horadric Cube. Enter the hidden clearing for one Cow King battle, then Claim 6,000 XP separately after victory.",
       "objectives": [
-        { "id": "obj-find-leg", "type": "fetch", "itemId": "quest/wirts_leg", "areaId": "areas/act1_tristram", "description": "Take Wirt's Leg from Tristram." },
-        { "id": "obj-open-portal", "type": "transmute", "recipe": "moo_moo_portal", "description": "Open the Secret Cow Level portal." }
+        {
+          "id": "obj-find-leg",
+          "type": "fetch",
+          "itemId": "quest/wirts_leg",
+          "areaId": "areas/act1-dark-wood",
+          "targetId": "objects/wirts_remains",
+          "description": "Recover Wirt's Leg from his remains after clearing the Dark Wood on Normal."
+        },
+        {
+          "id": "obj-open-portal",
+          "type": "transmute",
+          "recipe": "moo_moo_portal",
+          "description": "At Akara, transmute Wirt's Leg and the bound portal Tome using the retained Horadric Cube."
+        }
       ],
-      "rewards": { "xp": 6000, "areaUnlock": "areas/secret_cow_level" }
+      "rewards": {
+        "xp": 6000,
+        "wishstones": 10
+      }
     },
-
     {
       "id": "quests/side-act2-greiz-merc-roster",
       "name": "Greiz's Roster",
       "type": "side",
       "actId": "acts/act2",
       "giver": "npc/greiz",
-      "description": "Greiz, captain of the Lut Gholein guard, offers Desert Mercenaries to those who have proven themselves against the sewer dwellers.",
+      "description": "After completing Radament's Lair, heroes of level 12 or higher can explicitly enlist a Desert Merc — Blessed Aim at Greiz in Normal. Separately Claim one-time ensure-owned support in your journal.",
       "objectives": [
-        { "id": "obj-hire", "type": "hire-mercenary", "mercId": "mercs/act2-blessed-aim", "description": "Hire a Desert Mercenary from Greiz." }
+        {
+          "id": "obj-hire",
+          "type": "hire-mercenary",
+          "mercId": "mercs/act2-blessed-aim",
+          "description": "Enlist or re-enlist a Desert Merc — Blessed Aim at Greiz."
+        }
       ],
-      "rewards": { "mercenaryUnlock": "mercs/act2-blessed-aim" },
-      "prerequisites": ["quests/act2-radaments-lair"]
+      "rewards": {
+        "mercenaryUnlock": "mercs/act2-blessed-aim",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act2-radaments-lair"
+      ]
     },
     {
       "id": "quests/side-act2-fara-favored",
@@ -85,12 +151,22 @@
       "type": "side",
       "actId": "acts/act2",
       "giver": "npc/fara",
-      "description": "Fara, the former Paladin, will repair your gear at a discount after you've cleansed Radament's filth from the sewers.",
+      "description": "After completing Radament's Lair, speak with Fara in Lut Gholein. Claim 1 gem-shard separately in Quests. For one gem fusion, supply 3 matching gems of the same type and quality; the shard covers its catalyst cost.",
       "objectives": [
-        { "id": "obj-talk", "type": "talk", "npcId": "npc/fara", "description": "Speak with Fara." }
+        {
+          "id": "obj-talk",
+          "type": "talk",
+          "npcId": "npc/fara",
+          "description": "Speak with Fara."
+        }
       ],
-      "rewards": { "service": "repair_discount" },
-      "prerequisites": ["quests/act2-radaments-lair"]
+      "rewards": {
+        "gemShards": 1,
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act2-radaments-lair"
+      ]
     },
     {
       "id": "quests/side-act2-lost-caravan",
@@ -98,11 +174,25 @@
       "type": "side",
       "actId": "acts/act2",
       "giver": "npc/elzix",
-      "description": "Elzix's caravan was ambushed in the Far Oasis. Recover his strongbox from the bandit camp.",
+      "description": "Recover Elzix's Strongbox in the Far Oasis on Normal. Keep it as a memento and claim XP and The Eye of Etlich separately in Quests.",
       "objectives": [
-        { "id": "obj-find-box", "type": "fetch", "itemId": "quest/elzix_strongbox", "areaId": "areas/act2_far_oasis", "description": "Recover the strongbox in the Far Oasis." }
+        {
+          "id": "obj-find-box",
+          "type": "fetch",
+          "itemId": "quest/elzix_strongbox",
+          "areaId": "areas/act2-far-oasis",
+          "targetId": "objects/elzix_strongbox_cache",
+          "description": "Recover Elzix's Strongbox in the Far Oasis."
+        }
       ],
-      "rewards": { "xp": 3000, "gold": 5000, "itemDrop": "items/unique_amulet_random" }
+      "rewards": {
+        "xp": 3000,
+        "itemDrop": {
+          "uniqueId": "items/unique/eye-of-etlich",
+          "ilvl": 18
+        },
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act2-drognan-tome",
@@ -110,11 +200,22 @@
       "type": "side",
       "actId": "acts/act2",
       "giver": "npc/drognan",
-      "description": "The sage Drognan asks you to recover a sun-cult tome from the Lost City. He will reward you with a tome of arcane learning.",
+      "description": "Recover the Sun-Cult Tome in the Lost City. Drognan will share its arcane knowledge; claim XP and a skill point separately in Quests.",
       "objectives": [
-        { "id": "obj-fetch", "type": "fetch", "itemId": "quest/sun_cult_tome", "areaId": "areas/act2_lost_city", "description": "Find the Sun-Cult Tome." }
+        {
+          "id": "obj-fetch",
+          "type": "fetch",
+          "itemId": "quest/sun_cult_tome",
+          "areaId": "areas/act2-lost-city",
+          "targetId": "objects/sun_cult_tome_cache",
+          "description": "Find the Sun-Cult Tome."
+        }
       ],
-      "rewards": { "xp": 4000, "skillPoints": 1 }
+      "rewards": {
+        "xp": 4000,
+        "skillPoints": 1,
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act2-summoners-secret",
@@ -122,24 +223,45 @@
       "type": "side",
       "actId": "acts/act2",
       "giver": "npc/atma",
-      "description": "Rumor speaks of a hidden lockbox left by Horazon in the Arcane Sanctuary. Find it and bring its prize back to Atma.",
+      "description": "Recover Horazon's Lockbox in the Arcane Sanctuary on Normal. Keep it as a memento and claim XP and Manald Heal separately in Quests.",
       "objectives": [
-        { "id": "obj-find", "type": "fetch", "itemId": "quest/horazon_lockbox", "areaId": "areas/act2_arcane_sanctuary", "description": "Locate Horazon's lockbox." }
+        {
+          "id": "obj-find",
+          "type": "fetch",
+          "itemId": "quest/horazon_lockbox",
+          "areaId": "areas/act2-arcane-sanctuary",
+          "targetId": "objects/horazon_lockbox_cache",
+          "description": "Recover Horazon's Lockbox in the Arcane Sanctuary."
+        }
       ],
-      "rewards": { "xp": 5000, "itemDrop": "items/unique_ring_random" }
+      "rewards": {
+        "xp": 5000,
+        "itemDrop": {
+          "uniqueId": "items/unique/manald-heal",
+          "ilvl": 23
+        },
+        "wishstones": 10
+      }
     },
-
     {
       "id": "quests/side-act3-asheara-merc",
       "name": "Asheara's Iron Wolves",
       "type": "side",
       "actId": "acts/act3",
       "giver": "npc/asheara",
-      "description": "Asheara, captain of the Iron Wolves, offers her elemental mages as mercenaries to those willing to brave the Kurast jungle.",
+      "description": "With Act III unlocked, heroes of level 18 or higher can explicitly enlist an Iron Wolf — Frozen Armor at Asheara in Normal. Separately Claim one-time ensure-owned support in your journal.",
       "objectives": [
-        { "id": "obj-hire", "type": "hire-mercenary", "mercId": "mercs/act3-iron-wolf-frozen-armor", "description": "Hire an Iron Wolf from Asheara." }
+        {
+          "id": "obj-hire",
+          "type": "hire-mercenary",
+          "mercId": "mercs/act3-iron-wolf-frozen-armor",
+          "description": "Enlist or re-enlist an Iron Wolf — Frozen Armor at Asheara."
+        }
       ],
-      "rewards": { "mercenaryUnlock": "mercs/act3-iron-wolf-frozen-armor" }
+      "rewards": {
+        "mercenaryUnlock": "mercs/act3-iron-wolf-frozen-armor",
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act3-alkors-experiment",
@@ -147,11 +269,22 @@
       "type": "side",
       "actId": "acts/act3",
       "giver": "npc/alkor",
-      "description": "Alkor wants ingredients from a giant spider in the Spider Cavern for his alchemical experiments. Bring him fresh venom glands.",
+      "description": "Recover three distinct venom glands in the Spider Forest on Normal. Claim in your journal to exchange all three for XP and five unallocated stat points.",
       "objectives": [
-        { "id": "obj-collect", "type": "collect", "itemId": "quest/spider_venom_gland", "count": 3, "areaId": "areas/act3_spider_cavern", "description": "Collect 3 venom glands." }
+        {
+          "id": "obj-collect",
+          "type": "collect",
+          "itemId": "quest/spider_venom_gland",
+          "count": 3,
+          "areaId": "areas/act3-spider-forest",
+          "description": "Recover 3 venom glands in the Spider Forest."
+        }
       ],
-      "rewards": { "xp": 4500, "stat": { "attribute_points": 5 } }
+      "rewards": {
+        "xp": 4500,
+        "statPoints": 5,
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act3-jade-statuette",
@@ -159,11 +292,23 @@
       "type": "side",
       "actId": "acts/act3",
       "giver": "npc/meshif",
-      "description": "Meshif's contacts in Kurast Bazaar are buying jade trinkets at a premium. Sell three jade artifacts to him for a tidy sum.",
+      "description": "Recover three distinct jade trinkets in Kurast Bazaar on Normal. Give all three to Meshif in Kurast, then separately Claim XP and 1,000 rune shards in your journal.",
       "objectives": [
-        { "id": "obj-deliver", "type": "deliver", "itemId": "quest/jade_trinket", "count": 3, "npcId": "npc/meshif", "description": "Deliver 3 jade trinkets to Meshif." }
+        {
+          "id": "obj-deliver",
+          "type": "deliver",
+          "itemId": "quest/jade_trinket",
+          "count": 3,
+          "areaId": "areas/act3-kurast-bazaar",
+          "npcId": "npc/meshif",
+          "description": "Recover 3 jade trinkets in Kurast Bazaar and give them to Meshif."
+        }
       ],
-      "rewards": { "xp": 3500, "gold": 10000 }
+      "rewards": {
+        "xp": 3500,
+        "runeShards": 1000,
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act3-ormus-charm",
@@ -171,13 +316,30 @@
       "type": "side",
       "actId": "acts/act3",
       "giver": "npc/ormus",
-      "description": "Ormus, troubled by visions, asks you to slay corrupt fetish shamans deep in the Flayer Dungeon. He grants you a small enchanted charm in return.",
+      "description": "Clear every wave of the Flayer Jungle on Normal in a manual run, then speak with Ormus in Kurast. Claim his enchanted charm, which grants +20 Life and +10 Mana while equipped in your charm slot.",
       "objectives": [
-        { "id": "obj-kill-shamans", "type": "kill", "targetId": "monsters/fetish_shaman", "count": 10, "areaId": "areas/act3_flayer_dungeon_2", "description": "Slay 10 Fetish Shamans." }
+        {
+          "id": "obj-kill-shamans",
+          "type": "clear-area",
+          "areaId": "areas/act3-flayer-jungle",
+          "description": "Clear every wave of the Flayer Jungle on Normal in a manual run."
+        },
+        {
+          "id": "obj-return-ormus",
+          "type": "talk",
+          "npcId": "npc/ormus",
+          "description": "Return to Kurast and speak with Ormus."
+        }
       ],
-      "rewards": { "xp": 5000, "itemDrop": "items/grand_charm_random" }
+      "rewards": {
+        "xp": 5000,
+        "itemDrop": {
+          "uniqueId": "items/unique/ormus-charm",
+          "ilvl": 32
+        },
+        "wishstones": 10
+      }
     },
-
     {
       "id": "quests/side-act4-tyraels-blessing",
       "name": "Tyrael's Blessing",
@@ -186,10 +348,20 @@
       "giver": "npc/tyrael",
       "description": "Having freed Izual's soul, Tyrael grants you an extra skill point and reflects upon Heaven's regret for the Fallen Angel.",
       "objectives": [
-        { "id": "obj-talk", "type": "talk", "npcId": "npc/tyrael", "description": "Receive Tyrael's blessing." }
+        {
+          "id": "obj-talk",
+          "type": "talk",
+          "npcId": "npc/tyrael",
+          "description": "Receive Tyrael's blessing."
+        }
       ],
-      "rewards": { "skillPoints": 2 },
-      "prerequisites": ["quests/act4-fallen-angel"]
+      "rewards": {
+        "skillPoints": 2,
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act4-fallen-angel"
+      ]
     },
     {
       "id": "quests/side-act4-jamella-trade",
@@ -197,11 +369,26 @@
       "type": "side",
       "actId": "acts/act4",
       "giver": "npc/jamella",
-      "description": "The angelic merchant Jamella will gladly trade rare gems for crafting reagents you collect from Hephasto's forge.",
+      "description": "Recover five distinct Forge Embers in the River of Flame on Normal. Claim in your journal to exchange all five for XP and one perfect gem.",
       "objectives": [
-        { "id": "obj-collect", "type": "collect", "itemId": "quest/forge_ember", "count": 5, "areaId": "areas/act4_river_of_flame", "description": "Collect 5 Forge Embers." }
+        {
+          "id": "obj-collect",
+          "type": "collect",
+          "itemId": "quest/forge_ember",
+          "count": 5,
+          "areaId": "areas/act4-river-of-flame",
+          "description": "Recover 5 Forge Embers in the River of Flame."
+        }
       ],
-      "rewards": { "xp": 7000, "itemDrop": "items/perfect_gem_random" }
+      "rewards": {
+        "xp": 7000,
+        "lootTable": {
+          "tableId": "loot/side-jamella-perfect-gem",
+          "ilvl": 51,
+          "picks": 1
+        },
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act4-halbus-soul",
@@ -211,12 +398,21 @@
       "giver": "npc/halbu",
       "description": "Halbu, the angelic armorer, offers to socket a piece of armor for those who shattered Mephisto's soulstone.",
       "objectives": [
-        { "id": "obj-talk", "type": "talk", "npcId": "npc/halbu", "description": "Bring an item to Halbu." }
+        {
+          "id": "obj-talk",
+          "type": "talk",
+          "npcId": "npc/halbu",
+          "description": "Bring an item to Halbu."
+        }
       ],
-      "rewards": { "service": "socket_armor" },
-      "prerequisites": ["quests/act4-hellforge"]
+      "rewards": {
+        "service": "socket_armor",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act4-hellforge"
+      ]
     },
-
     {
       "id": "quests/side-act5-larzuks-sockets",
       "name": "Larzuk's Hammer",
@@ -225,10 +421,21 @@
       "giver": "npc/larzuk",
       "description": "Larzuk the smith will socket one of your items as thanks for breaking Shenk's siege.",
       "objectives": [
-        { "id": "obj-bring-item", "type": "deliver", "itemFilter": "any", "npcId": "npc/larzuk", "description": "Bring an item to Larzuk to socket." }
+        {
+          "id": "obj-bring-item",
+          "type": "deliver",
+          "itemFilter": "any",
+          "npcId": "npc/larzuk",
+          "description": "Bring an item to Larzuk to socket."
+        }
       ],
-      "rewards": { "service": "socket_item" },
-      "prerequisites": ["quests/act5-siege-on-harrogath"]
+      "rewards": {
+        "service": "socket_item",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act5-siege-on-harrogath"
+      ]
     },
     {
       "id": "quests/side-act5-anyas-gift",
@@ -236,25 +443,49 @@
       "type": "side",
       "actId": "acts/act5",
       "giver": "npc/anya",
-      "description": "After her rescue, Anya gifts you a personalized scroll of resistances and unlocks her unique-item stock.",
+      "description": "After completing Prison of Ice and actually thawing Anya, speak with her in Harrogath. Claim permanent +10 resistance to all six damage channels and a separate personalization charge in Quests. Her two optional trades each cost 40 Scrap and 2000 Rune Shards, once per character.",
       "objectives": [
-        { "id": "obj-talk", "type": "talk", "npcId": "npc/anya", "description": "Speak with Anya in Harrogath." }
+        {
+          "id": "obj-talk",
+          "type": "talk",
+          "npcId": "npc/anya",
+          "description": "Speak with Anya in Harrogath after completing Prison of Ice and actually thawing her."
+        }
       ],
-      "rewards": { "stat": { "all_resist": 10 }, "service": "personalize_item", "vendorUnlock": "vendors/anya_uniques" },
-      "prerequisites": ["quests/act5-prison-of-ice"]
+      "rewards": {
+        "stat": {
+          "all_resist": 10
+        },
+        "service": "personalize_item",
+        "vendorUnlock": "vendors/anya_uniques",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act5-prison-of-ice"
+      ]
     },
     {
       "id": "quests/side-act5-qual-kehk-merc",
       "name": "Qual-Kehk's Warband",
       "type": "side",
       "actId": "acts/act5",
-      "giver": "npc/qual_kehk",
+      "giver": "npc/qual-kehk",
       "description": "Qual-Kehk offers Barbarian warriors to fight at your side after the freed prisoners return to Harrogath.",
       "objectives": [
-        { "id": "obj-hire", "type": "hire-mercenary", "mercId": "mercs/act5-barbarian-recruit", "description": "Hire a Barbarian Warrior." }
+        {
+          "id": "obj-hire",
+          "type": "hire-mercenary",
+          "mercId": "mercs/act5-barbarian-recruit",
+          "description": "Hire a Barbarian Warrior."
+        }
       ],
-      "rewards": { "mercenaryUnlock": "mercs/act5-barbarian-recruit" },
-      "prerequisites": ["quests/act5-rescue-on-mount-arreat"]
+      "rewards": {
+        "mercenaryUnlock": "mercs/act5-barbarian-recruit",
+        "wishstones": 10
+      },
+      "prerequisites": [
+        "quests/act5-rescue-on-mount-arreat"
+      ]
     },
     {
       "id": "quests/side-act5-malahs-elixir",
@@ -262,11 +493,24 @@
       "type": "side",
       "actId": "acts/act5",
       "giver": "npc/malah",
-      "description": "Malah brews an elixir that permanently raises your vitality. Bring her ingredients from the Glacial Trail.",
+      "description": "Recover five distinct Frost Lichens in the Ancients' Way on Normal. Claim in your journal to exchange all five for XP and +10 effective Vitality after the ordinary soft cap, without changing allocated points or restoring Life.",
       "objectives": [
-        { "id": "obj-collect", "type": "collect", "itemId": "quest/frost_lichen", "count": 5, "areaId": "areas/act5_glacial_trail", "description": "Collect 5 Frost Lichens." }
+        {
+          "id": "obj-collect",
+          "type": "collect",
+          "itemId": "quest/frost_lichen",
+          "count": 5,
+          "areaId": "areas/act5-ancients-way",
+          "description": "Recover 5 Frost Lichens in the Ancients' Way."
+        }
       ],
-      "rewards": { "xp": 9000, "stat": { "vitality": 10 } }
+      "rewards": {
+        "xp": 9000,
+        "stat": {
+          "vitality": 10
+        },
+        "wishstones": 10
+      }
     },
     {
       "id": "quests/side-act5-nihlathaks-treasure",
@@ -274,11 +518,120 @@
       "type": "side",
       "actId": "acts/act5",
       "giver": "npc/cain",
-      "description": "Cain suspects Nihlathak hid a relic in the Pit of Acheron deep within the Halls of Anguish. Recover it.",
+      "description": "After freeing Anya and defeating Nihlathak in Crystalline Passage, recover his hidden relic there. Keep it and claim Cain’s XP and Mara’s Kaleidoscope separately in Quests.",
       "objectives": [
-        { "id": "obj-fetch", "type": "fetch", "itemId": "quest/nihlathak_relic", "areaId": "areas/act5_halls_of_anguish", "description": "Recover Nihlathak's relic." }
+        {
+          "id": "obj-fetch",
+          "type": "fetch",
+          "itemId": "quest/nihlathak_relic",
+          "areaId": "areas/act5-crystalline-passage",
+          "targetId": "objects/nihlathak_relic_cache",
+          "description": "Recover Nihlathak's relic."
+        }
       ],
-      "rewards": { "xp": 12000, "itemDrop": "items/unique_amulet_endgame_q" }
+      "rewards": {
+        "xp": 12000,
+        "itemDrop": {
+          "uniqueId": "items/unique/mara-kaleidoscope",
+          "ilvl": 82
+        },
+        "wishstones": 10
+      }
+    },
+    {
+      "id": "quests/bounty-act1-moor-cull",
+      "name": "Blood Moor Cull",
+      "type": "bounty",
+      "actId": "acts/act1",
+      "description": "Accept this contract, then clear every wave in Blood Moor on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "objectives": [
+        {
+          "id": "obj-cull",
+          "type": "clear-area",
+          "description": "After Accept or Repeat, complete one new Normal manual clear of Blood Moor.",
+          "areaId": "areas/act1-blood-moor",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "gemShards": 1
+      }
+    },
+    {
+      "id": "quests/bounty-act2-waste-cull",
+      "name": "Rocky Waste Cull",
+      "type": "bounty",
+      "actId": "acts/act2",
+      "description": "Accept this contract, then clear every wave in Rocky Waste on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "objectives": [
+        {
+          "id": "obj-cull",
+          "type": "clear-area",
+          "description": "After Accept or Repeat, complete one new Normal manual clear of Rocky Waste.",
+          "areaId": "areas/act2-rocky-waste",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "gemShards": 1
+      }
+    },
+    {
+      "id": "quests/bounty-act3-forest-cull",
+      "name": "Spider Forest Cull",
+      "type": "bounty",
+      "actId": "acts/act3",
+      "description": "Accept this contract, then clear every wave in Spider Forest on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "objectives": [
+        {
+          "id": "obj-cull",
+          "type": "clear-area",
+          "description": "After Accept or Repeat, complete one new Normal manual clear of Spider Forest.",
+          "areaId": "areas/act3-spider-forest",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "gemShards": 1
+      }
+    },
+    {
+      "id": "quests/bounty-act4-steppes-cull",
+      "name": "Outer Steppes Cull",
+      "type": "bounty",
+      "actId": "acts/act4",
+      "description": "Accept this contract, then clear every wave in Outer Steppes on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "objectives": [
+        {
+          "id": "obj-cull",
+          "type": "clear-area",
+          "description": "After Accept or Repeat, complete one new Normal manual clear of Outer Steppes.",
+          "areaId": "areas/act4-outer-steppes",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "gemShards": 1
+      }
+    },
+    {
+      "id": "quests/bounty-act5-foothills-cull",
+      "name": "Bloody Foothills Cull",
+      "type": "bounty",
+      "actId": "acts/act5",
+      "description": "Accept this contract, then clear every wave in Bloody Foothills on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "objectives": [
+        {
+          "id": "obj-cull",
+          "type": "clear-area",
+          "description": "After Accept or Repeat, complete one new Normal manual clear of Bloody Foothills.",
+          "areaId": "areas/act5-bloody-foothills",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "gemShards": 1
+      }
     }
   ]
 }

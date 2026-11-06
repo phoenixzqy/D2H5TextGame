@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/merc-xp.json",
+  "title": "Mercenary early and late XP costs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "basePerLevel", "earlyGrowthBase", "growthStartLevel", "growthExponent"],
+  "properties": {
+    "id": { "const": "progression/merc-xp-v1", "description": "Stable policy identity." },
+    "basePerLevel": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Early per-level cost coefficient." },
+    "earlyGrowthBase": { "type": "number", "minimum": 1, "maximum": 1.3, "description": "Exponential growth applied only through the anchor." },
+    "growthStartLevel": { "type": "integer", "minimum": 1, "maximum": 90, "description": "Last level using the original early cost formula." },
+    "growthExponent": { "type": "number", "minimum": 1, "maximum": 3, "description": "Late polynomial cost exponent relative to the floored anchor cost." }
+  }
+}

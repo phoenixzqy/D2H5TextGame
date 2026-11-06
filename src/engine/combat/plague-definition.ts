@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import data from '../../data/combat/plague.json';
-import schema from '../../data/schema/plague.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 
 /** Authored Poison death spread and the paid max-stack Plague combo. */
 export interface PlagueDefinition {
@@ -10,7 +10,7 @@ export interface PlagueDefinition {
   readonly epidemicSpreadFraction: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<PlagueDefinition>(schema);
+const validate = compileAuthoredValidator<PlagueDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'plague');
 
 /** Validate and copy tuning; caller data stays mutable and cannot change the result. */
 export function resolvePlagueDefinition(source: unknown): PlagueDefinition {

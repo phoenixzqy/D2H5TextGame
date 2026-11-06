@@ -13,7 +13,10 @@ const RARITY_COLORS: Record<string, string> = {
 };
 
 /** Present the committed reward bag without deriving holdings from summaries. */
-export function CombatRewardSummary({ rewards }: { readonly rewards: KillRewards }) {
+export function CombatRewardSummary({ rewards, retained = false }: {
+  readonly rewards: KillRewards;
+  readonly retained?: boolean;
+}) {
   const { t, i18n } = useTranslation(['combat', 'items']);
   const formatter = new Intl.NumberFormat(i18n.resolvedLanguage ?? i18n.language);
   const materials = [...materialCatalog.values()].filter(material => (rewards.materials[material.id] ?? 0) > 0);
@@ -22,6 +25,7 @@ export function CombatRewardSummary({ rewards }: { readonly rewards: KillRewards
 
   return (
     <section className="mb-2 min-w-0 break-words" aria-label={t('rewards')} data-testid="loot-summary">
+      {retained && <p className="mb-2 text-sm text-d2-white/80">{t('retainedRewards')}</p>}
       {rewards.runeShards > 0 && (
         <div className="text-d2-gold text-sm mb-1">{line(rewards.runeShards, t('runeShard'))}</div>
       )}

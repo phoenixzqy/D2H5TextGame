@@ -13,6 +13,7 @@ import type { Rarity } from '../types/items';
 import type { MonsterTier } from '../combat/types';
 import { materialEconomy, type MaterialProfile } from '../../data/loaders/materials';
 import { MaterialRewardError, sampleMaterial } from './materials';
+import { NONBOSS_LOOT } from '../../data/loaders/nonboss-loot';
 
 /** Effective magic find used in the rarity weight modulation. */
 export function effectiveMagicFind(magicFind: number): number {
@@ -113,15 +114,22 @@ function pickTcPickWithResidual(tc: TreasureClass, monsterLevel: number, rng: Rn
   return pick ? { pick, unit: 1 - Number.EPSILON / 2 } : undefined;
 }
 
+/** Explicit equipment rarity context, independent of combat tier. */
+export interface RarityMultipliers {
+  readonly rare: number;
+  readonly set: number;
+  readonly unique: number;
+}
+
 /** Per-monster-tier multipliers from drop-tables.md §3. */
 const TIER_RARITY_MULT: Readonly<
   Record<MonsterTier, { rare: number; set: number; unique: number }>
 > = {
-  trash: { rare: 1, set: 1, unique: 1 },
+  trash: NONBOSS_LOOT.tiers.trash.rarityMultipliers,
   elite: { rare: 1.5, set: 2, unique: 3 },
   'rare-minion': { rare: 1.5, set: 2, unique: 3 },
-  champion: { rare: 4, set: 6, unique: 12 },
-  'rare-elite': { rare: 4, set: 6, unique: 12 },
+  champion: NONBOSS_LOOT.tiers.champion.rarityMultipliers,
+  'rare-elite': NONBOSS_LOOT.tiers['rare-elite'].rarityMultipliers,
   boss: { rare: 4, set: 6, unique: 12 },
   'chapter-boss': { rare: 4, set: 6, unique: 12 }
 };
@@ -134,38 +142,47 @@ const BASE_WEIGHTS = {
   unique: 4
 };
 
-/**
- * Roll a rarity for a given (MF, tier) using the documented formula.
- */
-export function rollRarity(
+/** Shared unnormalized rarity probabilities for ordinary and conditional rolls. */
+export function rarityWeights(
   magicFind: number,
   tier: MonsterTier,
-  rng: Rng,
-  magicFindMultiplier = 1
-): Rarity {
+  magicFindMultiplier = 1,
+  rarityMultipliers?: RarityMultipliers
+): Readonly<Record<Exclude<Rarity, 'runeword'>, number>> {
   const eff = effectiveMagicFind(magicFind) * magicFindMultiplier;
-  const mult = TIER_RARITY_MULT[tier];
+  const mult = rarityMultipliers ?? TIER_RARITY_MULT[tier];
 
-  const weights = {
-    white: Math.max(0, BASE_WEIGHTS.white * (1 - eff / 1200)),
+  return {
+    normal: Math.max(0, BASE_WEIGHTS.white * (1 - eff / 1200)),
     magic: BASE_WEIGHTS.magic * (1 + eff / 600),
     rare: BASE_WEIGHTS.rare * (1 + eff / 400) * mult.rare,
     set: BASE_WEIGHTS.set * (1 + eff / 200) * mult.set,
     unique: BASE_WEIGHTS.unique * (1 + eff / 180) * mult.unique
   };
+}
 
-  const total = weights.white + weights.magic + weights.rare + weights.set + weights.unique;
+/** Roll a rarity for a given (MF, tier) using the documented formula. */
+export function rollRarity(
+  magicFind: number,
+  tier: MonsterTier,
+  rng: Rng,
+  magicFindMultiplier = 1,
+  rarityMultipliers?: RarityMultipliers
+): Rarity {
+  const weights = rarityWeights(magicFind, tier, magicFindMultiplier, rarityMultipliers);
+
+  const total = weights.normal + weights.magic + weights.rare + weights.set + weights.unique;
   let roll = rng.next() * total;
 
   // Walk in increasing rarity (white → unique).
-  if ((roll -= weights.white) <= 0) return 'normal';
+  if ((roll -= weights.normal) <= 0) return 'normal';
   if ((roll -= weights.magic) <= 0) return 'magic';
   if ((roll -= weights.rare) <= 0) return 'rare';
   if ((roll -= weights.set) <= 0) return 'set';
   return 'unique';
 }
 
-/** Per-tier default noDrop chance (Normal difficulty). */
+/** Legacy defaults for unprojected sources; live nonboss policy supplies explicit noDrop. */
 const NO_DROP_CHANCE: Readonly<Record<MonsterTier, number>> = {
   trash: 0.6,
   elite: 0.12,
@@ -176,7 +193,7 @@ const NO_DROP_CHANCE: Readonly<Record<MonsterTier, number>> = {
   'chapter-boss': 0
 };
 
-/** Per-tier default number of picks (drop-tables §3). */
+/** Legacy defaults for unprojected sources; live nonboss policy supplies explicit picks. */
 const DEFAULT_PICKS: Readonly<Record<MonsterTier, number>> = {
   trash: 1,
   elite: 2,
@@ -195,6 +212,8 @@ export interface DropContext {
   readonly magicFind: number;
   /** Applied after the MF curve without further flooring; defaults to one. */
   readonly magicFindMultiplier?: number;
+  /** Local authored rarity weights for a configured special live source. */
+  readonly rarityMultipliers?: RarityMultipliers;
   /** Authoritative actual live act/difficulty; cache callers use table metadata. */
   readonly materialProfile?: MaterialProfile;
 }
@@ -215,7 +234,7 @@ export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
     const { pick, unit } = selection;
     if ((pick.type ?? 'item') === 'item') {
       if (!pick.baseId) continue;
-      const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng, ctx.magicFindMultiplier);
+      const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng, ctx.magicFindMultiplier, ctx.rarityMultipliers);
       results.push({ kind: 'item', baseId: pick.baseId, rarity, ilvl: ctx.monsterLevel });
       continue;
     }

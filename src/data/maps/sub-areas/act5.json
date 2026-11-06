@@ -672,7 +672,7 @@
             "level": 70,
             "monsters": [
               {
-                "archetypeId": "monsters/act5.ancient-barbarian",
+                "archetypeId": "monsters/act5.barbarian-savage",
                 "count": 2
               },
               {
@@ -712,7 +712,7 @@
             "level": 71,
             "monsters": [
               {
-                "archetypeId": "monsters/act5.ancient-barbarian",
+                "archetypeId": "monsters/act5.barbarian-savage",
                 "count": 2,
                 "elite": true
               },
@@ -848,6 +848,9 @@
       "atk": 520,
       "def": 560,
       "skills": [
+        "monster-baal-frost-nova",
+        "monster-baal-inferno",
+        "monster-baal-mana-rift",
         "monster-tentacles"
       ],
       "dropTable": "loot/act5-boss"

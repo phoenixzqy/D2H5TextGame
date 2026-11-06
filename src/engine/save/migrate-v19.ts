@@ -37,7 +37,7 @@ export function migrateSaveV19(old: SaveV18): SaveV19 {
     || quarantine.some(entry => entry.origin.container === 'equipped');
   const derivedStats = heroEffectsChanged
     ? prepareEquipmentStatComposition(old.player, old.player.level, old.map.questProgress,
-      old.inventory.questItems, old.map.questReceipts)(aggregateCanonicalEquipmentMods(restoreEquipment(equipped)))
+      old.inventory.questItems, old.map.questReceipts, {})(aggregateCanonicalEquipmentMods(restoreEquipment(equipped)))
     : old.player.derivedStats;
   const present = (item: CanonicalSocketItem | null | undefined): item is CanonicalSocketItem => item != null;
   return { ...old, version: 19,

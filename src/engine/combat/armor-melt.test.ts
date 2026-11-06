@@ -78,12 +78,12 @@ describe('P08a08 actual Meteor to registry to recorded combat', () => {
   it('forwards ordered Burn metadata separately from the exact authored timed Melt', () => {
     expect(getSkill(authoredId)).toBe(getSkill(canonicalId));
     expect(getSkill(canonicalId)?.effects).toEqual([{ kind: 'damage', damageType: 'fire',
-      base: [100, 150], perRank: [10, 10], tags: ['fire', 'burn', 'amp-damage'],
+      base: [100, 150], perRank: [80, 80], tags: ['fire', 'burn', 'amp-damage'],
       applyStatuses: [{ id: 'burn', dotPctOfDamage: 0.1 }, { id: meltId, chance: 1, durationMs: 3000 }] }]);
     expect(registeredSkillFromJson(row())).toEqual(getSkill(canonicalId));
     const { additionalStatusEffects: _metadata, ...legacy } = row();
     expect(registeredSkillFromJson(legacy).effects).toEqual([{ kind: 'damage', damageType: 'fire',
-      base: [100, 150], perRank: [10, 10], tags: ['fire', 'burn', 'amp-damage'],
+      base: [100, 150], perRank: [80, 80], tags: ['fire', 'burn', 'amp-damage'],
       applyStatus: { id: 'burn', dotPctOfDamage: 0.1 } }]);
     for (const fields of [{ id: 'mskill-meteor' }, { damageType: 'cold' as const },
       { appliesStatus: ['armor-melt', 'burn'] }, { appliesStatus: ['burn', 'armor-melt', 'freeze'] }]) {
@@ -97,7 +97,7 @@ describe('P08a08 actual Meteor to registry to recorded combat', () => {
       const input = meteor(rank, tier);
       const r = replay(input);
       expect(hits(r)).toEqual([expect.objectContaining({ source: 'hero', target: 'target',
-        damageType: 'fire', amount: rank === 1 ? 119 : 309, dodged: false, crit: false, simClockMs: 1700 })]);
+        damageType: 'fire', amount: rank === 1 ? 119 : 1639, dodged: false, crit: false, simClockMs: 1700 })]);
       expect(r.events.filter(e => e.kind === 'status').map(e => [e.target, e.statusId, e.simClockMs]))
         .toEqual([['target', 'burn', 1700], ['target', meltId, 1700]]);
       expect(r.events.filter(e => e.kind === 'mana')).toEqual([
@@ -105,7 +105,7 @@ describe('P08a08 actual Meteor to registry to recorded combat', () => {
       const target = r.result.enemyTeam[0];
       expect(target?.statuses.find(s => s.id === meltId)).toEqual({ id: meltId, sourceId: 'hero',
         stacks: 1, remaining: 3, appliedAtMs: 1700, expiresAtMs: 4700, damageType: 'fire' });
-      expect(target?.statuses.find(s => s.id === 'ignite')?.dotPerStack).toBe(rank === 1 ? 11 : 30);
+      expect(target?.statuses.find(s => s.id === 'ignite')?.dotPerStack).toBe(rank === 1 ? 11 : 163);
       expect(target?.statuses.find(s => s.id === meltId)).not.toHaveProperty('dotPerStack');
       expect(target?.stats).toEqual(input.enemyTeam[0]?.stats);
     });
@@ -135,8 +135,8 @@ describe('P08a08 actual Meteor to registry to recorded combat', () => {
     const r = record({ ...input, enemyTeam: targets });
     expect(r.events.filter(e => e.kind === 'damage' || e.kind === 'status').map(e => e.kind === 'damage'
       ? ['hit', e.target, e.amount] : ['status', e.target, e.statusId])).toEqual([
-      ['hit', 'taunting-summon', 119], ['status', 'taunting-summon', 'burn'], ['status', 'taunting-summon', meltId],
-      ['hit', 'first-monster', 116], ['status', 'first-monster', 'burn'], ['status', 'first-monster', meltId],
+      ['hit', 'first-monster', 119], ['status', 'first-monster', 'burn'], ['status', 'first-monster', meltId],
+      ['hit', 'taunting-summon', 116], ['status', 'taunting-summon', 'burn'], ['status', 'taunting-summon', meltId],
       ['hit', 'last-monster', 117], ['status', 'last-monster', 'burn'], ['status', 'last-monster', meltId]
     ]);
     expect(chance.mock.calls.map(call => call[0])).toEqual([0.85, 0, 1, 1, 0.85, 0, 1, 1, 0.85, 0, 1, 1]);

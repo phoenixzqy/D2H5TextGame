@@ -142,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(24);
+    expect(CURRENT_SAVE_VERSION).toBe(33);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -152,12 +152,33 @@ describe('v12 source-bound quest item ledger', () => {
     expect(() => buildSave(input as unknown as BuildSaveInput)).toThrow('Invalid save');
   });
 
-  it.each([null, [], { invalid: true }])('does not erase a present malformed trusted ledger (%j)', questItems => {
+  it.each([null, []])('rejects a present non-record trusted ledger without erasing it (%j)', questItems => {
     const save = sampleSave();
     const input = { ...save, inventory: { ...save.inventory, questItems } };
+    const before = structuredClone(input);
+    expect(() => buildSave(input as unknown as BuildSaveInput)).toThrow('Invalid save');
+    expect(input.inventory.questItems).toBe(questItems);
+    expect(input).toEqual(before);
+    expect(() => decodeSave(input)).toThrow('Invalid save');
+    expect(input.inventory.questItems).toBe(questItems);
+    expect(input).toEqual(before);
+  });
+
+  it('does not erase a present malformed record in a trusted ledger', () => {
+    const questItems = { invalid: true };
+    const save = sampleSave();
+    const input = { ...save, inventory: { ...save.inventory, questItems } };
+    const before = structuredClone(input);
     const built = buildSave(input as unknown as BuildSaveInput);
     expect(built.inventory.questItems).toBe(questItems);
+    expect(input.inventory.questItems).toBe(questItems);
+    expect(input).toEqual(before);
+    const beforeDecode = structuredClone(built);
     expect(() => decodeSave(built)).toThrow('Invalid save');
+    expect(built.inventory.questItems).toBe(questItems);
+    expect(built).toEqual(beforeDecode);
+    expect(input.inventory.questItems).toBe(questItems);
+    expect(input).toEqual(before);
   });
 
   it.each(['owned', 'consumed'])('preserves %s through native and JSON decoding without granting points', state => {
@@ -192,8 +213,15 @@ describe('v12 source-bound quest item ledger', () => {
   });
 
   it('rejects a missing current ledger rather than treating corruption as a legacy save', () => {
-    const input = { ...legacySave(), version: CURRENT_SAVE_VERSION };
+    const save = sampleSave();
+    expect(validateSave(save)).toEqual(save);
+    expect(decodeSave(save)).toEqual(save);
+    const { questItems: _ledger, ...inventory } = save.inventory;
+    const input = { ...save, inventory };
+    const before = structuredClone(input);
     expect(() => decodeSave(input)).toThrow('Invalid save');
+    expect(() => validateSave(input)).toThrow('Invalid save');
+    expect(input).toEqual(before);
   });
 
   it.each([
@@ -233,13 +261,14 @@ describe('v12 source-bound quest item ledger', () => {
 describe('v14 Staff component and consumption graph', () => {
   it.each([undefined, {}, null, new Map(), new Date(1000),
     { 'quests/act3-guardian#action:break-compelling-orb': true }])(
-    'rejects reserved future proof maps before normalization or migration (%j)', questReceipts => {
+    'rejects reserved future proof maps during historical decode and historical input at the current-only API (%j)', questReceipts => {
       for (const version of [12, 13, 14]) {
         const input = historicalSave(sampleSave(), version);
         Reflect.set(input.map, 'questReceipts', questReceipts);
         const before = Object.getOwnPropertyDescriptors(input.map);
         expect(() => decodeSave(input)).toThrow('Invalid save');
-        expect(() => validateSave(input)).toThrow('Invalid save');
+        // This API accepts current saves; historical input lacks current recruitment fields.
+        expect(() => validateSave(input)).toThrow('Invalid recruitment save field');
         expect(Object.getOwnPropertyDescriptors(input.map)).toEqual(before);
       }
     }

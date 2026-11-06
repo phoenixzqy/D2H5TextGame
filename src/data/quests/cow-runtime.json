@@ -1,0 +1,37 @@
+{
+  "questId": "quests/side-act1-pandemonium-cow-rumor",
+  "actId": "acts/act1",
+  "hostAreaId": "areas/act1-dark-wood",
+  "encounterId": "act1-dw-cow-king",
+  "victoryReceipt": "quests/side-act1-pandemonium-cow-rumor#action:cow-king-victory",
+  "recipe": {
+    "id": "moo_moo_portal",
+    "objectiveId": "obj-open-portal",
+    "requiredTool": {
+      "itemId": "quest/horadric_cube",
+      "source": "quests/act2-horadric-staff#objective:obj-cube"
+    },
+    "inputs": [
+      {
+        "itemId": "quest/wirts_leg",
+        "source": "quests/side-act1-pandemonium-cow-rumor#objective:obj-find-leg"
+      },
+      {
+        "itemId": "quest/cow_portal_tome",
+        "source": "quests/side-act1-pandemonium-cow-rumor#action:receive-portal-tome"
+      }
+    ]
+  },
+  "actions": {
+    "receiveTome": {
+      "id": "actions/act1-receive-cow-tome",
+      "npcId": "npc/akara",
+      "receiptSource": "quests/side-act1-pandemonium-cow-rumor#action:receive-portal-tome"
+    },
+    "openPortal": {
+      "id": "actions/act1-open-cow-portal",
+      "npcId": "npc/akara",
+      "receiptSource": "quests/side-act1-pandemonium-cow-rumor#action:open-cow-portal"
+    }
+  }
+}

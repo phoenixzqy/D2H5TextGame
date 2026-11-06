@@ -94,8 +94,16 @@ afterEach(() => {
 it.each([1, 2, 20])(
   'BUG204 native rank%i settles three independent Dragon Talon hits with one paid action',
   (rank) => {
-    const out = record(fixture(rank)),
-      damage = [41, 50, 45].map((n) => n + 4 * (rank - 1));
+    const input = fixture(rank),
+      out = record({
+        ...input,
+        enemyTeam: input.enemyTeam.map((u) => ({
+          ...u,
+          life: 4000,
+          stats: { ...u.stats, lifeMax: 4000 }
+        }))
+      }),
+      damage = [41, 50, 45].map((n) => n + 60 * (rank - 1));
     const hits = out.events.filter((e) => e.kind === 'damage');
     expect(hits.map((e) => e.amount)).toEqual(damage);
     expect(
@@ -108,7 +116,7 @@ it.each([1, 2, 20])(
           !e.dodged
       )
     ).toBe(true);
-    expect(out.result.enemyTeam[0]?.life).toBe(2000 - damage.reduce((sum, n) => sum + n, 0));
+    expect(out.result.enemyTeam[0]?.life).toBe(4000 - damage.reduce((sum, n) => sum + n, 0));
     expect(out.events.filter((e) => e.kind === 'action')).toEqual([
       expect.objectContaining({ actor: 'hero', skillId: CANONICAL, simClockMs: 1700 })
     ]);
@@ -426,4 +434,38 @@ it('resolves legal aliases by MAX without changing already captured allocation o
       CANONICAL
     ]
   ).toBe(2);
+});
+
+it('BUG547 paid rank11 remains effective against chapter Defense and physical resistance', () => {
+  const input = fixture(11);
+  const out = record({
+    ...input,
+    enemyTeam: input.enemyTeam.map((u) => ({
+      ...u,
+      stats: { ...u.stats, defense: 129, resistances: { ...u.stats.resistances, physical: 30 } }
+    }))
+  });
+  const hits = out.events.filter((e) => e.kind === 'damage');
+  expect(hits).toHaveLength(3);
+  expect(hits.reduce((sum, e) => sum + e.amount, 0)).toBeGreaterThan(500);
+  expect(out.result.enemyTeam[0]?.life).toBeLessThan(1500);
+  expect(out.result.playerTeam[0]?.mana).toBe(0);
+});
+
+it('BUG547 max rank retains ordinary physical damage after Act IV boss mitigation', () => {
+  const input = fixture(20);
+  const out = record({
+    ...input,
+    enemyTeam: input.enemyTeam.map((u) => ({
+      ...u,
+      stats: { ...u.stats, defense: 363, resistances: { ...u.stats.resistances, physical: 50 } }
+    }))
+  });
+  const hits = out.events.filter((e) => e.kind === 'damage');
+  expect(hits).toHaveLength(3);
+  expect(hits.every((e) => !e.crit && !e.dodged)).toBe(true);
+  expect(hits.reduce((sum, e) => sum + e.amount, 0)).toBeGreaterThan(650);
+  expect(out.result.enemyTeam[0]?.life).toBeLessThan(1350);
+  expect(out.events.filter((e) => e.kind === 'mana' && e.reason === 'cast')).toHaveLength(1);
+  expect(out.result.playerTeam[0]?.mana).toBe(0);
 });

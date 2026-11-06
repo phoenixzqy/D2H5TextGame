@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { afterEach, beforeEach, expect, it } from 'vitest';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -32,6 +32,14 @@ for (const locale of ['en', 'zh-CN'] as const) it.each([0, 1, 2, 20])(
         String(50 + growth) + '～' + String(75 + growth) + '点物理基础伤害',
         '唯一原目标可承受两次', '原目标池以外', '每次施放', '下一波', '每次施放攻击次数'])
       expect(panel).toHaveTextContent(phrase);
+    const attackLabel = locale === 'en' ? 'Additional Attack damage' : '额外攻击力伤害';
+    const expectedRanks = rank === 0 ? [1] : rank === 20 ? [20] : [rank, rank + 1];
+    const attackRows = within(panel).getAllByText(attackLabel);
+    expect(attackRows).toHaveLength(expectedRanks.length);
+    for (const [index, previewRank] of expectedRanks.entries()) {
+      const value = attackRows[index]?.parentElement?.querySelector('dd');
+      expect(value).toHaveTextContent(String(30 * (previewRank - 1)) + '%');
+    }
     expect(panel.textContent).not.toMatch(/\{\{|undefined|NaN|details\./);
     if (rank === 20) expect(panel).toHaveTextContent(locale === 'en' ? 'Max level reached.' : '已达到最高等级。');
     expect(usePlayerStore.getState().player).toEqual(before);

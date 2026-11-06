@@ -21,6 +21,7 @@ import { useMercStore } from './mercStore';
 import { useFormationStore } from './formationStore';
 
 const AREA = 'areas/act1-blood-moor';
+const POISON = 'fixture.wave-poison', WAIT = 'fixture.wave-enemy-wait';
 const stores = [useCombatStore, usePlayerStore, useInventoryStore,
   useMapStore, useMercStore, useFormationStore] as const;
 
@@ -50,11 +51,14 @@ function start(withRecovery = false): void {
       { kind: 'damage', damageType: 'physical', base: [100_000, 100_000] },
       { kind: 'buff', id: 'fixture.carried-buff', duration: -1 }
     ] });
-  registerSkill({ id: 'monster-weak-melee', archetype: 'fixture', target: 'all-enemies',
+  registerSkill({ id: POISON, archetype: 'fixture', target: 'all-enemies',
     cooldown: 100, manaCost: 0, minLevel: 1, effects: [
       { kind: 'damage', damageType: 'poison', base: [10, 10],
         applyStatus: { id: 'poison', dotPctOfDamage: 1 } }
     ] });
+  registerSkill({ id: WAIT, archetype: 'fixture', target: 'self', isBuff: true,
+    cooldown: 4, manaCost: 0, minLevel: 1,
+    effects: [{ kind: 'buff', id: WAIT, duration: -1 }] });
   const fresh = createMockPlayer('WaveClock', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: ['fixture.wave-finisher'],
     ...(withRecovery ? { coreStats: { ...fresh.coreStats, energy: 20 },
@@ -65,15 +69,27 @@ function start(withRecovery = false): void {
   usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
     ...equipped.derivedStats, life: 1_000_000, mana: withRecovery ? 0 : 102
   } });
-  if (withRecovery) {
-    // This synthetic recovery fixture starts empty; production new challenges
-    // start full. Feed one coherent input through real recording/publication.
-    const stage = recordedWaveStaging.stageRecordedWave;
-    vi.spyOn(recordedWaveStaging, 'stageRecordedWave').mockImplementation(input => stage(
-      input.waveIdx === 0 ? { ...input, snapshot: { ...input.snapshot,
-        playerTeam: input.snapshot.playerTeam.map(unit => unit.id === fresh.id
-          ? { ...unit, mana: 0 } : unit) } } : input));
-  }
+  // Freeze this synthetic clock recipe, including its one non-damaging enemy
+  // action. Catalog skill repairs must not silently remove poison or change
+  // the RNG draws that establish these exact resource-carry oracles.
+  // Real spawning, stats, RNG, damage, recording, playback and awards remain.
+  const stage = recordedWaveStaging.stageRecordedWave;
+  vi.spyOn(recordedWaveStaging, 'stageRecordedWave').mockImplementation(input => stage({
+    ...input, snapshot: { ...input.snapshot,
+      enemyTeam: input.snapshot.enemyTeam.map(unit => {
+        const affixes = unit.skillOrder.filter(id => id !== 'monster-panic-flee');
+        switch (unit.monsterArchetypeId) {
+          case 'monsters/act1.fallen': return { ...unit, skillOrder: [POISON, WAIT, ...affixes] };
+          case 'monsters/act1.quill-rat': return { ...unit, skillOrder: [POISON, 'monster-weak-ranged', ...affixes] };
+          case 'monsters/act1.zombie': return { ...unit, skillOrder: [POISON, ...affixes] };
+          default: return unit;
+        }
+      }),
+      // This recovery control starts empty; ordinary new runs start full.
+      playerTeam: input.snapshot.playerTeam.map(unit => withRecovery && input.waveIdx === 0 && unit.id === fresh.id
+        ? { ...unit, mana: 0 } : unit)
+    }
+  }));
   useMapStore.getState().setCurrentLocation(1, AREA);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
   expect(useCombatStore.getState().outcome?.winner).toBe('player');

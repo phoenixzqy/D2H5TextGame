@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/miniboss-loot.json",
+  "title": "Live miniboss equipment and rarity context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["equipmentPicks", "minimumLevelOffset", "jewelryPicks", "rarityMultipliers", "acts"],
+  "properties": {
+    "equipmentPicks": { "type": "integer", "minimum": 1, "maximum": 3, "description": "NoDrop0 ordinary trash-source equipment picks." },
+    "minimumLevelOffset": { "type": "integer", "minimum": 0, "maximum": 3, "description": "Added to ordinary equipment minima only, never item level or bonus minima." },
+    "jewelryPicks": { "type": "integer", "minimum": 1, "maximum": 1, "description": "Independent noDrop0 jewelry picks." },
+    "rarityMultipliers": {
+      "type": "object", "additionalProperties": false, "required": ["rare", "set", "unique"],
+      "properties": {
+        "rare": { "type": "number", "minimum": 1, "maximum": 12 },
+        "set": { "type": "number", "minimum": 1, "maximum": 12 },
+        "unique": { "type": "number", "minimum": 1, "maximum": 12 }
+      }, "description": "Miniboss rarity context for ordinary and conditional equipment."
+    },
+    "acts": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["act", "treasureClassId", "equipmentSourceId", "jewelrySourceId", "terminalLevelCap"],
+        "properties": {
+          "act": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Actual live act." },
+          "treasureClassId": { "$ref": "#/$defs/tableId", "description": "Only this live miniboss table receives the projection." },
+          "equipmentSourceId": { "$ref": "#/$defs/tableId", "description": "Existing weighted trash equipment source, also used by the bonus." },
+          "jewelrySourceId": { "$ref": "#/$defs/tableId", "description": "Independent guaranteed jewelry source." },
+          "terminalLevelCap": { "type": "integer", "minimum": 1, "maximum": 200, "description": "Finite extension of only terminal equipment bands." }
+        }
+      }
+    }
+  },
+  "$defs": { "tableId": { "type": "string", "pattern": "^loot/[a-z0-9-]+$" } }
+}

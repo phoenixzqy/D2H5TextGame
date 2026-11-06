@@ -25,7 +25,7 @@
  *   column. `auto-fill` automatically reduces column count → grid stays
  *   visually consistent, no manual breakpoints.
  */
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GameCard, ItemTooltip, Tooltip, getItemIconUrl, tItemName } from '@/ui';
 import { loadItemBases } from '@/data/loaders/loot';
@@ -36,7 +36,8 @@ export interface BackpackGridProps {
   readonly capacity: number;
   readonly selectedId: string | null;
   readonly onSelect: (id: string | null) => void;
-  readonly upgradeItemIds?: ReadonlySet<string> | undefined;
+  /** Canonical comparison for the current player/loadout; identity tracks its inputs. */
+  readonly isUpgrade?: ((item: Item) => boolean) | undefined;
 }
 
 export function BackpackGrid({
@@ -44,7 +45,7 @@ export function BackpackGrid({
   capacity,
   selectedId,
   onSelect,
-  upgradeItemIds
+  isUpgrade
 }: BackpackGridProps): JSX.Element {
   const { t } = useTranslation('inventory');
 
@@ -63,27 +64,14 @@ export function BackpackGrid({
       data-testid="backpack-grid"
     >
       {cells.map((it, idx) => (
-        <li key={it ? `${it.id}-${String(idx)}` : `empty-${String(idx)}`} className="aspect-square">
+        <li key={it ? `item-${it.id}` : `empty-${String(idx)}`} className="aspect-square">
           {it ? (
-            <div className="relative h-full w-full">
-              <Tooltip content={<ItemTooltip item={it} />}>
-                <GameCard
-                  variant="item"
-                  size="md"
-                  fluid
-                  name={tItemName(t, it)}
-                  rarity={it.rarity}
-                  image={getItemIconUrl(it) ?? undefined}
-                  itemGlyph={glyphForItem(it)}
-                  selected={selectedId === it.id}
-                  onClick={() => { onSelect(selectedId === it.id ? null : it.id); }}
-                  testId={`inv-item-${it.id}`}
-                />
-              </Tooltip>
-              {upgradeItemIds?.has(it.id) ? (
-                <UpgradeChevron label={t('upgradeBadge')} itemId={it.id} />
-              ) : null}
-            </div>
+            <ItemCell
+              item={it}
+              selected={selectedId === it.id}
+              isUpgrade={isUpgrade}
+              onSelect={onSelect}
+            />
           ) : (
             <EmptySlot index={idx} label={t('emptySlot', { defaultValue: 'Empty slot' })} />
           )}
@@ -92,6 +80,46 @@ export function BackpackGrid({
     </ul>
   );
 }
+
+interface ItemCellProps {
+  readonly item: Item;
+  readonly selected: boolean;
+  readonly isUpgrade: BackpackGridProps['isUpgrade'];
+  readonly onSelect: (id: string | null) => void;
+}
+
+// Item keys preserve identity; memo also keeps unchanged floating tooltips out
+// of unrelated grid updates. Locale changes still reach each cell directly.
+const ItemCell = memo(function ItemCell({
+  item,
+  selected,
+  isUpgrade,
+  onSelect
+}: ItemCellProps): JSX.Element {
+  const { t } = useTranslation('inventory');
+  const upgrade = useMemo(() => isUpgrade?.(item) ?? false, [isUpgrade, item]);
+  return (
+    <div className="relative h-full w-full">
+      <Tooltip content={<ItemTooltip item={item} />}>
+        <GameCard
+          variant="item"
+          size="md"
+          fluid
+          name={tItemName(t, item)}
+          rarity={item.rarity}
+          image={getItemIconUrl(item) ?? undefined}
+          itemGlyph={glyphForItem(item)}
+          selected={selected}
+          onClick={() => {
+            onSelect(selected ? null : item.id);
+          }}
+          testId={`inv-item-${item.id}`}
+        />
+      </Tooltip>
+      {upgrade ? <UpgradeChevron label={t('upgradeBadge')} itemId={item.id} /> : null}
+    </div>
+  );
+});
 
 function UpgradeChevron({ label, itemId }: { label: string; itemId: string }): JSX.Element {
   return (

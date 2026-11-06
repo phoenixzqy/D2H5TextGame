@@ -11,7 +11,7 @@ import { useHydrationStore,__resetPersistenceForTests,snapshotStores } from '@/s
 import { abortSubAreaRun } from '@/stores/combatHelpers';
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save/serialize';
-import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 import { CAIN_QUEST as MAIN,CAIN_SIDE_QUEST as SIDE,CAIN_SCROLL_SOURCE as SOURCE,CAIN_AREA as AREA } from '@/engine/map/cain-quest';
 import { ACT1_QUEST_RECEIPTS as R } from '@/engine/map/act1-quest-sources';
 import { recoverQuestTool,interactWithAreaObject } from '@/features/quests/interactObject';
@@ -49,7 +49,7 @@ describe('finite Cain transactions and sparse-history durability',()=>{
  });
  it('retains a sparse literal22 journal without manufacturing any proof before explicit repair',()=>{
   track(true,true);const current=durable(),predecessor=withoutV24Fields(current);const raw={...predecessor,version:22};const before=structuredClone(raw);
-  expect(decodeSave(toJsonSafe(raw))).toEqual(withV24Defaults({...predecessor,version:23}));expect(raw).toEqual(before);
+  expect(decodeSave(toJsonSafe(raw))).toEqual(withCurrentReplayDefaults({...predecessor,version:23}));expect(raw).toEqual(before);
   expect(isCainTownPresent()).toBe(false);expect(current.inventory.questItems).toEqual({});expect(current.map.questReceipts).toEqual({});
  });
  it('shows Cain immediately after rescue before any Claim and retains later-act presence',()=>{

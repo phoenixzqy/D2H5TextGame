@@ -7,10 +7,10 @@ import { describe, expect, it, vi } from 'vitest';
 import type { ValidateFunction } from 'ajv';
 import type { SaveCurrent } from '../types/save';
 
-/** Constructed empty native24 payload: no earned quest/replay/item entitlements. */
+/** Constructed empty current save payload: no earned quest/replay/item entitlements. */
 function currentSave(): SaveCurrent {
   return {
-    version: 24,
+    version: 33,
     timestamp: 1000,
     player: {
       id: 'compile-regression', name: 'Compile regression', type: 'player', team: 'player',
@@ -31,8 +31,9 @@ function currentSave(): SaveCurrent {
       questServices: {}, legacyGearQuarantine: [], materials: {},
       socketQuarantine: [], materialActionOrdinal: 0
     },
-    mercs: { ownedMercs: [], fieldedMercId: null, mercEquipment: {}, mercProgress: {} },
+    mercs: { ownedMercs: [], fieldedMercId: null, mercEquipment: {}, mercProgress: {}, recruitmentProgress: {} },
     map: {
+      bounties: {},
       currentAct: 1, currentSubAreaId: null, discoveredAreas: [], clearedSubAreas: [],
       questProgress: {}, questReceipts: {}, questTitles: {}, questDifficulties: {},
       selectedTitle: null, selectedDifficulty: 'normal', nightmareClearedSubAreas: [],
@@ -49,7 +50,8 @@ function currentSave(): SaveCurrent {
       idleState: {
         lastOnline: 1000, offlineTime: 0, multiplierSecondsRemaining: 0, activeMultiplier: 1
       },
-      gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 }
+      gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 },
+      recruitmentState: { srPityCounter: 0, totalPulls: 0, history: [] }
     },
     formation: {
       playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: []
@@ -72,6 +74,8 @@ function synchronousError(action: () => unknown): Error {
 }
 
 describe('save structural schema compilation', () => {
+  // Reloading the complete real module graph exceeds the generic 5s deadline.
+  // This contract pins compilation counts and behavior; imports stay cold.
   it('defers unused save versions and reuses real compiled code without caching validation outcomes', async () => {
     vi.resetModules();
     const { default: Ajv } = await import('ajv');
@@ -101,7 +105,7 @@ describe('save structural schema compilation', () => {
       expect(input).toEqual(beforeFirstFailure);
 
       const currentCompilations = () => saveCompilations().filter(call =>
-        record(call.version) && call.version.const === 24);
+        record(call.version) && call.version.const === fixture.version);
       const currentCalls = currentCompilations();
       expect(currentCalls).toHaveLength(1);
       const first = currentCalls[0];
@@ -140,11 +144,11 @@ describe('save structural schema compilation', () => {
       expect(currentCompilations()[0]?.result?.value).toBe(compiled);
       // Establish fixture/real-validator behavior before the import resource contract.
       expect(saveCompilationsAtImport).toEqual([]);
-      expect(saveCompilations().map(call => call.version)).toEqual([{ const: 24 }]);
+      expect(saveCompilations().map(call => call.version)).toEqual([{ const: fixture.version }]);
       expect(saveCompilations()).toHaveLength(1);
     } finally {
       compile.mockRestore();
       vi.resetModules();
     }
-  });
+  }, 15_000);
 });

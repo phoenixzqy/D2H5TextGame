@@ -26,7 +26,9 @@ function units(attempt: ReturnType<typeof prepare>['progress']) {
 function hero(): CombatUnit {
   const unit = units(prepare().progress)[0];
   if (!unit) throw new Error('Missing native unit fixture');
+  // Decisive authority fixture: override both Attack representations copied from the monster.
   return { ...unit, id: 'hero', kind: 'hero', side: 'player', life: 1_000_000,
+    attackRange: [1_000_000, 1_000_000],
     stats: { ...unit.stats, life: 1_000_000, lifeMax: 1_000_000, attack: 1_000_000,
       attackSpeed: 1000, physDodge: 0, magicDodge: 0 }, skillOrder: [] };
 }

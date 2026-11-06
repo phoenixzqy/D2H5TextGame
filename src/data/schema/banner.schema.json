@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/banner.json",
+  "title": "Recruitment banner",
+  "description": "Closed authored recruitment costs, rarity pools, pity and shard rules.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["bannerId", "name", "currency", "cost", "rates", "pity", "shardConversion", "pool", "uiHistoryCap"],
+  "properties": {
+    "bannerId": { "const": "gacha_horadrim" },
+    "name": { "type": "string", "minLength": 1 },
+    "currency": { "const": "item_wishstone" },
+    "cost": {
+      "type": "object", "additionalProperties": false, "required": ["single", "tenPull"],
+      "properties": { "single": { "$ref": "#/$defs/positiveInteger" }, "tenPull": { "$ref": "#/$defs/positiveInteger" } }
+    },
+    "rates": {
+      "type": "object", "additionalProperties": false, "required": ["SSR", "SR", "R"],
+      "properties": { "SSR": { "$ref": "#/$defs/rate" }, "SR": { "$ref": "#/$defs/rate" }, "R": { "$ref": "#/$defs/rate" } }
+    },
+    "pity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sr", "ssr", "carryAcrossSessions", "resetRules"],
+      "properties": {
+        "sr": {
+          "type": "object", "additionalProperties": false, "required": ["threshold", "guaranteedTier", "description"],
+          "properties": { "threshold": { "$ref": "#/$defs/positiveInteger" }, "guaranteedTier": { "const": "SR" }, "description": { "type": "string", "minLength": 1 } }
+        },
+        "ssr": {
+          "type": "object", "additionalProperties": false, "required": ["threshold", "guaranteedTier", "description"],
+          "properties": { "threshold": { "$ref": "#/$defs/positiveInteger" }, "guaranteedTier": { "const": "SSR" }, "description": { "type": "string", "minLength": 1 } }
+        },
+        "carryAcrossSessions": { "const": true },
+        "resetRules": { "const": { "onSSR": ["pullsSinceSSR", "pullsSinceSR"], "onSR": ["pullsSinceSR"], "onR": [] } }
+      }
+    },
+    "shardConversion": {
+      "type": "object", "additionalProperties": false,
+      "required": ["perDuplicate", "shardsPerStar", "maxStars", "starBonuses"],
+      "properties": {
+        "perDuplicate": {
+          "type": "object", "additionalProperties": false, "required": ["SSR", "SR", "R"],
+          "properties": { "SSR": { "$ref": "#/$defs/positiveInteger" }, "SR": { "$ref": "#/$defs/positiveInteger" }, "R": { "$ref": "#/$defs/positiveInteger" } }
+        },
+        "shardsPerStar": { "$ref": "#/$defs/positiveInteger" },
+        "maxStars": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "starBonuses": {
+          "type": "object", "additionalProperties": false,
+          "required": ["statMultiplierPerStar", "signatureSkillRankPerStar", "skillRankCapAboveBase", "signatureEffectPerRank"],
+          "properties": {
+            "signatureEffectPerRank": { "description": "Multiplicative growth of the signature primary effect per rank above base; cadence, target count and secondary skills stay unchanged.", "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+            "statMultiplierPerStar": { "type": "number", "minimum": 0, "maximum": 1 },
+            "signatureSkillRankPerStar": { "$ref": "#/$defs/positiveInteger" },
+            "skillRankCapAboveBase": { "$ref": "#/$defs/positiveInteger" }
+          }
+        }
+      }
+    },
+    "pool": {
+      "type": "object", "additionalProperties": false, "required": ["SSR", "SR", "R"],
+      "properties": {
+        "SSR": { "type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": { "$ref": "#/$defs/mercId" } },
+        "SR": { "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": { "$ref": "#/$defs/mercId" } },
+        "R": { "type": "array", "minItems": 12, "maxItems": 12, "uniqueItems": true, "items": { "$ref": "#/$defs/mercId" } }
+      }
+    },
+    "uiHistoryCap": { "type": "integer", "minimum": 1, "maximum": 100 }
+  },
+  "$defs": {
+    "positiveInteger": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "rate": { "type": "number", "minimum": 0, "maximum": 1 },
+    "mercId": { "type": "string", "pattern": "^mercs/[a-z0-9-]+$" }
+  }
+}

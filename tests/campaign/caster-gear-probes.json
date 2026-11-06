@@ -1,0 +1,7 @@
+{
+  "version": "mixed-v4",
+  "armorRawDamage": 1500,
+  "magicRawDamage": 300,
+  "hitChance": 0.85,
+  "minimumHitChance": 0.05
+}

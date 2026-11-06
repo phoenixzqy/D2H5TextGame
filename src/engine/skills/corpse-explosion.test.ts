@@ -18,14 +18,27 @@ describe('D06 Corpse Explosion definition and Player authority', () => {
   it('freezes independent authored literals and the production registered spell', () => {
     const d = CORPSE_EXPLOSION_DEFINITION;
     expect(d).toMatchObject({ requiredLevel: 6, maxRank: 20, teethMaxRank: 20,
-      manaCost: 20, cooldown: 2, baseMin: 50, baseMax: 80, damagePerRank: 6, ignitePct: 0.1 });
+      manaCost: 20, cooldown: 2, baseMin: 50, baseMax: 80, damagePerRank: 80, ignitePct: 0.1 });
     expect(Object.isFrozen(d)).toBe(true);
     expect(matchesCorpseExplosion(required(getSkill(CE)))).toBe(true);
     expect([1, 6, 20].map(r => [d.baseMin + d.damagePerRank * (r - 1), d.baseMax + d.damagePerRank * (r - 1)]))
-      .toEqual([[50, 80], [80, 110], [164, 194]]);
+      .toEqual([[50, 80], [450, 480], [1570, 1600]]);
     expect(isCorpseExplosionId(CE)).toBe(true);
     expect(isCorpseExplosionId(ALIAS)).toBe(true);
     expect(isCorpseExplosionId('monster.corpse_explosion')).toBe(false);
+  });
+
+  it('requires the reviewed blast Defense bypass in authored and registered semantics', () => {
+    const source = required(rows.find(row => row.id === ALIAS));
+    expect(source).toHaveProperty('ignoresDefense', true);
+    const skill = required(getSkill(CE)), effect = required(skill.effects[0]);
+    expect(effect).toMatchObject({ kind: 'damage', ignoresDefense: true });
+    const missing = { ...effect };
+    Reflect.deleteProperty(missing, 'ignoresDefense');
+    expect(matchesCorpseExplosion({ ...skill, effects: [missing] })).toBe(false);
+    const cloned = structuredClone(rows);
+    Reflect.deleteProperty(required(cloned.find(row => row.id === ALIAS)), 'ignoresDefense');
+    expect(() => resolveCorpseExplosionDefinition(cloned)).toThrow();
   });
 
   it.each([
@@ -35,7 +48,8 @@ describe('D06 Corpse Explosion definition and Player authority', () => {
     { damageType: 'physical' }, { damage: { min: 50, max: 80, breakdown: { fire: 80, physical: 1 } } },
     { appliesStatus: ['ignite', 'poison'] }, { appliesTags: ['fire'] },
     { statusEffect: { dotPctOfDamage: 0.2 } }, { statusEffect: { dotPctOfDamage: 0.1, chance: 0.5 } },
-    { scaling: { damagePerLevel: 5 } }, { scaling: { damagePerLevel: 6, costPerLevel: -1 } },
+    { scaling: { damagePerLevel: 5 } }, { scaling: { damagePerLevel: 6 } },
+    { scaling: { damagePerLevel: 80, costPerLevel: -1 } },
     { heal: { min: 1, max: 1, target: 'self' } }, { requires: {} }
   ])('refuses changed/additional authored semantics %j', change => {
     const modified = rows.map(row => row.id === ALIAS ? { ...row, ...change } : row);

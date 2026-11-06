@@ -16,6 +16,26 @@ function show(value: Item) {
 
 describe.each(['en', 'zh-CN'])('native item service presentation in %s', locale => {
   beforeEach(async () => { await i18n.changeLanguage(locale); });
+  it('labels current set bonuses inactive until a second distinct piece is equipped', () => {
+    const gloves: Item = { ...item(0), id: 'iratha-gloves', baseId: 'items/base/glove-heavy',
+      rarity: 'set', equipped: true, setId: 'sets/iratha-finery', setPieceId: 'sets/iratha-finery/gloves' };
+    const helm: Item = { ...gloves, id: 'iratha-helm', baseId: 'items/base/helm-skull-cap',
+      equipped: false, setPieceId: 'sets/iratha-finery/helm' };
+    const detail = (equippedItems: readonly Item[]) => <I18nextProvider i18n={i18n}>
+      <ItemDetailPanel item={helm} equippedItems={equippedItems} playerLevel={10}
+        playerCoreStats={{ strength: 50, dexterity: 50, vitality: 50, energy: 50 }}
+        onDiscard={vi.fn()} onClose={vi.fn()} />
+    </I18nextProvider>;
+    const { rerender } = render(detail([gloves]));
+    const set = () => screen.getByTestId('inv-detail-set');
+    expect(set().querySelectorAll('[data-active="true"]')).toHaveLength(0);
+    expect(within(set()).getAllByText(new RegExp(i18n.t('inventory:detail.setBonusInactive')))).toHaveLength(3);
+    rerender(detail([gloves, { ...helm, equipped: true }]));
+    expect(set().querySelectorAll('[data-active="true"]')).toHaveLength(1);
+    expect(within(set()).getByText(`${i18n.t('inventory:detail.setBonusThreshold', { count: 2 })} · ${i18n.t('inventory:detail.setBonusActive')}`)).toBeInTheDocument();
+    rerender(detail([gloves]));
+    expect(set().querySelectorAll('[data-active="true"]')).toHaveLength(0);
+  });
   it('renders zero instance sockets even when the actual base template has two', () => {
     show(item(0));
     expect(within(screen.getByTestId('item-tooltip')).queryByText(i18n.t('items:tooltip.sockets', { value: 2 }))).toBeNull();

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { loadItemBases } from '@/data/loaders/loot';
+import { socketRunewords } from '@/data/loaders/socket-effects';
 import type { ItemBonusStats } from '../types/items';
 import { previewSocketInsertion, previewSocketClearing, socketBonusPackages, validateCanonicalSocketItem,
   type CanonicalSocketItem } from './socket-contents';
@@ -16,6 +17,33 @@ function base(item: CanonicalSocketItem) {
 }
 
 describe('canonical mixed socket contents', () => {
+  it('recognizes every authored complete word on a legal concrete base without mutating it', () => {
+    for (const word of socketRunewords) {
+      const target = [...loadItemBases().values()].find(base => word.allowedBases.includes(base.type)
+        && (base.maxSockets ?? 0) >= word.sockets
+        && base.slot != null && word.allowedSlots.includes(base.slot)
+        && (!word.allowedWeaponTypes || (base.weaponType != null && word.allowedWeaponTypes.includes(base.weaponType))));
+      if (!target) throw new Error(`Missing concrete base for ${word.id}`);
+      const source = gear({ baseId: target.id, socketCapacity: word.sockets,
+        socketContents: word.runes.map(id => ({ kind: 'rune', id })),
+        rarity: 'runeword', runewordId: word.id });
+      const before = structuredClone(source);
+      expect(() => { validateCanonicalSocketItem(source, target); }, word.id).not.toThrow();
+      expect(source).toEqual(before);
+      expect(() => { validateCanonicalSocketItem({ ...source, rarity: 'normal' }, target); }, word.id).toThrow();
+    }
+  });
+  it.each<Partial<CanonicalSocketItem>>([
+    { socketCapacity: 0 }, {}, { socketContents: [] },
+    { socketContents: [{ kind: 'rune', id: 'runes/tir' }] }
+  ])('admits incomplete plain sockets but refuses claimed words on the same contents %o', extra => {
+    const source = gear(extra);
+    expect(() => { validateCanonicalSocketItem(source, base(source)); }).not.toThrow();
+    for (const identity of [
+      { runewordId: 'runewords/steel' }, { rarity: 'runeword' as const },
+      { rarity: 'runeword' as const, runewordId: 'runewords/steel' }
+    ]) expect(() => { validateCanonicalSocketItem({ ...source, ...identity }, base(source)); }).toThrow();
+  });
   it('previews one next-empty insertion and exact word creation without spending or mutating', () => {
     const source = gear(), before = structuredClone(source);
     const first = previewSocketInsertion(source, base(source), 'runes/tir');

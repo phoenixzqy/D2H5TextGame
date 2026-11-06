@@ -3,21 +3,52 @@
     "id": "monster-blood-raven-raise-dead",
     "name": "skills.monster.blood-raven-raise-dead.name",
     "description": "skills.monster.blood-raven-raise-dead.desc",
-    "trigger": "active", "target": "summon", "cooldown": 25,
-    "minLevel": 1, "maxLevel": 1, "cost": { "mana": 0 },
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 25,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
     "summonId": "blood_raven_zombie",
-    "monsterSummon": { "archetypeId": "monsters/act1.zombie", "count": 3, "maxCount": 6, "refundOnDeath": false }
+    "monsterSummon": {
+      "archetypeId": "monsters/act1.zombie",
+      "count": 3,
+      "maxCount": 6,
+      "refundOnDeath": false
+    }
   },
   {
     "id": "monster-blood-raven-fire-arrow",
     "projectileFlightMs": 500,
     "name": "skills.monster.blood-raven-fire-arrow.name",
     "description": "skills.monster.blood-raven-fire-arrow.desc",
-    "trigger": "active", "target": "single-enemy", "cooldown": 2,
-    "minLevel": 1, "maxLevel": 1, "cost": { "mana": 0 },
-    "damage": { "min": 35, "max": 55, "breakdown": { "fire": 55 } }, "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "statusEffect": { "chance": 1, "stacksOnApply": 2, "dotPctOfDamage": 0.1, "durationMs": 3000 }
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "fire": 55
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 2,
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-weak-melee",
@@ -29,6 +60,9 @@
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
     "damage": {
       "min": 10,
       "max": 15,
@@ -51,6 +85,9 @@
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
     "damage": {
       "min": 30,
       "max": 50,
@@ -82,12 +119,55 @@
     },
     "damageType": "fire",
     "appliesStatus": [
-      "burn"
+      "ignite"
     ],
     "appliesTags": [
       "fire",
       "burn"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    }
+  },
+  {
+    "id": "monster-diablo-fire-breath",
+    "name": "skills.monster.fire-breath.name",
+    "description": "skills.monster.fire-breath.desc",
+    "icon": "skills/monster/fire-breath.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "fire": 60
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "ignite"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "aoeShape": "cone-3",
+    "maxTargets": 5,
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 3,
+      "durationMs": 3000,
+      "dotPctOfDamage": 0.1
+    }
   },
   {
     "id": "monster-poison-spit",
@@ -113,7 +193,14 @@
     ],
     "appliesTags": [
       "poison"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "stacksOnApply": 2,
+      "dotPctOfDamage": 0.05
+    }
   },
   {
     "id": "monster-lightning-bolt",
@@ -140,7 +227,15 @@
     "appliesTags": [
       "lightning",
       "shock"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "durationMs": 1000
+    }
   },
   {
     "id": "monster-frost-aura",
@@ -166,7 +261,10 @@
     "appliesTags": [
       "cold",
       "chill"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-charge",
@@ -178,6 +276,7 @@
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 1,
+    "attackDamagePct": 100,
     "damage": {
       "min": 60,
       "max": 90,
@@ -188,7 +287,10 @@
     "damageType": "physical",
     "appliesTags": [
       "physical"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-summon-adds",
@@ -199,7 +301,11 @@
     "target": "summon",
     "cooldown": 5,
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "summonId": "minion"
   },
   {
     "id": "monster-heal",
@@ -210,12 +316,14 @@
     "target": "self",
     "cooldown": 4,
     "heal": {
-      "min": 30,
-      "max": 30,
+      "pctOfMaxLife": 0.3,
       "target": "self"
     },
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-teleport",
@@ -226,7 +334,14 @@
     "target": "self",
     "cooldown": 3,
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "monsterSelfBuff": {
+      "durationMs": 1000,
+      "percent": 50
+    }
   },
   {
     "id": "monster-ice-shard",
@@ -266,20 +381,29 @@
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 25,
-      "max": 40,
+      "min": 40,
+      "max": 60,
       "breakdown": {
-        "fire": 40
+        "fire": 60
       }
     },
     "damageType": "fire",
     "appliesStatus": [
-      "burn"
+      "ignite"
     ],
     "appliesTags": [
       "fire",
       "burn"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-thunder-storm",
@@ -288,14 +412,14 @@
     "icon": "skills/monster/thunder-storm.png",
     "trigger": "active",
     "target": "all-enemies",
-    "cooldown": 4,
+    "cooldown": 3,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 40,
-      "max": 60,
+      "min": 30,
+      "max": 50,
       "breakdown": {
-        "lightning": 60
+        "lightning": 50
       }
     },
     "damageType": "lightning",
@@ -305,7 +429,15 @@
     "appliesTags": [
       "lightning",
       "shock"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "durationMs": 1000
+    }
   },
   {
     "id": "monster-poison-cloud",
@@ -330,7 +462,50 @@
     ],
     "appliesTags": [
       "poison"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.05,
+      "durationMs": 5000
+    }
+  },
+  {
+    "id": "monster-mephisto-poison-cloud",
+    "name": "skills.monster.poison-cloud.name",
+    "description": "skills.monster.poison-cloud.desc",
+    "icon": "skills/monster/poison-cloud.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 15,
+      "max": 25,
+      "breakdown": {
+        "poison": 25
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 3,
+      "dotPctOfDamage": 0.05,
+      "durationMs": 5000
+    }
   },
   {
     "id": "monster-arcane-bolt",
@@ -344,12 +519,14 @@
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 45,
-      "max": 65,
+      "min": 12,
+      "max": 18,
       "breakdown": {
-        "arcane": 65
+        "arcane": 18
       }
     },
+    "cost": { "mana": 0 },
+    "scaling": { "monsterLevelDamageGrowth": [2, 3] },
     "damageType": "arcane",
     "appliesTags": [
       "arcane"
@@ -379,7 +556,14 @@
     "appliesTags": [
       "physical",
       "bleed"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-frozen-orb",
@@ -414,35 +598,42 @@
     "description": "skills.monster.leap.desc",
     "icon": "skills/monster/leap.png",
     "trigger": "active",
-    "target": "all-enemies",
-    "cooldown": 4,
+    "target": "single-enemy",
+    "cooldown": 3,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 30,
-      "max": 50,
+      "min": 40,
+      "max": 60,
       "breakdown": {
-        "physical": 50
+        "physical": 60
       }
     },
     "damageType": "physical",
-    "appliesStatus": [
-      "stun"
-    ],
     "appliesTags": [
       "physical"
-    ]
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-enrage",
     "name": "skills.monster.enrage.name",
     "description": "skills.monster.enrage.desc",
     "icon": "skills/monster/enrage.png",
-    "trigger": "passive",
+    "trigger": "active",
     "target": "self",
-    "cooldown": 0,
+    "cooldown": 6,
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "monsterSelfBuff": {
+      "durationMs": 5000,
+      "percent": 50
+    }
   },
   {
     "id": "monster-thorns-aura",
@@ -450,21 +641,17 @@
     "description": "skills.monster.thorns-aura.desc",
     "icon": "skills/monster/thorns-aura.png",
     "trigger": "active",
-    "target": "all-enemies",
-    "cooldown": 1,
+    "target": "self",
+    "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 1,
-    "damage": {
-      "min": 5,
-      "max": 15,
-      "breakdown": {
-        "thorns": 15
-      }
+    "cost": {
+      "mana": 0
     },
-    "damageType": "thorns",
-    "appliesTags": [
-      "physical"
-    ]
+    "monsterSelfBuff": {
+      "durationMs": 60000,
+      "percent": 50
+    }
   },
   {
     "id": "monster-panic-flee",
@@ -475,7 +662,14 @@
     "target": "self",
     "cooldown": 5,
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "panicFlee": {
+      "durationMs": 5000,
+      "dodgeChance": 0.2
+    }
   },
   {
     "id": "monster-weak-ranged",
@@ -488,13 +682,18 @@
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 1,
+    "cost": { "mana": 0 },
     "damage": {
       "min": 12,
       "max": 18,
-      "breakdown": { "physical": 18 }
+      "breakdown": {
+        "physical": 18
+      }
     },
     "damageType": "physical",
-    "appliesTags": ["physical"]
+    "appliesTags": [
+      "physical"
+    ]
   },
   {
     "id": "monster-fire-bolt",
@@ -510,11 +709,27 @@
     "damage": {
       "min": 25,
       "max": 40,
-      "breakdown": { "fire": 40 }
+      "breakdown": {
+        "fire": 40
+      }
     },
     "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "appliesStatus": [
+      "ignite"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-resurrect-fallen",
@@ -541,11 +756,21 @@
     "damage": {
       "min": 25,
       "max": 40,
-      "breakdown": { "cold": 40 }
+      "breakdown": {
+        "cold": 40
+      }
     },
     "damageType": "cold",
-    "appliesStatus": ["chill"],
-    "appliesTags": ["cold", "chill"]
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-fire-arrow",
@@ -555,17 +780,33 @@
     "icon": "skills/monster/fire-arrow.png",
     "trigger": "active",
     "target": "single-enemy",
-    "cooldown": 2,
+    "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 35,
-      "max": 55,
-      "breakdown": { "fire": 55 }
+      "min": 20,
+      "max": 35,
+      "breakdown": {
+        "fire": 35
+      }
     },
     "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "appliesStatus": [
+      "ignite"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-poison-dagger",
@@ -574,17 +815,32 @@
     "icon": "skills/monster/poison-dagger.png",
     "trigger": "active",
     "target": "single-enemy",
-    "cooldown": 2,
+    "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
       "min": 20,
-      "max": 35,
-      "breakdown": { "poison": 35 }
+      "max": 30,
+      "breakdown": {
+        "poison": 30
+      }
     },
     "damageType": "poison",
-    "appliesStatus": ["poison"],
-    "appliesTags": ["poison"]
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.05,
+      "durationMs": 5000
+    }
   },
   {
     "id": "monster-fire-ball",
@@ -598,13 +854,29 @@
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 45,
-      "max": 70,
-      "breakdown": { "fire": 70 }
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "fire": 60
+      }
     },
     "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "appliesStatus": [
+      "ignite"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "monster-frost-nova",
@@ -617,13 +889,22 @@
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 30,
-      "max": 50,
-      "breakdown": { "cold": 50 }
+      "min": 6,
+      "max": 9,
+      "breakdown": {
+        "cold": 9
+      }
     },
+    "cost": { "mana": 0 },
+    "scaling": { "monsterLevelDamageGrowth": [1, 2] },
     "damageType": "cold",
-    "appliesStatus": ["chill"],
-    "appliesTags": ["cold", "chill"]
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
   },
   {
     "id": "monster-act1-lightning-affix",
@@ -641,7 +922,9 @@
     "damage": {
       "min": 12,
       "max": 18,
-      "breakdown": { "lightning": 18 }
+      "breakdown": {
+        "lightning": 18
+      }
     },
     "damageType": "lightning",
     "scaling": {
@@ -657,36 +940,120 @@
     "description": "skills.monster.lightning.desc",
     "icon": "skills/monster/lightning.png",
     "trigger": "active",
-    "target": "all-enemies",
-    "cooldown": 3,
+    "target": "single-enemy",
+    "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
       "min": 40,
-      "max": 65,
-      "breakdown": { "lightning": 65 }
+      "max": 60,
+      "breakdown": {
+        "lightning": 60
+      }
     },
     "damageType": "lightning",
-    "appliesStatus": ["paralyze"],
-    "appliesTags": ["lightning", "shock"]
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "durationMs": 1000
+    }
+  },
+  {
+    "id": "monster-diablo-lightning",
+    "name": "skills.monster.lightning.name",
+    "description": "skills.monster.lightning.desc",
+    "icon": "skills/monster/lightning.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "lightning": 60
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "durationMs": 1000
+    },
+    "aoeShape": "cone-3",
+    "maxTargets": 5
+  },
+  {
+    "id": "monster-fire-enchanted-explosion",
+    "name": "skills.monster.fire-enchanted-explosion.name",
+    "description": "skills.monster.fire-enchanted-explosion.desc",
+    "trigger": "on-death",
+    "target": "all-enemies",
+    "cooldown": 0,
+    "cost": {
+      "mana": 0
+    },
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 50,
+      "max": 50,
+      "breakdown": {
+        "fire": 50
+      }
+    },
+    "damageType": "fire",
+    "appliesTags": [
+      "fire"
+    ]
   },
   {
     "id": "monster-corpse-explosion",
     "name": "skills.monster.corpse-explosion.name",
     "description": "skills.monster.corpse-explosion.desc",
     "icon": "skills/monster/corpse-explosion.png",
-    "trigger": "active",
+    "trigger": "on-death",
     "target": "all-enemies",
-    "cooldown": 3,
+    "cooldown": 0,
+    "cost": {
+      "mana": 0
+    },
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
       "min": 35,
       "max": 60,
-      "breakdown": { "physical": 30, "fire": 30 }
+      "breakdown": {
+        "physical": 30,
+        "fire": 30
+      }
     },
     "damageType": "fire",
-    "appliesTags": ["fire", "physical"]
+    "appliesTags": [
+      "fire",
+      "physical"
+    ]
   },
   {
     "id": "monster-bone-spirit",
@@ -696,16 +1063,23 @@
     "icon": "skills/monster/bone-spirit.png",
     "trigger": "active",
     "target": "single-enemy",
-    "cooldown": 3,
+    "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 50,
-      "max": 80,
-      "breakdown": { "arcane": 80 }
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "arcane": 60
+      }
     },
     "damageType": "arcane",
-    "appliesTags": ["arcane"]
+    "appliesTags": [
+      "arcane"
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-bone-prison",
@@ -717,7 +1091,23 @@
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 1,
-    "appliesStatus": ["stun"]
+    "appliesStatus": [
+      "monster-bone-prison"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "damage": {
+      "min": 10,
+      "max": 20,
+      "breakdown": {
+        "arcane": 20
+      }
+    },
+    "damageType": "arcane",
+    "statusEffect": {
+      "durationMs": 2000
+    }
   },
   {
     "id": "monster-leap-attack",
@@ -726,17 +1116,30 @@
     "icon": "skills/monster/leap-attack.png",
     "trigger": "active",
     "target": "single-enemy",
-    "cooldown": 4,
+    "cooldown": 3,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 60,
-      "max": 90,
-      "breakdown": { "physical": 90 }
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "physical": 70
+      }
     },
     "damageType": "physical",
-    "appliesStatus": ["stun"],
-    "appliesTags": ["physical"]
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 0.5,
+      "durationMs": 1000
+    }
   },
   {
     "id": "monster-war-cry",
@@ -750,12 +1153,25 @@
     "maxLevel": 1,
     "damage": {
       "min": 20,
-      "max": 35,
-      "breakdown": { "physical": 35 }
+      "max": 30,
+      "breakdown": {
+        "physical": 30
+      }
     },
     "damageType": "physical",
-    "appliesStatus": ["stun"],
-    "appliesTags": ["physical"]
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 0.3,
+      "durationMs": 1000
+    }
   },
   {
     "id": "monster-shout",
@@ -766,7 +1182,14 @@
     "target": "self",
     "cooldown": 5,
     "minLevel": 1,
-    "maxLevel": 1
+    "maxLevel": 1,
+    "cost": {
+      "mana": 0
+    },
+    "monsterSelfBuff": {
+      "durationMs": 5000,
+      "percent": 30
+    }
   },
   {
     "id": "monster-whirlwind",
@@ -775,16 +1198,23 @@
     "icon": "skills/monster/whirlwind.png",
     "trigger": "active",
     "target": "all-enemies",
-    "cooldown": 4,
+    "cooldown": 3,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 50,
-      "max": 80,
-      "breakdown": { "physical": 80 }
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
     },
     "damageType": "physical",
-    "appliesTags": ["physical"]
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "monster-curse",
@@ -796,7 +1226,9 @@
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 1,
-    "appliesTags": ["amp-damage"]
+    "appliesTags": [
+      "amp-damage"
+    ]
   },
   {
     "id": "monster-mana-rift",
@@ -804,17 +1236,27 @@
     "description": "skills.monster.mana-rift.desc",
     "icon": "skills/monster/mana-rift.png",
     "trigger": "active",
-    "target": "single-enemy",
+    "target": "all-enemies",
     "cooldown": 3,
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 40,
-      "max": 60,
-      "breakdown": { "arcane": 60 }
+      "min": 10,
+      "max": 20,
+      "breakdown": {
+        "arcane": 20
+      }
     },
     "damageType": "arcane",
-    "appliesTags": ["arcane"]
+    "appliesTags": [
+      "arcane"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "appliesStatus": [
+      "mana-burn"
+    ]
   },
   {
     "id": "monster-tentacles",
@@ -822,18 +1264,20 @@
     "description": "skills.monster.tentacles.desc",
     "icon": "skills/monster/tentacles.png",
     "trigger": "active",
-    "target": "all-enemies",
+    "target": "summon",
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 1,
-    "damage": {
-      "min": 45,
-      "max": 70,
-      "breakdown": { "physical": 35, "poison": 35 }
+    "cost": {
+      "mana": 0
     },
-    "damageType": "physical",
-    "appliesStatus": ["poison"],
-    "appliesTags": ["physical", "poison"]
+    "summonId": "baal_tentacle",
+    "monsterSummon": {
+      "archetypeId": "monsters/act5.baal-tentacle",
+      "count": 5,
+      "maxCount": 5,
+      "refundOnDeath": false
+    }
   },
   {
     "id": "monster-plague-spit",
@@ -847,12 +1291,136 @@
     "minLevel": 1,
     "maxLevel": 1,
     "damage": {
-      "min": 25,
-      "max": 40,
-      "breakdown": { "poison": 40 }
+      "min": 20,
+      "max": 30,
+      "breakdown": {
+        "poison": 30
+      }
     },
     "damageType": "poison",
-    "appliesStatus": ["poison"],
-    "appliesTags": ["poison"]
+    "appliesStatus": [
+      "plague"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "dotPctOfDamage": 0.05,
+      "durationMs": 5000
+    }
+  },
+  {
+    "id": "monster-baal-frost-nova",
+    "name": "skills.monster.frost-nova.name",
+    "description": "skills.monster.baal-frost-nova.desc",
+    "icon": "skills/monster/frost-nova.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 6,
+      "max": 9,
+      "breakdown": {
+        "cold": 9
+      }
+    },
+    "cost": {
+      "mana": 0
+    },
+    "scaling": {
+      "monsterLevelDamageGrowth": [
+        1,
+        2
+      ]
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "freeze"
+    ],
+    "appliesTags": [
+      "cold"
+    ],
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1,
+      "durationMs": 1000
+    }
+  },
+  {
+    "id": "monster-baal-inferno",
+    "name": "skills.monster.inferno.name",
+    "description": "skills.monster.baal-inferno.desc",
+    "icon": "skills/monster/inferno.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "fire": 60
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "ignite",
+      "armor-melt"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 5,
+      "durationMs": 3000,
+      "dotPctOfDamage": 0.1
+    },
+    "aoeShape": "cone-3",
+    "maxTargets": 5
+  },
+  {
+    "id": "monster-baal-mana-rift",
+    "name": "skills.monster.mana-rift.name",
+    "description": "skills.monster.baal-mana-rift.desc",
+    "icon": "skills/monster/mana-rift.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "arcane": 60
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "appliesStatus": [
+      "mana-burn"
+    ],
+    "statusEffect": {
+      "chance": 1,
+      "stacksOnApply": 1
+    }
   }
 ]

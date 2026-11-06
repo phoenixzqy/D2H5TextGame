@@ -21,7 +21,7 @@
     },
     "slot": {
       "type": ["string", "null"],
-      "enum": ["head", "chest", "gloves", "belt", "boots", "amulet", "ring-left", "ring-right", "weapon", "offhand", null]
+      "enum": ["head", "chest", "gloves", "belt", "boots", "amulet", "ring-left", "ring-right", "weapon", "offhand", "charm", null]
     },
     "baseDamage": {
       "$ref": "#/$defs/damageInfo"

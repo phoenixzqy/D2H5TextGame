@@ -87,20 +87,28 @@ function durable() {
     summonPositions: useFormationStore.getState().summonPositions };
 }
 const COPY = {
-  en: { mage: 'Skeletal Mage', targets: ['Fallen B', 'Fallen A', 'Fallen C', 'Fallen B'],
-    hits: ["Fallen B dodges Skeletal Mage's attack!",
-      'Skeletal Mage attacks Fallen A for 61 cold damage.',
-      "Fallen C dodges Skeletal Mage's attack!",
+  en: { mage: 'Skeletal Mage', targets: ['Fallen A', 'Fallen A', 'Fallen C', 'Fallen B'],
+    hits: ['Skeletal Mage attacks Fallen A for 50 fire damage.',
+      "Fallen A dodges Skeletal Mage's attack!",
+      'Skeletal Mage attacks Fallen C for 61 lightning damage.',
       'Skeletal Mage attacks Fallen B for 50 poison damage.'],
-    laterTarget: 'Fallen C', laterHit: 'Skeletal Mage attacks Fallen C for 61 lightning damage.',
-    dodgeTarget: 'Fallen C', dodge: "Fallen C dodges Skeletal Mage's attack!" },
-  'zh-CN': { mage: '骷髅法师', targets: ['堕落者 B', '堕落者 A', '堕落者 C', '堕落者 B'],
-    hits: ['堕落者 B 闪避了 骷髅法师 的攻击！',
-      '骷髅法师 普攻 堕落者 A，造成 61 点冰冷伤害。',
-      '堕落者 C 闪避了 骷髅法师 的攻击！',
+    laterTargets: ['Fallen D', 'Quill Rat A', 'Fallen F', 'Fallen E'],
+    laterHits: ['Skeletal Mage attacks Fallen D for 50 fire damage.',
+      'Skeletal Mage attacks Quill Rat A for 61 cold damage.',
+      'Skeletal Mage attacks Fallen F for 61 lightning damage.',
+      'Skeletal Mage attacks Fallen E for 87 poison damage.'],
+    dodge: "Fallen A dodges Skeletal Mage's attack!" },
+  'zh-CN': { mage: '骷髅法师', targets: ['堕落者 A', '堕落者 A', '堕落者 C', '堕落者 B'],
+    hits: ['骷髅法师 普攻 堕落者 A，造成 50 点火焰伤害。',
+      '堕落者 A 闪避了 骷髅法师 的攻击！',
+      '骷髅法师 普攻 堕落者 C，造成 61 点闪电伤害。',
       '骷髅法师 普攻 堕落者 B，造成 50 点毒素伤害。'],
-    laterTarget: '堕落者 C', laterHit: '骷髅法师 普攻 堕落者 C，造成 61 点闪电伤害。',
-    dodgeTarget: '堕落者 C', dodge: '堕落者 C 闪避了 骷髅法师 的攻击！' }
+    laterTargets: ['堕落者 D', '尖刺鼠 A', '堕落者 F', '堕落者 E'],
+    laterHits: ['骷髅法师 普攻 堕落者 D，造成 50 点火焰伤害。',
+      '骷髅法师 普攻 尖刺鼠 A，造成 61 点冰冷伤害。',
+      '骷髅法师 普攻 堕落者 F，造成 61 点闪电伤害。',
+      '骷髅法师 普攻 堕落者 E，造成 87 点毒素伤害。'],
+    dodge: '堕落者 A 闪避了 骷髅法师 的攻击！' }
 } as const;
 
 it.each(['zh-CN', 'en'] as const)('transports real Mage spawn, MP, hit and dodge events into live teams and %s logs', async locale => {
@@ -121,7 +129,7 @@ it.each(['zh-CN', 'en'] as const)('transports real Mage spawn, MP, hit and dodge
   expect(events.filter(e => e.kind === 'mana' && e.reason === 'cast'))
     .toEqual([expect.objectContaining({ target: HERO, mana: 78, simClockMs: 0 })]);
   expect(events.find(e => e.kind === 'action' && e.skillId === FINISH)?.simClockMs).toBe(4000);
-  let spawned = 0, paid = 0, laterLightning = 0, firstAttempts = 0, poisonLoss = 0;
+  let spawned = 0, paid = 0, laterHits = 0, firstAttempts = 0, poisonLoss = 0;
   const hitElements: string[] = [], dodgeElements: string[] = [];
   for (let remaining = events.length; remaining > 0; remaining--) {
     const previous = useCombatStore.getState();
@@ -163,39 +171,32 @@ it.each(['zh-CN', 'en'] as const)('transports real Mage spawn, MP, hit and dodge
           targetId: event.target, targetName: next.unitNameMap.get(event.target), value: event.amount });
         if (event.simClockMs === 1940) {
           expect(event).toMatchObject({ damageType: ['fire', 'cold', 'lightning', 'poison'][index],
-            amount: [0, 61, 0, 50][index], crit: false, dodged: index === 0 || index === 2 });
-          expect(targetBefore.life).toBe([35, 46, 35, 35][index]);
+            amount: [50, 0, 61, 50][index], crit: false, dodged: index === 1 });
+          expect(targetBefore.life).toBe([46, 46, 35, 35][index]);
           expect(next.unitNameMap.get(event.target)).toBe(copy.targets[index]);
           if (!event.dodged) expect(targetAfter?.life).toBe(0);
           expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
           expect(entry?.message).toBe(copy.hits[index]);
           firstAttempts++;
           (event.dodged ? dodgeElements : hitElements).push(event.damageType);
-        } else if (event.damageType === 'lightning') {
-          laterLightning++; hitElements.push(event.damageType);
-          expect(event).toMatchObject({ simClockMs: 3880, damageType: 'lightning', amount: 61,
-            dodged: false, crit: false });
-          expect(targetBefore.life).toBe(32);
-          expect(next.unitNameMap.get(event.target)).toBe(copy.laterTarget);
+        } else {
+          laterHits++; hitElements.push(event.damageType);
+          expect(event).toMatchObject({ simClockMs: 3880,
+            damageType: ['fire', 'cold', 'lightning', 'poison'][index],
+            amount: [50, 61, 61, 87][index], dodged: false, crit: false });
+          expect(targetBefore.life).toBe([34, 27, 43, 32][index]);
+          expect(next.unitNameMap.get(event.target)).toBe(copy.laterTargets[index]);
           expect(targetAfter?.life).toBe(0);
           expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
-          expect(entry?.message).toBe(copy.laterHit);
-        } else {
-          expect(event.simClockMs).toBe(3880);
-          expect(event).toMatchObject({ dodged: true, amount: 0 });
-          expect(next.unitNameMap.get(event.target)).toBe(copy.dodgeTarget);
-          expect(targetBefore.life).toBeGreaterThan(0);
-          // The independent group fold below also accounts for later same-time hits.
-          expect(entry?.message).toBe(copy.dodge);
-          dodgeElements.push(event.damageType);
+          expect(entry?.message).toBe(copy.laterHits[index]);
         }
       }
-      if (event.kind === 'dot' && event.target.includes('fallen-2-')) {
-        expect(event.amount).toBe(event.simClockMs === 3080 ? 2 : 1);
+      if (event.kind === 'dot' && event.target === 'enemy-act1.quill-rat-0-a0ad') {
+        expect(event.amount).toBe(event.simClockMs === 3080 ? 4 : event.simClockMs === 3480 ? 2 : 1);
         poisonLoss += event.amount;
         expect(next.log.find(entry => entry.id === `${String(idx)}-dot`)?.message).toBe(locale === 'en'
-          ? `Fallen C takes ${String(event.amount)} damage over time.`
-          : `堕落者 C 因持续伤害受到 ${String(event.amount)} 点伤害。`);
+          ? `Quill Rat A takes ${String(event.amount)} damage over time.`
+          : `尖刺鼠 A 因持续伤害受到 ${String(event.amount)} 点伤害。`);
       }
       // Independent resource fold across every consumed event, including non-Mage hits.
       if (targetBefore) {
@@ -217,12 +218,12 @@ it.each(['zh-CN', 'en'] as const)('transports real Mage spawn, MP, hit and dodge
       .toEqual(events.slice(0, next.eventCursor).flatMap((event, idx) =>
         event.kind === 'damage' && bySource.has(event.source) ? [`${String(idx)}-damage`] : []));
   }
-  expect(spawned).toBe(4); expect(paid).toBe(1); expect(laterLightning).toBe(1);
-  expect(firstAttempts).toBe(4); expect(poisonLoss).toBe(3);
-  expect(hitElements).toHaveLength(3);
-  expect([...hitElements].sort()).toEqual(['cold', 'lightning', 'poison']);
-  expect(dodgeElements).toHaveLength(5);
-  expect([...dodgeElements].sort()).toEqual(['cold', 'fire', 'fire', 'lightning', 'poison']);
+  expect(spawned).toBe(4); expect(paid).toBe(1); expect(laterHits).toBe(4);
+  expect(firstAttempts).toBe(4); expect(poisonLoss).toBe(7);
+  expect(hitElements).toHaveLength(7);
+  expect([...hitElements].sort()).toEqual(['cold', 'fire', 'fire', 'lightning', 'lightning', 'poison', 'poison']);
+  expect(dodgeElements).toHaveLength(1);
+  expect([...dodgeElements].sort()).toEqual(['cold']);
   const stopped = useCombatStore.getState();
   expect(events[stopped.eventCursor]?.simClockMs).toBe(4000);
   expect(stopped.playbackComplete).toBe(false);

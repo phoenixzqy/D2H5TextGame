@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import recovery from '../../data/combat/recovery.json';
-import schema from '../../data/schema/recovery.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 
 /** Authored hero recovery baseline; applying it to combat is a separate step. */
 export interface RecoveryDefinition {
@@ -8,7 +8,7 @@ export interface RecoveryDefinition {
   readonly heroManaPerEffectiveEnergyPerSecond: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<RecoveryDefinition>(schema);
+const validate = compileAuthoredValidator<RecoveryDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'recovery');
 
 /** Validate and copy a recovery config without retaining or freezing caller data. */
 export function resolveRecoveryDefinition(source: unknown): RecoveryDefinition {

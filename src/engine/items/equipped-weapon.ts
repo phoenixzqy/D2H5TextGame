@@ -1,6 +1,19 @@
 import { loadItemBases } from '../../data/loaders/loot';
 import { isOneHandedWeapon } from '../inventory/equipValidator';
 import type { Handedness, Item, WeaponType } from '../types/items';
+import { DAMAGE_DELIVERY_DEFINITION, type BasicAttackDelivery } from '../combat/damage-delivery';
+
+/** Resolve actual basic provenance without conflating unknown bases with a verified empty slot. */
+export function resolveBasicAttackDelivery(
+  equipped?: Readonly<Record<string, Item | null>>
+): BasicAttackDelivery | undefined {
+  if (equipped === undefined) return undefined;
+  const weapon = equipped.weapon;
+  if (weapon === undefined || weapon === null) return 'melee';
+  const base = loadItemBases().get(weapon.baseId);
+  return base?.type === 'weapon' && base.weaponType !== undefined
+    ? DAMAGE_DELIVERY_DEFINITION.weapons[base.weaponType] : undefined;
+}
 
 /** Resolve eligibility from the canonical weapon slot; missing/unknown bases are explicitly unarmed. */
 export function resolveEquippedWeapon(

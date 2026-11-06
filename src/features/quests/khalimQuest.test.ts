@@ -132,6 +132,7 @@ describe('actual unordered Khalim components and assembly', () => {
     expect(claimQuestReward(QUEST)).toBe('ok');
     const after = required(usePlayerStore.getState().player);
     expect(xpTotal(after.level) + after.experience - xpTotal(before.level) - before.experience).toBe(8000);
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(20);
     expect(useInventoryStore.getState().questItems).toBe(ledger);
     expect(useInventoryStore.getState().backpack).toEqual([]);
     expect(claimQuestReward(QUEST)).toBe('already-claimed');

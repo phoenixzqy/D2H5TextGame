@@ -6,7 +6,7 @@ const row = PLAYABLE_CLASS_SKILL_DATA.assassin.find((s) => s.id === 'skills-assa
 if (!row) throw new Error('Missing actual Dragon Talon row');
 const validate = createSkillValidator();
 const complete = () => ({ ...row, hitSequence: { strikes: 3 } });
-it('authors the actual Dragon Talon sequence while preserving its original damage, cost and eligibility', () => {
+it('authors the actual Dragon Talon sequence while preserving rank-one damage, cost and eligibility', () => {
   expect(row).toMatchObject({
     hitSequence: { strikes: 3 },
     target: 'single-enemy',
@@ -15,7 +15,7 @@ it('authors the actual Dragon Talon sequence while preserving its original damag
     cost: { mana: 4 },
     cooldown: 1,
     damage: { min: 40, max: 60 },
-    scaling: { damagePerLevel: 4 }
+    scaling: { damagePerLevel: 60 }
   });
   expect(validate(row), JSON.stringify(validate.errors)).toBe(true);
 });
@@ -33,7 +33,7 @@ it('preserves the bounded sequence through actual registration without mutating 
         kind: 'damage',
         damageType: 'physical',
         base: [40, 60],
-        perRank: [4, 4],
+        perRank: [60, 60],
         hitSequence: { strikes: 3 }
       }
     ]

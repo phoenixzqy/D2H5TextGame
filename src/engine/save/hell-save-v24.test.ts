@@ -1,3 +1,4 @@
+import { withoutV32Fields, withV32Defaults } from '../../../tests/helpers/save-fixtures';
 /**
  * Candidate destination: src/engine/save/hell-save-v24.test.ts.
  * Constructed compatibility fixtures only; none represents earned gameplay.
@@ -19,7 +20,7 @@ import {
 import { FROZEN_V23 } from './frozen-v23';
 import { runMigrations } from './migrate';
 import { buildSave, toJsonSafe, type BuildSaveInput } from './serialize';
-import { decodeSave, validateFrozenV23Save, validateSave } from './validate';
+import { decodeSave, validateFrozenV23Save, validateFrozenV24Save as validateSave, validateSave as validateCurrentSave } from './validate';
 
 type Profile24 = 'normal' | 'nightmare' | 'hell';
 // Test-local candidate shape avoids a missing SaveV24 import on the RED baseline.
@@ -57,7 +58,7 @@ function buildInput(qualified = true): BuildSaveInput {
 function literal23(options: { qualified?: boolean; nightmare?: boolean; achievement?: boolean } = {}): SaveV23 {
   const { qualified = true, nightmare = false, achievement = false } = options;
   const input = buildInput(qualified), common = buildSave(input);
-  return { ...common, version: 23,
+  return { ...withoutV32Fields(common), version: 23,
     endgame: achievement ? { attemptOrdinal: 5, clearCounts: { ashen: 2, glacial: 1 }, achievementRewardClaimed: true }
       : { attemptOrdinal: 0, clearCounts: { ashen: 0, glacial: 0 }, achievementRewardClaimed: false },
     map: { currentAct: input.map.currentAct, currentSubAreaId: input.map.currentSubAreaId,
@@ -112,24 +113,24 @@ function expectNativeRefusal(value: unknown): void {
 }
 
 describe('native24 registration and historical type isolation', () => {
-  it('registers current24 while the two-profile historical aliases remain closed', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(24); expect(MIGRATIONS[24]).toBeTypeOf('function');
+  it('retains migration24 while current25 and the two-profile historical aliases remain closed', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(33); expect(MIGRATIONS[24]).toBeTypeOf('function');
     expectTypeOf<ReplayProfileId>().toEqualTypeOf<'normal' | 'nightmare'>();
     expectTypeOf<CampaignMapSaveData['selectedDifficulty']>().toEqualTypeOf<'normal' | 'nightmare'>();
     expectTypeOf<CurrentMapSaveData['selectedDifficulty']>().toEqualTypeOf<'normal' | 'nightmare'>();
     expectTypeOf<SaveV23['map']['selectedDifficulty']>().toEqualTypeOf<'normal' | 'nightmare'>();
     expectTypeOf<keyof SaveV23['map']['challengeOrdinals']>().toEqualTypeOf<'normal' | 'nightmare'>();
-    expectTypeOf<SaveCurrent['version']>().toEqualTypeOf<24>();
+    expectTypeOf<SaveCurrent['version']>().toEqualTypeOf<33>();
     expectTypeOf<SaveCurrent['map']['selectedDifficulty']>().toEqualTypeOf<Profile24>();
     expectTypeOf<keyof SaveCurrent['map']['challengeOrdinals']>().toEqualTypeOf<Profile24>();
   });
   it('builds current defaults with empty Hell history and three independent ordinals', () => {
     const save = buildSave(buildInput(false));
-    expect(save.version).toBe(24);
+    expect(save.version).toBe(33);
     expect(save.map).toMatchObject({ selectedDifficulty: 'normal', hellClearedSubAreas: [],
       challengeOrdinals: { normal: 0, nightmare: 0, hell: 0 } });
     expect(Object.keys(save.map.challengeOrdinals).sort()).toEqual(['hell', 'nightmare', 'normal']);
-    expect(validateSave(save)).toEqual(toJsonSafe(save));
+    expect(validateCurrentSave(save)).toEqual(toJsonSafe(save));
   });
   it('keeps literal23 valid and rejects24 at the frozen reader without relabelling it', () => {
     const old = literal23({ nightmare: true, achievement: true }), before = structuredClone(old);
@@ -147,7 +148,7 @@ describe('literal23 to24 migration adds only the two Hell defaults', () => {
     expect(validateFrozenV23Save(old)).toEqual(toJsonSafe(old));
     const expected = upgradedExpected(old);
     expect(runMigrations(old, 24)).toEqual(expected);
-    expect(decodeSave(toJsonSafe(old))).toEqual(expected); expect(old).toEqual(before);
+    expect(decodeSave(toJsonSafe(old))).toEqual(withV32Defaults(expected)); expect(old).toEqual(before);
     expect(expected.map.questDifficulties).toEqual(old.map.questDifficulties);
     expect(expected.map.questReceipts).toEqual(old.map.questReceipts);
   });
@@ -155,7 +156,7 @@ describe('literal23 to24 migration adds only the two Hell defaults', () => {
     const old = act1History(), before = structuredClone(old);
     expect(validateFrozenV23Save(old)).toEqual(toJsonSafe(old));
     expect(runMigrations(old, 24)).toEqual(upgradedExpected(old));
-    expect(decodeSave(toJsonSafe(old))).toEqual(upgradedExpected(old)); expect(old).toEqual(before);
+    expect(decodeSave(toJsonSafe(old))).toEqual(withV32Defaults(upgradedExpected(old))); expect(old).toEqual(before);
   });
   it.each(['cain', 'malus', 'countess'])('validates literal23 %s authority before adding defaults', fault => {
     const old = structuredClone(act1History());
@@ -184,11 +185,11 @@ describe('source-backed native24 Hell selection and independent persisted histor
     const save = hellHistory(selected), before = structuredClone(save);
     expect(save.map.questDifficulties).toEqual({});
     expect(validateSave(save)).toEqual(toJsonSafe(save));
-    expect(decodeSave(toJsonSafe(save))).toEqual(save); expect(save).toEqual(before);
+    expect(decodeSave(toJsonSafe(save))).toEqual(withV32Defaults(save)); expect(save).toEqual(before);
   });
   it('accepts a source-complete selected Hell preference before any Hell clear or ordinal', () => {
     const save = native24(), input = { ...save, map: { ...save.map, selectedDifficulty: 'hell' } };
-    expect(validateSave(input)).toEqual(toJsonSafe(input)); expect(decodeSave(toJsonSafe(input))).toEqual(input);
+    expect(validateSave(input)).toEqual(toJsonSafe(input)); expect(decodeSave(toJsonSafe(input))).toEqual(withV32Defaults(input));
   });
   it('round trips all three progress sets with Nightmare ownership and the claimed achievement unchanged', () => {
     const base = upgradedExpected(literal23({ nightmare: true, achievement: true }));
@@ -197,11 +198,11 @@ describe('source-backed native24 Hell selection and independent persisted histor
       challengeOrdinals: { normal: 13, nightmare: 2, hell: 7 } } };
     const before = structuredClone(save);
     expect(validateSave(save)).toEqual(toJsonSafe(save));
-    expect(decodeSave(toJsonSafe(save))).toEqual(save); expect(save).toEqual(before);
+    expect(decodeSave(toJsonSafe(save))).toEqual(withV32Defaults(save)); expect(save).toEqual(before);
   });
   it('permits a locked character with Normal selection and exactly empty Hell history', () => {
     const save = native24(false);
-    expect(validateSave(save)).toEqual(toJsonSafe(save)); expect(decodeSave(toJsonSafe(save))).toEqual(save);
+    expect(validateSave(save)).toEqual(toJsonSafe(save)); expect(decodeSave(toJsonSafe(save))).toEqual(withV32Defaults(save));
   });
   it.each(['selection', 'clear', 'ordinal'])('refuses locked Hell %s even while other history stays empty', fault => {
     const save = native24(false);

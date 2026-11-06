@@ -3,7 +3,7 @@
  *
  * Layout:
  *   [ Acts collapsible list (I–V) ]
- *     [ sub-area row × N: name, rec lvl, lock badge, [Farm] [Enter] ]
+ *     [ sub-area row × N: name, enemy levels, lock badge, [Farm] [Enter] ]
  *
  * The acts/sub-areas list is derived from the canonical JSON dataset
  * (`src/data/maps/**`) so every UI row maps 1:1 to a data id. This
@@ -20,6 +20,7 @@ import { useMapStore, useMetaStore } from '@/stores';
 import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { monsterLevelForReplay } from '@/engine/map/replay-profile';
+import { challengeEnemyLevelRange } from '@/engine/combat/sub-area-run';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
 import { ReplayProfileControls } from './ReplayProfileControls';
@@ -35,7 +36,7 @@ interface SubArea {
   id: string;
   alias: string;
   nameKey: string;
-  recommendedLevel: number;
+  enemyLevels: { readonly min: number; readonly max: number };
   bossArchetypeId?: string;
   challengeMonsterMin: number;
   challengeMonsterMax: number;
@@ -102,7 +103,7 @@ export function MapScreen() {
         id: sa.id,
         alias,
         nameKey: sa.name,
-        recommendedLevel: sa.areaLevel,
+        enemyLevels: challengeEnemyLevelRange(sa),
         challengeMonsterMin: sa.challenge?.monsterCount.min ?? 8,
         challengeMonsterMax: sa.challenge?.monsterCount.max ?? 20,
         difficultyBand: sa.difficulty?.finaleBand ?? 'none',
@@ -173,17 +174,17 @@ export function MapScreen() {
           <div
             className="sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
                        bg-d2-panel/95 backdrop-blur border-b border-d2-gold/40
-                       text-sm text-d2-gold flex items-center gap-2"
+                       text-sm text-d2-gold flex flex-wrap items-center gap-2"
             data-testid="idle-location-banner"
           >
             <span aria-hidden>⚙️</span>
-            <span className="flex-1 truncate">
+            <span className="flex-1 basis-40 min-w-0 break-words">
               {t('idleHere')}: {idleAreaName}
             </span>
             <button
               type="button"
               onClick={() => { setIdleTarget(undefined); }}
-              className="text-xs text-d2-white/70 hover:text-d2-gold underline underline-offset-2"
+              className="min-h-11 min-w-11 max-w-full px-2 text-sm text-d2-white/90 hover:text-d2-gold underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
               data-testid="idle-stop-button"
             >
               {t('stopIdle')}
@@ -209,14 +210,14 @@ export function MapScreen() {
                   size="lg"
                   className="!w-16 !h-12 !rounded"
                 />
-                <span className="flex-1 text-left text-d2-gold font-serif">
+                <span className="flex-1 min-w-0 break-words text-left text-d2-gold font-serif">
                   {t('act', { number: act.number })} ·{' '}
                   {tDataKey(t, act.nameKey)}
                 </span>
-                <span className="flex items-center gap-2 text-xs">
+                <span className="flex shrink-0 items-center gap-2 text-sm">
                   {!actUnlocked && (
                     <span
-                      className="text-d2-white/50"
+                      className="text-d2-white/80"
                       aria-label={t('defeatBossToUnlockAct', {
                         boss: gateBossDisplayName(act.number),
                         act: act.number
@@ -242,7 +243,7 @@ export function MapScreen() {
                     const rowCls = !unlocked
                       ? ''
                       : cleared
-                      ? 'opacity-80'
+                      ? ''
                       : 'border-l-2 border-d2-gold/60';
                     return (
                       <li
@@ -259,14 +260,14 @@ export function MapScreen() {
                           size="sm"
                           className="!w-10 !h-8 !rounded"
                         />
-                        <div className="flex-1 min-w-[140px]">
-                          <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
-                            <span className="truncate">
+                        <div className="flex-1 basis-40 min-w-0 max-w-full">
+                          <div className={`text-sm flex flex-wrap items-center gap-x-2 gap-y-1 ${cleared ? 'text-d2-white/90' : 'text-d2-white'}`}>
+                            <span className="min-w-0 max-w-full break-words">
                               {areaName}
                             </span>
                             {unlocked && cleared && (
                               <span
-                                className="text-[10px] uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
+                                className="max-w-full break-words text-sm uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
                                 data-testid={`cleared-badge-${sa.alias}`}
                               >
                                 ✓ {t('cleared')}
@@ -274,7 +275,7 @@ export function MapScreen() {
                             )}
                             {unlocked && !cleared && (
                               <span
-                                className="text-[10px] uppercase text-d2-gold/80 border border-d2-gold/50 rounded px-1.5 py-0.5"
+                                className="max-w-full break-words text-sm uppercase text-d2-gold border border-d2-gold/50 rounded px-1.5 py-0.5"
                                 data-testid={`uncleared-badge-${sa.alias}`}
                               >
                                 {t('uncleared')}
@@ -282,7 +283,7 @@ export function MapScreen() {
                             )}
                             {sa.bossArchetypeId && (
                               <span
-                                className="text-[10px] uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
+                                className="max-w-full break-words text-sm uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
                                 title={bossDisplayName(sa.bossArchetypeId, areaName)}
                                 data-testid={`boss-badge-${sa.alias}`}
                               >
@@ -291,27 +292,30 @@ export function MapScreen() {
                             )}
                             {sa.difficultyBand !== 'none' && (
                               <span
-                                className="text-[10px] uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
+                                className="max-w-full break-words text-sm uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
                                 data-testid={`difficulty-badge-${sa.alias}`}
                               >
                                 {t(`difficulty.${sa.difficultyBand}`)}
                               </span>
                             )}
                             {isIdleHere && (
-                              <span className="text-[10px] uppercase text-d2-white/80 border border-d2-white/40 rounded px-1.5 py-0.5">
+                              <span className="max-w-full break-words text-sm uppercase text-d2-white/90 border border-d2-white/40 rounded px-1.5 py-0.5">
                                 {t('idleHereShort')}
                               </span>
                             )}
                           </div>
-                          <div className="text-xs text-d2-white/60">
-                            {t('recommendedLevel', { level: monsterLevelForReplay(sa.recommendedLevel, selectedDifficulty) })}
+                          <div className="text-sm text-d2-white/80">
+                            {t('enemyLevels', {
+                              min: monsterLevelForReplay(sa.enemyLevels.min, selectedDifficulty),
+                              max: monsterLevelForReplay(sa.enemyLevels.max, selectedDifficulty)
+                            })}
                             {' · '}
                             {t('challengeMonsters', { min: sa.challengeMonsterMin, max: sa.challengeMonsterMax })}
                           </div>
                         </div>
                         {!unlocked ? (
                           <span
-                            className="text-xs text-d2-white/50"
+                            className="text-sm text-d2-white/80"
                             title={t('defeatBossToUnlockAct', {
                               boss: gateBossDisplayName(act.number),
                               act: act.number
@@ -320,7 +324,7 @@ export function MapScreen() {
                             🔒 {t('locked')}
                           </span>
                         ) : (
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex max-w-full flex-wrap gap-2 [&>button]:max-w-full [&>button]:whitespace-normal [&>button]:focus-visible:outline [&>button]:focus-visible:outline-2 [&>button]:focus-visible:outline-d2-gold">
                             {sa.id === COUNTESS.area && canSelectCountessEncounter({ selectedDifficulty, questProgress, questReceipts, isActUnlocked }) && (
                               <Button type="button" variant="secondary" className="min-h-11 min-w-11 max-w-full whitespace-normal text-sm" data-testid="countess-challenge"
                                 onClick={() => {

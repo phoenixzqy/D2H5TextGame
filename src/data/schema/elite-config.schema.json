@@ -81,8 +81,48 @@
       "properties": {
         "id": { "type": "string", "pattern": "^elite-affix/[a-z0-9-]+$" },
         "nameKey": { "type": "string", "description": "i18n key for player-visible affix name." },
-        "skillId": { "type": "string", "description": "Monster skill appended to elite units that roll this affix." }
+        "skillId": { "type": "string", "description": "Monster skill appended to elite units that roll this affix." },
+        "attackSpeedMultiplier": { "type": "number", "exclusiveMinimum": 0, "description": "Multiplier applied once to the archetype's attack speed when this affix is attached; defaults to 1." },
+        "frostAura": {
+          "type": "object", "additionalProperties": false,
+          "description": "Passive cold damage and Chill for this affix carrier, overriding archetype aura metadata. First pulse after one interval; independent of actions.",
+          "required": ["damage", "intervalMs", "chillDurationMs"],
+          "properties": {
+            "damage": { "type": "number", "minimum": 0 },
+            "intervalMs": { "type": "integer", "minimum": 1000 },
+            "chillDurationMs": { "type": "integer", "minimum": 1000 }
+          }
+        },
+        "lightningRetaliation": {
+          "type": "object", "additionalProperties": false,
+          "description": "Chance to retaliate once against a surviving direct hostile attacker; no cast, status or recursion.",
+          "required": ["chance", "damage"],
+          "properties": {
+            "chance": { "type": "number", "minimum": 0, "maximum": 1 },
+            "damage": { "type": "array", "minItems": 2, "maxItems": 2,
+              "items": { "type": "number", "minimum": 0 } }
+          }
+        },
+        "resistanceBonuses": {
+          "type": "object",
+          "description": "Additive percentage points for the affix carrier, combined with base and rare-tier resistance before the existing cap; omitted types add zero.",
+          "additionalProperties": false,
+          "properties": {
+            "fire": { "$ref": "#/$defs/resistanceBonus" },
+            "cold": { "$ref": "#/$defs/resistanceBonus" },
+            "lightning": { "$ref": "#/$defs/resistanceBonus" },
+            "poison": { "$ref": "#/$defs/resistanceBonus" },
+            "arcane": { "$ref": "#/$defs/resistanceBonus" },
+            "physical": { "$ref": "#/$defs/resistanceBonus" }
+          }
+        }
       }
+    },
+    "resistanceBonus": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Finite resistance bonus in percentage points."
     }
   }
 }

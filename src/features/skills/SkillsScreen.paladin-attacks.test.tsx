@@ -77,8 +77,8 @@ for (const locale of ['en', 'zh-CN'] as const)
             expect(panel).toHaveTextContent(
               en ? 'Absorbed damage and overkill do not count' : '吸收伤害和过量伤害不计入'
             );
-            const growth = 5 * Math.max(0, rank - 1);
-            expect(panel).toHaveTextContent(`${String(50 + growth)} ~ ${String(70 + growth)}`);
+            const growth = 130 * Math.max(0, rank - 1);
+            expect(current).toHaveTextContent(`${String(50 + growth)} ~ ${String(70 + growth)}`);
           }
           if (slug === 'blessed-hammer') {
             expect(value(current, en ? 'Magic resist bypass' : '魔抗穿透')).toHaveTextContent(
@@ -86,6 +86,8 @@ for (const locale of ['en', 'zh-CN'] as const)
             );
             expect(panel).toHaveTextContent(en ? 'percentage resistance' : '百分比抗性');
             expect(panel).toHaveTextContent(en ? 'all enemies' : '所有敌人');
+            const growth = 12 * Math.max(0, rank - 1);
+            expect(current).toHaveTextContent(`${String(60 + growth)} ~ ${String(90 + growth)}`);
           }
           if (slug === 'vengeance') {
             expect(value(current, en ? 'Composite strike' : '复合打击')).toHaveTextContent(

@@ -118,15 +118,15 @@ it('uses a new source when the previous record expires exactly at the landed app
     statuses: [expect.objectContaining({ sourceId: 'merc', appliedAtMs: 1700, expiresAtMs: 2700 })] }));
 });
 
-it('selects one living hostile summon without hitting friendly, dead or lower-priority bodies', () => {
+it('selects the first living hostile without hitting friendly, dead or later summon bodies', () => {
   const input = scenario(), out = record({ ...input,
     playerTeam: [...input.playerTeam, { ...unit('ally', 'player'), statuses: [hold()] }],
     enemyTeam: [{ ...unit('dead', 'enemy'), life: 0 }, unit('bystander', 'enemy'),
       { ...unit('summon', 'enemy'), kind: 'summon' }] });
-  expect(hits(out).map(event => [event.target, event.amount])).toEqual([['summon', 20]]);
+  expect(hits(out).map(event => [event.target, event.amount])).toEqual([['bystander', 20]]);
   expect(out.events.filter(event => event.kind === 'status').filter(event => event.statusId === 'stun')
-    .map(event => event.target)).toEqual(['summon']);
-  expect(out.result.enemyTeam.find(target => target.id === 'bystander')?.life).toBe(1000000);
+    .map(event => event.target)).toEqual(['bystander']);
+  expect(out.result.enemyTeam.find(target => target.id === 'summon')?.life).toBe(1000000);
 });
 
 it('uses hostile side membership when an enemy casts the native attack', () => {

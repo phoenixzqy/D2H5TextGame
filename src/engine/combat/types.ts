@@ -42,7 +42,7 @@ export interface ActiveStatus {
   readonly decrepify?: { readonly attackSpeedReductionPct: number; readonly damageReductionPct: number };
   /** Immutable paid finite Weaken potency; bare markers grant no damage reduction. */
   readonly weaken?: { readonly damageReductionPct: number };
-  /** Copied paid finite Amazon Defense reduction; independent of the Rogue marker. */
+  /** Copied paid finite Defense reduction; exact status identity separates Amazon and Rogue. */
   readonly innerSight?: { readonly defenseReductionPct: number };
   /** Paid personal Teleport/Enchant; Enchant also captures normal Attack at cast. */
   readonly sorceressBuff?: { readonly rank: number; readonly attack?: number };
@@ -105,6 +105,14 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Selected native elite modifier's localization key; presentation only, never saved. */
+  readonly eliteAffixNameKey?: string;
+  /** Native equipped-vs-bare Attack Speed fraction, excluding passives; display only, never saved. */
+  readonly equipmentAttackSpeedPct?: number;
+  /** Fresh canonical recruitment signature rank; never persisted or granted to secondary skills. */
+  readonly mercSignature?: { readonly skillId: string; readonly rank: number };
+  /** Fresh native basic delivery; absent legacy/custom sources remain unknown. Never saved. */
+  readonly basicAttackDelivery?: import('./damage-delivery').BasicAttackDelivery;
   /** Selected learned native trap authority; paid instances are private to one battle. */
   readonly assassinTrapRanks?: import('../skills/assassin-traps').AssassinTrapRanks;
   /** Native martial permission only; paid stacks live privately inside one battle. */
@@ -163,6 +171,18 @@ export interface CombatUnit {
   readonly druidFormLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Factory-copied literal authored undead identity; names/IDs never grant this marker. */
   readonly undead?: true;
+  /** Factory-copied authored status immunities; transient monster metadata, never saved. */
+  readonly statusImmunities?: readonly import('../types/monsters').MonsterStatusImmunity[];
+  /** Factory-copied explicit damage immunities; transient monster metadata, never saved. */
+  readonly damageImmunities?: readonly DamageType[];
+  /** Factory-copied boss Stun duration coefficient; transient and never saved. */
+  readonly stunDurationMultiplier?: number;
+  /** Copied authored receiving-hit bolt; captured once per battle, never persisted. */
+  readonly lightningRetaliation?: import('./lightning-retaliation').LightningRetaliation;
+  /** Factory-copied passive monster aura; wave-local and never persisted. */
+  readonly frostAura?: import('../types/monsters').MonsterDef['frostAura'];
+  /** Factory-copied cooldown seconds for monster archetypes; transient, never remaining timers. */
+  readonly skillCooldownOverrides?: import('../types/monsters').MonsterDef['skillCooldownOverrides'];
   /** Transient combined ambient (Vigor/Oak/Orders) capacity wrapping paid form capacity; never persisted. */
   readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
@@ -181,10 +201,18 @@ export interface CombatUnit {
   readonly mercThornsAura?: true;
   /** Native mercenary factory-owned Defiance presence; wave-local, never persisted. */
   readonly mercDefianceAura?: true;
+  /** Transient original Blessed Aim factory/loadout qualification; revalidated at resolution. */
+  readonly mercBlessedAimAura?: true;
   /** Fresh native Prayer source qualification; never persisted. */
   readonly mercPrayerAura?: true;
   /** Fresh native Holy Fire source qualification; never persisted. */
   readonly mercHolyFireAura?: true;
+  /** Fresh native Iron Wolf Armor qualification; transient, never persisted. */
+  readonly mercFrozenArmorSource?: true;
+  /** Fresh native Pickpocket qualification; paid reward state is never carried on a unit. */
+  readonly mercPilferSource?: true;
+  /** Flat personal Defense captured after the ordinary paid action, within this run only. */
+  readonly mercFrozenArmor?: { readonly defense: number };
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Eligible personal Energy Shield allocation captured per wave; never persisted. */

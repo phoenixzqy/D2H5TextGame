@@ -212,6 +212,57 @@
       "effect": {
         "allResist": 10
       }
+    },
+    {
+      "id": "quest/sun_cult_tome",
+      "sourceQuestId": "quests/side-act2-drognan-tome",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-fetch",
+      "nameKey": "inventory:questItems.sunCultTome.name",
+      "descKey": "inventory:questItems.sunCultTome.description"
+    },
+    {
+      "id": "quest/nihlathak_relic",
+      "sourceQuestId": "quests/side-act5-nihlathaks-treasure",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-fetch",
+      "nameKey": "inventory:questItems.nihlathakRelic.name",
+      "descKey": "inventory:questItems.nihlathakRelic.description"
+    },
+    {
+      "id": "quest/horazon_lockbox",
+      "sourceQuestId": "quests/side-act2-summoners-secret",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-find",
+      "nameKey": "inventory:questItems.horazonLockbox.name",
+      "descKey": "inventory:questItems.horazonLockbox.description"
+    },
+    {
+      "id": "quest/elzix_strongbox",
+      "sourceQuestId": "quests/side-act2-lost-caravan",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-find-box",
+      "nameKey": "inventory:questItems.elzixStrongbox.name",
+      "descKey": "inventory:questItems.elzixStrongbox.description"
+    },
+    {
+      "id": "quest/wirts_leg",
+      "kind": "portalIngredient",
+      "sourceQuestId": "quests/side-act1-pandemonium-cow-rumor",
+      "sourceObjectiveId": "obj-find-leg",
+      "requiresAreaClear": true,
+      "consumeActionId": "actions/act1-open-cow-portal",
+      "nameKey": "inventory:questItems.wirtsLeg.name",
+      "descKey": "inventory:questItems.wirtsLeg.desc"
+    },
+    {
+      "id": "quest/cow_portal_tome",
+      "kind": "portalIngredient",
+      "sourceQuestId": "quests/side-act1-pandemonium-cow-rumor",
+      "sourceActionId": "actions/act1-receive-cow-tome",
+      "consumeActionId": "actions/act1-open-cow-portal",
+      "nameKey": "inventory:questItems.cowPortalTome.name",
+      "descKey": "inventory:questItems.cowPortalTome.desc"
     }
   ]
 }

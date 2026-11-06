@@ -1,3 +1,4 @@
+import { ANYA_DOMAIN, hasAnyaEntitlement, validateAnyaQuestGraph } from '../map/anya-quest';
 import { subAreas } from '@/data/index';
 import { loadQuestActions, questActionInputs } from '@/data/loaders/quest-actions';
 import { loadQuests } from '@/data/loaders/quests';
@@ -26,6 +27,11 @@ function finiteMap(value: unknown, key: string): void {
  */
 export function hasQuestServiceSourceGraph(questId: string, progress: Readonly<Record<string, QuestProgressData>>,
   receipts: QuestActionReceipts, items: QuestItemLedger, domain?: CampaignValidationDomain): boolean {
+  const anya = domain === undefined ? ANYA_DOMAIN : domain.anya;
+  if (anya && questId === anya.quest && Object.hasOwn(receipts, anya.proof)) {
+    return hasAnyaEntitlement(progress, items, receipts, anya);
+  }
+  // Source-free legacy Anya charges retain the historical main-source policy.
   const malus = domain?.act1?.malus;
   if ((domain === undefined || malus !== undefined) &&
     (questId === (malus?.quest ?? MALUS_QUEST) || questId === (malus?.sideQuest ?? MALUS_SIDE_QUEST))) {
@@ -65,6 +71,7 @@ type CampaignRewardMap = Omit<CampaignMapSaveData, 'selectedTitle' | 'selectedDi
 function validateCampaignSourceRewards(map: CampaignRewardMap, items: QuestItemLedger,
   services: unknown, domain?: CampaignValidationDomain): boolean {
   const ledger = validateQuestServiceLedger(services, map.questProgress, domain);
+  validateAnyaQuestGraph(map.questProgress, items, map.questReceipts, ledger, domain === undefined ? ANYA_DOMAIN : domain.anya);
   for (const source of Object.keys(ledger)) {
     const questId = source.slice(0, source.indexOf('#'));
     if (!hasQuestServiceSourceGraph(questId, map.questProgress, map.questReceipts, items, domain)) {
@@ -116,11 +123,12 @@ function ownReplayData(value: Record<string, unknown>, key: string, allowMissing
 }
 
 /** Raw native24 profile fields must survive normalization exactly as supplied. */
-export function validateNative24ReplayFields(value: unknown, allowMissing = false): void {
+export function validateNative24ReplayFields(value: unknown, allowMissing = false,
+  domain?: CampaignValidationDomain): void {
   if (!record(value)) throw new Error('Invalid save: replay map structure');
   const selected = ownReplayData(value, 'selectedDifficulty', allowMissing);
   if (!(allowMissing && !Object.hasOwn(value, 'selectedDifficulty')) &&
-    selected !== 'normal' && selected !== 'nightmare' && selected !== 'hell') {
+    (typeof selected !== 'string' || !(domain?.selectedDifficulties ?? ['normal', 'nightmare', 'hell']).includes(selected))) {
     throw new Error('Invalid save: selected replay profile');
   }
   const clears = ownReplayData(value, 'hellClearedSubAreas', allowMissing);
@@ -132,7 +140,8 @@ export function validateNative24ReplayFields(value: unknown, allowMissing = fals
     for (let index = 0; index < clears.length; index++) {
       const field = Object.getOwnPropertyDescriptor(clears, String(index));
       if (!field || field.enumerable !== true || !Object.hasOwn(field, 'value') ||
-        typeof field.value !== 'string' || seen.has(field.value) || !subAreas.some(area => area.id === field.value)) {
+        typeof field.value !== 'string' || seen.has(field.value) ||
+        (domain ? !domain.nightmareAreaIds.includes(field.value) : !subAreas.some(area => area.id === field.value))) {
         throw new Error('Invalid save: Hell clear namespace');
       }
       seen.add(field.value);
@@ -143,7 +152,7 @@ export function validateNative24ReplayFields(value: unknown, allowMissing = fals
     if (!record(ordinals) || Reflect.ownKeys(ordinals).length !== 3) throw new Error('Invalid save: challenge ordinal namespaces');
     for (const profile of ['normal', 'nightmare', 'hell']) {
       const ordinal = ownReplayData(ordinals, profile, false);
-      if (typeof ordinal !== 'number' || !Number.isSafeInteger(ordinal) || ordinal < 0 || ordinal >= 360360) {
+      if (typeof ordinal !== 'number' || !Number.isSafeInteger(ordinal) || ordinal < 0 || ordinal >= (domain?.challengeOrdinalLimit ?? 360360)) {
         throw new Error('Invalid save: challenge ordinal namespaces');
       }
     }
@@ -153,14 +162,14 @@ export function validateNative24ReplayFields(value: unknown, allowMissing = fals
 /** Native24 owns its three-profile contract and source-backed Hell history. */
 export function validateNative24CampaignRewards(map: Omit<Native24MapSaveData, 'selectedTitle'> & {
   readonly selectedTitle: string | null
-}, items: QuestItemLedger, services: unknown): void {
-  validateNative24ReplayFields(map);
-  const unlocked = validateCampaignSourceRewards(map, items, services);
+}, items: QuestItemLedger, services: unknown, domain?: CampaignValidationDomain): void {
+  validateNative24ReplayFields(map, false, domain);
+  const unlocked = validateCampaignSourceRewards(map, items, services, domain);
   if (map.selectedDifficulty === 'nightmare' && !unlocked) throw new Error('Invalid save: selected difficulty is not unlocked');
-  validateNightmareClears(map, unlocked);
+  validateNightmareClears(map, unlocked, domain);
   if (!unlocked && map.challengeOrdinals.nightmare !== 0) throw new Error('Invalid save: unearned Nightmare history');
   if ((map.selectedDifficulty === 'hell' || map.hellClearedSubAreas.length > 0 || map.challengeOrdinals.hell !== 0) &&
-    !hasAct5CampaignReward(map.questProgress, map.questReceipts, items)) {
+    !hasAct5CampaignReward(map.questProgress, map.questReceipts, items, domain?.act5)) {
     throw new Error('Invalid save: unearned Hell selection or history');
   }
 }

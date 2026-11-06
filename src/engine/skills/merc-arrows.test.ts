@@ -1,3 +1,7 @@
+import { MERC_ELEMENTAL_ARROWS } from './merc-elemental-arrows';
+import { MERC_BLESSED_AIM_SKILL } from './merc-blessed-aim';
+import { MERC_FROZEN_ARMOR_SKILL } from './merc-frozen-armor';
+import { MERC_PILFER_SKILL } from './merc-pilfer';
 import { afterEach, describe, expect, it } from 'vitest';
 import Ajv2020 from 'ajv/dist/2020';
 import rows from '../../data/skills/mercenary.json';
@@ -79,7 +83,7 @@ describe('exact authored mercenary arrows', () => {
 
   it('rejects this authored field on unrelated mercenary skills, allowing native Jab, and keeps schema closed', () => {
     const validate = new Ajv2020({ strict: true }).compile(schema);
-    for (const row of rows.filter(row => ![...ids, 'mskill-jab'].includes(row.id))) {
+    for (const row of rows.filter(row => ![...ids, 'mskill-jab', 'mskill-fire-arrow', 'mskill-cold-arrow'].includes(row.id))) {
       expect(validate({ ...row, attackDamagePct: 100 }), row.id).toBe(false);
     }
     for (const row of rows) expect(validate(row), row.id).toBe(true);
@@ -91,7 +95,11 @@ describe('exact authored mercenary arrows', () => {
       loadDefaultSkills();
       for (const skill of MERC_ARROW_SKILLS) expect(getSkill(skill.id)).toBe(skill);
     }
-    const replaced = [...ids, 'mskill-inner-sight', 'mskill-minor-heal'];
+    const replaced = [...ids, ...MERC_ELEMENTAL_ARROWS.map(skill => skill.id), 'mskill-inner-sight', 'mskill-minor-heal', 'mskill-frozen-armor', 'mskill-pilfer', 'aura-blessed-aim'];
+    expect(getSkill('mskill-frozen-armor')).toBe(MERC_FROZEN_ARMOR_SKILL);
+    expect(getSkill('mskill-pilfer')).toBe(MERC_PILFER_SKILL);
+    expect(getSkill('aura-blessed-aim')).toBe(MERC_BLESSED_AIM_SKILL);
+    for (const arrow of MERC_ELEMENTAL_ARROWS) expect(getSkill(arrow.id)).toBe(arrow);
     for (const skill of MERC_STUB_SKILLS.filter(skill => !replaced.includes(skill.id))) {
       expect(getSkill(skill.id)).toBe(skill);
     }

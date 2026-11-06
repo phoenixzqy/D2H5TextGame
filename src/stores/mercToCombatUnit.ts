@@ -23,7 +23,7 @@ import type { Item } from '@/engine/types/items';
 import { deriveEquippedMercStats } from '@/engine/progression/merc-equipment-stats';
 import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
 import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
-import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
+import { resolveBasicAttackDelivery, resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 import { projectGovernedActives, type GovernedActiveProjection, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
 import { MERC_HOLY_FREEZE_DEFINITION } from '@/engine/skills/merc-holy-freeze';
 import { MERC_MIGHT_DEFINITION } from '@/engine/skills/merc-might';
@@ -32,8 +32,12 @@ import { MERC_BATTLE_ORDERS_DEFINITION } from '@/engine/skills/merc-battle-order
 import { MERC_CRITICAL_DEFINITION } from '@/engine/skills/merc-critical';
 import { MERC_THORNS_DEFINITION } from '@/engine/skills/merc-thorns';
 import { MERC_DEFIANCE_DEFINITION } from '@/engine/skills/merc-defiance';
+import { MERC_BLESSED_AIM_DEFINITION } from '@/engine/skills/merc-blessed-aim';
 import { MERC_PRAYER_DEFINITION } from '@/engine/skills/merc-prayer';
 import { MERC_HOLY_FIRE_DEFINITION } from '@/engine/skills/merc-holy-fire';
+import { MERC_FROZEN_ARMOR_DEFINITION } from '@/engine/skills/merc-frozen-armor';
+import { composeMercSignature } from '@/engine/skills/merc-signature-rank';
+import { MERC_PILFER_DEFINITION } from '@/engine/skills/merc-pilfer';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -77,10 +81,13 @@ export function getMercConfiguredSkillOrder(merc: Mercenary,
 export function mercToCombatUnit(
   merc: Mercenary,
   gridPosition?: GridPosition,
-  equipment: Readonly<Record<string, Item | null>> = {}
+  equipment: Readonly<Record<string, Item | null>> = {},
+  stars = 0
 ): CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
-  const stats = deriveEquippedMercStats(merc, equipment);
+  const stats = deriveEquippedMercStats(merc, equipment, stars);
   const actives = getMercActiveProjection(merc, equipment);
+  const basicAttackDelivery = resolveBasicAttackDelivery(equipment);
+  const signature = composeMercSignature(merc, stars);
 
   return {
     id: `merc-${merc.id}`,
@@ -97,10 +104,21 @@ export function mercToCombatUnit(
     skillOrder: actives.combatOrder,
     governedActiveRanks: actives.ranks,
     equippedWeapon: resolveEquippedWeapon(equipment),
+    ...(basicAttackDelivery !== undefined ? { basicAttackDelivery } : {}),
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
     kind: 'merc',
+    ...(signature ? { mercSignature: signature } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/act2-blessed-aim' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_BLESSED_AIM_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('aura-blessed-aim') ? { mercBlessedAimAura: true as const } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/tavern-thief-pickpocket' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_PILFER_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('mskill-pilfer') ? { mercPilferSource: true as const } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/act3-iron-wolf-frozen-armor' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_FROZEN_ARMOR_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('mskill-frozen-armor') ? { mercFrozenArmorSource: true as const } : {}),
     ...(merc.id.split('#')[0] === 'mercs/act2-holy-freeze' &&
       Number.isInteger(merc.level) && merc.level >= MERC_HOLY_FREEZE_DEFINITION.minLevel &&
       getMercSkillOrder(merc).includes('aura-holy-freeze') ? { holyFreezeAura: true as const } : {}),

@@ -1,7 +1,7 @@
-import { loadQuestItems, questItemSource, type AssembledQuestItemDef } from '@/data/loaders/quest-items';
+import { loadQuestItems, questItemSource, type AssembledQuestItemDef, type QuestItemDef } from '@/data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import { validateQuestItemLedger } from '@/engine/save/validate';
-import type { QuestItemEntry } from '@/engine/types/save';
+import type { QuestItemEntry, QuestItemLedger } from '@/engine/types/save';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
 import { resolveSubArea } from '@/stores/subAreaResolver';
@@ -36,11 +36,19 @@ export function hasQuestAssemblyCompletion(quest: QuestDef): boolean {
 
 /** Availability for portable explicit assembly; flags alone never supply ingredients or a tool. */
 export function questAssemblyStatus(source: string): QuestCraftingStatus {
-  const item = assembledDefinition(source);
+  const definitions = loadQuestItems();
+  const item = definitions.find((row): row is AssembledQuestItemDef =>
+    row.kind === 'assembled' && questItemSource(row) === source);
   if (!item) return 'unavailable';
-  const definitions = loadQuestItems(), ledger = useInventoryStore.getState().questItems;
+  return assemblyStatus(item, definitions, useInventoryStore.getState().questItems,
+    id => loadQuests().find(row => row.id === id));
+}
+
+function assemblyStatus(item: AssembledQuestItemDef, definitions: readonly QuestItemDef[],
+  ledger: QuestItemLedger, findQuest: (id: string) => QuestDef | undefined): QuestCraftingStatus {
+  const source = questItemSource(item);
   if (Object.hasOwn(ledger, source)) return ledger[source]?.state === 'consumed' ? 'consumed' : 'owned';
-  const quest = loadQuests().find(row => row.id === item.sourceQuestId);
+  const quest = findQuest(item.sourceQuestId);
   if (!quest || !eligibleQuestObjective(quest, item.sourceObjectiveId)) return 'unavailable';
   const owns = (id: string) => {
     const definition = definitions.find(row => row.id === id);
@@ -49,6 +57,28 @@ export function questAssemblyStatus(source: string): QuestCraftingStatus {
     return Object.hasOwn(ledger, inputSource) && ledger[inputSource]?.itemId === id && ledger[inputSource].state === 'owned';
   };
   return [item.requiredTool, ...item.ingredients].every(owns) ? 'ready' : 'unavailable';
+}
+
+/**
+ * Read the visible recipe list under one fresh item-definition validation.
+ * Quest lookups are shared only within this synchronous read; actions still
+ * resolve and validate their own current inputs at the transactional boundary.
+ */
+export function questAssemblyInventory(): {
+  readonly definitions: readonly QuestItemDef[];
+  readonly assemblies: readonly { readonly item: AssembledQuestItemDef; readonly status: QuestCraftingStatus }[];
+} {
+  const definitions = loadQuestItems(), ledger = useInventoryStore.getState().questItems;
+  const ownedIds = new Set(definitions.filter(item => {
+    const source = questItemSource(item);
+    return Object.hasOwn(ledger, source) && ledger[source]?.itemId === item.id;
+  }).map(item => item.id));
+  let quests: readonly QuestDef[] | undefined;
+  const findQuest = (id: string) => (quests ??= loadQuests()).find(row => row.id === id);
+  const assemblies = definitions.filter((item): item is AssembledQuestItemDef => item.kind === 'assembled' &&
+    (Object.hasOwn(ledger, questItemSource(item)) || item.ingredients.some(id => ownedIds.has(id))));
+  return { definitions, assemblies: assemblies.map(item => ({ item,
+    status: assemblyStatus(item, definitions, ledger, findQuest) })) };
 }
 
 /**

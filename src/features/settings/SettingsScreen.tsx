@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Panel, ScreenShell } from '@/ui';
+import { SaveImportDialog } from './SaveImportDialog';
 import {
   useMetaStore,
   usePlayerStore,
@@ -43,7 +44,6 @@ export function SettingsScreen() {
 
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
-  const [importText, setImportText] = useState('');
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
@@ -98,17 +98,14 @@ export function SettingsScreen() {
     }
   };
 
-  const handleImport = async () => {
+  const handleImport = async (json: string) => {
     if (busy) return;
     setBusy(true);
     try {
-      await importIntoStores(importText);
+      await importIntoStores(json);
       await i18n.changeLanguage(useMetaStore.getState().settings.locale);
       setImportOpen(false);
-      setImportText('');
       flash(t('importSuccess'));
-    } catch {
-      flash(t('importFailed'));
     } finally {
       setBusy(false);
     }
@@ -238,6 +235,19 @@ export function SettingsScreen() {
           </div>
         </Panel>
 
+        <Panel>
+          <details data-testid="offline-bonus-help">
+            <summary className="min-h-[44px] cursor-pointer py-3 rounded text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
+              {t('offlineBonusHelp.title')}
+            </summary>
+            <div className="space-y-2 text-sm text-d2-white/80">
+              <p>{t('offlineBonusHelp.noIncome')}</p>
+              <p>{t('offlineBonusHelp.accrual')}</p>
+              <p>{t('offlineBonusHelp.decay')}</p>
+            </div>
+          </details>
+        </Panel>
+
         <Panel className="text-center text-xs text-d2-white/60">
           <details className="text-sm text-d2-white/80">
             <summary className="min-h-[44px] cursor-pointer py-3 rounded focus-visible:ring-2 focus-visible:ring-d2-gold">
@@ -290,51 +300,13 @@ export function SettingsScreen() {
         </div>
       </Modal>
 
-      <Modal
-        isOpen={importOpen}
-        onClose={() => {
-          setImportOpen(false);
-        }}
-        title={t('importSave')}
-      >
-        <textarea
-          value={importText}
-          onChange={(e) => {
-            setImportText(e.target.value);
-          }}
-          rows={8}
-          placeholder={t('importPlaceholder')}
-          aria-label={t('importSave')}
-          className="w-full bg-d2-bg border border-d2-border rounded p-2 text-xs font-mono
-                     focus:outline-none focus:border-d2-gold"
-        />
-        <div className="flex gap-2 mt-3">
-          <Button
-            variant="secondary"
-            className="flex-1 min-h-[44px]"
-            onClick={() => {
-              setImportOpen(false);
-            }}
-          >
-            {t('common:cancel')}
-          </Button>
-          <Button
-            variant="primary"
-            className="flex-1 min-h-[44px]"
-            disabled={busy || !importText.trim()}
-            onClick={() => {
-              void handleImport();
-            }}
-          >
-            {t('importSave')}
-          </Button>
-        </div>
-      </Modal>
+      <SaveImportDialog isOpen={importOpen} busy={busy}
+        onClose={() => { setImportOpen(false); }} onImport={handleImport} />
 
-      {toast && (
+      {toast && !importOpen && (
         <div
           role="status"
-          className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50
+          className="pointer-events-none fixed bottom-20 left-1/2 -translate-x-1/2 z-50
                      bg-d2-panel border border-d2-gold text-d2-gold
                      px-4 py-2 rounded shadow-lg text-sm"
         >

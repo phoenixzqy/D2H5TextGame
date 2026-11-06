@@ -149,12 +149,16 @@ function observeRecovery(): number {
       if (healing.some(event => event.amount > 0) && !competing) {
         expect(batch.some(event => event.kind === 'action' && event.actor === beforeHero.id &&
           event.skillId === null)).toBe(true);
-        const consumedStacks = required(beforeHero.statuses.find(status => status.id === CHARGE)?.stacks);
+        const charge = required(beforeHero.statuses.find(status => status.id === CHARGE));
+        const consumedStacks = charge.stacks;
         expect([1, 2, 3]).toContain(consumedStacks);
         expect(hero().statuses.some(status => status.id === CHARGE)).toBe(false);
         const prefix = events.slice(0, before.eventCursor);
+        // A later builder attempt can miss while an earlier paid charge survives.
+        // Follow the charge's actual application time to its successful builder.
         const builder = required(prefix.filter(event => event.kind === 'action')
-          .filter(event => event.actor === beforeHero.id && event.skillId === 'assassin.cobra_strike').at(-1));
+          .filter(event => event.actor === beforeHero.id && event.skillId === 'assassin.cobra_strike' &&
+            event.simClockMs === charge.appliedAtMs).at(-1));
         const paid = required(prefix.filter(event => event.kind === 'mana')
           .filter(event => event.target === beforeHero.id && event.reason === 'cast' &&
             event.simClockMs === builder.simClockMs).at(-1));
@@ -168,9 +172,12 @@ function observeRecovery(): number {
         const beforeGain = required(prefix.slice(0, prefix.indexOf(gain))
           .filter(event => event.kind === 'status-state')
           .filter(event => event.target === beforeHero.id).at(-1));
-        expect(beforeGain.statuses.find(status => status.id === CHARGE)?.stacks ?? 0).toBe(consumedStacks - 1);
+        expect(consumedStacks).toBe(Math.min(3, (beforeGain.statuses.find(status => status.id === CHARGE)?.stacks ?? 0) + 1));
         expect(prefix.indexOf(builder)).toBeLessThan(prefix.indexOf(paid));
         expect(prefix.indexOf(paid)).toBeLessThan(prefix.indexOf(gain));
+        expect(prefix.slice(prefix.indexOf(paid) + 1, prefix.indexOf(gain)).some(event =>
+          event.kind === 'damage' && event.source === beforeHero.id && !event.dodged && event.amount > 0 &&
+          installed.enemyTeam.some(enemy => enemy.id === event.target))).toBe(true);
         const damage = batch.filter(event => event.kind === 'damage' || event.kind === 'dot')
           .filter(event => event.target === beforeHero.id && (event.kind !== 'damage' || !event.dodged))
           .reduce((sum, event) => sum + event.amount, 0);

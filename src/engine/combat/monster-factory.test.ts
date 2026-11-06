@@ -22,6 +22,25 @@ const FALLEN: MonsterDef = {
 };
 
 describe('monster-factory', () => {
+  it('copies authored status immunity without name/ID inference or extra RNG', () => {
+    const immunities = ['freeze'] as const;
+    const random = createRng(13), control = createRng(13);
+    const def = { ...FALLEN, statusImmunities: immunities };
+    const before = structuredClone(def);
+    const unit = buildMonsterUnit({ def, level: 32, tier: 'chapter-boss', rng: random });
+    const plain = buildMonsterUnit({ def: FALLEN, level: 32, tier: 'chapter-boss', rng: control });
+    expect(unit.statusImmunities).toEqual(['freeze']);
+    expect(unit.statusImmunities).not.toBe(immunities);
+    expect(Object.isFrozen(unit.statusImmunities)).toBe(true);
+    expect(def).toEqual(before);
+    const { statusImmunities: copied, ...unchanged } = unit;
+    expect(copied).toEqual(['freeze']);
+    expect(unchanged).toEqual(plain);
+    expect(random.next()).toBe(control.next());
+    expect(buildMonsterUnit({ def: { ...FALLEN, id: 'monsters/act2.duriel', name: 'Duriel' },
+      level: 32, tier: 'chapter-boss', rng: createRng(13) }).statusImmunities).toBeUndefined();
+  });
+
   it('captures the actual catalog archetype independently of display name and instance ID', () => {
     const unit = buildMonsterUnit({ def: { ...FALLEN, name: 'Radament' }, level: 5,
       tier: 'boss', rng: createRng(7), id: 'enemy-monsters/act2.radament', index: 0 });

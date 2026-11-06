@@ -1,6 +1,8 @@
+import { talkToAnya } from '@/features/quests/anyaQuestActions';
 import { CAIN_QUEST } from '@/engine/map/cain-quest';
 import { COUNTESS } from '@/engine/map/countess-admission';
 import { talkToCain } from '@/features/quests/cainQuestActions';
+import { talkToFara } from '@/features/quests/faraQuestActions';
 import type { SaveCurrent } from '@/engine/types/save';
 import { emptyEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
@@ -25,6 +27,8 @@ import { resolveSubArea } from './subAreaResolver';
 import type { WaveSource } from '@/engine/combat/sub-area-run';
 import type { QuestActionReceipts } from '@/engine/types/save';
 import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
+import { ORMUS } from '@/engine/map/ormus-quest';
+import { findRegionalBounty, type RegionalBountyLedger } from '@/engine/map/regional-bounties';
 
 type QuestProgress = InteractionProgress;
 
@@ -43,6 +47,7 @@ interface MapState extends Pick<SaveCurrent['map'], 'questTitles' | 'questDiffic
   clearedSubAreas: string[];
   questProgress: Record<string, QuestProgress>;
   questReceipts: QuestActionReceipts;
+  bounties: RegionalBountyLedger;
   
   // Actions
   discoverArea: (areaId: string) => void;
@@ -89,6 +94,7 @@ const initialState = {
   clearedSubAreas: [] as string[],
   questProgress: {} as Record<string, QuestProgress>,
   questReceipts: {} as QuestActionReceipts,
+  bounties: {} as RegionalBountyLedger,
   questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal' as const,
   nightmareClearedSubAreas: [] as string[], hellClearedSubAreas: [] as string[],
   challengeOrdinals: { normal: 0, nightmare: 0, hell: 0 }
@@ -109,7 +115,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     currentSubAreaId: subAreaId
   }); },
   
-  updateQuestProgress: (questId, progress) => { set((state) => ({
+  updateQuestProgress: (questId, progress) => { if (findRegionalBounty(questId)) return; set((state) => ({
     questProgress: {
       ...state.questProgress,
       [questId]: {
@@ -123,7 +129,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     }
   })); },
   
-  completeQuest: (questId) => { set((state) => {
+  completeQuest: (questId) => { if (findRegionalBounty(questId)) return; set((state) => {
     const existing = state.questProgress[questId] ?? {
       id: questId,
       status: 'available' as const,
@@ -140,7 +146,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     };
   }); },
 
-  markQuestRewardClaimed: (questId) => { set((state) => {
+  markQuestRewardClaimed: (questId) => { if (findRegionalBounty(questId)) return; set((state) => {
     const existing = state.questProgress[questId];
     if (!existing) return state;
     return {
@@ -157,6 +163,7 @@ export const useMapStore = create<MapState>((set, get) => ({
       : [...state.clearedSubAreas, subAreaId];
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
+      if (quest.id === ORMUS.quest || findRegionalBounty(quest.id)) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
       const matching = quest.objectives.filter((objective) =>
@@ -186,6 +193,8 @@ export const useMapStore = create<MapState>((set, get) => ({
   isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),
 
   recordNpcTalk: (npcId) => {
+    if (npcId === 'npc/anya') { talkToAnya(); return; }
+    if (npcId === 'npc/fara') { talkToFara(); return; }
     if (npcId === 'npc/cain' && get().currentAct === 1) { talkToCain(); return; }
     set((state) => {
     if (npcId === 'npc/anya' && (state.currentAct !== 5 || !Object.hasOwn(state.questReceipts, THAW_PROOF))) return state;
@@ -196,6 +205,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     if (!loadTownNpcs(state.currentAct).some((npc) => npc.id === npcId)) return state;
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
+      if (quest.id === ORMUS.quest) continue;
       if (quest.actId !== `acts/act${String(state.currentAct)}`) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
@@ -223,6 +233,7 @@ export const useMapStore = create<MapState>((set, get) => ({
   recordBossKill: (event) => { set((state) => {
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
+      if (quest.id === ORMUS.quest) continue;
       // Guardian needs the accepted original post-Orb settlement, beyond event metadata.
       if (quest.id === GUARDIAN_QUEST_ID || (ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id))) continue;
       if (quest.actId !== event.actId) continue;
@@ -254,7 +265,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     const current = resolveSubArea(state.currentAct, state.currentSubAreaId);
     if (event.actId !== `acts/act${String(state.currentAct)}` || current?.actId !== event.actId ||
       current.id !== event.areaId) return state;
-    const questProgress = applyObjectInteraction(loadQuests().filter(quest => quest.id !== PRISON_QUEST && quest.id !== CAIN_QUEST), subAreas, state.questProgress, event);
+    const questProgress = applyObjectInteraction(loadQuests().filter(quest => quest.id !== PRISON_QUEST && quest.id !== CAIN_QUEST && quest.id !== ORMUS.quest), subAreas, state.questProgress, event);
     return questProgress === state.questProgress ? state : { questProgress };
   }); },
 
@@ -262,6 +273,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     const targets = new Set(event.archetypeIds);
     for (const quest of loadQuests()) {
+      if (quest.id === ORMUS.quest) continue;
       if (quest.id === COUNTESS.quest || ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];

@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import chill from '../../data/combat/chill.json';
-import schema from '../../data/schema/chill.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 
 /** Authored multiplier for the attack-speed stat of every actively chilled unit. */
 export interface ChillDefinition {
@@ -8,7 +8,7 @@ export interface ChillDefinition {
   readonly attackSpeedMultiplier: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<ChillDefinition>(schema);
+const validate = compileAuthoredValidator<ChillDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'chill');
 
 /** Validate and copy configuration without retaining or freezing caller data. */
 export function resolveChillDefinition(source: unknown): ChillDefinition {

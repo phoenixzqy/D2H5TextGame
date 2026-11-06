@@ -12,13 +12,14 @@
  * `tDataKey()` rewrites the leading `<ns>.` to i18next's namespace
  * separator `<ns>:` so the lookup hits the right resource bundle.
  *
- * For item displays, `tItemName()` resolves an item to its localized base
- * name from the `items` namespace, mirroring `<ItemTooltip>`'s logic so
+ * For item displays, `tItemName()` resolves an item to its localized
+ * name from the `items` namespace so
  * inventory grids, equipment lists, drop rolls, and merc-equipment
  * dropdowns all show the same human-readable name.
  */
 import type { TFunction } from 'i18next';
-import { loadSetPieces, loadUniques } from '@/data/loaders/loot';
+import { loadSetPieces, loadUniques, resolveItemUnique } from '@/data/loaders/loot';
+import { socketRunewords } from '@/data/loaders/socket-effects';
 import type { Item } from '@/engine/types/items';
 
 /** Namespaces declared in {@link src/i18n/index.ts}. Keep in sync. */
@@ -72,14 +73,17 @@ export function tItemBaseName(t: TFunction, item: Pick<Item, 'baseId'>): string 
   return t(`items:base.${itemBaseSlug(item.baseId)}`);
 }
 
+/** Resolve the authored item identity, falling back to its generated or base name. */
 export function tItemName(
   t: TFunction,
-  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId' | 'generatedName'>>
+  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId' | 'runewordId' | 'generatedName'>>
 ): string {
-  const unique = item.uniqueId ? loadUniques().find((entry) => entry.id === item.uniqueId) : undefined;
+  const unique = resolveItemUnique(item, loadUniques());
   if (unique) return tDataKey(t, unique.name);
   const setPiece = item.setPieceId ? loadSetPieces().find((entry) => entry.id === item.setPieceId) : undefined;
   if (setPiece) return tDataKey(t, setPiece.name);
+  const runeword = item.runewordId ? socketRunewords.find((entry) => entry.id === item.runewordId) : undefined;
+  if (runeword) return tDataKey(t, runeword.name);
   const baseName = tItemBaseName(t, item);
   const prefix = item.generatedName?.prefix?.trim();
   const suffix = item.generatedName?.suffix?.trim();

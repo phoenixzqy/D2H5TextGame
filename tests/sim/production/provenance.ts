@@ -37,11 +37,15 @@ const excludedDirectories = [
   '__pycache__'
 ] as const;
 const directoryRoots = ['src', 'tests/sim/production', 'scripts'] as const;
+// Vite appends this suffix while importing an ESM config, then unlinks the bundle.
+const generatedRootConfigModule =
+  /^(?:vite|vitest)(?:[.-].+)?\.[cm]?[jt]s\.timestamp-\d+-[0-9a-f]*\.mjs$/u;
 export const collectionPolicy = {
-  version: 'production-source-v1',
+  version: 'production-source-v2',
   directoryRoots,
   requiredRootFiles: ['package.json', 'package-lock.json'],
   rootConfigPatterns: ['vite/vitest *.[cm]?[jt]s', 'tsconfig*.json'],
+  excludedRootConfigPatterns: [generatedRootConfigModule.source],
   excludedDirectories,
   untrackedFiles: 'included',
   symlinks: 'rejected'
@@ -92,7 +96,10 @@ export function collectSourceState(repoRoot: string): SourceState {
   for (const relative of directoryRoots) visit(relative);
   const rootFiles = new Set<string>(collectionPolicy.requiredRootFiles);
   for (const name of readdirSync(root)) {
-    if (/^(?:vite|vitest)(?:[.-].+)?\.[cm]?[jt]s$/u.test(name) || /^tsconfig.*\.json$/u.test(name))
+    if (
+      !generatedRootConfigModule.test(name) &&
+      (/^(?:vite|vitest)(?:[.-].+)?\.[cm]?[jt]s$/u.test(name) || /^tsconfig.*\.json$/u.test(name))
+    )
       rootFiles.add(name);
   }
   for (const relative of [...rootFiles].sort()) visit(relative);

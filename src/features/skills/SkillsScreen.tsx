@@ -16,6 +16,7 @@ import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { IronGolemPanel } from './IronGolemPanel';
 import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
+import { useRecoverableImage } from '@/ui/useRecoverableImage';
 import { usePlayerStore } from '@/stores';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import {
@@ -261,7 +262,7 @@ export function SkillsScreen() {
     ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0,
       player ? composeSkeletonMastery(player) : undefined, undefined,
       player ? composeGolemMastery(player) : undefined,
-      player ? composeSummonPassives(player) : undefined)
+      player ? composeSummonPassives(player) : undefined, playerLevel)
     : null;
   const activeLocked = activeSkill ? isSkillLocked(activeSkill, playerLevel, allocatedSkills) : false;
   const activeCanAllocate = Boolean(
@@ -387,7 +388,7 @@ export function SkillsScreen() {
           const layout = buildTreeLayout(treeSkills);
           return (
             <Panel key={treeName} title={treeTitle} className="overflow-x-auto overflow-y-hidden" data-testid={`skills-tree-column-${treeSlug}`}>
-              <p className="mb-3 text-xs text-d2-white/70">{t('details.treeSummary')}</p>
+              <p className="mb-3 text-sm text-d2-white/70">{t('details.treeSummary')}</p>
               <SkillTreeBoard
                 skills={treeSkills}
                 layout={layout}
@@ -430,7 +431,7 @@ export function SkillsScreen() {
 
   const activePanel = (
     <Panel title={t('activeSkills')} data-testid="skills-active-panel">
-      <p className="text-xs text-d2-white/70 mb-2">{t('dragToReorder')}</p>
+      <p className="text-sm text-d2-white/70 mb-2">{t('dragToReorder')}</p>
       {replayRefused ? <p role="alert" className="mb-2 text-d2-red">{t('common:error')}</p> : null}
       <ol className="space-y-2">
         {combo.map((id, idx) => (
@@ -442,7 +443,7 @@ export function SkillsScreen() {
             <select
               value={id}
               onChange={(e) => { setComboAt(idx, e.target.value); }}
-              className="flex-1 min-w-0 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-sm
+              className="flex-1 min-w-0 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-base
                          focus:outline-none focus:border-d2-gold"
               aria-label={t('slotN', { n: idx + 1 })}
             >
@@ -485,7 +486,7 @@ export function SkillsScreen() {
       <div className="max-w-7xl mx-auto space-y-4">
         <Panel className="flex items-center justify-between">
           <span className="text-d2-gold">{t('pointsRemaining', { count: skillPoints })}</span>
-          <span className="text-xs text-d2-white/70">
+          <span className="text-sm text-d2-white/70">
             {t('common:level')} {playerLevel}
           </span>
         </Panel>
@@ -698,15 +699,15 @@ function SkillTreeBoard({
             onFocus={() => { onPreview(skill.id); }}
             onBlur={() => { onPreview(null); }}
             className={`absolute flex h-20 w-20 items-center justify-center rounded border-2
-                        bg-black/70 text-[10px] transition focus:outline-none focus-visible:ring-2
+                        bg-black/70 text-sm transition focus:outline-none focus-visible:ring-2
                         focus-visible:ring-d2-gold motion-safe:hover:-translate-y-0.5
                         ${nodeStateClass(level, locked, selected || previewed)}`}
             style={{ left: node.x - SKILL_NODE_RADIUS, top: node.y - SKILL_NODE_RADIUS }}
           >
-            <SkillIcon skill={skill} label={name} />
+            <SkillIcon key={skill.icon} skill={skill} label={name} />
             <span className="sr-only">{name}</span>
-            {locked ? <span className="absolute right-1 top-1 text-[11px]" aria-hidden="true">🔒</span> : null}
-            <span className="absolute bottom-1 rounded bg-black/70 px-1 leading-none text-d2-white/90">
+            {locked ? <span className="absolute right-1 top-1 text-sm" aria-hidden="true">🔒</span> : null}
+            <span className="absolute bottom-1 rounded bg-black px-1 leading-none text-d2-white">
               {level}/{skill.maxLevel}
             </span>
           </button>
@@ -764,7 +765,7 @@ function SkillDetailPanel({
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="font-serif text-2xl text-d2-gold">{name}</h2>
-            <p className="text-xs text-d2-white/70">
+            <p className="text-sm text-d2-white/70">
               {model.allocatedLevel > 0
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
                 : t('details.unlearned', { max: model.maxLevel })}
@@ -887,7 +888,7 @@ function StatSection({
     <section className="rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="mb-2 font-serif text-sm text-d2-gold">{title}</h3>
       {stats ? (
-        <dl className="space-y-1 text-xs">
+        <dl className="space-y-1 text-sm">
           {stats.damage.map((row) => (
             <StatLine
               key={`damage-${row.type}`}
@@ -1122,6 +1123,8 @@ function StatSection({
             value={t('details.seconds', { seconds: stats.concentrate.durationSeconds })} /> : null}
           {stats.convertedAttackPercent !== undefined ? <StatLine label={t('details.convertedAttack')}
             value={t('details.percentValue', { value: stats.convertedAttackPercent })} /> : null}
+          {stats.additionalAttackPercent !== undefined ? <StatLine label={t('details.additionalAttack')}
+            value={t('details.percentValue', { value: stats.additionalAttackPercent })} /> : null}
           {stats.cloak ? <>
             <StatLine label={t('details.cloakDuration')} value={t('details.seconds', { seconds: stats.cloak.durationSeconds })} />
             <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.cloak.blindHitPenaltyPoints })} />
@@ -1227,7 +1230,7 @@ function StatSection({
           ) : null}
         </dl>
       ) : (
-        <p className="text-xs text-d2-white/70">{emptyText}</p>
+        <p className="text-sm text-d2-white/70">{emptyText}</p>
       )}
     </section>
   );
@@ -1271,7 +1274,7 @@ function RequirementSection({
   return (
     <section className="rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="mb-2 font-serif text-sm text-d2-gold">{t('details.requirements')}</h3>
-      <dl className="space-y-1 text-xs">
+      <dl className="space-y-1 text-sm">
         <StatLine
           label={t('details.requiredLevel')}
           value={t('details.levelValue', { level: requiredLevel })}
@@ -1300,8 +1303,8 @@ function RequirementSection({
 }
 
 function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly label: string }) {
-  const [failed, setFailed] = useState(false);
-  const iconSrc = failed ? null : resolveSkillIconSrc(skill.icon, skill.id);
+  const { errored, onError } = useRecoverableImage();
+  const iconSrc = resolveSkillIconSrc(skill.icon, skill.id);
   const fallback = (
     <span
       className={`flex h-[72px] w-[72px] items-center justify-center rounded bg-gradient-to-br ${skillIconClass(skill)} font-serif text-sm font-bold shadow-inner`}
@@ -1312,7 +1315,7 @@ function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly l
     </span>
   );
 
-  if (!iconSrc) return fallback;
+  if (!iconSrc || errored) return fallback;
 
   return (
     <span className="relative flex h-[72px] w-[72px] items-center justify-center overflow-hidden rounded bg-black shadow-inner">
@@ -1323,7 +1326,7 @@ function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly l
         draggable={false}
         className="h-full w-full object-cover"
         data-testid={`skill-icon-img-${skill.id}`}
-        onError={() => { setFailed(true); }}
+        onError={onError}
       />
       <span className="sr-only">{label}</span>
     </span>
@@ -2036,7 +2039,8 @@ function dynamicDescription(
       (skill.id === 'skills-amazon-strafe' && stats.strikesPerTarget !== undefined))) {
     return t('amazon.' + skill.id.slice('skills-amazon-'.length) + '.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
-      maxTargets: stats.maxTargets, strikes: stats.strikesPerTarget
+      maxTargets: stats.maxTargets, strikes: stats.strikesPerTarget,
+      attack: stats.additionalAttackPercent
     });
   }
   if (stats && firstDamage && ['skills-amazon-magic-arrow', 'skills-amazon-lightning-bolt',

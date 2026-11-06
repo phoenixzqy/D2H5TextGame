@@ -9,7 +9,7 @@ const expected = [
   { slug: 'ice-bolt', min: 30, max: 45, growth: 4, cost: 10, cooldown: 1, level: 1, target: 'single-enemy' },
   { slug: 'frost-nova', min: 25, max: 35, growth: 3, cost: 20, cooldown: 3, level: 6, target: 'all-enemies' },
   { slug: 'frozen-orb', min: 60, max: 90, growth: 6, cost: 30, cooldown: 2, level: 30, target: 'area-enemies' },
-  { slug: 'blizzard', min: 85, max: 125, growth: 8, cost: 35, cooldown: 4, level: 24, target: 'all-enemies' }
+  { slug: 'blizzard', min: 85, max: 125, growth: 80, cost: 35, cooldown: 4, level: 24, target: 'all-enemies' }
 ] as const;
 function row(slug: string) {
   const value = PLAYABLE_CLASS_SKILL_DATA.sorceress.find(s => s.id === 'skills-sorceress-' + slug);

@@ -22,7 +22,8 @@
     "ring-left": "Ring (L)",
     "ring-right": "Ring (R)",
     "weapon": "Weapon",
-    "offhand": "Offhand"
+    "offhand": "Offhand",
+    "charm": "Charm"
   },
   "tooltip": {
     "subtitle": "{{type}} — {{slot}}",
@@ -123,7 +124,23 @@
     "weapon-staff": "Staff",
     "weapon-scepter": "Scepter",
     "weapon-mace": "Mace",
-    "weapon-axe": "Axe"
+    "weapon-axe": "Axe",
+    "small-charm": "Small Charm",
+    "weapon-composite-bow": "Composite Bow",
+    "weapon-heavy-crossbow": "Heavy Crossbow",
+    "weapon-great-bow": "Great Bow",
+    "weapon-siege-crossbow": "Siege Crossbow",
+    "weapon-ward-bow": "Ward Bow",
+    "weapon-demon-crossbow": "Demon Crossbow",
+    "weapon-balanced-knife": "Balanced Knife",
+    "weapon-war-dart": "War Dart",
+    "weapon-battle-dart": "Battle Dart",
+    "weapon-winged-knife": "Winged Knife",
+    "weapon-winged-axe": "Winged Axe",
+    "weapon-trident": "Trident",
+    "weapon-military-fork": "Military Fork",
+    "weapon-war-fork": "War Fork",
+    "weapon-mancatcher": "Mancatcher"
   },
   "unique": {
     "shako": {
@@ -1449,6 +1466,9 @@
     "the-cranium-basher-greater": {
       "name": "The Cranium Basher (Greater)",
       "flavor": "A maul of unmatched bone-shattering force."
+    },
+    "ormus-charm": {
+      "name": "Ormus’s Charm"
     }
   },
   "set": {

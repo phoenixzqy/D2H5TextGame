@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act2/fara",
+  "npcId": "fara",
+  "greetings": [
+    {
+      "text": "After completing Radament's Lair, speak with me here in Lut Gholein. Claim 1 gem-shard separately in Quests. Gem fusion still requires your own 3 matching gems of the same type and quality.",
+      "textKey": "town:dialogue.greetings.act2.fara"
+    }
+  ],
+  "services": []
+}

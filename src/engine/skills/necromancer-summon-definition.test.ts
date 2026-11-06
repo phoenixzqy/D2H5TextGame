@@ -29,7 +29,8 @@ const ownerStats: DerivedStats = { life: 100, lifeMax: 100, mana: 50, manaMax: 5
   attack: 10, defense: 0, magicResist: 0, attackSpeed: 10, critChance: 0, critDamage: 1.5,
   physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0,
   resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0 } };
-const owner: CombatUnit = { id: 'necro-body-data', name: 'Necromancer', side: 'player', level: 30,
+// Base/rank compatibility is measured at owner level1; owner progression has its own regression.
+const owner: CombatUnit = { id: 'necro-body-data', name: 'Necromancer', side: 'player', level: 1,
   kind: 'hero', tier: 'trash', stats: ownerStats, life: 100, mana: 50, statuses: [],
   cooldowns: {}, skillOrder: [], activeBuffIds: [], enraged: false, summonedAdds: false };
 const validate = createSkillValidator<SkillDef>();
@@ -51,7 +52,7 @@ describe('complete pre-migration Necromancer body compatibility', () => {
       expect(getSummonStats(id)).toEqual(expected);
       const body = buildSummon(owner, id);
       expect(body?.stats).toEqual(expected);
-      expect(body).toMatchObject({ life, mana: 0, side: 'player', level: 30,
+      expect(body).toMatchObject({ life, mana: 0, side: 'player', level: 1,
         summonOwnerId: owner.id, summonTemplateId: id, summon: true, kind: 'summon' });
     });
   it.each(ranked)('%s preserves authored rank 1/6/20 growth in bodies and UI previews', (id, values) => {

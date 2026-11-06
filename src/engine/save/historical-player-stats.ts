@@ -10,6 +10,6 @@ export function deriveHistoricalV16PlayerStats(
   equipped: Readonly<Record<string, HistoricalItem | null>>
 ): DerivedStats {
   const compose = prepareEquipmentStatComposition(save.player, save.player.level,
-    save.map.questProgress, save.inventory.questItems, save.map.questReceipts);
+    save.map.questProgress, save.inventory.questItems, save.map.questReceipts, {});
   return compose(aggregateNonSocketEquipmentMods(equipped));
 }

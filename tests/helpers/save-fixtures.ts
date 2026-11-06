@@ -1,17 +1,64 @@
 import type { Item } from '../../src/engine/types/items';
 import type { HistoricalItem } from '../../src/engine/save/historical-items';
-import type { SaveCurrent, SaveV23, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
+import type { SaveCurrent, SaveV32, SaveV23, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
 import { emptyEndgameState } from '../../src/engine/endgame/state';
 import type { PlayerAuraId } from '../../src/engine/types/auras';
 import type { HistoricalQuestServiceId, HistoricalQuestServiceLedger, QuestServiceEntry } from '../../src/engine/services/quest-services';
 
+/** Remove new fields only after proving this constructed fixture contains no earned recruitment progress. */
+export function withoutV33Fields<T extends object>(save: T): T {
+  const copy = { ...save };
+  for (const [containerKey, fieldKey] of [['meta', 'recruitmentState'], ['mercs', 'recruitmentProgress']] as const) {
+    const container: unknown = Object.getOwnPropertyDescriptor(save, containerKey)?.value;
+    if (container === null || typeof container !== 'object' || !Object.hasOwn(container, fieldKey)) continue;
+    const value: unknown = Object.getOwnPropertyDescriptor(container, fieldKey)?.value;
+    if (containerKey === 'meta') {
+      if (JSON.stringify(value) !== JSON.stringify({ srPityCounter: 0, totalPulls: 0, history: [] }))
+        throw new Error('Recruitment history has no historical representation');
+    } else if (value === null || typeof value !== 'object' || Reflect.ownKeys(value).length !== 0) {
+      throw new Error('Recruitment progress has no historical representation');
+    }
+    const old = { ...container }; Reflect.deleteProperty(old, fieldKey); Reflect.set(copy, containerKey, old);
+  }
+  return copy;
+}
+
+/** Declarative v32→33 expectation; legacy SSR and wallets remain in their original owners. */
+export function withV33Defaults<T extends { version?: number; meta?: object; mercs?: object }>(save: T) {
+  const { version: _version, meta: _meta, mercs: _mercs, ...unchanged } = save;
+  // Preserve the concrete caller's optional slice types through generic spreading.
+  const meta = save.meta as T['meta'];
+  const mercs = save.mercs as T['mercs'];
+  return { ...unchanged, version: 33 as const,
+    meta: { ...meta, recruitmentState: { srPityCounter: 0, totalPulls: 0, history: [] } },
+    mercs: { ...mercs, recruitmentProgress: {} } };
+}
+
+/** Construct a predecessor without silently discarding an earned bounty cycle. */
+export function withoutV32Fields<T extends { map: object }>(save: T): Omit<T, 'map'> & { map: Omit<T['map'], 'bounties'> } {
+  const predecessor = withoutV33Fields(save);
+  const { bounties, ...map } = predecessor.map as T['map'] & { bounties?: unknown };
+  if (bounties !== undefined && (bounties === null || typeof bounties !== 'object' || Reflect.ownKeys(bounties).length !== 0)) {
+    throw new Error('Bounty activity has no historical representation');
+  }
+  const { map: _map, ...rest } = predecessor;
+  return { ...rest, map };
+}
+
+/** v31→32 adds one empty structural ledger, without reconstructing quest activity. */
+export function withV32Defaults<T extends { map: object; version?: number }>(save: T) {
+  const map: T['map'] = save.map;
+  const { version: _version, map: _map, ...unchanged } = save;
+  return { ...unchanged, version: 32 as const, map: { ...map, bounties: {} } };
+}
+
 /** Construct a predecessor map only when no native Hell selection or history is lost. */
 export function withoutV24Fields<T extends { map: SaveCurrent['map'] | SaveV23['map'] }>(save: T):
   Omit<T, 'map'> & { map: SaveV23['map'] } {
-  const { hellClearedSubAreas, selectedDifficulty, challengeOrdinals, ...map } = save.map as SaveCurrent['map'];
+  const { hellClearedSubAreas, selectedDifficulty, challengeOrdinals, ...map } = withoutV32Fields(save).map as Omit<SaveCurrent['map'], 'bounties'>;
   if (selectedDifficulty === 'hell' || (hellClearedSubAreas?.length ?? 0) !== 0 ||
     (challengeOrdinals.hell ?? 0) !== 0) throw new Error('Hell state has no historical representation');
-  const { map: _map, ...rest } = save;
+  const { map: _map, ...rest } = withoutV33Fields(save);
   return { ...rest, map: { ...map, selectedDifficulty,
     challengeOrdinals: { normal: challengeOrdinals.normal, nightmare: challengeOrdinals.nightmare } } };
 }
@@ -23,7 +70,7 @@ export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<
     player: Omit<T['player'], 'respecsRemaining' | 'selectedAuraId'> & Pick<HistoricalPlayer, 'selectedAuraId'>;
     map: CampaignMapSaveData;
   } {
-  const { endgame: _endgame, player: _player, map: _map, inventory: _inventory, ...historical } = save;
+  const { endgame: _endgame, player: _player, map: _map, inventory: _inventory, ...historical } = withoutV33Fields(save);
   const currentInventory: T['inventory'] = save.inventory;
   const { questServices, ...inventory } = currentInventory;
   const historicalServices: Record<string, QuestServiceEntry<HistoricalQuestServiceId>> = {};
@@ -46,7 +93,7 @@ export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<
 }
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */
-export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory' | 'map' | 'version'> & {
+export function withoutV19Fields<T extends Omit<SaveV32, 'inventory' | 'map' | 'version'> & {
   version: number; map: SaveCurrent['map'] | SaveV23['map'];
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
@@ -67,14 +114,14 @@ export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory' | 'map'
     backpack: inventory.backpack.map(item), stash: inventory.stash.map(item),
     equipped: equipment(inventory.equipped) },
   player: { ...predecessor.player, equipment: save.player.equipment.map(item) },
-  mercs: { ...save.mercs,
-    ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc, equipment: merc.equipment.map(item) })),
+  mercs: { ...predecessor.mercs,
+    ownedMercs: predecessor.mercs.ownedMercs.map(merc => ({ ...merc, equipment: merc.equipment.map(item) })),
     mercEquipment: Object.fromEntries(Object.entries(save.mercs.mercEquipment)
       .map(([id, slots]) => [id, equipment(slots)])) } };
 }
 
 /** Construct genuine predecessor fixtures before adding deliberate corruption. */
-export function withoutV17Fields<T extends Omit<SaveCurrent, 'inventory' | 'map' | 'version'> & {
+export function withoutV17Fields<T extends Omit<SaveV32, 'inventory' | 'map' | 'version'> & {
   version: number; map: SaveCurrent['map'] | SaveV23['map'];
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
@@ -152,7 +199,12 @@ export function withV24Defaults<T extends { version: number; map: { challengeOrd
     hellClearedSubAreas: [], challengeOrdinals: { ...map.challengeOrdinals, hell: 0 } } };
 }
 
+/** Current empty-slot fixture upgrade; literal24 defaults remain separately available. */
+export function withCurrentReplayDefaults<T extends { version: number; map: { challengeOrdinals: CampaignMapSaveData['challengeOrdinals'] } }>(save: T) {
+  return withV33Defaults(withV32Defaults(withV24Defaults(save)));
+}
+
 /** Older fixture expectations explicitly compose every added empty ownership domain. */
 export function withCurrentDefaults<T extends { inventory: object; map: object; player: object }>(save: T) {
-  return withV24Defaults(withV23Defaults(withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save))))));
+  return withCurrentReplayDefaults(withV23Defaults(withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save))))));
 }

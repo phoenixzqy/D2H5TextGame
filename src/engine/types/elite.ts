@@ -3,11 +3,22 @@
  * @module engine/types/elite
  */
 
+import type { Resistances } from './attributes';
+import type { MonsterDef } from './monsters';
+
 /** Skill-bearing elite affix selected at wave-build time. */
 export interface EliteAffixDef {
   readonly id: string;
   readonly nameKey: string;
   readonly skillId: string;
+  /** Multiplies the archetype attack speed once; absent preserves base speed. */
+  readonly attackSpeedMultiplier?: number;
+  /** Added to base and tier resistance before clamping; omitted types add zero. */
+  readonly resistanceBonuses?: Partial<Resistances>;
+  /** Receiving-hit lightning bolt tuning; absent disables the reaction. */
+  readonly lightningRetaliation?: import('../combat/lightning-retaliation').LightningRetaliation;
+  /** Passive cold pulses for the carrier; absent preserves its archetype aura. */
+  readonly frostAura?: MonsterDef['frostAura'];
 }
 
 /** Multipliers applied to level-scaled monster stats. */

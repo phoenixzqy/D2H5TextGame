@@ -1,0 +1,7 @@
+{
+  "id": "progression/merc-xp-v1",
+  "basePerLevel": 60,
+  "earlyGrowthBase": 1.3,
+  "growthStartLevel": 18,
+  "growthExponent": 2.5
+}

@@ -111,19 +111,20 @@ it('uses a real first kill before the first native Poison Explosion and pays ord
   expect(events.slice(castIndex + 1).find(e => e.kind === 'message'))
     .toMatchObject({ messageKey: 'combat:corpses.consumedPoison', params: { count: 0 } });
   expect(events.some(e => e.kind === 'status' && e.statusId === 'poison' && e.simClockMs === cast.simClockMs)).toBe(true);
-  // Dagger's damaging Poison spreads on the first kill at6000ms. Its1HP/s
-  // settles1HP at7500ms before PE's dodged direct hit and further death spread.
+  // Automatic focus finishes the29-Life Quill Rat at3000ms. Its1HP/s
+  // spread settles1HP at4500ms before PE's dodged hit and later death spreads.
+  expect(firstDeath.simClockMs).toBe(3000);
   const recipient = required(events.find(e => e.kind === 'damage' && e.source === player().id &&
     e.simClockMs === cast.simClockMs && e.dodged));
   if (recipient.kind !== 'damage') throw new Error('Missing native spread recipient');
   expect(events.slice(0, castIndex).find(e => e.kind === 'status-state' && e.target === recipient.target &&
-    e.statuses.some(status => status.id === 'poison' && (status.dotPerStack ?? 0) > 0)))
-    .toMatchObject({ simClockMs: 6000, statuses: [{ id: 'poison', stacks: 1,
-      sourceId: firstDeath.target, dotPerStack: 1, appliedAtMs: 6000, expiresAtMs: 11000 }] });
+    e.statuses.some(status => status.id === 'poison' && status.sourceId === firstDeath.target && (status.dotPerStack ?? 0) > 0)))
+    .toMatchObject({ simClockMs: firstDeath.simClockMs, statuses: [{ id: 'poison', stacks: 1,
+      sourceId: firstDeath.target, dotPerStack: 1, appliedAtMs: firstDeath.simClockMs, expiresAtMs: firstDeath.simClockMs + 5000 }] });
   expect(events.slice(0, castIndex).filter(e => e.kind === 'dot' && e.target === recipient.target))
-    .toEqual([expect.objectContaining({ simClockMs: 7500, amount: 1 })]);
+    .toEqual([expect.objectContaining({ simClockMs: 4500, amount: 1 })]);
   expect(events.filter(e => e.kind === 'dot' && e.target === recipient.target)
-    .map(e => e.kind === 'dot' ? [e.simClockMs, e.amount] : null)).toEqual([[7500, 1], [7700, 2], [9000, 13]]);
+    .map(e => e.kind === 'dot' ? [e.simClockMs, e.amount] : null)).toEqual([[4500, 1], [5220, 2], [5917, 2], [6000, 1], [6960, 9], [7500, 6]]);
   expect(recording.outcome.finalEnemyTeam.map(u => u.id)).toEqual(engineInput.enemyTeam.map(u => u.id));
   expect(recording.outcome.finalEnemyTeam.every(u => u.life === 0)).toBe(true);
   expect(events.some(e => e.kind === 'damage' && e.source === player().id &&
@@ -164,12 +165,13 @@ it('preserves the recording on allocation refresh, then recomposes rank and rese
 
 it('replays unlocked with current eligible rank and captured fractional resources twice without settling or drifting', () => {
   arrange();
-  // Imported energy26 gives5.2MP/s; the real9s opening wave carries0.8MP.
-  usePlayerStore.getState().setPlayer({ ...player(), coreStats: { ...player().coreStats, energy: 26 } });
+  // Imported energy27 gives5.4MP/s; the real7.5s opening wave carries0.5MP.
+  // Energy26 would yield exactly39MP and fail to exercise fractional replay.
+  usePlayerStore.getState().setPlayer({ ...player(), coreStats: { ...player().coreStats, energy: 27 } });
   start(); drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
   const original = published(), before = structuredClone(evidence(original.binding));
   const baseline = pools(required(original.binding.engineInput.playerTeam[0]));
-  expect(Number(baseline[2])).toBeGreaterThan(0); expect(baseline[4]).not.toBe('0');
+  expect(Number(baseline[2])).toBeCloseTo(0.5, 12); expect(baseline[4]).not.toBe('0');
   expect(original.binding.publication.ironGolemReplayLocked).toBe(false);
   expect(usePlayerStore.getState().allocateSkillPoint(PE)).toBe('ok');
   const progress = structuredClone(persistent());

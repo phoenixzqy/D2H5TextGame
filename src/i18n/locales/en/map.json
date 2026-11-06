@@ -1,7 +1,7 @@
 {
   "worldMap": "World Map",
   "act": "Act {{number}}",
-  "recommendedLevel": "Recommended Lv: {{level}}",
+  "enemyLevels": "Enemy Lv: {{min}}–{{max}}",
   "challengeMonsters": "Challenge loop: {{min}}–{{max}} monsters/wave",
   "locked": "Locked",
   "unlocked": "Unlocked",

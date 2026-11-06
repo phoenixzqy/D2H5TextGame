@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { readStartupLocale } from './localePreference';
 
 import zhCN_common from './locales/zh-CN/common.json';
 import zhCN_character from './locales/zh-CN/character.json';
@@ -91,13 +92,25 @@ const resources = {
   }
 };
 
+function updateDocumentLanguage(language: string) {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = i18n.resolvedLanguage ?? language;
+  }
+}
+
+// Register before init so the initial render and later locale changes agree.
+i18n.on('languageChanged', updateDocumentLanguage);
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => { i18n.off('languageChanged', updateDocumentLanguage); });
+}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
     fallbackLng: 'en',
-    lng: 'zh-CN',
+    lng: readStartupLocale(),
     defaultNS: 'common',
     ns: ['common', 'character', 'combat', 'inventory', 'skills', 'settings', 'town', 'map', 'mercs', 'gacha', 'quests', 'monsters', 'items', 'maps', 'rarity', 'damage-types', 'card', 'affixes', 'dev', 'endgame'],
     interpolation: {

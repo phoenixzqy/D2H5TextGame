@@ -18,7 +18,7 @@
 
 import Ajv2020 from 'ajv/dist/2020';
 import overridesJson from '../data/image-overrides.json';
-import overridesSchema from '../data/schema/image-overrides.schema.json';
+import { compileAuthoredValidator } from '../data/authored-validators';
 
 /** The kinds of subject we resolve art for. */
 export type ImageOverrideKind = 'class' | 'monster' | 'item' | 'merc' | 'skill';
@@ -32,7 +32,7 @@ export interface ImageOverridesFile {
 // ---- module-load validation -------------------------------------------------
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validate = ajv.compile<ImageOverridesFile>(overridesSchema);
+const validate = compileAuthoredValidator<ImageOverridesFile>(ajv, 'imageOverrides');
 
 if (!validate(overridesJson)) {
   // Throw loudly — a malformed override file should never silently degrade.

@@ -42,6 +42,8 @@ export interface DamageInput {
   readonly critMult: number;
   /** Defender stats. */
   readonly defenderResistances: Resistances;
+  /** Literal type immunity; independent of numeric resistance, penetration and the minimum-one floor. */
+  readonly defenderDamageImmunities?: readonly DamageType[];
   readonly defenderArmor: number;
   readonly defenderMagicResist: number;
   /** Defender dodge chance for the relevant dodge pool (0..1). */
@@ -50,6 +52,8 @@ export interface DamageInput {
   readonly hitChance?: number;
   /** Additive hit-probability penalty, applied before the ordinary dodge/minimum floor. */
   readonly hitChancePenalty?: number;
+  /** Authenticated weapon attempt's relative miss reduction (0..1), after the ordinary hit floor. */
+  readonly weaponMissReduction?: number;
   readonly ignoreDodge?: boolean;
   /** Act IV/V resistance pierce (subtracted from defender resist before clamp). */
   readonly resistPenalty?: number;
@@ -137,6 +141,9 @@ export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
 /** Draw hit, inclusive base and crit once, preserving the scalar pipeline's RNG order. */
 export function rollDamage(input: DamageInput, rng: Rng): DamageRoll {
   const hitChance = input.hitChance ?? 0.85;
+  const reduction = input.weaponMissReduction ?? 0;
+  if (!Number.isFinite(reduction) || reduction < 0 || reduction > 1)
+    throw new RangeError('Invalid weapon miss reduction');
 
   // 1) Dodge / hit roll
   if (!input.ignoreDodge) {
@@ -144,7 +151,9 @@ export function rollDamage(input: DamageInput, rng: Rng): DamageRoll {
       0.05,
       hitChance - (input.hitChancePenalty ?? 0) - input.defenderDodge
     );
-    if (!rng.chance(effectiveHit)) {
+    // Keep zero/absent arithmetic exact, including the RNG's rejection of H>1.
+    const aimedHit = reduction > 0 ? effectiveHit + Math.max(0, 1 - effectiveHit) * reduction : effectiveHit;
+    if (!rng.chance(aimedHit)) {
       return Object.freeze({ hit: false, dodged: true, crit: false });
     }
   }
@@ -197,12 +206,16 @@ export function mitigateDamage(
     DamageInput,
     | 'type'
     | 'defenderResistances'
+    | 'defenderDamageImmunities'
     | 'defenderArmor'
     | 'defenderMagicResist'
     | 'resistPenalty'
     | 'resistCap'
   >
 ): Pick<DamageOutcome, 'raw' | 'mitigated' | 'final' | 'effectiveResistPct'> {
+  if (input.defenderDamageImmunities?.includes(input.type)) {
+    return { raw: 0, mitigated: 0, final: 0, effectiveResistPct: 100 };
+  }
   // Step 6: resistance
   const cap = input.resistCap ?? 75;
   const rawResist = resistOf(input.defenderResistances, input.type);

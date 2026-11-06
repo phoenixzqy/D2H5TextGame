@@ -3,7 +3,10 @@
   "version": 1,
   "overrides": {
     "class": {},
-    "monster": {},
+    "monster": {
+      "act5.blood-lord": "/assets/d2/bestiary/act5/blood-lord.png",
+      "act5.frozen-terror": "/assets/d2/bestiary/act5/frozen-terror.png"
+    },
     "item": {},
     "merc": {},
     "skill": {}

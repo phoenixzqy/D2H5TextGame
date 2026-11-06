@@ -1,7 +1,7 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/skills/assassin.json';
 import policy from '../../data/summons/assassin-shadow-skills.json';
-import schema from '../../data/schema/assassin-shadow-skills.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { Player } from '../types/entities';
 import type { CombatUnit } from '../combat/types';
 import type { RegisteredSkill } from './effects';
@@ -51,7 +51,7 @@ const shadowSources = templates.map(template => {
 const expectedAttacks = new Map(attacks.map(row => [row.id,
   registeredSkillFromJson({ ...row.source, trigger: 'active', target: row.source.target as
     'single-enemy' | 'area-enemies' | 'all-enemies' })]));
-const validatePolicy = new Ajv2020({ strict: true, allErrors: true }).compile<ShadowPolicy>(schema);
+const validatePolicy = compileAuthoredValidator<ShadowPolicy>(new Ajv2020({ strict: true, allErrors: true }), 'shadowSkills');
 
 /** Validate policy references against actual authored attacks; never invent a fallback pool. */
 export function resolveAssassinShadowPolicy(input: unknown): ShadowPolicy {

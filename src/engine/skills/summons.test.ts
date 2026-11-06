@@ -43,17 +43,17 @@ describe('summon templates', () => {
     const skeleton = buildSummon(owner, 'skeleton');
 
     expect(skeleton?.stats).toMatchObject({
-      life: 112,
-      lifeMax: 112,
-      attack: 25,
-      defense: 14,
+      life: 442,
+      lifeMax: 442,
+      attack: 179,
+      defense: 58,
       attackSpeed: 70,
       critChance: 0.05,
       critDamage: 1.5,
       physDodge: 0.05,
       magicDodge: 0.05
     });
-    expect(skeleton?.life).toBe(112);
+    expect(skeleton?.life).toBe(442);
   });
 
   it('applies rank-based skeleton stat scaling', () => {
@@ -66,11 +66,11 @@ describe('summon templates', () => {
       statScaling: { lifeMax: 10, attack: 2, defense: 1 }
     });
 
-    expect(rankOne?.stats.lifeMax).toBe(112);
-    expect(rankSix?.stats.lifeMax).toBe(162);
-    expect(rankSix?.life).toBe(162);
-    expect(rankSix?.stats.attack).toBe(35);
-    expect(rankSix?.stats.defense).toBe(19);
+    expect(rankOne?.stats.lifeMax).toBe(442);
+    expect(rankSix?.stats.lifeMax).toBe(492);
+    expect(rankSix?.life).toBe(492);
+    expect(rankSix?.stats.attack).toBe(189);
+    expect(rankSix?.stats.defense).toBe(63);
   });
 
   it('does not leak skeleton-specific buffs into placeholder summons', () => {

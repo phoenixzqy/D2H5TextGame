@@ -79,7 +79,7 @@ export function CharacterCreate() {
         </header>
 
         <Panel title={t('selectClass')}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 auto-rows-[20rem] gap-3">
             {CHARACTER_CLASSES.map((cls) => {
               const selected = selectedClass === cls;
               const preview = getStartingStatPreview(cls);
@@ -88,14 +88,23 @@ export function CharacterCreate() {
                   key={cls}
                   variant="character"
                   size="md"
+                  fluid
+                  className="min-w-0 [&>.border-b]:shrink-0 [&>.border-t]:shrink-0
+                             [&_.truncate]:whitespace-normal [&_.truncate]:break-words
+                             [&>.border-t>.grid]:grid-cols-1
+                             [&>.border-t>.grid>div]:flex-row [&>.border-t>.grid>div]:justify-between
+                             [&>.border-t>.grid>div]:gap-1
+                             [&_.text-micro]:text-sm [&_.text-micro]:text-d2-white/80
+                             [&_.text-micro]:normal-case [&_.text-micro]:tracking-normal
+                             [&_.text-micro]:leading-5"
                   name={t(`classes.${cls}`)}
                   rarity="unique"
                   image={resolveClassPortrait(cls) ?? undefined}
                   stats={[
-                    { label: 'STR', value: preview.strength },
-                    { label: 'DEX', value: preview.dexterity },
-                    { label: 'VIT', value: preview.vitality },
-                    { label: 'ENG', value: preview.energy }
+                    { label: t('strength'), value: preview.strength },
+                    { label: t('dexterity'), value: preview.dexterity },
+                    { label: t('attributes.vitality'), value: preview.vitality },
+                    { label: t('energy'), value: preview.energy }
                   ]}
                   bars={[
                     { kind: 'hp', current: preview.life, max: preview.life },
@@ -152,7 +161,7 @@ export function CharacterCreate() {
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               <StatRow label={t('strength')} value={stats.strength} />
               <StatRow label={t('dexterity')} value={stats.dexterity} />
-              <StatRow label={t('vitality')} value={stats.vitality} />
+              <StatRow label={t('attributes.vitality')} value={stats.vitality} />
               <StatRow label={t('energy')} value={stats.energy} />
               <StatRow label={t('common:life')} value={stats.life} accent="text-red-400" />
               <StatRow label={t('common:mana')} value={stats.mana} accent="text-blue-400" />

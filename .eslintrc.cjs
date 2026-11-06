@@ -30,6 +30,14 @@ module.exports = {
       version: 'detect'
     }
   },
+  overrides: [{
+    files: ['src/features/combat/CombatLog.tsx'],
+    rules: {
+      // The scrollable log needs keyboard focus for native Home/End/PageUp/Down
+      // (WCAG 2.1.1); retain its log semantics instead of claiming it is a widget.
+      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['log'] }]
+    }
+  }],
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-unused-vars': [

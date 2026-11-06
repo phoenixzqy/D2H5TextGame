@@ -1,0 +1,13 @@
+{
+  "additionalTargets": [
+    { "id": "necromancer.confuse", "rank": 1, "level": 18 },
+    { "id": "necromancer.attract", "rank": 1, "level": 24 }
+  ],
+  "priorityByArea": {
+    "areas/act5-crystalline-passage": [
+      "necromancer.attract",
+      "necromancer.corpse_explosion",
+      "necromancer.confuse"
+    ]
+  }
+}

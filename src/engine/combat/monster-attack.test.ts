@@ -43,19 +43,33 @@ afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('authored monster attack progression', () => {
   it.each([
-    ['fallen', 32, 5], ['carver', 33.6, 5.25], ['quill-rat', 27.2, 4.25],
-    ['zombie', 28.8, 4.5], ['dark-archer', 35.2, 5.5], ['tainted', 32, 5],
-    ['bone-warrior', 35.2, 5.5], ['fallen-shaman', 13, 2]
+    ['fallen', 20, 5], ['carver', 33.6, 5.25], ['quill-rat', 17, 4.25],
+    ['zombie', 18, 4.5], ['dark-archer', 35.2, 5.5], ['tainted', 32, 5],
+    ['bone-warrior', 35.2, 5.5], ['fallen-shaman', 13, 2],
+    ['carver-shaman', 13, 2], ['devilkin-shaman', 13, 2]
   ])('loads the approved %s attack and growth from production JSON', (slug, base, growth) => {
     expect(definition(String(slug))).toMatchObject({ attack: [base, base], attackGrowth: [growth, growth] });
   });
 
   it.each<[MonsterTier, number, number, number]>([
-    ['trash', 13, 35, 45], ['elite', 17, 46, 59], ['rare-minion', 17, 46, 59],
-    ['champion', 20, 53, 68], ['rare-elite', 26, 70, 90], ['boss', 21, 56, 72],
+    ['trash', 13, 35, 45], ['elite', 17, 46, 59], ['rare-minion', 14, 39, 50],
+    ['champion', 20, 53, 68], ['rare-elite', 20, 53, 68], ['boss', 21, 56, 72],
     ['chapter-boss', 13, 35, 45]
   ])('builds literal Shaman oracles for %s at L1/L12/L17', (tier, ...expected) => {
     expect([1, 12, 17].map(level => unit(definition('fallen-shaman'), level, tier).stats.attack)).toEqual(expected);
+  });
+
+  it.each(['carver-shaman', 'devilkin-shaman'])('resolves %s across its allowed spawn tiers', slug => {
+    const def = definition(slug);
+    expect(def.canBeBoss).toBe(false);
+    expect(def.canBeElite).toBe(true);
+    const oracles: [MonsterTier, number[]][] = [
+      ['trash', [13, 35, 45]], ['elite', [17, 46, 59]], ['rare-minion', [14, 39, 50]],
+      ['champion', [20, 53, 68]], ['rare-elite', [20, 53, 68]]
+    ];
+    for (const [tier, expected] of oracles) {
+      expect([1, 12, 17].map(level => unit(def, level, tier).stats.attack)).toEqual(expected);
+    }
   });
 
   it('rounds fractional endpoints only after level growth and tier multiplication', () => {
@@ -88,8 +102,9 @@ describe('authored monster attack progression', () => {
     expect(record({ ...enemy, skillOrder: [] })).toEqual(record({ ...unit(legacy), skillOrder: [] }));
   });
 
-  it('uses resolved ordinary damage, without adding scalar Attack a second time', () => {
-    const enemy = unit(definition('fallen-shaman'));
+  it.each(['fallen-shaman', 'carver-shaman', 'devilkin-shaman'])(
+    'uses %s resolved ordinary damage without adding scalar Attack a second time', slug => {
+    const enemy = unit(definition(slug));
     const output = record({ ...enemy, skillOrder: [], stats: { ...enemy.stats, critChance: 0 } });
     const hits = output.events.filter(e => e.kind === 'damage' && e.source === 'shaman' && !e.dodged);
     expect(hits.length).toBeGreaterThan(5);
@@ -110,11 +125,14 @@ describe('authored monster attack progression', () => {
     const scalar = { ...equivalent }; Reflect.deleteProperty(scalar, 'attackRange');
     expect(record(equivalent).events).toEqual(record(scalar).events);
   });
-  it('preserves active Fire Bolt formulas and RNG at the same attack cadence', () => {
+  it.each(['fallen-shaman', 'carver-shaman', 'devilkin-shaman'])(
+    'preserves %s active Fire Bolt formulas and RNG at the same attack cadence', slug => {
     const skill = getSkill('monster-fire-bolt');
     if (!skill) throw new Error('Missing Fire Bolt');
     registerSkill({ ...skill, id: 'fixture.continuous-fire-bolt', cooldown: 1 });
-    const a = unit(legacy), b = unit(authored());
+    const def = definition(slug), old = { ...def };
+    Reflect.deleteProperty(old, 'attack'); Reflect.deleteProperty(old, 'attackGrowth');
+    const a = unit(old), b = unit(def);
     const prepare = (enemy: CombatUnit) => ({ ...enemy, skillOrder: ['fixture.continuous-fire-bolt'] });
     const before = record(prepare(a)), after = record(prepare(b));
     expect(after.events.filter(e => e.kind === 'action' && e.actor === 'shaman')

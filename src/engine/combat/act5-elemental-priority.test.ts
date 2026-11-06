@@ -7,9 +7,9 @@ import type { CombatUnit } from './types';
 
 describe('BUG142 canonical Act V elemental monster priority', () => {
   it.each([
-    { archetype: 'monsters/act5.blood-lord', skill: 'monster.fire_breath', type: 'fire', status: 'ignite' },
-    { archetype: 'monsters/act5.frozen-terror', skill: 'monster.frost_aura', type: 'cold', status: 'chill' }
-  ])('$archetype uses its elemental action and melee during cooldown', ({ archetype, skill, type, status }) => {
+    { archetype: 'monsters/act5.blood-lord', skill: 'monster.fire_breath', filler: null, type: 'fire', status: 'ignite' },
+    { archetype: 'monsters/act5.frozen-terror', skill: 'monster.frost_aura', filler: null, type: 'cold', status: 'chill' }
+  ])('$archetype uses its elemental action and melee during cooldown', ({ archetype, skill, filler, type, status }) => {
     const def = monsters.find(row => row.id === archetype);
     if (!def) throw new Error('Missing canonical Act V monster');
     const enemy = buildMonsterUnit({ def, level: 90, tier: 'trash', rng: createRng(142), id: 'enemy' });
@@ -26,7 +26,7 @@ describe('BUG142 canonical Act V elemental monster priority', () => {
     const actions = recorded.events.filter(event => event.kind === 'action' && event.actor === enemy.id);
     expect(actions.slice(0, 3)).toEqual([
       expect.objectContaining({ skillId: skill, simClockMs: 1620 }),
-      expect.objectContaining({ skillId: 'monster.strong_melee', simClockMs: 3240 }),
+      expect.objectContaining({ skillId: filler, simClockMs: 3240 }),
       expect.objectContaining({ skillId: skill, simClockMs: 4860 })
     ]);
     expect(recorded.events).toContainEqual(expect.objectContaining({ kind: 'damage', source: enemy.id,

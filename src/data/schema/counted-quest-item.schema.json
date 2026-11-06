@@ -1,0 +1,662 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/counted-quest-item.json",
+  "title": "Finite counted quest sources",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "quest",
+              "objective",
+              "objectiveType",
+              "itemId",
+              "sink",
+              "actId",
+              "areaId",
+              "npc",
+              "nameKey",
+              "descKey",
+              "placements"
+            ],
+            "properties": {
+              "key": {
+                "const": "alkor"
+              },
+              "quest": {
+                "const": "quests/side-act3-alkors-experiment"
+              },
+              "objective": {
+                "const": "obj-collect"
+              },
+              "objectiveType": {
+                "const": "collect"
+              },
+              "itemId": {
+                "const": "quest/spider_venom_gland"
+              },
+              "sink": {
+                "const": "claim"
+              },
+              "actId": {
+                "const": "acts/act3"
+              },
+              "areaId": {
+                "const": "areas/act3-spider-forest"
+              },
+              "npc": {
+                "const": "npc/alkor"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.counted.alkor.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.counted.alkor.desc"
+              },
+              "placements": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-1"
+                      },
+                      "targetId": {
+                        "const": "objects/alkor_venom_gland_1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-2"
+                      },
+                      "targetId": {
+                        "const": "objects/alkor_venom_gland_2"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-alkors-experiment#objective:obj-collect:source:gland-3"
+                      },
+                      "targetId": {
+                        "const": "objects/alkor_venom_gland_3"
+                      }
+                    }
+                  }
+                ],
+                "items": false
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "quest",
+              "objective",
+              "objectiveType",
+              "itemId",
+              "sink",
+              "actId",
+              "areaId",
+              "npc",
+              "nameKey",
+              "descKey",
+              "placements"
+            ],
+            "properties": {
+              "key": {
+                "const": "jade"
+              },
+              "quest": {
+                "const": "quests/side-act3-jade-statuette"
+              },
+              "objective": {
+                "const": "obj-deliver"
+              },
+              "objectiveType": {
+                "const": "deliver"
+              },
+              "itemId": {
+                "const": "quest/jade_trinket"
+              },
+              "sink": {
+                "const": "town-delivery"
+              },
+              "actId": {
+                "const": "acts/act3"
+              },
+              "areaId": {
+                "const": "areas/act3-kurast-bazaar"
+              },
+              "npc": {
+                "const": "npc/meshif"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.counted.jade.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.counted.jade.desc"
+              },
+              "placements": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-1"
+                      },
+                      "targetId": {
+                        "const": "objects/jade_trinket_1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-2"
+                      },
+                      "targetId": {
+                        "const": "objects/jade_trinket_2"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act3-jade-statuette#objective:obj-deliver:source:trinket-3"
+                      },
+                      "targetId": {
+                        "const": "objects/jade_trinket_3"
+                      }
+                    }
+                  }
+                ],
+                "items": false
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "quest",
+              "objective",
+              "objectiveType",
+              "itemId",
+              "sink",
+              "actId",
+              "areaId",
+              "npc",
+              "nameKey",
+              "descKey",
+              "placements"
+            ],
+            "properties": {
+              "key": {
+                "const": "jamella"
+              },
+              "quest": {
+                "const": "quests/side-act4-jamella-trade"
+              },
+              "objective": {
+                "const": "obj-collect"
+              },
+              "objectiveType": {
+                "const": "collect"
+              },
+              "itemId": {
+                "const": "quest/forge_ember"
+              },
+              "sink": {
+                "const": "claim"
+              },
+              "actId": {
+                "const": "acts/act4"
+              },
+              "areaId": {
+                "const": "areas/act4-river-of-flame"
+              },
+              "npc": {
+                "const": "npc/jamella"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.counted.jamella.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.counted.jamella.desc"
+              },
+              "placements": {
+                "type": "array",
+                "minItems": 5,
+                "maxItems": 5,
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-1"
+                      },
+                      "targetId": {
+                        "const": "objects/forge_ember_1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-2"
+                      },
+                      "targetId": {
+                        "const": "objects/forge_ember_2"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-3"
+                      },
+                      "targetId": {
+                        "const": "objects/forge_ember_3"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-4"
+                      },
+                      "targetId": {
+                        "const": "objects/forge_ember_4"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act4-jamella-trade#objective:obj-collect:source:ember-5"
+                      },
+                      "targetId": {
+                        "const": "objects/forge_ember_5"
+                      }
+                    }
+                  }
+                ],
+                "items": false
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "quest",
+              "objective",
+              "objectiveType",
+              "itemId",
+              "sink",
+              "actId",
+              "areaId",
+              "npc",
+              "nameKey",
+              "descKey",
+              "placements"
+            ],
+            "properties": {
+              "key": {
+                "const": "malah"
+              },
+              "quest": {
+                "const": "quests/side-act5-malahs-elixir"
+              },
+              "objective": {
+                "const": "obj-collect"
+              },
+              "objectiveType": {
+                "const": "collect"
+              },
+              "itemId": {
+                "const": "quest/frost_lichen"
+              },
+              "sink": {
+                "const": "claim"
+              },
+              "actId": {
+                "const": "acts/act5"
+              },
+              "areaId": {
+                "const": "areas/act5-ancients-way"
+              },
+              "npc": {
+                "const": "npc/malah"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.counted.malah.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.counted.malah.desc"
+              },
+              "placements": {
+                "type": "array",
+                "minItems": 5,
+                "maxItems": 5,
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-1"
+                      },
+                      "targetId": {
+                        "const": "objects/frost_lichen_1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-2"
+                      },
+                      "targetId": {
+                        "const": "objects/frost_lichen_2"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-3"
+                      },
+                      "targetId": {
+                        "const": "objects/frost_lichen_3"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-4"
+                      },
+                      "targetId": {
+                        "const": "objects/frost_lichen_4"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act5-malahs-elixir#objective:obj-collect:source:lichen-5"
+                      },
+                      "targetId": {
+                        "const": "objects/frost_lichen_5"
+                      }
+                    }
+                  }
+                ],
+                "items": false
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "quest",
+              "objective",
+              "objectiveType",
+              "itemId",
+              "sink",
+              "actId",
+              "areaId",
+              "npc",
+              "nameKey",
+              "descKey",
+              "placements"
+            ],
+            "properties": {
+              "key": {
+                "const": "gheed"
+              },
+              "quest": {
+                "const": "quests/side-act1-gheeds-gamble"
+              },
+              "objective": {
+                "const": "obj-gamble-5"
+              },
+              "objectiveType": {
+                "const": "collect"
+              },
+              "itemId": {
+                "const": "quest/gheed_salvage_lot"
+              },
+              "sink": {
+                "const": "claim"
+              },
+              "actId": {
+                "const": "acts/act1"
+              },
+              "areaId": {
+                "const": "areas/act1-cold-plains"
+              },
+              "npc": {
+                "const": "npc/gheed"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.counted.gheed.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.counted.gheed.desc"
+              },
+              "placements": {
+                "type": "array",
+                "minItems": 5,
+                "maxItems": 5,
+                "prefixItems": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-1"
+                      },
+                      "targetId": {
+                        "const": "objects/gheed_salvage_lot_1"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-2"
+                      },
+                      "targetId": {
+                        "const": "objects/gheed_salvage_lot_2"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-3"
+                      },
+                      "targetId": {
+                        "const": "objects/gheed_salvage_lot_3"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-4"
+                      },
+                      "targetId": {
+                        "const": "objects/gheed_salvage_lot_4"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "source",
+                      "targetId"
+                    ],
+                    "properties": {
+                      "source": {
+                        "const": "quests/side-act1-gheeds-gamble#objective:obj-gamble-5:source:lot-5"
+                      },
+                      "targetId": {
+                        "const": "objects/gheed_salvage_lot_5"
+                      }
+                    }
+                  }
+                ],
+                "items": false
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -70,7 +70,7 @@ describe('source-backed live Hell crafting', () => {
     }
     const saved = snapshotStores();
     if (!saved) throw new Error('Missing constructed save');
-    expect(saved.version).toBe(24);
+    expect(saved.version).toBe(32);
     expect(decodeSave(toJsonSafe(saved)).inventory).toEqual(saved.inventory);
     expect(saved.inventory.materials).toEqual({ 'runes/zod': 1 });
   });

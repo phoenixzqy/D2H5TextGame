@@ -14,13 +14,14 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Suspense } from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 import { ItemTooltip } from './ItemTooltip';
 import type { Item, ItemBase } from '@/engine/types/items';
 
-vi.mock('@/data/loaders/loot', () => {
+vi.mock('@/data/loaders/loot', async importOriginal => {
+  const actual = await importOriginal<typeof import('@/data/loaders/loot')>();
   const bases = new Map<string, ItemBase>();
   bases.set('items/base/armor-degenerate', {
     id: 'items/base/armor-degenerate',
@@ -41,21 +42,25 @@ vi.mock('@/data/loaders/loot', () => {
   bases.set('items/base/wp1h-short-sword', {
     id: 'items/base/wp1h-short-sword',
     type: 'weapon',
+    weaponType: 'sword',
     slot: 'weapon',
     reqLevel: 1,
     maxSockets: 2,
     baseDamage: { min: 2, max: 6 },
   } as unknown as ItemBase);
-  return {
-    loadItemBases: () => bases,
-    loadAffixPool: () => [] as unknown[],
-    loadUniques: () => [{
+  const uniques = [{
       id: 'items/unique/rixots-keen',
       name: 'items.unique.rixots-keen.name',
       baseId: 'items/base/wp1h-short-sword',
       reqLevel: 9,
       stats: { statMods: { attack: 40 } }
-    }],
+    }];
+  return {
+    ...actual,
+    loadItemBases: () => bases,
+    loadAffixPool: () => [] as unknown[],
+    loadUniques: () => uniques,
+    resolveItemUnique: (item: Item) => actual.resolveItemUnique(item, uniques),
     loadSetPieces: () => [],
     loadSets: () => [],
     resolveItemReqLevel: (item: Item, base?: ItemBase) => item.uniqueId === 'items/unique/rixots-keen' ? 9 : base?.reqLevel ?? 1
@@ -178,5 +183,37 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     } finally {
       await i18n.changeLanguage('zh-CN');
     }
+  });
+
+  it('falls back after an artwork error and retries the same URL only on reconnection', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
+    const tooltip = screen.getByTestId('item-tooltip');
+    const image = tooltip.querySelector('img');
+    if (!image) throw new Error('Expected item artwork');
+    const src = image.getAttribute('src');
+    const details = screen.getByTestId('item-tooltip-damage').textContent;
+
+    fireEvent.online(window);
+    expect(tooltip.querySelector('img')).toBe(image);
+    fireEvent.error(image);
+    expect(tooltip.querySelector('img')).toBeNull();
+    expect(tooltip).toHaveTextContent('?');
+    expect(screen.getByTestId('item-tooltip-damage').textContent).toBe(details);
+    fireEvent.offline(window);
+    expect(tooltip.querySelector('img')).toBeNull();
+
+    fireEvent.online(window);
+    const retry = tooltip.querySelector('img');
+    expect(retry).toHaveAttribute('src', src);
+    expect(retry).not.toBe(image);
+    if (!retry) throw new Error('Expected artwork retry');
+    fireEvent.online(window);
+    expect(tooltip.querySelector('img')).toBe(retry);
+    fireEvent.error(retry);
+    expect(tooltip.querySelector('img')).toBeNull();
+    expect(tooltip).toHaveTextContent('?');
+    fireEvent.online(window);
+    expect(tooltip.querySelector('img')).toHaveAttribute('src', src);
+    expect(screen.getByTestId('item-tooltip-damage').textContent).toBe(details);
   });
 });

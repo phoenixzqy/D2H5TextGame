@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/summons/fire-golem.json';
-import schema from '../../data/schema/fire-golem.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import skills from '../../data/skills/necromancer.json';
 import type { DerivedStats } from '../types/attributes';
 import type { SkillDef } from '../types/skills';
@@ -18,7 +18,7 @@ interface FireGolemDefinition {
   readonly bodyStats: Omit<DerivedStats, 'life' | 'mana' | 'magicResist'>;
   readonly attack: { readonly damageType: 'fire'; readonly dotPctOfDamage: number };
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<FireGolemDefinition>(schema);
+const validate = compileAuthoredValidator<FireGolemDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'fireGolem');
 
 /** Validate and copy authored stats/tuning without freezing caller data or supplying defaults. */
 export function resolveFireGolemDefinition(input: unknown): FireGolemDefinition {

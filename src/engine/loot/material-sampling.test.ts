@@ -49,7 +49,7 @@ describe('identity sampling preserves production RNG draws', () => {
   it('boss probability one samples the full conditional pool without extra draws', () => {
     const source = scripted([1 - Number.EPSILON / 2, 1 - Number.EPSILON / 2, .5]);
     expect(rollCurrencyDrops(10, 'boss', 5, 'hell', 0, source.rng)).toEqual({
-      runeShards: 2500, wishstones: 60, runes: 1, gems: 1,
+      runeShards: 2500, wishstones: 15, runes: 1, gems: 1,
       materials: { 'runes/zod': 1, 'gems/topaz/perfect': 1 }
     });
     expect(source.count()).toBe(3);
@@ -108,13 +108,15 @@ describe('generic TC conditional identities and authored context', () => {
   it('overrides a shared authored Normal table with actual live Act V Hell context', () => {
     const pools = loadAwardPools(), tc = table([generic('rune')], 'act1-normal');
     const source = scripted([.5, 1 - Number.EPSILON / 2, .9, 0, 0, .5]);
+    const wishstones = scripted([.5]);
     expect(rollKillRewards({ tier: 'boss', monsterLevel: 22, act: 5, difficulty: 'hell',
       treasureClassId: tc.id, magicFind: 0, goldFind: 0 },
-    { ...pools, treasureClasses: new Map([[tc.id, tc]]) }, source.rng))
-      .toMatchObject({ runes: 2, gems: 1, materials: {
+    { ...pools, treasureClasses: new Map([[tc.id, tc]]) }, source.rng, wishstones.rng))
+      .toMatchObject({ runes: 2, gems: 1, wishstones: 0, materials: {
         'runes/zod': 1, 'runes/el': 1, 'gems/amethyst/normal': 1
       } });
     expect(source.count()).toBe(6);
+    expect(wishstones.count()).toBe(1);
   });
 
   it('authored generic production tables all have valid catalog outcomes', () => {

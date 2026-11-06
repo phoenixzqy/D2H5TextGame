@@ -4,6 +4,7 @@ import {
   xpTotal,
   levelForXp,
   xpScale,
+  xpForKill,
   awardXp,
   LEVEL_CAP
 } from './xp';
@@ -24,9 +25,10 @@ describe('xp progression', () => {
     expect(xpTotal(3)).toBe(100 + 565);
   });
 
-  it('xpTotal(70) is roughly 83M (within 0.5%)', () => {
-    const v = xpTotal(70);
-    expect(Math.abs(v - 83_000_000) / 83_000_000).toBeLessThan(0.05);
+  it('retains the exact native late-game level costs and totals', () => {
+    expect(xpTotal(56)).toBe(36_383_607);
+    expect(xpTotal(70)).toBe(79_955_041);
+    expect(xpTotal(90)).toBe(193_772_764);
   });
 
   it('levelForXp inverts xpTotal', () => {
@@ -64,5 +66,23 @@ describe('xp progression', () => {
   it('xpRequired throws on bad input', () => {
     expect(() => xpRequired(0)).toThrow();
     expect(() => xpRequired(-1)).toThrow();
+  });
+});
+
+describe('combat-qualified kill XP curve (D02)', () => {
+  it('preserves every introductory reward through the level18 anchor', () => {
+    for (let level = 1; level <= 18; level++) expect(xpForKill(level)).toBe(level * 10);
+  });
+
+  it.each([
+    [19, 206], [20, 234], [32, 759], [47, 1983], [56, 3073],
+    [61, 3806], [82, 7973], [90, 10062], [122, 21527]
+  ])('awards the selected integer reward at resolved enemy level%i', (level, expected) => {
+    expect(xpForKill(level)).toBe(expected);
+  });
+
+  it('keeps the existing invalid-level fallback and supports enemies above the hero cap', () => {
+    for (const level of [0, -1, NaN, Infinity, -Infinity]) expect(xpForKill(level)).toBe(5);
+    expect(xpForKill(122)).toBeGreaterThan(xpForKill(LEVEL_CAP));
   });
 });

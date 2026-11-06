@@ -13,6 +13,31 @@
 
 import type { EquipmentSlot, Item, ItemBase } from '../types/items';
 
+type OwnedItemIdentity = Pick<Item, 'id' | 'baseId'>;
+
+/**
+ * Count concrete owner locations, excluding actor mirrors. A canonical charm's
+ * ID cannot occur in another owner location, even on a different base. Ordinary
+ * historical duplicate IDs retain their existing runtime behavior.
+ */
+export function hasUniqueCharmOwnership(
+  inventory: { readonly backpack: readonly OwnedItemIdentity[]; readonly stash: readonly OwnedItemIdentity[];
+    readonly equipped: Readonly<Record<string, OwnedItemIdentity | null | undefined>> },
+  mercEquipment: Readonly<Record<string, Readonly<Record<string, OwnedItemIdentity | null | undefined>>>>
+): boolean {
+  const counts = new Map<string, number>(), charmIds = new Set<string>();
+  const count = (item: OwnedItemIdentity | null | undefined): void => {
+    if (!item) return;
+    counts.set(item.id, (counts.get(item.id) ?? 0) + 1);
+    if (item.baseId === 'items/base/small-charm') charmIds.add(item.id);
+  };
+  inventory.backpack.forEach(count);
+  inventory.stash.forEach(count);
+  Object.values(inventory.equipped).forEach(count);
+  for (const equipment of Object.values(mercEquipment)) Object.values(equipment).forEach(count);
+  return [...charmIds].every(id => counts.get(id) === 1);
+}
+
 /**
  * Whether a base item is a two-handed weapon.
  *
@@ -58,6 +83,9 @@ export function validateOffhandEquip(base: ItemBase): OffhandEquipResult {
 /** Canonical hero slot compatibility shared by picker, comparison and transaction. */
 export function baseMatchesEquipmentSlot(base: ItemBase | undefined, slot: EquipmentSlot): boolean {
   if (!base?.slot) return false;
+  if (slot === 'charm' || base.slot === 'charm' || base.type === 'charm' || base.id === 'items/base/small-charm') {
+    return slot === 'charm' && base.id === 'items/base/small-charm' && base.type === 'charm' && base.slot === 'charm';
+  }
   if (slot === 'offhand') return validateOffhandEquip(base).ok;
   if (slot === 'ring-left' || slot === 'ring-right') return base.slot === 'ring-left' || base.slot === 'ring-right';
   return base.slot === slot;

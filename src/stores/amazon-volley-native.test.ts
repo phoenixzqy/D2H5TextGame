@@ -88,7 +88,7 @@ for (const rank of [1, 20]) it(`Multiple Shot rank${String(rank)} selects five e
   const out = record({ ...input, enemyTeam: enemies });
   const hits = out.events.flatMap(e => e.kind === 'damage' && e.source === 'hero' ? [e] : []);
   expect(hits.map(e => e.target)).toEqual(['tip', 'left', 'middle', 'right', 'back-left']);
-  expect(hits.map(e => e.amount)).toEqual(rank === 1 ? [41, 50, 45, 45, 50] : [117, 126, 121, 121, 126]);
+  expect(hits.map(e => e.amount)).toEqual(rank === 1 ? [41, 50, 45, 45, 50] : [269, 278, 273, 273, 278]);
   expect(hits.every(e => e.damageType === 'physical')).toBe(true);
   expect(out.result.enemyTeam.filter(u => u.life < 2000).map(u => u.id)).toEqual(
     hits.filter(e => e.amount > 0).map(e => e.target));

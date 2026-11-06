@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/summons/assassin.json';
-import schema from '../../data/schema/assassin-summons.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { DerivedStats } from '../types/attributes';
 import { MITIGATION_DEFINITION } from '../combat/mitigation-definition';
 
@@ -10,7 +10,7 @@ export interface AssassinSummonDefinition {
   readonly id: 'summons/assassin';
   readonly templates: { readonly shadow_warrior: BodyStats; readonly shadow_master: BodyStats };
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<AssassinSummonDefinition>(schema);
+const validate = compileAuthoredValidator<AssassinSummonDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'assassinSummons');
 function freezeStats(stats: BodyStats): BodyStats {
   return Object.freeze({ ...stats, resistances: Object.freeze({ ...stats.resistances }) });
 }

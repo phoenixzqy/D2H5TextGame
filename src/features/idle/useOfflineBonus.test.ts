@@ -76,10 +76,26 @@ describe('persisted offline-bonus UI authority', () => {
     seed();
     vi.setSystemTime(NOW + 600_000);
     renderVariants();
-    expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('+28% XP boost');
+    expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('+28% XP / Magic Find');
     expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('next 70 min');
-    expect(screen.getByTestId('offline-bonus-chip')).toHaveAccessibleName('+28% XP for 70 min');
-    expect(screen.getByTestId('offline-bonus-chip')).toHaveTextContent('+28% · 70m');
+    expect(screen.getByTestId('offline-bonus-chip')).toHaveAccessibleName('+28% XP and Magic Find for 70 min');
+    expect(screen.getByTestId('offline-bonus-chip')).toHaveTextContent('+28% XP/MF · 70m');
+    const meters = screen.getAllByRole('meter', { name: 'Current XP and Magic Find bonus' });
+    expect(meters).toHaveLength(2);
+    for (const meter of meters) {
+      expect(meter).toHaveAttribute('aria-valuemin', '0');
+      expect(meter).toHaveAttribute('aria-valuemax', '50');
+      expect(Number(meter.getAttribute('aria-valuenow'))).toBeCloseTo(28, 8);
+      expect(meter).toHaveAttribute('aria-valuetext', '+28% XP and Magic Find for 70 min');
+      expect(Number.parseFloat((meter.firstElementChild as HTMLElement).style.width)).toBeCloseTo(56, 8);
+    }
+    act(() => { vi.advanceTimersByTime(600_000); });
+    for (const meter of meters) {
+      expect(Number(meter.getAttribute('aria-valuenow'))).toBeCloseTo(24, 8);
+      expect(Number.parseFloat((meter.firstElementChild as HTMLElement).style.width)).toBeCloseTo(48, 8);
+    }
+    expect(useMetaStore.getState().idleState).toBe(rawBonus);
+    expect(useMetaStore.getState().idleBonusAnchor).toBe(NOW);
   });
 
   it('projects aged mounts and later remounts without publication or refreshing the source', () => {
@@ -172,6 +188,7 @@ describe('persisted offline-bonus UI authority', () => {
     expectBonus(hook.result.current, 1, 0);
     expect(screen.queryByTestId('offline-bonus-banner')).not.toBeInTheDocument();
     expect(screen.queryByTestId('offline-bonus-chip')).not.toBeInTheDocument();
+    expect(screen.queryByRole('meter')).not.toBeInTheDocument();
     expect(vi.getTimerCount()).toBe(0);
   });
 
@@ -228,9 +245,10 @@ describe('persisted offline-bonus UI authority', () => {
     seed();
     vi.setSystemTime(NOW + 600_000);
     renderVariants();
-    expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('离线奖励 +28% 经验');
+    expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('离线加成 +28% 经验／魔法寻获');
     expect(screen.getByTestId('offline-bonus-banner')).toHaveTextContent('剩余 70 分钟');
-    expect(screen.getByTestId('offline-bonus-chip')).toHaveTextContent('+28% · 70分钟');
-    expect(screen.getByTestId('offline-bonus-chip')).toHaveAccessibleName('+28% 经验加成，剩余 70 分钟');
+    expect(screen.getByTestId('offline-bonus-chip')).toHaveTextContent('+28% 经验／魔法寻获 · 70分钟');
+    expect(screen.getByTestId('offline-bonus-chip')).toHaveAccessibleName('+28% 经验与魔法寻获加成，剩余 70 分钟');
+    expect(screen.getAllByRole('meter', { name: '当前经验与魔法寻获加成' })).toHaveLength(2);
   });
 });

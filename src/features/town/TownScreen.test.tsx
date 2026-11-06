@@ -193,8 +193,13 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const before = rewards();
     const questsBefore = useMapStore.getState().questProgress;
     renderTown();
-    expect(loadTownNpcs(2).map(npc => npc.id)).toEqual(['npc/atma', 'npc/drognan']);
-    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(2);
+    expect(loadTownNpcs(2).map(npc => npc.id)).toEqual(['npc/atma', 'npc/drognan', 'npc/fara', 'npc/greiz']);
+    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(4);
+    expect(screen.getAllByTestId(/^town-npc-/).map(button => button.getAttribute('data-testid')))
+      .toEqual(['town-npc-atma', 'town-npc-drognan', 'town-npc-fara', 'town-npc-greiz']);
+    const names = locale === 'en' ? ['Atma', 'Drognan', 'Fara', 'Greiz'] : ['阿特玛', '卓格南', '法拉', '格雷兹'];
+    for (const name of names) expect(screen.getByRole('button', { name })).toBeVisible();
+    expect(screen.getByRole('button', { name: locale === 'en' ? 'Greiz' : '格雷兹' })).toBeVisible();
     const atma = screen.getByRole('button', { name: locale === 'en' ? 'Atma' : '阿特玛' });
     fireEvent.click(atma);
     expect(talk).toHaveBeenCalledTimes(1);

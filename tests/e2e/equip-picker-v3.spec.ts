@@ -29,7 +29,7 @@ async function openWeaponPicker(page: import('@playwright/test').Page) {
   await expect(page.getByTestId('inventory-screen')).toBeVisible();
   const equipTab = page.getByRole('tab', { name: /装备|Equipment/i }).first();
   await equipTab.click();
-  await page.getByTestId('equip-slot-weapon').click({ position: { x: 24, y: 24 } });
+  await page.getByTestId('equip-slot-weapon-select').click({ position: { x: 24, y: 24 } });
   await expect(page.getByTestId('equip-picker')).toBeVisible();
 }
 
@@ -95,7 +95,7 @@ test.describe('EquipPicker v3 — redesigned compare flow @desktop-only', () => 
 
     // Re-open: current = normal short sword (equipped),
     // candidate (auto-selected) = magic short sword (backpack).
-    await page.getByTestId('equip-slot-weapon').click({ position: { x: 24, y: 24 } });
+    await page.getByTestId('equip-slot-weapon-select').click({ position: { x: 24, y: 24 } });
     await expect(page.getByTestId('equip-picker')).toBeVisible();
 
     const cur = page.getByTestId('current-item-header');
@@ -127,7 +127,7 @@ test.describe('EquipPicker v3 — redesigned compare flow @desktop-only', () => 
     await openWeaponPicker(page);
     // Equip normal so the next open compares magic vs normal.
     await page.getByTestId('equip-picker-confirm').click();
-    await page.getByTestId('equip-slot-weapon').click({ position: { x: 24, y: 24 } });
+    await page.getByTestId('equip-slot-weapon-select').click({ position: { x: 24, y: 24 } });
     await expect(page.getByTestId('compare-panel')).toBeVisible();
 
     const deltas = page.getByTestId('stat-delta');

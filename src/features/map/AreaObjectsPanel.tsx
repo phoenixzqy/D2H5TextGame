@@ -15,6 +15,9 @@ import { areaQuestInsertions, questInsertionStatus, insertQuestItem, type QuestC
 import { areaQuestActions, questActionStatus, executeQuestAction } from '@/features/quests/questActions';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
+import { CountedQuestSourcesPanel } from './CountedQuestSourcesPanel';
+import { CowQuestActionsPanel } from '@/features/quests/CowQuestActionsPanel';
+import { COW } from '@/engine/map/cow-quest';
 
 interface Props { act: number; areaId: string; onClose: () => void }
 
@@ -98,7 +101,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
             }}>{t(`${key}.action`)}</Button>
         </div>;
       })}
-      {areaQuestTools(act, areaId).map(tool => {
+      {areaQuestTools(act, areaId).filter(tool => questItemSource(tool) !== COW.legSource).map(tool => {
         const source = questItemSource(tool), status = questToolStatus(source);
         const key = `areaObjects.tools.${tool.id.replace(/^quest\//, '')}`;
         return (
@@ -124,6 +127,8 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         );
       })}
       <Act5QuestActionsPanel act={act} areaId={areaId} />
+      <CountedQuestSourcesPanel act={act} areaId={areaId} />
+      {act === 1 && areaId === COW.area && <CowQuestActionsPanel context="map" />}
       {failure && <p role="alert" className="text-sm text-d2-white/90">{t(`areaObjects.feedback.${failure}`)}</p>}
       <Button variant="secondary" className="min-h-[44px] min-w-[44px]" data-testid="area-object-close"
         onClick={onClose}>{t('common:close')}</Button>

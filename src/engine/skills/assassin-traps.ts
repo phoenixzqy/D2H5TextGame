@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import tuning from '../../data/combat/assassin-traps.json';
-import schema from '../../data/schema/assassin-traps.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import authored from '@/data/skills/assassin.json';
 import type { SkillDef } from '@/engine/types/skills';
 import type { Player } from '@/engine/types/entities';
@@ -34,7 +34,7 @@ function freeze<T>(value: T): T {
   }
   return value;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<TrapTuning>(schema);
+const validate = compileAuthoredValidator<TrapTuning>(new Ajv2020({ strict: true, allErrors: true }), 'traps');
 /** Validate complete finite tuning and independently copy all owned data. */
 export function resolveAssassinTrapTuning(input: unknown): TrapTuning {
   if (!validate(input) || new Set(input.skills.map(row => row.id)).size !== ASSASSIN_TRAP_IDS.length ||

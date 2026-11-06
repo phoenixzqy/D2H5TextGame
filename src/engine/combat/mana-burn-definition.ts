@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import data from '../../data/combat/mana-burn.json';
-import schema from '../../data/schema/mana-burn.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 
 /** Shared direct-hit mana debit, zero-MP Arcane amplification and restoration lifetime. */
 export interface ManaBurnDefinition {
@@ -11,7 +11,7 @@ export interface ManaBurnDefinition {
   readonly durationSeconds: -1;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<ManaBurnDefinition>(schema);
+const validate = compileAuthoredValidator<ManaBurnDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'manaBurn');
 
 /** Validate and copy authored policy without retaining or freezing caller data. */
 export function resolveManaBurnDefinition(source: unknown): ManaBurnDefinition {

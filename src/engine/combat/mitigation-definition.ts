@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import mitigation from '../../data/combat/mitigation.json';
-import schema from '../../data/schema/mitigation.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { MonsterTier } from './types';
 
 /** JSON-authored independent flat magical mitigation defaults. */
@@ -14,7 +14,7 @@ export interface MitigationDefinition {
   };
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<MitigationDefinition>(schema);
+const validate = compileAuthoredValidator<MitigationDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'mitigation');
 
 /** Validate and deeply copy the policy without freezing or retaining caller objects. */
 export function resolveMitigationDefinition(source: unknown): MitigationDefinition {

@@ -6,18 +6,23 @@ function required<T>(value: T | undefined): T { if (value === undefined) throw n
 const pools = loadAwardPools();
 
 describe('all authored Act IV quest cache outcomes', () => {
-  for (const [tableId, ilvl, count] of [['loot/hellforge-runes', 56, 8], ['loot/diablo-q', 61, 5]] as const) {
+  for (const [tableId, ilvl, count] of [['loot/hellforge-runes', 56, 8], ['loot/diablo-q', 61, 14]] as const) {
     const table = required(pools.treasureClasses.get(tableId));
-    it(`materializes each of ${String(count)} selectable outcomes from ${tableId} at ${String(ilvl)}`, () => {
+    it(`materializes all ${String(count)} authored outcomes from ${tableId} within their level gates`, () => {
       expect(table.picks).toHaveLength(count);
       for (const pick of table.picks) {
         // Force each authored outcome without changing its eligibility, identity, quantity or rarity.
-        const result = required(rollQuestTableRewards({ tableId, ilvl, picks: 1 }, {
+        const selectedPools = {
           ...pools, treasureClasses: new Map([[tableId, { ...table, picks: [pick] }]])
-        }, createRng(41)));
+        };
+        const eligibleLevel = Math.max(pick.qlvlMin, Math.min(ilvl, pick.qlvlMax));
+        if (eligibleLevel !== ilvl) {
+          expect(rollQuestTableRewards({ tableId, ilvl, picks: 1 }, selectedPools, createRng(41))).toBeUndefined();
+        }
+        const result = required(rollQuestTableRewards({ tableId, ilvl: eligibleLevel, picks: 1 }, selectedPools, createRng(41)));
         if (pick.type === 'item') {
           const item = required(result.items[0]); expect(result.items).toHaveLength(1);
-          expect(item.baseId).toBe(pick.baseId); expect(item.rarity).toBe(pick.rarity); expect(item.ilvl).toBe(ilvl);
+          expect(item.baseId).toBe(pick.baseId); expect(item.rarity).toBe(pick.rarity); expect(item.ilvl).toBe(eligibleLevel);
           if (item.baseId === 'items/base/wp2h-thunder-maul') expect(item.rarity).toBe('rare');
         } else {
           expect(result.items).toHaveLength(0);

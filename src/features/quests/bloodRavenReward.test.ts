@@ -77,7 +77,8 @@ describe('authored Blood Raven trainee Claim', () => {
     expect(after.mercs.mercProgress).toEqual({ [TRAINEE]: {
       experience: 0, experienceToNextLevel: mercXpForLevel(3) } });
     expect(after.map.questProgress[QUEST]?.rewardClaimed).toBe(true);
-    expect(after.inventory).toEqual(before.inventory);
+    expect(after.inventory).toEqual({ ...before.inventory,
+      currencies: { ...before.inventory.currencies, wishstone: (before.inventory.currencies.wishstone ?? 0) + 15 } });
     expect(after.meta).toEqual(before.meta);
     expect(after.formation).toEqual(before.formation);
     expect(claimQuestReward(QUEST)).toBe('already-claimed');
@@ -211,6 +212,7 @@ describe('authored Blood Raven trainee Claim', () => {
     expect(exported.player).toEqual(paid.player);
     expect(exported.mercs).toEqual(paid.mercs);
     expect(exported.map).toEqual(paid.map);
-    expect(exported.inventory).toEqual(before.inventory);
+    expect(exported.inventory).toEqual({ ...before.inventory,
+      currencies: { ...before.inventory.currencies, wishstone: (before.inventory.currencies.wishstone ?? 0) + 15 } });
   });
 });

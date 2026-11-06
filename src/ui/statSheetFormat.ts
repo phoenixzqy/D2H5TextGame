@@ -24,6 +24,7 @@ export const STAT_META: Readonly<Record<ComparableStatKey, StatMeta>> = {
   manaMax: { key: 'manaMax', format: 'int', higherIsBetter: true },
   attack: { key: 'attack', format: 'int', higherIsBetter: true },
   defense: { key: 'defense', format: 'int', higherIsBetter: true },
+  magicResist: { key: 'magicResist', format: 'int', higherIsBetter: true },
   attackSpeed: { key: 'attackSpeed', format: 'int', higherIsBetter: true },
   critChance: { key: 'critChance', format: 'percent', higherIsBetter: true },
   critDamage: { key: 'critDamage', format: 'mult', higherIsBetter: true },

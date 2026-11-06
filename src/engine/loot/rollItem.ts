@@ -123,15 +123,29 @@ export function prepareRareAffixes(base: ItemBase, ilvl: number, affixes: readon
 function templateWeight(template: { readonly weight?: number }): number { return Math.max(0, template.weight ?? 1); }
 function eligibleUnique(template: UniqueItemDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }
 function eligibleSetPiece(template: SetPieceDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }
+/** Preflight exact materialized rarity without consuming RNG or allocating an ID. */
+export function canRollItemRarity(input: RollItemInput, pools: ItemRollPools): boolean {
+  const base = pools.bases.get(input.baseId);
+  if (!base || base.id !== input.baseId || !hasReviewedSocketBudget(base) ||
+    !Number.isSafeInteger(input.ilvl) || input.ilvl < 1) return false;
+  const positive = (template: { readonly weight?: number }): boolean =>
+    Number.isFinite(templateWeight(template)) && templateWeight(template) > 0;
+  if (input.rarity === 'unique') return (pools.uniques ?? []).some(template =>
+    eligibleUnique(template, base.id, input.ilvl) && positive(template));
+  if (input.rarity === 'set') return (pools.setPieces ?? []).some(template =>
+    eligibleSetPiece(template, base.id, input.ilvl) && positive(template));
+  return true;
+}
 function pickTemplate<T extends { readonly weight?: number }>(templates: readonly T[], rng: Rng): T | undefined {
-  const total = templates.reduce((sum, template) => sum + templateWeight(template), 0);
+  const positive = templates.filter(template => Number.isFinite(templateWeight(template)) && templateWeight(template) > 0);
+  const total = positive.reduce((sum, template) => sum + templateWeight(template), 0);
   if (total <= 0) return undefined;
   let roll = rng.next() * total;
-  for (const template of templates) {
+  for (const template of positive) {
     roll -= templateWeight(template);
     if (roll <= 0) return template;
   }
-  return templates[templates.length - 1];
+  return positive[positive.length - 1];
 }
 function materializeTemplateItem(base: ItemBase & { readonly maxSockets: number }, input: RollItemInput, rarity: Extract<Rarity, 'unique' | 'set'>, rng: Rng, template: UniqueItemDef | SetPieceDef): Item {
   const { statRolls } = rollStatPackage(template.stats, rng);

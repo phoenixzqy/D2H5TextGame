@@ -6,9 +6,13 @@ import addFormats from 'ajv-formats';
 import fs from 'node:fs';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import path from 'node:path';
+import { compiledAuthoredValidatorsId, compiledFirstErrorAuthoredValidatorsId, precompileAuthoredValidators } from './scripts/precompile-authored-validators';
+import { compiledSkillValidatorId, precompileSkillValidator } from './scripts/precompile-skill-validator';
+import { compiledSaveValidatorsId, precompileSaveValidators } from './scripts/precompile-save-validators';
 
 const rootDir = __dirname;
 const dataRoot = path.resolve(rootDir, 'src/data');
+const engineRoot = path.resolve(rootDir, 'src/engine');
 const dataPathPattern = /^src\/data\/[a-z0-9_/.-]+\.json$/;
 
 const schemaRules: readonly { readonly pattern: RegExp; readonly schemaFile: string }[] = [
@@ -186,6 +190,9 @@ function sendJson(res: ServerResponse, statusCode: number, payload: unknown): vo
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    precompileSkillValidator(),
+    precompileAuthoredValidators(),
+    precompileSaveValidators(),
     devDataPlugin(),
     react(),
     VitePWA({
@@ -245,11 +252,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Static data has no side effects. Keep it separate from the growing
-          // entry so both remain below Workbox's unchanged precache limit.
+          // Keep engine code and authored data out of the growing application
+          // entry so all application chunks fit Workbox's precache limit.
           const normalizedId = id.replaceAll('\\', '/');
+          if (normalizedId === compiledSkillValidatorId) return 'compiled-skill-schema';
+          if (normalizedId === compiledAuthoredValidatorsId || normalizedId === compiledFirstErrorAuthoredValidatorsId) return 'compiled-authored-schemas';
+          if (normalizedId === compiledSaveValidatorsId) return 'compiled-save-schemas';
           if (normalizedId.startsWith(`${dataRoot.replaceAll('\\', '/')}/`) &&
               normalizedId.endsWith('.json')) return 'game-data';
+          if (normalizedId.startsWith(`${engineRoot.replaceAll('\\', '/')}/`)) return 'engine-core';
 
           const vendorGroups = {
             'validation-vendor': ['ajv', 'ajv-formats'],

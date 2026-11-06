@@ -1,3 +1,7 @@
+import { MERC_ELEMENTAL_ARROWS } from '../skills/merc-elemental-arrows';
+import { MERC_BLESSED_AIM_SKILL } from '../skills/merc-blessed-aim';
+import { MERC_FROZEN_ARMOR_SKILL } from '../skills/merc-frozen-armor';
+import { MERC_PILFER_SKILL } from '../skills/merc-pilfer';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMercFromDef } from '../../stores/mercFactory';
 import { mercToCombatUnit } from '../../stores/mercToCombatUnit';
@@ -77,7 +81,11 @@ describe('Rogue Inner Sight registration and native lifecycle', () => {
       expect([...listSkills()].sort()).toEqual(ids);
     }
     expect(getSkill(skillId)).not.toHaveProperty('isBuff');
-    for (const stub of MERC_STUB_SKILLS.filter(row => row.id !== skillId && row.id !== 'mskill-minor-heal')) {
+    expect(getSkill('mskill-frozen-armor')).toBe(MERC_FROZEN_ARMOR_SKILL);
+    expect(getSkill('mskill-pilfer')).toBe(MERC_PILFER_SKILL);
+    expect(getSkill('aura-blessed-aim')).toBe(MERC_BLESSED_AIM_SKILL);
+    for (const arrow of MERC_ELEMENTAL_ARROWS) expect(getSkill(arrow.id)).toBe(arrow);
+    for (const stub of MERC_STUB_SKILLS.filter(row => row.id !== skillId && row.id !== 'mskill-minor-heal' && row.id !== 'mskill-frozen-armor' && row.id !== 'mskill-pilfer' && row.id !== 'aura-blessed-aim' && !MERC_ELEMENTAL_ARROWS.some(arrow => arrow.id === row.id))) {
       expect(getSkill(stub.id)).toBe(stub);
     }
   });
@@ -94,7 +102,7 @@ describe('Rogue Inner Sight registration and native lifecycle', () => {
       .toEqual([1524, 7620]);
     expect(hits(r).some(e => e.simClockMs === 1524 || e.simClockMs === 7620)).toBe(false);
     expect(r.result.enemyTeam[0]?.statuses.filter(s => s.id === statusId)).toEqual([
-      { id: statusId, sourceId: native.id, stacks: 1, remaining: 8, appliedAtMs: 1524, expiresAtMs: 15620 }
+      { id: statusId, sourceId: native.id, stacks: 1, remaining: 8, appliedAtMs: 1524, expiresAtMs: 15620, innerSight: { defenseReductionPct: 25 } }
     ]);
     const resultMerc = r.result.playerTeam.find(row => row.id === native.id);
     expect(resultMerc?.stats).toEqual(native.stats);
@@ -122,7 +130,7 @@ describe('Rogue Inner Sight registration and native lifecycle', () => {
       expect.objectContaining({ kind: 'status', target: e.id, statusId, simClockMs: 1700 })));
     for (const enemy of r.result.enemyTeam.slice(0, 4)) {
       expect(enemy.statuses.filter(s => s.id === statusId)).toEqual([
-        { id: statusId, sourceId: 'caster', stacks: 1, remaining: 8, appliedAtMs: 1700, expiresAtMs: 9700 }
+        { id: statusId, sourceId: 'caster', stacks: 1, remaining: 8, appliedAtMs: 1700, expiresAtMs: 9700, innerSight: { defenseReductionPct: 25 } }
       ]);
     }
     expect(r.result.enemyTeam.at(-1)?.statuses.some(s => s.id === statusId)).toBe(false);

@@ -68,15 +68,15 @@ describe.each(['en', 'zh-CN'] as const)('MercsScreen capacity feedback %s', loca
   it('retains an open picker on refusal and clears feedback on slot change or successful swap', async () => {
     await i18n.changeLanguage(locale);
     show();
-    fireEvent.click(screen.getByTestId('merc-equip-slot-head'));
+    fireEvent.click(screen.getByTestId('merc-equip-slot-head-select'));
     const candidate = screen.getAllByRole('button', { name: locale === 'en' ? 'Equip' : '装备' })[0];
     if (!candidate) throw new Error('Missing candidate');
     fireEvent.click(within(screen.getByTestId('merc-equip-slot-head')).getByRole('button', { name: locale === 'en' ? 'Unequip' : '卸下' }));
     expect(screen.queryByRole('status')).toHaveTextContent(message(locale));
     expect(candidate).toBeInTheDocument();
-    fireEvent.click(screen.getByTestId('merc-equip-slot-boots'));
+    fireEvent.click(screen.getByTestId('merc-equip-slot-boots-select'));
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByTestId('merc-equip-slot-head'));
+    fireEvent.click(screen.getByTestId('merc-equip-slot-head-select'));
     fireEvent.click(within(screen.getByTestId('merc-equip-slot-head')).getByRole('button', { name: locale === 'en' ? 'Unequip' : '卸下' }));
     expect(screen.getByRole('status')).toHaveTextContent(message(locale));
     fireEvent.click(screen.getAllByRole('button', { name: locale === 'en' ? 'Equip' : '装备' })[0] ?? candidate);

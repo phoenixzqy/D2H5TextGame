@@ -96,6 +96,7 @@ export interface DisplaySkillSource {
   readonly summonId?: string;
   readonly scaling?: {
     readonly damagePerLevel?: number;
+    readonly attackDamagePctPerLevel?: number;
     readonly cooldownPerLevel?: number;
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
@@ -252,6 +253,8 @@ export interface SkillRankDisplayStats {
   /** Paid personal Defense interval and Attack converted into an Arcane hit. */
   readonly concentrate?: { readonly durationSeconds: number };
   readonly convertedAttackPercent?: number;
+  /** Attack percentage added to the flat hit before ordinary mitigation. */
+  readonly additionalAttackPercent?: number;
   /** Paid finite personal Leap physical follow-up. */
   readonly leap?: { readonly durationSeconds: number };
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
@@ -446,7 +449,8 @@ function summonUnit(
   mastery: SkeletonMasteryProjection | undefined,
   ironGolem: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined,
   golemMastery: GolemMasteryProjection | undefined,
-  global: SummonPassiveProjection | undefined
+  global: SummonPassiveProjection | undefined,
+  ownerLevel: number
 ): SkillSummonDisplayStats | undefined {
   const decoy = decoyDisplayDefinition(skill);
   if (decoy) {
@@ -492,6 +496,7 @@ function summonUnit(
     : bloodGolem ? { kind: 'lifeLeech', percentOfDamage: BLOOD_GOLEM_DEFINITION.lifeLeechFraction * 100 }
     : druid ? druidSummonEffect(summonId) : undefined;
   const baseStats = getSummonStats(summonId, {
+    ownerLevel,
     skillLevel: rank,
     statScaling: skill.scaling?.summonStatsPerLevel
   });
@@ -643,7 +648,8 @@ export function computeSkillRankDisplayStats(
   mastery?: SkeletonMasteryProjection,
   ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
   golemMastery?: GolemMasteryProjection,
-  global?: SummonPassiveProjection
+  global?: SummonPassiveProjection,
+  ownerLevel = 1
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const assassinMartial = resolveAssassinMartialDisplay(skill, safeRank);
@@ -678,7 +684,7 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
-  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem, golemMastery, global);
+  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem, golemMastery, global, ownerLevel);
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
@@ -865,6 +871,8 @@ export function computeSkillRankDisplayStats(
       ? { concentrate: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
     ...(skill.id === 'skills-barbarian-berserk' && skill.attackDamagePct !== undefined
       ? { convertedAttackPercent: skill.attackDamagePct } : {}),
+    ...(skill.scaling?.attackDamagePctPerLevel !== undefined
+      ? { additionalAttackPercent: skill.scaling.attackDamagePctPerLevel * (safeRank - 1) } : {}),
     ...(leap ? { leap: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
     ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
       ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,
@@ -920,7 +928,8 @@ export function computeSkillDisplayModel(
   mastery?: SkeletonMasteryProjection,
   ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
   golemMastery?: GolemMasteryProjection,
-  global?: SummonPassiveProjection
+  global?: SummonPassiveProjection,
+  ownerLevel = 1
 ): SkillDisplayModel {
   const maxLevel = Math.max(1, Math.floor(skill.maxLevel));
   const allocated = Math.max(0, Math.floor(allocatedLevel));
@@ -933,8 +942,8 @@ export function computeSkillDisplayModel(
     maxLevel,
     displayRank,
     ...(nextRank !== undefined ? { nextRank } : {}),
-    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem, golemMastery, global) } : {}),
-    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem, golemMastery, global) } : {}),
+    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem, golemMastery, global, ownerLevel) } : {}),
+    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem, golemMastery, global, ownerLevel) } : {}),
     maxed
   };
 }

@@ -9,9 +9,12 @@ import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { useHydrationStore } from './hydrationStore';
 import { blockSavesForRecovery, resumeWaveDeferredSave } from './persistence';
-import { beginMaterialTransaction, endMaterialTransaction } from './waveTransitionGuard';
+import { RecordedWaveAccessError } from './recordedWaveAccess';
+import { beginMaterialTransaction, endMaterialTransaction, WaveGuardError } from './waveTransitionGuard';
 
 export type EndgameClaimResult = 'ok' | 'not-eligible' | 'already-claimed' | 'grant-failed'
+  | 'not-ready' | 'no-player' | 'combat-active' | 'claim-in-progress';
+export type EndgameEntryResult = 'ok' | 'locked' | 'invalid' | 'exhausted'
   | 'not-ready' | 'no-player' | 'combat-active' | 'claim-in-progress';
 
 export type EndgamePanelModel = { readonly kind: 'invalid' } | {
@@ -31,15 +34,37 @@ export function readEndgamePanelModel(): EndgamePanelModel {
   } catch { return { kind: 'invalid' }; }
 }
 
-/** Check a map navigation request without starting combat or spending a durable ordinal. */
-export function checkEndgameEntry(modifierId: string): 'ok' | 'locked' | 'invalid' | 'exhausted'
-  | 'not-ready' | 'no-player' | 'combat-active' | 'claim-in-progress' {
-  const refusal = questActionPreflight();
-  if (refusal) return refusal;
-  const model = readEndgamePanelModel();
+function projectEntry(model: EndgamePanelModel, modifierId: string): EndgameEntryResult {
   if (!endgameDefinition.modifiers.some(row => row.id === modifierId) || model.kind === 'invalid') return 'invalid';
   if (model.kind === 'locked') return 'locked';
   return model.state.attemptOrdinal === Number.MAX_SAFE_INTEGER ? 'exhausted' : 'ok';
+}
+
+function projectClaim(achievement: ReturnType<typeof projectEndgameAchievement>): 'ok' | 'already-claimed' | 'not-eligible' {
+  return achievement.claimed ? 'already-claimed' : achievement.available ? 'ok' : 'not-eligible';
+}
+
+/** Read-only advisory eligibility; typed ownership refusals become busy, with no request or mutation. */
+export function readEndgameReadiness(modifierId: string): {
+  readonly model: EndgamePanelModel;
+  readonly entry: EndgameEntryResult | 'busy';
+  readonly claim: Exclude<EndgameClaimResult, 'grant-failed'> | 'busy';
+} {
+  let refusal: ReturnType<typeof questActionPreflight> | 'busy';
+  try { refusal = questActionPreflight(); }
+  catch (error) {
+    if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+    refusal = 'busy';
+  }
+  const model = readEndgamePanelModel();
+  return { model, entry: refusal ?? projectEntry(model, modifierId),
+    claim: refusal ?? (model.kind === 'invalid' ? 'not-eligible' : projectClaim(model.achievement)) };
+}
+
+/** Check a map navigation request without starting combat or spending a durable ordinal. */
+export function checkEndgameEntry(modifierId: string): EndgameEntryResult {
+  const refusal = questActionPreflight();
+  return refusal ?? projectEntry(readEndgamePanelModel(), modifierId);
 }
 
 function publishClaim(): EndgameClaimResult {
@@ -49,8 +74,8 @@ function publishClaim(): EndgameClaimResult {
     validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts);
     validateNative24CurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
     const achievement = projectEndgameAchievement(map.endgame, campaign);
-    if (achievement.claimed) return 'already-claimed';
-    if (!achievement.available) return 'not-eligible';
+    const readiness = projectClaim(achievement);
+    if (readiness !== 'ok') return readiness;
   } catch { return 'not-eligible'; }
   let materials: typeof inventory.materials;
   try { materials = mergeMaterials(inventory.materials, endgameDefinition.achievement.reward.materials); }

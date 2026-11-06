@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/summons/skeletal-mage-signatures.json';
-import schema from '../../data/schema/skeletal-mage-signatures.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { OnHitStatus } from './effects';
 import type { SkeletalMageElement } from './skeletal-mage';
 
@@ -10,7 +10,7 @@ interface AuthoredSignatures {
   readonly id: 'summons/skeletal-mage-signatures';
   readonly effects: SkeletalMageSignatures;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<AuthoredSignatures>(schema);
+const validate = compileAuthoredValidator<AuthoredSignatures>(new Ajv2020({ strict: true, allErrors: true }), 'mageSignatures');
 
 /** Validate all four matching payloads and copy them without retaining or freezing caller data. */
 export function resolveSkeletalMageSignatures(input: unknown): SkeletalMageSignatures {

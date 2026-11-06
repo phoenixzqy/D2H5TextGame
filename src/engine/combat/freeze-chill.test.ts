@@ -115,7 +115,7 @@ describe.each(skills)('BUG165 actual $id', skill => {
   });
 });
 
-it('finishes Glacial Spike effects in summon-first order within its existing two-target limit', () => {
+it('finishes Glacial Spike in hostile insertion order within its existing two-target limit', () => {
   const skill = skills[1], input = snapshot(skill);
   const result = replay({ ...input, enemyTeam: [
     { ...unit('first', 'enemy'), statuses: [hold()] },
@@ -124,6 +124,6 @@ it('finishes Glacial Spike effects in summon-first order within its existing two
   ] });
   expect(result.events.filter(e => e.kind === 'damage' || e.kind === 'status')
     .map(e => e.kind === 'status' ? [e.target, e.statusId] : [e.target, 'hit']))
-    .toEqual(['summon', 'first'].flatMap(id => [[id, 'hit'], [id, 'freeze'], [id, 'chill']]));
+    .toEqual(['first', 'summon'].flatMap(id => [[id, 'hit'], [id, 'freeze'], [id, 'chill']]));
   expect(result.result.enemyTeam.find(target => target.id === 'last')?.life).toBe(1000);
 });

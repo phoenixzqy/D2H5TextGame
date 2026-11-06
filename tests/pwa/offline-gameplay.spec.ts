@@ -25,10 +25,18 @@ async function readStoredSave(page: Page): Promise<SaveCurrent> {
       const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
       get.onerror = () => { db.close(); reject(new Error('Could not read saved character')); };
       get.onsuccess = () => {
-        const record = get.result as { data: SaveCurrent } | undefined;
+        const record = get.result as { encoding?: string; data: SaveCurrent | string } | undefined;
         db.close();
-        if (!record) reject(new Error('No committed character'));
-        else resolve(record.data);
+        if (!record) { reject(new Error('No committed character')); return; }
+        try {
+          if (!Object.hasOwn(record, 'encoding')) {
+            resolve(record.data as SaveCurrent);
+          } else if (record.encoding === 'json-v1' && typeof record.data === 'string') {
+            resolve(JSON.parse(record.data) as SaveCurrent);
+          } else {
+            throw new Error('Unsupported or invalid storage encoding');
+          }
+        } catch (error) { reject(error instanceof Error ? error : new Error(String(error))); }
       };
     };
   }));

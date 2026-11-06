@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/summons/amazon.json';
-import schema from '../../data/schema/amazon-summons.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { DerivedStats } from '../types/attributes';
 import { MITIGATION_DEFINITION } from '../combat/mitigation-definition';
 
@@ -10,9 +10,7 @@ export interface AmazonSummonDefinition {
   readonly id: 'summons/amazon';
   readonly templates: { readonly valkyrie: BodyStats };
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<AmazonSummonDefinition>(
-  schema
-);
+const validate = compileAuthoredValidator<AmazonSummonDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'amazonSummons');
 /** Reject incomplete tuning, then copy deeply without freezing or retaining caller data. */
 export function resolveAmazonSummonDefinition(input: unknown): AmazonSummonDefinition {
   if (!validate(input)) throw new Error('Invalid authored Amazon summon definition');

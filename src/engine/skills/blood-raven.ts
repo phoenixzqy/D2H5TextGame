@@ -2,14 +2,14 @@ import { createSkillValidator } from './skill-validator';
 import Ajv2020 from 'ajv/dist/2020';
 import skills from '../../data/skills/monsters.json';
 import monsters from '../../data/monsters/act1.json';
-import monsterSchema from '../../data/schema/monster.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { SkillDef } from '../types/skills';
 import type { MonsterDef } from '../types/monsters';
 import type { RegisteredSkill } from './effects';
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
 const validSkill = createSkillValidator<SkillDef>();
-const validMonster = ajv.compile<MonsterDef>(monsterSchema);
+const validMonster = compileAuthoredValidator<MonsterDef>(ajv, 'monsters');
 
 function exact(rows: readonly unknown[], id: string): unknown {
   const matches = rows.filter(row => typeof row === 'object' && row !== null && 'id' in row && row.id === id);

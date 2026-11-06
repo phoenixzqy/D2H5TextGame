@@ -1,0 +1,1085 @@
+{
+  "act": 1,
+  "enemyTeam": [
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        152,
+        152
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 1
+      },
+      "id": "enemy-act1.dark-stalker-0-b021",
+      "kind": "monster",
+      "level": 13,
+      "life": 785,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker A",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge",
+        "monster-frost-nova"
+      ],
+      "stats": {
+        "attack": 152,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 88,
+        "goldFind": 0,
+        "life": 785,
+        "lifeMax": 785,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 24,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "champion"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        152,
+        152
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 0
+      },
+      "id": "enemy-act1.dark-stalker-1-8ea9",
+      "kind": "monster",
+      "level": 13,
+      "life": 913,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker B",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 152,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 88,
+        "goldFind": 0,
+        "life": 913,
+        "lifeMax": 913,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 24,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "champion"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        138,
+        138
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 1
+      },
+      "id": "enemy-act1.tainted-0-aacf",
+      "kind": "monster",
+      "level": 13,
+      "life": 395,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted A",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 138,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 43,
+        "goldFind": 0,
+        "life": 395,
+        "lifeMax": 395,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 24,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "champion"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 1
+      },
+      "id": "enemy-act1.tainted-1-e10e",
+      "kind": "monster",
+      "level": 13,
+      "life": 123,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted B",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 123,
+        "lifeMax": 123,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 2
+      },
+      "id": "enemy-act1.dark-stalker-2-5f2b",
+      "kind": "monster",
+      "level": 13,
+      "life": 284,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker C",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 284,
+        "lifeMax": 284,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 0
+      },
+      "id": "enemy-act1.dark-stalker-3-27ea",
+      "kind": "monster",
+      "level": 13,
+      "life": 225,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker D",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 225,
+        "lifeMax": 225,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 0
+      },
+      "id": "enemy-act1.tainted-2-9123",
+      "kind": "monster",
+      "level": 13,
+      "life": 129,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted C",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 129,
+        "lifeMax": 129,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 2
+      },
+      "id": "enemy-act1.tainted-3-bcab",
+      "kind": "monster",
+      "level": 13,
+      "life": 130,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted D",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 130,
+        "lifeMax": 130,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 2
+      },
+      "id": "enemy-act1.dark-stalker-4-d155",
+      "kind": "monster",
+      "level": 13,
+      "life": 301,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker E",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 301,
+        "lifeMax": 301,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 3
+      },
+      "id": "enemy-act1.dark-stalker-5-ce91",
+      "kind": "monster",
+      "level": 13,
+      "life": 307,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker F",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 307,
+        "lifeMax": 307,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 3
+      },
+      "id": "enemy-act1.tainted-4-9acc",
+      "kind": "monster",
+      "level": 13,
+      "life": 130,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted E",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 130,
+        "lifeMax": 130,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 3
+      },
+      "id": "enemy-act1.tainted-5-4901",
+      "kind": "monster",
+      "level": 13,
+      "life": 143,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted F",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 143,
+        "lifeMax": 143,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 4
+      },
+      "id": "enemy-act1.dark-stalker-6-783d",
+      "kind": "monster",
+      "level": 13,
+      "life": 277,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker G",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 277,
+        "lifeMax": 277,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "enemy-act1.dark-stalker-7-b234",
+      "kind": "monster",
+      "level": 13,
+      "life": 271,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker H",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 271,
+        "lifeMax": 271,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "enemy-act1.tainted-6-fb17",
+      "kind": "monster",
+      "level": 13,
+      "life": 136,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted G",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 136,
+        "lifeMax": 136,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        92,
+        92
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 5
+      },
+      "id": "enemy-act1.tainted-7-ac2d",
+      "kind": "monster",
+      "level": 13,
+      "life": 131,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.tainted",
+      "name": "monsters.tainted H",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-spit"
+      ],
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 90,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 33,
+        "goldFind": 0,
+        "life": 131,
+        "lifeMax": 131,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        101,
+        101
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 5
+      },
+      "id": "enemy-act1.dark-stalker-8-ddb9",
+      "kind": "monster",
+      "level": 13,
+      "life": 274,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act1.dark-stalker",
+      "name": "monsters.darkStalker I",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-charge"
+      ],
+      "stats": {
+        "attack": 101,
+        "attackSpeed": 120,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 68,
+        "goldFind": 0,
+        "life": 274,
+        "lifeMax": 274,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 12,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 25,
+          "cold": 25,
+          "fire": 25,
+          "lightning": 25,
+          "physical": 0,
+          "poison": 25
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    }
+  ],
+  "playerTeam": [
+    {
+      "activeBuffIds": [],
+      "basicAttackDelivery": "ranged",
+      "bonePrisonRank": 0,
+      "boneWallRank": 0,
+      "burstOfSpeedRank": 0,
+      "cloakOfShadowsRank": 0,
+      "coldArmorRanks": {
+        "chilling-armor": 0,
+        "shiver-armor": 0
+      },
+      "coldResistanceReductionPct": 0,
+      "cooldowns": {
+        "amazon.magic_arrow": 464
+      },
+      "decoyRank": 0,
+      "enraged": false,
+      "equippedWeapon": {
+        "handedness": "twoHanded",
+        "weaponType": "bow"
+      },
+      "governedActiveRanks": {
+        "item.redemption": 0,
+        "sorceress.blaze": 0,
+        "sorceress.chain_lightning": 0,
+        "sorceress.fire_bolt": 0
+      },
+      "gridPosition": {
+        "col": 1,
+        "row": 1
+      },
+      "id": "player-1793304000000",
+      "increasedDamagePct": {
+        "fire": 0,
+        "lightning": 0
+      },
+      "kind": "hero",
+      "level": 14,
+      "life": 322,
+      "mana": 124,
+      "manaRegenBaselinePerSecond": 3,
+      "manaRegenCarry": 0.108,
+      "manaRegenCompensation": 0,
+      "manaRegenExactCarry": "0.108",
+      "manaRegenPerSecond": 3,
+      "name": "Campaign screen",
+      "periodicSpellRanks": {
+        "fire-wall": 0,
+        "inferno": 0,
+        "thunder-storm": 0
+      },
+      "physicalReflectionPct": 0,
+      "side": "player",
+      "skillLevels": {
+        "amazon.critical_strike": 1,
+        "amazon.dodge": 1,
+        "amazon.magic_arrow": 1,
+        "amazon.multiple_shot": 14
+      },
+      "skillOrder": [
+        "amazon.multiple_shot"
+      ],
+      "slowMissilesRank": 0,
+      "staticFieldRank": 0,
+      "stats": {
+        "attack": 92,
+        "attackSpeed": 177,
+        "critChance": 0.08,
+        "critDamage": 2,
+        "defense": 137,
+        "goldFind": 0,
+        "life": 140,
+        "lifeMax": 349,
+        "magicDodge": 0.08,
+        "magicFind": 0,
+        "magicResist": 0,
+        "mana": 72,
+        "manaMax": 180,
+        "physDodge": 0.254,
+        "resistances": {
+          "arcane": 5,
+          "cold": 13,
+          "fire": 7,
+          "lightning": 5,
+          "physical": 14,
+          "poison": 18
+        }
+      },
+      "statuses": [],
+      "summonGridPositions": [
+        {
+          "col": 0,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 2
+        },
+        {
+          "col": 2,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 0
+        },
+        {
+          "col": 2,
+          "row": 0
+        },
+        {
+          "col": 0,
+          "row": 1
+        },
+        {
+          "col": 2,
+          "row": 1
+        },
+        {
+          "col": 0,
+          "row": 0
+        }
+      ],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {
+        "mskill-basic-arrow": 1000,
+        "mskill-inner-sight": 2624
+      },
+      "enraged": false,
+      "equippedWeapon": {
+        "handedness": "oneHanded",
+        "weaponType": "wand"
+      },
+      "governedActiveRanks": {
+        "item.redemption": 0,
+        "sorceress.blaze": 0,
+        "sorceress.chain_lightning": 0,
+        "sorceress.fire_bolt": 0
+      },
+      "gridPosition": {
+        "col": 0,
+        "row": 0
+      },
+      "id": "merc-mercs/act1-rogue-inner-sight",
+      "increasedDamagePct": {},
+      "kind": "merc",
+      "level": 17,
+      "life": 180,
+      "mana": 236,
+      "manaRegenBaselinePerSecond": 0,
+      "manaRegenPerSecond": 0,
+      "name": "Rogue Scout \u2014 Inner Sight",
+      "physicalReflectionPct": 0,
+      "side": "player",
+      "skillOrder": [
+        "mskill-inner-sight",
+        "mskill-basic-arrow",
+        "mskill-pierce-arrow"
+      ],
+      "stats": {
+        "attack": 128,
+        "attackSpeed": 164,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "defense": 133,
+        "goldFind": 0,
+        "life": 260,
+        "lifeMax": 304,
+        "magicDodge": 0.07,
+        "magicFind": 0,
+        "magicResist": 0,
+        "mana": 79,
+        "manaMax": 236,
+        "physDodge": 0.178,
+        "resistances": {
+          "arcane": 3,
+          "cold": 23,
+          "fire": 0,
+          "lightning": 5,
+          "physical": 5,
+          "poison": 0
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    }
+  ],
+  "seed": 2249554910
+}

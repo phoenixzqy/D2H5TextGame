@@ -93,6 +93,7 @@ function finalHero() {
 const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
   hero.manaRegenCarry, hero.manaRegenCompensation, hero.manaRegenExactCarry];
 
+// P15 owner24 Skeleton unmastered: (162 + 23×30, 35 + 23×14, 19 + 23×4).
 function expectFreshSummons(life: number, attack: number, defense: number): void {
   expect(useCombatStore.getState().playerTeam.filter(u => u.kind === 'summon' || u.summon)).toEqual([]);
   const created = useCombatStore.getState().recordedEvents.filter(e => e.kind === 'summon');
@@ -127,7 +128,7 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
   it('allocates and upgrades through real actions for fresh next-wave summons without changing current recordings or resource carry', () => {
     arrange(0); start();
-    expectFreshSummons(162, 35, 19);
+    expectFreshSummons(852, 357, 111);
     expect(pools(currentHero())).toEqual([900000, 300, 0, 0, '0']);
     const first = recording(), firstFinal = structuredClone(finalHero());
     expect(usePlayerStore.getState().allocateSkillPoint(AUTHORED)).toBe('ok');
@@ -135,7 +136,7 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
     expect(player().skillPoints).toBe(1); refreshActivePlayerCombatConfig();
     expect(recording()).toEqual(first);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    expectFreshSummons(168.48, 35.7, 19.19);
+    expectFreshSummons(886.08, 364.14, 112.11);
     expect(pools(currentHero())).toEqual(pools(firstFinal));
     const second = recording(), secondFinal = structuredClone(finalHero());
     expect(usePlayerStore.getState().allocateSkillPoint(CANONICAL)).toBe('ok');
@@ -143,7 +144,7 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
     expect(player().skillPoints).toBe(0); refreshActivePlayerCombatConfig();
     expect(recording()).toEqual(second);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    expectFreshSummons(174.96, 36.4, 19.38);
+    expectFreshSummons(920.16, 371.28, 113.22);
     expect(pools(currentHero())).toEqual(pools(secondFinal));
     expect(currentHero().stats.defense).toBe(100000);
     expect(player().derivedStats.defense).toBe(100000);
@@ -160,7 +161,7 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
   });
 
   it('constructs a free reset input and removes both Mastery and active ranks next wave without refilling current pools', () => {
-    arrange(2); start(); expectFreshSummons(174.96, 36.4, 19.38);
+    arrange(2); start(); expectFreshSummons(920.16, 371.28, 113.22);
     const before = recording(), final = structuredClone(finalHero());
     expect(resetSkillsForCompositionTest()).toBe('ok');
     expect(player().skillPoints).toBe(10); expect(player().skillLevels).toEqual({});
@@ -174,11 +175,11 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
 
   it('uses equipment changes next wave and clamps only hero pools while preserving Mastery creation potency', () => {
     arrange(); start(); const before = recording();
-    expectFreshSummons(291.6, 49, 22.8);
+    expectFreshSummons(1533.6, 499.8, 133.2);
     expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
     refreshActivePlayerCombatConfig(); expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    expectFreshSummons(291.6, 49, 22.8);
+    expectFreshSummons(1533.6, 499.8, 133.2);
     expect([currentHero().stats.lifeMax, currentHero().stats.manaMax, currentHero().stats.defense]).toEqual([314, 179, 89]);
     expect(pools(currentHero())).toEqual([314, 179, 0, 0, '0']);
     expect(player().derivedStats.defense).toBe(89);
@@ -191,11 +192,11 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
     const before = recording(), baseline = structuredClone(currentHero());
     const progress = structuredClone({ experience: player().experience,
       currencies: useInventoryStore.getState().currencies, rewards: useCombatStore.getState().runRewards });
-    expectFreshSummons(291.6, 49, 22.8);
-    // Independently reviewed native trace:300−2×15−3×8+floor(5×4.94)+11×50=820.
-    // No mana cap contact/refunds; natural fractional credit .7, compensation0.
-    // The original 752/.5 failure remains in the retained RED/diagnostic evidence.
-    expect(pools(baseline)).toEqual([1000000, 820, .7, 0, '0.7']);
+    expectFreshSummons(1533.6, 499.8, 133.2);
+    // P15 owner growth shortens both prior waves to1.94s. Retained native trace:
+    // 300−2×15−2×8+floor(5×3.88)+12×50=873; fractional credit .4, compensation0.
+    // No mana cap contact/refunds. The exact replay/carry equality remains required.
+    expect(pools(baseline)).toEqual([1000000, 873, .4, 0, '0.4']);
     expect(baseline.manaRegenCarry).toBeGreaterThan(0);
     expect(baseline.manaRegenExactCarry).not.toBe('0');
     const expectedWithFreshMirrors = (life: number, mana: number) => {
@@ -209,17 +210,17 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
       setMastery(0); refreshActivePlayerCombatConfig();
       expect(recording()).toEqual(repeat === 0 ? before : expectedWithFreshMirrors(314, 179));
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-      expectFreshSummons(162, 35, 19); expect(pools(currentHero())).toEqual(pools(baseline)); drain();
+      expectFreshSummons(852, 357, 111); expect(pools(currentHero())).toEqual(pools(baseline)); drain();
       setMastery(20); refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-      expectFreshSummons(291.6, 49, 22.8);
+      expectFreshSummons(1533.6, 499.8, 133.2);
       expect(recording()).toEqual(repeat === 0 ? before : expectedWithFreshMirrors(314, 179));
       setMastery(0); expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-      expectFreshSummons(162, 35, 19); expect(currentHero().stats.defense).toBe(89);
+      expectFreshSummons(852, 357, 111); expect(currentHero().stats.defense).toBe(89);
       expect(pools(currentHero())).toEqual([314, 179, 0, 0, '0']); drain();
       expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
       setMastery(20); refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-      expectFreshSummons(291.6, 49, 22.8);
+      expectFreshSummons(1533.6, 499.8, 133.2);
       expect(recording()).toEqual(expectedWithFreshMirrors(314, 179));
       expect(pools(currentHero())).toEqual(pools(baseline));
     }
@@ -228,7 +229,7 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
   });
 
   it('roundtrips real serialization and validated import with allocations and equipment but no transient projection or summons', async () => {
-    arrange(); start(); expectFreshSummons(291.6, 49, 22.8);
+    arrange(); start(); expectFreshSummons(1533.6, 499.8, 133.2);
     const save = snapshotStores(); if (!save) throw new Error('Missing native save snapshot');
     const before = structuredClone(save.player), gear = structuredClone(save.inventory);
     expect(save.player.skillLevels).toEqual({ [ACTIVE]: 6, [CANONICAL]: 20 });
@@ -244,17 +245,18 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
     const fresh = playerToCombatUnit(player());
     expect(pools(fresh).slice(2)).toEqual([0, 0, '0']); expect(fresh.activeBuffIds).toEqual([]);
     expect(player()).not.toHaveProperty('skeletonMastery');
-    start(); expectFreshSummons(291.6, 49, 22.8);
+    start(); expectFreshSummons(1533.6, 499.8, 133.2);
     expect(currentHero().stats.defense).toBe(100000); expect(player().derivedStats.defense).toBe(100000);
     // Browser disk/reload and earned campaign acceptance remain separate.
   });
 });
 
+// These fixtures use owner30; apply P15 owner growth before Mastery1.
 const CORPSE_CASES = [
   { name: 'raise_skeleton', template: 'skeleton', unlock: 1, prerequisite: null,
-    cap: 2, cost: 15, stats: [168.48, 35.7, 19.19], unboosted: 162 },
+    cap: 2, cost: 15, stats: [1073.28, 449.82, 136.35], unboosted: 1032 },
   { name: 'raise_skeletal_mage', template: 'skeletal_mage', unlock: 12, prerequisite: 'raise_skeleton',
-    cap: 4, cost: 22, stats: [127.92, 45.9, 10.1], unboosted: 123 },
+    cap: 4, cost: 22, stats: [731.12, 341.7, 97.97], unboosted: 703 },
   { name: 'revive', template: 'revived', unlock: 30, prerequisite: 'raise_skeletal_mage',
     cap: 4, cost: 45, stats: [210, 38, 23], unboosted: 210 }
 ] as const;

@@ -1,11 +1,11 @@
 import { withoutV17Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
-import { assert, describe, expect, it } from 'vitest';
+import { assert, describe, expect, it, vi } from 'vitest';
 import type { DerivedStats } from '../types/attributes';
 import { CURRENT_SAVE_VERSION, type LegacyDerivedStats } from '../types/save';
 import type { Item } from '../types/items';
 import { toJsonSafe } from './serialize';
 import { buildSave } from './serialize';
-import { decodeSave } from './validate';
+import { decodeSave, decodeSaveJson, validateSave } from './validate';
 import { deriveStats } from '../progression/stats';
 
 function historicalStats(stats: DerivedStats): LegacyDerivedStats {
@@ -107,6 +107,167 @@ function sampleSave() {
 }
 
 describe('save boundary', () => {
+  it('uses the parser-owned JSON tree without scanning it for native object descriptors', () => {
+    const save = sampleSave(), json = JSON.stringify(toJsonSafe(save));
+    const ownKeys = vi.spyOn(Reflect, 'ownKeys');
+    let graphWalks: number;
+    try {
+      expect(decodeSaveJson(json)).toEqual(save);
+      graphWalks = ownKeys.mock.calls.filter(([node]) => Object.hasOwn(node, 'row') && Object.hasOwn(node, 'col')).length;
+    } finally {
+      ownKeys.mockRestore();
+    }
+    expect(graphWalks).toBe(0);
+  });
+
+  it('restores portable affix Maps exactly like native decoding', () => {
+    const base = sampleSave();
+    const item: Item = { id: 'portable-affix', baseId: 'items/base/helm-cap',
+      rarity: 'magic', level: 1, socketCapacity: 2, identified: true, equipped: false,
+      affixes: [{ affixId: 'legacy', values: new Map([['statMods.mana', 12]]) }] };
+    const save = { ...base, inventory: { ...base.inventory, backpack: [item] } };
+    const json = JSON.stringify(toJsonSafe(save)), output = decodeSaveJson(json);
+    expect(output).toEqual(decodeSave(JSON.parse(json) as unknown));
+    expect(output).toEqual(save);
+    const affix = output.inventory.backpack[0]?.affixes?.[0];
+    expect(affix && 'values' in affix && affix.values).toBeInstanceOf(Map);
+    expect(decodeSave(output)).toEqual(output);
+    Object.defineProperty(output.formation.playerPosition, 'hidden', { get: () => { throw new Error('Getter executed'); } });
+    expect(() => decodeSave(output)).toThrow('accessor');
+  });
+
+  it('preserves frozen quarantine payloads and provenance through portable decoding', () => {
+    const base = sampleSave();
+    const item = { id: 'legacy-quarantine', baseId: 'items/base/helm-cap',
+      rarity: 'magic' as const, level: 1, identified: true, equipped: false,
+      affixes: [{ affixId: 'legacy', values: new Map([['statMods.mana', 12]]) }] };
+    const save = { ...base, inventory: { ...base.inventory, legacyGearQuarantine: [
+      { item, origin: { container: 'backpack' as const, index: 4 } }
+    ] } };
+    const json = JSON.stringify(toJsonSafe(save)), output = decodeSaveJson(json);
+    expect(output).toEqual(save);
+    expect(output).toEqual(decodeSave(JSON.parse(json) as unknown));
+  });
+
+  it.each(['origin', 'duplicate-origin', 'payload'] as const)(
+    'retains the native quarantine error for portable %s corruption', kind => {
+      const base = sampleSave();
+      const entry = { item: { id: 'legacy-quarantine', baseId: 'items/base/helm-cap',
+        rarity: 'normal', level: kind === 'payload' ? '1' : 1,
+        identified: true, equipped: false },
+        origin: { container: 'backpack', index: kind === 'origin' ? -1 : 4 } };
+      const save = { ...base, inventory: { ...base.inventory, legacyGearQuarantine:
+        kind === 'duplicate-origin' ? [entry, { ...entry, item: { ...entry.item, id: 'other' } }] : [entry] } };
+      const json = JSON.stringify(toJsonSafe(save)), parsed: unknown = JSON.parse(json);
+      const before = structuredClone(parsed);
+      let nativeError: unknown;
+      try { decodeSave(parsed); } catch (error) { nativeError = error; }
+      assert(nativeError instanceof Error);
+      expect(() => decodeSaveJson(json)).toThrow(nativeError.message);
+      expect(parsed).toEqual(before);
+    }
+  );
+
+  it.each([
+    ['player', { ...sampleSave().player, level: 0 }],
+    ['player', { ...sampleSave().player, respecsRemaining: -1 }],
+    ['player', { ...sampleSave().player, selectedAuraId: 'paladin.unknown' }],
+    ['inventory', { ...sampleSave().inventory, backpack: [null] }],
+    ['inventory', { ...sampleSave().inventory, materialActionOrdinal: 1 }],
+    ['map', { ...sampleSave().map, questProgress: { quest: { status: 'completed' } } }],
+    ['map', { ...sampleSave().map, bounties: { unknown: {} } }],
+    ['meta', { ...sampleSave().meta, recruitmentState: { srPityCounter: -1, totalPulls: 0, history: [] } }],
+    ['formation', { ...sampleSave().formation, mercPosition: { row: 3, col: 0 } }]
+  ])('retains semantic and schema rejection for portable %s corruption %#', (field, value) => {
+    const json = JSON.stringify(toJsonSafe({ ...sampleSave(), [field]: value }));
+    expect(() => decodeSave(JSON.parse(json) as unknown)).toThrow();
+    expect(() => decodeSaveJson(json)).toThrow();
+  });
+
+  it.each(['duplicate', 'unknown-base', 'invalid-rune', 'false-runeword', 'charm-slot'] as const)(
+    'retains portable item ownership and socket checks for %s', kind => {
+      const save = sampleSave();
+      const item: Item = { id: 'portable-item', baseId: 'items/base/helm-cap',
+        rarity: 'normal', level: 1, socketCapacity: 2, identified: true, equipped: false };
+      const corruptItem: Item = { ...item,
+        ...(kind === 'unknown-base' ? { baseId: 'items/base/unknown' } : {}),
+        ...(kind === 'invalid-rune' ? { socketContents: [{ kind: 'rune' as const, id: 'runes/unknown' }] } : {}),
+        ...(kind === 'false-runeword' ? { rarity: 'runeword' as const } : {}) };
+      const inventory = { ...save.inventory,
+        backpack: kind === 'charm-slot' ? [] : [corruptItem],
+        stash: kind === 'duplicate' ? [{ ...item }] : [],
+        equipped: kind === 'charm-slot' ? { charm: item } : {} };
+      const json = JSON.stringify(toJsonSafe({ ...save, inventory }));
+      expect(() => decodeSave(JSON.parse(json) as unknown)).toThrow();
+      expect(() => decodeSaveJson(json)).toThrow();
+    }
+  );
+
+  it.each(['{', 'null', '[]', '{}', '{"version":0}', '{"version":34}', '{"version":33,"inventory":{}}'])(
+    'refuses malformed or unsupported portable save %s', json => {
+      expect(() => decodeSaveJson(json)).toThrow();
+    }
+  );
+
+  it('requires actual JSON text without coercing an object supplied by JavaScript', () => {
+    let reads = 0;
+    const input = { toString: () => { reads++; return JSON.stringify(toJsonSafe(sampleSave())); } };
+    expect(() => { Reflect.apply(decodeSaveJson, undefined, [input]); }).toThrow('JSON text required');
+    expect(reads).toBe(0);
+  });
+
+  it('treats prototype-looking JSON keys as data just like native normalization', () => {
+    const json = JSON.stringify(toJsonSafe(sampleSave())).replace(/}$/, ',"__proto__":{"polluted":true},"constructor":{"prototype":{"polluted":true}}}');
+    expect(decodeSaveJson(json)).toEqual(decodeSave(JSON.parse(json) as unknown));
+    expect(Object.getOwnPropertyDescriptor(Object.prototype, 'polluted')).toBeUndefined();
+  });
+
+  it('retains the complete historical v7 migration path for portable saves', () => {
+    const json = JSON.stringify(toJsonSafe(legacyAmazon()));
+    expect(decodeSaveJson(json)).toEqual(decodeSave(JSON.parse(json) as unknown));
+    expect(decodeSaveJson(json).version).toBe(CURRENT_SAVE_VERSION);
+  });
+
+  it('inspects each current-save graph once before validation and restoration', () => {
+    const save = sampleSave();
+    const ownKeys = vi.spyOn(Reflect, 'ownKeys');
+    let graphWalks: number;
+    try {
+      expect(decodeSave(save)).toEqual(save);
+      graphWalks = ownKeys.mock.calls.filter(([node]) => node === save.formation.playerPosition).length;
+    } finally {
+      ownKeys.mockRestore();
+    }
+    expect(graphWalks).toBe(1);
+  });
+
+  it.each(['hidden', 'symbol', 'prototype', 'map-key', 'map-value', 'set-value'] as const)(
+    'rechecks a previously decoded current save and rejects a %s getter without executing it', location => {
+      const save = sampleSave();
+      expect(decodeSave(save)).toEqual(save);
+      let reads = 0;
+      const hostile = Object.defineProperty({}, location === 'symbol' ? Symbol('field') : 'field', {
+        enumerable: location !== 'hidden', get: () => { reads++; return 1; }
+      });
+      const nested = location === 'prototype' ? Object.create(hostile) as object
+        : location === 'map-key' ? new Map([[hostile, 1]])
+        : location === 'map-value' ? new Map([['key', hostile]])
+        : location === 'set-value' ? new Set([hostile]) : hostile;
+      Object.defineProperty(save.formation.playerPosition, 'hiddenState', { value: nested });
+      expect(() => decodeSave(save)).toThrow('accessor');
+      expect(() => validateSave(save)).toThrow('accessor');
+      expect(reads).toBe(0);
+    }
+  );
+
+  it('rejects a cycle introduced after a successful current decode', () => {
+    const save = sampleSave();
+    expect(decodeSave(save)).toEqual(save);
+    Object.defineProperty(save.formation.playerPosition, 'cycle', { value: save });
+    expect(() => decodeSave(save)).toThrow('cyclic');
+    expect(() => validateSave(save)).toThrow('cyclic');
+  });
+
   it('preserves a valid current save and optional legacy fields without mutation', () => {
     const save = sampleSave();
     const original = JSON.stringify(save);

@@ -9,14 +9,22 @@ import type { Mercenary } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import { MITIGATION_DEFINITION } from '@/engine/combat/mitigation-definition';
 import { deriveStats } from '@/engine/progression/stats';
+import { growMercenary } from '@/engine/progression/merc-growth';
+import { LEVEL_CAP } from '@/engine/progression/xp';
 import { resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
 
 /**
  * Build a fresh Mercenary instance from a static `MercDef`.
  * `instanceSuffix` makes the runtime id unique across pulls (so two pulls of
  * the same SSR don't collide if duplicates are ever permitted in roster).
+ * Paid recruits pass `recruitmentLevel`: catalog core stats are the L1 baseline,
+ * advanced through ordinary class growth with full initial life/mana. Omitting
+ * it preserves the separately supported catalog-level deterministic hire path.
  */
-export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercenary {
+export function createMercFromDef(def: MercDef, instanceSuffix?: string, recruitmentLevel?: number): Mercenary {
+  if (recruitmentLevel !== undefined && (!Number.isInteger(recruitmentLevel) ||
+      recruitmentLevel < 1 || recruitmentLevel > LEVEL_CAP)) throw new RangeError('Invalid recruitment level');
+  const level = recruitmentLevel === undefined ? Math.max(1, def.reqLevel) : 1;
   const coreStats: CoreStats = {
     strength: def.baseStats.strength,
     dexterity: def.baseStats.dexterity,
@@ -24,17 +32,17 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     energy: def.baseStats.energy
   };
   const derivedStats = {
-    ...deriveStats(coreStats, Math.max(1, def.reqLevel)),
+    ...deriveStats(coreStats, level),
     magicResist: Math.max(0, Math.floor(MITIGATION_DEFINITION.friendlyBase.mercenary))
   };
   const id = instanceSuffix ? `${def.id}#${instanceSuffix}` : def.id;
   const comboOrder = resolveMercSkillLoadout(def).filter((skillId) => skillId.trim().length > 0);
-  return {
+  const merc: Mercenary = {
     id,
     name: def.name,
     type: 'mercenary',
     team: 'player',
-    level: Math.max(1, def.reqLevel),
+    level,
     coreStats,
     derivedStats,
     statusEffects: [],
@@ -49,4 +57,7 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     signatureSkillId: def.signatureSkillId,
     equipment: []
   };
+  if (recruitmentLevel === undefined) return merc;
+  const grown = growMercenary(merc, recruitmentLevel - 1);
+  return { ...grown, derivedStats: { ...grown.derivedStats, mana: grown.derivedStats.manaMax } };
 }

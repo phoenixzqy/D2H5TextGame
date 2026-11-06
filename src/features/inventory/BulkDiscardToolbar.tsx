@@ -3,8 +3,8 @@
  *
  * Rules:
  *   - Buttons are disabled with a tooltip-style title when no items match.
- *   - All actions exclude unique/set items (enforced by selectors in
- *     `bulkDiscard.ts`).
+ *   - All actions exclude special gear and socket investments (enforced by
+ *     the shared engine protection rule through `bulkDiscard.ts`).
  *   - Each click opens a single confirm dialog showing count + the first
  *     10 affected names with "and N more" overflow.
  *
@@ -18,7 +18,7 @@ import { Modal } from '@/ui/Modal';
 import { RarityText } from '@/ui/RarityText';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item } from '@/engine/types/items';
-import { selectBelowEquippedTier, selectByRarity } from './bulkDiscard';
+import { countBulkDiscardCandidates, selectBelowEquippedTier, selectByRarity, type BulkDiscardCounts } from './bulkDiscard';
 
 export interface BulkDiscardToolbarProps {
   readonly backpack: readonly Item[];
@@ -26,7 +26,7 @@ export interface BulkDiscardToolbarProps {
   readonly onDiscard: (ids: readonly string[]) => void;
 }
 
-type Mode = 'normal' | 'magic' | 'rare' | 'belowTier';
+type Mode = keyof BulkDiscardCounts;
 
 function selectorFor(
   mode: Mode,
@@ -56,12 +56,8 @@ export function BulkDiscardToolbar({
   const { t: tItems } = useTranslation('items');
   const [pendingMode, setPendingMode] = useState<Mode | null>(null);
 
-  const counts = useMemo(() => ({
-    normal: selectorFor('normal', backpack, equipped).length,
-    magic: selectorFor('magic', backpack, equipped).length,
-    rare: selectorFor('rare', backpack, equipped).length,
-    belowTier: selectorFor('belowTier', backpack, equipped).length
-  }), [backpack, equipped]);
+  const counts = useMemo(() => countBulkDiscardCandidates(backpack, equipped, loadItemBases()),
+    [backpack, equipped]);
 
   const pending = pendingMode ? selectorFor(pendingMode, backpack, equipped) : [];
 

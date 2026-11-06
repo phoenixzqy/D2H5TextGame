@@ -172,7 +172,7 @@ it('roundtrips the allocation through validated save22 import without persisting
   arrange();
   const expected = playerToCombatUnit(player()), save = snapshotStores();
   if (!save) throw new Error('Missing native save');
-  expect(save.version).toBe(24);
+  expect(save.version).toBe(32);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   expect(useCombatStore.getState().recordedEvents.some(e => e.kind === 'mana' && e.reason === 'energy-shield')).toBe(true);
   expect(JSON.stringify(toJsonSafe(snapshotStores()))).not.toContain('energyShieldRank');

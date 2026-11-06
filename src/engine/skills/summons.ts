@@ -19,12 +19,16 @@ import { buildMonsterUnit } from '../combat/monster-factory';
 import type { MonsterDef } from '../types/monsters';
 import type { Rng } from '../rng';
 import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
-import { getDruidSummonStats } from './druid-summon-definition';
+import { getDruidSummonStats, growDruidSummonWithOwner } from './druid-summon-definition';
 import { fireGolemBodyStats } from './fire-golem';
 import { bloodGolemBodyStats } from './blood-golem';
 import { getNecromancerSummonStats } from './necromancer-summon-definition';
 import { getAmazonSummonStats } from './amazon-summon-definition';
 import { getAssassinSummonStats } from './assassin-summon-definition';
+import { getMonsterSummonStats } from './monster-summon';
+import { DAMAGE_DELIVERY_DEFINITION } from '../combat/damage-delivery';
+import { inferKind } from '../combat/types';
+import { growNecromancerSummonWithOwner } from './necromancer-summon-definition';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -53,6 +57,11 @@ export function getSummon(id: string): SummonFactory | undefined {
   return FACTORIES.get(id);
 }
 
+function growSummonWithOwner(stats: DerivedStats, summonId: string, ownerLevel: number): DerivedStats {
+  return growDruidSummonWithOwner(
+    growNecromancerSummonWithOwner(stats, summonId, ownerLevel), summonId, ownerLevel);
+}
+
 /**
  * Build a {@link CombatUnit} for a registered summon template.
  *
@@ -69,7 +78,11 @@ export function buildSummon(
     ? options.rng ? buildMonsterUnit({ def: options.monsterDef, level: owner.level, tier: 'trash', rng: options.rng }) : undefined
     : factory?.(owner);
   if (!unit) return undefined;
-  const stats = scaleSummonStats(unit.stats, options.statScaling, options.skillLevel ?? 1);
+  const ranked = scaleSummonStats(unit.stats, options.statScaling, options.skillLevel ?? 1);
+  // Malformed owners retain generic preparation without earned-level growth.
+  const stats = !options.monsterDef && owner.side === 'player' && inferKind(owner) === 'hero' &&
+    Number.isSafeInteger(owner.level) && owner.level >= 1
+    ? growSummonWithOwner(ranked, summonId, owner.level) : ranked;
   // Ensure owner-derived fields are correct regardless of factory return.
   return {
     ...unit,
@@ -84,13 +97,14 @@ export function buildSummon(
   };
 }
 
-/** Resolve a summon template's stats without allocating a runtime summon id. */
+/** Resolve fresh player summon stats at an explicit owner level; standalone base previews default to one. */
 export function getSummonStats(
   summonId: string,
-  options: BuildSummonOptions = {}
+  options: BuildSummonOptions & { readonly ownerLevel?: number } = {}
 ): DerivedStats | undefined {
   const base = baseStatsForSummon(summonId);
-  return base ? scaleSummonStats(base, options.statScaling, options.skillLevel ?? 1) : undefined;
+  return base ? growSummonWithOwner(
+    scaleSummonStats(base, options.statScaling, options.skillLevel ?? 1), summonId, options.ownerLevel ?? 1) : undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -127,6 +141,8 @@ function baseSummonStats(): DerivedStats {
 }
 
 function baseStatsForSummon(summonId: string): DerivedStats | undefined {
+  const monster = getMonsterSummonStats(summonId);
+  if (monster) return monster;
   const amazon = getAmazonSummonStats(summonId);
   if (amazon) return amazon;
   const assassin = getAssassinSummonStats(summonId);
@@ -144,8 +160,6 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       const { life, attack, defense } = SPIRIT_OF_BARBS_DEFINITION.stats;
       return { ...baseSummonStats(), life, lifeMax: life, attack, defense };
     }
-    case 'minion':
-      return { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 };
     default:
       return undefined;
   }
@@ -158,6 +172,7 @@ function summonUnit(
   stats: DerivedStats,
   skillOrder: readonly string[] = []
 ): CombatUnit {
+  const basicAttackDelivery = DAMAGE_DELIVERY_DEFINITION.summons[summonId];
   return {
     id: `${owner.id}-summon-${summonId}`,
     name,
@@ -176,7 +191,8 @@ function summonUnit(
     summon: true,
     kind: 'summon',
     summonOwnerId: owner.id,
-    summonTemplateId: summonId
+    summonTemplateId: summonId,
+    ...(basicAttackDelivery !== undefined && basicAttackDelivery !== 'none' ? { basicAttackDelivery } : {})
   };
 }
 

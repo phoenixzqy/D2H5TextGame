@@ -122,6 +122,7 @@ describe('Horadric Staff acquisition through insertion', () => {
     expect(claimQuestReward(quest)).toBe('ok');
     const after = usePlayerStore.getState().player; if (!after) throw new Error('Missing player');
     expect(xpTotal(after.level) + after.experience - xpTotal(before.level) - before.experience).toBe(6000);
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(20);
     expect(useInventoryStore.getState().questItems).toBe(items);
     const claimed = data(); expect(claimQuestReward(quest)).toBe('already-claimed'); expect(data()).toEqual(claimed);
   });

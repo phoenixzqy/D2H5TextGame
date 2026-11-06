@@ -39,7 +39,7 @@
         "larzuk": "Track Siege on Harrogath before facing Shenk in the Bloody Foothills. After claiming the reward, bring an eligible unsocketed backpack item here to use your socket charge.",
         "malah": "Inspect frozen Anya in the Crystalline Passage, then return here for my potion. Take it back to thaw her before confronting Nihlathak. Claim your Scroll of Resistance in Quests and read it in Inventory.",
         "qual-kehk": "Clear the Frigid Highlands and release all three groups of prisoners. In the Ancients’ Way, defeat Talic, Korlic and Madawc together to complete their rite.",
-        "anya": "Thank you for freeing me. Your Scroll of Resistance must be claimed in Quests, then read in Inventory. A personalization charge lets you mark one eligible item with your name.",
+        "anya": "Thank you for freeing me. Your main Scroll of Resistance must be claimed in Quests, then read in Inventory. My separate Gift grants direct +10 resistance to all six damage channels and another personalization charge when you Claim it in Quests. After that, each of my two named trades costs 40 scrap and 2000 Rune Shards, once per character.",
         "cain": "Anya and Nihlathak are in the Crystalline Passage. The Ancients await in the Ancients’ Way. Follow your tracked quests and claim each reward separately.",
         "tyrael": "In the Throne of Destruction, overcome the five minion waves in order, then defeat Baal. Claim Eve of Destruction to select your title and unlock Nightmare replay."
       },
@@ -51,7 +51,7 @@
       "meshif": "I brought you to Kurast. Take care beyond the docks; the jungle has changed.",
       "akara": "I am Akara. Darkness presses on the camp, and we need your help.",
       "charsi": "I'm Charsi, the camp's blacksmith. While the hammer rings, hope holds.",
-      "gheed": "Gheed, at your service. A sharp eye finds treasures others overlook.",
+      "gheed": "Gheed, at your service. I see value where others see scraps. Recover my five marked lots in the Cold Plains, then Claim your payment in Quests.",
       "kashya": "I am Kashya, captain of the Rogue archers. Darkness has taken many sisters, but we still hold this camp.",
       "warriv": "I am Warriv, leader of this caravan. The roads are dangerous, so we remain here for now.",
       "atma": "Radament's lair is a burial chamber beneath the Far Oasis. Track Radament's Lair in Quests. Once you defeat him, claim your reward there and read the Book of Skill in Inventory.",
@@ -61,7 +61,11 @@
         "jamella": "The Pandemonium Fortress is a small light against the darkness. Rest here, then choose your next battle carefully.",
         "tyrael": "Track The Fallen Angel before facing Izual on the Plains of Despair. In the Chaos Sanctuary, open the three seals in order, then defeat Diablo for Terror’s End quest credit. Claim each reward in Quests."
       },
-      "drognan": "A change of discipline may reveal another path. I can help you recover the points you have invested."
+      "drognan": "A change of discipline may reveal another path. I can help you recover the points you have invested.",
+      "act2": {
+        "greiz": "After you complete Radament’s Lair, a hero of level 12 or higher may enlist a Blessed Aim mercenary here in Normal. Choose a companion and confirm Enlist; claim Greiz’s Roster separately in your quest journal.",
+        "fara": "After completing Radament's Lair, speak with me here in Lut Gholein. Claim 1 gem-shard separately in Quests. Gem fusion still requires your own 3 matching gems of the same type and quality."
+      }
     },
     "den": {
       "untracked": "Demons infest the Den of Evil near camp. Track the Den of Evil in Quests, then clear the cave.",
@@ -182,5 +186,71 @@
     "restoreSuccess": "This reward’s charge is available. Select an item to use it.",
     "use": "Imbue selected item",
     "useSuccess": "Selected item imbued. This charge has been used."
+  },
+  "larzukPresent": {
+    "title": "Larzuk’s Socketing Favor",
+    "description": "After defeating Shenk, present eligible unsocketed backpack gear. The item stays unchanged. Claim the side-quest socket charge in your journal, then choose gear here to add sockets.",
+    "chooseItem": "Choose an item to present",
+    "present": "Present item unchanged",
+    "success": "Item presented unchanged. Claim your socket charge in the quest journal, then return here to choose gear for socketing."
+  },
+  "warband": {
+    "title": "Qual-Kehk’s Warband",
+    "description": "After freeing all three prisoner groups, a hero of level 35 or higher can enlist at Qual-Kehk in Normal difficulty. Choose a recruit, then confirm for free. Claim the quest reward separately in your journal.",
+    "chooseRecruit": "Choose a recruit to enlist",
+    "selectRecruit": "Choose a recruit…",
+    "freshOption": "{{name}} · Lv {{level}} · New recruit",
+    "ownedOption": "{{number}}. {{name}} · Lv {{level}} · {{id}}",
+    "ownedPreview": "{{name}} · Lv {{level}} · {{id}}",
+    "freshDescription": "Enlist adds this recruit to your roster and fields him.",
+    "retainedDescription": "Re-enlist fields this exact recruit, keeping his equipment, experience and current condition.",
+    "enlist": "Enlist recruit for free",
+    "reenlist": "Re-enlist selected recruit",
+    "success": "Recruit enlisted and fielded. Claim Qual-Kehk’s Warband separately in your quest journal. The one-time reward keeps an owned recruit or provides one if dismissed before Claim, while preserving your fielded choice."
+  },
+  "enlistment": {
+    "description": "Choose a companion and explicitly confirm Enlist or Re-enlist. Claim this quest separately in your journal. Its one-time reward keeps an owned companion or provides one if dismissed before Claim, preserving your fielded choice.",
+    "requirements": {
+      "kashya": "Defeat Blood Raven, then return to Kashya. Enlist here in Normal difficulty. The main quest reward need not be claimed.",
+      "greiz": "Complete Radament’s Lair and reach hero level 12. Enlist here in Normal difficulty; Claim and reading the Book of Skill are not required.",
+      "asheara": "Unlock Act III and reach hero level 18. Enlist here in Normal difficulty."
+    },
+    "chooseRecruit": "Choose a companion to enlist",
+    "selectRecruit": "Choose a companion…",
+    "freshOption": "{{name}} · Lv {{level}} · New recruit",
+    "ownedOption": "{{number}}. {{name}} · Lv {{level}} · {{id}}",
+    "ownedPreview": "{{name}} · Lv {{level}} · {{id}}",
+    "freshDescription": "Enlist adds this companion to your roster and fields them.",
+    "retainedDescription": "Re-enlist fields this exact companion, keeping their equipment, experience and current condition.",
+    "enlist": "Enlist companion for free",
+    "reenlist": "Re-enlist selected companion",
+    "success": "Companion enlisted and fielded. Claim {{quest}} separately in your quest journal."
+  },
+  "town.npc.greiz": "Greiz",
+  "town.npc.fara": "Fara",
+  "anyaTrades": {
+    "title": "Anya's Resource Trades",
+    "description": "After claiming Anya’s Gift, choose a fixed unique. Each is available once per character across all difficulties. Purchases stay unequipped and require a free backpack slot.",
+    "locked": "Complete Prison of Ice, actually thaw Anya, speak with her here, then Claim Anya’s Gift in Quests to unlock these trades.",
+    "price": "Price: {{scrap}} Scrap + {{shards}} Rune Shards",
+    "owned": "Currently owned: {{count}}",
+    "stock": "Stock remaining: {{count}} / 1",
+    "requiredLevel": "Required level to equip: {{level}}",
+    "ready": "Ready to trade.",
+    "soldOut": "Sold out for this character. Selling or salvaging the item does not restore stock.",
+    "insufficientMaterials": "You need more Scrap.",
+    "insufficientCurrency": "You need more Rune Shards.",
+    "backpackFull": "Make one free backpack slot before trading.",
+    "unavailable": "This trade is unavailable in the current character, save or town state.",
+    "trade": "Trade for {{name}}",
+    "confirmTitle": "Confirm resource trade",
+    "confirmation": "Receive {{name}} for {{scrap}} Scrap and {{shards}} Rune Shards. This spends this item’s only stock. The item stays unequipped; equipping requires level {{level}}.",
+    "cancel": "Cancel",
+    "confirm": "Confirm trade",
+    "success": "Trade complete. Your unique is in your backpack; its stock is now sold out.",
+    "failed": "The trade could not finish. Check your resources and stock before retrying.",
+    "staleSelection": "Your selection is no longer current. Review the offer and choose it again.",
+    "restorationFailed": "The trade could not be restored safely. Resolve the save recovery warning before trying again.",
+    "busy": "Another action is still finishing. Try again when it completes."
   }
 }

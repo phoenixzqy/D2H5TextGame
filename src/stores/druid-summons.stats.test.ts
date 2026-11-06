@@ -11,6 +11,7 @@ const rows = [
   {
     slug: 'raven',
     template: 'raven',
+    ownerGrowth: [20, 10, 3],
     base: [45, 18, 10],
     growth: [3, 1, 1],
     caps: [1, 2, 8],
@@ -19,6 +20,7 @@ const rows = [
   {
     slug: 'poison_creeper',
     template: 'poison_creeper',
+    ownerGrowth: [25, 8, 3],
     base: [90, 16, 18],
     growth: [5, 1, 1],
     caps: [1, 1, 1],
@@ -27,22 +29,25 @@ const rows = [
   {
     slug: 'summon_spirit_wolf',
     template: 'spirit_wolf',
+    ownerGrowth: [30, 14, 4],
     base: [80, 20, 10],
-    growth: [5, 2, 1],
+    growth: [5, 14, 1],
     caps: [1, 2, 8],
     costs: [14, 14, 11]
   },
   {
     slug: 'summon_dire_wolf',
     template: 'dire_wolf',
+    ownerGrowth: [40, 18, 5],
     base: [100, 25, 10],
-    growth: [8, 2, 1],
+    growth: [8, 18, 1],
     caps: [1, 2, 8],
     costs: [20, 20, 16]
   },
   {
     slug: 'carrion_vine',
     template: 'carrion_vine',
+    ownerGrowth: [25, 8, 3],
     base: [110, 12, 22],
     growth: [6, 1, 1],
     caps: [1, 1, 1],
@@ -51,6 +56,7 @@ const rows = [
   {
     slug: 'solar_creeper',
     template: 'solar_creeper',
+    ownerGrowth: [25, 8, 3],
     base: [120, 12, 24],
     growth: [6, 1, 1],
     caps: [1, 1, 1],
@@ -59,8 +65,9 @@ const rows = [
   {
     slug: 'summon_grizzly',
     template: 'grizzly',
+    ownerGrowth: [70, 25, 7],
     base: [260, 45, 35],
-    growth: [12, 3, 2],
+    growth: [12, 25, 2],
     caps: [1, 1, 1],
     costs: [35, 35, 30]
   }
@@ -128,7 +135,7 @@ describe.each(rows)('native authored $template bodies', (row) => {
           event.unit.stats.lifeMax,
           event.unit.stats.attack,
           event.unit.stats.defense
-        ]).toEqual(row.base.map((base, i) => base + (row.growth[i] ?? 0) * (rank - 1)));
+        ]).toEqual(row.base.map((base, i) => base + (row.growth[i] ?? 0) * (rank - 1) + (row.ownerGrowth[i] ?? 0) * (hero.level - 1)));
         expect(event.unit.life).toBe(event.unit.stats.lifeMax);
       }
       expect(out.events.filter((e) => e.kind === 'mana' && e.reason === 'cast')).toEqual([

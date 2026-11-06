@@ -12,7 +12,7 @@ import { SkillsScreen } from './SkillsScreen';
 const spells = [
   { slug: 'firestorm', min: 40, max: 60, growth: 4, mana: 20, cd: 2 },
   { slug: 'molten-boulder', min: 45, max: 65, growth: 4, mana: 12, cd: 2 },
-  { slug: 'fissure', min: 60, max: 90, growth: 5, mana: 20, cd: 3 },
+  { slug: 'fissure', min: 60, max: 90, growth: 400, mana: 20, cd: 3 },
   { slug: 'volcano', min: 80, max: 115, growth: 7, mana: 27, cd: 4 },
   { slug: 'armageddon', min: 110, max: 160, growth: 9, mana: 35, cd: 5 }
 ] as const;

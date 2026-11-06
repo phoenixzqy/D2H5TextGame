@@ -6,7 +6,7 @@
  *
  * All images are `loading="lazy"` + `decoding="async"` by default.
  */
-import { useState } from 'react';
+import { useRecoverableImage } from './useRecoverableImage';
 
 type ImageSize = 'xs' | 'sm' | 'md' | 'lg' | 'fill';
 type ObjectPosition = 'top' | 'center';
@@ -86,7 +86,7 @@ function ImageContent({
   posClass: string;
   imageClassName: string | undefined;
 }) {
-  const [errored, setErrored] = useState(false);
+  const { errored, onError } = useRecoverableImage();
 
   return src && !errored ? (
     <img
@@ -95,9 +95,7 @@ function ImageContent({
       className={imageClassName ?? `w-full h-full object-cover ${posClass}`}
       loading="lazy"
       decoding="async"
-      onError={() => {
-        setErrored(true);
-      }}
+      onError={onError}
     />
   ) : (
     <span className="font-serif text-d2-gold select-none leading-none">{fallbackIcon}</span>

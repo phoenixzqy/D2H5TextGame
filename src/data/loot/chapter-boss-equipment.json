@@ -1,0 +1,92 @@
+[
+  {
+    "treasureClassId": "loot/act1-boss",
+    "act": 1,
+    "groups": [
+      {
+        "sourceTableId": "loot/trash-act1",
+        "count": 4,
+        "minimumLevelOffset": 5,
+        "terminalLevelCap": 59
+      },
+      {
+        "sourceTableId": "loot/jewelry-act1",
+        "count": 2,
+        "minimumLevelOffset": 0,
+        "terminalLevelCap": 59
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act2-boss",
+    "act": 2,
+    "groups": [
+      {
+        "sourceTableId": "loot/trash-act2",
+        "count": 5,
+        "minimumLevelOffset": 5,
+        "terminalLevelCap": 72
+      },
+      {
+        "sourceTableId": "loot/jewelry-act2",
+        "count": 3,
+        "minimumLevelOffset": 0,
+        "terminalLevelCap": 72
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act3-boss",
+    "act": 3,
+    "groups": [
+      {
+        "sourceTableId": "loot/trash-act3",
+        "count": 6,
+        "minimumLevelOffset": 5,
+        "terminalLevelCap": 87
+      },
+      {
+        "sourceTableId": "loot/jewelry-act3",
+        "count": 3,
+        "minimumLevelOffset": 0,
+        "terminalLevelCap": 87
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act4-boss",
+    "act": 4,
+    "groups": [
+      {
+        "sourceTableId": "loot/trash-act4",
+        "count": 7,
+        "minimumLevelOffset": 5,
+        "terminalLevelCap": 101
+      },
+      {
+        "sourceTableId": "loot/jewelry-act4",
+        "count": 3,
+        "minimumLevelOffset": 0,
+        "terminalLevelCap": 101
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act5-boss",
+    "act": 5,
+    "groups": [
+      {
+        "sourceTableId": "loot/trash-act5",
+        "count": 8,
+        "minimumLevelOffset": 5,
+        "terminalLevelCap": 122
+      },
+      {
+        "sourceTableId": "loot/jewelry-act5",
+        "count": 4,
+        "minimumLevelOffset": 0,
+        "terminalLevelCap": 122
+      }
+    ]
+  }
+]

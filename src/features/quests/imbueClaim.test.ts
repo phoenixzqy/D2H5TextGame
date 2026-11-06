@@ -57,10 +57,10 @@ beforeEach(() => {
 afterEach(() => { vi.restoreAllMocks(); reset(); });
 
 describe('D11 Malus and side Present whole-bundle Claims', () => {
-  it('authors exactly main3500XP+one charge and side one charge with no random item', () => {
+  it('authors main3500XP+15wishes+one charge and side10wishes+one charge', () => {
     const quests = questLoader.loadQuests();
-    expect(quests.find(row => row.id === MAIN)?.rewards).toEqual({ xp: 3500, service: 'imbue_item' });
-    expect(quests.find(row => row.id === SIDE)?.rewards).toEqual({ service: 'imbue_item' });
+    expect(quests.find(row => row.id === MAIN)?.rewards).toEqual({ xp: 3500, service: 'imbue_item', wishstones: 15 });
+    expect(quests.find(row => row.id === SIDE)?.rewards).toEqual({ service: 'imbue_item', wishstones: 10 });
   });
   it('claims main without side Present and shares2625XP with the previously fielded mercenary', () => {
     const prior = addMerc('mercs/act1-rogue-inner-sight'), later = addMerc('mercs/act1-rogue-fire');
@@ -74,17 +74,17 @@ describe('D11 Malus and side Present whole-bundle Claims', () => {
     expect(heroXp()).toBe(hero + 3500); expect(mercXp(prior)).toBe(previous + 2625); expect(mercXp(later)).toBe(other);
     expect(useMercStore.getState().fieldedMercId).toBe(later);
     if (!inv) throw new Error('Missing inventory snapshot');
-    Object.assign(inv, { questServices: { [SOURCES.main]: { serviceId: 'imbue_item', state: 'available' } } });
+    Object.assign(inv, { currencies: { wishstone: 15 }, questServices: { [SOURCES.main]: { serviceId: 'imbue_item', state: 'available' } } });
     expect(snapshot()[2]).toEqual(inv);
     const after = snapshot(); expect(claimQuestReward(MAIN)).toBe('already-claimed'); expect(snapshot()).toEqual(after);
   });
-  it('side Claim changes only its own charge and Claim, even before main Claim', () => {
+  it('side Claim changes its wishes, charge and Claim, even before main Claim', () => {
     const before = snapshot(), progress = structuredClone(useMapStore.getState().questProgress);
     const side = progress[SIDE]; if (!side) throw new Error('Missing side'); side.rewardClaimed = true;
     expect(canClaim(SIDE)).toBe(true); expect(claimQuestReward(SIDE)).toBe('ok');
     const map = before[1], inv = before[2]; if (!map || !inv) throw new Error('Missing participants');
     Object.assign(map, { questProgress: progress });
-    Object.assign(inv, { questServices: { [SOURCES.side]: { serviceId: 'imbue_item', state: 'available' } } });
+    Object.assign(inv, { currencies: { wishstone: 10 }, questServices: { [SOURCES.side]: { serviceId: 'imbue_item', state: 'available' } } });
     expect(snapshot()).toEqual(before);
   });
   it.each([[MAIN, SIDE], [SIDE, MAIN]] as const)('earns %s then %s once with exactly two independent charges', (first, second) => {

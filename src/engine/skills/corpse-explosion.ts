@@ -47,9 +47,9 @@ export function resolveCorpseExplosionDefinition(rows: readonly unknown[]): Corp
   if (!same(semantics, {
     id: AUTHORED, requiredLevel: 6, prerequisites: [TEETH], trigger: 'active', target: 'all-enemies',
     cooldown: 2, minLevel: 1, maxLevel: 20, cost: { mana: 20 },
-    damage: { min: 50, max: 80, breakdown: { fire: 80 } }, damageType: 'fire',
+    damage: { min: 50, max: 80, breakdown: { fire: 80 } }, damageType: 'fire', ignoresDefense: true,
     appliesStatus: ['ignite'], statusEffect: { dotPctOfDamage: 0.1 },
-    appliesTags: ['fire', 'burn'], scaling: { damagePerLevel: 6 }
+    appliesTags: ['fire', 'burn'], scaling: { damagePerLevel: 80 }
   }) || teeth.maxLevel !== 20 || teeth.requiredLevel !== 1 || teeth.prerequisites !== undefined) {
     throw new Error('Unreviewed authored Corpse Explosion semantics');
   }
@@ -76,7 +76,7 @@ export function matchesCorpseExplosion(skill: RegisteredSkill): boolean {
   return isCorpseExplosionId(skill.id) && same(skill, {
     id: skill.id, archetype: 'necromancer', trigger: 'active', target: 'all-enemies',
     manaCost: d.manaCost, cooldown: d.cooldown, minLevel: d.requiredLevel,
-    effects: [{ kind: 'damage', damageType: 'fire', base: [d.baseMin, d.baseMax],
+    effects: [{ kind: 'damage', damageType: 'fire', ignoresDefense: true, base: [d.baseMin, d.baseMax],
       perRank: [d.damagePerRank, d.damagePerRank], tags: ['fire', 'burn'],
       applyStatus: { id: 'ignite', dotPctOfDamage: d.ignitePct } }]
   });

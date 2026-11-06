@@ -1,0 +1,135 @@
+[
+  {
+    "treasureClassId": "loot/act1-boss",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/act1-boss",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 1
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act2-boss",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/act2-boss",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 1
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act3-boss",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/act3-boss",
+        "minimumRarity": "rare",
+        "count": 2,
+        "chance": 1
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act4-boss",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/act4-boss",
+        "minimumRarity": "rare",
+        "count": 2,
+        "chance": 1
+      },
+      {
+        "sourceTableId": "loot/act4-boss",
+        "minimumRarity": "set",
+        "count": 1,
+        "chance": 1
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/act5-boss",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/act5-boss",
+        "minimumRarity": "rare",
+        "count": 3,
+        "chance": 1
+      },
+      {
+        "sourceTableId": "loot/act5-boss",
+        "minimumRarity": "set",
+        "count": 1,
+        "chance": 1
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/mini-act1",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/trash-act1",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 0.5
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/mini-act2",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/trash-act2",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 0.5
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/mini-act3",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/trash-act3",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 0.5
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/mini-act4",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/trash-act4",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 0.5
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/mini-act5",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/trash-act5",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 0.5
+      }
+    ]
+  },
+  {
+    "treasureClassId": "loot/treasure-goblin",
+    "guarantees": [
+      {
+        "sourceTableId": "loot/treasure-goblin",
+        "minimumRarity": "rare",
+        "count": 1,
+        "chance": 1
+      }
+    ]
+  }
+]

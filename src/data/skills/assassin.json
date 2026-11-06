@@ -392,7 +392,7 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 4
+      "damagePerLevel": 60
     }
   },
   {
@@ -433,7 +433,7 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 120
     }
   },
   {
@@ -470,7 +470,7 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 360
     }
   },
   {
@@ -546,7 +546,7 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 6
+      "damagePerLevel": 120
     }
   },
   {
@@ -881,7 +881,7 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 120
     }
   },
   {
@@ -915,7 +915,7 @@
       "shock"
     ],
     "scaling": {
-      "damagePerLevel": 6
+      "damagePerLevel": 24
     }
   },
   {

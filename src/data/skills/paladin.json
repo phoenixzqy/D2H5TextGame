@@ -35,7 +35,8 @@
       "chill": 1.1
     },
     "scaling": {
-      "damagePerLevel": 4
+      "damagePerLevel": 4,
+      "attackDamagePctPerLevel": 20
     }
   },
   {
@@ -65,7 +66,7 @@
       "arcane"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 130
     },
     "onHitRecovery": {
       "lifeFraction": 0.5
@@ -101,7 +102,7 @@
       "arcane"
     ],
     "scaling": {
-      "damagePerLevel": 6
+      "damagePerLevel": 12
     },
     "ignoresMagicResist": true
   },

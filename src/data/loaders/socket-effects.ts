@@ -1,10 +1,8 @@
+import { compileAuthoredValidator } from '../authored-validators';
 import Ajv2020 from 'ajv/dist/2020';
 import gemJson from '../items/gem-effects.json';
 import runeJson from '../items/runes.json';
 import wordJson from '../items/runewords.json';
-import gemSchema from '../schema/gem-effects.schema.json';
-import runeSchema from '../schema/rune.schema.json';
-import wordSchema from '../schema/runeword.schema.json';
 import { materialCatalog } from './materials';
 import type { ItemBonusStats, Rune, RuneWord } from '@/engine/types/items';
 
@@ -17,9 +15,9 @@ export interface GemEffectDefinition {
 }
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const checkGems = ajv.compile<GemEffectDefinition[]>(gemSchema);
-const checkRune = ajv.compile<Rune>(runeSchema);
-const checkWord = ajv.compile<RuneWord>(wordSchema);
+const checkGems = compileAuthoredValidator<GemEffectDefinition[]>(ajv, 'gems');
+const checkRune = compileAuthoredValidator<Rune>(ajv, 'rune');
+const checkWord = compileAuthoredValidator<RuneWord>(ajv, 'runeword');
 
 /** Reject missing, duplicate, unknown or malformed effects before exposing a catalog. */
 export function validateGemEffects(value: unknown): ReadonlyMap<string, GemEffectDefinition> {

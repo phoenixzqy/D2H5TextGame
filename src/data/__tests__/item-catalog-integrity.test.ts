@@ -25,6 +25,9 @@ import { resolveItemIcon } from '../../ui/cardAssets';
 import { loadItemBases, loadTreasureClasses } from '../loaders/loot';
 import { GameDataValidationError, loadGameData, validateGameData } from '../loader';
 import itemBaseSchema from '../schema/item-base.schema.json';
+import rangedPolicy from '../../../tests/fixtures/ranged-progression-v1.json';
+import throwingPolicy from '../../../tests/fixtures/throwing-progression-v1.json';
+import spearPolicy from '../../../tests/fixtures/spear-progression-v1.json';
 import type { ItemBase, ItemBaseType } from '../../engine/types/items';
 
 interface NamedEntry {
@@ -273,6 +276,7 @@ describe('item catalogue integrity', () => {
     const baseReqLevels = new Map(bases.map((base) => [base.id, (base as { readonly reqLevel?: number }).reqLevel ?? 1]));
 
     for (const base of bases) {
+      if (base.id === 'items/base/small-charm') continue; // Exact quest-only acquisition, tested separately.
       if (!reachableBases.has(base.id)) {
         unreachable.push({ id: base.id, reason: 'base-not-referenced-by-any-loot-table' });
       }
@@ -286,6 +290,7 @@ describe('item catalogue integrity', () => {
       );
 
     for (const unique of uniques) {
+      if (unique.id === 'items/unique/ormus-charm') continue; // Exact quest-only acquisition, tested separately.
       const qlvl = Math.max(unique.qlvl ?? unique.reqLevel, baseReqLevels.get(unique.baseId) ?? 1);
       if ((unique.weight ?? 1) > 0 && typeof qlvl === 'number') {
         if (!reachableItems.has(unique.id) && !canDropByBaseWindow(unique.baseId, qlvl)) {
@@ -339,9 +344,13 @@ const IRON_METAL_IDS = [
 // D05's six explicit claw progression tiers extend the reviewed metal set.
 const CLAW_BASE_IDS = ['katar', 'wrist-blade', 'greater-claws', 'hand-scythe', 'feral-claws', 'runic-talons']
   .map(suffix => 'items/base/wp1h-' + suffix);
+const RANGED_BASE_IDS = rangedPolicy.tiers.slice(1).flatMap(tier => [tier.bow, tier.crossbow]);
+const THROWING_BASE_IDS = throwingPolicy.tiers.map(tier => tier.baseId);
+const SPEAR_BASE_IDS = spearPolicy.tiers.map(tier => tier.baseId);
 // D10 source-backed addition; the D06 historical acceptance set above stays literal.
 const CURRENT_IRON_METAL_IDS = [...IRON_METAL_IDS, 'items/base/wp2h-battle-scythe',
-  'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS].sort();
+  'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS,
+  ...THROWING_BASE_IDS, ...SPEAR_BASE_IDS].sort();
 
 const BASE_KINDS: readonly ItemBaseType[] = [
   'weapon', 'armor', 'jewelry', 'charm', 'rune', 'gem', 'material'
@@ -356,9 +365,10 @@ function metalSchemaCandidate(type: ItemBaseType): ItemBase {
 }
 
 describe('reviewed socket maximum metadata', () => {
-  it('preserves 74 historical bases and the explicit staff, scythe, mastery and claw additions', () => {
-    expect(rawItemBases.filter(base => !['items/base/weapon-staff', 'items/base/wp2h-battle-scythe',
-      'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS].includes(base.id))).toHaveLength(74);
+  it('preserves 74 historical bases and the explicit staff, scythe, mastery, claw and P15 progression additions', () => {
+    expect(rawItemBases.filter(base => !['items/base/small-charm', 'items/base/weapon-staff', 'items/base/wp2h-battle-scythe',
+      'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS,
+      ...RANGED_BASE_IDS, ...THROWING_BASE_IDS, ...SPEAR_BASE_IDS].includes(base.id))).toHaveLength(74);
     expect(rawItemBases.filter(base => base.id === 'items/base/weapon-staff')).toEqual([
       expect.objectContaining({ sockets: 2, maxSockets: 2 })
     ]);
@@ -366,7 +376,10 @@ describe('reviewed socket maximum metadata', () => {
       expect.objectContaining({ sockets: 5, maxSockets: 5 })
     ]);
     expect(rawItemBases.filter(base => CLAW_BASE_IDS.includes(base.id))).toHaveLength(6);
-    expect(rawItemBases).toHaveLength(84);
+    expect(rawItemBases.filter(base => RANGED_BASE_IDS.includes(base.id))).toHaveLength(6);
+    expect(rawItemBases.filter(base => THROWING_BASE_IDS.includes(base.id))).toHaveLength(5);
+    expect(rawItemBases.filter(base => SPEAR_BASE_IDS.includes(base.id))).toHaveLength(4);
+    expect(rawItemBases).toHaveLength(100);
     for (const base of rawItemBases) {
       expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
     }
@@ -379,10 +392,10 @@ describe('reviewed socket maximum metadata', () => {
 });
 
 describe('Iron Golem authored metal metadata', () => {
-  it('preserves the 31 historical metal bases and explicitly adds scythe, spear, throwing knife and six claws', () => {
+  it('preserves the 31 historical metal bases and explicitly adds scythe, spear, throwing knife six claws and P15 throwing/spear tiers', () => {
     const catalog = rawItemBases as readonly ItemBase[];
     expect(new Set(IRON_METAL_IDS).size).toBe(31);
-    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(40);
+    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(49);
     for (const id of IRON_METAL_IDS) {
       expect(catalog.filter(base => base.id === id), id).toHaveLength(1);
     }

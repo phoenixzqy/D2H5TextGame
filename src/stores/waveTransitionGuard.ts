@@ -28,6 +28,31 @@ const materialBrand = Symbol('materialTransaction');
 export interface MaterialTransactionLease { readonly [materialBrand]: true }
 let activeMaterial: MaterialTransactionLease | null = null;
 
+let revision = 0;
+let notificationScheduled = false;
+const observers = new Map<symbol, () => void>();
+function ownershipChanged(): void {
+  revision++;
+  if (notificationScheduled) return;
+  notificationScheduled = true;
+  queueMicrotask(() => {
+    notificationScheduled = false;
+    for (const [token, listener] of [...observers]) {
+      if (!observers.has(token)) continue;
+      try { listener(); } catch (error) { console.error('Wave guard observer failed', error); }
+    }
+  });
+}
+
+/** Stable external-store revision; guard assertions remain the authority for eligibility. */
+export function inspectWaveGuard(): number { return revision; }
+/** Observe ownership changes after the current stack, including the final asynchronous restore release. */
+export function subscribeWaveGuard(listener: () => void): () => void {
+  const token = Symbol('waveGuardObserver');
+  observers.set(token, listener);
+  return () => { observers.delete(token); };
+}
+
 /** Acquire exclusive synchronous wave ownership; caller must release in finally. */
 export function beginWaveTransition(hydrationReady: boolean): WaveTransitionLease {
   if (activeMaterial) throw new WaveGuardError('materialBusy');
@@ -36,6 +61,7 @@ export function beginWaveTransition(hydrationReady: boolean): WaveTransitionLeas
   if (restores.size > 0) throw new WaveGuardError('restorePending');
   if (!hydrationReady) throw new WaveGuardError('hydrationNotReady');
   activeWave = Object.freeze({ [waveBrand]: true as const });
+  ownershipChanged();
   return activeWave;
 }
 
@@ -44,6 +70,7 @@ export function endWaveTransition(lease: WaveTransitionLease): boolean {
   if (lease !== activeWave) throw new WaveGuardError('invalidLease');
   if (itemDebitActive) throw new WaveGuardError('itemDebitBusy');
   activeWave = null;
+  ownershipChanged();
   const wakeSave = deferredSave;
   deferredSave = false;
   return wakeSave;
@@ -56,12 +83,14 @@ export function reserveWaveRestore(): WaveRestoreLease {
   if (activeQuest) throw new WaveGuardError('questBusy');
   const lease = Object.freeze({ [restoreBrand]: true as const });
   restores.add(lease);
+  ownershipChanged();
   return lease;
 }
 
 /** Release only this restore request; a stale lease leaves all other owners intact. */
 export function releaseWaveRestore(lease: WaveRestoreLease): void {
   if (!restores.delete(lease)) throw new WaveGuardError('invalidLease');
+  ownershipChanged();
 }
 
 /** Validate an active wave owner before privileged transient-state access. */
@@ -120,12 +149,14 @@ export function beginQuestTransaction(): QuestTransactionLease {
   if (activeQuest) throw new WaveGuardError('questBusy');
   if (restores.size > 0) throw new WaveGuardError('restorePending');
   activeQuest = Object.freeze({ [questBrand]: true as const });
+  ownershipChanged();
   return activeQuest;
 }
 /** Release the exact owner; an outer accepted-wave transition retains save deferral. */
 export function endQuestTransaction(lease: QuestTransactionLease): boolean {
   if (lease !== activeQuest) throw new WaveGuardError('invalidLease');
   activeQuest = null;
+  ownershipChanged();
   if (activeWave) return false;
   const wakeSave = deferredSave;
   deferredSave = false;
@@ -140,6 +171,7 @@ export function beginMaterialTransaction(hydrationReady: boolean): MaterialTrans
   if (restores.size > 0) throw new WaveGuardError('restorePending');
   if (!hydrationReady) throw new WaveGuardError('hydrationNotReady');
   activeMaterial = Object.freeze({ [materialBrand]: true as const });
+  ownershipChanged();
   return activeMaterial;
 }
 
@@ -147,7 +179,18 @@ export function beginMaterialTransaction(hydrationReady: boolean): MaterialTrans
 export function endMaterialTransaction(lease: MaterialTransactionLease): boolean {
   if (lease !== activeMaterial) throw new WaveGuardError('invalidLease');
   activeMaterial = null;
+  ownershipChanged();
   const wakeSave = deferredSave;
   deferredSave = false;
   return wakeSave;
+}
+
+/** Read-only assertion for finite participants under the existing quest lease. */
+export function assertQuestTransactionActive(): void {
+  if (!activeQuest) throw new WaveGuardError('invalidLease');
+}
+
+/** Validate the exact active owner before bounded material publication. */
+export function assertMaterialTransactionOwner(lease: MaterialTransactionLease): void {
+  if (lease !== activeMaterial) throw new WaveGuardError('invalidLease');
 }

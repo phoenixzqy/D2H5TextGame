@@ -1,6 +1,13 @@
 import { getSkill, loadDefaultSkills, resetRegistry } from '../skills/registry';
 import { DEFAULT_SKILLS } from '../skills/builders';
-import { aliasToCanonical, MONSTER_STUB_SKILLS } from '../skills/aliases';
+import { aliasToCanonical } from '../skills/aliases';
+import { AUTHORED_PROJECTILE_SKILLS } from '../skills/dataCatalog';
+import { MONSTER_DIRECT_SKILLS } from '../skills/monster-direct';
+import { MONSTER_DOT_SKILLS } from '../skills/monster-dot';
+import { MONSTER_HEAL_LIGHTNING_SKILLS } from '../skills/monster-heal-lightning';
+import { MONSTER_LEVEL_SPELLS } from '../skills/monster-level-spells';
+import { BLOOD_RAVEN_SKILLS } from '../skills/blood-raven';
+import type { SkillEffect } from '../skills/effects';
 import { expect, it } from 'vitest';
 import rows from '../../data/skills/monsters.json';
 import amazon from '../../data/skills/amazon.json';
@@ -37,13 +44,18 @@ it('connects all13 authored missile identities to actual registered effects with
   const skill = getSkill(id); expect(skill).toBeDefined();
   expect(skill?.effects.some(effect => effect.kind === 'damage' && effect.projectileFlightMs === 500)).toBe(true);
  }
- const finalSources = new Map([...DEFAULT_SKILLS, ...MONSTER_STUB_SKILLS].map(skill => [skill.id, skill]));
- for (const source of [...finalSources.values()].filter(skill => ids.some(id => aliasToCanonical(id) === skill.id))) {
+ const finalSources = new Map([
+  ...AUTHORED_PROJECTILE_SKILLS, ...DEFAULT_SKILLS, ...MONSTER_DOT_SKILLS,
+  ...MONSTER_HEAL_LIGHTNING_SKILLS, ...MONSTER_LEVEL_SPELLS, ...MONSTER_DIRECT_SKILLS, ...BLOOD_RAVEN_SKILLS
+ ].map(skill => [aliasToCanonical(skill.id) ?? skill.id, skill]));
+ for (const source of [...finalSources.values()].filter(skill => ids.some(id => aliasToCanonical(id) === (aliasToCanonical(skill.id) ?? skill.id)))) {
   const active = getSkill(source.id); expect(active?.cooldown).toBe(source.cooldown); expect(active?.manaCost).toBe(source.manaCost);
-  expect(active?.effects.map(effect => {
+  const withoutFlight = (effect: SkillEffect) => {
    if (effect.kind !== 'damage') return effect;
-   const { projectileFlightMs: travel, ...original } = effect; expect(travel).toBe(500); return original;
-  })).toEqual(source.effects);
+   const { projectileFlightMs: _flight, ...original } = effect; return original;
+  };
+  for (const effect of active?.effects ?? []) if (effect.kind === 'damage') expect(effect.projectileFlightMs).toBe(500);
+  expect(active?.effects.map(withoutFlight)).toEqual(source.effects.map(withoutFlight));
  }
  resetRegistry(); loadDefaultSkills();
 });

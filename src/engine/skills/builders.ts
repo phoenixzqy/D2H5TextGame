@@ -201,14 +201,4 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'assassin.venom', archetype: 'assassin', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'venom', duration: -1 } }),
 
   // Monster generic skills
-  build({ id: 'monster.weak_melee', archetype: 'monster', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [10, 15] }),
-  build({ id: 'monster.strong_melee', archetype: 'monster', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [30, 50] }),
-  build({ id: 'monster.fire_breath', archetype: 'monster', target: 'area-enemies', cooldown: 3, manaCost: 0, damageType: 'fire', base: [40, 60], status: { id: 'ignite', dotPct: 0.1 } }),
-  build({ id: 'monster.poison_spit', archetype: 'monster', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'poison', base: [20, 30], status: { id: 'poison', stacks: 2, dotPct: 0.05 } }),
-  build({ id: 'monster.lightning_bolt', archetype: 'monster', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'lightning', base: [50, 70] }),
-  build({ id: 'monster.frost_aura', archetype: 'monster', target: 'all-enemies', cooldown: 3, manaCost: 0, damageType: 'cold', base: [15, 25], status: { id: 'chill' } }),
-  build({ id: 'monster.charge', archetype: 'monster', target: 'single-enemy', cooldown: 4, manaCost: 0, damageType: 'physical', base: [60, 90] }),
-  build({ id: 'monster.summon_adds', archetype: 'monster', target: 'summon', cooldown: 5, manaCost: 0, summon: { summonId: 'minion', max: 2, onStart: true } }),
-  build({ id: 'monster.heal', archetype: 'monster', target: 'self', cooldown: 4, manaCost: 0, buff: { id: 'heal_self', duration: 1 } }),
-  build({ id: 'monster.teleport', archetype: 'monster', target: 'self', cooldown: 3, manaCost: 0, buff: { id: 'teleport', duration: 1 } })
 ]);

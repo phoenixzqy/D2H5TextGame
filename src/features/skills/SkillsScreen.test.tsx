@@ -208,6 +208,9 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(icon).toHaveAttribute('alt', '');
     expect(icon.parentElement).toHaveClass('h-[72px]', 'w-[72px]');
 
+    fireEvent.online(window);
+    expect(screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova')).toBe(icon);
+
     fireEvent.error(icon);
     expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-poison-nova')).toHaveClass(
       'h-[72px]',
@@ -216,6 +219,17 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(screen.getByTestId('skill-node-skills-necromancer-poison-nova')).toHaveAccessibleName(
       /毒云术|Poison Nova/
     );
+
+    fireEvent.online(window);
+    const retry = screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova');
+    expect(retry).toHaveAttribute('src', icon.getAttribute('src'));
+    fireEvent.error(retry);
+    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-poison-nova')).toBeInTheDocument();
+    fireEvent.online(window);
+    const recovered = screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova');
+    expect(recovered).toHaveAttribute('src', icon.getAttribute('src'));
+    fireEvent.online(window);
+    expect(screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova')).toBe(recovered);
   });
 
   it('Necromancer tree contains Bone Spear and NOT Whirlwind', () => {
@@ -303,29 +317,6 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(body).toMatch(/剩余技能点|Points|Remaining/);
   });
 
-  it('shows dynamic Raise Skeleton current and next summon caps for the 1/6/12 curve', () => {
-    const p = createMockPlayer('TestHero', 'necromancer');
-    act(() => {
-      usePlayerStore.getState().setPlayer({
-        ...p,
-        level: 12,
-        skillLevels: { 'necromancer.raise_skeleton': 5 },
-        skillPoints: 2
-      });
-    });
-    renderScreen();
-
-    fireEvent.click(screen.getByTestId('skill-node-skills-necromancer-raise-skeleton'));
-    const body = document.body.textContent || '';
-    expect(body).not.toMatch(/上限 5|max 5/i);
-    expect(body).toMatch(/召唤上限\s*1|Summon Cap\s*1/);
-    expect(body).toMatch(/召唤上限\s*2|Summon Cap\s*2/);
-    expect(body).toMatch(/骷髅战士|Skeleton Warrior/);
-    expect(body).toMatch(/生命\s*152|Life\s*152/);
-    expect(body).toMatch(/攻击\s*33|Attack\s*33/);
-    expect(body).toMatch(/防御\s*18|Defense\s*18/);
-  });
-
   it('updates the detail panel on keyboard focus', () => {
     setPlayerOfClass('necromancer');
     renderScreen();
@@ -382,6 +373,36 @@ describe.each(['en', 'zh-CN'] as const)('<SkillsScreen> truthful units (%s)', (l
     if (!(definition instanceof HTMLElement)) throw new Error(`Missing value: ${label}`);
     return definition;
   }
+
+  it('shows Raise Skeleton caps and current/next bodies at the mounted owner level', () => {
+    selectLearnedSkill('necromancer', 'skills-necromancer-raise-skeleton', 5, 12);
+    const current = section(english ? 'Current' : '当前');
+    const next = section(english ? 'Next Level' : '下一级');
+    const cap = english ? 'Summon Cap' : '召唤上限';
+    const labels = english ? ['Life', 'Attack', 'Defense'] : ['生命', '攻击', '防御'];
+    // P15: owner12 adds 11 × (30/14/4) after rank scaling.
+    const assertBodies = (currentStats: readonly number[], nextStats: readonly number[]) => {
+      labels.forEach((label, index) => {
+        // Inspect the value alone; next-rank delta text is checked separately.
+        expect(value(current, label).firstChild?.textContent).toBe(String(currentStats[index]));
+        expect(value(next, label).firstChild?.textContent).toBe(String(nextStats[index]));
+        expect(value(next, label).querySelector('span')).toHaveTextContent(['(+10)', '(+2)', '(+1)'][index] ?? '');
+      });
+    };
+    expect(value(current, cap)).toHaveTextContent(/^1$/);
+    expect(value(next, cap).firstChild?.textContent).toBe('2');
+    expect(within(current).getByText(english ? 'Skeleton Warrior' : '骷髅战士', { exact: true })).toBeInTheDocument();
+    assertBodies([482, 187, 62], [492, 189, 63]);
+
+    act(() => {
+      const player = usePlayerStore.getState().player;
+      if (!player) throw new Error('Missing mounted Necromancer');
+      usePlayerStore.getState().setPlayer({ ...player, level: 13 });
+    });
+    assertBodies([512, 201, 66], [522, 203, 67]);
+    expect(value(current, cap)).toHaveTextContent(/^1$/);
+    expect(value(next, cap).firstChild?.textContent).toBe('2');
+  });
 
   it('renders Fire Bolt current/next flat ranges, flat delta and dynamic description', () => {
     selectLearnedSkill('sorceress', 'skills-sorceress-fire-bolt', 1, 1);

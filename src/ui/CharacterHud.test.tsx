@@ -78,6 +78,44 @@ describe('CharacterHud', () => {
     expect(screen.getByTestId('hud-xp')).toHaveAttribute('aria-valuenow', '50');
   });
 
+  it('recovers a failed portrait on reconnect and leaves healthy artwork mounted', () => {
+    act(() => { usePlayerStore.getState().setPlayer(createMockPlayer('Korlic', 'barbarian')); });
+    renderAt('/town');
+    const hud = screen.getByTestId('character-hud');
+    const image = hud.querySelector('img');
+    if (!image) throw new Error('Expected portrait');
+    fireEvent.online(window);
+    expect(hud.querySelector('img')).toBe(image);
+
+    fireEvent.error(image);
+    expect(hud.querySelector('img')).toBeNull();
+    expect(hud).toHaveTextContent('B');
+    fireEvent.online(window);
+    const retry = hud.querySelector('img');
+    expect(retry).toHaveAttribute('src', image.getAttribute('src'));
+    if (!retry) throw new Error('Expected portrait retry');
+    fireEvent.error(retry);
+    expect(hud.querySelector('img')).toBeNull();
+    fireEvent.online(window);
+    const recovered = hud.querySelector('img');
+    expect(recovered).toHaveAttribute('src', image.getAttribute('src'));
+    fireEvent.online(window);
+    expect(hud.querySelector('img')).toBe(recovered);
+  });
+
+  it('tries a new class portrait immediately after the previous source failed', () => {
+    act(() => { usePlayerStore.getState().setPlayer(createMockPlayer('Korlic', 'barbarian')); });
+    renderAt('/town');
+    const hud = screen.getByTestId('character-hud');
+    const image = hud.querySelector('img');
+    if (!image) throw new Error('Expected portrait');
+    fireEvent.error(image);
+    act(() => { usePlayerStore.getState().setPlayer(createMockPlayer('Isendra', 'sorceress')); });
+    expect(hud.querySelector('img')).toHaveAttribute(
+      'src', '/assets/d2/generated/class-portraits/classes.sorceress.png',
+    );
+  });
+
   it('navigates to /character when clicked', () => {
     const player = createMockPlayer('Korlic', 'barbarian');
     act(() => { usePlayerStore.getState().setPlayer(player); });

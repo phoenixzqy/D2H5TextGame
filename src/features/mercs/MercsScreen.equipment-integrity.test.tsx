@@ -20,7 +20,7 @@ function show() {
     <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><MercsScreen /></MemoryRouter>
   </Suspense></I18nextProvider>);
   fireEvent.click(screen.getByTestId(`merc-equipment-${mercId}`));
-  fireEvent.click(screen.getByTestId('merc-equip-slot-head'));
+  fireEvent.click(screen.getByTestId('merc-equip-slot-head-select'));
 }
 
 beforeEach(async () => {

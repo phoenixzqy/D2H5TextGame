@@ -4,7 +4,7 @@ import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { emptyEndgameState } from '@/engine/endgame/state';
 import type { SaveCurrent } from '@/engine/types/save';
 import { decodeSave } from '@/engine/save/validate';
-import { checkEndgameEntry, claimEndgameAchievement, readEndgamePanelModel } from './endgameActions';
+import { checkEndgameEntry, claimEndgameAchievement, readEndgamePanelModel, readEndgameReadiness } from './endgameActions';
 import { useMapStore } from './mapStore';
 import { useInventoryStore } from './inventoryStore';
 import { usePlayerStore } from './playerStore';
@@ -38,6 +38,35 @@ beforeEach(() => {
 afterEach(() => { vi.restoreAllMocks(); abortSubAreaRun(); __resetPersistenceForTests(); useHydrationStore.getState().setStatus('idle'); });
 
 describe('explicit endgame achievement Claim', () => {
+  it('projects independent entry/Claim readiness without spending attempts or paying materials', () => {
+    expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'locked', claim: 'not-eligible' });
+    eligible();
+    expect(readEndgameReadiness('foreign')).toMatchObject({ entry: 'invalid', claim: 'ok' });
+    useMapStore.setState({ endgame: { ...useMapStore.getState().endgame, attemptOrdinal: Number.MAX_SAFE_INTEGER } });
+    const map = useMapStore.getState(), inventory = useInventoryStore.getState(), hero = usePlayerStore.getState();
+    expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'exhausted', claim: 'ok' });
+    expect(readEndgameReadiness('glacial')).toMatchObject({ entry: 'exhausted', claim: 'ok' });
+    expect(useMapStore.getState()).toBe(map); expect(useInventoryStore.getState()).toBe(inventory);
+    expect(usePlayerStore.getState()).toBe(hero);
+    expect(claimEndgameAchievement()).toBe('ok');
+    expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'exhausted', claim: 'already-claimed' });
+  });
+  it('projects typed ownership refusals without weakening native action-time refusal', () => {
+    eligible();
+    const restore = reserveWaveRestore();
+    try {
+      expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'busy', claim: 'busy' });
+      expect(() => checkEndgameEntry('ashen')).toThrow('restorePending');
+      expect(claimEndgameAchievement).toThrow('restorePending');
+    } finally { releaseWaveRestore(restore); }
+    const material = beginMaterialTransaction(true);
+    try {
+      expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'busy', claim: 'busy' });
+      expect(() => checkEndgameEntry('ashen')).toThrow('materialBusy');
+      expect(claimEndgameAchievement).toThrow('materialBusy');
+    } finally { endMaterialTransaction(material); }
+    expect(readEndgameReadiness('ashen')).toMatchObject({ entry: 'ok', claim: 'ok' });
+  });
   it('projects valid locked/owned state and checks navigation without starting or spending an attempt', () => {
     expect(readEndgamePanelModel().kind).toBe('locked');
     expect(checkEndgameEntry('ashen')).toBe('locked');

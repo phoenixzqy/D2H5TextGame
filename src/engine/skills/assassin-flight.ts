@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import tuning from '@/data/combat/assassin-flight.json';
-import schema from '@/data/schema/assassin-flight.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import rows from '@/data/skills/assassin.json';
 import type { SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
@@ -23,7 +23,7 @@ interface FlightTuning {
   readonly durationMs: number;
   readonly magicDodgePerRank: number;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<FlightTuning>(schema);
+const validate = compileAuthoredValidator<FlightTuning>(new Ajv2020({ strict: true, allErrors: true }), 'flight');
 /** Validate finite closed tuning, including the maximum genuine paid Command rank. */
 export function resolveAssassinFlightTuning(input: unknown): FlightTuning {
   if (!validate(input) || input.magicDodgePerRank * (maxRank + 1) > 1)

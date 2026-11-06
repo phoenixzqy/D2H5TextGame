@@ -21,7 +21,7 @@ import type { Resistances } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 
 const STAT_KEYS: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
   'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
 const RESIST_KEYS_LOCAL: readonly (keyof Resistances)[] = [
@@ -298,4 +298,3 @@ describe('<StatSheet>', () => {
     expect(screen.getByTestId('stat-compare-table').getAttribute('data-cols')).toBe('3');
   });
 });
-

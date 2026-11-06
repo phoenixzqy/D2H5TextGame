@@ -86,7 +86,7 @@ describe('Blood Raven production encounter', () => {
     for (const event of summons(out)) {
       expect(event.unit).toMatchObject({ kind: 'summon', summon: true, tier: 'trash', level: 12,
         summonOwnerId: 'raven', summonTemplateId: 'blood_raven_zombie', stats: {
-          attack: 78, defense: 29, magicResist: 11 } });
+          attack: 68, defense: 29, magicResist: 11 } });
       expect(event.unit.life).toBeGreaterThanOrEqual(105); expect(event.unit.life).toBeLessThanOrEqual(147);
     }
   });

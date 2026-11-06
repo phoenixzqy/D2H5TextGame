@@ -40,12 +40,12 @@
  */
 import {
   memo,
-  useState,
   type CSSProperties,
   type KeyboardEvent,
   type ReactNode
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useRecoverableImage } from './useRecoverableImage';
 
 export type CardVariant = 'character' | 'monster' | 'item' | 'merc';
 export type CardSize = 'sm' | 'md' | 'lg';
@@ -187,6 +187,12 @@ const BAR_BG: Record<CardBar['kind'], string> = {
   stamina: 'bg-yellow-600'
 };
 
+const BAR_LABEL = {
+  hp: 'life',
+  mp: 'mana',
+  stamina: 'stamina'
+} as const;
+
 // ── item-type glyphs ─────────────────────────────────────────────────────
 // Bug #18: small badge in the corner of variant=item cards so the player
 // can distinguish weapon vs armor vs ring vs charm at a glance, without
@@ -292,7 +298,7 @@ function CardArt({
   name: string;
   variant: CardVariant;
 }): JSX.Element {
-  const [errored, setErrored] = useState(false);
+  const { errored, onError } = useRecoverableImage();
   const showImg = image && !errored;
   // Portraits (character/monster/merc) are generated with the head in the
   // upper third of the canvas — center crop chops it off, so anchor to top.
@@ -310,9 +316,7 @@ function CardArt({
           loading="lazy"
           decoding="async"
           className={`w-full h-full object-cover ${objectPosCls}`}
-          onError={() => {
-            setErrored(true);
-          }}
+          onError={onError}
         />
       ) : (
         <Silhouette variant={variant} />
@@ -349,6 +353,7 @@ function StatPlate({ stat, size }: { stat: CardStat; size: CardSize }): JSX.Elem
 }
 
 function ResourceBar({ bar }: { bar: CardBar }): JSX.Element {
+  const { t } = useTranslation('common');
   const pct = bar.max <= 0 ? 0 : Math.max(0, Math.min(100, (bar.current / bar.max) * 100));
   const style: CSSProperties = { width: `${pct.toFixed(2)}%` };
   return (
@@ -358,7 +363,7 @@ function ResourceBar({ bar }: { bar: CardBar }): JSX.Element {
       aria-valuenow={Math.max(0, Math.floor(bar.current))}
       aria-valuemin={0}
       aria-valuemax={Math.max(0, Math.floor(bar.max))}
-      aria-label={bar.kind}
+      aria-label={t(BAR_LABEL[bar.kind])}
     >
       <div
         className={`${BAR_BG[bar.kind]} h-full transition-[width] duration-300`}

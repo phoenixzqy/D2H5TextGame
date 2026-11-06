@@ -31,9 +31,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(panel).toHaveTextContent(text);
     }
     expect(panel.textContent).not.toMatch(/\{\{|skills:|details\.defenseBypass/);
-    const shown = Math.max(1, rank), minimum = 75 + 7 * (shown - 1), maximum = 110 + 7 * (shown - 1);
+    const shown = Math.max(1, rank), minimum = 75 + 150 * (shown - 1), maximum = 110 + 150 * (shown - 1);
     expect(panel).toHaveTextContent(`${String(minimum)} ~ ${String(maximum)}`);
-    if (rank > 0 && rank < 20) expect(panel).toHaveTextContent(`${String(minimum + 7)} ~ ${String(maximum + 7)}`);
+    if (rank > 0 && rank < 20) expect(panel).toHaveTextContent(`${String(minimum + 150)} ~ ${String(maximum + 150)}`);
     if (rank === 20) expect(panel).toHaveTextContent(locale === 'en' ? 'Max level reached.' : '已达到最高等级。');
     if (rank === 0) {
       const before = structuredClone(usePlayerStore.getState().player);

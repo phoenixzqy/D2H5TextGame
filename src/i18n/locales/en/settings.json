@@ -25,5 +25,17 @@
   "version": "Version",
   "supportDev": "Support Developer",
   "bmcLink": "Buy me a coffee",
-  "storageFailure": "Progress could not be saved. Retry Save or export a backup in Settings. If the stored save is invalid, import a valid backup before saving."
+  "storageFailure": "Progress could not be saved. Retry Save or export a backup in Settings. If the stored save is invalid, import a valid backup before saving.",
+  "importFile": "Choose backup file",
+  "importSourceHelp": "Choose an exported JSON backup, or paste its contents below.",
+  "importClipboard": "Pasted backup",
+  "importPrepared": "Ready to import:",
+  "importClear": "Use another backup",
+  "importReading": "Reading backup…",
+  "offlineBonusHelp": {
+    "title": "Offline bonus rules",
+    "noIncome": "Time away grants no direct XP, items or currency. Instead, it prepares an XP and effective Magic Find bonus for your next online session.",
+    "accrual": "Each hour away adds +8% bonus (up to +50%) and 20 minutes of bonus time (up to 2 hours).",
+    "decay": "The bonus decreases linearly to zero during online play. It does not boost currency, rune or gem drops, or first-kill bonuses."
+  }
 }

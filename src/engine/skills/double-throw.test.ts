@@ -9,7 +9,7 @@ const validate = createSkillValidator();
 const complete = () => ({ ...row, hitSequence: { strikes: 2 } });
 it('authors the real pair without changing damage, cost or native eligibility', () => {
   expect(row).toMatchObject({ target: 'area-enemies', hitSequence: { strikes: 2 },
-    damage: { min: 50, max: 75 }, scaling: { damagePerLevel: 5 }, cost: { mana: 12 },
+    damage: { min: 50, max: 75 }, scaling: { damagePerLevel: 5, attackDamagePctPerLevel: 30 }, cost: { mana: 12 },
     cooldown: 1, requiredLevel: 12, maxLevel: 20, prerequisites: ['skills-barbarian-double-swing'] });
   expect(row).not.toHaveProperty('aoeShape'); expect(row).not.toHaveProperty('maxTargets');
   expect(validate(row), JSON.stringify(validate.errors)).toBe(true);
@@ -18,7 +18,7 @@ it('retains the default total-attempt semantics through actual registration', ()
   const before = structuredClone(row), skill = registeredSkillFromJson(row);
   expect(skill).toMatchObject({ id: 'barbarian.double_throw', target: 'area-enemies',
     manaCost: 12, cooldown: 1, effects: [{ kind: 'damage', damageType: 'physical',
-      base: [50, 75], perRank: [5, 5], hitSequence: { strikes: 2 } }] });
+      base: [50, 75], perRank: [5, 5], attackDamagePctPerRank: 30, hitSequence: { strikes: 2 } }] });
   expect(skill).not.toHaveProperty('aoeShape'); expect(row).toEqual(before);
 });
 it('requires the exact pair and rejects contradictory Throw metadata', () => {
@@ -44,12 +44,19 @@ it.each([0, 1, 2, 19, 20])('previews rank%i per-attempt damage and two total att
   const before = structuredClone(row), model = computeSkillDisplayModel(row, rank);
   for (const stats of [model.current, model.next].filter(s => s !== undefined)) {
     expect(stats).toMatchObject({ strikesPerCast: 2, manaCost: 12, cooldown: 1,
+      additionalAttackPercent: 30 * (stats.rank - 1),
       damage: [{ type: 'physical', min: 50 + 5 * (stats.rank - 1), max: 75 + 5 * (stats.rank - 1) }] });
     expect(stats).not.toHaveProperty('strikesPerTarget');
   }
   if (rank === 0) expect(model.current).toBeUndefined();
   if (rank === 20) expect(model.next).toBeUndefined();
   expect(row).toEqual(before);
+});
+it('requires the Attack growth field and rejects nonnumeric or negative coefficients', () => {
+  const scaling = { ...row.scaling }; Reflect.deleteProperty(scaling, 'attackDamagePctPerLevel');
+  expect(validate({ ...row, scaling })).toBe(false);
+  for (const value of [-1, '20', null])
+    expect(validate({ ...row, scaling: { ...row.scaling, attackDamagePctPerLevel: value } })).toBe(false);
 });
 it('does not advertise a valid Throw pair for contradictory or missing metadata', () => {
   for (const patch of [{ target: 'single-enemy' }, { trigger: 'passive' }, { damageType: 'arcane' as const },

@@ -3,7 +3,7 @@ import { projectPlayerClassActives } from '@/engine/skills/player-class-actives'
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '@/data/skills/assassin.json';
 import tuning from '../../data/combat/assassin-charges.json';
-import schema from '../../data/schema/assassin-charges.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import type { SkillDef } from '@/engine/types/skills';
 import type { DamageType } from '@/engine/types/attributes';
 import type { DamageEffect, RegisteredSkill } from '@/engine/skills/effects';
@@ -32,7 +32,7 @@ function freeze<T>(value: T): T {
   }
   return value;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<ChargeDefinition>(schema);
+const validate = compileAuthoredValidator<ChargeDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'charges');
 /** Validate complete finite tuning and prevent a single recovery from exceeding actual HP loss. */
 export function resolveAssassinChargeDefinition(input: unknown): ChargeDefinition {
   if (!validate(input) || input.lifeFractionPerStack * input.maxStacks > 1 ||

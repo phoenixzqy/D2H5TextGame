@@ -1,5 +1,6 @@
 import type { ReplayProfileId } from '@/engine/map/replay-profile';
 import { COUNTESS, type CountessEncounter } from '@/engine/map/countess-admission';
+import { COW, captureCowEncounter, type CowEncounter } from '@/engine/map/cow-quest';
 import type { EndgameWaveBinding } from '@/engine/endgame/runtime';
 import type { EndgameState } from '@/engine/endgame/types';
 import type { Act5Encounter } from '@/engine/map/act5-admission';
@@ -16,6 +17,9 @@ import type { CouncilEncounter } from '@/engine/map/council-admission';
 import type { GuardianEncounter } from '@/engine/map/guardian-admission';
 import type { IronGolemOwnership, IronGolemSelection } from './ironGolemSelection';
 import { classifyIronGolemDebit, type IronGolemDebitIntent } from './ironGolemDebit';
+import { isOrmusWitnessBound, type OrmusNativeWitness } from './ormusRunAuthority';
+import { isBountyWitnessBound, type BountyNativeWitness } from './bountyRunAuthority';
+import { isCowNativeWitnessBound, type CowNativeWitness } from './cowNativeWitness';
 import { assertWaveTransitionOwner, assertWaveSnapshotAllowed, assertWaveRestoreOwner,
   type WaveTransitionLease, type WaveRestoreLease } from './waveTransitionGuard';
 
@@ -24,8 +28,12 @@ const receiptBrand = Symbol('recordedWaveReceipt');
 export interface RecordedWaveReceipt { readonly [receiptBrand]: true }
 /** Validated staging values; original engine input must be privately owned and immutable. */
 export interface RecordedWaveBinding {
+  readonly cowNativeWitness?: CowNativeWitness;
+  readonly ormusWitness?: OrmusNativeWitness;
+  readonly bountyWitness?: BountyNativeWitness;
   readonly origin: RunOrigin;
   readonly countessEncounter?: CountessEncounter;
+  readonly cowEncounter?: CowEncounter;
   readonly endgameWave?: EndgameWaveBinding;
   readonly endgameState?: EndgameState;
   readonly replayProfileId?: ReplayProfileId;
@@ -41,6 +49,8 @@ export interface RecordedWaveBinding {
   readonly attestation: IronGolemPreparationAttestation | null;
   /** Privately copied engine successes; public events never authorize search loot. */
   readonly findItemFinds?: readonly FindItemFind[];
+  /** Private paid-wave find points; public events and units never supply reward authority. */
+  readonly mercPilferGoldFind?: number;
   readonly recording: NonNullable<ActiveRun['recording']>;
   readonly publication: RecordedBattlePublication;
   readonly councilEncounter?: CouncilEncounter;
@@ -193,7 +203,7 @@ function assertRunOrigin(origin: unknown): asserts origin is RunOrigin {
     !('kind' in origin) || (origin.kind !== 'area' && origin.kind !== 'endgame')) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  if (origin.kind === 'area' && 'questEncounter' in origin && origin.questEncounter !== COUNTESS.encounter) {
+  if (origin.kind === 'area' && 'questEncounter' in origin && origin.questEncounter !== COUNTESS.encounter && origin.questEncounter !== COW.encounter) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
 }
@@ -210,11 +220,36 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   const { debitIntent, publication, recording, candidateRun } = binding;
   const origin = binding.origin;
   assertRunOrigin(origin);
+  if (binding.mercPilferGoldFind !== undefined &&
+    (!Number.isFinite(binding.mercPilferGoldFind) || binding.mercPilferGoldFind < 0)) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
   if (origin !== candidateRun.origin) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (binding.ormusWitness !== undefined && !isOrmusWitnessBound(binding.ormusWitness, candidateRun,
+    binding.targetWaveIdx, binding.engineInput, recording)) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (binding.bountyWitness !== undefined && !isBountyWitnessBound(binding.bountyWitness, candidateRun,
+    binding.targetWaveIdx, binding.engineInput, recording)) throw new RecordedWaveReceiptError('bindingMismatch');
   if (binding.countessEncounter && (origin.kind !== 'area' || origin.questEncounter !== COUNTESS.encounter ||
     origin.replayProfileId !== 'normal' || candidateRun.act !== 1 || candidateRun.mode !== 'manual' ||
     candidateRun.plan.subAreaId !== COUNTESS.area || candidateRun.plan.waves.length !== 1 || binding.targetWaveIdx !== 0 ||
     binding.countessEncounter.originalHeroId !== binding.heroId)) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (origin.kind === 'area' && origin.questEncounter === COW.encounter) {
+    const wave = candidateRun.plan.waves[0];
+    const expected = wave && captureCowEncounter(candidateRun.act, candidateRun.plan.subAreaId, wave,
+      binding.engineInput.playerTeam, binding.engineInput.enemyTeam);
+    const cow = binding.cowEncounter;
+    const identities = cow && [cow.actId, cow.areaId, cow.encounterId, cow.originalHeroId, ...cow.originalMemberIds];
+    const originals = expected && [expected.actId, expected.areaId, expected.encounterId, expected.originalHeroId, ...expected.originalMemberIds];
+    if (!expected || !cow || !binding.cowNativeWitness || !isCowNativeWitnessBound(binding.cowNativeWitness,
+      candidateRun, binding.targetWaveIdx, binding.engineInput, recording) || origin.replayProfileId !== 'normal' || candidateRun.mode !== 'manual' ||
+      candidateRun.plan.waves.length !== 1 || binding.targetWaveIdx !== 0 || cow.originalHeroId !== binding.heroId ||
+      !identities || !originals || identities.length !== originals.length ||
+      identities.some((id, index) => id !== originals[index]) ||
+      binding.countessEncounter !== undefined || binding.councilEncounter !== undefined || binding.guardianEncounter !== undefined ||
+      binding.act4Encounter !== undefined || binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+  } else if (binding.cowEncounter !== undefined || binding.cowNativeWitness !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
   const replayProfileId: unknown = origin.kind === 'area' ? origin.replayProfileId : 'normal';
   if (origin.kind === 'endgame') {
     const progress = candidateRun.endgameProgress;
@@ -223,7 +258,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
       progress.status !== 'active' || binding.endgameWave?.progress !== progress || !binding.endgameState ||
       candidateRun.act !== 5 || candidateRun.mode !== 'manual' || candidateRun.seed !== origin.seed ||
       binding.councilEncounter !== undefined || binding.guardianEncounter !== undefined || binding.act4Encounter !== undefined ||
-      binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined || binding.countessEncounter !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
+      binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined || binding.countessEncounter !== undefined || binding.cowEncounter !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
   } else if (binding.endgameWave !== undefined || binding.endgameState !== undefined || candidateRun.endgameProgress !== undefined) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
@@ -248,6 +283,8 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   const captured: CapturedBinding = Object.freeze({ ...binding,
     replayProfileId,
     ...(binding.countessEncounter ? { countessEncounter: Object.freeze({ ...binding.countessEncounter }) } : {}),
+    ...(binding.cowEncounter ? { cowEncounter: Object.freeze({ ...binding.cowEncounter,
+      originalMemberIds: Object.freeze([...binding.cowEncounter.originalMemberIds] as const) }) } : {}),
     ...(binding.guardianEncounter ? { guardianEncounter: Object.freeze({ ...binding.guardianEncounter }) } : {}),
     ...(binding.councilEncounter ? { councilEncounter: Object.freeze({ ...binding.councilEncounter,
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
@@ -297,9 +334,10 @@ export function prepareRecordedWaveInstallation(
     : intent.kind === 'newWave'
       ? sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx + 1
       : sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx && binding.debitIntent === null;
-  if (!valid || (intent.kind === 'replay' && binding.countessEncounter !== undefined) ||
+  if (!valid || (intent.kind === 'replay' && (binding.countessEncounter !== undefined || binding.cowEncounter !== undefined)) ||
     (intent.kind === 'newRun' && binding.origin.kind === 'area' && binding.origin.questEncounter !== undefined &&
-      (intent.nextDefaultChallengeOrdinal !== null || binding.countessEncounter === undefined))) {
+      (intent.nextDefaultChallengeOrdinal !== null ||
+        (binding.origin.questEncounter === COUNTESS.encounter ? binding.countessEncounter === undefined : binding.cowEncounter === undefined)))) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
   if (intent.kind !== 'newRun') {

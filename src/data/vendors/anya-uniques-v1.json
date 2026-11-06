@@ -1,0 +1,26 @@
+{
+  "id": "vendors/anya_uniques",
+  "version": 1,
+  "entries": [
+    {
+      "id": "frostburn-gauntlet",
+      "uniqueId": "items/unique/frostburn-gauntlet",
+      "ilvl": 66,
+      "stock": 1,
+      "costs": {
+        "materials": { "materials/scrap": 40 },
+        "currencies": { "rune-shard": 2000 }
+      }
+    },
+    {
+      "id": "waterwalk",
+      "uniqueId": "items/unique/waterwalk",
+      "ilvl": 66,
+      "stock": 1,
+      "costs": {
+        "materials": { "materials/scrap": 40 },
+        "currencies": { "rune-shard": 2000 }
+      }
+    }
+  ]
+}

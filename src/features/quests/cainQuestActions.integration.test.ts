@@ -194,7 +194,7 @@ describe('Cain supported permanent entitlement Claims', () => {
     expect(useMapStore.getState().questProgress[MAIN]?.rewardClaimed).toBe(true);
     const after = snapshot(); expect(claimQuestReward(MAIN)).toBe('already-claimed'); expect(snapshot()).toEqual(after);
   });
-  it('side service-only Claim succeeds once without numeric income or finite charge', () => {
+  it('side Claim grants10wishes once without XP or finite charge', () => {
     completedSideGraph(); const id = hireRecipient();
     const before = snapshot(); const heroBefore = heroXp(); const mercBefore = recipientXp(id);
     const expectedProgress = structuredClone(useMapStore.getState().questProgress);
@@ -207,6 +207,8 @@ describe('Cain supported permanent entitlement Claims', () => {
     const map = expected[1];
     if (!map) throw new Error('Missing map snapshot');
     Object.assign(map, { questProgress: expectedProgress });
+    const inventory = expected[2]; if (!inventory) throw new Error('Missing inventory snapshot');
+    Object.assign(inventory, { currencies: { wishstone: 10 } });
     expect(snapshot()).toEqual(expected);
     const after = snapshot(); expect(claimQuestReward(SIDE)).toBe('already-claimed'); expect(snapshot()).toEqual(after);
   });

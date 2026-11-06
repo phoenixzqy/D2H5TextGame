@@ -100,6 +100,7 @@ interface JsonSkill {
   readonly requires?: SkillRequirement;
   readonly scaling?: {
     readonly damagePerLevel?: number;
+    readonly attackDamagePctPerLevel?: number;
     readonly cooldownPerLevel?: number;
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
@@ -256,6 +257,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),
       ...(skill.id === 'skills-barbarian-frenzy' && skill.frenzy ? { frenzy: true as const } : {}),
       ...(skill.attackDamagePct !== undefined ? { attackDamagePct: skill.attackDamagePct } : {}),
+      ...(skill.scaling?.attackDamagePctPerLevel !== undefined
+        ? { attackDamagePctPerRank: skill.scaling.attackDamagePctPerLevel } : {}),
       damageType: skill.damageType,
       base: [skill.damage.min, skill.damage.max],
       ...(skill.scaling?.damagePerLevel !== undefined

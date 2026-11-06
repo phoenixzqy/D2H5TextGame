@@ -6,6 +6,7 @@ vi.mock('./save-adapter', () => ({
   saveSave: vi.fn(() => Promise.resolve(undefined)),
   deleteSave: vi.fn()
 }));
+import * as staging from './recordedWaveStaging';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { resetRegistry, loadDefaultSkills } from '@/engine/skills/registry';
 import { toJsonSafe } from '@/engine/save';
@@ -100,6 +101,14 @@ beforeEach(() => {
   resetRegistry();
   loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
+  // Controlled physical chip damage isolates a genuinely spent, nonempty pool.
+  // Native hit rolls, absorption, turns, carry, replay and save handling remain.
+  const stage = staging.stageRecordedWave;
+  vi.spyOn(staging, 'stageRecordedWave').mockImplementation(input => stage({ ...input,
+    snapshot: { ...input.snapshot, enemyTeam: input.snapshot.enemyTeam.map(unit => ({
+      ...unit, stats: { ...unit.stats, attack: 1 }, attackRange: [1, 1]
+    })) }
+  }));
 });
 afterEach(() => {
   reset();

@@ -1,12 +1,12 @@
 import type { TFunction } from 'i18next';
-import { loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
+import { loadItemBases, loadSetPieces, loadSets, loadUniques, resolveItemUnique } from '@/data/loaders/loot';
 import { resolveStatPackage, type ResolvedStatValue } from '@/engine/items/statRolls';
 import { socketBonusPackages } from '@/engine/items/socket-contents';
 import { resolveItemRunewordGrants } from '@/engine/items/runeword-grants';
 import { governedActiveNameKey } from '@/engine/skills/runeword-actives';
 import { getSkill } from '@/engine/skills/registry';
-import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '@/engine/types/items';
-import { tDataKey, tItemBaseName } from './i18nKey';
+import type { Item, RunewordGrant, SetDef, SetPieceDef, UniqueItemDef } from '@/engine/types/items';
+import { tDataKey, tItemName } from './i18nKey';
 
 export interface DisplayStatLine {
   readonly key: string;
@@ -98,7 +98,13 @@ export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly Di
   if (!base || !item.socketContents?.length) return [];
   const lines = socketBonusPackages(item, base).flatMap(stats => resolveStatPackage(stats, item.statRolls))
     .map(stat => formatDisplayStat(stat, t));
-  for (const grant of resolveItemRunewordGrants(item)) {
+  return [...lines, ...formatRunewordGrantLines(resolveItemRunewordGrants(item), t)];
+}
+
+/** Format reviewed catalog grants for reference; item callers must first validate their runeword. */
+export function formatRunewordGrantLines(grants: readonly RunewordGrant[], t: TFunction): readonly DisplayStatLine[] {
+  const lines: DisplayStatLine[] = [];
+  for (const grant of grants) {
     const percent = (value: number): number => Number((value * 100).toFixed(4));
     if ('skillId' in grant) {
       const nameKey = governedActiveNameKey(grant.skillId);
@@ -145,29 +151,22 @@ export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly Di
   return lines;
 }
 
+/** Resolve item text and set activation from the supplied current or prospective loadout only. */
 export function resolveItemDisplay(
-  item: Pick<Item, 'baseId' | 'uniqueId' | 'setId' | 'setPieceId' | 'statRolls' | 'generatedName' | 'rarity'>,
+  item: Pick<Item, 'baseId' | 'uniqueId' | 'setId' | 'setPieceId' | 'runewordId' | 'statRolls' | 'generatedName' | 'rarity'>,
   t: TFunction,
   equippedItems: readonly Item[] = []
 ): ItemDisplayModel {
   const uniques = loadUniques();
   const setPieces = loadSetPieces();
   const sets = loadSets();
-  const unique = item.uniqueId ? uniques.find((entry) => entry.id === item.uniqueId) : undefined;
+  const unique = resolveItemUnique(item, uniques);
   const setPiece = item.setPieceId ? setPieces.find((entry) => entry.id === item.setPieceId) : undefined;
   const set = (setPiece?.setId ?? item.setId)
     ? sets.find((entry) => entry.id === (setPiece?.setId ?? item.setId))
     : undefined;
 
-  const baseName = tItemBaseName(t, item);
-  const prefix = item.generatedName?.prefix?.trim();
-  const suffix = item.generatedName?.suffix?.trim();
-  const generatedName = [prefix, baseName, suffix].filter(Boolean).join(' ');
-  const name = unique
-    ? tDataKey(t, unique.name)
-    : setPiece
-      ? tDataKey(t, setPiece.name)
-      : generatedName;
+  const name = tItemName(t, item);
   const stats = unique?.stats ?? setPiece?.stats;
   const definitionStatLines = resolveStatPackage(stats, item.statRolls).map((stat) => formatDisplayStat(stat, t));
   const setPieceIds = new Set(
@@ -176,7 +175,6 @@ export function resolveItemDisplay(
       .map((entry) => entry.setPieceId)
       .filter((id): id is string => typeof id === 'string')
   );
-  if (item.setPieceId) setPieceIds.add(item.setPieceId);
   const pieceCount = setPieceIds.size;
   const setBonuses = set
     ? Object.entries(set.bonuses)

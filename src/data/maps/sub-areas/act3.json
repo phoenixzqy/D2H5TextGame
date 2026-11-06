@@ -278,7 +278,8 @@
         },
         {
           "archetypeId": "monsters/act3.flayer",
-          "count": 5
+          "count": 5,
+          "boss": false
         }
       ]
     },
@@ -441,7 +442,8 @@
         },
         {
           "archetypeId": "monsters/act3.flayer",
-          "count": 4
+          "count": 4,
+          "boss": false
         }
       ]
     },
@@ -767,7 +769,9 @@
       "atk": 300,
       "def": 360,
       "skills": [
-        "monster-lightning"
+        "monster-frost-nova",
+        "monster-lightning",
+        "monster-mephisto-poison-cloud"
       ],
       "dropTable": "loot/act3-boss"
     },

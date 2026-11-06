@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
 import type { CombatUnit } from '@/engine/combat/types';
 import { observeP15Wave, isP15CompleteVictory, type P15WaveInput } from './p15-wave-observation';
+import { decodeObservation, encodeObservation } from './observation-codec';
 
 /** Constructed classifier controls; no saved fixture, realm or gameplay run. */
 function unit(id: string, side: 'player' | 'enemy', kind: NonNullable<CombatUnit['kind']>): CombatUnit {
@@ -71,4 +72,57 @@ it('retains engine draws separately from native defeat settlement and never awar
   expect(observed.advanceResult).toBe('defeat');
   expect(observed.metrics.outcome).toBe('draw');
   expect(observed.metrics.victoryOnlyTtkMs).toBeNull();
+});
+
+it('retains the supplied complete engine input independently through the journal codec', () => {
+  const input = wave();
+  const engineInput = {
+    seed: 19, act: 4 as const, difficulty: 'normal' as const, maxRounds: 12,
+    playerTeam: input.opening.playerTeam, enemyTeam: input.opening.enemyTeam,
+    findPotion: [{ sourceHeroId: 'hero', rank: 20 }]
+  };
+  const observed = observeP15Wave({ ...input, engineInput });
+  expect(observed).toHaveProperty('engineInput', engineInput);
+  expect(decodeObservation(JSON.parse(JSON.stringify(encodeObservation(observed))) as unknown))
+    .toStrictEqual(observed);
+  const projection = engineInput.findPotion[0];
+  if (!projection) throw new Error('Missing constructed recovery projection');
+  projection.rank = 1;
+  expect(observed).toHaveProperty('engineInput.findPotion.0.rank', 20);
+});
+
+it('keeps legacy engine input absent rather than inferring it from teams', () => {
+  expect(observeP15Wave(wave())).not.toHaveProperty('engineInput');
+});
+
+it('keeps source/type HP-ms separate from periodic HP and exposes missing historical provenance', () => {
+  const input = wave();
+  input.opening.recordedEvents = [
+    { kind: 'dot', target: 'enemy', amount: 1, simClockMs: 1000, uiDelayMs: 0,
+      provenance: { fromMs: 0, toMs: 1000, rawAmount: 1, carryInHpMs: 0, carryOutHpMs: 0,
+        contributions: [
+          { source: 'hero', statusId: 'poison', damageType: 'poison', hpMs: 500 },
+          { source: 'merc', statusId: 'ignite', damageType: 'fire', hpMs: 500 }
+        ] } },
+    { kind: 'dot', target: 'enemy', amount: 0, absorbed: 1, simClockMs: 2000, uiDelayMs: 0,
+      provenance: { fromMs: 1000, toMs: 2000, rawAmount: 1, carryInHpMs: 0, carryOutHpMs: 0,
+        contributions: [{ source: 'hero', statusId: 'legacy-bleed', hpMs: 1000 }] } },
+    { kind: 'dot', target: 'enemy', amount: 2, simClockMs: 2500, uiDelayMs: 0 }
+  ];
+  const observed = observeP15Wave(input);
+  expect(observed.metrics.periodicDamageByTarget).toEqual({ enemy: 3 });
+  expect(observed.metrics).toHaveProperty('periodicProvenance', {
+    eventCount: 3, missingEventCount: 1,
+    hpMsBySource: { hero: 1500, merc: 500 },
+    hpMsByDamageType: { poison: 500, fire: 500, unknown: 1000 }
+  });
+  expect(observed.metrics).not.toHaveProperty('periodicDamageBySource');
+  expect(decodeObservation(JSON.parse(JSON.stringify(encodeObservation(observed))) as unknown))
+    .toStrictEqual(observed);
+});
+
+it('distinguishes no periodic events from legacy periodic events with unknown sources', () => {
+  expect(observeP15Wave(wave()).metrics).toHaveProperty('periodicProvenance', {
+    eventCount: 0, missingEventCount: 0, hpMsBySource: {}, hpMsByDamageType: {}
+  });
 });

@@ -52,6 +52,19 @@ describe('opt-in Attack contribution uses the shared damage pipeline', () => {
     expect(first(input(id, attack, defense, resistance))).toBe(expected);
   });
 
+  it.each([
+    { attackDamagePct: 25.5 },
+    { attackDamagePctPerRank: 12.75 }
+  ])('preserves fractional Attack percentages through the final damage floor: %j', coefficient => {
+    registerSkill({ id: 'fixture.fractional-attack', archetype: 'fixture', target: 'single-enemy',
+      cooldown: 1, manaCost: 0, minLevel: 1,
+      effects: [{ kind: 'damage', damageType: 'physical', base: [10, 10], ...coefficient }] });
+    const snapshot = input('fixture.fractional-attack', 10001), merc = required(snapshot.playerTeam[0]);
+    // Both cases add 25.5% at rank3: floor(10 + 10001 * .255) = 2560.
+    expect(first({ ...snapshot, playerTeam: [{ ...merc, skillLevels: { 'fixture.fractional-attack': 3 } }] }))
+      .toBe(2560);
+  });
+
   it('adds fractional Attack before increased damage, combo, crit, resistance and final floor', () => {
     const effect: DamageEffect & { readonly attackDamagePct: number } = {
       kind: 'damage', damageType: 'physical', base: [10, 10], attackDamagePct: 25 };

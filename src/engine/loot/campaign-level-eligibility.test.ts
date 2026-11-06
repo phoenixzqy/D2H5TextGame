@@ -72,7 +72,20 @@ describe('BUG152 campaign and replay equipment eligibility', () => {
       monsterLevel: max, tier: 'chapter-boss', treasureClassId: `loot/${id}`,
       magicFind: 0, goldFind: 0 }, pools, rng).items).flat();
     expect(items.length).toBeGreaterThan(0);
-    const allowedBases = eligible(required(tables.get(`loot/${id}`)), max).map(pick => pick.baseId);
+    // D09 adds guarantee sources and replaces configured live-boss ordinary
+    // picks with offset trash / terminal-cap jewelry projections. Calculate
+    // their eligibility independently of the production projection helper.
+    const ordinaryGroups = pools.chapterBossEquipment?.get(`loot/${id}`)?.groups ?? [];
+    const sourceIds = new Set([...(ordinaryGroups.length === 0 ? [`loot/${id}`] : []),
+      ...(pools.equipmentGuarantees?.get(`loot/${id}`) ?? []).map(rule => rule.sourceTableId)]);
+    const projectedBases = ordinaryGroups.flatMap(group => {
+      const equipment = required(tables.get(group.sourceTableId)).picks.filter(pick => pick.type === 'item');
+      const terminal = Math.max(...equipment.map(pick => pick.qlvlMax));
+      return equipment.filter(pick => pick.weight > 0 && max >= pick.qlvlMin + group.minimumLevelOffset &&
+        max <= (pick.qlvlMax === terminal ? group.terminalLevelCap : pick.qlvlMax)).map(pick => pick.baseId);
+    });
+    const allowedBases = [...projectedBases,
+      ...[...sourceIds].flatMap(source => eligible(required(tables.get(source)), max).map(pick => pick.baseId))];
     for (const item of items) {
       expect(allowedBases).toContain(item.baseId);
       expect(item.ilvl).toBe(max);

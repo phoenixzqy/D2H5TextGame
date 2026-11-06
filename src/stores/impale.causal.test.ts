@@ -38,7 +38,9 @@ afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 for (const defense of [0, 100, 500]) {
   it.each([1, 2, 20])(`BUG202 native rank%i bypasses Defense${String(defense)} and removes real Bleed HP`, rank => {
-    const out = record(fixture(rank, defense)), direct = 77 + 7 * (rank - 1);
+    const input = fixture(rank, defense), targetLife = rank === 20 ? 10000 : 2000;
+    const out = record({ ...input, enemyTeam: input.enemyTeam.map(u => ({ ...u, life: targetLife,
+      stats: { ...u.stats, lifeMax: targetLife } })) }), direct = 77 + 150 * (rank - 1);
     expect(out.events.filter(e => e.kind === 'action')).toEqual([
       expect.objectContaining({ actor: 'hero', skillId: CANONICAL, simClockMs: 1700 })]);
     expect(out.events.filter(e => e.kind === 'damage')).toEqual([
@@ -47,7 +49,7 @@ for (const defense of [0, 100, 500]) {
       expect.objectContaining({ target: 'target', statusId: 'bleed', simClockMs: 1700 })]);
     const dots = out.events.filter(e => e.kind === 'dot');
     expect(dots.reduce((sum, e) => sum + e.amount, 0)).toBe(Math.floor(direct * .1) * 3);
-    expect(out.result.enemyTeam[0]?.life).toBe(2000 - direct - Math.floor(direct * .1) * 3);
+    expect(out.result.enemyTeam[0]?.life).toBe(targetLife - direct - Math.floor(direct * .1) * 3);
     expect(out.result.playerTeam[0]?.mana).toBe(0);
   });
 }

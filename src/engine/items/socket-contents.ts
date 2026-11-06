@@ -1,6 +1,6 @@
 import { gemEffects, runeEffects, socketRunewords } from '@/data/loaders/socket-effects';
 import { materialCatalog } from '@/data/loaders/materials';
-import { matchRuneword, recipeFromData } from '../loot/runeword';
+import { matchRuneword, recipeFromData, type RunewordRecipe } from '../loot/runeword';
 import type { Item, ItemBase, ItemBonusStats } from '../types/items';
 import { effectiveSocketCapacity, validateItemPersonalization } from './socket-capacity';
 
@@ -9,7 +9,12 @@ export type { SocketContent } from '../types/items';
 export type CanonicalSocketItem = Item;
 import type { SocketContent } from '../types/items';
 
-const recipes = socketRunewords.map(recipeFromData);
+const recipesByRuneCount = new Map<number, RunewordRecipe[]>();
+for (const word of socketRunewords) {
+  const recipe = recipeFromData(word), group = recipesByRuneCount.get(recipe.runes.length) ?? [];
+  group.push(recipe);
+  recipesByRuneCount.set(recipe.runes.length, group);
+}
 function ownData(value: object, key: string): unknown {
   const descriptor = Object.getOwnPropertyDescriptor(value, key);
   if (!descriptor) {
@@ -42,11 +47,12 @@ function readContents(item: CanonicalSocketItem, capacity: number): readonly Soc
   return contents;
 }
 
-function matchedWord(item: CanonicalSocketItem, base: ItemBase, contents: readonly SocketContent[]): string | undefined {
-  if (contents.some(content => content.kind !== 'rune')) return undefined;
+function matchedWord(item: CanonicalSocketItem, base: ItemBase, contents: readonly SocketContent[], capacity: number): string | undefined {
+  const recipes = recipesByRuneCount.get(contents.length);
+  if (!recipes || contents.some(content => content.kind !== 'rune')) return undefined;
   return matchRuneword({ baseType: base.type, slot: base.slot,
     ...(base.weaponType ? { weaponType: base.weaponType } : {}),
-    sockets: effectiveSocketCapacity(item, base), runes: contents.map(content => content.id),
+    sockets: capacity, runes: contents.map(content => content.id),
     isWhiteBase: item.rarity === 'normal' || item.rarity === 'runeword' }, recipes);
 }
 
@@ -58,7 +64,7 @@ export function validateCanonicalSocketItem(item: CanonicalSocketItem, base: Ite
     && (contents.length > 0 || Object.hasOwn(item, 'runewordId') || item.rarity === 'runeword')) {
     throw new Error('Non-gear cannot contain socket effects');
   }
-  const expectedWord = matchedWord(item, base, contents);
+  const expectedWord = matchedWord(item, base, contents, capacity);
   if (expectedWord
     ? item.rarity !== 'runeword' || wordId !== expectedWord
     : Object.hasOwn(item, 'runewordId') || item.rarity === 'runeword') {
@@ -86,13 +92,13 @@ export function socketBonusPackages(item: CanonicalSocketItem, base: ItemBase): 
 export function previewSocketInsertion(item: CanonicalSocketItem, base: ItemBase, materialId: string): CanonicalSocketItem {
   validateCanonicalSocketItem(item, base);
   const kind = materialCatalog.get(materialId)?.kind;
-  const contents = readContents(item, effectiveSocketCapacity(item, base));
+  const capacity = effectiveSocketCapacity(item, base), contents = readContents(item, capacity);
   if ((kind !== 'rune' && kind !== 'gem') || item.equipped || typeof item.equipped !== 'boolean'
-    || (base.type !== 'weapon' && base.type !== 'armor') || contents.length >= effectiveSocketCapacity(item, base)) {
+    || (base.type !== 'weapon' && base.type !== 'armor') || contents.length >= capacity) {
     throw new Error('Ineligible socket insertion');
   }
   const socketContents: readonly SocketContent[] = [...contents, { kind, id: materialId }];
-  const next = { ...item, socketContents }, word = matchedWord(next, base, socketContents);
+  const next = { ...item, socketContents }, word = matchedWord(next, base, socketContents, capacity);
   return item.rarity === 'normal' && word ? { ...next, rarity: 'runeword', runewordId: word } : next;
 }
 

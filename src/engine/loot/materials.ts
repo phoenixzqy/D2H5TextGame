@@ -50,18 +50,30 @@ function weightedIdentity(entries: readonly (readonly [string, number])[], unit:
   return last[0];
 }
 
-/** Sample a concrete ID from an existing conditional variate; consumes no RNG. */
-export function sampleMaterial(kind: 'rune' | 'gem', context: MaterialContext, unit: number): string {
+/** Inclusive canonical ordinals for a separately authored forced rune pool. */
+export interface RuneOrdinalBand {
+  readonly minimum: number;
+  readonly maximum: number;
+}
+
+/** Sample a concrete ID without consuming RNG; optional rune bands retain all caps. */
+export function sampleMaterial(kind: 'rune' | 'gem', context: MaterialContext, unit: number, band?: RuneOrdinalBand): string {
   if (!Number.isFinite(unit) || unit < 0 || unit >= 1) throw new MaterialRewardError('Invalid material variate');
   const config = materialEconomy;
+  if (band && (kind !== 'rune' || !Number.isSafeInteger(band.minimum) || !Number.isSafeInteger(band.maximum) ||
+    band.minimum < 1 || band.maximum > config.runeOrder.length || band.minimum > band.maximum)) {
+    throw new MaterialRewardError('Invalid rune ordinal band');
+  }
   const profile = config.profiles[`act${String(context.act)}-${context.difficulty}`];
   if (!profile || !Object.hasOwn(config.gemQualityWeights, context.tier)) throw new MaterialRewardError('Invalid material context');
   if (kind === 'rune') {
     const actCap = config.actRuneCaps[profile.act - 1];
     if (actCap === undefined) throw new MaterialRewardError('Missing material act cap');
-    const cap = Math.min(actCap, profile.difficulty === 'hell' ? config.runeOrder.length : config.nonHellRuneCap,
+    const cap = Math.min(actCap, band?.maximum ?? config.runeOrder.length,
+      profile.difficulty === 'hell' ? config.runeOrder.length : config.nonHellRuneCap,
       config.highRuneAllowedTiers.includes(context.tier) ? config.runeOrder.length : config.highRuneMinOrdinal - 1);
-    return weightedIdentity(config.runeOrder.slice(0, cap).map((id, index) => [id, config.runeWeights[index] ?? 0]), unit);
+    return weightedIdentity(config.runeOrder.map((id, index) => [id, config.runeWeights[index] ?? 0] as const)
+      .slice((band?.minimum ?? 1) - 1, cap), unit);
   }
   const actCap = config.actGemCaps[profile.act - 1];
   if (actCap === undefined) throw new MaterialRewardError('Missing material act cap');

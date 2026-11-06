@@ -212,7 +212,7 @@ it('imports exact allocations and combo in Save22 without retaining transient st
   const save = snapshotStores(),
     expected = playerToCombatUnit(player());
   if (!save) throw new Error('Missing native Save22');
-  expect(save.version).toBe(24);
+  expect(save.version).toBe(32);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   expect(finalHero().statuses.some((s) => s.feralRage)).toBe(true);
   expect(JSON.stringify(toJsonSafe(snapshotStores()))).not.toMatch(

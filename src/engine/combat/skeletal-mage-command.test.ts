@@ -46,7 +46,7 @@ function paidCommand() {
   return carry;
 }
 
-it.each([[1, 2, 95, 33], [6, 4, 130, 48], [20, 9, 228, 90]] as const)(
+it.each([[1, 2, 675, 323], [6, 4, 710, 338], [20, 9, 808, 380]] as const)(
   'keeps elemental identity and paid potency at learned rank%i with next-wave Command',
   (rank, count, life, attack) => {
     const carry = paidCommand();
@@ -96,7 +96,7 @@ it.each(['absent', 'structured-copy', 'json-copy'] as const)(
     const fresh = out.events.filter(e => e.kind === 'summon');
     expect(fresh).toHaveLength(8);
     fresh.forEach((event, i) => {
-      expect(event.unit).toMatchObject({ life: 221, stats: { attack: 87 } });
+      expect(event.unit).toMatchObject({ life: 801, stats: { attack: 377 } });
       const hits = out.events.filter(e => e.kind === 'damage' && e.source === event.unit.id);
       expect(hits.length).toBeGreaterThan(0);
       expect(hits.every(e => e.kind === 'damage' && e.damageType === CYCLE[i % CYCLE.length])).toBe(true);

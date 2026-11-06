@@ -10,7 +10,12 @@
   "startingStats": "Starting Stats",
   "strength": "Strength",
   "dexterity": "Dexterity",
-  "vitality": "Vitality",
+  "vitality": {
+    "effective": "Effective Vitality: {{sheet}} · Formula contribution: {{formula}}",
+    "breakdown": "Allocated {{raw}} · Equipment {{equipment}} · Ordinary sheet {{ordinarySheet}} · Elixir +{{elixir}}",
+    "allocation": "Attribute controls spend points on allocated stats. Equipment and elixir bonuses do not use or refund those points.",
+    "preview": "Draft: effective Vitality {{sheet}} · Maximum Life {{lifeMax}}"
+  },
   "energy": "Energy",
   "classes": {
     "barbarian": "Barbarian",

@@ -51,7 +51,7 @@ describe('P07b01 exact player Frozen Armor schema', () => {
   });
 
   it('does not impose player Frozen Armor requirements on a distinct skill', () => {
-    const row = { ...authored(), id: 'mskill-frozen-armor', scaling: undefined, cost: undefined,
+    const row = { ...authored(), id: 'fixture-other-frozen-armor', scaling: undefined, cost: undefined,
       appliesStatus: ['merc-frozen-armor'] };
     expect(validate(row)).toBe(true);
   });

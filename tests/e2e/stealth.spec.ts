@@ -9,30 +9,47 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
-test.describe('Stealth mode @desktop-only', () => {
-  test.beforeEach(({}, testInfo) => {
-    test.skip(
-      testInfo.project.name !== 'chromium-desktop',
-      'desktop only — stealth styles are viewport-agnostic'
-    );
-  });
-
-  test('toggling stealth hides images and neutralizes rarity colors', async ({
+test.describe('Stealth mode @responsive', () => {
+  test('localizes the badge while hiding images and neutralizing rarity colors', async ({
     page,
-  }) => {
+  }, testInfo) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => { errors.push(error.message); });
+    page.on('console', (message) => {
+      if (message.type() === 'error' || message.type() === 'warning') errors.push(message.text());
+    });
     await clearGameStorage(page);
     await createCharacter(page, { class: 'necromancer', name: 'Quiet' });
 
     // Toggle stealth ON
     await navTo(page, 'settings');
     await expect(page.getByTestId('settings-screen')).toBeVisible();
+    await page.getByRole('button', { name: 'English', exact: true }).click();
     const stealthToggle = page.getByTestId('toggle-stealth');
     await expect(stealthToggle).not.toBeChecked();
     await stealthToggle.check();
     await expect(stealthToggle).toBeChecked();
 
-    // Stealth indicator element renders in the React tree
-    await expect(page.getByTestId('stealth-indicator')).toBeAttached();
+    // The visible badge uses the current locale, including a live language change.
+    const badge = page.getByTestId('stealth-indicator');
+    await expect(badge).toHaveText('Stealth Mode');
+    await expect(badge).toBeVisible();
+    expect(await page.locator('body').evaluate((body) => getComputedStyle(body, '::before').content))
+      .not.toContain('摸鱼模式');
+    await testInfo.attach('stealth-en', { body: await page.screenshot(), contentType: 'image/png' });
+    await page.getByRole('button', { name: '简体中文', exact: true }).click();
+    await expect(badge).toHaveText('摸鱼模式');
+    await expect(stealthToggle).toBeChecked();
+    await testInfo.attach('stealth-zh', { body: await page.screenshot(), contentType: 'image/png' });
+    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await expect(badge).toHaveText('Stealth Mode');
+    await page.getByRole('button', { name: 'Save', exact: true }).click();
+    await expect(page.getByText('Saved', { exact: true })).toBeVisible();
+    await page.reload();
+    await expect(page.getByTestId('settings-screen')).toBeVisible();
+    await expect(badge).toHaveText('Stealth Mode');
+    await expect(badge).toBeVisible();
+    await expect(stealthToggle).toBeChecked();
 
     // body.stealth class applied
     const bodyClass = await page.evaluate(() => document.body.className);
@@ -54,7 +71,7 @@ test.describe('Stealth mode @desktop-only', () => {
       });
       return out;
     });
-    // If there are any imgs, every one of them must be hidden.
+    expect(imgVisuals.length).toBeGreaterThan(0);
     for (const v of imgVisuals) {
       const hidden =
         v.visibility === 'hidden' || parseFloat(v.opacity) === 0;
@@ -87,5 +104,7 @@ test.describe('Stealth mode @desktop-only', () => {
     await expect(page.getByTestId('stealth-indicator')).toHaveCount(0);
     const bodyClassAfter = await page.evaluate(() => document.body.className);
     expect(bodyClassAfter).not.toContain('stealth');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    expect(errors).toEqual([]);
   });
 });

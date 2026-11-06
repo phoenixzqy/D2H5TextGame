@@ -1,0 +1,31 @@
+{
+  "tiers": {
+    "trash": {
+      "equipmentPicks": 1, "minimumLevelOffset": 0, "jewelryPicks": 0,
+      "noDrop": { "normal": 0.6, "nightmare": 0.5, "hell": 0.4 },
+      "rarityMultipliers": { "rare": 1, "set": 1, "unique": 1 }
+    },
+    "champion": {
+      "equipmentPicks": 2, "minimumLevelOffset": 2, "jewelryPicks": 0,
+      "noDrop": { "normal": 0.2, "nightmare": 0.12, "hell": 0.06 },
+      "rarityMultipliers": { "rare": 1.5, "set": 2, "unique": 3 }
+    },
+    "rare-elite": {
+      "equipmentPicks": 3, "minimumLevelOffset": 3, "jewelryPicks": 1,
+      "noDrop": { "normal": 0.1, "nightmare": 0.05, "hell": 0 },
+      "rarityMultipliers": { "rare": 2, "set": 3, "unique": 6 }
+    }
+  },
+  "acts": [
+    { "act": 1, "tableIds": ["loot/trash-act1", "loot/champion-act1", "loot/unique-act1"],
+      "equipmentSourceId": "loot/trash-act1", "jewelrySourceId": "loot/jewelry-act1", "terminalLevelCap": 59 },
+    { "act": 2, "tableIds": ["loot/trash-act2", "loot/champion-act2", "loot/unique-act2"],
+      "equipmentSourceId": "loot/trash-act2", "jewelrySourceId": "loot/jewelry-act2", "terminalLevelCap": 72 },
+    { "act": 3, "tableIds": ["loot/trash-act3", "loot/champion-act3", "loot/unique-act3"],
+      "equipmentSourceId": "loot/trash-act3", "jewelrySourceId": "loot/jewelry-act3", "terminalLevelCap": 87 },
+    { "act": 4, "tableIds": ["loot/trash-act4", "loot/champion-act4", "loot/unique-act4"],
+      "equipmentSourceId": "loot/trash-act4", "jewelrySourceId": "loot/jewelry-act4", "terminalLevelCap": 101 },
+    { "act": 5, "tableIds": ["loot/trash-act5", "loot/champion-act5", "loot/unique-act5"],
+      "equipmentSourceId": "loot/trash-act5", "jewelrySourceId": "loot/jewelry-act5", "terminalLevelCap": 122 }
+  ]
+}

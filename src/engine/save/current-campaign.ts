@@ -25,20 +25,20 @@ export function validateCurrentCampaignRewards(map: CurrentMapSaveData, items: Q
   }
 }
 
-/** Native24 keeps its live three-profile authority separate from historical maps. */
+/** Native24 keeps three profile namespaces; explicit domains preserve historical authority. */
 export function validateNative24CurrentCampaignRewards(map: Omit<Native24MapSaveData, 'selectedTitle'> & {
   readonly selectedTitle: string | null
 }, items: QuestItemLedger,
-  services: unknown, endgame: unknown): void {
-  validateNative24ReplayFields(map);
+  services: unknown, endgame: unknown, domain?: CampaignValidationDomain): void {
+  validateNative24ReplayFields(map, false, domain);
   const selectedTitle = map.selectedTitle;
-  if (selectedTitle === RIFTWALKER_TITLE) {
+  if (selectedTitle === (domain?.achievementTitleId ?? RIFTWALKER_TITLE)) {
     const state = readEndgameState(endgame, { questProgress: map.questProgress,
-      questReceipts: map.questReceipts, questItems: items });
+      questReceipts: map.questReceipts, questItems: items }, domain?.act5);
     if (!state.achievementRewardClaimed) throw new Error('Invalid save: achievement title is not owned');
-    validateNative24CampaignRewards({ ...map, selectedTitle: null }, items, services);
+    validateNative24CampaignRewards({ ...map, selectedTitle: null }, items, services, domain);
   } else {
-    if (selectedTitle !== null && selectedTitle !== BAAL_TITLE) throw new Error('Invalid save: selected title is not owned');
-    validateNative24CampaignRewards({ ...map, selectedTitle }, items, services);
+    if (selectedTitle !== null && selectedTitle !== (domain?.campaignTitleId ?? BAAL_TITLE)) throw new Error('Invalid save: selected title is not owned');
+    validateNative24CampaignRewards({ ...map, selectedTitle }, items, services, domain);
   }
 }

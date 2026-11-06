@@ -1,4 +1,4 @@
-import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 /** Constructed save/Claim boundaries; no earned gameplay or historical replay. */
 import { afterEach, describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -54,7 +54,7 @@ describe('Countess current proof and frozen predecessor boundaries', () => {
     if (!row) throw new Error('Missing fixture row');
     const old = { ...save, version: 22 as const, map: { ...save.map, questReceipts: {},
       questProgress: { [COUNTESS.quest]: { ...row, objectives: {} } } } }, before = structuredClone(old);
-    expect(decodeSave(old)).toEqual(withV24Defaults(old));
+    expect(decodeSave(old)).toEqual(withCurrentReplayDefaults(old));
     expect(old).toEqual(before);
   });
   it('does not complete the protected objective through a generic matching monster kill', () => {

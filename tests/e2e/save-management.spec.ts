@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 import type { SaveCurrent } from '../../src/engine/types/save';
 import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
+// Keep Node's test runner free of browser migrations; typecheck guards version drift.
+const currentSaveVersion = 33 satisfies SaveCurrent['version'];
+
 async function exportViaSettings(page: Page): Promise<SaveCurrent> {
   const pending = page.waitForEvent('download');
   await page.getByTestId('export-save-button').click();
@@ -21,10 +24,18 @@ async function readStoredSave(page: Page): Promise<SaveCurrent> {
       const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
       get.onerror = () => { db.close(); reject(new Error('Could not read game save')); };
       get.onsuccess = () => {
-        const record = get.result as { data: SaveCurrent } | undefined;
+        const record = get.result as { encoding?: string; data: SaveCurrent | string } | undefined;
         db.close();
         if (!record) reject(new Error('No committed game save'));
-        else resolve(record.data);
+        else {
+          try {
+            if (Object.hasOwn(record, 'encoding') && record.encoding !== 'json-v1') {
+              throw new Error('Unsupported storage encoding');
+            }
+            resolve(record.encoding === 'json-v1' ? JSON.parse(record.data as string) as SaveCurrent
+              : record.data as SaveCurrent);
+          } catch (error) { reject(error instanceof Error ? error : new Error(String(error))); }
+        }
       };
     };
   }));
@@ -60,7 +71,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     expect(backup.player.name).toBe('Original');
     expect(backup.meta.settings.soundEnabled).toBe(false);
     expect(backup.meta.settings.locale).toBe(locale);
-    expect(backup.version).toBe(7);
+    expect(backup.version).toBe(currentSaveVersion);
 
     const imported = { ...backup, player: { ...backup.player, name: 'Restored' } };
     // This mutation queues an old-character autosave; Import must cancel it.
@@ -108,24 +119,68 @@ for (const locale of ['en', 'zh-CN'] as const) {
   });
 }
 
-test('malformed import preserves the live and stored character @responsive', async ({ page }) => {
-  await clearGameStorage(page);
-  await createCharacter(page, { class: 'amazon', name: 'Preserved' });
-  await navTo(page, 'settings');
-  await page.getByRole('button', { name: 'English', exact: true }).click();
-  await page.clock.pauseAt(new Date(Date.now() + 1000));
-  await page.getByRole('button', { name: 'Save', exact: true }).click();
-  const before = await exportViaSettings(page);
-  await importViaSettings(page, '{"version":7}');
-  await expect(page.getByRole('status')).toContainText('Current progress was kept');
-  // The frozen transient toast can cover the mobile pointer target. Use the
-  // dialog's ordinary Escape key handling while retaining the frozen clock.
-  await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog')).toHaveCount(0);
-  expect(await exportViaSettings(page)).toEqual(before);
-  await page.reload();
-  expect(await exportViaSettings(page)).toEqual(before);
-});
+for (const locale of ['en', 'zh-CN'] as const) {
+  test(`malformed import preserves the live and stored character ${locale} @responsive`, async ({ page }, testInfo) => {
+    const english = locale === 'en';
+    const errors: string[] = [];
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('console', message => {
+      if (message.type() === 'warning' || message.type() === 'error') errors.push(message.text());
+    });
+    await clearGameStorage(page);
+    await createCharacter(page, { class: 'amazon', name: 'Preserved' });
+    await navTo(page, 'settings');
+    await page.getByRole('button', { name: english ? 'English' : '简体中文', exact: true }).click();
+    // Fix save timestamps while allowing browser focus restoration timers to run.
+    await page.clock.setFixedTime(new Date(Date.now() + 1000));
+    await page.getByRole('button', { name: english ? 'Save' : '保存', exact: true }).click();
+    const before = await exportViaSettings(page);
+    const storedBefore = await readStoredSave(page);
+    await importViaSettings(page, '{"version":7}');
+    const dialog = page.getByRole('dialog');
+    const failureText = english ? 'Current progress was kept' : '当前进度已保留';
+    await expect(dialog.getByRole('alert')).toContainText(failureText);
+    await expect(dialog.getByRole('alert')).toBeFocused();
+    await expect(page.getByText(english ? 'Save exported' : '已导出存档', { exact: true })).toHaveCount(0);
+    await expect(dialog.getByRole('textbox')).toHaveValue('{"version":7}');
+    const cdp = await page.context().newCDPSession(page);
+    try {
+      const tree = await cdp.send('Accessibility.getFullAXTree');
+      expect(tree.nodes.some(node => !node.ignored && node.role?.value === 'alert')).toBe(true);
+    } finally { await cdp.detach(); }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await testInfo.attach('import-error', { body: await page.screenshot(), contentType: 'image/png' });
+    // Selecting a different source clears the old error; a rejected file stays selected for retry.
+    const file = dialog.getByTestId('import-save-file');
+    await file.setInputFiles({ name: 'invalid-backup.json', mimeType: 'application/json', buffer: Buffer.from('{"version":7}') });
+    await expect(dialog.getByRole('alert')).toHaveCount(0);
+    await expect(dialog.getByText('invalid-backup.json', { exact: true })).toBeVisible();
+    const confirm = dialog.getByRole('button', { name: english ? 'Import Save' : '导入存档', exact: true });
+    await confirm.click();
+    await expect(dialog.getByRole('alert')).toContainText(failureText);
+    await expect(confirm).toBeEnabled();
+    await confirm.click();
+    await expect(dialog.getByRole('alert')).toContainText(failureText);
+    await expect(dialog.getByText('invalid-backup.json', { exact: true })).toBeVisible();
+    await expect(confirm).toBeEnabled();
+    await expect(dialog.getByRole('alert')).toBeFocused();
+    expect(await readStoredSave(page)).toEqual(storedBefore);
+    await page.keyboard.press('Escape');
+    await expect(dialog).toHaveCount(0);
+    expect(await exportViaSettings(page)).toEqual(before);
+    await page.getByRole('button', { name: english ? 'Import Save' : '导入存档', exact: true }).click();
+    await expect(dialog.getByRole('alert')).toHaveCount(0);
+    await expect(dialog.getByRole('textbox')).toHaveValue('');
+    await file.setInputFiles({ name: 'valid-backup.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(before)) });
+    await expect(dialog.getByText('valid-backup.json', { exact: true })).toBeVisible();
+    await confirm.click();
+    await expect(dialog).toHaveCount(0);
+    expect(await exportViaSettings(page)).toEqual(before);
+    await page.reload();
+    expect(await exportViaSettings(page)).toEqual(before);
+    expect(errors).toEqual([]);
+  });
+}
 
 test('save controls remain reachable at required viewport sizes @responsive', async ({ page }) => {
   await clearGameStorage(page);

@@ -60,6 +60,13 @@ function deferred() {
   return { promise, release: () => { required(done)(); } };
 }
 function snapshot(): SaveCurrent { return required(snapshotStores()); }
+/** Check the actual physical envelope and every logical field before hydration. */
+function expectStoredSave(record: SaveRecord | undefined, expected: SaveCurrent): void {
+  const saved = required(record);
+  expect(saved.encoding).toBe('json-v1');
+  if (saved.encoding !== 'json-v1') throw new Error('Expected JSON save storage');
+  expect(JSON.parse(saved.data) as unknown).toEqual(toJsonSafe(expected));
+}
 const domains = [usePlayerStore, useInventoryStore, useMapStore, useMercStore,
   useMetaStore, useFormationStore] as const;
 function expectPendingReferences(before: unknown[]): void {
@@ -128,7 +135,8 @@ describe('claim settlement at real persistence boundaries', () => {
         createMercFromDef(required(loadMercPool().pool.find(row => row.id === trainee))));
       expect(paid.mercs.mercProgress[trainee]).toEqual({
         experience: 0, experienceToNextLevel: mercXpForLevel(3) });
-      expect(paid.inventory).toEqual(before.inventory);
+      expect(paid.inventory).toEqual({ ...before.inventory,
+        currencies: { ...before.inventory.currencies, wishstone: (before.inventory.currencies.wishstone ?? 0) + 15 } });
       expect(paid.map).toEqual({ ...before.map, questProgress: {
         ...before.map.questProgress,
         [quest]: { ...before.map.questProgress[quest], rewardClaimed: true }
@@ -136,7 +144,7 @@ describe('claim settlement at real persistence boundaries', () => {
       expect(disk.state.writes).toHaveLength(0);
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.state.writes).toHaveLength(1);
-      expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+      expectStoredSave(disk.state.writes[0], flushed(paid));
       const exported = required(await exportSave());
       expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
       stopAutoSave();
@@ -167,7 +175,7 @@ describe('claim settlement at real persistence boundaries', () => {
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.state.writes).toHaveLength(1);
       for (const record of disk.state.writes) {
-        expect(record.data).toEqual(flushed(paid));
+        expectStoredSave(record, flushed(paid));
       }
       const saved = required(await loadSave());
       stopAutoSave();
@@ -201,7 +209,7 @@ describe('claim settlement at real persistence boundaries', () => {
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.state.writes).toHaveLength(1);
       for (const record of disk.state.writes) {
-        expect(record.data).toEqual(flushed(before));
+        expectStoredSave(record, flushed(before));
       }
       expect(required(await loadSave()).map.questProgress[DEN]?.rewardClaimed).not.toBe(true);
     } finally {
@@ -230,13 +238,13 @@ describe('claim settlement at real persistence boundaries', () => {
       expect(claimQuestReward(DEN)).toBe('not-ready');
       expectPendingReferences(references);
       expect(disk.state.writes).toHaveLength(1);
-      expect(disk.state.writes[0]?.data).toEqual(old);
+      expectStoredSave(disk.state.writes[0], old);
       gate.release();
       await pending;
       expect(isReplacingSave()).toBe(false);
       expect(snapshot()).toEqual(incoming);
       expect(disk.state.writes).toHaveLength(2);
-      expect(disk.state.writes[1]?.data).toEqual(incoming);
+      expectStoredSave(disk.state.writes[1], incoming);
       expect(required(await loadSave())).toEqual(incoming);
       expect(claimQuestReward(DEN)).toBe('ok');
       const paid = snapshot();
@@ -246,7 +254,7 @@ describe('claim settlement at real persistence boundaries', () => {
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.state.writes).toHaveLength(3);
       const expected = [old, incoming, flushed(paid)];
-      disk.state.writes.forEach((record, index) => { expect(record.data).toEqual(expected[index]); });
+      disk.state.writes.forEach((record, index) => { expectStoredSave(record, required(expected[index])); });
     } finally {
       gate.release();
       await pending;
@@ -280,7 +288,7 @@ describe('explicit unique rewards at real save boundaries', () => {
         expect(disk.state.writes).toHaveLength(0);
         await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
         expect(disk.state.writes).toHaveLength(1);
-        expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+        expectStoredSave(disk.state.writes[0], flushed(paid));
         const exported = required(await exportSave());
         expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
         stopAutoSave();
@@ -327,7 +335,7 @@ describe('unique rollback persistence and pending import', () => {
         expect(disk.state.writes).toHaveLength(0);
         await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
         expect(disk.state.writes).toHaveLength(1);
-        expect(disk.state.writes[0]?.data).toEqual(flushed(before));
+        expectStoredSave(disk.state.writes[0], flushed(before));
         const saved = required(await loadSave());
         expect(saved.inventory).toEqual(before.inventory);
         expect(saved.map.questProgress[DEN]?.rewardClaimed).not.toBe(true);
@@ -382,7 +390,7 @@ describe('unique rollback persistence and pending import', () => {
         await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
         expect(disk.state.writes).toHaveLength(3);
         const expectedWrites = [old, incoming, flushed(paid)];
-        disk.state.writes.forEach((record, index) => { expect(record.data).toEqual(expectedWrites[index]); });
+        disk.state.writes.forEach((record, index) => { expectStoredSave(record, required(expectedWrites[index])); });
         expect(required(await loadSave())).toEqual(flushed(paid));
       } finally {
         gate.release(); await pending; stopAutoSave();
@@ -424,7 +432,8 @@ describe('actual authored Andariel reward at real save boundaries', () => {
       expect(item).toEqual({ ...expected, id: item.id });
       expect(item.id.split('-')[1]).toBe(expected.id.split('-')[1]);
       expect(paid.inventory.backpack).toHaveLength(1);
-      expect(paid.inventory).toEqual({ ...before.inventory, backpack: [item] });
+      expect(paid.inventory).toEqual({ ...before.inventory, backpack: [item],
+        currencies: { ...before.inventory.currencies, wishstone: (before.inventory.currencies.wishstone ?? 0) + 25 } });
       const award = awardXp(xpTotal(before.player.level) + before.player.experience, 8000);
       expect(xpTotal(paid.player.level) + paid.player.experience).toBe(award.totalXp);
       expect(paid.player.level).toBe(award.level);
@@ -440,7 +449,7 @@ describe('actual authored Andariel reward at real save boundaries', () => {
       expect(disk.state.writes).toHaveLength(0);
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.state.writes).toHaveLength(1);
-      expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+      expectStoredSave(disk.state.writes[0], flushed(paid));
       const exported = required(await exportSave());
       expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
       stopAutoSave();

@@ -3,7 +3,7 @@
  */
 import { describe, it, expect, vi } from 'vitest';
 import { Suspense } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 import { GameCard } from './GameCard';
@@ -107,6 +107,38 @@ describe('GameCard', () => {
     expect(screen.getByLabelText(/Ghost/).querySelector('svg')).toBeInTheDocument();
   });
 
+  it.each(['character', 'monster', 'item', 'merc'] as const)(
+    'retries failed %s art only on reconnection and preserves healthy art',
+    (variant) => {
+      render(withI18n(<GameCard variant={variant} name="Recovery" image="/portrait.png" />));
+      const card = screen.getByLabelText(/^Recovery ·/u);
+      const first = card.querySelector('img');
+      if (!first) throw new Error('Expected initial card image');
+      fireEvent.online(window);
+      expect(card.querySelector('img')).toBe(first);
+
+      fireEvent.error(first);
+      expect(card.querySelector('img')).toBeNull();
+      expect(card.querySelector('svg')).toBeInTheDocument();
+      fireEvent.offline(window);
+      expect(card.querySelector('img')).toBeNull();
+      fireEvent.online(window);
+      const retry = card.querySelector('img');
+      expect(retry).toHaveAttribute('src', '/portrait.png');
+      expect(retry).toHaveClass(variant === 'item' ? 'object-center' : 'object-top');
+      if (!retry) throw new Error('Expected reconnection retry');
+      fireEvent.online(window);
+      expect(card.querySelector('img')).toBe(retry);
+
+      fireEvent.error(retry);
+      expect(card.querySelector('img')).toBeNull();
+      expect(card.querySelector('svg')).toBeInTheDocument();
+      fireEvent.online(window);
+      expect(card.querySelector('img')).toHaveAttribute('src', '/portrait.png');
+      expect(screen.getByLabelText(/^Recovery ·/u)).toBe(card);
+    }
+  );
+
   it('progressbar aria reflects current/max', () => {
     render(
       withI18n(
@@ -122,6 +154,49 @@ describe('GameCard', () => {
     const bar = screen.getByRole('progressbar');
     expect(bar).toHaveAttribute('aria-valuenow', '45');
     expect(bar).toHaveAttribute('aria-valuemax', '90');
+  });
+
+  it.each(['en', 'zh-CN'] as const)(
+    'names each resource in %s without changing its values',
+    async (locale) => {
+      await i18n.changeLanguage(locale);
+      render(withI18n(
+        <GameCard variant="character" name="Resources" bars={[
+          { kind: 'hp', current: 45, max: 90 },
+          { kind: 'mp', current: 15, max: 60 },
+          { kind: 'stamina', current: 0, max: 100 }
+        ]} />
+      ));
+      const names = locale === 'en'
+        ? ['Life', 'Mana', 'Stamina']
+        : ['生命', '法力', '耐力'];
+      expect(screen.getAllByRole('progressbar')).toHaveLength(3);
+      for (const [index, name] of names.entries()) {
+        const bar = screen.getByRole('progressbar', { name });
+        expect(bar).toHaveAttribute('aria-valuemin', '0');
+        expect(bar).toHaveAttribute('aria-valuenow', String([45, 15, 0][index]));
+        expect(bar).toHaveAttribute('aria-valuemax', String([90, 60, 100][index]));
+      }
+    }
+  );
+
+  it('updates mounted resource names when language changes with identical card props', async () => {
+    await i18n.changeLanguage('en');
+    render(withI18n(
+      <GameCard variant="character" name="Resources" bars={[
+        { kind: 'hp', current: 45, max: 90 },
+        { kind: 'mp', current: 15, max: 60 }
+      ]} />
+    ));
+    const life = screen.getByRole('progressbar', { name: 'Life' });
+    const mana = screen.getByRole('progressbar', { name: 'Mana' });
+    await act(async () => { await i18n.changeLanguage('zh-CN'); });
+    expect(screen.queryByRole('progressbar', { name: 'Life' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('progressbar', { name: 'Mana' })).not.toBeInTheDocument();
+    expect(screen.getByRole('progressbar', { name: '生命' })).toBe(life);
+    expect(screen.getByRole('progressbar', { name: '法力' })).toBe(mana);
+    expect(life).toHaveAttribute('aria-valuenow', '45');
+    expect(mana).toHaveAttribute('aria-valuenow', '15');
   });
 
   it.each(['character', 'item'] as const)(

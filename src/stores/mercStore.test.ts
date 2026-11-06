@@ -96,6 +96,56 @@ describe('mercStore — equipOnMerc / unequipFromMerc (Bug #8)', () => {
 });
 
 describe('mercStore — addExperience / shareExperienceWithFielded (Bug #12)', () => {
+  it('keeps introductory costs while matching polynomial late rewards (BUG-709)', () => {
+    for (let level = 1; level <= 18; level++) {
+      expect(mercXpForLevel(level)).toBe(Math.floor(60 * level * 1.3 ** (level - 1)));
+    }
+    expect([19, 31, 50, 82, 99].map(mercXpForLevel))
+      .toEqual([106945, 363648, 1201440, 4138203, 6627735]);
+  });
+
+  it('preserves a legacy threshold until consumed, then carries XP into the new curve (BUG-709)', () => {
+    const merc = { ...makeMerc(), level: 31 };
+    const legacy = { experience: 4873189, experienceToNextLevel: 4873191 };
+    useMercStore.setState({ mercProgress: { [merc.id]: legacy } });
+    useMercStore.getState().addMerc(merc);
+    expect(useMercStore.getState().getMercProgress(merc.id)).toBe(legacy);
+    expect(useMercStore.getState().addExperience(merc.id, 1))
+      .toEqual({ levelsGained: 0, newLevel: 31 });
+    expect(useMercStore.getState().getMercProgress(merc.id))
+      .toEqual({ experience: 4873190, experienceToNextLevel: 4873191 });
+    expect(useMercStore.getState().addExperience(merc.id, 1 + 393687 + 7))
+      .toEqual({ levelsGained: 2, newLevel: 33 });
+    expect(useMercStore.getState().getMercProgress(merc.id))
+      .toEqual({ experience: 7, experienceToNextLevel: 425169 });
+    expect(legacy).toEqual({ experience: 4873189, experienceToNextLevel: 4873191 });
+  });
+
+  it('retains explicit legacy progress on manual upgrade (BUG-709)', () => {
+    const merc = { ...makeMerc(), level: 31 };
+    const legacy = { experience: 17, experienceToNextLevel: 4873191 };
+    useMercStore.setState({ mercProgress: { [merc.id]: legacy } });
+    useMercStore.getState().addMerc(merc);
+    useMercStore.getState().upgradeMerc(merc.id);
+    expect(useMercStore.getState().ownedMercs[0]?.level).toBe(32);
+    expect(useMercStore.getState().getMercProgress(merc.id)).toBe(legacy);
+  });
+
+  it('uses the late curve for missing progress and floors fielded sharing without crediting inactive mercs (BUG-709)', () => {
+    const merc = { ...makeMerc(), level: 31 };
+    const inactive = { ...makeMerc('mercs/inactive'), level: 31 };
+    useMercStore.setState({ ownedMercs: [merc, inactive], fieldedMercId: merc.id });
+    const before = useMercStore.getState();
+    expect(before.getMercProgress(merc.id))
+      .toEqual({ experience: 0, experienceToNextLevel: 363648 });
+    expect(useMercStore.getState()).toBe(before);
+    before.shareExperienceWithFielded(484877); // floor(75%) = 363657
+    expect(useMercStore.getState().ownedMercs.map(entry => entry.level)).toEqual([32, 31]);
+    expect(useMercStore.getState().getMercProgress(merc.id))
+      .toEqual({ experience: 9, experienceToNextLevel: 393687 });
+    expect(useMercStore.getState().mercProgress[inactive.id]).toBeUndefined();
+  });
+
   it('accumulates XP without level-up below threshold', () => {
     const m = makeMerc();
     useMercStore.getState().addMerc(m);

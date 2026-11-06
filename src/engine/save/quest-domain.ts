@@ -1,7 +1,18 @@
+import type { AnyaQuestDomain } from '../map/anya-quest';
+import type { Act2CacheDomain } from '../map/act2-cache-quests';
+import type { FaraQuestDomain } from '../map/fara-quest';
+import type { CowQuestDomain } from '../map/cow-quest';
 import type { QuestItemActionDef } from '../../data/loaders/quest-actions';
 import type { QuestItemDef } from '../../data/loaders/quest-items';
 import type { QuestDef } from '../../data/loaders/quests';
 import type { QuestServiceId } from '../services/quest-services';
+import type { OrmusQuestDomain } from '../map/ormus-quest';
+import type { LarzukQuestDomain } from '../map/larzuk-quest';
+import type { WarbandQuestDomain } from '../map/warband-quest';
+import type { DrognanQuestDomain } from '../map/drognan-quest';
+import type { NihlathakQuestDomain } from '../map/nihlathak-quest';
+import type { TownEnlistmentQuestDomain } from '../map/town-enlistment-quest';
+import type { CountedQuestDomain } from '../map/counted-quest';
 
 /** Persisted victory authority needs identities, never combat-generation data. */
 export interface QuestVictorySource {
@@ -59,6 +70,17 @@ export interface Act5QuestDomain {
 
 /** One domain follows a save through every nested authority check. */
 export interface QuestStateDomain {
+  readonly anya?: AnyaQuestDomain;
+  readonly cow?: CowQuestDomain;
+  readonly fara?: FaraQuestDomain;
+  readonly act2Caches?: readonly Act2CacheDomain[];
+  readonly countedSources?: readonly CountedQuestDomain[];
+  readonly townEnlistments?: readonly TownEnlistmentQuestDomain[];
+  readonly nihlathak?: NihlathakQuestDomain;
+  readonly drognan?: DrognanQuestDomain;
+  readonly warband?: WarbandQuestDomain;
+  readonly larzuk?: LarzukQuestDomain;
+  readonly ormus?: OrmusQuestDomain;
   readonly actions: readonly QuestItemActionDef[];
   readonly items: readonly QuestItemDef[];
   readonly quests: readonly QuestDef[];
@@ -70,12 +92,14 @@ export interface QuestStateDomain {
 
 /** Claimed rows and their exact source-to-service mapping form one contract. */
 export interface QuestServiceValidationDomain {
+  readonly anya?: AnyaQuestDomain;
   readonly quests: readonly QuestDef[];
   readonly serviceSources: Readonly<Record<string, QuestServiceId>>;
 }
 
 /** Campaign and nested endgame checks must share the same historical authority. */
 export interface CampaignValidationDomain extends QuestServiceValidationDomain {
+  readonly selectedDifficulties?: readonly string[];
   readonly actions: readonly QuestItemActionDef[];
   readonly act5: Act5QuestDomain;
   readonly nightmareAreaIds: readonly string[];
@@ -90,14 +114,25 @@ export interface CampaignValidationDomain extends QuestServiceValidationDomain {
 }
 
 export interface NativeQuestDomain extends CampaignValidationDomain {
+  readonly cow?: CowQuestDomain;
+  readonly fara?: FaraQuestDomain;
+  readonly act2Caches?: readonly Act2CacheDomain[];
+  readonly countedSources?: readonly CountedQuestDomain[];
+  readonly townEnlistments?: readonly TownEnlistmentQuestDomain[];
+  readonly nihlathak?: NihlathakQuestDomain;
+  readonly drognan?: DrognanQuestDomain;
+  readonly warband?: WarbandQuestDomain;
+  readonly larzuk?: LarzukQuestDomain;
+  readonly ormus?: OrmusQuestDomain;
   readonly items: readonly QuestItemDef[];
   readonly victories: readonly QuestVictorySource[];
   readonly council?: CouncilQuestDomain;
 }
 
-export interface FrozenV23Domain extends NativeQuestDomain {
+export interface FrozenNativeQuestDomain extends NativeQuestDomain {
   readonly act1: Act1QuestDomain;
   readonly council: CouncilQuestDomain;
   readonly auraIds: readonly string[];
   readonly selectedDifficulties: readonly string[];
 }
+export type FrozenV23Domain = FrozenNativeQuestDomain;

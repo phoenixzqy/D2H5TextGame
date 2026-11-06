@@ -55,8 +55,8 @@ for (const locale of ['en', 'zh-CN'] as const) {
       await page.getByRole('button', { name: english ? 'English' : '简体中文', exact: true }).click();
       await nav(page, 'inventory');
       await page.getByRole('tab', { name: english ? 'Equipment' : '装备', exact: true }).click();
-      // Activate the slot itself; a center click can hit its nested Details button.
-      await page.getByTestId('equip-slot-boots').press('Enter');
+      // Activate the native slot selector, independently of Details and Unequip.
+      await page.getByTestId('equip-slot-boots-select').press('Enter');
       const picker = page.getByTestId('equip-picker');
       await picker.getByTestId(`equip-picker-row-${candidate.id}`).click();
       await expect(picker.getByTestId('already-equipped-badge')).toHaveCount(0);

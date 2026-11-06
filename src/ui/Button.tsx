@@ -1,14 +1,17 @@
+import { forwardRef } from 'react';
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger';
   children: React.ReactNode;
 }
 
-export function Button({
+/** Styled native button; forwards its DOM ref for dialog focus management. */
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({
   variant = 'primary',
   className = '',
   children,
   ...props
-}: ButtonProps) {
+}, ref) {
   const baseClasses =
     'px-6 py-3 rounded font-serif font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -22,8 +25,8 @@ export function Button({
   };
 
   return (
-    <button className={`${baseClasses} ${variantClasses[variant]} ${className}`} {...props}>
+    <button ref={ref} className={`${baseClasses} ${variantClasses[variant]} ${className}`} {...props}>
       {children}
     </button>
   );
-}
+});

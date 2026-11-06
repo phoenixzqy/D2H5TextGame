@@ -148,7 +148,8 @@
         },
         {
           "archetypeId": "monsters/act4.oblivion-knight",
-          "count": 2
+          "count": 2,
+          "boss": false
         }
       ]
     },
@@ -605,7 +606,10 @@
       "atk": 420,
       "def": 460,
       "skills": [
-        "monster-inferno"
+        "monster-diablo-fire-breath",
+        "monster-diablo-lightning",
+        "monster-bone-prison",
+        "monster-charge"
       ],
       "dropTable": "loot/act4-boss"
     },

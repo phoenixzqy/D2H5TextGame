@@ -1,7 +1,7 @@
 import { hasReplayProfileAuthority } from '@/engine/map/replay-profile-authority';
 import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
 import { canonicalActionValue } from '@/engine/crafting/action-state';
-import { planMaterialAction, prepareMaterialAction, type MaterialActionContext, type MaterialActionInventory,
+import { planMaterialAction, prepareMaterialAction, validateMaterialActionSelection, type MaterialActionContext, type MaterialActionInventory,
   type MaterialActionPlan, type MaterialActionRequest, type MaterialActionSelection } from '@/engine/crafting/material-actions';
 import type { MaterialProfile } from '@/data/loaders/materials';
 import { useInventoryStore } from './inventoryStore';
@@ -75,6 +75,12 @@ function boundContext(request: MaterialActionRequest): MaterialActionContext {
   if (prepared.characterId !== context.characterId || prepared.highestUnlockedAct !== context.highestUnlockedAct ||
     prepared.difficulty !== context.difficulty) throw new Error('Material action context changed');
   return context;
+}
+
+/** Read current native eligibility without creating a request, random result or receipt. Throws on refusal. */
+export function validateLiveMaterialAction(selection: MaterialActionSelection): void {
+  preflight();
+  validateMaterialActionSelection(readInventory(), readContext(recoveryId(selection.recipeId, selection.itemIds ?? [])), selection);
 }
 
 /** Prepare exactly once from current authoritative ownership, costs, progression and reservations. */

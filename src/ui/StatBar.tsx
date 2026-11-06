@@ -5,7 +5,7 @@
 interface StatBarProps {
   current: number;
   max: number;
-  label?: string;
+  label: string;
   color?: 'hp' | 'mp' | 'xp' | 'gold';
   showValues?: boolean;
   className?: string;
@@ -45,6 +45,7 @@ export function StatBar({
           className={`h-full ${colorClasses[color]} transition-all duration-300`}
           style={{ width: `${String(percentage)}%` }}
           role="progressbar"
+          aria-label={label}
           aria-valuenow={current}
           aria-valuemin={0}
           aria-valuemax={max}

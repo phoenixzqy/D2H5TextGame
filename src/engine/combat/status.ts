@@ -154,6 +154,12 @@ function canonicalStatusId(id: string): string {
     ? AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId : id;
 }
 
+/** Authored status eligibility, also used by ambient and privately bound debuffs. */
+export function canApplyStatus(unit: CombatUnit, statusId: string): boolean {
+  const id = canonicalStatusId(statusId);
+  return !unit.statusImmunities?.some(immune => immune === id || (immune === 'all-except-stun' && id !== 'stun'));
+}
+
 const CLEANSABLE_STATUS_IDS: ReadonlySet<string> = new Set(['poison', 'plague', 'amplify-damage',
   'decrepify', 'dim-vision', 'weaken', 'iron-maiden', 'terror', 'confuse', 'life-tap', 'attract', 'lower-resist']);
 
@@ -230,6 +236,7 @@ export function applyStatusWithResult(
   rng: Rng
 ): StatusApplicationResult {
   const id = canonicalStatusId(input.id);
+  if (!canApplyStatus(unit, id)) return { unit, applied: false };
   const cleansing = input.simClockMs !== undefined && validCleansingMultiplier(input.cleansingDurationMultiplier) &&
     CLEANSABLE_STATUS_IDS.has(id) ? input.cleansingDurationMultiplier : undefined;
   if (cleansing !== undefined && input.simClockMs !== undefined) unit = shortenCleansingStatuses(unit, input.simClockMs, cleansing);
@@ -237,7 +244,9 @@ export function applyStatusWithResult(
   const baseDur = input.duration ??
     (id === 'mana-burn' && input.durationMs !== undefined ? input.durationMs / 1000 : cfg.duration);
   const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
-  const bossDurationMult = isBoss ? cfg.bossDurationMult : undefined;
+  const bossDurationMult = isBoss
+    ? (id === 'stun' ? unit.stunDurationMultiplier ?? cfg.bossDurationMult : cfg.bossDurationMult)
+    : undefined;
   const dur =
     bossDurationMult !== undefined
       ? Math.max(1, Math.floor(baseDur * bossDurationMult))
@@ -279,7 +288,7 @@ export function applyStatusWithResult(
       ...(id === 'bone-prison' && input.bonePrison === true ? { bonePrison: true as const } : {}),
       ...(isDamageCurseId(id) && input.damageCurse?.id === id ? { damageCurse: Object.freeze({ ...input.damageCurse }) } : {}),
       ...(id === 'weaken' && input.weaken ? { weaken: Object.freeze({ ...input.weaken }) } : {}),
-      ...(id === 'inner-sight' && input.innerSight ? { innerSight: Object.freeze({ ...input.innerSight }) } : {}),
+      ...((id === 'inner-sight' || id === 'merc-inner-sight') && input.innerSight ? { innerSight: Object.freeze({ ...input.innerSight }) } : {}),
       ...(id === 'decrepify' && input.decrepify ? { decrepify: Object.freeze({ ...input.decrepify }) } : {}),
       stacks: 1,
       remaining: dur,
@@ -434,12 +443,22 @@ export function dotDamageThisTick(unit: CombatUnit): {
   const perStatus = new Map<string, number>();
   for (const s of unit.statuses) {
     if (s.dotPerStack !== undefined) {
-      const dmg = s.dotPerStack * s.stacks;
+      const dmg = statusDotRate(unit, s);
       total += dmg;
       perStatus.set(s.id, dmg);
     }
   }
   return { total, perStatus };
+}
+
+/** Effective periodic HP/second, excluding explicit damage immunities in every tick/integral consumer. */
+export function statusDotRate(unit: CombatUnit, status: ActiveStatus): number {
+  const rate = (status.dotPerStack ?? 0) * status.stacks;
+  if (!unit.damageImmunities?.length || rate === 0) return rate;
+  const id = canonicalStatusId(status.id);
+  const type = status.damageType ?? (id === 'poison' || id === 'plague' ? 'poison'
+    : id === 'ignite' ? 'fire' : id === 'bleed' ? 'physical' : undefined);
+  return type !== undefined && unit.damageImmunities.includes(type) ? 0 : rate;
 }
 
 /**

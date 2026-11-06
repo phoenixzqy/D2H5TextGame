@@ -53,6 +53,7 @@
       }
     },
     "damageType": "fire",
+    "ignoresDefense": true,
     "appliesStatus": [
       "ignite"
     ],
@@ -64,7 +65,7 @@
       "burn"
     ],
     "scaling": {
-      "damagePerLevel": 6
+      "damagePerLevel": 80
     }
   },
   {

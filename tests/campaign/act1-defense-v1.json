@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "threats": [
+    { "type": "physical", "rawDamage": 60, "dodge": "physical", "weight": 1 },
+    { "type": "fire", "rawDamage": 60, "dodge": "magical", "weight": 1 },
+    { "type": "cold", "rawDamage": 60, "dodge": "magical", "weight": 1 },
+    { "type": "lightning", "rawDamage": 60, "dodge": "magical", "weight": 1 },
+    { "type": "arcane", "rawDamage": 60, "dodge": "magical", "weight": 1 },
+    { "type": "poison", "rawDamage": 60, "dodge": "magical", "weight": 1 }
+  ]
+}

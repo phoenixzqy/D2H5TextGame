@@ -7,8 +7,8 @@ import { computeSkillDisplayModel } from './displayStats';
 const validate = createSkillValidator();
 const spells = [
   { slug: 'fire-bolt', min: 30, max: 45, growth: 4, cost: 8, cooldown: 1, level: 1 },
-  { slug: 'fire-ball', min: 70, max: 100, growth: 7, cost: 20, cooldown: 1, level: 12 },
-  { slug: 'meteor', min: 100, max: 150, growth: 10, cost: 50, cooldown: 4, level: 24 }
+  { slug: 'fire-ball', min: 70, max: 100, growth: 120, cost: 20, cooldown: 1, level: 12 },
+  { slug: 'meteor', min: 100, max: 150, growth: 80, cost: 50, cooldown: 4, level: 24 }
 ] as const;
 function row(slug: string) {
   const source = PLAYABLE_CLASS_SKILL_DATA.sorceress.find(s => s.id === 'skills-sorceress-' + slug);

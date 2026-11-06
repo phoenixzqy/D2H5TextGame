@@ -14,6 +14,7 @@ import { useCombatStore } from '@/stores/combatStore';
 import { hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
 import { pick, replace, sameCainData } from './cainPublication';
+import { beginQuestCurrencyPublication, endQuestCurrencyPublication, verifyQuestCurrencyPublication } from '@/stores/questCurrencyJournal';
 
 const QUESTS = [MALUS_QUEST, MALUS_SIDE_QUEST];
 const SERVICES = QUESTS.map(id => `${id}#reward:service`);
@@ -30,14 +31,15 @@ export function hasImbueClaimCompletion(questId: string): boolean {
 }
 
 /**
- * Settle a preflighted Malus/Present XP and independent charge under Claim's lease.
+ * Settle a preflighted Malus/Present XP, wishes and independent charge under Claim's lease.
  * Capture the recipient before publication, check every boundary, mark claimed
  * last, and restore deep participating values while preserving unrelated writes.
  * Publish the exact source charge before claimed-last. Failed restoration is explicit.
  */
-export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-failed' | 'unsupported-rewards' {
+export function publishImbueClaim(questId: string, xp: number, wishes: number): 'ok' | 'grant-failed' | 'unsupported-rewards' {
   const hero = usePlayerStore.getState().player, map = useMapStore.getState();
   if (!hero || !QUESTS.includes(questId) || !hasImbueClaimCompletion(questId)) return 'unsupported-rewards';
+  if (xp !== (questId === MALUS_QUEST ? 3500 : 0) || wishes !== (questId === MALUS_QUEST ? 15 : 10)) return 'unsupported-rewards';
   const inventory = useInventoryStore.getState(), mercs = useMercStore.getState();
   const serviceSource = `${questId}#reward:service`;
   if (Object.hasOwn(inventory.questServices, serviceSource) ||
@@ -79,8 +81,13 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
   const claimedRows = structuredClone(before.rows), row = claimedRows[questId];
   if (!row) return 'unsupported-rewards';
   claimedRows[questId] = { ...row, rewardClaimed: true };
+  let currencyOwner;
+  try { currencyOwner = beginQuestCurrencyPublication(questId, 'wishstone', wishes, inventory.currencies); }
+  catch { return 'unsupported-rewards'; }
+  let grantedCurrency = false;
   const check = (claimed: boolean, grantedHero: boolean, grantedMerc: boolean, grantedService = false, restoring = false): void => {
     const live = useMapStore.getState(), currentItems = useInventoryStore.getState();
+    verifyQuestCurrencyPublication(currencyOwner, currentItems.currencies, grantedCurrency);
     if ((!restoring && (useHydrationStore.getState().status !== 'ready' || isReplacingSave() || hasActiveSubAreaRun() ||
       useCombatStore.getState().inCombat)) || !sameCainData({ currentAct: live.currentAct,
       currentSubAreaId: live.currentSubAreaId, selectedDifficulty: live.selectedDifficulty }, before.location) ||
@@ -120,6 +127,8 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
     useInventoryStore.setState(state => ({ questServices: { ...state.questServices,
       [serviceSource]: { serviceId: 'imbue_item', state: 'available' } } }));
     check(false, xp > 0, xp > 0, true);
+    useInventoryStore.getState().addQuestCurrency(currencyOwner); grantedCurrency = true;
+    check(false, xp > 0, xp > 0, true);
     useMapStore.getState().markQuestRewardClaimed(questId); check(true, xp > 0, xp > 0, true);
     const live = useMapStore.getState(), current = useInventoryStore.getState();
     validateNative24CurrentCampaignRewards(live, current.questItems, current.questServices, live.endgame);
@@ -140,6 +149,8 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
       questItems: replace(state.questItems, structuredClone(before.items), [MALUS_SOURCE]),
       questServices: replace(state.questServices, structuredClone(before.services), SERVICES)
     })); });
+    restore(() => { useInventoryStore.getState().restoreQuestCurrency(currencyOwner); });
+    grantedCurrency = false;
     restore(() => { useMapStore.setState(state => ({ questProgress: replace(state.questProgress, structuredClone(before.rows), QUESTS),
       questReceipts: replace(state.questReceipts, structuredClone(before.receipts), MALUS_RECEIPTS), ...before.location })); });
     restore(() => { check(false, false, false, false, true); });
@@ -150,5 +161,5 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
     });
     if (errors.length > 0) throw new AggregateError(errors, 'Imbue Claim restoration failed', { cause });
     return 'grant-failed';
-  }
+  } finally { endQuestCurrencyPublication(currencyOwner); }
 }

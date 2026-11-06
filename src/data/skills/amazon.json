@@ -66,7 +66,8 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 4
+      "damagePerLevel": 12,
+      "attackDamagePctPerLevel": 40
     },
     "maxTargets": 5
   },
@@ -439,7 +440,7 @@
       "poison"
     ],
     "scaling": {
-      "damagePerLevel": 3
+      "damagePerLevel": 15
     },
     "aoeShape": "box-3x3",
     "maxTargets": 9
@@ -482,7 +483,7 @@
       "bleed"
     ],
     "scaling": {
-      "damagePerLevel": 7
+      "damagePerLevel": 150
     }
   },
   {
@@ -631,7 +632,7 @@
       "shock"
     ],
     "scaling": {
-      "damagePerLevel": 7
+      "damagePerLevel": 75
     },
     "aoeShape": "chain",
     "maxTargets": 5

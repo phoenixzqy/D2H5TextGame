@@ -160,7 +160,7 @@ describe('D06 finite wave-local player Corpse Explosion', () => {
     }
   );
 
-  it.each([[1, 50, 80], [6, 80, 110], [20, 164, 194]])(
+  it.each([[1, 50, 80], [6, 450, 480], [20, 1570, 1600]])(
     'projected rank%s supplies damage%s–%s despite conflicting generic ranks', (rank, min, max) => {
       const base = input(), out = record({ ...base, seed: 1, corpseExplosion: [{ sourceHeroId: 'hero', rank }],
         playerTeam: base.playerTeam.map(u => ({ ...u, skillOrder: [ALIAS], skillLevels: { [CE]: 99, [ALIAS]: 0 } })) });
@@ -169,13 +169,32 @@ describe('D06 finite wave-local player Corpse Explosion', () => {
       expect(hit.dodged).toBe(false);
       expect(hit.amount).toBeGreaterThanOrEqual(min);
       expect(hit.amount).toBeLessThanOrEqual(max);
-      expect(hit.amount).toBe(max); // Independent seed1 hits:80/110/194, not overlapping rank ranges.
+      expect(hit.amount).toBe(max); // Independent seed1 hits:80/480/1600, not overlapping rank ranges.
       const totalDot = out.events.reduce((n, e) => n + (e.kind === 'dot' && e.target === 'target' ? e.amount : 0), 0);
       expect(totalDot).toBe(3 * Math.max(1, Math.floor(hit.amount * 0.1)));
       expect(casts(out.events)).toHaveLength(1);
     }
   );
 
+  it.each([[1, 199, 0, 80], [6, 115, 50, 240], [20, 199, 0, 1600],
+    [20, 304, 25, 1200], [20, 454, 75, 400]])(
+    'rank%s blast bypasses Defense%s but retains Fire resistance%s', (rank, defense, fire, expected) => {
+      const base = input(), target = required(base.enemyTeam[1]);
+      const out = record({ ...base, seed: 1, corpseExplosion: [{ sourceHeroId: 'hero', rank }],
+        enemyTeam: [body(), { ...target, stats: { ...target.stats, defense,
+          magicResist: 10_000, resistances: { ...target.stats.resistances, fire } } }] });
+      const hit = required(out.events.find(e => e.kind === 'damage' && e.damageType === 'fire'));
+      expect(hit).toMatchObject({ amount: expected, dodged: false, crit: false });
+      expect(out.events.reduce((sum, e) => sum + (e.kind === 'dot' && e.target === 'target' ? e.amount : 0), 0))
+        .toBe(3 * Math.max(1, Math.floor(expected * 0.1)));
+      expect(casts(out.events)).toHaveLength(1);
+      expect(feedback(out.events).at(-1)).toMatchObject({ messageKey: 'combat:corpses.consumed', params: { count: 0 } });
+      expect(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast'))
+        .toEqual([expect.objectContaining({ target: 'hero', mana: 0 })]);
+      expect(out.events.filter(e => e.kind === 'damage' && e.source === 'hero' && e.damageType === 'physical'))
+        .toEqual(expect.arrayContaining([expect.objectContaining({ amount: 1, dodged: false })]));
+    }
+  );
 
   it('all targets dodging still spends one body and20MP', () => {
     const out = record(input()); // Seed7's sole CE hit naturally dodges.
@@ -319,12 +338,13 @@ describe('D06 finite wave-local player Corpse Explosion', () => {
     expect(feedback(out.events)).toEqual([]);
   });
 
-  it('keeps monster CE unchanged and independent of player corpse authority', () => {
+  it('keeps the monster death marker independent of player corpse authority', () => {
     const base = input(), snapshot = { ...base, playerTeam: base.playerTeam.map(u => ({ ...u, skillOrder: [], statuses: [stun] })),
       enemyTeam: [{ ...unit('monster', 'enemy'), skillOrder: ['monster.corpse_explosion'] }] };
     const out = record(snapshot);
     expect(out.events).toEqual(record({ ...snapshot, corpseExplosion: undefined }).events);
-    expect(out.events.some(e => e.kind === 'action' && e.skillId === 'monster.corpse_explosion')).toBe(true);
+    expect(out.events.some(e => e.kind === 'action' && e.skillId === 'monster.corpse_explosion')).toBe(false);
+    expect(out.events.some(e => e.kind === 'action' && e.actor === 'monster' && e.skillId === null)).toBe(true);
     expect(feedback(out.events)).toEqual([]);
   });
 

@@ -100,6 +100,9 @@ describe.each(['zh-CN', 'en'] as const)('canonical quest localization %s', local
       const slug = questI18nKey(quest.id), card = within(screen.getByTestId(`quest-${quest.id}`));
       expect(card.getByRole('heading', { name: ownText(locale, slug, 'name') })).toBeVisible();
       expect(card.getByText(ownText(locale, slug, 'desc'))).toBeVisible();
+      if (typeof quest.rewards?.wishstones === 'number' && quest.rewards.wishstones > 0) {
+        expect(card.getByText(`${String(quest.rewards.wishstones)} ${locale === 'en' ? 'Wishstones' : '祈愿石'}`)).toBeVisible();
+      }
       const objectives = card.getAllByRole('list')[0];
       expect(objectives).toBeDefined();
       if (!objectives) throw new Error('Missing quest objective list');

@@ -9,6 +9,7 @@
 import type { CombatUnit } from '../combat/types';
 import { hasStatus } from '../combat/status';
 import { getSkill } from '../skills/registry';
+import { isMonsterDeathExplosionId } from '../skills/monster-death-explosion';
 import { canCastSkill } from '../skills/eligibility';
 import { governedActiveId } from '../skills/runeword-actives';
 
@@ -32,7 +33,8 @@ export function chooseSkill(
 ): string | undefined {
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill || skill.trigger === 'passive') continue;
+    if (!skill || skill.trigger === 'passive' || skill.trigger === 'on-death' ||
+      isMonsterDeathExplosionId(skillId) || isMonsterDeathExplosionId(skill.id)) continue;
     const governed = governedActiveId(skill.id);
     if (governed && (unit.governedActiveRanks?.[governed] === 0 ||
       (governed === 'item.redemption' && !unit.governedActiveRanks))) continue;
@@ -126,10 +128,11 @@ export function shouldEnrage(
   unit: CombatUnit,
   act: 1 | 2 | 3 | 4 | 5
 ): boolean {
-  if (unit.tier !== 'boss') return false;
+  if (unit.tier !== 'boss' && unit.tier !== 'chapter-boss') return false;
   if (unit.enraged) return true;
   if (unit.life <= 0) return false;
-  return unit.life / unit.stats.lifeMax <= (unit.enrage?.lifeFraction ?? bossEnrageThreshold(act));
+  // Compare Life directly so an exact authored boundary cannot round above itself.
+  return unit.life <= unit.stats.lifeMax * (unit.enrage?.lifeFraction ?? bossEnrageThreshold(act));
 }
 
 /** Re-export for external consumers checking control immunity. */

@@ -2,6 +2,14 @@
   {
     "id": "monsters/act5.barbarian-savage",
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.barbarianSavage",
     "life": [
       200,
@@ -11,9 +19,7 @@
       20,
       28
     ],
-    "skills": [
-      "monster-strong-melee"
-    ],
+    "skills": [],
     "attackSpeed": 100,
     "defense": 40,
     "resistances": {
@@ -48,7 +54,6 @@
       50
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-leap-attack"
     ],
     "attackSpeed": 110,
@@ -70,6 +75,14 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
     ]
   },
   {
@@ -85,7 +98,6 @@
       45
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-war-cry"
     ],
     "attackSpeed": 105,
@@ -111,11 +123,28 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      32,
+      32
+    ],
+    "attackGrowth": [
+      5,
+      5
     ]
   },
   {
     "id": "monsters/act5.blood-lord",
+    "championDamageImmunities": ["fire"],
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.bloodLord",
     "life": [
       500,
@@ -126,8 +155,7 @@
       70
     ],
     "skills": [
-      "monster-fire-breath",
-      "monster-strong-melee"
+      "monster-fire-breath"
     ],
     "attackSpeed": 110,
     "defense": 90,
@@ -185,6 +213,14 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
     ]
   },
   {
@@ -222,10 +258,19 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
     ]
   },
   {
     "id": "monsters/act5.frozen-terror",
+    "championDamageImmunities": ["cold"],
     "undead": false,
     "name": "monsters.frozenTerror",
     "life": [
@@ -237,8 +282,7 @@
       80
     ],
     "skills": [
-      "monster-frost-aura",
-      "monster-strong-melee"
+      "monster-frost-aura"
     ],
     "attackSpeed": 110,
     "defense": 95,
@@ -259,6 +303,14 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
     ]
   },
   {
@@ -266,15 +318,14 @@
     "undead": false,
     "name": "monsters.ancientBarbarian",
     "life": [
-      3000,
-      4000
+      1000,
+      1400
     ],
     "lifeGrowth": [
-      250,
-      300
+      70,
+      90
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-whirlwind",
       "monster-shout"
     ],
@@ -290,11 +341,27 @@
     },
     "baseExperience": 2000,
     "canBeElite": false,
-    "canBeBoss": true
+    "canBeBoss": true,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ]
   },
   {
     "id": "monsters/act5.baal-minion",
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.baalMinion",
     "life": [
       600,
@@ -305,7 +372,6 @@
       90
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-fire-breath",
       "monster-poison-cloud"
     ],
@@ -334,6 +400,7 @@
   {
     "id": "monsters/act5.baal",
     "undead": false,
+    "statusImmunities": ["all-except-stun"],
     "name": "monsters.baal",
     "life": [
       8000,
@@ -344,12 +411,17 @@
       700
     ],
     "skills": [
-      "monster-frost-nova",
-      "monster-inferno",
-      "monster-mana-rift",
+      "monster-baal-frost-nova",
+      "monster-baal-inferno",
+      "monster-baal-mana-rift",
       "monster-tentacles"
     ],
     "attackSpeed": 150,
+    "enrage": {
+      "lifeFraction": 0.2,
+      "attackSpeedMultiplier": 2.5,
+      "damagePct": 100
+    },
     "defense": 350,
     "resistances": {
       "fire": 75,
@@ -360,6 +432,44 @@
     },
     "baseExperience": 5000,
     "canBeElite": false,
-    "canBeBoss": true
+    "canBeBoss": true,
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
+    ]
+  },
+  {
+    "id": "monsters/act5.baal-tentacle",
+    "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
+    "name": "monsters.baalTentacle",
+    "life": [
+      200,
+      280
+    ],
+    "lifeGrowth": [
+      20,
+      28
+    ],
+    "skills": [],
+    "attackSpeed": 100,
+    "defense": 40,
+    "resistances": {
+      "physical": 25
+    },
+    "baseExperience": 0,
+    "canBeElite": false,
+    "canBeBoss": false
   }
 ]

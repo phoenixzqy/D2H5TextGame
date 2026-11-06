@@ -1,3 +1,4 @@
+import { compileAuthoredValidator } from '../authored-validators';
 /**
  * Quest loader — reads `quests/main.json` + `quests/side.json` and surfaces a
  * typed view consumed by `QuestsScreen` and other UI/engine code.
@@ -9,7 +10,6 @@
  */
 
 import Ajv2020 from 'ajv/dist/2020';
-import questSchema from '../schema/quest.schema.json';
 import mainQuestsJson from '../quests/main.json';
 import sideQuestsJson from '../quests/side.json';
 
@@ -51,7 +51,7 @@ interface QuestFile {
 }
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validateQuests = ajv.compile<QuestFile>(questSchema);
+const validateQuests = compileAuthoredValidator<QuestFile>(ajv, 'quests');
 
 function validateDocument(document: unknown, context: string): QuestFile {
   if (!validateQuests(document)) {

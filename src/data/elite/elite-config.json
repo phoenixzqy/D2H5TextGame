@@ -7,8 +7,8 @@
   "chapterBossHpMultiplier": 8,
   "multipliers": {
     "champion": { "life": 3, "attack": 1.5, "defense": 1.3 },
-    "rareElite": { "life": 4, "attack": 2, "defense": 1.3 },
-    "rareMinion": { "life": 2, "attack": 1.3, "defense": 1.15 }
+    "rareElite": { "life": 4, "attack": 1.5, "defense": 1.3 },
+    "rareMinion": { "life": 2, "attack": 1.1, "defense": 1.15 }
   },
   "idle": {
     "enabled": true,
@@ -29,22 +29,33 @@
     {
       "id": "elite-affix/fast",
       "nameKey": "combat.eliteAffix.fast",
-      "skillId": "monster-charge"
+      "skillId": "monster-charge",
+      "attackSpeedMultiplier": 1.5
     },
     {
       "id": "elite-affix/cold-enchanted",
       "nameKey": "combat.eliteAffix.coldEnchanted",
-      "skillId": "monster-frost-nova"
+      "skillId": "monster-frost-nova",
+      "frostAura": { "damage": 15, "intervalMs": 5000, "chillDurationMs": 2000 },
+      "resistanceBonuses": { "cold": 50 }
     },
     {
       "id": "elite-affix/lightning-enchanted",
       "nameKey": "combat.eliteAffix.lightningEnchanted",
-      "skillId": "monster-lightning"
+      "skillId": "monster-lightning",
+      "resistanceBonuses": { "lightning": 50 },
+      "lightningRetaliation": { "chance": 0.25, "damage": [40, 60] }
     },
     {
       "id": "elite-affix/magic-resistant",
       "nameKey": "combat.eliteAffix.magicResistant",
       "skillId": "monster-arcane-bolt"
+    },
+    {
+      "id": "elite-affix/fire-enchanted",
+      "nameKey": "combat.eliteAffix.fireEnchanted",
+      "skillId": "monster-fire-enchanted-explosion",
+      "resistanceBonuses": { "fire": 50 }
     }
   ]
 }

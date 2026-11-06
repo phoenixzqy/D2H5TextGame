@@ -157,14 +157,14 @@ it('publishes four fresh corpse-free elemental Mages and records actual lethal b
   const summons = assertFreshBatch(binding, 100);
   const finisher = binding.recording.events.find(e => e.kind === 'action' && e.skillId === FINISH);
   expect(finisher?.simClockMs).toBe(4000);
-  // Signature attempts consume shared RNG, including after lethal hits. Seed7's
-  // Fire/Lightning first attempts now miss; retain exact successful-hit/kill proof.
+  // Ordinary enemy attacks consume the native shared RNG. Seed7's Cold first
+  // attempt misses; each element still lands a lethal hit before the finisher.
   summons.forEach((summon, index) => {
     const first = binding.recording.events.find(e => e.kind === 'damage' && e.source === summon.unit.id);
-    expect(first).toMatchObject({ simClockMs: 1940, amount: [0, 61, 0, 50][index],
-      dodged: index === 0 || index === 2, crit: false });
+    expect(first).toMatchObject({ simClockMs: 1940, amount: [50, 0, 61, 50][index],
+      dodged: index === 1, crit: false });
     const lethal = binding.recording.events.find(e => e.kind === 'damage' && e.source === summon.unit.id && !e.dodged);
-    const at = [5820, 1940, 3880, 1940][index];
+    const at = [1940, 3880, 1940, 1940][index];
     expect(lethal).toMatchObject({ kind: 'damage', source: summon.unit.id, simClockMs: at,
       damageType: ['fire', 'cold', 'lightning', 'poison'][index], amount: [50, 61, 61, 50][index],
       crit: false, dodged: false });
@@ -176,7 +176,7 @@ it('publishes four fresh corpse-free elemental Mages and records actual lethal b
       kind: 'death', target: lethal.target, simClockMs: at }));
     expect(binding.recording.outcome.finalEnemyTeam.find(u => u.id === lethal.target)?.life).toBe(0);
   });
-  expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 5820 });
+  expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 4000 });
   // Supplemental real pure/recorded equality, without mocking either engine path.
   const plain = runBattle(binding.engineInput);
   expect({ winner: plain.winner, finalPlayerTeam: plain.playerTeam, finalEnemyTeam: plain.enemyTeam })
@@ -202,10 +202,10 @@ it('settles once then carries real resources and creates a newly paid cycle from
   // rather than retaining the actor's earlier pre-action cache.
   expect(first.binding.recording.events.find(e => e.kind === 'action' && e.skillId === WAIT))
     .toMatchObject({ simClockMs: 2000 });
-  expect(first.binding.recording.events.at(-1)).toMatchObject({ simClockMs: 5820 });
-  expect(finalHero).toMatchObject({ life: 1000372, mana: 161, manaRegenCarry: 0.444,
-    manaRegenCompensation: 0, manaRegenExactCarry: '0.444', statuses: [],
-    cooldowns: { [WAIT]: 2000 + 4000 - 5820 }, activeBuffIds: [WAIT] });
+  expect(first.binding.recording.events.at(-1)).toMatchObject({ simClockMs: 4000 });
+  expect(finalHero).toMatchObject({ life: 1000372, mana: 212, manaRegenCarry: 0.8,
+    manaRegenCompensation: 0, manaRegenExactCarry: '0.8', statuses: [],
+    cooldowns: { [WAIT]: 2000, [FINISH]: 1000 }, activeBuffIds: [WAIT] });
   drain(); expect(durable()).toEqual(unpaid);
   expect(advanceWaveOrFinish()).toBe('next-wave');
   const second = published(), { binding } = second;
@@ -217,12 +217,12 @@ it('settles once then carries real resources and creates a newly paid cycle from
   const hero = binding.engineInput.playerTeam[0];
   expect(hero?.life).toBe(Math.min(finalHero.life, hero?.stats.lifeMax ?? 0));
   expect(hero?.mana).toBe(finalHero.mana);
-  expect(hero?.manaRegenCarry).toBe(0.444); expect(hero?.manaRegenCompensation).toBe(0);
-  expect(hero?.manaRegenExactCarry).toBe('0.444');
+  expect(hero?.manaRegenCarry).toBe(0.8); expect(hero?.manaRegenCompensation).toBe(0);
+  expect(hero?.manaRegenExactCarry).toBe('0.8');
   expect(hero?.statuses).toEqual(finalHero.statuses); expect(hero?.cooldowns).toEqual(finalHero.cooldowns);
   expect(hero?.activeBuffIds).toEqual(finalHero.activeBuffIds);
   assertDeepFrozen(binding.engineInput);
-  const fresh = assertFreshBatch(binding, 161);
+  const fresh = assertFreshBatch(binding, 212);
   fresh.forEach((summon, index) => {
     expect(summon.unit).not.toBe(mageSummons(first.binding)[index]?.unit);
   }); // Local IDs may repeat; fresh event/unit identity and zero-preload input prove creation.
@@ -233,15 +233,54 @@ it('settles once then carries real resources and creates a newly paid cycle from
   if (bolt?.kind !== 'action') throw new Error('Missing authored Fire Bolt launch');
   expect(binding.recording.events.find(e => e.kind === 'damage' && e.source === bolt.actor))
     .toMatchObject({ damageType: 'fire', simClockMs: 2320 });
+  // BUG434: both Shamans compete for the same first-death token at 3640.
+  // The loser casts Fire Ball, then dies to the finisher. The surviving caster's
+  // five-second resurrection cooldown outlasts this wave; no second cast is legal.
+  const revivals = binding.recording.events.filter(e => e.kind === 'revive');
+  expect(revivals).toHaveLength(1);
+  const expectedRevivals = [
+    { source: bolt.actor, target: 'enemy-act1.fallen-0-ac70', clock: 3640, life: 149, deaths: [1940, 3880] }
+  ];
+  revivals.forEach((revival, index) => {
+    const expected = expectedRevivals[index];
+    if (!expected) throw new Error('Unexpected resurrection');
+    expect(revival).toMatchObject({ source: expected.source, target: expected.target,
+      simClockMs: expected.clock, unit: { life: expected.life, mana: 0, statuses: [] } });
+    expect(revival.unit.stats).toEqual(binding.engineInput.enemyTeam.find(u => u.id === expected.target)?.stats);
+    expect(binding.recording.events.filter(e => e.kind === 'death' && e.target === expected.target))
+      .toEqual(expected.deaths.map((simClockMs): unknown => expect.objectContaining({ simClockMs })));
+    expect(binding.recording.events.slice(0, binding.recording.events.indexOf(revival)))
+      .toContainEqual(expect.objectContaining({ kind: 'message', messageKey: 'combat:corpses.consumedResurrection',
+        params: expect.objectContaining({ corpseId: expected.target }) as unknown, simClockMs: expected.clock }));
+  });
+  const otherShaman = 'enemy-act1.fallen-shaman-0-b483';
+  expect(bolt.actor).toBe('enemy-act1.fallen-shaman-1-d9ac');
+  expect(binding.recording.events.filter(e => e.kind === 'action' && e.actor === otherShaman))
+    .toEqual([
+      expect.objectContaining({ skillId: 'monster.fire_bolt', simClockMs: 1820 }),
+      expect.objectContaining({ skillId: 'monster.fire_ball', simClockMs: 3640 })
+    ]);
+  expect(binding.recording.events.filter(e => e.kind === 'death' && e.target === otherShaman))
+    .toEqual([expect.objectContaining({ simClockMs: 4000 })]);
+  expect(binding.recording.events.filter(e => e.kind === 'action' && e.actor === bolt.actor))
+    .toEqual([
+      expect.objectContaining({ skillId: 'monster.fire_bolt', simClockMs: 1820 }),
+      expect.objectContaining({ skillId: 'monster.resurrect_fallen', simClockMs: 3640 }),
+      expect.objectContaining({ skillId: 'monster.fire_bolt', simClockMs: 5460 }),
+      expect.objectContaining({ skillId: 'monster.fire_ball', simClockMs: 7424.395604395604 })
+    ]);
+  expect(binding.recording.events.filter(e => e.kind === 'message' &&
+    e.messageKey === 'combat:corpses.consumedResurrection')).toHaveLength(1);
   const earlyCold = binding.recording.events.filter(e => e.kind === 'damage' && e.source === cold?.unit.id && e.simClockMs < 4000);
   expect(earlyCold).toHaveLength(2);
   expect(earlyCold).toEqual([
     expect.objectContaining({ dodged: false, amount: 58, damageType: 'cold', simClockMs: 1940 }),
-    expect.objectContaining({ dodged: true, amount: 0, damageType: 'cold', simClockMs: 3880 })
+    expect.objectContaining({ target: 'enemy-act1.fallen-0-ac70', dodged: false, amount: 58,
+      damageType: 'cold', simClockMs: 3880 })
   ]);
-  expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 4000 });
+  expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 7760 });
   expect(binding.recording.outcome.finalPlayerTeam.find(u => u.id === HERO))
-    .toMatchObject({ mana: 687, manaRegenCarry: 0.244, manaRegenExactCarry: '0.244' });
+    .toMatchObject({ mana: 754, manaRegenCarry: 0.392, manaRegenExactCarry: '0.392', cooldowns: { [WAIT]: 2240 } });
   const paid = structuredClone(durable());
   expect(paid.experience).toBeGreaterThan(unpaid.experience ?? Infinity);
   expect(paid.rewards).not.toEqual(unpaid.rewards);

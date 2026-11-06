@@ -52,7 +52,7 @@ describe.each(['zh-CN', 'en'] as const)('Duriel reward preview %s', locale => {
       const view = renderScreen();
       try {
         const card = within(screen.getByTestId(`quest-${questId}`));
-        const cache = card.getByText(locale === 'en' ? '📦 Reward cache' : '📦 奖励宝箱');
+        const cache = card.getByText(locale === 'en' ? 'Reward cache' : '奖励宝箱');
         expect(cache.tagName).toBe('LI');
         expect(cache.parentElement?.children).toHaveLength(2);
         expect(cache.parentElement?.textContent).not.toMatch(/lootTable|tableId|ilvl|picks|loot\/|duriel-q|[{}]|Unique|暗金|Io|符文/);

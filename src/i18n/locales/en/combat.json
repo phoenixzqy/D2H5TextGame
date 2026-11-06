@@ -1,4 +1,8 @@
 {
+  "cadence": {
+    "interval": "Attack interval: {{seconds}}s",
+    "gear": "Attack Speed from gear: {{percent}}"
+  },
   "title": "Combat",
   "wave": "Wave {{current}} / {{total}}",
   "waveKind": {
@@ -22,6 +26,16 @@
   "victory": "Victory",
   "defeat": "Defeat",
   "rewards": "Loot",
+  "retainedRewards": "Loot from completed waves is kept.",
+  "damageSummary": {
+    "title": "Hero damage in the final wave",
+    "scope": "Damage recorded against your hero after defenses. Includes overkill and self-damage, so it may differ from health lost.",
+    "dot": "Damage over time",
+    "other": "Other direct damage",
+    "total": "Total recorded damage",
+    "empty": "No damage to your hero was recorded in this wave.",
+    "unavailable": "Damage details for this wave are unavailable."
+  },
   "xpGained": "Gained XP: {{amount}}",
   "levelUp": "Level Up!",
   "runeShard": "Rune Shards",
@@ -49,7 +63,8 @@
     "consumedDeathSentry": "Death Sentry consumes a corpse for a Fire explosion. Remaining: {{count}}.",
     "consumedRedemption": "Redemption consumes a corpse. Remaining: {{count}}.",
     "consumedCarrion": "Carrion Vine consumes a corpse to restore its owner’s life. Remaining: {{count}}.",
-    "consumedSolar": "Solar Creeper consumes a corpse to restore its owner’s mana. Remaining: {{count}}."
+    "consumedSolar": "Solar Creeper consumes a corpse to restore its owner’s mana. Remaining: {{count}}.",
+    "consumedResurrection": "Resurrect Fallen consumes a corpse. Remaining: {{count}}."
   },
   "allies": "Allies",
   "enemies": "Enemies",
@@ -91,6 +106,7 @@
   "acting": "Acting",
   "summon": "Summon",
   "summons": {
+    "baal_tentacle": "Festering Tentacle",
     "decoy": "Decoy",
     "hydra": "Hydra",
     "spirit_of_barbs": "Spirit of Barbs",
@@ -125,6 +141,12 @@
     "death": "Down",
     "boneWallCapacity": "Bone Wall: {{amount}}",
     "status": {
+      "monster-bone-prison": "Bone Prison",
+      "monster-teleport": "Teleport",
+      "monster-enrage": "Enrage",
+      "monster-shout": "Shout",
+      "monster-thorns-aura": "Thorns Aura",
+      "panic_flee": "Panic Flee",
       "bone-wall": "Bone Wall",
       "bone-prison": "Bone Prison",
       "battle-command": "Battle Command",
@@ -180,6 +202,11 @@
       "enchant": "Enchant"
     },
     "buff": {
+      "monster-teleport": "Teleport",
+      "monster-enrage": "Enrage",
+      "monster-shout": "Shout",
+      "monster-thorns-aura": "Thorns Aura",
+      "panic_flee": "Panic Flee",
       "bone-wall": "Bone Wall",
       "battle-command": "Battle Command",
       "inferno": "Inferno",
@@ -229,7 +256,8 @@
     },
     "martialCharge": "{{skill}} charges {{stacks}}/{{maxStacks}} · {{seconds}}s",
     "assassinTrap": "{{skill}} · {{seconds}}s",
-    "assassinFlight": "{{skill}} · {{seconds}}s"
+    "assassinFlight": "{{skill}} · {{seconds}}s",
+    "revive": "Revived"
   },
   "log_lines": {
     "hit": "{{attacker}} hits {{target}} for {{amount}} {{type}} damage.",
@@ -270,6 +298,10 @@
     "expired": "{{target}}'s buff {{buff}} ends.",
     "stacked": "{{target}}'s buff {{buff}} reaches {{stacks}} stacks."
   },
+  "damageImmunity": {
+    "label": "Damage immunities",
+    "type": "Immune to {{type}} damage"
+  },
   "damageType": {
     "physical": "physical",
     "fire": "fire",
@@ -299,6 +331,7 @@
     "buffApplied": "{{target}} gains buff: {{buff}}.",
     "statusApplied": "{{target}} is afflicted with [{{status}}].",
     "stunned": "{{target}} is stunned and cannot act.",
+    "enrage": "{{target}} becomes enraged!",
     "dotTick": "{{target}} takes {{amount}} damage over time.",
     "summon": "{{actor}} summons {{minion}}.",
     "death": "{{target}} falls.",
@@ -310,14 +343,27 @@
     "bossArrives": "{{boss}} arrives!",
     "lootGained": "Obtained {{item}}.",
     "goldGained": "Obtained {{amount}} gold.",
-    "vineRecoveryAction": "{{actor}} draws recovery from a corpse."
+    "vineRecoveryAction": "{{actor}} draws recovery from a corpse.",
+    "revive": "{{actor}} revives {{target}}."
   },
   "bossIntro": "A suffocating dread fills the air — {{boss}} steps forward to bar the road to the next Act.",
   "tier": {
+    "boss": "Boss",
+    "elite": "Elite",
     "champion": "Champion",
     "rare-elite": "Rare Elite"
   },
+  "eliteAffixLabel": "Elite modifiers",
+  "eliteAffixTag": {
+    "fireEnchanted": "🔥 Fire Enchanted",
+    "extraFireDamage": "🔥 Extra Fire Damage",
+    "fast": "⚡ Fast",
+    "coldEnchanted": "❄️ Cold Enchanted",
+    "lightningEnchanted": "⚡ Lightning Enchanted",
+    "magicResistant": "🛡️ Magic Resistant"
+  },
   "eliteAffix": {
+    "fireEnchanted": "Fire Enchanted",
     "extraFireDamage": "Extra Fire Damage",
     "fast": "Fast",
     "coldEnchanted": "Cold Enchanted",

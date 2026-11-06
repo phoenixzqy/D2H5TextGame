@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 /** Real store/orchestration/adapter; fake only the IndexedDB boundary. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -49,7 +50,7 @@ function required<T>(value: T | null | undefined): T {
 }
 
 function savedData(): SaveCurrent {
-  return required(disk.state.record).data as SaveCurrent;
+  return readStoredSaveJson(disk.state.record) as SaveCurrent;
 }
 
 function exportedData(): SaveCurrent {

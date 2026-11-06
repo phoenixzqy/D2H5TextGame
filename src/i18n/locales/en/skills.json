@@ -120,6 +120,7 @@
     "warcryDefenseReduction": "Ordinary Defense reduction",
     "concentrateDuration": "Defense duration",
     "convertedAttack": "Attack converted to Arcane",
+    "additionalAttack": "Additional Attack damage",
     "cloakDuration": "Cloak / Blind Duration",
     "cloakBlindPenalty": "Blind Physical / thorns hit penalty",
     "cloakBlindPenaltyValue": "−{{points}} percentage points",
@@ -346,7 +347,7 @@
     },
     "multiple-shot": {
       "name": "Multiple Shot",
-      "desc": "One independent Physical attack attempt at each of up to {{maxTargets}} living enemies in a three-row widening cone (1, 3, then 5 cells), dealing {{min}}–{{max}} base damage per attempt. Misses consume attempts; Physical resistance and Defense apply. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Sparse cones do not select enemies outside the footprint."
+      "desc": "One independent Physical attack attempt at each of up to {{maxTargets}} living enemies in a three-row widening cone (1, 3, then 5 cells), dealing {{min}}–{{max}} base damage per attempt, plus {{attack}}% of current Attack before damage multipliers and mitigation. Misses consume attempts; Physical resistance and Defense apply. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Sparse cones do not select enemies outside the footprint."
     },
     "freezing-arrow": {
       "name": "Freezing Arrow",
@@ -838,11 +839,11 @@
   "necromancer": {
     "raise-skeleton": {
       "name": "Raise Skeleton",
-      "desc": "Prepare skeleton warriors; no corpse is required."
+      "desc": "Prepare skeleton warriors; no corpse is required. Their life, Attack and defense grow with your character level and skill rank."
     },
     "corpse-explosion": {
       "name": "Corpse Explosion",
-      "desc": "Requires an enemy monster to die in this wave first. Consumes one shared corpse and {{mana}} MP to deal {{min}}–{{max}} {{type}} damage to all remaining enemies and apply {{ignite}} on hit. Cooldown: {{cooldown}}. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged."
+      "desc": "Requires an enemy monster to die in this wave first. Consumes one shared corpse and {{mana}} MP to deal {{min}}–{{max}} {{type}} damage to all remaining enemies and apply {{ignite}} on hit. The blast ignores Defense; Fire resistance, dodge and damage absorption still apply. Cooldown: {{cooldown}}. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged."
     },
     "poison-nova": {
       "name": "Poison Nova",
@@ -914,7 +915,7 @@
     },
     "raise-skeletal-mage": {
       "name": "Raise Skeletal Mage",
-      "desc": "Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Basic attacks deal their assigned element; no corpse is required. Landed Fire bolts apply 3s Burn (10% of hit damage/s/stack, max 5); Cold applies 2s Chill (−50% Attack Speed); Lightning attempts 1s Paralyze (50% rejection if repeated within 5s); Poison applies 5s Poison (5% of hit damage/s/stack, max 10). Each damage-over-time status retains the first hit rate until it ends, rounded down to at least 1 damage/s per stack. Further Burn or Poison hits add stacks up to the cap and refresh the duration. On death, half the Poison stacks (rounded down, minimum 1) spread to other living enemies for 5s at the captured rate."
+      "desc": "Their body stats grow with your character level; skill ranks further increase life and Attack. Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Basic attacks deal their assigned element; no corpse is required. Landed Fire bolts apply 3s Burn (10% of hit damage/s/stack, max 5); Cold applies 2s Chill (−50% Attack Speed); Lightning attempts 1s Paralyze (50% rejection if repeated within 5s); Poison applies 5s Poison (5% of hit damage/s/stack, max 10). Each damage-over-time status retains the first hit rate until it ends, rounded down to at least 1 damage/s per stack. Further Burn or Poison hits add stacks up to the cap and refresh the duration. On death, half the Poison stacks (rounded down, minimum 1) spread to other living enemies for 5s at the captured rate."
     },
     "summon-resist": {
       "name": "Summon Resist",
@@ -1210,6 +1211,10 @@
     }
   },
   "monster": {
+      "fire-enchanted-explosion": {
+        "name": "Fire Enchanted Explosion",
+        "desc": "Explodes once on death for 50 base Fire damage against living opponents. Uses no mana or corpse."
+      },
     "weak-melee": {
       "name": "Weak Melee",
       "desc": "A clumsy melee swing used by trash mobs."
@@ -1236,7 +1241,7 @@
     },
     "monster-charge": {
       "name": "Charge",
-      "desc": "A boss ability: charges a target for heavy physical damage."
+      "desc": "Charges one target for 60–90 physical damage plus 100% Attack."
     },
     "blood-raven-raise-dead": {
       "name": "Raise Dead",
@@ -1256,11 +1261,20 @@
     },
     "teleport": {
       "name": "Teleport",
-      "desc": "Teleports to a new position, gaining +50% dodge for 1 turn."
+      "desc": "Spend an action to gain 50 percentage points of magical dodge for 1 second."
     },
     "ice-shard": {
       "name": "Ice Shard",
       "desc": "Hurls a shard of ice at a single target, chilling them."
+    },
+    "baal-frost-nova": {
+      "desc": "Deals cold damage to all enemies and freezes them for 1 second."
+    },
+    "baal-inferno": {
+      "desc": "Hits up to 5 enemies in a cone, applying 5 Burn stacks and reducing Defense by 30% for 3 seconds."
+    },
+    "baal-mana-rift": {
+      "desc": "Deals arcane damage to all enemies and drains Mana equal to 20% of damage dealt."
     },
     "inferno": {
       "name": "Inferno",
@@ -1288,23 +1302,23 @@
     },
     "leap": {
       "name": "Leap",
-      "desc": "Leaps and crashes down on all enemies, stunning briefly."
+      "desc": "Leaps onto one enemy for physical damage."
     },
     "enrage": {
       "name": "Enrage",
-      "desc": "Boss enrages, gaining +50% damage for 5 turns."
+      "desc": "Spend an action to gain 50% increased direct damage for 5 seconds."
     },
     "thorns-aura": {
       "name": "Thorns Aura",
-      "desc": "Reflects a portion of melee damage taken back to attackers."
+      "desc": "Spend an action to reflect 50% of physical life lost, including ranged physical hits, for 60 seconds while alive."
     },
     "charge": {
       "name": "Charge",
-      "desc": "A boss ability: charges a target for heavy physical damage."
+      "desc": "Charges one target for 60–90 physical damage plus 100% Attack."
     },
     "panic-flee": {
       "name": "Panic Flee",
-      "desc": "The Fallen panics and flees in fear, granting itself extra dodge for a turn."
+      "desc": "Once per wave, after an allied shaman dies, spends its next action to gain +20 percentage points of physical and magical dodge for 5 seconds."
     },
     "weak-ranged": {
       "name": "Weak Ranged",
@@ -1316,7 +1330,7 @@
     },
     "resurrect-fallen": {
       "name": "Resurrect Fallen",
-      "desc": "Shamans revive recently-slain Fallen allies."
+      "desc": "Consumes the oldest eligible shared corpse to revive one original Fallen ally at full life. Each ally can return once. Costs no mana; cooldown: 5 seconds."
     },
     "frost-bolt": {
       "name": "Frost Bolt",
@@ -1344,7 +1358,7 @@
     },
     "corpse-explosion": {
       "name": "Corpse Explosion",
-      "desc": "Detonates a nearby corpse for area physical and fire damage."
+      "desc": "Explodes once on death, dealing physical and fire damage to living opponents. Uses no mana or corpse."
     },
     "bone-spirit": {
       "name": "Bone Spirit",
@@ -1352,7 +1366,7 @@
     },
     "bone-prison": {
       "name": "Bone Prison",
-      "desc": "Encases the target in a bone cage, preventing dodge."
+      "desc": "Deals Arcane damage. A landed hit traps the target for 2 seconds, interrupting actions and channels and setting physical and magical dodge to zero."
     },
     "leap-attack": {
       "name": "Leap Attack",
@@ -1364,7 +1378,7 @@
     },
     "shout": {
       "name": "Shout",
-      "desc": "A rallying barbarian shout that increases the caster's defense."
+      "desc": "Spend an action to gain 30% ordinary Defense for 5 seconds."
     },
     "whirlwind": {
       "name": "Whirlwind",
@@ -1380,7 +1394,7 @@
     },
     "tentacles": {
       "name": "Festering Tentacles",
-      "desc": "Summons writhing tentacles that lash all enemies."
+      "desc": "Summons up to five separate tentacles. At most five can live at once."
     },
     "plague-spit": {
       "name": "Plague Spit",
@@ -1427,7 +1441,7 @@
     },
     "pilfer": {
       "name": "Pilfer",
-      "desc": "A rogue's quick stab with a chance to steal gold."
+      "desc": "Deal 14–24 Physical damage to one enemy. Casting grants +30 percentage points to rune-shard find for this wave's victory drops, even on a miss. Does not stack. Costs 0 MP; 2-second cooldown."
     },
     "basic-arrow": {
       "name": "Basic Arrow",
@@ -1435,11 +1449,11 @@
     },
     "fire-arrow": {
       "name": "Fire Arrow",
-      "desc": "A flaming arrow that ignites its target."
+      "desc": "Deals 22–36 physical damage plus 100% of Attack, then adds 50% of that base as Fire damage. Up to 2 other enemies in cross-adjacent cells each face a separate hit for the same Fire base. Landed Fire applies Burn for 3s at 10% of its final damage per second (minimum 1). Cooldown: 2s. Costs no mana."
     },
     "cold-arrow": {
       "name": "Cold Arrow",
-      "desc": "A frost-tipped arrow that chills its target."
+      "desc": "Splits 22–36 damage plus 100% of Attack equally between physical and cold damage. A landed shot has a 30% chance to Chill for 2s, reducing Attack Speed by 50%. Cooldown: 2s. Costs no mana."
     },
     "pierce-arrow": {
       "name": "Pierce Arrow",
@@ -1499,7 +1513,7 @@
     },
     "blessed-aim": {
       "name": "Blessed Aim Aura",
-      "desc": "Increases the attack rating of allies."
+      "desc": "While this mercenary lives, living allies' weapon attacks miss 30% less often (15% miss becomes 10.5%). Does not stack."
     },
     "defiance": {
       "name": "Defiance Aura",

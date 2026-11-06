@@ -3,6 +3,7 @@ import { actionData, readMaterialActionState } from '../crafting/action-state';
 import { validateCanonicalSocketItem, type CanonicalSocketItem } from '../items/socket-contents';
 import { historicalSocketBases, validateItemServiceFields } from './historical-sockets';
 import type { HistoricalItem } from './historical-items';
+import type { ItemBase } from '../types/items';
 import { rejectPreV19State } from './pre-v19-state';
 
 /** Reject imported accessors throughout the graph before reading or normalizing save fields. */
@@ -24,9 +25,10 @@ export function rejectSocketSaveAccessors(value: unknown): void {
       owners.push(prototype); prototype = Object.getPrototypeOf(prototype) as object | null;
     }
     for (const owner of owners) {
-      const descriptors = Object.getOwnPropertyDescriptors(owner);
-      for (const key of Reflect.ownKeys(descriptors)) {
-        const field = Reflect.get(descriptors, key) as PropertyDescriptor;
+      for (const key of Reflect.ownKeys(owner)) {
+        const field = Object.getOwnPropertyDescriptor(owner, key);
+        // Descriptor enumeration also omits a key that disappears during lookup.
+        if (!field) continue;
         if (!Object.hasOwn(field, 'value')) throw new Error(`Invalid save: accessor for ${String(key)} in socket state`);
         inspect(field.value as unknown);
       }
@@ -76,10 +78,11 @@ function originKey(value: unknown): string {
  * normalization. Actor equipment arrays are validated mirrors, not extra owners;
  * frozen v16 quarantine keeps its historical internal-ID collision allowance.
  */
-export function validateNativeSocketState(value: unknown, validateHistoricalItem: (item: unknown) => void): void {
+export function validateNativeSocketState(value: unknown, validateHistoricalItem: (item: unknown) => void,
+  bases: ReadonlyMap<string, ItemBase> = loadItemBases()): void {
   const save = record(value), inventory = record(actionData(save, 'inventory'));
   readMaterialActionState(inventory);
-  const mercs = record(actionData(save, 'mercs')), bases = loadItemBases(), active = new Set<string>();
+  const mercs = record(actionData(save, 'mercs')), active = new Set<string>();
   const validateItem = (value: unknown, owner: boolean): void => {
     const item = record(value), id = identity(item), baseId = actionData(item, 'baseId');
     const base = typeof baseId === 'string' ? bases.get(baseId) : undefined;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Item, ItemBase } from '@/engine/types/items';
-import { isProtected, selectByRarity, selectBelowEquippedTier } from './bulkDiscard';
+import { countBulkDiscardCandidates, isProtected, selectByRarity, selectBelowEquippedTier } from './bulkDiscard';
 
 function mkItem(overrides: Partial<Item> & Pick<Item, 'id'>): Item {
   const { id, baseId, rarity, level, ilvl, ...rest } = overrides;
@@ -46,17 +46,95 @@ const BASES = new Map<string, ItemBase>([
   [CHARM_BASE.id, CHARM_BASE]
 ]);
 
+describe('countBulkDiscardCandidates', () => {
+  it('counts overlapping rarity and tier actions while preserving unique and set gear', () => {
+    const backpack = [
+      mkItem({ id: 'normal', ilvl: 1 }),
+      mkItem({ id: 'magic', rarity: 'magic', ilvl: 5 }),
+      mkItem({ id: 'rare', rarity: 'rare', ilvl: 30 }),
+      mkItem({ id: 'runeword', rarity: 'runeword', ilvl: 8 }),
+      mkItem({ id: 'unique', rarity: 'unique', ilvl: 1 }),
+      mkItem({ id: 'set', rarity: 'set', ilvl: 1 })
+    ];
+    const equipped = { head: mkItem({ id: 'equipped', ilvl: 20 }) };
+    const original = structuredClone({ backpack, equipped });
+    expect(countBulkDiscardCandidates(backpack, equipped, BASES))
+      .toEqual({ normal: 1, magic: 1, rare: 1, belowTier: 2 });
+    expect({ backpack, equipped }).toEqual(original);
+  });
+
+  it.each([
+    { left: 30, right: null, expected: 0 },
+    { left: null, right: 30, expected: 0 },
+    { left: 30, right: 20, expected: 1 }
+  ])('requires both ring slots above the candidate: %j', ({ left, right, expected }) => {
+    const backpack = [
+      mkItem({ id: 'lower', baseId: RING_BASE.id, ilvl: 19 }),
+      mkItem({ id: 'equal', baseId: RING_BASE.id, ilvl: 20 })
+    ];
+    const equipped = {
+      'ring-left': left === null ? null : mkItem({ id: 'left', ilvl: left }),
+      'ring-right': right === null ? null : mkItem({ id: 'right', ilvl: right })
+    };
+    expect(countBulkDiscardCandidates(backpack, equipped, BASES))
+      .toEqual({ normal: 2, magic: 0, rare: 0, belowTier: expected });
+  });
+
+  it('uses explicit ilvl ahead of level and skips missing or slotless bases', () => {
+    const backpack = [
+      mkItem({ id: 'fallback', level: 10 }),
+      mkItem({ id: 'explicit', level: 1, ilvl: 30 }),
+      mkItem({ id: 'orphan', baseId: 'items/base/missing' }),
+      mkItem({ id: 'charm', baseId: CHARM_BASE.id, rarity: 'magic' })
+    ];
+    expect(countBulkDiscardCandidates(backpack, { head: mkItem({ id: 'head', level: 25 }) }, BASES))
+      .toEqual({ normal: 3, magic: 1, rare: 0, belowTier: 1 });
+    expect(countBulkDiscardCandidates(backpack, {}, BASES))
+      .toEqual({ normal: 3, magic: 1, rare: 0, belowTier: 0 });
+    expect(countBulkDiscardCandidates([], {}, BASES))
+      .toEqual({ normal: 0, magic: 0, rare: 0, belowTier: 0 });
+  });
+});
+
 describe('isProtected', () => {
   it('protects unique and set items', () => {
     expect(isProtected(mkItem({ id: 'u', rarity: 'unique' }))).toBe(true);
     expect(isProtected(mkItem({ id: 's', rarity: 'set' }))).toBe(true);
   });
 
-  it('does not protect normal/magic/rare/runeword', () => {
-    for (const r of ['normal', 'magic', 'rare', 'runeword'] as const) {
-      expect(isProtected(mkItem({ id: r, rarity: r }))).toBe(false);
+  it('protects runewords and inserted rune or gem investments regardless of rarity', () => {
+    expect(isProtected(mkItem({ id: 'word', rarity: 'runeword' }))).toBe(true);
+    expect(isProtected(mkItem({ id: 'legacy-word', runewordId: 'runewords/stealth' }))).toBe(true);
+    for (const rarity of ['normal', 'magic', 'rare'] as const) {
+      for (const content of [{ kind: 'rune', id: 'runes/el' }, { kind: 'gem', id: 'gems/ruby/chipped' }] as const) {
+        expect(isProtected(mkItem({ id: rarity, rarity, socketContents: [content] }))).toBe(true);
+      }
     }
   });
+
+  it('does not protect ordinary gear or empty socket capacity', () => {
+    for (const r of ['normal', 'magic', 'rare'] as const) {
+      expect(isProtected(mkItem({ id: r, rarity: r }))).toBe(false);
+      expect(isProtected(mkItem({ id: r, rarity: r, socketCapacity: 2, socketContents: [] }))).toBe(false);
+    }
+  });
+});
+
+it('keeps socket investments out of rarity selection, below-tier selection and every count', () => {
+  const backpack = [
+    mkItem({ id: 'empty', socketCapacity: 2, socketContents: [] }),
+    mkItem({ id: 'rune', socketContents: [{ kind: 'rune', id: 'runes/el' }] }),
+    mkItem({ id: 'gem', rarity: 'magic', socketContents: [{ kind: 'gem', id: 'gems/ruby/chipped' }] }),
+    mkItem({ id: 'rare-gem', rarity: 'rare', socketContents: [{ kind: 'gem', id: 'gems/ruby/chipped' }] }),
+    mkItem({ id: 'word', rarity: 'runeword' }),
+    mkItem({ id: 'legacy-word', runewordId: 'runewords/stealth' })
+  ];
+  const before = structuredClone(backpack);
+  const equipped = { head: mkItem({ id: 'equipped', ilvl: 20 }) };
+  expect(selectByRarity(backpack, ['normal', 'magic', 'rare', 'runeword']).map(i => i.id)).toEqual(['empty']);
+  expect(selectBelowEquippedTier(backpack, equipped, BASES).map(i => i.id)).toEqual(['empty']);
+  expect(countBulkDiscardCandidates(backpack, equipped, BASES)).toEqual({ normal: 1, magic: 0, rare: 0, belowTier: 1 });
+  expect(backpack).toEqual(before);
 });
 
 describe('selectByRarity', () => {

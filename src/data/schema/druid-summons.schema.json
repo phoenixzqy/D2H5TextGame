@@ -4,7 +4,15 @@
   "description": "Druid summon template stats and provisional native behavior tuning; shared magical mitigation remains authoritative.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "defaults", "templates", "raven", "poison", "vines"],
+  "required": [
+    "id",
+    "defaults",
+    "templates",
+    "raven",
+    "poison",
+    "vines",
+    "ownerLevelGrowth"
+  ],
   "properties": {
     "id": {
       "const": "summons/druid"
@@ -108,7 +116,10 @@
     "raven": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["durationMs", "physicalHitChancePenalty"],
+      "required": [
+        "durationMs",
+        "physicalHitChancePenalty"
+      ],
       "properties": {
         "durationMs": {
           "type": "integer",
@@ -125,7 +136,9 @@
     "poison": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["dotPctOfDamage"],
+      "required": [
+        "dotPctOfDamage"
+      ],
       "properties": {
         "dotPctOfDamage": {
           "type": "number",
@@ -137,7 +150,10 @@
     "vines": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["lifeFraction", "manaFraction"],
+      "required": [
+        "lifeFraction",
+        "manaFraction"
+      ],
       "properties": {
         "lifeFraction": {
           "type": "number",
@@ -150,13 +166,57 @@
           "maximum": 1
         }
       }
+    },
+    "ownerLevelGrowth": {
+      "description": "Flat growth per safe integral player-hero owner level above one, after rank growth and before existing auras on fresh bodies.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raven",
+        "spirit_wolf",
+        "dire_wolf",
+        "grizzly",
+        "poison_creeper",
+        "carrion_vine",
+        "solar_creeper"
+      ],
+      "properties": {
+        "raven": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "spirit_wolf": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "dire_wolf": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "grizzly": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "poison_creeper": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "carrion_vine": {
+          "$ref": "#/$defs/ownerGrowth"
+        },
+        "solar_creeper": {
+          "$ref": "#/$defs/ownerGrowth"
+        }
+      }
     }
   },
   "$defs": {
     "resistances": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["physical", "fire", "cold", "lightning", "poison", "arcane"],
+      "required": [
+        "physical",
+        "fire",
+        "cold",
+        "lightning",
+        "poison",
+        "arcane"
+      ],
       "properties": {
         "physical": {
           "type": "number",
@@ -193,7 +253,10 @@
     "template": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["lifeMax", "attack"],
+      "required": [
+        "lifeMax",
+        "attack"
+      ],
       "properties": {
         "lifeMax": {
           "type": "integer",
@@ -244,6 +307,32 @@
         },
         "resistances": {
           "$ref": "#/$defs/resistances"
+        }
+      }
+    },
+    "ownerGrowth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lifeMax",
+        "attack",
+        "defense"
+      ],
+      "properties": {
+        "lifeMax": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "attack": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "defense": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
         }
       }
     }

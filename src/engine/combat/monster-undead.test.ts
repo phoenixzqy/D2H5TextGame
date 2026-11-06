@@ -27,7 +27,7 @@ function build(def: MonsterDef) {
 
 describe('authored undead identity boundary', () => {
   it('explicitly classifies every current archetype with the reviewed positive set', () => {
-    expect(monsters).toHaveLength(109);
+    expect(monsters).toHaveLength(111);
     for (const monster of monsters) {
       expect(Object.hasOwn(monster, 'undead'), monster.id).toBe(true);
       expect(typeof Reflect.get(monster, 'undead'), monster.id).toBe('boolean');

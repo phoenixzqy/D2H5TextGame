@@ -96,7 +96,7 @@ afterEach(() => { vi.restoreAllMocks(); useMapStore.setState(actions);
 describe('Act IV main contracts', () => {
   it('uses canonical identities and closed level-bound caches', () => {
     const quests = loadQuests();
-    expect(quests.find(q => q.id === FORGE)?.rewards).toEqual({ xp: 7000, gemShards: 3,
+    expect(quests.find(q => q.id === FORGE)?.rewards).toEqual({ xp: 7000, gemShards: 3, wishstones: 20,
       lootTable: { tableId: 'loot/hellforge-runes', ilvl: 56, picks: 1 } });
     expect(quests.find(q => q.id === DIABLO)?.rewards?.lootTable).toEqual({ tableId: 'loot/diablo-q', ilvl: 61, picks: 5 });
     const hammer = loadQuestItems().find(item => item.id === 'quest/hellforge_hammer');
@@ -220,6 +220,7 @@ describe('Act IV exact reward bundle and save boundary', () => {
     expect(required(usePlayerStore.getState().player).skillPoints).toBe(points + 2);
     expect(useInventoryStore.getState().currencies['gem-shard']).toBe(3);
     expect(useInventoryStore.getState().currencies['rune-shard']).toBe(caches.reduce((n, cache) => n + cache.runeShards, 0));
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(65 + caches.reduce((n, cache) => n + cache.wishstones, 0));
     expect(useInventoryStore.getState().materials).toEqual(mergeMaterials(...caches.map(cache => cache.materials)));
     expect(useInventoryStore.getState().backpack.map(item => ({ ...item, id: '' })))
       .toEqual(caches.flatMap(cache => cache.items.map(item => ({ ...item, id: '' }))));
@@ -230,7 +231,7 @@ describe('Act IV exact reward bundle and save boundary', () => {
     prepareClaim(); const before = data();
     withRewards({ gemShards: amount }, () => { expect(() => loadQuests()).toThrow(/gemShards/); });
     const quests = loadQuests();
-    vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(row => row.id === FORGE ? { ...row, rewards: { gemShards: amount } } : row));
+    vi.spyOn(questLoader, 'loadQuests').mockReturnValueOnce(quests.map(row => row.id === FORGE ? { ...row, rewards: { gemShards: amount } } : row));
     expect(claimQuestReward(FORGE)).toBe('unsupported-rewards'); expect(data()).toEqual(before);
   });
   it('separates direct gemShards from concrete table gems, preserving legacy direct currency destinations', () => {

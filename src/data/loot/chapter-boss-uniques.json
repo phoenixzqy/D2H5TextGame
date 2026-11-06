@@ -1,0 +1,7 @@
+[
+  { "treasureClassId": "loot/act1-boss", "act": 1, "chance": 0.25, "rarityAttemptMultiplier": 5 },
+  { "treasureClassId": "loot/act2-boss", "act": 2, "chance": 0.3 },
+  { "treasureClassId": "loot/act3-boss", "act": 3, "chance": 0.35 },
+  { "treasureClassId": "loot/act4-boss", "act": 4, "chance": 0.4 },
+  { "treasureClassId": "loot/act5-boss", "act": 5, "chance": 0.5 }
+]

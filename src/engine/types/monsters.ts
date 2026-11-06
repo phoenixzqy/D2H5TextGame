@@ -3,6 +3,9 @@
  * @module engine/types/monsters
  */
 
+/** Complete authored status immunities supported by the monster data schema. */
+export type MonsterStatusImmunity = 'freeze' | 'poison' | 'plague' | 'all-except-stun';
+
 /**
  * Monster definition (data-driven)
  * Matches the simplified format from Diablo2TextGame.md §7.2
@@ -12,6 +15,22 @@ export interface MonsterDef {
   readonly name: string;
   /** Explicit authored undead identity; absent legacy definitions remain unclassified. */
   readonly undead?: boolean;
+  /** Complete status rejection, independent of elemental damage resistance. */
+  readonly statusImmunities?: readonly MonsterStatusImmunity[];
+  /** Complete typed damage rejection, independent of resistance and status immunity. */
+  readonly damageImmunities?: readonly import('./attributes').DamageType[];
+  /** Additional typed damage immunity only for the resolved champion tier. */
+  readonly championDamageImmunities?: readonly import('./attributes').DamageType[];
+  /** Boss Stun duration coefficient, replacing the generic boss reduction once. */
+  readonly stunDurationMultiplier?: number;
+  /** Finite critical damage multiplier >=1; absent preserves the tier default. */
+  readonly critDamage?: number;
+  /** Passive wave-local cold/Chill pulse, independent of active skill cooldowns. */
+  readonly frostAura?: {
+    readonly damage: number;
+    readonly intervalMs: number;
+    readonly chillDurationMs: number;
+  };
   
   /** Base life at level 1 [min, max] */
   readonly life: readonly [number, number];
@@ -26,13 +45,20 @@ export interface MonsterDef {
   
   /** Skill IDs this monster can use */
   readonly skills: readonly string[];
+  /** Cooldown seconds >=1 by canonical monster.* ID; absent keys retain shared skill timing. */
+  readonly skillCooldownOverrides?: Readonly<Record<string, number>>;
   
   /** Base attack speed */
   readonly attackSpeed?: number;
   /** Optional authored ordinary attack; does not consume a skill cooldown. */
   readonly basicAttack?: { readonly damage: readonly [number, number]; readonly damageType: import('./attributes').DamageType };
-  /** Optional sticky low-life attack-speed projection. */
-  readonly enrage?: { readonly lifeFraction: number; readonly attackSpeedMultiplier: number };
+  /** Optional sticky low-life bonuses; base stats remain unchanged. */
+  readonly enrage?: {
+    readonly lifeFraction: number;
+    readonly attackSpeedMultiplier: number;
+    /** Additive direct-damage increase in percent; absent means zero. Excludes thorns. */
+    readonly damagePct?: number;
+  };
   
   /** Base defense */
   readonly defense?: number;

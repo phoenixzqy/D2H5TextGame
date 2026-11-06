@@ -9,20 +9,31 @@ import type { QuestCraftingResult, QuestCraftingStatus } from './questCrafting';
 
 /** New hand-in rewards require the actual consumed item graph, including after explicit legacy repair. */
 export function hasQuestDeliveryCompletion(quest: QuestDef): boolean {
-  const handIns = quest.objectives.filter(objective => objective.type === 'give');
-  if (handIns.length === 0) return true;
+  return questDeliveryCompletions([quest]).has(quest.id);
+}
+
+/** Check a list against one fresh, complete item ledger; never retain validation across queries. */
+export function questDeliveryCompletions(quests: readonly QuestDef[]): ReadonlySet<string> {
+  const completed = new Set<string>();
+  const deliveries = quests.map(quest => ({ quest,
+    handIns: quest.objectives.filter(objective => objective.type === 'give') }));
+  for (const { quest, handIns } of deliveries) if (handIns.length === 0) completed.add(quest.id);
+  if (deliveries.every(({ handIns }) => handIns.length === 0)) return completed;
   const ledger = useInventoryStore.getState().questItems;
   const map = useMapStore.getState();
   try { validateQuestItemLedger(ledger, map.questProgress, map.questReceipts); }
-  catch { return false; }
+  catch { return completed; }
   const definitions = loadQuestItems();
-  return handIns.every(objective => {
-    const item = definitions.find((row): row is QuestDeliveryDef => row.kind === 'delivery' &&
-      row.sourceQuestId === quest.id && row.consumeObjectiveId === objective.id);
-    if (!item) return false;
-    const source = questItemSource(item);
-    return Object.hasOwn(ledger, source) && ledger[source]?.itemId === item.id && ledger[source].state === 'consumed';
-  });
+  for (const { quest, handIns } of deliveries) {
+    if (handIns.every(objective => {
+      const item = definitions.find((row): row is QuestDeliveryDef => row.kind === 'delivery' &&
+        row.sourceQuestId === quest.id && row.consumeObjectiveId === objective.id);
+      if (!item) return false;
+      const source = questItemSource(item);
+      return Object.hasOwn(ledger, source) && ledger[source]?.itemId === item.id && ledger[source].state === 'consumed';
+    })) completed.add(quest.id);
+  }
+  return completed;
 }
 
 /** Authored hand-ins for one exact NPC in the current act's town. Listing never gives an item. */

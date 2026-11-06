@@ -1,3 +1,4 @@
+import { authorizeAnyaTradeItem, prepareAnyaTradeDebit, prepareAnyaTradeRestoration, type AnyaTradeCostPublication } from './anyaTradeJournal';
 import type { MaterialActionReceipt } from '@/engine/crafting/action-state';
 import type { MaterialRecoveryEntry } from '@/engine/crafting/material-actions';
 import type { QuestServiceLedger } from '@/engine/services/quest-services';
@@ -11,7 +12,8 @@ import { create } from 'zustand';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import type { QuestItemLedger } from '@/engine/types/save';
-import { baseMatchesEquipmentSlot, isTwoHanded } from '@/engine/inventory/equipValidator';
+import { baseMatchesEquipmentSlot, hasUniqueCharmOwnership, isTwoHanded } from '@/engine/inventory/equipValidator';
+import { isBulkDiscardProtected } from '@/engine/inventory/discard-protection';
 import {
   checkEligibility,
   resolveAutoEquipSlot,
@@ -19,9 +21,15 @@ import {
   type PlayerLike
 } from '@/features/inventory/compareEquip';
 import { usePlayerStore } from './playerStore';
+import { useMercStore } from './mercStore';
 import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
 import { assertIronGolemOwnershipMutationAllowed, assertMaterialMutationAllowed } from './waveTransitionGuard';
 import { mergeMaterials, type MaterialLedger } from '@/engine/loot/materials';
+import {
+  prepareQuestGemShardGrant, prepareQuestGemShardRestoration,
+  type QuestGemShardPublication
+} from './questGemShardJournal';
+import { assertQuestCurrencyDebitAllowed, prepareIndependentQuestCurrencyAddition, prepareQuestCurrencyGrant, prepareQuestCurrencyRestoration, questCurrencyKey, type QuestCurrencyPublication } from './questCurrencyJournal';
 
 interface EquipSuccess {
   ok: true;
@@ -68,7 +76,7 @@ interface InventoryState {
    * TODO(game-designer): replace with salvage→materials when crafting ships.
    */
   discardItem: (itemId: string) => void;
-  /** Bulk variant of {@link discardItem}. Removes any matching ids in either container. */
+  /** Remove matching IDs in either container, preserving currently protected gear and socket investments. */
   bulkDiscard: (itemIds: readonly string[]) => void;
   /** Equip the owned item in a compatible explicit slot, or use the automatic slot when omitted. */
   equipItem: (item: Item, targetSlot?: EquipmentSlot) => EquipResult;
@@ -85,7 +93,21 @@ interface InventoryState {
    */
   eligibleForSlot: (slot: EquipmentSlot, player: PlayerLike) => Item[];
   addCurrency: (currencyId: string, amount: number) => void;
+  /** Publish the exact finite currency amount reserved by the active quest owner. */
+  addQuestCurrency: (owner: QuestCurrencyPublication) => void;
+  /** Remove only this owner's amount while retaining independent additions. */
+  restoreQuestCurrency: (owner: QuestCurrencyPublication) => void;
   spendCurrency: (currencyId: string, amount: number) => boolean;
+  /** Publish one finite quest-owned gem shard under its exact active owner. */
+  addQuestGemShard: (owner: QuestGemShardPublication) => void;
+  /** Restore only that owner's shard, preserving independent additions. */
+  restoreQuestGemShard: (owner: QuestGemShardPublication) => void;
+  /** Exact-owner paid Anya ingress under the active material lease. */
+  debitAnyaTradeCosts: (owner: AnyaTradeCostPublication) => void;
+  /** Restore only this trade's attributable cost keys. */
+  restoreAnyaTradeCosts: (owner: AnyaTradeCostPublication) => void;
+  /** Append only the prepared paid unique if a backpack slot is still free. */
+  addAnyaTradeItem: (owner: AnyaTradeCostPublication, item: Item) => void;
   getCurrency: (currencyId: string) => number;
   /** Validate safe whole-bag arithmetic before publishing any material stack. */
   addMaterials: (materials: MaterialLedger) => void;
@@ -126,9 +148,11 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     assertIronGolemOwnershipMutationAllowed();
     set((state) => {
     const target = toStash ? 'stash' : 'backpack';
-    return {
-      [target]: [...state[target], item]
-    };
+    const next = { ...state, [target]: [...state[target], item] };
+    if (!hasUniqueCharmOwnership(next, useMercStore.getState().mercEquipment)) {
+      throw new Error('Duplicate charm ownership');
+    }
+    return { [target]: next[target] };
   }); },
   
   removeItem: (itemId) => {
@@ -150,8 +174,8 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     set((state) => {
     const ids = new Set(itemIds);
     return {
-      backpack: state.backpack.filter((i) => !ids.has(i.id)),
-      stash: state.stash.filter((i) => !ids.has(i.id))
+      backpack: state.backpack.filter((i) => !ids.has(i.id) || isBulkDiscardProtected(i)),
+      stash: state.stash.filter((i) => !ids.has(i.id) || isBulkDiscardProtected(i))
     };
   }); },
   
@@ -180,6 +204,10 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     }
 
     const targetSlot = requestedSlot ?? targetSlotFor(base.slot, state.equipped);
+    if (!baseMatchesEquipmentSlot(base, targetSlot) ||
+      !hasUniqueCharmOwnership(state, useMercStore.getState().mercEquipment)) {
+      return { ok: false, reason: 'no_slot' };
+    }
     const nextEquipped: Record<string, Item | null> = { ...state.equipped };
     const nextBackpack = state.backpack.filter((_, index) => index !== sourceIndex);
     const displaced: Item[] = [];
@@ -222,6 +250,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     const state = get();
     const item = state.equipped[slot];
     if (!item) return { ok: false, reason: 'not_found' };
+    if (!hasUniqueCharmOwnership(state, useMercStore.getState().mercEquipment)) return { ok: false, reason: 'not_found' };
     if (state.backpack.length >= BACKPACK_CAPACITY) return { ok: false, reason: 'backpack_full' };
 
     const equippedAfter = {
@@ -277,15 +306,65 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     set({ materials: merged });
   },
 
-  addCurrency: (currencyId, amount) => { assertMaterialMutationAllowed(); set((state) => ({
-    currencies: {
-      ...state.currencies,
-      [currencyId]: (state.currencies[currencyId] ?? 0) + amount
-    }
-  })); },
-  
+  addCurrency: (currencyId, amount) => {
+    assertMaterialMutationAllowed();
+    set((state) => {
+      const currencies = { ...state.currencies };
+      const attributed = prepareIndependentQuestCurrencyAddition(currencyId, amount, state.currencies);
+      Object.defineProperty(currencies, currencyId, {
+        value: attributed ?? (state.currencies[currencyId] ?? 0) + amount,
+        enumerable: true, writable: true, configurable: true
+      });
+      return { currencies };
+    });
+  },
+
+  addQuestCurrency: (owner) => {
+    assertMaterialMutationAllowed();
+    set(state => {
+      const currencyId = questCurrencyKey(owner);
+      const value = prepareQuestCurrencyGrant(owner, state.currencies);
+      return { currencies: { ...state.currencies, [currencyId]: value } };
+    });
+  },
+
+  restoreQuestCurrency: (owner) => {
+    assertMaterialMutationAllowed();
+    set(state => {
+      const currencyId = questCurrencyKey(owner);
+      const restored = prepareQuestCurrencyRestoration(owner, state.currencies);
+      if (!restored) return state;
+      const currencies = { ...state.currencies };
+      if (restored.present) currencies[currencyId] = restored.value;
+      else Reflect.deleteProperty(currencies, currencyId);
+      return { currencies };
+    });
+  },
+
+  addQuestGemShard: (owner) => {
+    assertMaterialMutationAllowed();
+    set((state) => {
+      const currencies = { ...state.currencies };
+      currencies['gem-shard'] = prepareQuestGemShardGrant(owner, state.currencies);
+      return { currencies };
+    });
+  },
+
+  restoreQuestGemShard: (owner) => {
+    assertMaterialMutationAllowed();
+    set((state) => {
+      const currencies = { ...state.currencies };
+      const restored = prepareQuestGemShardRestoration(owner, state.currencies);
+      if (!restored) return state;
+      if (restored.present) currencies['gem-shard'] = restored.value;
+      else delete currencies['gem-shard'];
+      return { currencies };
+    });
+  },
+
   spendCurrency: (currencyId, amount) => {
     assertMaterialMutationAllowed();
+    assertQuestCurrencyDebitAllowed(currencyId);
     const state = get();
     const current = state.currencies[currencyId] ?? 0;
     
@@ -303,6 +382,36 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     return true;
   },
   
+  debitAnyaTradeCosts: owner => { set(state => {
+    const cost = prepareAnyaTradeDebit(owner, state.currencies, state.materials);
+    const materials = { ...state.materials };
+    if (cost.scrap > 0) materials['materials/scrap'] = cost.scrap;
+    else delete materials['materials/scrap'];
+    return { currencies: { ...state.currencies, 'rune-shard': cost.shards }, materials };
+  }); },
+  restoreAnyaTradeCosts: owner => { set(state => {
+    const restored = prepareAnyaTradeRestoration(owner, state.currencies, state.materials);
+    if (!restored) return state;
+    const currencies = { ...state.currencies }, materials = { ...state.materials };
+    if (restored.shards.present) currencies['rune-shard'] = restored.shards.value;
+    else delete currencies['rune-shard'];
+    if (restored.scrap.present) materials['materials/scrap'] = restored.scrap.value;
+    else delete materials['materials/scrap'];
+    return { currencies, materials };
+  }); },
+  addAnyaTradeItem: (owner, item) => { set(state => {
+    const mercs = useMercStore.getState();
+    const owned = [...state.backpack, ...state.stash, ...Object.values(state.equipped),
+      ...state.legacyGearQuarantine.map(row => row.item), ...state.socketQuarantine.map(row => row.item),
+      ...Object.values(mercs.mercEquipment).flatMap(gear => Object.values(gear)),
+      ...mercs.ownedMercs.flatMap(merc => merc.equipment), ...(usePlayerStore.getState().player?.equipment ?? [])];
+    if (state.backpack.length >= BACKPACK_CAPACITY || owned.some(candidate => candidate?.id === item.id || candidate === item)) {
+      throw new Error('Anya trade backpack unavailable or item already owned');
+    }
+    authorizeAnyaTradeItem(owner, item);
+    return { backpack: [...state.backpack, item] };
+  }); },
+
   getCurrency: (currencyId) => {
     const state = get();
     return state.currencies[currencyId] ?? 0;

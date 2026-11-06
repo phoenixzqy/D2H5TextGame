@@ -22,7 +22,8 @@
     "ring-left": "戒指槽 (左)",
     "ring-right": "戒指槽 (右)",
     "weapon": "武器槽",
-    "offhand": "副手槽"
+    "offhand": "副手槽",
+    "charm": "护符"
   },
   "tooltip": {
     "subtitle": "{{type}} · {{slot}}",
@@ -123,7 +124,23 @@
     "weapon-staff": "法杖",
     "weapon-scepter": "权杖",
     "weapon-mace": "钉头锤",
-    "weapon-axe": "斧"
+    "weapon-axe": "斧",
+    "small-charm": "小护符",
+    "weapon-composite-bow": "复合弓",
+    "weapon-heavy-crossbow": "重弩",
+    "weapon-great-bow": "巨弓",
+    "weapon-siege-crossbow": "攻城弩",
+    "weapon-ward-bow": "护卫弓",
+    "weapon-demon-crossbow": "恶魔弩",
+    "weapon-balanced-knife": "平衡飞刀",
+    "weapon-war-dart": "战争飞镖",
+    "weapon-battle-dart": "战斗飞镖",
+    "weapon-winged-knife": "翼刀",
+    "weapon-winged-axe": "翼斧",
+    "weapon-trident": "三叉戟",
+    "weapon-military-fork": "军用叉",
+    "weapon-war-fork": "战争叉",
+    "weapon-mancatcher": "捕人叉"
   },
   "unique": {
     "shako": {
@@ -1449,6 +1466,9 @@
     "the-cranium-basher-greater": {
       "name": "碎颅者 (强化)",
       "flavor": "一把无与伦比粉碎骨头力量的大锤。"
+    },
+    "ormus-charm": {
+      "name": "奥玛斯的护符"
     }
   },
   "set": {

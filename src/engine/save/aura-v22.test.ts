@@ -1,4 +1,4 @@
-import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import paladinSkills from '../../data/skills/paladin.json';
@@ -33,7 +33,7 @@ function sample() {
 
 describe('v22 complete canonical player aura save domain', () => {
   it('matches all twenty authored aura IDs and freezes the historical v21 type', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(24);
+    expect(CURRENT_SAVE_VERSION).toBe(33);
     expect(paladinSkills.filter(row => 'aura' in row && row.aura).map(row => row.id.replace('skills-paladin-', '')).sort())
       .toEqual([...ids].sort());
     expectTypeOf<SaveV21['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
@@ -59,8 +59,8 @@ describe('v22 complete canonical player aura save domain', () => {
     expect(Reflect.get(migrated, 'player')).toBe(old.player);
     expect(Reflect.get(migrated, 'inventory')).toBe(old.inventory);
     expect(runMigrations(old).player.skills[0]?.synergies).toBe(old.player.skills[0]?.synergies);
-    expect(runMigrations(old)).toEqual(withV24Defaults(expected));
-    expect(decodeSave(old)).toEqual(withV24Defaults(expected));
+    expect(runMigrations(old)).toEqual(withCurrentReplayDefaults(expected));
+    expect(decodeSave(old)).toEqual(withCurrentReplayDefaults(expected));
     expect(runMigrations(old, 21)).toBe(old);
     expect(old).toEqual(before);
   });

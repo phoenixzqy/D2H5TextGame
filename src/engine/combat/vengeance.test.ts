@@ -119,7 +119,7 @@ afterEach(() => {
 });
 
 describe('Vengeance one shared-roll composite strike', () => {
-  it('registers one typed effect; only authored Vengeance, Phoenix and Power opt in to components', () => {
+  it('registers one typed effect and the exact authored composite participant set', () => {
     const actual = getSkill('paladin.vengeance');
     expect(getSkill('skills-paladin-vengeance')).toBe(actual);
     expect(actual?.effects).toEqual([
@@ -145,8 +145,9 @@ describe('Vengeance one shared-roll composite strike', () => {
     expect(
       listSkills().filter((id) =>
         getSkill(id)?.effects.some((e) => e.kind === 'damage' && 'components' in e)
-      )
-    ).toEqual(['paladin.vengeance', 'assassin.phoenix_strike', 'amazon.power_strike']);
+      ).sort()
+    ).toEqual(['paladin.vengeance', 'assassin.phoenix_strike', 'amazon.power_strike',
+      'mskill-fire-arrow', 'mskill-cold-arrow', 'monster.corpse_explosion'].sort());
   });
   it.each([1, 2, 20])(
     'rank%i pays once and emits three same-clock real typed hits, without self-combo',

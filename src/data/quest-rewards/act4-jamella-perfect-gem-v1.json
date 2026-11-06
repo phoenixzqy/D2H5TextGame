@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "input": {
+    "tableId": "loot/side-jamella-perfect-gem",
+    "ilvl": 51,
+    "picks": 1
+  },
+  "table": {
+    "id": "loot/side-jamella-perfect-gem",
+    "numPicks": 1,
+    "noDropChance": 0,
+    "picks": [
+      {
+        "type": "gem",
+        "itemId": "gems/amethyst/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/diamond/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/emerald/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/ruby/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/sapphire/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/skull/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      },
+      {
+        "type": "gem",
+        "itemId": "gems/topaz/perfect",
+        "weight": 1,
+        "qlvlMin": 1,
+        "qlvlMax": 102,
+        "quantityMin": 1,
+        "quantityMax": 1
+      }
+    ]
+  }
+}

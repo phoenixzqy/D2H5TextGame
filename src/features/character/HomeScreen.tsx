@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, getZoneArtUrl } from '@/ui';
+import { Button, Panel, GameImage, getZoneArtUrl } from '@/ui';
 import { hasSave } from '@/stores';
 import { OfflineBonusBanner } from '@/features/idle/OfflineBonusBanner';
 import { SaveFailureNotice } from '@/ui/SaveFailureNotice';
@@ -52,15 +52,16 @@ export function HomeScreen() {
       data-testid="home-screen"
     >
       <SaveFailureNotice />
-      <img
-        src={getZoneArtUrl(1)}
-        alt=""
-        aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
-        loading="lazy"
-        decoding="async"
-        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-      />
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <GameImage
+          src={getZoneArtUrl(1)}
+          alt=""
+          fallbackIcon=""
+          size="fill"
+          className="rounded-none border-0 bg-none"
+          imageClassName="w-full h-full object-cover opacity-15"
+        />
+      </div>
       <div className="relative z-10 flex-1 flex items-center justify-center w-full">
         <Panel className="max-w-md w-full text-center">
           <div className="mb-8">

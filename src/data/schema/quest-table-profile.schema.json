@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "quest-table-profile.schema.json",
+  "title": "Closed v1 Jamella perfect-gem quest reward profile",
+  "description": "The complete const closes every object and fixes membership, order, weight, level and quantity. Changes require a new reviewed version. This one-use quest quality exception does not alter ordinary material pools.",
+  "type": "object",
+  "const": {
+    "version": 1,
+    "input": {
+      "tableId": "loot/side-jamella-perfect-gem",
+      "ilvl": 51,
+      "picks": 1
+    },
+    "table": {
+      "id": "loot/side-jamella-perfect-gem",
+      "numPicks": 1,
+      "noDropChance": 0,
+      "picks": [
+        {
+          "type": "gem",
+          "itemId": "gems/amethyst/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/diamond/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/emerald/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/ruby/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/sapphire/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/skull/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "type": "gem",
+          "itemId": "gems/topaz/perfect",
+          "weight": 1,
+          "qlvlMin": 1,
+          "qlvlMax": 102,
+          "quantityMin": 1,
+          "quantityMax": 1
+        }
+      ]
+    }
+  }
+}

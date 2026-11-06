@@ -6,6 +6,7 @@ import { useHydrationStore } from '@/stores/hydrationStore';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { Button, ItemTooltip, tItemName } from '@/ui';
+import { LarzukPresentPanel } from './LarzukPresentPanel';
 import { CharsiImbuePanel } from './CharsiImbuePanel';
 
 type Service = ReturnType<typeof questServicesForNpc>[number];
@@ -72,9 +73,10 @@ export function QuestServicePanel({ npcId }: { npcId: string }) {
   useCombatStore(state => state.inCombat);
   useHydrationStore(state => state.status);
   const services = questServicesForNpc(npcId);
-  if (services.length === 0) return npcId === 'npc/charsi' ? <CharsiImbuePanel /> : null;
+  if (services.length === 0) return npcId === 'npc/charsi' ? <CharsiImbuePanel /> : npcId === 'npc/larzuk' ? <LarzukPresentPanel /> : null;
   return <div className="w-full min-w-0 space-y-3" data-testid="quest-services">
     {npcId === 'npc/charsi' && <CharsiImbuePanel />}
+    {npcId === 'npc/larzuk' && <LarzukPresentPanel />}
     {services.map(service => <ServiceRow key={service.source} service={service} />)}
   </div>;
 }

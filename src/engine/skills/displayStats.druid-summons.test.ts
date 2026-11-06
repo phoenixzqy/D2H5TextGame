@@ -42,7 +42,7 @@ const rows = [
     speed: 85,
     phys: 0.1,
     magic: 0.05,
-    growth: [5, 2, 1],
+    growth: [5, 14, 1],
     cost: 14,
     discount: -0.15,
     many: true
@@ -56,7 +56,7 @@ const rows = [
     speed: 90,
     phys: 0.05,
     magic: 0.05,
-    growth: [8, 2, 1],
+    growth: [8, 18, 1],
     cost: 20,
     discount: -0.2,
     many: true
@@ -98,7 +98,7 @@ const rows = [
     speed: 55,
     phys: 0.05,
     magic: 0.05,
-    growth: [12, 3, 2],
+    growth: [12, 25, 2],
     cost: 35,
     discount: -0.25,
     many: false

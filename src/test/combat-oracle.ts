@@ -1,4 +1,4 @@
-/** Test-only projection of new status transport onto unchanged historical oracles. */
+/** Test-only projection of silent observation transport onto unchanged historical oracles. */
 interface OracleEvent { readonly kind: string }
 interface TimedOracleEvent extends OracleEvent {
   readonly simClockMs: number;
@@ -7,7 +7,7 @@ interface TimedOracleEvent extends OracleEvent {
 
 /** Remove only the new silent transport; retain all gameplay payloads and order. */
 export function legacyBattleEvents<T extends OracleEvent>(events: readonly T[]): T[] {
-  return events.filter(event => event.kind !== 'status-state');
+  return events.filter(event => event.kind !== 'status-state' && event.kind !== 'cadence-state');
 }
 
 /** Restore historical per-event delay hints from retained, unchanged simulation times. */

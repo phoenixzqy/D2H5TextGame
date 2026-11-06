@@ -129,7 +129,7 @@ it.each([100, 56])('retains the whole mixed Mage/Iron recording after an accepte
       stats: { lifeMax: 221.4, attack: 62.99999999999999, defense: 12 } });
     const first = b.recording.events.find(e => e.kind === 'damage' && e.source === event.unit.id);
     expect(first).toMatchObject({ kind: 'damage', damageType: ['fire', 'cold', 'lightning', 'poison'][index],
-      amount: [0, 61, 0, 50][index], crit: false, dodged: index === 0 || index === 2, simClockMs: 1940 });
+      amount: [50, 0, 61, 50][index], crit: false, dodged: index === 1, simClockMs: 1940 });
     if (first?.kind !== 'damage' || !finisher) throw new Error('Missing actual mixed Mage hit');
     expect(first.simClockMs).toBeLessThan(finisher.simClockMs);
     const target = b.engineInput.enemyTeam.find(u => u.id === first.target);
@@ -156,8 +156,8 @@ it.each([100, 56])('retains the whole mixed Mage/Iron recording after an accepte
     // Recovery later makes35MP affordable, but startup refusal never retries.
     expect(b.recording.events.some(e => e.kind === 'mana' && e.reason === 'regeneration' && e.mana >= 35)).toBe(true);
   }
-  expect(b.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: paid ? 5147 : 5820 });
-  expect(b.recording.outcome.finalPlayerTeam.find(u => u.id === hero.id)?.mana).toBe(paid ? 182 : 117);
+  expect(b.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: paid ? 4852 : 4000 });
+  expect(b.recording.outcome.finalPlayerTeam.find(u => u.id === hero.id)?.mana).toBe(paid ? 181 : 168);
   expect(usePlayerStore.getState().player?.derivedStats.mana).toBe(mana); // No battle-output persistence.
   const before = structuredClone({ input: b.engineInput, recording: b.recording });
   const persistent = structuredClone(durable()), postInventory = useInventoryStore.getState();
@@ -196,7 +196,7 @@ it.each([100, 56])('retains the whole mixed Mage/Iron recording after an accepte
     // Recorded bodies retain terminal status bytes; dead display bodies clear their chips.
     expect(useCombatStore.getState().enemyTeam).toEqual(b.recording.outcome.finalEnemyTeam
       .map(unit => ({ ...unit, statuses: [] })));
-    expect(useCombatStore.getState().playerTeam.find(u => u.id === hero.id)?.mana).toBe(paid ? 182 : 117);
+    expect(useCombatStore.getState().playerTeam.find(u => u.id === hero.id)?.mana).toBe(paid ? 181 : 168);
     expect(published().installation?.settlement.progress.phase).toBe('unsettled');
     expect(useInventoryStore.getState()).toBe(postInventory);
     expect(useIronGolemSelectionStore.getState().selection).toBe(rearmed);

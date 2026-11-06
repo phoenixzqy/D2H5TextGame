@@ -189,11 +189,12 @@ describe('D06 v1c death authority and ownership', () => {
   });
 });
 
+// P15 owner30 Mage: (123 + 29×20, 45 + 29×10, 10 + 29×3), then Mastery.
 describe('D06 v1c fresh Mastery and Revive identity', () => {
   it.each([
-    ['necromancer.raise_skeletal_mage', 0, 123, 45, 10],
-    ['necromancer.raise_skeletal_mage', 1, 127.92, 45.9, 10.1],
-    ['necromancer.raise_skeletal_mage', 20, 221.4, 63, 12],
+    ['necromancer.raise_skeletal_mage', 0, 703, 335, 97],
+    ['necromancer.raise_skeletal_mage', 1, 731.12, 341.7, 97.97],
+    ['necromancer.raise_skeletal_mage', 20, 1265.4, 469, 116.4],
     ['necromancer.revive', 0, 210, 38, 23],
     ['necromancer.revive', 1, 210, 38, 23],
     ['necromancer.revive', 20, 210, 38, 23]

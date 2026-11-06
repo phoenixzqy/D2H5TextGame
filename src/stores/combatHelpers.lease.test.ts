@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 /** Real transition/persistence integration; only IndexedDB IO is faked. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveRecord } from './save-adapter';
@@ -198,9 +199,9 @@ describe('transition deferred-save wake', () => {
       expect(disk.put).not.toHaveBeenCalled();
       await vi.advanceTimersByTimeAsync(1);
       expect(disk.put).toHaveBeenCalledTimes(1);
-      expect(disk.put.mock.calls[0]?.[0]).toMatchObject({ data: {
+      expect(readStoredSaveJson(disk.put.mock.calls[0]?.[0])).toMatchObject({
         player: { comboOrder: [] }, inventory: { currencies: { 'lease-token': 5 } }
-      } });
+      });
       await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
       expect(disk.put).toHaveBeenCalledTimes(1);
     });
@@ -212,7 +213,7 @@ describe('transition deferred-save wake', () => {
     expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 1, nightmare: 0, hell: 0 });
     await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
     expect(disk.put).toHaveBeenCalledTimes(1);
-    expect(disk.put.mock.calls[0]?.[0].data).toMatchObject({ map: { challengeOrdinals: { normal: 1, nightmare: 0 } } });
+    expect(readStoredSaveJson(disk.put.mock.calls[0]?.[0])).toMatchObject({ map: { challengeOrdinals: { normal: 1, nightmare: 0 } } });
   });
 
   it('schedules no debounce when replay has no persistent mutation', async () => {

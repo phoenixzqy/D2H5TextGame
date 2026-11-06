@@ -1,6 +1,6 @@
 import Ajv2020 from 'ajv/dist/2020';
 import authored from '../../data/summons/blood-golem.json';
-import schema from '../../data/schema/blood-golem.schema.json';
+import { compileAuthoredValidator } from '../../data/authored-validators';
 import skills from '../../data/skills/necromancer.json';
 import type { DerivedStats } from '../types/attributes';
 import type { SkillDef } from '../types/skills';
@@ -18,7 +18,7 @@ interface BloodGolemDefinition {
   readonly bodyStats: Omit<DerivedStats, 'life' | 'mana' | 'magicResist'>;
   readonly lifeLeechFraction: number;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<BloodGolemDefinition>(schema);
+const validate = compileAuthoredValidator<BloodGolemDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'bloodGolem');
 
 /** Validate and copy authored stats/tuning without freezing caller data or supplying defaults. */
 export function resolveBloodGolemDefinition(input: unknown): BloodGolemDefinition {

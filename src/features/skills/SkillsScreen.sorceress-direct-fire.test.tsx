@@ -11,8 +11,8 @@ import { SkillsScreen } from './SkillsScreen';
 
 const spells = [
   { slug: 'fire-bolt', min: 30, max: 45, growth: 4, cost: 8, cooldown: 1 },
-  { slug: 'fire-ball', min: 70, max: 100, growth: 7, cost: 20, cooldown: 1 },
-  { slug: 'meteor', min: 100, max: 150, growth: 10, cost: 50, cooldown: 4 }
+  { slug: 'fire-ball', min: 70, max: 100, growth: 120, cost: 20, cooldown: 1 },
+  { slug: 'meteor', min: 100, max: 150, growth: 80, cost: 50, cooldown: 4 }
 ] as const;
 beforeEach(() => { usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('ready'); });
 afterEach(() => { cleanup(); usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('idle'); });

@@ -1609,6 +1609,7 @@
   },
   {
     "id": "items/unique/stone-of-jordan",
+    "qlvl": 27,
     "name": "items.unique.stone-of-jordan.name",
     "baseId": "items/base/ring-silver",
     "reqLevel": 29,
@@ -6038,6 +6039,7 @@
   },
   {
     "id": "items/unique/grandfather",
+    "qlvl": 57,
     "name": "items.unique.grandfather.name",
     "baseId": "items/base/wp2h-colossus-blade",
     "reqLevel": 81,
@@ -6278,5 +6280,19 @@
       }
     },
     "flavor": "items.unique.the-cranium-basher-greater.flavor"
+  },
+  {
+    "id": "items/unique/ormus-charm",
+    "name": "items.unique.ormus-charm.name",
+    "baseId": "items/base/small-charm",
+    "reqLevel": 1,
+    "qlvl": 32,
+    "weight": 1,
+    "stats": {
+      "statMods": {
+        "life": 20,
+        "mana": 10
+      }
+    }
   }
 ]

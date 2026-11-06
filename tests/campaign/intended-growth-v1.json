@@ -1,0 +1,1142 @@
+{
+  "version": 1,
+  "status": "growth-candidate;acquisition-and-populations-not-accepted",
+  "profiles": {
+    "sorceress-cold-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "targets": [
+        {
+          "id": "sorceress.ice_bolt",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "sorceress.warmth",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "sorceress.frozen_armor",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "sorceress.frost_nova",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "sorceress.ice_blast",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "sorceress.static_field",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "sorceress.glacial_spike",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "sorceress.blizzard",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "sorceress.cold_mastery",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "sorceress.blizzard",
+          "rank": 20,
+          "level": 24
+        },
+        {
+          "id": "sorceress.frost_nova",
+          "rank": 20,
+          "level": 6
+        },
+        {
+          "id": "sorceress.cold_mastery",
+          "rank": 20,
+          "level": 30
+        },
+        {
+          "id": "sorceress.ice_blast",
+          "rank": 20,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "sorceress.frozen_armor",
+        "sorceress.static_field",
+        "sorceress.blizzard",
+        "sorceress.frost_nova",
+        "sorceress.ice_blast",
+        "sorceress.ice_bolt"
+      ]
+    },
+    "sorceress-fire-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "targets": [
+        {
+          "id": "sorceress.fire_bolt",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "sorceress.warmth",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "sorceress.inferno",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "sorceress.blaze",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "sorceress.fire_ball",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "sorceress.fire_wall",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "sorceress.meteor",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "sorceress.fire_mastery",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "sorceress.meteor",
+          "rank": 20,
+          "level": 24
+        },
+        {
+          "id": "sorceress.fire_ball",
+          "rank": 20,
+          "level": 12
+        },
+        {
+          "id": "sorceress.fire_wall",
+          "rank": 8,
+          "level": 18
+        },
+        {
+          "id": "sorceress.fire_bolt",
+          "rank": 5,
+          "level": 1
+        },
+        {
+          "id": "sorceress.inferno",
+          "rank": 5,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "sorceress.meteor",
+        "sorceress.fire_wall",
+        "sorceress.blaze",
+        "sorceress.fire_ball",
+        "sorceress.inferno",
+        "sorceress.fire_bolt"
+      ]
+    },
+    "amazon-bow-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 2,
+        "vitality": 3,
+        "energy": 0
+      },
+      "targets": [
+        {
+          "id": "amazon.magic_arrow",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "amazon.critical_strike",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "amazon.inner_sight",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "amazon.multiple_shot",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "amazon.dodge",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "amazon.slow_missiles",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "amazon.penetrate",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "amazon.decoy",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "amazon.multiple_shot",
+          "rank": 20,
+          "level": 6
+        },
+        {
+          "id": "amazon.critical_strike",
+          "rank": 20,
+          "level": 20
+        },
+        {
+          "id": "amazon.dodge",
+          "rank": 20,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "amazon.decoy",
+        "amazon.slow_missiles",
+        "amazon.multiple_shot"
+      ]
+    },
+    "amazon-javelin-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 2,
+        "vitality": 2,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "amazon.jab",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "amazon.critical_strike",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "amazon.power_strike",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "amazon.poison_javelin",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "amazon.dodge",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "amazon.lightning_bolt",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "amazon.impale",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "amazon.charged_strike",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "amazon.lightning_strike",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "amazon.lightning_strike",
+          "rank": 20,
+          "level": 24
+        },
+        {
+          "id": "amazon.impale",
+          "rank": 8,
+          "level": 12
+        },
+        {
+          "id": "amazon.poison_javelin",
+          "rank": 4,
+          "level": 6
+        },
+        {
+          "id": "amazon.power_strike",
+          "rank": 6,
+          "level": 6
+        },
+        {
+          "id": "amazon.impale",
+          "rank": 20,
+          "level": 40
+        },
+        {
+          "id": "amazon.critical_strike",
+          "rank": 20,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "amazon.lightning_strike",
+        "amazon.charged_strike",
+        "amazon.poison_javelin",
+        "amazon.impale",
+        "amazon.lightning_bolt",
+        "amazon.power_strike",
+        "amazon.jab",
+        "amazon.magic_arrow"
+      ]
+    },
+    "necromancer-summon-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 1,
+        "vitality": 3,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "necromancer.raise_skeleton",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.skeleton_mastery",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.amplify_damage",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.clay_golem",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "necromancer.golem_mastery",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "necromancer.raise_skeletal_mage",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "necromancer.summon_resist",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "necromancer.summon_mastery",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "necromancer.summon_mastery",
+          "rank": 8,
+          "level": 30
+        },
+        {
+          "id": "necromancer.raise_skeleton",
+          "rank": 12,
+          "level": 1
+        },
+        {
+          "id": "necromancer.skeleton_mastery",
+          "rank": 20,
+          "level": 1
+        },
+        {
+          "id": "necromancer.raise_skeletal_mage",
+          "rank": 8,
+          "level": 12
+        },
+        {
+          "id": "necromancer.clay_golem",
+          "rank": 5,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "necromancer.raise_skeleton",
+        "necromancer.clay_golem",
+        "necromancer.raise_skeletal_mage",
+        "necromancer.amplify_damage"
+      ]
+    },
+    "necromancer-bone-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "statStages": [
+        {
+          "level": 24,
+          "statsPerLevel": {
+            "strength": 0,
+            "dexterity": 3,
+            "vitality": 2,
+            "energy": 0
+          }
+        }
+      ],
+      "targets": [
+        {
+          "id": "necromancer.teeth",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.bone_armor",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.amplify_damage",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "necromancer.corpse_explosion",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "necromancer.weaken",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "necromancer.dim_vision",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "necromancer.bone_wall",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "necromancer.terror",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "necromancer.decrepify",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "necromancer.corpse_explosion",
+          "rank": 8,
+          "level": 6
+        },
+        {
+          "id": "necromancer.teeth",
+          "rank": 20,
+          "level": 1
+        },
+        {
+          "id": "necromancer.decrepify",
+          "rank": 10,
+          "level": 24
+        },
+        {
+          "id": "necromancer.bone_armor",
+          "rank": 20,
+          "level": 1
+        },
+        {
+          "id": "necromancer.corpse_explosion",
+          "rank": 20,
+          "level": 6
+        }
+      ],
+      "cursePreferenceByArea": {
+        "areas/act2-far-oasis": [
+          "necromancer.amplify_damage"
+        ]
+      },
+      "priority": [
+        "necromancer.decrepify",
+        "necromancer.weaken",
+        "necromancer.corpse_explosion",
+        "necromancer.bone_armor",
+        "necromancer.bone_wall",
+        "necromancer.amplify_damage",
+        "necromancer.teeth"
+      ],
+      "priorityByArea": {
+        "areas/act5-bloody-foothills": [
+          "necromancer.amplify_damage",
+          "necromancer.corpse_explosion"
+        ],
+        "areas/act5-frigid-highlands": [
+          "necromancer.amplify_damage",
+          "necromancer.corpse_explosion"
+        ],
+        "areas/act5-crystalline-passage": [
+          "necromancer.dim_vision",
+          "necromancer.decrepify",
+          "necromancer.corpse_explosion"
+        ],
+        "areas/act5-ancients-way": [
+          "necromancer.amplify_damage",
+          "necromancer.corpse_explosion"
+        ],
+        "areas/act5-throne-of-destruction": [
+          "necromancer.amplify_damage",
+          "necromancer.corpse_explosion"
+        ]
+      }
+    },
+    "barbarian-double-swing-intended-v1": {
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "barbarian.bash",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "barbarian.howl",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "barbarian.double_swing",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "barbarian.shout",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "barbarian.increased_stamina",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "barbarian.iron_skin",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "barbarian.battle_orders",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "barbarian.battle_command",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "barbarian.natural_resistance",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "barbarian.double_swing",
+          "rank": 20,
+          "level": 6
+        },
+        {
+          "id": "barbarian.battle_orders",
+          "rank": 10,
+          "level": 24
+        },
+        {
+          "id": "barbarian.sword_mastery",
+          "rank": 20,
+          "level": 1
+        },
+        {
+          "id": "barbarian.bash",
+          "rank": 5,
+          "level": 1
+        }
+      ],
+      "priority": [
+        "barbarian.battle_command",
+        "barbarian.battle_orders",
+        "barbarian.shout",
+        "barbarian.double_swing",
+        "barbarian.howl",
+        "barbarian.bash"
+      ]
+    },
+    "barbarian-double-throw-intended-v1": {
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "barbarian.bash",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "barbarian.howl",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "barbarian.double_swing",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "barbarian.shout",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "barbarian.throwing_mastery",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "barbarian.double_throw",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "barbarian.iron_skin",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "barbarian.battle_orders",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "barbarian.battle_command",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "barbarian.natural_resistance",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "barbarian.double_throw",
+          "rank": 20,
+          "level": 12
+        },
+        {
+          "id": "barbarian.battle_orders",
+          "rank": 10,
+          "level": 24
+        },
+        {
+          "id": "barbarian.throwing_mastery",
+          "rank": 20,
+          "level": 6
+        },
+        {
+          "id": "barbarian.bash",
+          "rank": 5,
+          "level": 1
+        }
+      ],
+      "priority": [
+        "barbarian.battle_command",
+        "barbarian.battle_orders",
+        "barbarian.shout",
+        "barbarian.howl",
+        "barbarian.double_throw",
+        "barbarian.double_swing",
+        "barbarian.bash"
+      ]
+    },
+    "paladin-zeal-intended-v1": {
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "paladin.sacrifice",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "paladin.might",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "paladin.zeal",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "paladin.zeal",
+          "rank": 20,
+          "level": 12
+        },
+        {
+          "id": "paladin.might",
+          "rank": 20,
+          "level": 1
+        },
+        {
+          "id": "paladin.sacrifice",
+          "rank": 5,
+          "level": 1
+        }
+      ],
+      "priority": [
+        "paladin.zeal",
+        "paladin.sacrifice"
+      ]
+    },
+    "paladin-holy-bolt-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "targets": [
+        {
+          "id": "paladin.sacrifice",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "paladin.prayer",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "paladin.holy_bolt",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "paladin.blessed_hammer",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "paladin.blessed_hammer",
+          "rank": 20,
+          "level": 18
+        },
+        {
+          "id": "paladin.holy_bolt",
+          "rank": 20,
+          "level": 6
+        },
+        {
+          "id": "paladin.thorns",
+          "rank": 1,
+          "level": 40
+        },
+        {
+          "id": "paladin.sanctuary",
+          "rank": 1,
+          "level": 40
+        },
+        {
+          "id": "paladin.conviction",
+          "rank": 20,
+          "level": 40
+        },
+        {
+          "id": "paladin.prayer",
+          "rank": 20,
+          "level": 1
+        }
+      ],
+      "priority": [
+        "paladin.blessed_hammer",
+        "paladin.holy_bolt",
+        "paladin.sacrifice"
+      ]
+    },
+    "druid-fire-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "targets": [
+        {
+          "id": "druid.firestorm",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "druid.oak_sage",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "druid.molten_boulder",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "druid.fissure",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "druid.elemental_mastery",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "druid.fissure",
+          "rank": 20,
+          "level": 12
+        },
+        {
+          "id": "druid.firestorm",
+          "rank": 12,
+          "level": 1
+        },
+        {
+          "id": "druid.elemental_mastery",
+          "rank": 20,
+          "level": 30
+        },
+        {
+          "id": "druid.molten_boulder",
+          "rank": 10,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "druid.fissure",
+        "druid.molten_boulder",
+        "druid.firestorm"
+      ]
+    },
+    "druid-summon-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 3,
+        "energy": 2
+      },
+      "targets": [
+        {
+          "id": "druid.raven",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "druid.poison_creeper",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "druid.oak_sage",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "druid.summon_spirit_wolf",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "druid.carrion_vine",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "druid.summon_dire_wolf",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "druid.heart_of_wolverine",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "druid.solar_creeper",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "druid.summon_grizzly",
+          "rank": 1,
+          "level": 30
+        },
+        {
+          "id": "druid.summon_grizzly",
+          "rank": 20,
+          "level": 30
+        },
+        {
+          "id": "druid.summon_dire_wolf",
+          "rank": 10,
+          "level": 18
+        },
+        {
+          "id": "druid.heart_of_wolverine",
+          "rank": 20,
+          "level": 40
+        },
+        {
+          "id": "druid.summon_spirit_wolf",
+          "rank": 10,
+          "level": 6
+        },
+        {
+          "id": "druid.oak_sage",
+          "rank": 10,
+          "level": 6
+        },
+        {
+          "id": "druid.raven",
+          "rank": 8,
+          "level": 1
+        }
+      ],
+      "priority": [
+        "druid.summon_grizzly",
+        "druid.summon_dire_wolf",
+        "druid.summon_spirit_wolf",
+        "druid.raven",
+        "druid.solar_creeper",
+        "druid.carrion_vine",
+        "druid.poison_creeper"
+      ]
+    },
+    "assassin-martial-intended-v1": {
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      },
+      "targets": [
+        {
+          "id": "assassin.tiger_strike",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "assassin.dragon_talon",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "assassin.claw_mastery",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "assassin.fire_blast",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "assassin.fists_of_fire",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "assassin.burst_of_speed",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "assassin.cobra_strike",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "assassin.dragon_tail",
+          "rank": 1,
+          "level": 18
+        },
+        {
+          "id": "assassin.dragon_tail",
+          "rank": 20,
+          "level": 18
+        },
+        {
+          "id": "assassin.dragon_talon",
+          "rank": 12,
+          "level": 6
+        },
+        {
+          "id": "assassin.fists_of_fire",
+          "rank": 8,
+          "level": 6
+        },
+        {
+          "id": "assassin.cobra_strike",
+          "rank": 6,
+          "level": 12
+        },
+        {
+          "id": "assassin.cobra_strike",
+          "rank": 20,
+          "level": 40
+        },
+        {
+          "id": "assassin.tiger_strike",
+          "rank": 8,
+          "level": 6
+        }
+      ],
+      "priority": [
+        "assassin.burst_of_speed",
+        "assassin.cobra_strike",
+        "assassin.shock_web",
+        "assassin.fists_of_fire",
+        "assassin.dragon_tail",
+        "assassin.dragon_talon",
+        "assassin.tiger_strike"
+      ]
+    },
+    "assassin-traps-intended-v1": {
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      },
+      "targets": [
+        {
+          "id": "assassin.fire_blast",
+          "rank": 1,
+          "level": 1
+        },
+        {
+          "id": "assassin.shock_web",
+          "rank": 1,
+          "level": 6
+        },
+        {
+          "id": "assassin.charged_bolt_sentry",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "assassin.blade_sentinel",
+          "rank": 1,
+          "level": 12
+        },
+        {
+          "id": "assassin.lightning_sentry",
+          "rank": 1,
+          "level": 24
+        },
+        {
+          "id": "assassin.lightning_sentry",
+          "rank": 20,
+          "level": 24
+        },
+        {
+          "id": "assassin.blade_sentinel",
+          "rank": 8,
+          "level": 12
+        },
+        {
+          "id": "assassin.charged_bolt_sentry",
+          "rank": 12,
+          "level": 12
+        },
+        {
+          "id": "assassin.shock_web",
+          "rank": 6,
+          "level": 6
+        },
+        {
+          "id": "assassin.fire_blast",
+          "rank": 5,
+          "level": 1
+        },
+        {
+          "id": "assassin.blade_sentinel",
+          "rank": 20,
+          "level": 12
+        }
+      ],
+      "priority": [
+        "assassin.lightning_sentry",
+        "assassin.blade_sentinel",
+        "assassin.charged_bolt_sentry",
+        "assassin.shock_web",
+        "assassin.fire_blast"
+      ]
+    }
+  }
+}

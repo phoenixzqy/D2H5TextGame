@@ -6,6 +6,13 @@ import i18n from '@/i18n';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import * as actions from '@/features/quests/claimReward';
+import * as countedContract from '@/features/quests/countedQuestContract';
+import * as questItems from '@/data/loaders/quest-items';
+import * as quests from '@/data/loaders/quests';
+import { loadCountedQuestItems } from '@/data/loaders/counted-quest-items';
+import { recoverCountedQuestSource } from '@/features/quests/countedQuestActions';
+import { recoverQuestTool } from '@/features/quests/interactObject';
+import { QuestItemsPanel } from './QuestItemsPanel';
 import { useInventoryStore, usePlayerStore, useMapStore, useMercStore } from '@/stores';
 import { useHydrationStore } from '@/stores/persistence';
 import { InventoryScreen } from './InventoryScreen';
@@ -36,6 +43,102 @@ describe.each(['en', 'zh-CN'] as const)('quest item player flow %s', locale => {
   afterEach(() => {
     vi.restoreAllMocks();
     act(() => { for (const store of stores) store.getState().reset(); });
+  });
+
+  it('validates counted graph once for the full counter panel', () => {
+    const validation = vi.spyOn(countedContract, 'validateLiveCountedQuestGraphs');
+    mount(<QuestItemsPanel />);
+    expect(panel()).toHaveTextContent(english ? 'No quest items yet.' : '尚无任务物品。');
+    expect(validation).toHaveBeenCalledTimes(1);
+  });
+
+  it('lists recovery choices with one quest-catalog read independent of the counted graph', () => {
+    const load = vi.spyOn(quests, 'loadQuests');
+    const query = actions.questRewardItemRecoveryStatuses, reads: number[] = [];
+    vi.spyOn(actions, 'questRewardItemRecoveryStatuses').mockImplementation(ids => {
+      const before = load.mock.calls.length;
+      const statuses = query(ids);
+      reads.push(load.mock.calls.length - before);
+      return statuses;
+    });
+    mount(<QuestItemsPanel />);
+    expect(panel()).toHaveTextContent(english ? 'No quest items yet.' : '尚无任务物品。');
+    // Count only recovery: item/action loaders perform their own fresh graph checks.
+    expect(reads).toEqual([1]);
+  });
+
+  it('reads the recipe list without repeating the full item graph and assembles real inputs', () => {
+    const staff = 'quests/act2-horadric-staff';
+    useMapStore.setState({ currentAct: 2, clearedSubAreas: ['areas/act1-catacombs'] });
+    useMapStore.getState().updateQuestProgress(staff, { status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-cube': false, 'obj-shaft': false, 'obj-amulet': false, 'obj-transmute': false } });
+    for (const [objective, area] of [['obj-cube', 'areas/act2-dry-hills'],
+      ['obj-shaft', 'areas/act2-far-oasis'], ['obj-amulet', 'areas/act2-lost-city']] as const) {
+      useMapStore.getState().setCurrentLocation(2, area);
+      expect(recoverQuestTool(`${staff}#objective:${objective}`)).toBe('ok');
+    }
+    const load = vi.spyOn(questItems, 'loadQuestItems');
+    mount(<QuestItemsPanel />);
+    const assemble = screen.getByTestId('quest-assemble-quest/horadric_staff');
+    expect(assemble).toBeEnabled();
+    // One definitions read for the list, one for the independent counted graph.
+    expect(load.mock.calls.length).toBeLessThanOrEqual(2);
+    fireEvent.click(assemble);
+    expect(useInventoryStore.getState().questItems[`${staff}#objective:obj-transmute`])
+      .toEqual({ itemId: 'quest/horadric_staff', state: 'owned' });
+    expect(useInventoryStore.getState().questItems[`${staff}#objective:obj-shaft`]?.state).toBe('consumed');
+    expect(useInventoryStore.getState().questItems[`${staff}#objective:obj-cube`]?.state).toBe('owned');
+    expect(assemble).toBeDisabled();
+    expect(within(panel()).getByRole('status')).toHaveTextContent(english ? 'assembled.' : '已合成');
+  });
+
+  it('refreshes assembly eligibility when only the act-unlock input changes', () => {
+    const staff = 'quests/act2-horadric-staff';
+    useMapStore.setState({ currentAct: 2, clearedSubAreas: ['areas/act1-catacombs'] });
+    useMapStore.getState().updateQuestProgress(staff, { status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-cube': false, 'obj-shaft': false, 'obj-amulet': false, 'obj-transmute': false } });
+    for (const [objective, area] of [['obj-cube', 'areas/act2-dry-hills'],
+      ['obj-shaft', 'areas/act2-far-oasis'], ['obj-amulet', 'areas/act2-lost-city']] as const) {
+      useMapStore.getState().setCurrentLocation(2, area);
+      expect(recoverQuestTool(`${staff}#objective:${objective}`)).toBe('ok');
+    }
+    mount(<InventoryScreen />);
+    const assemble = screen.getByTestId('quest-assemble-quest/horadric_staff');
+    expect(assemble).toBeEnabled();
+    const { questProgress, questReceipts } = useMapStore.getState();
+    const { questItems } = useInventoryStore.getState();
+    act(() => { useMapStore.setState({ clearedSubAreas: [] }); });
+    expect(assemble).toBeDisabled();
+    act(() => { useMapStore.setState({ clearedSubAreas: ['areas/act1-catacombs'] }); });
+    expect(assemble).toBeEnabled();
+    expect(useMapStore.getState().questProgress).toBe(questProgress);
+    expect(useMapStore.getState().questReceipts).toBe(questReceipts);
+    expect(useInventoryStore.getState().questItems).toBe(questItems);
+  });
+
+  it('refreshes counted rows on receipt-only validation changes without executing getters', () => {
+    const definition = loadCountedQuestItems().find(row => row.key === 'alkor');
+    if (!definition?.sources[0]) throw new Error('Missing Alkor source');
+    useMapStore.setState({ currentAct: 3, currentSubAreaId: definition.areaId,
+      clearedSubAreas: ['areas/act2-tomb-of-tal-rasha'],
+      questProgress: { [definition.quest]: { id: definition.quest, status: 'inProgress',
+        objectives: { [definition.objective]: false } } } });
+    expect(recoverCountedQuestSource(definition.sources[0])).toBe('ok');
+    mount(<InventoryScreen />);
+    const rowId = `quest-counted-item-${definition.key}`;
+    expect(screen.getByTestId(rowId)).toBeInTheDocument();
+    const { questReceipts, questProgress } = useMapStore.getState();
+    const { questItems } = useInventoryStore.getState();
+    const invalid = { ...questReceipts };
+    let getterReads = 0;
+    Object.defineProperty(invalid, 'unexpected', { enumerable: true, get: () => { getterReads++; return {}; } });
+    act(() => { useMapStore.setState({ questReceipts: invalid }); });
+    expect(screen.queryByTestId(rowId)).not.toBeInTheDocument();
+    expect(getterReads).toBe(0);
+    act(() => { useMapStore.setState({ questReceipts }); });
+    expect(screen.getByTestId(rowId)).toBeInTheDocument();
+    expect(useMapStore.getState().questProgress).toBe(questProgress);
+    expect(useInventoryStore.getState().questItems).toBe(questItems);
   });
 
   it('shows a localized empty panel and does not invent a book from claimed progress', () => {

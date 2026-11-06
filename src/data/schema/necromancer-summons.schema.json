@@ -1,12 +1,22 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "d2h5://schema/necromancer-summons",
-  "description": "Complete unchanged Skeleton, Clay Golem, Skeletal Mage, Iron Golem and Revived Minion base stats. Rank growth and magical mitigation remain separately authored.",
+  "description": "Complete Necromancer base bodies and additive owner-level growth for player Skeletons and Mages. Rank growth and magical mitigation remain separately authored.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "templates"],
+  "required": ["id", "templates", "ownerLevelGrowth"],
   "properties": {
     "id": { "const": "summons/necromancer" },
+    "ownerLevelGrowth": {
+      "description": "Flat growth per player-hero owner level above one, applied after skill-rank growth and before Mastery to newly created bodies.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skeleton", "skeletal_mage"],
+      "properties": {
+        "skeleton": { "$ref": "#/$defs/ownerGrowth" },
+        "skeletal_mage": { "$ref": "#/$defs/ownerGrowth" }
+      }
+    },
     "templates": {
       "type": "object",
       "additionalProperties": false,
@@ -21,6 +31,16 @@
     }
   },
   "$defs": {
+    "ownerGrowth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lifeMax", "attack", "defense"],
+      "properties": {
+        "lifeMax": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "attack": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "defense": { "type": "integer", "minimum": 0, "maximum": 500 }
+      }
+    },
     "bodyStats": {
       "type": "object",
       "additionalProperties": false,

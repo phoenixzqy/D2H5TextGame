@@ -7,7 +7,7 @@ import type { ActiveStatus, CombatUnit } from './types';
 const spells = [
   { slug: 'firestorm', mana: 20, cooldown: 2, seedHit: 41, growth: 4 },
   { slug: 'molten-boulder', mana: 12, cooldown: 2, seedHit: 46, growth: 4 },
-  { slug: 'fissure', mana: 20, cooldown: 3, seedHit: 61, growth: 5 },
+  { slug: 'fissure', mana: 20, cooldown: 3, seedHit: 61, growth: 400 },
   { slug: 'volcano', mana: 27, cooldown: 4, seedHit: 82, growth: 7 },
   { slug: 'armageddon', mana: 35, cooldown: 5, seedHit: 113, growth: 9 }
 ] as const;
@@ -15,8 +15,8 @@ const hold = (at = 0): ActiveStatus => ({ id: 'stun', stacks: 1, remaining: -1,
   sourceId: 'fixture', appliedAtMs: at });
 function unit(id: string, side: CombatUnit['side']): CombatUnit {
   return { id, name: id, side, kind: side === 'player' ? 'hero' : 'monster',
-    level: 30, tier: 'trash', life: 1000, mana: 0,
-    stats: { life: 1000, lifeMax: 1000, mana: 100, manaMax: 100, attack: 1,
+    level: 30, tier: 'trash', life: 10000, mana: 0,
+    stats: { life: 10000, lifeMax: 10000, mana: 100, manaMax: 100, attack: 1,
       defense: 0, magicResist: 0, attackSpeed: 100, critChance: 0, critDamage: 1.5,
       physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0,
       resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
@@ -49,7 +49,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
     const rate = Math.floor((spell.seedHit + spell.growth * (rank - 1)) * 0.1);
     const totalDot = r.events.reduce((sum, e) => sum + (e.kind === 'dot' ? e.amount : 0), 0);
     expect(totalDot).toBe(rate * 3);
-    expect(r.result.enemyTeam[0]?.life).toBe(1000 - hit.amount - rate * 3);
+    expect(r.result.enemyTeam[0]?.life).toBe(10000 - hit.amount - rate * 3);
     expect(r.events.filter(e => e.kind === 'dot').at(-1))
       .toMatchObject({ simClockMs: 4700 });
     expect(r.result.enemyTeam[0]?.statuses).toEqual([hold()]);
@@ -67,7 +67,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
     expect(r.events.filter(e => e.kind === 'damage')).toEqual([
       expect.objectContaining({ amount: spell.seedHit, dodged: false })]);
     const rate = Math.floor(spell.seedHit * 0.1);
-    expect(r.result.enemyTeam[0]?.life).toBe(1000 - spell.seedHit - rate * 3);
+    expect(r.result.enemyTeam[0]?.life).toBe(10000 - spell.seedHit - rate * 3);
     const highAttack = runBattleRecorded({ ...input, playerTeam: [{ ...hero,
       stats: { ...hero.stats, attack: 10000 } }] });
     expect(highAttack.events).toEqual(runBattleRecorded(input).events);
@@ -78,7 +78,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
     const r = runBattleRecorded({ ...input, enemyTeam: [{ ...target,
       stats: { ...target.stats, defense: 10000 } }] });
     expect(r.events.filter(e => e.kind === 'damage')).toEqual([expect.objectContaining({ amount: 1 })]);
-    expect(r.result.enemyTeam[0]?.life).toBe(996);
+    expect(r.result.enemyTeam[0]?.life).toBe(9996);
   });
 
   it('hits the authored target set and gives each landed target its own Burn', () => {
@@ -93,7 +93,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
       const dot = r.events.reduce((sum, e) => sum +
         (e.kind === 'dot' && e.target === target.id ? e.amount : 0), 0);
       expect(dot).toBe(damage > 0 ? Math.floor(damage * 0.1) * 3 : 0);
-      expect(target.life).toBe(1000 - damage - dot);
+      expect(target.life).toBe(10000 - damage - dot);
     }
   });
 
@@ -119,7 +119,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
       .toEqual([expect.objectContaining({ id: 'burn', stacks: 3, appliedAtMs: 0, expiresAtMs: 5000,
         sourceId: priorRate ? 'old-source' : 'hero', dotPerStack: priorRate ?? Math.floor(spell.seedHit * 0.1) })]);
     const dot = priorRate ? 26 : Math.floor(Math.floor(spell.seedHit * 0.1) * 3 * 3.3);
-    expect(r.result.enemyTeam[0]?.life).toBe(1000 - spell.seedHit - dot);
+    expect(r.result.enemyTeam[0]?.life).toBe(10000 - spell.seedHit - dot);
   });
 
   it('does not apply Burn or spend spell mana when one MP short', () => {
@@ -129,7 +129,7 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
       expect.objectContaining({ actor: 'hero', skillId: null, simClockMs: 1700 })]);
     expect(r.events.filter(e => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
     expect(r.result.playerTeam[0]?.mana).toBe(spell.mana - 1);
-    expect(r.result.enemyTeam[0]?.life).toBe(999);
+    expect(r.result.enemyTeam[0]?.life).toBe(9999);
   });
 
   it('pays for a missed cast without applying Burn or periodic HP loss', () => {
@@ -139,7 +139,32 @@ describe.each(spells)('BUG190 registered Druid $slug', spell => {
     expect(r.events.filter(e => e.kind === 'damage')).toEqual([
       expect.objectContaining({ amount: 0, dodged: true })]);
     expect(r.events.filter(e => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
-    expect(r.result.enemyTeam[0]?.life).toBe(1000);
+    expect(r.result.enemyTeam[0]?.life).toBe(10000);
     expect(r.result.playerTeam[0]?.mana).toBe(0);
+  });
+});
+
+
+describe('Fissure campaign armor', () => {
+  it('keeps capped Fissure useful against Diablo fire resistance and armor', () => {
+    const spell = spells.find(s => s.slug === 'fissure');
+    if (!spell) throw new Error('Missing Fissure fixture');
+    const input = fixture(spell, 20), target = first(input.enemyTeam);
+    const result = runBattleRecorded({ ...input, enemyTeam: [{ ...target,
+      stats: { ...target.stats, defense: 460,
+        resistances: { ...target.stats.resistances, fire: 75 } } }] });
+    const hit = result.events.find(event => event.kind === 'damage');
+    expect(hit?.kind === 'damage' ? hit.amount : undefined).toBeGreaterThanOrEqual(1000);
+  });
+
+  it('keeps a capped primary hit above the floor against Radament armor', () => {
+    const spell = spells.find(s => s.slug === 'fissure');
+    if (!spell) throw new Error('Missing Fissure fixture');
+    const input = fixture(spell, 20), target = first(input.enemyTeam);
+    const result = runBattleRecorded({ ...input, enemyTeam: [{ ...target,
+      stats: { ...target.stats, defense: 242,
+        resistances: { ...target.stats.resistances, fire: 50 } } }] });
+    const hit = result.events.find(event => event.kind === 'damage');
+    expect(hit?.kind === 'damage' ? hit.amount : undefined).toBeGreaterThan(100);
   });
 });

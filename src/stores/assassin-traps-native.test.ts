@@ -42,6 +42,58 @@ function record(input: CombatSnapshot, _slug: string, _rank: number) {
 beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
+it.each([[1, 1, 1], [7, 83, 109], [20, 317, 343]] as const)(
+  'BUG549 Lightning Sentry rank%i retains three paid pulses through ordinary Summoner mitigation',
+  (rank, minimum, maximum) => {
+    const input = fixture('lightning-sentry', rank), target = input.enemyTeam[0];
+    if (!target) throw new Error('Missing native mitigation target');
+    const { direct, payments } = record({ ...input, enemyTeam: [{ ...target,
+      stats: { ...target.stats, defense: 241, magicResist: 81,
+        resistances: { ...target.stats.resistances, lightning: 25 } }
+    }] }, 'lightning-sentry-mitigation', rank);
+    expect(direct.map(event => event.simClockMs)).toEqual([900, 1900, 2900]);
+    expect(payments).toHaveLength(1);
+    expect(payments[0]?.mana).toBe(78);
+    const hits = direct.filter(event => !event.dodged);
+    expect(hits.length).toBeGreaterThan(0);
+    for (const hit of hits) {
+      expect(hit.damageType).toBe('lightning');
+      expect(hit.crit).toBe(false);
+      expect(hit.amount).toBeGreaterThanOrEqual(minimum);
+      expect(hit.amount).toBeLessThanOrEqual(maximum);
+    }
+  }
+);
+
+it.each([
+  { boss: 'Mephisto', defense: 360, magicResist: 138, rank: 1, minimum: 1, maximum: 1 },
+  { boss: 'Mephisto', defense: 360, magicResist: 138, rank: 7, minimum: 410, maximum: 435 },
+  { boss: 'Mephisto', defense: 360, magicResist: 138, rank: 20, minimum: 1970, maximum: 1995 },
+  { boss: 'Baal', defense: 560, magicResist: 243, rank: 1, minimum: 1, maximum: 1 },
+  { boss: 'Baal', defense: 560, magicResist: 243, rank: 7, minimum: 210, maximum: 235 },
+  { boss: 'Baal', defense: 560, magicResist: 243, rank: 20, minimum: 1770, maximum: 1795 }
+] as const)('BUG550 Blade Sentinel rank$rank keeps three paid Physical pulses through $boss armor',
+  ({ defense, magicResist, rank, minimum, maximum }) => {
+    const input = fixture('blade-sentinel', rank), target = input.enemyTeam[0];
+    if (!target) throw new Error('Missing native physical mitigation target');
+    const { direct, payments } = record({ ...input, enemyTeam: [{ ...target,
+      stats: { ...target.stats, defense, magicResist,
+        resistances: { ...target.stats.resistances, physical: 0, lightning: 75 } }
+    }] }, 'blade-sentinel-mitigation', rank);
+    expect(direct.map(event => event.simClockMs)).toEqual([900, 1900, 2900]);
+    expect(payments).toHaveLength(1);
+    expect(payments[0]?.mana).toBe(85);
+    const hits = direct.filter(event => !event.dodged);
+    expect(hits.length).toBeGreaterThan(0);
+    for (const hit of hits) {
+      expect(hit.damageType).toBe('physical');
+      expect(hit.crit).toBe(false);
+      expect(hit.amount).toBeGreaterThanOrEqual(minimum);
+      expect(hit.amount).toBeLessThanOrEqual(maximum);
+    }
+  }
+);
+
 for (const slug of traps) for (const rank of [1, 2, 20])
   it(`${slug} rank${String(rank)} keeps attacking after one paid native cast while its living caster is held`, () => {
     const skill = getSkill('skills-assassin-' + slug);

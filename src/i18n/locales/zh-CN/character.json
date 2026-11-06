@@ -10,7 +10,12 @@
   "startingStats": "起始属性",
   "strength": "力量",
   "dexterity": "敏捷",
-  "vitality": "体力",
+  "vitality": {
+    "effective": "有效体力：{{sheet}} · 公式贡献：{{formula}}",
+    "breakdown": "已分配 {{raw}} · 装备 {{equipment}} · 普通面板 {{ordinarySheet}} · 灵药 +{{elixir}}",
+    "allocation": "属性按钮只花费点数增加已分配属性。装备和灵药加成不消耗或返还点数。",
+    "preview": "待应用：有效体力 {{sheet}} · 生命上限 {{lifeMax}}"
+  },
   "energy": "能量",
   "classes": {
     "barbarian": "野蛮人",

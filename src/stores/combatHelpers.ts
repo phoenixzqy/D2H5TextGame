@@ -1,5 +1,13 @@
 import { captureCountessEncounter, COUNTESS, isCountessAdmissionEligible, type CountessEncounter } from '@/engine/map/countess-admission';
 import { prepareCountessSettlement } from './countessSettlement';
+import { COW, captureCowEncounter, hasOriginalCowVictory, isCowAdmissionEligible, type CowEncounter } from '@/engine/map/cow-quest';
+import { prepareCowSettlement } from './cowSettlement';
+import { hasCowNativeVictory } from './cowNativeWitness';
+import { issueOrmusRun, invalidateOrmusReplay } from './ormusRunAuthority';
+import { issueBountyRun, invalidateBountyReplay } from './bountyRunAuthority';
+import { captureBountySettlementRollback, prepareBountySettlement } from './bountySettlement';
+import { findRegionalBounty } from '@/engine/map/regional-bounties';
+import { captureOrmusSettlementRollback, prepareOrmusSettlement } from './ormusSettlement';
 import { composeAssassinMartialRanks } from '@/engine/skills/assassin-charges';
 import { composeAssassinTrapRanks } from '@/engine/skills/assassin-traps';
 import { advanceEndgameWave, captureEndgameWave, prepareEndgameAttempt, type EndgameWaveBinding } from '@/engine/endgame/runtime';
@@ -43,6 +51,8 @@ import {
   type WaveSpec
 } from '@/engine/combat';
 import { loadAwardPools } from '@/data/loaders/loot';
+import { CHAPTER_BOSS_FIRST_KILLS } from '@/data/loaders/chapter-boss-first-kills';
+import { materialEconomy } from '@/data/loaders/materials';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
@@ -79,11 +89,12 @@ import { resolveSummonDisplayName } from './summonDisplayName';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { aggregateEquipmentMods, applyEquipmentCoreMods } from '@/engine/progression/equipment-mods';
 import { effectiveStatValue } from '@/engine/progression/stats';
-import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import { prepareEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { composeColdMastery } from '@/engine/skills/cold-mastery';
 import { composeStaticField } from '@/engine/skills/static-field';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
+import { refreshMercFrozenArmorState } from '@/engine/skills/merc-frozen-armor';
 import { composeColdArmorRanks, refreshColdArmorState } from '@/engine/skills/cold-armors';
 import { composePeriodicSpellRanks } from '@/engine/skills/periodic-spell-authority';
 import { composeHydraRank } from '@/engine/skills/hydra';
@@ -137,7 +148,7 @@ import { composeFeralRageRank } from '@/engine/skills/druid-sustain';
 import { composeFrenzyRank } from '@/engine/skills/frenzy';
 import { composeDruidSummonRanks } from '@/engine/skills/druid-summon-authority';
 import { composeAssassinShadowSkills } from '@/engine/skills/assassin-shadow-skills';
-import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
+import { resolveBasicAttackDelivery, resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 export { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
@@ -217,11 +228,14 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
   CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
   const equipped = useInventoryStore.getState().equipped;
   const equippedWeapon = resolveEquippedWeapon(equipped);
+  const basicAttackDelivery = resolveBasicAttackDelivery(equipped);
   const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
   const map = useMapStore.getState();
-  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, map.questProgress,
+  const deriveLoadout = prepareEquippedPlayerStats(player, player.level, map.questProgress,
     useInventoryStore.getState().questItems, map.questReceipts);
+  const freshStats = deriveLoadout(equipped);
+  const equipmentAttackSpeedPct = freshStats.attackSpeed / deriveLoadout({}).attackSpeed - 1;
   const { endurance, mastery, warcries, ironSkinDefenseBonus } = composeBarbarianPassives({
     classId: player.class, level: player.level, ...equippedWeapon, temporarySkillRankBonus,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
@@ -277,6 +291,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     level: player.level,
     tier: 'trash',
     stats,
+    equipmentAttackSpeedPct,
     life: stats.life,
     mana: stats.mana,
     ...composeRunewordCombatModifiers(grants, { ...recovery,
@@ -327,6 +342,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     enraged: false,
     summonedAdds: false,
     kind: 'hero',
+    ...(basicAttackDelivery !== undefined ? { basicAttackDelivery } : {}),
     equippedWeapon,
     gridPosition: formation.playerPosition,
     summonGridPositions: formation.summonPositions
@@ -396,6 +412,11 @@ export function deriveMonsterNameKey(def: { id: string; nameKey?: string }): str
   return after.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
 }
 
+function localizeMonsterTierSuffix(name: string): string {
+  return name.replace(/ \((Boss|Elite)\)$/, (_, tier: string) =>
+    ` (${i18n.t(`combat:tier.${tier.toLowerCase()}`)})`);
+}
+
 /**
  * Localized display name for a built monster {@link CombatUnit}.
  * Falls back to `unit.name` when no archetype can be resolved.
@@ -406,26 +427,37 @@ export function resolveMonsterDisplayName(unit: CombatUnit): string {
   // archetype's last `/` segment (e.g. `act1.fallen`).
   const m = /^enemy-([^]+?)-\d+-[0-9a-f]+$/i.exec(unit.id);
   const slug = m?.[1];
-  if (!slug) return unit.name;
+  if (!slug) return localizeMonsterTierSuffix(unit.name);
   const idx = getMonsterIndex();
   const def =
     idx.get(`monsters/${slug}`) ??
     [...idx.values()].find((d) => d.id.endsWith(`.${slug}`) || d.id.endsWith(`/${slug}`));
-  if (!def) return unit.name;
+  if (!def) return localizeMonsterTierSuffix(unit.name);
   const key = deriveMonsterNameKey(def);
   const localized = i18n.t(`monsters:${key}`, { defaultValue: def.name });
 
-  // Preserve the engine's optional " A"/"(Elite)"/"(Boss)" suffix so
-  // multiple instances stay distinguishable.
+  // Preserve instance letters, and translate the engine's terminal tier label.
   const suffix = unit.name.length > def.name.length
     ? unit.name.slice(def.name.length)
     : '';
-  return `${localized}${suffix}`;
+  return localizeMonsterTierSuffix(`${localized}${suffix}`);
 }
 
+/** Localized icon/text tag for the selected monster modifier, or empty when absent/unknown. */
+export function resolveCombatUnitAffixTag(unit: CombatUnit): string {
+  const key = unit.eliteAffixNameKey;
+  if (inferKind(unit) !== 'monster' || !key?.startsWith('combat.eliteAffix.')) return '';
+  return i18n.t(key.replace('combat.eliteAffix.', 'combat:eliteAffixTag.'), { defaultValue: '' });
+}
+
+/** Localized combat-log name, preserving instance suffixes and the selected elite tag. */
 export function resolveCombatUnitDisplayName(unit: CombatUnit): string {
   const kind = inferKind(unit);
-  if (kind === 'monster') return resolveMonsterDisplayName(unit);
+  if (kind === 'monster') {
+    const name = resolveMonsterDisplayName(unit);
+    const tag = resolveCombatUnitAffixTag(unit);
+    return tag ? `${name} [${tag}]` : name;
+  }
   if (kind === 'summon') return resolveSummonDisplayName(unit);
   if (kind === 'merc') return resolveMercDisplayName(unit);
   return unit.name;
@@ -458,14 +490,23 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
       [...idx.values()].find((m) => m.id.endsWith(spawn.archetypeId.split('/').pop() ?? '')) ??
       [...idx.values()][0];
     if (!def) continue; // empty catalog — should never happen at runtime
-    enemies.push(
-      buildMonsterUnit({
+    enemies.push({
+      ...buildMonsterUnit({
         def,
         level: spawn.level,
         tier: spawn.tier,
         rng,
         index: spawn.index,
-        ...(spawn.eliteAffix ? { extraSkillIds: [spawn.eliteAffix.skillId] } : {}),
+        ...(spawn.eliteAffix ? {
+          extraSkillIds: [spawn.eliteAffix.skillId],
+          attackSpeedMultiplier: spawn.eliteAffix.attackSpeedMultiplier,
+          ...(spawn.eliteAffix.lightningRetaliation !== undefined
+            ? { lightningRetaliation: spawn.eliteAffix.lightningRetaliation } : {}),
+          ...(spawn.eliteAffix.frostAura !== undefined
+            ? { frostAura: spawn.eliteAffix.frostAura } : {}),
+          ...(spawn.eliteAffix.resistanceBonuses !== undefined
+            ? { resistanceBonuses: spawn.eliteAffix.resistanceBonuses } : {})
+        } : {}),
         ...(spawn.tier === 'rare-elite' ? { resistanceBonus: eliteConfig.rareEliteResistanceBonus } : {}),
         ...(spawn.chapterBoss
           ? {
@@ -480,8 +521,9 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
               }
             }
           : {})
-      })
-    );
+      }),
+      ...(spawn.eliteAffix ? { eliteAffixNameKey: spawn.eliteAffix.nameKey } : {})
+    });
   }
   return enemies;
 }
@@ -515,10 +557,15 @@ export function awardLootForVictory(opts: {
 }
 
 /** Roll every enemy without publishing partial rewards or changing inventory. */
-function prepareLootForVictory(opts: Parameters<typeof awardLootForVictory>[0]): KillRewards {
+function prepareLootForVictory(opts: Parameters<typeof awardLootForVictory>[0] & {
+  /** Only native settlement passes the privately captured paid-wave modifier. */
+  readonly mercPilferGoldFind?: number;
+},
+/** Only native settlement can supply the admitted original terminal boss. */
+firstKillBossId?: string): KillRewards {
   const player = usePlayerStore.getState().player;
   const magicFind = player?.derivedStats.magicFind ?? 0;
-  const goldFind = player?.derivedStats.goldFind ?? 0;
+  const goldFind = (player?.derivedStats.goldFind ?? 0) + (opts.mercPilferGoldFind ?? 0);
   const pools = loadAwardPools();
   const rng = createRng(opts.seed >>> 0);
   const rewards: KillRewards[] = [];
@@ -532,10 +579,12 @@ function prepareLootForVictory(opts: Parameters<typeof awardLootForVictory>[0]):
         magicFindMultiplier: opts.magicFindMultiplier ?? 1,
         goldFind,
         act: opts.act,
-        difficulty: opts.replayProfileId ?? 'normal'
+        difficulty: opts.replayProfileId ?? 'normal',
+        ...(enemy.id === firstKillBossId ? { firstKillBonus: true } : {})
       },
       pools,
-      rng
+      rng,
+      rng.fork(`wishstone:${enemy.id}`)
     ));
   }
   return mergeRewards(...rewards);
@@ -561,11 +610,13 @@ function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding)
   const metadata = { playerUnit: run.playerUnit, waveIdx: run.waveIdx, carryPlayerTeam: run.carryPlayerTeam,
     waveElapsedMs: run.waveElapsedMs, recording: run.recording, endgameProgress: run.endgameProgress }, pity = getIdleEliteMisses();
   const restoreAct5 = captureAct5SettlementRollback(run);
+  const restoreOrmus = captureOrmusSettlementRollback(run, binding);
+  const restoreBounty = captureBountySettlementRollback(run, binding);
   // Ordinary clear/kill events can touch any authored combat objective for this
   // area; source admissions additionally own their captured row and proof.
   const admissions = [binding.act4Encounter, binding.act5Encounter, binding.act5ThroneWave].flatMap(encounter =>
     encounter ? [encounter.contract] : []);
-  const questIds = [...new Set([...loadQuests().filter(quest => quest.objectives.some(objective =>
+  const questIds = [...new Set([...loadQuests().filter(quest => !findRegionalBounty(quest.id) && quest.objectives.some(objective =>
     ['clear-area', 'kill', 'kill-boss'].includes(objective.type) && objective.areaId === run.plan.subAreaId)).map(quest => quest.id),
   ...admissions.map(contract => contract.questId), ...(binding.guardianEncounter ? [GUARDIAN_QUEST_ID] : [])])];
   const proofKeys = [...admissions.map(contract => contract.proof), ...(binding.councilEncounter ? [COUNCIL_RECEIPT_SOURCE] : [])];
@@ -592,6 +643,8 @@ function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding)
     restore(() => { Object.assign(run, metadata); combatRunLifecycle.activeRun = run; });
     restore(() => { setIdleEliteMisses(pity); });
     restore(restoreAct5);
+    restore(restoreOrmus);
+    restore(restoreBounty);
     return errors.length > 0 ? new AggregateError(errors, 'Wave settlement restoration failed', { cause }) : cause;
   };
 }
@@ -626,17 +679,23 @@ export function refreshActivePlayerCombatConfig({
     const combat = useCombatStore.getState();
     if (combat.inCombat) {
       const original = requirePublishedRun(run, lease).binding;
+      if (original.origin.kind === 'area' && original.origin.questEncounter === COW.encounter) {
+        throw new RecordedWaveReceiptError('bindingMismatch');
+      }
       const attempt = captureWaveAttempt();
+      invalidateOrmusReplay(run);
+      invalidateBountyReplay(run);
       // Locked replay reinstalls the exact original baseline, including failed attempts.
       // Unlocked replay keeps ordinary current-config semantics while suppressing Iron.
       const staged: StagedWaveAttempt = original.publication.ironGolemReplayLocked
         ? { engineInput: original.engineInput, attestation: null, waveIdx: original.targetWaveIdx,
             ...(original.findItemFinds ? { findItemFinds: original.findItemFinds } : {}),
+            ...(original.mercPilferGoldFind !== undefined ? { mercPilferGoldFind: original.mercPilferGoldFind } : {}),
             elapsedMs: original.waveElapsedMs, recording: original.recording,
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
       // Replay retains the originally captured origin, even if mutable plan copies changed.
-      const { countessEncounter: _countessRecaptured, councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, act5Encounter: _act5Recaptured, act5ThroneWave: _throneRecaptured, ...replay } = staged;
+      const { cowEncounter: _cowRecaptured, countessEncounter: _countessRecaptured, councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, act5Encounter: _act5Recaptured, act5ThroneWave: _throneRecaptured, ...replay } = staged;
       commitStagedWave(run, { ...replay,
         ...(original.endgameWave ? { endgameWave: original.endgameWave } : {}),
         ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}),
@@ -692,7 +751,7 @@ export function startSubAreaRun(opts: {
   readonly challengeOrdinal?: number;
   readonly questRecovery?: 'khalims-council';
   readonly questSource?: 'act5-throne';
-  readonly questEncounter?: typeof COUNTESS.encounter;
+  readonly questEncounter?: typeof COUNTESS.encounter | typeof COW.encounter;
 } = {}): { runId: string; totalWaves: number; runSeed: number; challengeOrdinal: number } | null {
   return startSubAreaRunAttempt(opts);
 }
@@ -713,9 +772,11 @@ export function startEndgameRun(modifierId: string): {
 function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {},
   observation?: PublicationAttemptObservation, endgameRequest?: { readonly modifierId: string }): ReturnType<typeof startSubAreaRun> {
   const questEncounter: unknown = opts.questEncounter;
-  if (questEncounter !== undefined && questEncounter !== COUNTESS.encounter) throw new RangeError('Unknown quest encounter');
+  if (questEncounter !== undefined && questEncounter !== COUNTESS.encounter && questEncounter !== COW.encounter) throw new RangeError('Unknown quest encounter');
   const countessRun = questEncounter === COUNTESS.encounter;
-  if (countessRun && (endgameRequest !== undefined || opts.questRecovery !== undefined || opts.questSource !== undefined)) {
+  const cowRun = questEncounter === COW.encounter;
+  const optionalRun = countessRun || cowRun;
+  if (optionalRun && (endgameRequest !== undefined || opts.questRecovery !== undefined || opts.questSource !== undefined)) {
     throw new RangeError('Conflicting quest encounter source');
   }
   const questSource: unknown = opts.questSource;
@@ -763,6 +824,13 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       throw new Error('Countess encounter is not eligible');
     }
 
+    if (cowRun && (profile !== 'normal' || mode !== 'manual' || (opts.act ?? map.currentAct) !== 1 ||
+      subAreaId !== COW.area || subArea?.id !== COW.area || !map.isActUnlocked(1) ||
+      map.currentAct !== 1 || map.currentSubAreaId !== COW.area ||
+      !isCowAdmissionEligible(map.questProgress, inventory.questItems, map.questReceipts))) {
+      throw new Error('Cow encounter is not eligible');
+    }
+
     // Resolve a wave plan, falling back to the synthetic 4-wave default.
     // Run seed is generated up-front and threaded into wave-plan resolution
     // so spawn-count rolls are reproducible per-run (Bug C).
@@ -778,8 +846,8 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       !Object.hasOwn(map.questReceipts, THRONE_PROOF);
     if (opts.questSource && !projectThrone) throw new Error('Act V quest-source projection is not eligible');
     if (profile !== 'normal' && !subArea) throw new Error('Replay requires a canonical area');
-    const normalPlan = countessRun && subArea
-      ? resolveQuestEncounterPlan({ subArea, encounterId: COUNTESS.encounter, seed: planSeed })
+    const normalPlan = optionalRun && subArea
+      ? resolveQuestEncounterPlan({ subArea, encounterId: cowRun ? COW.encounter : COUNTESS.encounter, seed: planSeed })
       : endgame ? endgame.progress.plan : subArea
       ? resolveChallengeWavePlan({
           subArea,
@@ -814,13 +882,14 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       : undefined;
     const mercUnit = fieldedMerc
       ? mercToCombatUnit(
-          fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id]
+          fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id],
+          mercState.recruitmentProgress[fieldedMerc.id.split('#')[0] ?? fieldedMerc.id]?.stars ?? 0
         )
       : undefined;
     const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
 
     const origin = endgame?.progress.context ?? Object.freeze({ kind: 'area' as const, replayProfileId: profile,
-      ...(countessRun ? { questEncounter: COUNTESS.encounter } : {}) });
+      ...(optionalRun ? { questEncounter: cowRun ? COW.encounter : COUNTESS.encounter } : {}) });
     const candidate: ActiveRun = {
       origin,
       ...(endgame ? { endgameProgress: endgame.progress } : {}),
@@ -831,7 +900,8 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       ...(opts.questRecovery ? { questRecovery: opts.questRecovery } : {}),
       ...(mercUnit && fieldedMerc ? {
         fieldedMercCombatId: mercUnit.id,
-        fieldedMercBareUnit: Object.freeze(mercToCombatUnit(fieldedMerc, formation.mercPosition, {}))
+        fieldedMercBareUnit: Object.freeze(mercToCombatUnit(fieldedMerc, formation.mercPosition, {},
+          mercState.recruitmentProgress[fieldedMerc.id.split('#')[0] ?? fieldedMerc.id]?.stars ?? 0))
       } : {}),
       playerUnit,
       waveIdx: 0,
@@ -841,10 +911,13 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     Object.defineProperty(candidate, 'origin', { value: origin, enumerable: true, writable: false, configurable: false });
     Object.defineProperty(candidate, 'replayProfileId', { value: profile, enumerable: true, writable: false, configurable: false });
 
+    issueOrmusRun(candidate, { challengeOrdinal, fallbackArchetypeId: fallbackArchetype }, map.questProgress, map.questReceipts);
+    issueBountyRun(candidate, { challengeOrdinal, fallbackArchetypeId: fallbackArchetype }, map.questProgress, map.bounties);
     const staged = stageWave(candidate, 0, attempt, true);
+    if (cowRun && !staged.cowEncounter) throw new RecordedWaveReceiptError('bindingMismatch');
     if (countessRun && !staged.countessEncounter) throw new RecordedWaveReceiptError('bindingMismatch');
     commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
-      countessRun || endgame !== null || opts.challengeOrdinal !== undefined ? null : (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD,
+      optionalRun || endgame !== null || opts.challengeOrdinal !== undefined ? null : (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD,
       ...(endgame ? { endgameEntry: { stateBefore: map.endgame, stateAfterEntry: endgame.stateAfterEntry } } : {}) }, attempt, lease, observation);
     return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
   }, 'transition', observation);
@@ -888,18 +961,27 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
         heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
       let questLease: QuestTransactionLease | undefined;
+      let cowSettlement: ReturnType<typeof prepareCowSettlement> | undefined;
       let rollback: (cause: unknown) => unknown = cause => cause;
       let preparedRewards: KillRewards | undefined;
       try {
         const countessRun = binding.origin.kind === 'area' && binding.origin.questEncounter === COUNTESS.encounter;
-        if (countessRun) questLease = beginQuestTransaction();
+        const cowRun = binding.origin.kind === 'area' && binding.origin.questEncounter === COW.encounter;
+        if (countessRun || cowRun) questLease = beginQuestTransaction();
         const countessSettlement = countessRun ? prepareCountessSettlement(run, binding) : undefined;
-        rollback = countessSettlement ? cause => countessSettlement.rollback(cause) : captureSettlementRollback(run, binding);
-        countessSettlement?.check();
+        cowSettlement = cowRun ? prepareCowSettlement(run, binding) : undefined;
+        const nativeSettlement = cowSettlement ?? countessSettlement;
+        rollback = nativeSettlement ? cause => nativeSettlement.rollback(cause) : captureSettlementRollback(run, binding);
+        nativeSettlement?.check();
+        const ormusSettlement = prepareOrmusSettlement(binding);
+        const bountySettlement = prepareBountySettlement(binding);
+        if ((ormusSettlement ?? bountySettlement) && !questLease) questLease = beginQuestTransaction();
         const outcome = binding.recording.outcome;
         const areaRun = binding.origin.kind === 'area';
         const ordinaryAreaRun = areaRun && binding.origin.questEncounter === undefined;
         const normalRun = ordinaryAreaRun && binding.origin.replayProfileId === 'normal';
+        const clearLedger = binding.origin.kind === 'area' && binding.origin.replayProfileId === 'hell'
+          ? 'hellClearedSubAreas' : normalRun ? 'clearedSubAreas' : 'nightmareClearedSubAreas';
         const endgameAdvance = binding.origin.kind === 'endgame' ? (() => {
           if (!run.endgameProgress || !binding.endgameWave) throw new RecordedWaveReceiptError('bindingMismatch');
           return advanceEndgameWave(run.endgameProgress, binding.endgameWave, outcome);
@@ -1042,11 +1124,12 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         const alivePlayer = outcome.finalPlayerTeam.find(
           (u) => u.id === binding.heroId && u.life > 0
         );
-        if (outcome.winner !== 'player' || !alivePlayer || endgameAdvance?.progress.status === 'failed') {
+        if (outcome.winner !== 'player' || !alivePlayer || endgameAdvance?.progress.status === 'failed' ||
+          cowRun && (!binding.cowEncounter || !hasCowNativeVictory(binding) || !hasOriginalCowVictory(binding.cowEncounter, outcome))) {
           publishPity();
-          countessSettlement?.prepareResult('defeat');
+          nativeSettlement?.prepareResult('defeat');
           combat.markRunDefeat();
-          countessSettlement?.check();
+          nativeSettlement?.check();
           publishEndgameProgress();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'defeat' });
           combatRunLifecycle.activeRun = null;
@@ -1064,19 +1147,38 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
           const wave = run.plan.waves[binding.targetWaveIdx];
           const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
+          const boss = binding.recording.chapterBoss;
+          const firstKillRule = ordinaryAreaRun && binding.targetWaveIdx + 1 === run.plan.waves.length &&
+            !useMapStore.getState()[clearLedger].includes(run.plan.subAreaId)
+            ? CHAPTER_BOSS_FIRST_KILLS.bosses.get(tcId) : undefined;
+          const isOriginalBoss = (enemy: Readonly<CombatUnit>): boolean => !!boss &&
+            enemy.id === boss.unitId && enemy.monsterArchetypeId === boss.archetypeId &&
+            enemy.side === 'enemy' && enemy.kind === 'monster' && enemy.tier === 'chapter-boss';
+          const firstKillBossId = firstKillRule && boss && firstKillRule.act === run.act &&
+            firstKillRule.areaId === run.plan.subAreaId && firstKillRule.bossId === boss.archetypeId &&
+            binding.engineInput.enemyTeam.filter(isOriginalBoss).length === 1 &&
+            slain.filter(enemy => isOriginalBoss(enemy) && Number.isFinite(enemy.life)).length === 1
+            ? boss.unitId : undefined;
           const ordinaryRewards = prepareLootForVictory({
+            ...(binding.mercPilferGoldFind !== undefined ? { mercPilferGoldFind: binding.mercPilferGoldFind } : {}),
             replayProfileId: binding.replayProfileId ?? 'normal', slainEnemies: slain,
             act: run.act, treasureClassId: tcId,
             seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
-          });
+          }, firstKillBossId);
           const killRewards = searchEnemies.length > 0 ? mergeRewards(ordinaryRewards, prepareLootForVictory({
+            ...(binding.mercPilferGoldFind !== undefined ? { mercPilferGoldFind: binding.mercPilferGoldFind } : {}),
             replayProfileId: binding.replayProfileId ?? 'normal', slainEnemies: searchEnemies,
             act: run.act, treasureClassId: tcId,
             seed: run.seed ^ 0x46494e44 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
           })) : ordinaryRewards;
           const cache = endgameAdvance?.completion?.materials;
-          const rewards = cache ? mergeRewards(killRewards, { items: [], runeShards: 0, wishstones: 0,
-            runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : killRewards;
+          const firstClearAmount = ordinaryAreaRun && binding.targetWaveIdx + 1 >= run.plan.waves.length &&
+            !useMapStore.getState()[clearLedger].includes(run.plan.subAreaId)
+            ? materialEconomy.currencyRewards.wishstones.firstClearAmount : 0;
+          const clearRewards = firstClearAmount > 0 ? mergeRewards(killRewards,
+            { items: [], runeShards: 0, wishstones: firstClearAmount, runes: 0, gems: 0, materials: {} }) : killRewards;
+          const rewards = cache ? mergeRewards(clearRewards, { items: [], runeShards: 0, wishstones: 0,
+            runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : clearRewards;
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
           planRewardGrant(rewards, { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment });
@@ -1086,29 +1188,35 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
           if (xpGained > 0) {
             countessSettlement?.prepareHeroExperience(xpGained);
-            const xpResult = usePlayerStore.getState().gainExperience(xpGained);
-            countessSettlement?.check();
-            if (countessSettlement) countessSettlement.grantMercExperience(xpGained);
+            const xpResult = cowSettlement ? cowSettlement.grantHeroExperience(xpGained)
+              : usePlayerStore.getState().gainExperience(xpGained);
+            nativeSettlement?.check();
+            if (nativeSettlement) nativeSettlement.grantMercExperience(xpGained);
             else useMercStore.getState().shareExperienceWithFielded(xpGained);
-            countessSettlement?.check();
+            nativeSettlement?.check();
             if (xpResult.levelsGained > 0) {
-              combat.addLogEntry({
-                type: 'system',
+              const entry = {
+                type: 'system' as const,
                 actorId: 'system',
                 actorName: i18n.t('combat:event.system'),
                 message: i18n.t('combat:levelUpToast', { level: xpResult.newLevel })
-              });
+              };
+              if (cowSettlement) cowSettlement.addLevelUpLog(entry);
+              else combat.addLogEntry(entry);
             }
           }
 
           // XP observers may legitimately change inventory. Recheck only pure
           // destination arithmetic against their current state, without rerolling.
-          countessSettlement?.prepareInventory(rewards);
-          useInventoryStore.setState(current => planRewardGrant(rewards, { ...current, mercEquipment: useMercStore.getState().mercEquipment }));
-          countessSettlement?.check();
-          countessSettlement?.prepareRunRewards(rewards);
+          if (cowSettlement) cowSettlement.grantInventory(rewards);
+          else {
+            countessSettlement?.prepareInventory(rewards);
+            useInventoryStore.setState(current => planRewardGrant(rewards, { ...current, mercEquipment: useMercStore.getState().mercEquipment }));
+          }
+          nativeSettlement?.check();
+          nativeSettlement?.prepareRunRewards(rewards);
           combat.accumulateRunRewards(rewards);
-          countessSettlement?.check();
+          nativeSettlement?.check();
         } else publishPity();
 
         if (normalRun && completedWave?.waveTier === 'boss' && !completedWave.presentation?.isActBoss &&
@@ -1151,20 +1259,20 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           // Only a complete sequence of won waves can clear an area or unlock idle.
           if (normalRun) useMapStore.getState().markCleared(run.plan.subAreaId);
           else if (ordinaryAreaRun) useMapStore.setState(state => {
-            const key = run.origin.kind === 'area' && run.origin.replayProfileId === 'hell'
-              ? 'hellClearedSubAreas' : 'nightmareClearedSubAreas';
-            return { [key]: state[key].includes(run.plan.subAreaId)
-              ? state[key] : [...state[key], run.plan.subAreaId] };
+            return { [clearLedger]: state[clearLedger].includes(run.plan.subAreaId)
+              ? state[clearLedger] : [...state[clearLedger], run.plan.subAreaId] };
           });
-          countessSettlement?.prepareResult('victory');
+          nativeSettlement?.prepareResult('victory');
           combat.markRunVictory();
-          countessSettlement?.check();
+          nativeSettlement?.check();
           publishCouncilProof();
           publishGuardianVictory();
           publishAct4Victory();
           publishAct5Victory();
           publishEndgameProgress();
-          countessSettlement?.publishVictory();
+          nativeSettlement?.publishVictory();
+          ormusSettlement?.publishVictory();
+          bountySettlement?.publishVictory();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -1177,6 +1285,8 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         publishAct4Victory();
         publishAct5Victory();
         publishEndgameProgress();
+        ormusSettlement?.publishVictory();
+        bountySettlement?.publishVictory();
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
@@ -1184,7 +1294,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         failRecordedWaveSettlement(receipt, lease, { error: failure, ...(preparedRewards ? { preparedRewards } : {}) });
         throw failure;
       } finally {
-        if (questLease) endQuestTransaction(questLease);
+        try { cowSettlement?.dispose(); } finally { if (questLease) endQuestTransaction(questLease); }
       }
     }
     // Staging/publication failures retain awaiting carry or committed publication;
@@ -1209,6 +1319,7 @@ export function abortSubAreaRun(): void {
 
 /** Build the whole recording before changing any run metadata or combat state. */
 interface StagedWaveAttempt extends StagedRecordedWave {
+  readonly cowEncounter?: CowEncounter;
   readonly countessEncounter?: CountessEncounter;
   readonly endgameWave?: EndgameWaveBinding;
   readonly councilEncounter?: CouncilEncounter;
@@ -1243,7 +1354,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const mercState = useMercStore.getState();
   const ownedMerc = mercState.ownedMercs.find(merc => `merc-${merc.id}` === run.fieldedMercCombatId);
   const freshMerc = ownedMerc
-    ? mercToCombatUnit(ownedMerc, undefined, mercState.mercEquipment[ownedMerc.id])
+    ? mercToCombatUnit(ownedMerc, undefined, mercState.mercEquipment[ownedMerc.id],
+      mercState.recruitmentProgress[ownedMerc.id.split('#')[0] ?? ownedMerc.id]?.stars ?? 0)
     : run.fieldedMercBareUnit;
   const mightAura = currentPlayer?.id === run.playerUnit.id
     ? composeMightAura(currentPlayer, run.fieldedMercCombatId) : undefined;
@@ -1276,9 +1388,16 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
-      const { mercBattleOrders: _previousOrders, ...current } = unit;
-      return refreshPeriodicSpells({ ...current, level: freshMerc.level, stats: freshMerc.stats,
+      const { mercBattleOrders: _previousOrders, mercFrozenArmorSource: _previousArmorSource,
+        mercPilferSource: _previousPilferSource,
+        mercBlessedAimAura: _previousAimSource,
+        basicAttackDelivery: _previousDelivery, ...current } = unit;
+      return refreshMercFrozenArmorState(refreshPeriodicSpells({ ...current, level: freshMerc.level, stats: freshMerc.stats,
         ...(freshMerc.mercBattleOrders ? { mercBattleOrders: freshMerc.mercBattleOrders } : {}),
+        ...(freshMerc.mercFrozenArmorSource ? { mercFrozenArmorSource: freshMerc.mercFrozenArmorSource } : {}),
+        ...(freshMerc.mercPilferSource ? { mercPilferSource: freshMerc.mercPilferSource } : {}),
+        ...(freshMerc.mercBlessedAimAura ? { mercBlessedAimAura: freshMerc.mercBlessedAimAura } : {}),
+        ...(freshMerc.basicAttackDelivery !== undefined ? { basicAttackDelivery: freshMerc.basicAttackDelivery } : {}),
         life: unit.life,
         mana: unit.mana,
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
@@ -1287,13 +1406,14 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         physicalReflectionPct: freshMerc.physicalReflectionPct ?? 0,
         skillOrder: freshMerc.skillOrder,
         governedActiveRanks: freshMerc.governedActiveRanks,
-        equippedWeapon: freshMerc.equippedWeapon ?? {} });
+        equippedWeapon: freshMerc.equippedWeapon ?? {} }));
     }
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = unit.mana;
-    const { battleCommandPassives: _oldCommandPassives, ...current } = unit;
+    const { battleCommandPassives: _oldCommandPassives, basicAttackDelivery: _previousDelivery, ...current } = unit;
     const refreshed = refreshPeriodicSpells(refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...current, level: fresh.level, stats: fresh.stats,
       ...(fresh.battleCommandPassives ? { battleCommandPassives: fresh.battleCommandPassives } : {}),
+      ...(fresh.basicAttackDelivery !== undefined ? { basicAttackDelivery: fresh.basicAttackDelivery } : {}),
       ...((unit.battleCommandRank !== undefined || fresh.battleCommandRank !== undefined)
         ? { battleCommandRank: fresh.battleCommandRank ?? 0 } : {}),
       life: unit.life,
@@ -1397,6 +1517,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const areaRun = run.origin.kind === 'area';
   const countessEncounter = areaRun && run.origin.questEncounter === COUNTESS.encounter
     ? captureCountessEncounter(run.act, run.plan.subAreaId, wave, playerTeam, enemies) : undefined;
+  const cowEncounter = areaRun && run.origin.questEncounter === COW.encounter
+    ? captureCowEncounter(run.act, run.plan.subAreaId, wave, playerTeam, enemies) : undefined;
   const councilEncounter = areaRun ? captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
     enemies, run.questRecovery === 'khalims-council') : undefined;
   const guardianEncounter = areaRun ? captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
@@ -1405,10 +1527,14 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? captureAct5ThroneWave(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const act4Encounter = areaRun ? captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const staged = stageRecordedWave({
+    cowRun: run,
+    ormusRun: run,
+    bountyRun: run,
     ...(battleCommandCarry ? { battleCommandCarry } : {}),
     replayProfileId: run.replayProfileId ?? 'normal',
     snapshot: {
       seed: waveSeed,
+      act: run.act,
       playerTeam,
       enemyTeam: enemies,
       ...(ironGolem ? { ironGolem } : {}),
@@ -1446,7 +1572,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       event.unit.id === proof.spawnedUnitId && event.simClockMs === 0))) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  return { ...staged, ...(countessEncounter ? { countessEncounter } : {}),
+  return { ...staged, ...(cowEncounter ? { cowEncounter } : {}), ...(countessEncounter ? { countessEncounter } : {}),
     ...(endgameWave ? { endgameWave } : {}), debitIntent: proof && captured?.ok ? captured.intent : null,
     ...(councilEncounter ? { councilEncounter } : {}),
     ...(guardianEncounter ? { guardianEncounter } : {}),
@@ -1504,13 +1630,18 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
   attempt: WaveAttempt, lease: WaveTransitionLease, observation?: PublicationAttemptObservation): void {
   if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
   const receipt = prepareRecordedWaveInstallation({ origin: run.origin,
+    ...(staged.cowNativeWitness ? { cowNativeWitness: staged.cowNativeWitness } : {}),
+    ...(staged.ormusWitness ? { ormusWitness: staged.ormusWitness } : {}),
+    ...(staged.bountyWitness ? { bountyWitness: staged.bountyWitness } : {}),
     ...(staged.countessEncounter ? { countessEncounter: staged.countessEncounter } : {}),
+    ...(staged.cowEncounter ? { cowEncounter: staged.cowEncounter } : {}),
     ...(staged.endgameWave ? { endgameWave: staged.endgameWave, endgameState: attempt.endgame } : {}),
     candidateRun: run, expectedActiveRun: attempt.activeRun,
     heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
     selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
     ...(staged.findItemFinds ? { findItemFinds: staged.findItemFinds } : {}),
+    ...(staged.mercPilferGoldFind !== undefined ? { mercPilferGoldFind: staged.mercPilferGoldFind } : {}),
     ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
     ...(staged.guardianEncounter ? { guardianEncounter: staged.guardianEncounter } : {}),
     ...(staged.act4Encounter ? { act4Encounter: staged.act4Encounter } : {}),

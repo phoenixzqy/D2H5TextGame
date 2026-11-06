@@ -10,7 +10,7 @@ it.each([0, 1, 2, 19, 20])(
   (rank) => {
     const m = computeSkillDisplayModel(talon, rank),
       current = m.current ?? m.next;
-    const growth = 4 * Math.max(0, rank - 1);
+    const growth = 60 * Math.max(0, rank - 1);
     expect(current).toMatchObject({
       strikesPerCast: 3,
       damage: [{ type: 'physical', min: 40 + growth, max: 60 + growth }],
@@ -20,7 +20,7 @@ it.each([0, 1, 2, 19, 20])(
     if (rank > 0 && rank < 20)
       expect(m.next).toMatchObject({
         strikesPerCast: 3,
-        damage: [{ type: 'physical', min: 40 + 4 * rank, max: 60 + 4 * rank }]
+        damage: [{ type: 'physical', min: 40 + 60 * rank, max: 60 + 60 * rank }]
       });
     if (rank === 20) expect(m.next).toBeUndefined();
   }

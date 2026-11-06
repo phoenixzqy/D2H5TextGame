@@ -1,5 +1,9 @@
 {
   "id": "summons/necromancer",
+  "ownerLevelGrowth": {
+    "skeleton": { "lifeMax": 30, "attack": 14, "defense": 4 },
+    "skeletal_mage": { "lifeMax": 20, "attack": 10, "defense": 3 }
+  },
   "templates": {
     "skeleton": {
       "lifeMax": 112,

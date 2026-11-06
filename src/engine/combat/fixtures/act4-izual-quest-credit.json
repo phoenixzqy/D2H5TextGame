@@ -1,0 +1,770 @@
+{
+  "sourceJournal": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-barbarian-double-throw-izual-continuation-v2.raw.jsonl.gz",
+  "sourceSha256": "9892ae0817017bc4fc6799d95482fe5aad61ba9e2da0e58ab9c5fe5ab48eb114",
+  "runSeed": 1666473292,
+  "ordinal": 882,
+  "index": 4,
+  "snapshot": {
+    "act": 4,
+    "seed": 1950432569,
+    "playerTeam": [
+      {
+        "activeBuffIds": [],
+        "basicAttackDelivery": "melee",
+        "battleCommandPassives": {
+          "baseline": {
+            "increasedDamagePct": {
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0.36
+            },
+            "manaRegenBaselinePerSecond": 4.444000000000001,
+            "manaRegenPerSecond": 4.444000000000001,
+            "stats": {
+              "attack": 398,
+              "attackSpeed": 164,
+              "critChance": 0.15,
+              "critDamage": 2.77,
+              "defense": 347.75,
+              "goldFind": 0,
+              "lifeMax": 777.8900000000001,
+              "magicDodge": 0.17,
+              "magicFind": 0,
+              "magicResist": 32,
+              "manaMax": 295,
+              "physDodge": 0.31800000000000006,
+              "resistances": {
+                "arcane": 35,
+                "cold": 81,
+                "fire": 70,
+                "lightning": 10,
+                "physical": 29,
+                "poison": 0
+              }
+            }
+          },
+          "boosted": {
+            "increasedDamagePct": {
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0.39
+            },
+            "manaRegenBaselinePerSecond": 4.488,
+            "manaRegenPerSecond": 4.488,
+            "stats": {
+              "attack": 398,
+              "attackSpeed": 164,
+              "critChance": 0.155,
+              "critDamage": 2.77,
+              "defense": 370.50000000000006,
+              "goldFind": 0,
+              "lifeMax": 828.7800000000001,
+              "magicDodge": 0.17,
+              "magicFind": 0,
+              "magicResist": 32,
+              "manaMax": 295,
+              "physDodge": 0.31800000000000006,
+              "resistances": {
+                "arcane": 35,
+                "cold": 81,
+                "fire": 70,
+                "lightning": 10,
+                "physical": 29,
+                "poison": 0
+              }
+            }
+          }
+        },
+        "battleCommandRank": 0,
+        "bonePrisonRank": 0,
+        "boneWallRank": 0,
+        "burstOfSpeedRank": 0,
+        "cloakOfShadowsRank": 0,
+        "coldArmorRanks": {
+          "chilling-armor": 0,
+          "shiver-armor": 0
+        },
+        "coldResistanceReductionPct": 0,
+        "concentrateRank": 0,
+        "cooldowns": {
+          "barbarian.double_throw": 1000,
+          "barbarian.howl": 1812
+        },
+        "enraged": false,
+        "equippedWeapon": {
+          "handedness": "oneHanded",
+          "weaponType": "sword"
+        },
+        "frenzyRank": 0,
+        "governedActiveRanks": {
+          "item.redemption": 0,
+          "sorceress.blaze": 0,
+          "sorceress.chain_lightning": 0,
+          "sorceress.fire_bolt": 0
+        },
+        "gridPosition": {
+          "col": 1,
+          "row": 1
+        },
+        "id": "player-1793304000000",
+        "increasedDamagePct": {
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0.36
+        },
+        "kind": "hero",
+        "leapRank": 0,
+        "level": 35,
+        "life": 773.8900000000001,
+        "mana": 206,
+        "manaRegenBaselinePerSecond": 4.444000000000001,
+        "manaRegenCarry": 0.004096000000080784,
+        "manaRegenCompensation": 0,
+        "manaRegenExactCarry": "0.004096000000080784",
+        "manaRegenPerSecond": 4.444000000000001,
+        "name": "Campaign screen",
+        "periodicSpellRanks": {
+          "fire-wall": 0,
+          "inferno": 0,
+          "thunder-storm": 0
+        },
+        "physicalReflectionPct": 0,
+        "side": "player",
+        "skillLevels": {
+          "barbarian.bash": 3,
+          "barbarian.battle_orders": 1,
+          "barbarian.double_swing": 1,
+          "barbarian.double_throw": 20,
+          "barbarian.howl": 1,
+          "barbarian.increased_stamina": 1,
+          "barbarian.iron_skin": 1,
+          "barbarian.shout": 1,
+          "barbarian.sword_mastery": 12
+        },
+        "skillOrder": [
+          "barbarian.double_throw"
+        ],
+        "slowMissilesRank": 0,
+        "staticFieldRank": 0,
+        "stats": {
+          "attack": 398,
+          "attackSpeed": 164,
+          "critChance": 0.15,
+          "critDamage": 2.77,
+          "defense": 347.75,
+          "goldFind": 0,
+          "life": 150,
+          "lifeMax": 777.8900000000001,
+          "magicDodge": 0.17,
+          "magicFind": 0,
+          "magicResist": 32,
+          "mana": 65,
+          "manaMax": 295,
+          "physDodge": 0.31800000000000006,
+          "resistances": {
+            "arcane": 35,
+            "cold": 81,
+            "fire": 70,
+            "lightning": 10,
+            "physical": 29,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonGridPositions": [
+          {
+            "col": 0,
+            "row": 2
+          },
+          {
+            "col": 1,
+            "row": 2
+          },
+          {
+            "col": 2,
+            "row": 2
+          },
+          {
+            "col": 1,
+            "row": 0
+          },
+          {
+            "col": 2,
+            "row": 0
+          },
+          {
+            "col": 0,
+            "row": 1
+          },
+          {
+            "col": 2,
+            "row": 1
+          },
+          {
+            "col": 0,
+            "row": 0
+          }
+        ],
+        "summonedAdds": false,
+        "tier": "trash"
+      }
+    ],
+    "enemyTeam": [
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          544,
+          544
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 1
+        },
+        "id": "enemy-act4.izual-0-8145",
+        "kind": "monster",
+        "level": 49,
+        "life": 42061,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.izual",
+        "name": "monsters.izual A (Boss)",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-frost-nova",
+          "monster-charge"
+        ],
+        "stats": {
+          "attack": 544,
+          "attackSpeed": 125,
+          "critChance": 0.1,
+          "critDamage": 1.75,
+          "defense": 363,
+          "goldFind": 0,
+          "life": 42061,
+          "lifeMax": 42061,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 144,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 75,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 50,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "boss"
+      },
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          299,
+          299
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 0
+        },
+        "id": "enemy-act4.oblivion-knight-0-2790",
+        "kind": "monster",
+        "level": 49,
+        "life": 2055,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.oblivion-knight",
+        "name": "monsters.oblivionKnight A",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-bone-spirit"
+        ],
+        "stats": {
+          "attack": 299,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 132,
+          "goldFind": 0,
+          "life": 2055,
+          "lifeMax": 2055,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 48,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 50,
+            "cold": 50,
+            "fire": 50,
+            "lightning": 50,
+            "physical": 0,
+            "poison": 50
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "trash",
+        "undead": true
+      },
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          299,
+          299
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 1
+        },
+        "id": "enemy-act4.oblivion-knight-1-7f12",
+        "kind": "monster",
+        "level": 49,
+        "life": 2548,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.oblivion-knight",
+        "name": "monsters.oblivionKnight B",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-bone-spirit"
+        ],
+        "stats": {
+          "attack": 299,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 132,
+          "goldFind": 0,
+          "life": 2548,
+          "lifeMax": 2548,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 48,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 50,
+            "cold": 50,
+            "fire": 50,
+            "lightning": 50,
+            "physical": 0,
+            "poison": 50
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "trash",
+        "undead": true
+      }
+    ]
+  },
+  "outcome": {
+    "finalEnemyTeam": [
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          544,
+          544
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {
+          "monster.frost_nova": 2312.43097643098
+        },
+        "enraged": true,
+        "gridPosition": {
+          "col": 1,
+          "row": 1
+        },
+        "id": "enemy-act4.izual-0-8145",
+        "kind": "monster",
+        "level": 49,
+        "life": 0,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.izual",
+        "name": "monsters.izual A (Boss)",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-frost-nova",
+          "monster-charge"
+        ],
+        "stats": {
+          "attack": 544,
+          "attackSpeed": 125,
+          "critChance": 0.1,
+          "critDamage": 1.75,
+          "defense": 363,
+          "goldFind": 0,
+          "life": 42061,
+          "lifeMax": 42061,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 144,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 75,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 50,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "boss"
+      },
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          299,
+          299
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 0
+        },
+        "id": "enemy-act4.oblivion-knight-0-2790",
+        "kind": "monster",
+        "level": 49,
+        "life": 0,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.oblivion-knight",
+        "name": "monsters.oblivionKnight A",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-bone-spirit"
+        ],
+        "stats": {
+          "attack": 299,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 132,
+          "goldFind": 0,
+          "life": 2055,
+          "lifeMax": 2055,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 48,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 50,
+            "cold": 50,
+            "fire": 50,
+            "lightning": 50,
+            "physical": 0,
+            "poison": 50
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "trash",
+        "undead": true
+      },
+      {
+        "activeBuffIds": [],
+        "attackRange": [
+          299,
+          299
+        ],
+        "basicAttackDelivery": "melee",
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 1
+        },
+        "id": "enemy-act4.oblivion-knight-1-7f12",
+        "kind": "monster",
+        "level": 49,
+        "life": 0,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act4.oblivion-knight",
+        "name": "monsters.oblivionKnight B",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-bone-spirit"
+        ],
+        "stats": {
+          "attack": 299,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 132,
+          "goldFind": 0,
+          "life": 2548,
+          "lifeMax": 2548,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 48,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 50,
+            "cold": 50,
+            "fire": 50,
+            "lightning": 50,
+            "physical": 0,
+            "poison": 50
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "trash",
+        "undead": true
+      }
+    ],
+    "finalPlayerTeam": [
+      {
+        "activeBuffIds": [],
+        "basicAttackDelivery": "melee",
+        "battleCommandPassives": {
+          "baseline": {
+            "increasedDamagePct": {
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0.36
+            },
+            "manaRegenBaselinePerSecond": 4.444000000000001,
+            "manaRegenPerSecond": 4.444000000000001,
+            "stats": {
+              "attack": 398,
+              "attackSpeed": 164,
+              "critChance": 0.15,
+              "critDamage": 2.77,
+              "defense": 347.75,
+              "goldFind": 0,
+              "lifeMax": 777.8900000000001,
+              "magicDodge": 0.17,
+              "magicFind": 0,
+              "magicResist": 32,
+              "manaMax": 295,
+              "physDodge": 0.31800000000000006,
+              "resistances": {
+                "arcane": 35,
+                "cold": 81,
+                "fire": 70,
+                "lightning": 10,
+                "physical": 29,
+                "poison": 0
+              }
+            }
+          },
+          "boosted": {
+            "increasedDamagePct": {
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0.39
+            },
+            "manaRegenBaselinePerSecond": 4.488,
+            "manaRegenPerSecond": 4.488,
+            "stats": {
+              "attack": 398,
+              "attackSpeed": 164,
+              "critChance": 0.155,
+              "critDamage": 2.77,
+              "defense": 370.50000000000006,
+              "goldFind": 0,
+              "lifeMax": 828.7800000000001,
+              "magicDodge": 0.17,
+              "magicFind": 0,
+              "magicResist": 32,
+              "manaMax": 295,
+              "physDodge": 0.31800000000000006,
+              "resistances": {
+                "arcane": 35,
+                "cold": 81,
+                "fire": 70,
+                "lightning": 10,
+                "physical": 29,
+                "poison": 0
+              }
+            }
+          }
+        },
+        "battleCommandRank": 0,
+        "bonePrisonRank": 0,
+        "boneWallRank": 0,
+        "burstOfSpeedRank": 0,
+        "cloakOfShadowsRank": 0,
+        "coldArmorRanks": {
+          "chilling-armor": 0,
+          "shiver-armor": 0
+        },
+        "coldResistanceReductionPct": 0,
+        "concentrateRank": 0,
+        "cooldowns": {
+          "barbarian.double_throw": 1000
+        },
+        "enraged": false,
+        "equippedWeapon": {
+          "handedness": "oneHanded",
+          "weaponType": "sword"
+        },
+        "frenzyRank": 0,
+        "governedActiveRanks": {
+          "item.redemption": 0,
+          "sorceress.blaze": 0,
+          "sorceress.chain_lightning": 0,
+          "sorceress.fire_bolt": 0
+        },
+        "gridPosition": {
+          "col": 1,
+          "row": 1
+        },
+        "id": "player-1793304000000",
+        "increasedDamagePct": {
+          "fire": 0,
+          "lightning": 0,
+          "physical": 0.36
+        },
+        "kind": "hero",
+        "leapRank": 0,
+        "level": 35,
+        "life": 173.8900000000001,
+        "mana": 44,
+        "manaRegenBaselinePerSecond": 4.444000000000001,
+        "manaRegenCarry": 0.37365274074084986,
+        "manaRegenCompensation": 8.43097643098e-18,
+        "manaRegenExactCarry": "0.37365274074084985156902356902",
+        "manaRegenPerSecond": 4.444000000000001,
+        "name": "Campaign screen",
+        "periodicSpellRanks": {
+          "fire-wall": 0,
+          "inferno": 0,
+          "thunder-storm": 0
+        },
+        "physicalReflectionPct": 0,
+        "side": "player",
+        "skillLevels": {
+          "barbarian.bash": 3,
+          "barbarian.battle_orders": 1,
+          "barbarian.double_swing": 1,
+          "barbarian.double_throw": 20,
+          "barbarian.howl": 1,
+          "barbarian.increased_stamina": 1,
+          "barbarian.iron_skin": 1,
+          "barbarian.shout": 1,
+          "barbarian.sword_mastery": 12
+        },
+        "skillOrder": [
+          "barbarian.double_throw"
+        ],
+        "slowMissilesRank": 0,
+        "staticFieldRank": 0,
+        "stats": {
+          "attack": 398,
+          "attackSpeed": 164,
+          "critChance": 0.15,
+          "critDamage": 2.77,
+          "defense": 347.75,
+          "goldFind": 0,
+          "life": 150,
+          "lifeMax": 777.8900000000001,
+          "magicDodge": 0.17,
+          "magicFind": 0,
+          "magicResist": 32,
+          "mana": 65,
+          "manaMax": 295,
+          "physDodge": 0.31800000000000006,
+          "resistances": {
+            "arcane": 35,
+            "cold": 81,
+            "fire": 70,
+            "lightning": 10,
+            "physical": 29,
+            "poison": 0
+          }
+        },
+        "statuses": [
+          {
+            "appliedAtMs": 43500,
+            "damageType": "cold",
+            "expiresAtMs": 45500,
+            "id": "chill",
+            "remaining": 2,
+            "sourceId": "enemy-act4.izual-0-8145",
+            "stacks": 1
+          }
+        ],
+        "summonGridPositions": [
+          {
+            "col": 0,
+            "row": 2
+          },
+          {
+            "col": 1,
+            "row": 2
+          },
+          {
+            "col": 2,
+            "row": 2
+          },
+          {
+            "col": 1,
+            "row": 0
+          },
+          {
+            "col": 2,
+            "row": 0
+          },
+          {
+            "col": 0,
+            "row": 1
+          },
+          {
+            "col": 2,
+            "row": 1
+          },
+          {
+            "col": 0,
+            "row": 0
+          }
+        ],
+        "summonedAdds": false,
+        "tier": "trash"
+      }
+    ],
+    "winner": "player"
+  },
+  "metrics": {
+    "directDamageBySource": {
+      "enemy-act4.izual-0-8145": 643,
+      "player-1793304000000": 50754
+    },
+    "engineWinner": "player",
+    "heroDied": false,
+    "heroEntryLife": 773.8900000000001,
+    "heroEntryMana": 206,
+    "heroLife": 173.8900000000001,
+    "heroMana": 44,
+    "livingEnemies": [],
+    "logicalMs": 44187.56902356902,
+    "minimumObservedMana": 30,
+    "outcome": "victory",
+    "periodicDamageByTarget": {},
+    "victoryOnlyTtkMs": 44187.56902356902,
+    "zeroManaObserved": false
+  }
+}

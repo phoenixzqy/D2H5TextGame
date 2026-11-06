@@ -58,7 +58,11 @@ const invalidDocuments = [
   { label: 'negative XP', document: envelope([fixture('invalid', { rewards: { xp: -1 } })]), field: '/quests/0/rewards/xp' },
   { label: 'fractional XP', document: envelope([fixture('invalid', { rewards: { xp: 0.5 } })]), field: '/quests/0/rewards/xp' },
   { label: 'string XP', document: envelope([fixture('invalid', { rewards: { xp: '1' } })]), field: '/quests/0/rewards/xp' },
-  { label: 'unknown quest field', document: envelope([fixture('invalid', { typo: true })]), field: '/quests/0' }
+  { label: 'unknown quest field', document: envelope([fixture('invalid', { typo: true })]), field: '/quests/0' },
+  { label: 'invalid counted-delivery area', document: envelope([fixture('invalid', {
+    objectives: [{ id: 'give', type: 'deliver', description: 'Give', npcId: 'npc/meshif',
+      itemId: 'quest/jade_trinket', count: 3, areaId: '../kurast' }]
+  })]), field: '/quests/0/objectives/0' }
 ];
 
 describe('synchronous quest consumer validation', () => {
@@ -123,23 +127,26 @@ describe('synchronous quest consumer validation', () => {
     });
   });
 
-  it('returns all 46 authored rows by identity in main/side order without mutating the documents', () => {
+  it('returns all 51 authored rows by identity in main/side order without mutating the documents', () => {
     const before = JSON.stringify([mainDocument, sideDocument]);
     const expected = [...mainDocument.quests, ...sideDocument.quests];
     expect(mainDocument.quests).toHaveLength(24);
-    expect(sideDocument.quests).toHaveLength(22);
+    expect(sideDocument.quests).toHaveLength(27);
     const first = loadQuests();
     const second = loadQuests();
-    expect(first).toHaveLength(46);
+    expect(first).toHaveLength(51);
     expect(first).toEqual(expected);
     first.forEach((row, index) => { expect(row).toBe(expected[index]); });
     expect(Object.isFrozen(first)).toBe(true);
     expect(second).not.toBe(first);
     expect(second).toEqual(first);
-    expect(new Set(first.flatMap(row => row.objectives.map(objective => objective.type))).size).toBe(16);
+    expect([...new Set(first.flatMap(row => row.objectives.map(objective => objective.type)))].sort()).toEqual([
+      'clear-area', 'collect', 'deliver', 'fetch', 'give', 'hire-mercenary', 'interact', 'kill',
+      'kill-boss', 'kill-boss-group', 'rescue', 'survive-waves', 'talk', 'transmute', 'use-item'
+    ]);
     expect([...new Set(first.flatMap(row => Object.keys(row.rewards ?? {})))].sort()).toEqual([
-      'areaUnlock', 'gemShards', 'gold', 'itemDrop', 'lootTable', 'mercenaryUnlock', 'questItem',
-      'service', 'skillPoints', 'stat', 'statPoints', 'title', 'vendorUnlock', 'xp'
+      'gemShards', 'gold', 'itemDrop', 'lootTable', 'mercenaryUnlock', 'questItem',
+      'runeShards', 'service', 'skillPoints', 'stat', 'statPoints', 'title', 'vendorUnlock', 'wishstones', 'xp'
     ]);
     expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
   });

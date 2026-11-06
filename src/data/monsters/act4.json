@@ -2,6 +2,14 @@
   {
     "id": "monsters/act4.venom-lord",
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.venomLord",
     "life": [
       300,
@@ -12,7 +20,6 @@
       40
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-poison-spit",
       "monster-inferno"
     ],
@@ -51,7 +58,6 @@
       50
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-charge"
     ],
     "attackSpeed": 110,
@@ -73,11 +79,27 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      35.2,
+      35.2
+    ],
+    "attackGrowth": [
+      5.5,
+      5.5
     ]
   },
   {
     "id": "monsters/act4.stygian-doll",
     "undead": true,
+    "attack": [
+      35.2,
+      35.2
+    ],
+    "attackGrowth": [
+      5.5,
+      5.5
+    ],
     "name": "monsters.stygianDoll",
     "life": [
       100,
@@ -88,7 +110,6 @@
       15
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-corpse-explosion"
     ],
     "attackSpeed": 120,
@@ -113,6 +134,14 @@
   {
     "id": "monsters/act4.damned",
     "undead": true,
+    "attack": [
+      32,
+      32
+    ],
+    "attackGrowth": [
+      5,
+      5
+    ],
     "name": "monsters.damned",
     "life": [
       150,
@@ -122,9 +151,7 @@
       15,
       20
     ],
-    "skills": [
-      "monster-weak-melee"
-    ],
+    "skills": [],
     "attackSpeed": 90,
     "defense": 32,
     "resistances": {},
@@ -180,6 +207,14 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
     ]
   },
   {
@@ -195,7 +230,6 @@
       45
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-bone-spirit"
     ],
     "attackSpeed": 100,
@@ -221,11 +255,27 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      35.2,
+      35.2
+    ],
+    "attackGrowth": [
+      5.5,
+      5.5
     ]
   },
   {
     "id": "monsters/act4.pit-lord",
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.pitLord",
     "life": [
       400,
@@ -236,7 +286,6 @@
       60
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-fire-breath",
       "monster-charge"
     ],
@@ -264,6 +313,14 @@
   {
     "id": "monsters/act4.mega-demon",
     "undead": false,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ],
     "name": "monsters.megaDemon",
     "life": [
       450,
@@ -274,7 +331,6 @@
       65
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-inferno"
     ],
     "attackSpeed": 110,
@@ -312,7 +368,6 @@
       250
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-frost-nova",
       "monster-charge"
     ],
@@ -324,11 +379,20 @@
     },
     "baseExperience": 1500,
     "canBeElite": false,
-    "canBeBoss": true
+    "canBeBoss": true,
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
+    ]
   },
   {
     "id": "monsters/act4.diablo",
     "undead": false,
+    "stunDurationMultiplier": 0.25,
     "name": "monsters.diablo",
     "life": [
       5000,
@@ -339,11 +403,16 @@
       400
     ],
     "skills": [
-      "monster-fire-breath",
-      "monster-lightning",
+      "monster-diablo-fire-breath",
+      "monster-diablo-lightning",
       "monster-bone-prison",
       "monster-charge"
     ],
+    "enrage": {
+      "lifeFraction": 0.15,
+      "attackSpeedMultiplier": 2,
+      "damagePct": 50
+    },
     "attackSpeed": 140,
     "defense": 250,
     "resistances": {
@@ -355,6 +424,14 @@
     },
     "baseExperience": 3000,
     "canBeElite": false,
-    "canBeBoss": true
+    "canBeBoss": true,
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
+    ]
   }
 ]

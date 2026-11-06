@@ -36,7 +36,7 @@ function actualBossWave() {
 
 describe('Act I manual chapter-boss equipment eligibility', () => {
   it.each([
-    [2, 'a2-tomb-of-tal-rasha', 32, 25600, 220, 280],
+    [2, 'a2-tomb-of-tal-rasha', 32, 25600, 350, 280],
     [3, 'a3-durance-of-hate', 47, 33600, 300, 360],
     [4, 'a4-chaos-sanctuary', 61, 44800, 420, 460],
     [5, 'a5-throne-of-destruction', 82, 57600, 520, 560]
@@ -74,9 +74,11 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
       kind: 'monster', stats: { lifeMax: 1200, attack: 90, defense: 40, magicResist: 15 } });
     expect(wave.lootTable).toBe('loot/act1-boss');
     expect(wave.spawns).toHaveLength(1);
+    expect(boss.attackRange).toEqual([90, 90]);
+    expect(oldBoss.attackRange).toEqual([150, 150]);
     // Reversing only the selected power fields recovers the old entire unit:
     // resistance, AS, dodge, skills, cooldowns, RNG-derived naming and ID stay intact.
-    expect({ ...boss, life: oldBoss.life, stats: { ...boss.stats,
+    expect({ ...boss, life: oldBoss.life, attackRange: oldBoss.attackRange, stats: { ...boss.stats,
       life: oldBoss.stats.life, lifeMax: oldBoss.stats.lifeMax, attack: oldBoss.stats.attack,
       defense: oldBoss.stats.defense, magicResist: oldBoss.stats.magicResist } }).toEqual(oldBoss);
   });
@@ -89,8 +91,8 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     expect(enemies[0]).toMatchObject({ level: 19, tier: 'chapter-boss', kind: 'monster' });
   });
 
-  // D08 extends the finite equipment ceiling to59; D05 keeps one rare Wrist Blade sibling from level12.
-  it.each([[8, 0], [9, 4], [10, 5], [12, 8], [14, 8], [19, 8], [20, 8], [39, 8], [40, 8], [59, 8], [60, 0]])(
+  // D08/D05 finite pools also include the P15 earned bow/javelin sources.
+  it.each([[8, 0], [9, 4], [10, 5], [12, 9], [14, 9], [19, 10], [20, 10], [39, 10], [40, 10], [59, 10], [60, 0]])(
     'admits %i-level equipment with exactly %i eligible authored rows', (level, count) => {
       const tc = required(loadTreasureClasses().get('loot/act1-boss'));
       expect(tc.picks.filter(pick => pick.type === 'item' &&
@@ -115,15 +117,15 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     const reward = awardLootForVictory({ slainEnemies, act: 1,
       treasureClassId: required(wave.lootTable), seed: 1 });
     expect(reward.items.map(item => item.baseId)).toEqual([
-      'items/base/helm-skull-cap', 'items/base/amu-brass',
-      'items/base/sh-kite', 'items/base/sh-kite'
+      'items/base/helm-skull-cap', 'items/base/weapon-bow',
+      'items/base/wp1h-scimitar', 'items/base/sh-kite'
     ]);
     expect(new Set(reward.items.map(item => item.id)).size).toBe(4);
     for (const item of reward.items) {
       expect(item).toMatchObject({ rarity: 'rare', level: 19, ilvl: 19 });
       expect(item.id.length).toBeGreaterThan(0);
-      if (item.baseId === 'items/base/amu-brass') expect(item.baseRolls).toEqual({});
-      else expect(required(item.baseRolls?.defense)).toBeGreaterThan(0);
+      const weapon = item.baseId === 'items/base/weapon-bow' || item.baseId === 'items/base/wp1h-scimitar';
+      expect(required(weapon ? item.baseRolls?.attack : item.baseRolls?.defense)).toBeGreaterThan(0);
       expect(required(item.affixes).length).toBeGreaterThan(0);
       expect(item.uniqueId).toBeUndefined();
     }

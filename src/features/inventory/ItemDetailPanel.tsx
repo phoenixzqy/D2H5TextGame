@@ -22,6 +22,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
+import { GameImage } from '@/ui/GameImage';
 import { getItemIconUrl } from '@/ui/imageHelpers';
 import { formatAffixRoll } from '@/ui/affixFormat';
 import { resolveItemDisplay, resolveSocketDisplayLines } from '@/ui/itemDisplay';
@@ -145,19 +146,19 @@ export function ItemDetailPanel({
 
   return (
     <div
-      className="flex flex-col gap-3 text-sm"
+      className="flex min-w-0 flex-col gap-3 break-words text-sm"
       data-testid="inv-detail-panel"
       data-rarity={item.rarity}
     >
       {/* Header: icon + name + type line + close */}
       <div className="flex items-start gap-3 border-b border-d2-border/60 pb-2">
-        <div className="w-16 h-16 shrink-0 border border-d2-border/70 bg-d2-bg/60 rounded flex items-center justify-center overflow-hidden">
-          {icon ? (
-            <img src={icon} alt={displayName} loading="lazy" className="w-full h-full object-contain" />
-          ) : (
-            <span aria-hidden className="font-serif text-d2-border text-2xl">?</span>
-          )}
-        </div>
+        <GameImage
+          src={icon}
+          alt={displayName}
+          size="lg"
+          className="border-d2-border/70 bg-none bg-d2-bg/60"
+          imageClassName="w-full h-full object-contain"
+        />
         <div className="min-w-0 flex-1">
           <RarityText
             rarity={item.rarity}
@@ -165,8 +166,8 @@ export function ItemDetailPanel({
           >
             {displayName}
           </RarityText>
-          <div className="text-[11px] text-d2-white/70 mt-0.5">{typeLine}</div>
-          {item.personalizedBy && <div className="text-xs text-d2-gold break-words" data-testid="inv-detail-personalization">
+          <div className="text-sm text-d2-white/70 mt-0.5">{typeLine}</div>
+          {item.personalizedBy && <div className="text-sm text-d2-gold break-words" data-testid="inv-detail-personalization">
             {t('detail.personalizedBy', { name: item.personalizedBy.name })}
           </div>}
         </div>
@@ -184,10 +185,10 @@ export function ItemDetailPanel({
       {/* Requirements */}
       {reqRows.length > 0 && (
         <section data-testid="inv-detail-required">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.required')}
           </h3>
-          <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs">
+          <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
             {reqRows.map((r) => (
               <li
                 key={r.key}
@@ -204,10 +205,10 @@ export function ItemDetailPanel({
       {/* Base stats */}
       {baseStatLines.length > 0 && (
         <section data-testid="inv-detail-base-stats">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.baseStats')}
           </h3>
-          <ul className="space-y-0.5 text-xs text-d2-white">
+          <ul className="space-y-0.5 text-sm text-d2-white">
             {baseStatLines.map((line) => (
               <li key={line}>{line}</li>
             ))}
@@ -218,10 +219,10 @@ export function ItemDetailPanel({
       {/* Affixes */}
       {item.affixes && item.affixes.length > 0 && (
         <section data-testid="inv-detail-affixes">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.affixes')}
           </h3>
-          <ul className="space-y-0.5 text-xs">
+          <ul className="space-y-0.5 text-sm">
             {item.affixes.map((a, i) => (
               <li key={i} className={rarityTextClass(item.rarity)} data-testid="inv-detail-affix">
                 {formatAffixRoll(a, tAffix)}
@@ -234,10 +235,10 @@ export function ItemDetailPanel({
       {/* Sockets */}
       {socketCount > 0 && (
         <section data-testid="inv-detail-sockets">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.sockets')}
           </h3>
-          <div className="flex flex-wrap gap-1 text-xs font-mono text-d2-white/85">
+          <div className="flex flex-wrap gap-1 text-sm font-mono text-d2-white/85">
             {socketBoxes.map((box, i) => (
               <span key={i}>{box}</span>
             ))}
@@ -248,10 +249,10 @@ export function ItemDetailPanel({
       {/* Set / unique flavor */}
       {specialStatLines.length > 0 && (
         <section data-testid="inv-detail-definition-stats">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.specialStats')}
           </h3>
-          <ul className="space-y-0.5 text-xs">
+          <ul className="space-y-0.5 text-sm">
             {specialStatLines.map((line, index) => (
               <li key={`${line.key}-${String(index)}`} className={rarityTextClass(item.rarity)}>
                 {line.text}
@@ -261,8 +262,8 @@ export function ItemDetailPanel({
         </section>
       )}
       {item.rarity === 'set' && display.set && (
-        <section data-testid="inv-detail-set" className="text-xs text-d2-set">
-          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1 not-italic">
+        <section data-testid="inv-detail-set" className="text-sm text-d2-set">
+          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
             {t('detail.setBonus')}
           </h3>
           <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>
@@ -271,7 +272,7 @@ export function ItemDetailPanel({
               <li
                 key={bonus.threshold}
                 data-active={bonus.active}
-                className={bonus.active ? 'text-d2-set' : 'text-d2-white/45'}
+                className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}
               >
                 <div className="font-semibold">
                   {t('detail.setBonusThreshold', { count: bonus.threshold })}
@@ -289,7 +290,7 @@ export function ItemDetailPanel({
         </section>
       )}
       {item.rarity === 'unique' && (display.flavor ?? !display.unique) && (
-        <section data-testid="inv-detail-unique" className="text-xs italic text-d2-unique">
+        <section data-testid="inv-detail-unique" className="text-sm italic text-d2-unique">
           <p>{display.flavor ?? t('detail.uniqueFlavor')}</p>
         </section>
       )}

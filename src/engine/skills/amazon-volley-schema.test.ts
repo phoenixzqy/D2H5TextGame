@@ -42,3 +42,15 @@ it('keeps every playable class definition schema valid', () => {
   for (const skills of Object.values(PLAYABLE_CLASS_SKILL_DATA)) for (const skill of skills)
     expect(validate(skill), skill.id + JSON.stringify(validate.errors)).toBe(true);
 });
+
+it.each([-1, '40', null])('rejects malformed volley Attack growth %j', attackDamagePctPerLevel => {
+  const skill = row('multiple-shot');
+  expect(validate({ ...skill, scaling: { ...skill.scaling, attackDamagePctPerLevel } })).toBe(false);
+});
+it('confines required rank-based Attack growth to Multiple Shot', () => {
+  const skill = row('multiple-shot'), scaling = { ...skill.scaling };
+  Reflect.deleteProperty(scaling, 'attackDamagePctPerLevel');
+  expect(validate({ ...skill, scaling })).toBe(false);
+  const other = row('guided-arrow');
+  expect(validate({ ...other, scaling: { ...other.scaling, attackDamagePctPerLevel: 40 } })).toBe(false);
+});

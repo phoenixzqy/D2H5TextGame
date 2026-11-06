@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/nonboss-loot.json",
+  "title": "Live ordinary-monster, champion and rare-leader loot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tiers", "acts"],
+  "properties": {
+    "tiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trash", "champion", "rare-elite"],
+      "properties": {
+        "trash": { "$ref": "#/$defs/tier", "description": "One unshifted ordinary-monster equipment attempt." },
+        "champion": { "$ref": "#/$defs/tier" }, "rare-elite": { "$ref": "#/$defs/tier" }
+      }
+    },
+    "acts": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["act", "tableIds", "equipmentSourceId", "jewelrySourceId", "terminalLevelCap"],
+        "properties": {
+          "act": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Actual live act." },
+          "tableIds": { "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true,
+            "items": { "$ref": "#/$defs/tableId" }, "description": "Ordinary tables eligible for tier projection." },
+          "equipmentSourceId": { "$ref": "#/$defs/tableId", "description": "Existing weighted trash equipment source." },
+          "jewelrySourceId": { "$ref": "#/$defs/tableId", "description": "Independent guaranteed jewelry source." },
+          "terminalLevelCap": { "type": "integer", "minimum": 1, "maximum": 200,
+            "description": "Finite extension of only the final equipment band." }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "tableId": { "type": "string", "pattern": "^loot/[a-z0-9-]+$" },
+    "tier": {
+      "type": "object", "additionalProperties": false,
+      "required": ["equipmentPicks", "minimumLevelOffset", "jewelryPicks", "noDrop", "rarityMultipliers"],
+      "properties": {
+        "equipmentPicks": { "type": "integer", "minimum": 1, "maximum": 3, "description": "Ordinary equipment attempts." },
+        "minimumLevelOffset": { "type": "integer", "minimum": 0, "maximum": 3, "description": "Added to source minima, never item level." },
+        "jewelryPicks": { "type": "integer", "minimum": 0, "maximum": 1, "description": "Additional noDrop0 jewelry picks." },
+        "noDrop": {
+          "type": "object", "additionalProperties": false, "required": ["normal", "nightmare", "hell"],
+          "properties": {
+            "normal": { "type": "number", "minimum": 0, "maximum": 1 },
+            "nightmare": { "type": "number", "minimum": 0, "maximum": 1 },
+            "hell": { "type": "number", "minimum": 0, "maximum": 1 }
+          }, "description": "Per-attempt miss probability by actual difficulty."
+        },
+        "rarityMultipliers": {
+          "type": "object", "additionalProperties": false, "required": ["rare", "set", "unique"],
+          "properties": {
+            "rare": { "type": "number", "minimum": 1, "maximum": 12 },
+            "set": { "type": "number", "minimum": 1, "maximum": 12 },
+            "unique": { "type": "number", "minimum": 1, "maximum": 12 }
+          }, "description": "Rarity weight multipliers after gear/offline MF."
+        }
+      }
+    }
+  }
+}

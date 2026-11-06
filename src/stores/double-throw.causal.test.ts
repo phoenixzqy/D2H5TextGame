@@ -73,11 +73,11 @@ it('ends the pair when its sole original dies even while other enemies are unava
   expect(out.events.filter(e => e.kind === 'death')).toHaveLength(1);
   expect(out.result.playerTeam[0]?.mana).toBe(88);
 });
-it('preserves existing enemy-summon priority before battle insertion order', () => {
+it('keeps hostile insertion order within the original pair despite a later summon', () => {
   const base = fixture(1, 7, 4), out = record({ ...base,
     enemyTeam: base.enemyTeam.map((u, i) => i === 3 ? { ...u, kind: 'summon' } : u) });
   expect(out.events.flatMap(e => e.kind === 'damage' && e.source === 'hero' ? [e.target] : []))
-    .toEqual(['enemy-3', 'enemy-0']);
+    .toEqual(['enemy-0', 'enemy-1']);
 });
 it('stops the second throw immediately after lethal reflection kills the caster', () => {
   const base = fixture(1, 7, 3), out = record({ ...base,
@@ -166,8 +166,8 @@ it.each([1, 2, 20])('rank%i resolves two total throws across the fixed original 
     expect(hits.every(e => e.simClockMs === 1700 && e.damageType === 'physical')).toBe(true);
     for (const hit of hits) {
       if (hit.dodged) expect(hit.amount).toBe(0);
-      else { expect(hit.amount).toBeGreaterThanOrEqual(50 + 5 * (rank - 1));
-        expect(hit.amount).toBeLessThanOrEqual(75 + 5 * (rank - 1)); }
+      else { expect(hit.amount).toBeGreaterThanOrEqual(50 + 5 * (rank - 1) + 100 * .3 * (rank - 1));
+        expect(hit.amount).toBeLessThanOrEqual(75 + 5 * (rank - 1) + 100 * .3 * (rank - 1)); }
     }
     for (const enemy of out.result.enemyTeam)
       expect(enemy.life).toBe(100000 - hits.filter(h => h.target === enemy.id).reduce((n, h) => n + h.amount, 0));

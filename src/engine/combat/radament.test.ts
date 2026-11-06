@@ -35,14 +35,17 @@ describe('Radament early Act II durability calibration', () => {
     }
   });
 
-  it('changes only life while preserving identity, every non-life stat and RNG at Normal and Nightmare levels', () => {
+  it('changes life and native delivery while preserving identity, every non-life stat and RNG', () => {
     const previous: MonsterDef = { ...radament, life: [820, 1020], lifeGrowth: [82, 102] };
     for (const level of [22, 42]) for (let seed = 1; seed <= 16; seed++) {
       const rng = createRng(seed), oldRng = createRng(seed);
       const boss = buildMonsterUnit({ def: radament, level, tier: 'boss', rng });
       const old = buildMonsterUnit({ def: previous, level, tier: 'boss', rng: oldRng });
-      expect(boss).toEqual({ ...old, life: boss.life, stats: { ...old.stats,
-        life: boss.life, lifeMax: boss.life } });
+      // The exact native definition has authored delivery; the modified
+      // historical definition is deliberately unclassified.
+      expect(old).not.toHaveProperty('basicAttackDelivery');
+      expect(boss).toEqual({ ...old, basicAttackDelivery: 'melee', life: boss.life,
+        stats: { ...old.stats, life: boss.life, lifeMax: boss.life } });
       expect(boss.life).toBeLessThan(old.life);
       expect(boss.life).toBeGreaterThanOrEqual(level === 22 ? 4650 : 7650);
       expect(boss.life).toBeLessThanOrEqual(level === 22 ? 5766 : 9486);

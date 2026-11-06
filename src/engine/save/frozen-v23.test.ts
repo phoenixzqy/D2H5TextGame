@@ -8,7 +8,7 @@ import { act5Runtime } from '@/data/loaders/act5-runtime';
 import { endgameDefinition } from '@/data/loaders/endgame';
 import { subAreas } from '@/data/index';
 import { campaignEvidence } from '../../../tests/helpers/endgame';
-import { withoutV17Fields, withoutV19Fields, withoutV20Fields, withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withoutV19Fields, withoutV20Fields, withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 import { ACT1_IMBUE_SOURCES, ACT1_QUEST_RECEIPTS } from '../map/act1-quest-sources';
 import { CAIN_QUEST, CAIN_SIDE_QUEST, CAIN_SCROLL_SOURCE, CAIN_SCROLL_ITEM } from '../map/cain-quest';
 import { MALUS_QUEST, MALUS_SIDE_QUEST, MALUS_SOURCE, MALUS_ITEM } from '../map/malus-quest';
@@ -142,11 +142,11 @@ function serviceHistory(): SaveV23 {
 describe('literal23 baseline and retained Act I authority', () => {
   it('keeps a distinct literal23 reader after native24 registration', () => {
     expect(Reflect.get(validation, 'validateFrozenV23Save')).toBeTypeOf('function');
-    expect(CURRENT_SAVE_VERSION).toBe(24); expect(MIGRATIONS[24]).toBeTypeOf('function');
+    expect(CURRENT_SAVE_VERSION).toBe(33); expect(MIGRATIONS[24]).toBeTypeOf('function');
   });
   it.each([sample, act1History, replayHistory])('preserves a valid constructed history without mutation', fixture => {
     const save = fixture(), before = structuredClone(save);
-    expect(validation.validateSave(withV24Defaults(save))).toEqual(toJsonSafe(withV24Defaults(save)));
+    expect(validation.validateSave(withCurrentReplayDefaults(save))).toEqual(toJsonSafe(withCurrentReplayDefaults(save)));
     expect(literal23(save)).toEqual(toJsonSafe(save));
     expect(save).toEqual(before);
   });
@@ -157,7 +157,7 @@ describe('literal23 baseline and retained Act I authority', () => {
       [COUNTESS.quest]: { ...completed(COUNTESS.quest, claimed), objectives: {} }
     } } };
     expect(literal23(input)).toEqual(toJsonSafe(input));
-    expect(validation.validateSave(withV24Defaults(input))).toEqual(toJsonSafe(withV24Defaults(input)));
+    expect(validation.validateSave(withCurrentReplayDefaults(input))).toEqual(toJsonSafe(withCurrentReplayDefaults(input)));
   });
   it.each(['cain-owned-scroll', 'cain-no-tree', 'cain-no-main', 'cain-no-rescue',
     'malus-owned-item', 'malus-no-recover', 'malus-no-main', 'malus-no-present',
@@ -176,7 +176,7 @@ describe('literal23 baseline and retained Act I authority', () => {
       if (fault === 'countess-no-row') Reflect.deleteProperty(save.map.questProgress, COUNTESS.quest);
       if (fault === 'countess-in-progress') Reflect.set(save.map.questProgress[COUNTESS.quest] ?? {}, 'status', 'inProgress');
       const before = structuredClone(save);
-      expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Invalid');
+      expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Invalid');
       expect(() => literal23(save)).toThrow('Invalid'); expect(save).toEqual(before);
     });
 });
@@ -187,29 +187,29 @@ describe('literal23 catalog independence with current24 remaining live', () => {
     const save = family === 'book' ? sample() : act1History();
     const input = family === 'book' ? { ...save, map: { ...save.map, questProgress: { [id]: completed(id) } },
       inventory: { ...save.inventory, questItems: { [`${id}#reward:questItem`]: { itemId: 'items/book_of_skill', state: 'owned' as const } } } } : save;
-    expect(validation.validateSave(withV24Defaults(input))).toEqual(toJsonSafe(withV24Defaults(input)));
+    expect(validation.validateSave(withCurrentReplayDefaults(input))).toEqual(toJsonSafe(withCurrentReplayDefaults(input)));
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(quest => quest.id === id
       ? { ...quest, objectives: [...quest.objectives, { id: 'future-objective', type: 'talk', description: 'Future' }] } : quest));
-    expect(() => validation.validateSave(withV24Defaults(input))).toThrow('Invalid');
+    expect(() => validation.validateSave(withCurrentReplayDefaults(input))).toThrow('Invalid');
     expect(literal23(input)).toEqual(toJsonSafe(input));
   });
   it.each([MALUS_ITEM, CAIN_SCROLL_ITEM])('retains original %s after the live item catalog changes', id => {
     const save = act1History();
     vi.spyOn(itemLoader, 'loadQuestItems').mockReturnValue(items.filter(item => item.id !== id));
-    expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Invalid');
+    expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Invalid');
     expect(literal23(save)).toEqual(toJsonSafe(save));
   });
   it('keeps both original claimed imbue mappings after live reward changes', () => {
     const save = act1History();
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(quest => quest.id === MALUS_QUEST
       ? { ...quest, rewards: { ...quest.rewards, service: 'future-service' } } : quest));
-    expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Invalid');
+    expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Invalid');
     expect(literal23(save)).toEqual(toJsonSafe(save));
   });
   it('keeps its original area domain after live areas move', () => {
     const save = replayHistory();
     subAreas.splice(0, subAreas.length);
-    expect(() => validation.validateSave(withV24Defaults(save))).toThrow();
+    expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow();
     expect(literal23(save)).toEqual(toJsonSafe(save));
   });
   it('keeps its original achievement title after live title changes', () => {
@@ -217,7 +217,7 @@ describe('literal23 catalog independence with current24 remaining live', () => {
     Reflect.set(endgameDefinition.achievement.reward, 'titleId', 'titles/future-achievement');
     // Current24 captures this title at module load, so mutation alone does not
     // change its reader. This preserves that real baseline, without inventing RED.
-    expect(validation.validateSave(withV24Defaults(save))).toEqual(toJsonSafe(withV24Defaults(save)));
+    expect(validation.validateSave(withCurrentReplayDefaults(save))).toEqual(toJsonSafe(withCurrentReplayDefaults(save)));
     expect(literal23(save)).toEqual(toJsonSafe(save));
   });
   it('keeps its original Act V source after live proof changes', () => {
@@ -226,7 +226,7 @@ describe('literal23 catalog independence with current24 remaining live', () => {
     if (!encounter) throw new Error('Missing fixture encounter');
     act5Runtime.encounters[act5Runtime.encounters.length - 1] = { ...encounter,
       proof: 'quests/act5-eve-of-destruction#action:future-victory' };
-    expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Invalid');
+    expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Invalid');
     expect(literal23(save)).toEqual(toJsonSafe(save));
   });
   it('refuses a future-only area that current24 accepts after authoring changes', () => {
@@ -234,7 +234,7 @@ describe('literal23 catalog independence with current24 remaining live', () => {
     if (!area) throw new Error('Missing fixture area');
     subAreas.push({ ...area, id: 'areas/future-only' });
     const input = { ...save, map: { ...save.map, nightmareClearedSubAreas: ['areas/future-only'] } };
-    expect(validation.validateSave(withV24Defaults(input))).toEqual(toJsonSafe(withV24Defaults(input)));
+    expect(validation.validateSave(withCurrentReplayDefaults(input))).toEqual(toJsonSafe(withCurrentReplayDefaults(input)));
     expect(() => literal23(input)).toThrow('Invalid');
   });
   it('refuses a future-only physical item admitted by the current catalog', () => {
@@ -245,13 +245,13 @@ describe('literal23 catalog independence with current24 remaining live', () => {
     const input = { ...save, map: { ...save.map, questProgress: { [id]: completed(id) } },
       inventory: { ...save.inventory, questItems: { [`${id}#objective:obj-kill-radament`]:
         { itemId: future.id, state: 'owned' as const } } } };
-    expect(validation.validateSave(withV24Defaults(input))).toEqual(toJsonSafe(withV24Defaults(input)));
+    expect(validation.validateSave(withCurrentReplayDefaults(input))).toEqual(toJsonSafe(withCurrentReplayDefaults(input)));
     expect(() => literal23(input)).toThrow('Invalid');
   });
   it('does not consult the live action catalog for historical source authority', () => {
     const save = act1History();
     vi.spyOn(actionLoader, 'loadQuestActions').mockImplementation(() => { throw new Error('Future action catalog'); });
-    expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Future action catalog');
+    expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Future action catalog');
     expect(literal23(save)).toEqual(toJsonSafe(save));
     expect(actions).toHaveLength(2);
   });
@@ -261,7 +261,7 @@ describe('narrow raw24 reservation before predecessor migration or normalization
   const versions = Array.from({ length: 23 }, (_, index) => index + 1);
   it.each(versions)('accepts the unmodified valid v%s predecessor', version => {
       const input = predecessor(version), before = structuredClone(input);
-    expect(validation.decodeSave(input).version).toBe(24); expect(input).toEqual(before);
+    expect(validation.decodeSave(input).version).toBe(33); expect(input).toEqual(before);
   });
   it.each(versions.flatMap(version => ['clears', 'selection', 'ordinal'].map(field => ({ version, field }))))(
     'rejects reserved $field in raw v$version before it can be stripped', ({ version, field }) => {
@@ -305,7 +305,7 @@ describe('narrow raw24 reservation before predecessor migration or normalization
   it('does not tighten unrelated unknown historical fields', () => {
     for (const version of [6, 16, 22, 23]) {
       const input = predecessor(version); predecessorMap(input).unrelatedHistoricalNote = 'preserve';
-      expect(validation.decodeSave(input).version).toBe(24);
+      expect(validation.decodeSave(input).version).toBe(33);
     }
     const current = sample(), input = { ...current, map: { ...current.map, unrelatedHistoricalNote: 'preserve' } };
     expect(literal23(input)).toEqual(toJsonSafe(input));
@@ -324,11 +324,11 @@ describe('literal23 nested source authority', () => {
       index % 2 ? { serviceId, state: 'consumed' as const, targetItemId: `salvaged-${String(index)}` }
         : { serviceId, state: 'available' as const }])) } };
     const before = structuredClone(input);
-    expect(validation.validateSave(withV24Defaults(input))).toEqual(toJsonSafe(withV24Defaults(input)));
+    expect(validation.validateSave(withCurrentReplayDefaults(input))).toEqual(toJsonSafe(withCurrentReplayDefaults(input)));
     expect(literal23(input)).toEqual(toJsonSafe(input)); expect(input).toEqual(before);
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(quest => ({ ...quest,
       rewards: {}, objectives: [...quest.objectives, { id: 'future', type: 'talk', description: 'Future' }] })));
-    expect(() => validation.validateSave(withV24Defaults(input))).toThrow();
+    expect(() => validation.validateSave(withCurrentReplayDefaults(input))).toThrow();
     expect(literal23(input)).toEqual(toJsonSafe(input));
   });
   it.each(['council', 'guardian-input', 'forge-input', 'potion', 'scroll', 'service-claim'])(
@@ -347,7 +347,7 @@ describe('literal23 nested source authority', () => {
         Reflect.set(save.map.questProgress[prison] ?? {}, 'rewardClaimed', false);
       }
       const before = structuredClone(save);
-      expect(() => validation.validateSave(withV24Defaults(save))).toThrow('Invalid');
+      expect(() => validation.validateSave(withCurrentReplayDefaults(save))).toThrow('Invalid');
       expect(() => literal23(save)).toThrow('Invalid'); expect(save).toEqual(before);
     });
 });

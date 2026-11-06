@@ -17,7 +17,7 @@ import { loadQuests } from '@/data/loaders/quests';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save/serialize';
-import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 const QUEST='quests/act1-tools-of-the-trade', SOURCE=QUEST+'#objective:obj-recover-malus';
 const AREA='areas/act1-catacombs', ITEM='quest/horadric_malus';
 const domains=[usePlayerStore,useInventoryStore,useMapStore,useMercStore,useMetaStore,useFormationStore] as const;
@@ -65,6 +65,6 @@ describe('D11 exact Malus physical source',()=>{
   track('claimed');expect(recoverQuestTool(SOURCE)).toBe('ok');if(state==='consumed')expect(giveQuestItem(SOURCE,'npc/charsi')).toBe('ok');const current=durable(),predecessor=withoutV24Fields(current),old={...predecessor,version:22};const before=structuredClone(old);expect(old.inventory.questItems[SOURCE]).toEqual({itemId:ITEM,state});expect(()=>decodeSave(toJsonSafe(old))).toThrow('Invalid save: unknown quest item source or item');expect(old).toEqual(before);
  });
  it('migrates sparse claimed22 without manufacturing a physical source',()=>{
-  track('claimed');const current=durable(),predecessor=withoutV24Fields(current),old={...predecessor,version:22};expect(decodeSave(toJsonSafe(old))).toEqual(withV24Defaults({...predecessor,version:23}));expect(current.inventory.questItems).toEqual({});expect(current.inventory.questServices).toEqual({});
+  track('claimed');const current=durable(),predecessor=withoutV24Fields(current),old={...predecessor,version:22};expect(decodeSave(toJsonSafe(old))).toEqual(withCurrentReplayDefaults({...predecessor,version:23}));expect(current.inventory.questItems).toEqual({});expect(current.inventory.questServices).toEqual({});
  });
 });

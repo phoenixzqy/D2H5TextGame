@@ -103,8 +103,10 @@ it('uses a real first kill before the first native Corpse Explosion and pays ord
   if (priorMana.kind !== 'mana') throw new Error('Missing preceding native mana event');
   const paid = required(events.slice(castIndex + 1).find(e => e.kind === 'mana' && e.target === player().id));
   expect(paid).toMatchObject({ reason: 'cast', mana: priorMana.mana - 20, simClockMs: cast.simClockMs });
+  const priorCorpses = deaths.filter(e => events.indexOf(e) < castIndex).length;
+  expect(events.slice(0, castIndex).some(e => e.kind === 'revive')).toBe(false);
   expect(events.slice(castIndex + 1).find(e => e.kind === 'message'))
-    .toMatchObject({ messageKey: 'combat:corpses.consumed', params: { count: 0 } });
+    .toMatchObject({ messageKey: 'combat:corpses.consumed', params: { count: priorCorpses - 1 } });
   expect(recording.outcome.finalEnemyTeam.map(u => u.id)).toEqual(engineInput.enemyTeam.map(u => u.id));
   expect(recording.outcome.finalEnemyTeam.every(u => u.life === 0)).toBe(true);
   expect(events.some(e => e.kind === 'damage' && e.source === player().id &&

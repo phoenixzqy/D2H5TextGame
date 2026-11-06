@@ -210,7 +210,7 @@ it('persists only allocations, round-trips Save22 exactly and recomposes the fre
   arrange();
   const save = snapshotStores();
   if (!save) throw new Error('Missing native allied aura save');
-  expect(save.version).toBe(24);
+  expect(save.version).toBe(32);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   const serialized = JSON.stringify(toJsonSafe(snapshotStores()));
   for (const field of ['druidAllyAuras', 'oakRank', 'heartRank', 'vigorLife'])

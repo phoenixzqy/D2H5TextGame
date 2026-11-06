@@ -7,6 +7,7 @@
   "required": [
     "version",
     "independentDropChances",
+    "currencyRewards",
     "runeOrder",
     "runeWeights",
     "actRuneCaps",
@@ -18,7 +19,9 @@
     "actGemCaps",
     "nonHellGemCap",
     "gemQualityWeights",
-    "profiles"
+    "profiles",
+    "chapterBossMaterials",
+    "treasureGoblin"
   ],
   "properties": {
     "version": {
@@ -510,6 +513,367 @@
           }
         }
       }
+    },
+    "currencyRewards": {
+      "description": "Authored secondary currency tuning; defaults preserve existing output and RNG ordering.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runeShards",
+        "wishstones"
+      ],
+      "properties": {
+        "runeShards": {
+          "description": "Per-kill rune-shard formula inputs; shard balances remain existing currencies.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "basePerLevel",
+            "tierMultipliers",
+            "varianceMin",
+            "varianceSpan"
+          ],
+          "properties": {
+            "basePerLevel": {
+              "description": "Base rune-shards per monster level.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "tierMultipliers": {
+              "description": "Multipliers applied before currency-find and variance.",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "trash",
+                "elite",
+                "rare-minion",
+                "champion",
+                "rare-elite",
+                "boss",
+                "chapter-boss"
+              ],
+              "properties": {
+                "trash": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "elite": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "rare-minion": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "champion": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "rare-elite": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "boss": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "chapter-boss": {
+                  "description": "Shard multiplier for this monster tier.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              }
+            },
+            "varianceMin": {
+              "description": "Inclusive lower variance multiplier.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "varianceSpan": {
+              "description": "Uniform variance width; retain one RNG draw even when zero.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "wishstones": {
+          "description": "Wishstone awards; recruitment remains their only spend path.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "firstClearAmount",
+            "killChance",
+            "championChance",
+            "byTierAndAct",
+            "bossDifficultyMultipliers"
+          ],
+          "properties": {
+            "firstClearAmount": {
+              "description": "Guaranteed wishstones on an ordinary area's first complete victory per difficulty, independent of kill rewards.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "killChance": {
+              "description": "One probability gate on the combined direct and secondary wishstones from a kill; quest-table grants bypass this gate.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "championChance": {
+              "description": "Champion wishstone gate, before the rune/gem gates.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "byTierAndAct": {
+              "description": "Per-tier amounts in stable act order; champion amounts require its probability gate.",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "trash",
+                "elite",
+                "rare-minion",
+                "champion",
+                "rare-elite",
+                "boss",
+                "chapter-boss"
+              ],
+              "properties": {
+                "trash": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "elite": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "rare-minion": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "champion": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "rare-elite": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "boss": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "chapter-boss": {
+                  "description": "Integer wishstones by Act I\u2013V before boss difficulty scaling.",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                }
+              }
+            },
+            "bossDifficultyMultipliers": {
+              "description": "Only boss and chapter-boss amounts use difficulty scaling; floor the result.",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "normal",
+                "nightmare",
+                "hell"
+              ],
+              "properties": {
+                "normal": {
+                  "description": "Wishstone multiplier for boss/chapter-boss kills at this difficulty.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "nightmare": {
+                  "description": "Wishstone multiplier for boss/chapter-boss kills at this difficulty.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "hell": {
+                  "description": "Wishstone multiplier for boss/chapter-boss kills at this difficulty.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "chapterBossMaterials": {
+      "description": "Complete live chapter-boss material bundles, replacing independent and mixed TC material picks only for these tables.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "loot/act1-boss",
+        "loot/act2-boss",
+        "loot/act3-boss",
+        "loot/act4-boss",
+        "loot/act5-boss"
+      ],
+      "properties": {
+        "loot/act1-boss": {
+          "$ref": "#/$defs/chapterBossMaterialBundle"
+        },
+        "loot/act2-boss": {
+          "$ref": "#/$defs/chapterBossMaterialBundle"
+        },
+        "loot/act3-boss": {
+          "$ref": "#/$defs/chapterBossMaterialBundle"
+        },
+        "loot/act4-boss": {
+          "$ref": "#/$defs/chapterBossMaterialBundle"
+        },
+        "loot/act5-boss": {
+          "$ref": "#/$defs/chapterBossMaterialBundle"
+        }
+      }
+    },
+    "treasureGoblin": {
+      "description": "Live goblin equipment, materials and gated wishstone quantity; explicit quest caches retain the raw table.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "treasureClassId",
+        "equipmentPicks",
+        "terminalLevelCap",
+        "runePoolActOffset",
+        "runeQuantityMin",
+        "runeQuantityMax",
+        "gemQuantityMin",
+        "gemQuantityMax",
+        "wishstoneQuantityMin",
+        "wishstoneQuantityMax"
+      ],
+      "properties": {
+        "treasureClassId": {
+          "description": "Only this live tier-boss table receives the special bundle.",
+          "const": "loot/treasure-goblin"
+        },
+        "equipmentPicks": {
+          "description": "Number of equipment-only ordinary picks before the existing rare+ guarantee.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "terminalLevelCap": {
+          "description": "Finite upper bound replacing only the final equipment eligibility band.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "runePoolActOffset": {
+          "description": "Rune source act offset, capped to the last authored act.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "runeQuantityMin": {
+          "description": "Inclusive minimum independently sampled runes.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "runeQuantityMax": {
+          "description": "Inclusive maximum independently sampled runes.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "gemQuantityMin": {
+          "description": "Inclusive minimum independently sampled gems.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "gemQuantityMax": {
+          "description": "Inclusive maximum independently sampled gems.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "wishstoneQuantityMin": {
+          "description": "Inclusive minimum wishes after the shared kill gate succeeds, independent of act and difficulty.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "wishstoneQuantityMax": {
+          "description": "Inclusive maximum wishes sampled from the wishstone RNG only after the shared kill gate succeeds.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        }
+      }
     }
   },
   "$defs": {
@@ -533,6 +897,64 @@
           "type": "number",
           "minimum": 0,
           "maximum": 1
+        }
+      }
+    },
+    "chapterBossMaterialBundle": {
+      "description": "Bounded required materials for one authored chapter-boss table.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "act",
+        "runePoolAct",
+        "runeQuantityMin",
+        "runeQuantityMax",
+        "runeMinOrdinal",
+        "runeMaxOrdinal",
+        "gemQuantity"
+      ],
+      "properties": {
+        "act": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Actual encounter act; must match its configured table and live input."
+        },
+        "runePoolAct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Source act pool for the forced rune band; difficulty and tier caps still apply."
+        },
+        "runeQuantityMin": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Inclusive minimum number of independently sampled runes."
+        },
+        "runeQuantityMax": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Inclusive maximum rune count; must be at least the minimum."
+        },
+        "runeMinOrdinal": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 33,
+          "description": "Inclusive minimum canonical rune ordinal, independent of Rune.tier."
+        },
+        "runeMaxOrdinal": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 33,
+          "description": "Inclusive maximum canonical rune ordinal, intersected with pool and difficulty caps."
+        },
+        "gemQuantity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8,
+          "description": "Exact number of independently sampled gems using actual act and existing quality caps."
         }
       }
     }

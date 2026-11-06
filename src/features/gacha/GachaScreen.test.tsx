@@ -26,6 +26,17 @@ function renderScreen() {
 }
 
 describe('GachaScreen', () => {
+  it('retains the saved history when the screen is remounted', () => {
+    act(() => { useMetaStore.getState().addGachaCurrency(90); });
+    const mounted = renderScreen();
+    fireEvent.click(screen.getByTestId('gacha-pull-10'));
+    const history = useMetaStore.getState().recruitmentState.history;
+    expect(history).toHaveLength(10);
+    mounted.unmount(); renderScreen();
+    expect(screen.getByTestId('gacha-recent').querySelectorAll('li')).toHaveLength(10);
+    expect(useMetaStore.getState().recruitmentState.history).toBe(history);
+    expect(screen.getByTestId('gacha-copy-history')).toBeEnabled();
+  });
   beforeEach(() => {
     act(() => {
       useMetaStore.getState().reset();
@@ -62,6 +73,7 @@ describe('GachaScreen', () => {
     });
     renderScreen();
     fireEvent.click(screen.getByTestId('gacha-pull-10'));
+    fireEvent.click(screen.getByTestId('gacha-skip-reveal'));
     const list = screen.getByTestId('gacha-results');
     expect(list.querySelectorAll('li').length).toBe(10);
   });
@@ -72,6 +84,7 @@ describe('GachaScreen', () => {
     expect(screen.getByText('💠 90')).toBeInTheDocument();
     expect(screen.getByTestId('gacha-pull-10')).toBeEnabled();
     fireEvent.click(screen.getByTestId('gacha-pull-10'));
+    fireEvent.click(screen.getByTestId('gacha-skip-reveal'));
     expect(screen.getByTestId('gacha-results').querySelectorAll('li')).toHaveLength(10);
     expect(screen.getByText('💠 0')).toBeInTheDocument();
     expect(screen.getByTestId('gacha-pull-1')).toBeDisabled();

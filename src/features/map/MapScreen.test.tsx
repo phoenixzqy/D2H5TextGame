@@ -103,4 +103,23 @@ describe('MapScreen — idle gating + stop toggle', () => {
     await i18n.changeLanguage('en');
     expect(tDataKey(i18n.getFixedT('en'), 'maps.area.act4-outer-steppes')).toBe('Outer Steppes');
   });
+
+  it.each([
+    { lng: 'en', difficulty: 'normal', tomb: 'Enemy Lv: 27–32', city: 'Enemy Lv: 22–26' },
+    { lng: 'en', difficulty: 'nightmare', tomb: 'Enemy Lv: 47–52', city: 'Enemy Lv: 42–46' },
+    { lng: 'en', difficulty: 'hell', tomb: 'Enemy Lv: 67–72', city: 'Enemy Lv: 62–66' },
+    { lng: 'zh-CN', difficulty: 'normal', tomb: '敌人等级: 27–32', city: '敌人等级: 22–26' },
+    { lng: 'zh-CN', difficulty: 'nightmare', tomb: '敌人等级: 47–52', city: '敌人等级: 42–46' },
+    { lng: 'zh-CN', difficulty: 'hell', tomb: '敌人等级: 67–72', city: '敌人等级: 62–66' }
+  ] as const)('shows whole-challenge enemy levels in $lng / $difficulty (BUG-603)', async ({ lng, difficulty, tomb, city }) => {
+    await i18n.changeLanguage(lng);
+    renderMap();
+    const actToggle = screen.getByRole('button', { name: /(?:Act 2|第 2 章) ·/ });
+    act(() => { fireEvent.click(actToggle); });
+    // Display projection only: no campaign authority, rewards or replay unlocks are granted.
+    act(() => { useMapStore.setState({ selectedDifficulty: difficulty }); });
+    expect(await screen.findByTestId('sub-area-row-a2-tomb-of-tal-rasha')).toHaveTextContent(tomb);
+    expect(screen.getByTestId('sub-area-row-a2-lost-city')).toHaveTextContent(city);
+    expect(screen.getByTestId('map-screen')).not.toHaveTextContent(/Recommended Lv:|推荐等级:/);
+  });
 });

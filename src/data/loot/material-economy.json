@@ -253,5 +253,141 @@
       "act": 5,
       "difficulty": "hell"
     }
+  },
+  "currencyRewards": {
+    "runeShards": {
+      "basePerLevel": 5,
+      "tierMultipliers": {
+        "trash": 1,
+        "elite": 2.5,
+        "rare-minion": 2.5,
+        "champion": 4,
+        "rare-elite": 6,
+        "boss": 50,
+        "chapter-boss": 50
+      },
+      "varianceMin": 0.7,
+      "varianceSpan": 0.6
+    },
+    "wishstones": {
+      "firstClearAmount": 5,
+      "killChance": 0.025,
+      "championChance": 0.4,
+      "byTierAndAct": {
+        "trash": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "elite": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "rare-minion": [
+          1,
+          1,
+          1,
+          2,
+          2
+        ],
+        "champion": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "rare-elite": [
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "boss": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "chapter-boss": [
+          8,
+          12,
+          16,
+          24,
+          40
+        ]
+      },
+      "bossDifficultyMultipliers": {
+        "normal": 1,
+        "nightmare": 1.2,
+        "hell": 1.5
+      }
+    }
+  },
+  "chapterBossMaterials": {
+    "loot/act1-boss": {
+      "act": 1,
+      "runePoolAct": 2,
+      "runeQuantityMin": 1,
+      "runeQuantityMax": 1,
+      "runeMinOrdinal": 6,
+      "runeMaxOrdinal": 7,
+      "gemQuantity": 2
+    },
+    "loot/act2-boss": {
+      "act": 2,
+      "runePoolAct": 3,
+      "runeQuantityMin": 1,
+      "runeQuantityMax": 2,
+      "runeMinOrdinal": 8,
+      "runeMaxOrdinal": 15,
+      "gemQuantity": 3
+    },
+    "loot/act3-boss": {
+      "act": 3,
+      "runePoolAct": 4,
+      "runeQuantityMin": 2,
+      "runeQuantityMax": 2,
+      "runeMinOrdinal": 15,
+      "runeMaxOrdinal": 20,
+      "gemQuantity": 4
+    },
+    "loot/act4-boss": {
+      "act": 4,
+      "runePoolAct": 5,
+      "runeQuantityMin": 2,
+      "runeQuantityMax": 3,
+      "runeMinOrdinal": 18,
+      "runeMaxOrdinal": 21,
+      "gemQuantity": 5
+    },
+    "loot/act5-boss": {
+      "act": 5,
+      "runePoolAct": 5,
+      "runeQuantityMin": 3,
+      "runeQuantityMax": 5,
+      "runeMinOrdinal": 21,
+      "runeMaxOrdinal": 33,
+      "gemQuantity": 8
+    }
+  },
+  "treasureGoblin": {
+    "treasureClassId": "loot/treasure-goblin",
+    "equipmentPicks": 5,
+    "terminalLevelCap": 122,
+    "runePoolActOffset": 1,
+    "runeQuantityMin": 1,
+    "runeQuantityMax": 4,
+    "gemQuantityMin": 5,
+    "gemQuantityMax": 10,
+    "wishstoneQuantityMin": 1,
+    "wishstoneQuantityMax": 3
   }
 }

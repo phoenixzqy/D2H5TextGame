@@ -12,7 +12,7 @@ import { SkillsScreen } from '@/features/skills/SkillsScreen';
 
 const skills = [
   { slug: 'guided-arrow', min: 70, max: 100, growth: 6, mana: 20 },
-  { slug: 'multiple-shot', min: 40, max: 60, growth: 4, mana: 15 },
+  { slug: 'multiple-shot', min: 40, max: 60, growth: 12, mana: 15 },
   { slug: 'strafe', min: 35, max: 55, growth: 4, mana: 20 }
 ] as const;
 beforeEach(() => { usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('ready'); });
@@ -47,6 +47,11 @@ for (const locale of ['en', 'zh-CN'] as const) for (const skill of skills) {
         : locale === 'en' ? ['2 ordered passes', 'up to 2 independent Physical attempts', 'dead originals are skipped', 'without redistributing attempts', 'Stop on caster death']
           : ['依次进行2轮攻击', '最多承受2次独立物理判定', '原目标死亡后跳过', '不转移其剩余次数', '施法者死亡立即停止'];
     for (const phrase of phrases) expect(panel).toHaveTextContent(phrase);
+    if (skill.slug === 'multiple-shot') {
+      const attack = 40 * (Math.max(1, rank) - 1);
+      expect(panel).toHaveTextContent(locale === 'en' ? `plus ${String(attack)}% of current Attack`
+        : `另加当前攻击力的${String(attack)}%`);
+    }
     expect(panel.textContent).not.toMatch(/\{\{|undefined|NaN|details\./);
     expect(usePlayerStore.getState().player).toEqual(before);
   });

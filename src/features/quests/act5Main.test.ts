@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadQuests } from '@/data/loaders/quests';
+import * as award from '@/engine/loot/award';
 import * as towns from '@/data/loaders/towns';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { usePlayerStore, useInventoryStore, useMapStore, useMercStore, useMetaStore,
@@ -59,8 +60,7 @@ beforeEach(() => {
   const hero = createMockPlayer('Act V fixture', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...hero, equipment: [], derivedStats: { ...hero.derivedStats, life: 17, mana: 11 } });
   useMapStore.setState({ currentAct: 5, currentSubAreaId: null, isActUnlocked: () => true });
-  vi.spyOn(towns, 'loadTownNpcs').mockImplementation(act => act === 5
-    ? [{ id: 'npc/malah', portraitId: 'malah', nameKey: 'town.npc.malah' }] : originalTownNpcs(act));
+  vi.spyOn(towns, 'loadTownNpcs').mockImplementation(originalTownNpcs);
 });
 afterEach(() => { subscriptions.splice(0).forEach(stop => { stop(); }); vi.restoreAllMocks(); useMapStore.setState({ isActUnlocked: unlock }); __resetPersistenceForTests(); });
 
@@ -87,12 +87,19 @@ describe('Act V five main source-backed rewards', () => {
       return total;
     };
     const before = player(), priorXp = xp(), priorMerc = mercXp();
+    const priorWishes = useInventoryStore.getState().currencies.wishstone ?? 0;
+    const caches = vi.spyOn(award, 'rollQuestTableRewards');
     const ids = ['quests/act5-siege-on-harrogath', RESCUE_QUEST, PRISON_QUEST, 'quests/act5-rite-of-passage', EVE_QUEST];
     for (const id of ids) {
       if (id === RESCUE_QUEST) rescue(); else if (id === PRISON_QUEST) { thaw(); proof(id); } else proof(id);
       expect(claimQuestReward(id)).toBe('ok');
     }
     expect(xp()).toBe(priorXp + 85000); expect(mercXp()).toBe(priorMerc + 63750);
+    const cacheWishes = caches.mock.results.reduce((sum, result) => {
+      if (result.type !== 'return' || !result.value) throw new Error('Missing Act V quest cache');
+      return sum + result.value.wishstones;
+    }, 0);
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(priorWishes + 95 + cacheWishes);
     expect(player().skillPoints).toBe(before.skillPoints + player().level - before.level + 2);
     expect(readQuestItem(SCROLL_SOURCE)).toBe('ok');
     expect(Object.values(player().derivedStats.resistances)).toEqual([15, 15, 15, 15, 15, 15]);

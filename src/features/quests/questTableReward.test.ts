@@ -89,7 +89,7 @@ describe('explicit deterministic quest-table Claim', () => {
     expect(currencies['rune-shard'] ?? 0).toBe(expected.runeShards);
     expect(currencies['gem-shard'] ?? 0).toBe(0);
     expect(useInventoryStore.getState().materials).toEqual(expected.materials);
-    expect(currencies.wishstone ?? 0).toBe(expected.wishstones);
+    expect(currencies.wishstone ?? 0).toBe(expected.wishstones + 25);
     expect(currencies).not.toHaveProperty('gold'); expect(currencies).not.toHaveProperty('runes');
     expect(useMapStore.getState().questProgress[QUEST]?.rewardClaimed).toBe(true);
     const settled = state(); expect(claimQuestReward(QUEST)).toBe('already-claimed'); expect(state()).toEqual(settled);
@@ -233,7 +233,7 @@ describe('explicit deterministic quest-table Claim', () => {
       expect(claimQuestReward(QUEST)).toBe('ok');
       expect(observed).toBe(true);
       expect(useInventoryStore.getState().backpack).toEqual([observerItem, item]);
-      expect(useInventoryStore.getState().currencies).toEqual({ 'rune-shard': 6, wishstone: 1 });
+      expect(useInventoryStore.getState().currencies).toEqual({ 'rune-shard': 6, wishstone: 26 });
       expect(useInventoryStore.getState().materials).toEqual({ 'runes/ral': 3 });
     } finally { stop(); }
   });

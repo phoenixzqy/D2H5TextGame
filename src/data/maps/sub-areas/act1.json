@@ -111,7 +111,8 @@
         },
         {
           "archetypeId": "monsters/act1.carver",
-          "count": 2
+          "count": 2,
+          "boss": false
         }
       ]
     },
@@ -457,6 +458,22 @@
         "lootTable": "loot/act1-boss",
         "monsters": [
           { "archetypeId": "monsters/act1.the-countess", "count": 1, "boss": true }
+        ]
+      },
+      {
+        "id": "act1-dw-cow-king",
+        "level": 13,
+        "lootTable": "loot/mini-act1",
+        "monsters": [
+          {
+            "archetypeId": "monsters/act1.cow-king",
+            "count": 1,
+            "boss": true
+          },
+          {
+            "archetypeId": "monsters/act1.hell-bovine",
+            "count": 2
+          }
         ]
       }
     ],

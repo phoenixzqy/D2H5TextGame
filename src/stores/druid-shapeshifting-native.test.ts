@@ -207,7 +207,7 @@ it('persists only allocations/combo, imports exact save22, and starts a fresh ru
   const expected = playerToCombatUnit(player()),
     save = snapshotStores();
   if (!save) throw new Error('Missing native save');
-  expect(save.version).toBe(24);
+  expect(save.version).toBe(32);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   expect(finalHero().druidForm?.form).toBe('werewolf');
   const serialized = JSON.stringify(toJsonSafe(snapshotStores()));

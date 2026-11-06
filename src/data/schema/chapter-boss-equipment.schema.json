@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/chapter-boss-equipment.json",
+  "title": "Live chapter-boss ordinary equipment groups",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 5,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["treasureClassId", "act", "groups"],
+    "properties": {
+      "treasureClassId": { "type": "string", "pattern": "^loot/[a-z0-9-]+$", "description": "Live chapter-boss table replaced by these ordinary groups." },
+      "act": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Authoritative live act required for this boss." },
+      "groups": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sourceTableId", "count", "minimumLevelOffset", "terminalLevelCap"],
+          "properties": {
+            "sourceTableId": { "type": "string", "pattern": "^loot/[a-z0-9-]+$", "description": "Equipment-only projection of this existing weighted source." },
+            "count": { "type": "integer", "minimum": 1, "maximum": 8, "description": "Exact noDrop0 replacement picks in this group." },
+            "minimumLevelOffset": { "type": "integer", "minimum": 0, "maximum": 5, "description": "Added to every source entry minimum; item level remains the live level." },
+            "terminalLevelCap": { "type": "integer", "minimum": 1, "maximum": 200, "description": "Finite extension of only the source's terminal equipment band." }
+          }
+        }
+      }
+    }
+  }
+}

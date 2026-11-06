@@ -18,6 +18,28 @@ function refuses(operation: () => unknown, code: Guard.WaveGuardRefusal): void {
 }
 
 describe('wave transition ownership', () => {
+  it('notifies readers after ownership changes and after the final async restore releases', async () => {
+    const observed: boolean[] = [];
+    const stop = guard.subscribeWaveGuard(() => {
+      try { guard.assertWaveSnapshotAllowed(); observed.push(true); } catch { observed.push(false); }
+    });
+    const initial = guard.inspectWaveGuard();
+    const first = guard.reserveWaveRestore(), second = guard.reserveWaveRestore();
+    expect(guard.inspectWaveGuard()).not.toBe(initial);
+    expect(observed).toEqual([]);
+    await Promise.resolve();
+    expect(observed).toEqual([false]);
+    guard.releaseWaveRestore(first);
+    await Promise.resolve();
+    expect(observed).toEqual([false, false]);
+    guard.releaseWaveRestore(second);
+    await Promise.resolve();
+    expect(observed).toEqual([false, false, true]);
+    stop();
+    const wave = guard.beginWaveTransition(true); guard.endWaveTransition(wave);
+    await Promise.resolve();
+    expect(observed).toEqual([false, false, true]);
+  });
   it('rejects nested wave entry and preserves the first owner', () => {
     const lease = guard.beginWaveTransition(true);
     refuses(() => guard.beginWaveTransition(true), 'waveBusy');

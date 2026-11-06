@@ -102,7 +102,7 @@ it.each(['fire-ball', 'pierce-thrust'])('uses first-two priority for %s without 
   const out = record({ ...input, enemyTeam: [unit('dead', 'enemy'), unit('a', 'enemy'),
     { ...unit('summon', 'enemy'), kind: 'summon' as const }, unit('b', 'enemy')].map(target =>
     target.id === 'dead' ? { ...target, life: 0 } : target) });
-  expect(hits(out).map(event => event.target)).toEqual(['summon', 'a']);
+  expect(hits(out).map(event => event.target)).toEqual(['a', 'summon']);
   expect(out.result.enemyTeam.find(target => target.id === 'b')?.life).toBe(1000000);
 });
 

@@ -123,7 +123,7 @@ describe('all35 native Hell runewords', () => {
     await flushSave(); stores.forEach(store => { store.getState().reset(); });
     expect(await hydrateFromSave()).toBe(true);
     const restored = snapshotStores();
-    expect(restored?.version).toBe(24); expect(restored?.map.selectedDifficulty).toBe('hell');
+    expect(restored?.version).toBe(32); expect(restored?.map.selectedDifficulty).toBe('hell');
     expect(restored?.map).toEqual(saved.map); expect(restored?.inventory).toEqual(saved.inventory);
     const restoredItem = useInventoryStore.getState().backpack[0];
     if (!restoredItem) throw new Error('Missing restored word');

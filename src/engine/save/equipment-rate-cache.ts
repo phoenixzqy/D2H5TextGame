@@ -1,8 +1,27 @@
-import { loadAffixPool, loadSetPieces } from '@/data/loaders/loot';
-import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
+import { loadAffixPool, loadItemBases, loadSetPieces } from '@/data/loaders/loot';
+import { deriveEquippedPlayerStats, type QuestStatCompositionAuthority } from '../progression/equipped-stats';
+import { resolveQuestVitalityBonus } from '../progression/quest-vitality';
 import type { SaveCurrent } from '../types/save';
 import { hasTaintedSunEntitlement, resolveAct5ResistanceBonus } from '../progression/quest-resistance';
 import { resolveEquippedRunewordGrants } from '../items/runeword-grants';
+import { baseMatchesEquipmentSlot } from '../inventory/equipValidator';
+import { restoreEquipment } from './restore';
+
+/** Refresh only an occupied canonical hero charm's resource cache, without healing. */
+export function repairCharmResourceCache(save: SaveCurrent): SaveCurrent {
+  const charm = save.inventory.equipped.charm;
+  if (!charm || !baseMatchesEquipmentSlot(loadItemBases().get(charm.baseId), 'charm')) return save;
+  const projected = deriveEquippedPlayerStats(save.player, save.player.level,
+    restoreEquipment(save.inventory.equipped), save.map.questProgress,
+    save.inventory.questItems, save.map.questReceipts);
+  const { lifeMax, manaMax, life, mana } = projected;
+  if ([lifeMax, manaMax, life, mana].some(value => !Number.isFinite(value) || value < 0 || value > Number.MAX_SAFE_INTEGER)) {
+    throw new Error('Invalid save: unsafe charm resource cache');
+  }
+  const old = save.player.derivedStats;
+  if (old.lifeMax === lifeMax && old.manaMax === manaMax && old.life === life && old.mana === mana) return save;
+  return { ...save, player: { ...save.player, derivedStats: { ...old, lifeMax, manaMax, life, mana } } };
+}
 
 /** Repair only fields identified by equipped grants; merc saved baselines remain bare. */
 export function repairRunewordStatCache(save: SaveCurrent): SaveCurrent {
@@ -120,4 +139,19 @@ export function repairQuestLifeCache(save: SaveCurrent): SaveCurrent {
   return { ...save, player: { ...save.player, derivedStats: {
     ...old, lifeMax: projected.lifeMax, life: projected.life
   } } };
+}
+
+/** Refresh only an explicitly admitted Malah entitlement's Life cache, preserving damaged pools and raw history. */
+export function repairMalahResourceCache(save: SaveCurrent, authority: QuestStatCompositionAuthority): SaveCurrent {
+  if (resolveQuestVitalityBonus(save.map.questProgress, save.inventory.questItems, authority.countedSources ?? []) === 0) return save;
+  const projected = deriveEquippedPlayerStats(save.player, save.player.level,
+    restoreEquipment(save.inventory.equipped), save.map.questProgress, save.inventory.questItems,
+    save.map.questReceipts, authority);
+  const { lifeMax, life } = projected;
+  if ([lifeMax, life].some(value => !Number.isFinite(value) || value < 0 || value > Number.MAX_SAFE_INTEGER)) {
+    throw new Error('Invalid save: unsafe Malah resource cache');
+  }
+  const old = save.player.derivedStats;
+  if (old.lifeMax === lifeMax && old.life === life) return save;
+  return { ...save, player: { ...save.player, derivedStats: { ...old, lifeMax, life } } };
 }

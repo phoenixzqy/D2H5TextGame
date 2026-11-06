@@ -41,6 +41,11 @@ export interface OnHitBoltsTuning {
   readonly damage: { readonly min: number; readonly max: number; readonly perRank: number };
 }
 
+/** Exact mercenary arrow fractions live in damage.breakdown; splash uses the same unrounded budget. */
+export interface MercElementalArrowTuning {
+  readonly splash?: { readonly count: number; readonly share: number };
+}
+
 /** Bounded sequential attempts shared by one paid cast and its original target pool. */
 export interface SkillHitSequence {
   readonly strikes: number;
@@ -85,6 +90,7 @@ export type SkillTrigger =
   | 'passive'        // Always-on bonuses (e.g. masteries)
   | 'on-hit'         // Triggers when landing an attack
   | 'on-kill'        // Triggers when killing an enemy
+  | 'on-death'       // Combat-owned reaction; never an active cast
   | 'on-damaged'     // Triggers when taking damage
   | 'on-dodge';      // Triggers when dodging
 
@@ -271,6 +277,8 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Explicit whole-budget component fractions for native mercenary Fire/Cold arrows. */
+  readonly mercElementalArrow?: MercElementalArrowTuning;
   /** Paid start-only nonattacking duplicate; rank growth and lifetime are JSON-owned. */
   readonly decoy?: { readonly durationMs: number; readonly durationPerRankMs: number;
     readonly lifePerRank: number; readonly maxCount: 1;
@@ -353,10 +361,16 @@ export interface SkillDef {
   readonly mercThorns?: { readonly physicalReflectionPct: number };
   /** Native Defiance mercenary’s additive party Defense, in percentage points. */
   readonly mercDefiance?: { readonly defensePct: number };
+  /** Native mercenary relative weapon miss reduction, authored as a percent (0..100). */
+  readonly mercBlessedAim?: { readonly weaponMissReductionPct: number };
   /** Native Prayer mercenary’s flat party HP restoration and independent cadence. */
   readonly mercPrayer?: { readonly amount: number; readonly intervalMs: number };
   /** Native Holy Fire mercenary's flat ambient Fire damage and independent cadence. */
   readonly mercHolyFire?: { readonly amount: number; readonly intervalMs: number };
+  /** Authored base flat Defense; earned signature rank is captured at payment. */
+  readonly mercFrozenArmor?: { readonly defense: number };
+  /** Nonstacking native paid-wave currency-find addition in percentage points. */
+  readonly mercPilfer?: { readonly currencyFindPct: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
   readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;
@@ -393,6 +407,10 @@ export interface SkillDef {
   
   /** Explicit finite paid stat-buff timing; exact skill ownership is schema guarded. */
   readonly timedBuff?: { readonly durationMs: number };
+  /** JSON-owned once-per-wave Fallen reaction; dodgeChance is an additive fraction. */
+  readonly panicFlee?: { readonly durationMs: number; readonly dodgeChance: number };
+  /** Finite personal monster buff; interpreted only by its native paid-wave action. */
+  readonly monsterSelfBuff?: { readonly durationMs: number; readonly percent: number };
 
   /** Exact paid Enchant weapon Fire, based on Attack captured at cast. */
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
@@ -443,9 +461,11 @@ export interface SkillDef {
   
   /** Scaling per level */
   readonly scaling?: {
-    /** Exact Act I Lightning affix min/max growth per effective monster level above one. */
+    /** Opted-in monster spell min/max damage growth per monster level above one. */
     readonly monsterLevelDamageGrowth?: readonly [number, number];
     readonly damagePerLevel?: number;
+    /** Multiple Shot: additional percentage points of snapshot Attack per rank above one. */
+    readonly attackDamagePctPerLevel?: number;
     readonly cooldownPerLevel?: number; // negative = reduces CD
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {

@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { materialRecipes } from '@/data/loaders/material-recipes';
 import { materialCatalog } from '@/data/loaders/materials';
 import { useInventoryStore } from '@/stores/inventoryStore';
-import { useHydrationStore } from '@/stores/hydrationStore';
 import { prepareLiveMaterialAction, previewLiveMaterialAction } from '@/stores/materialActions';
-import { Button, Panel } from '@/ui';
+import { Panel } from '@/ui';
 import { CraftingConfirmation, type CraftingIntent } from './CraftingConfirmation';
 import { CraftingTargets } from './CraftingTargets';
+import { CraftingReadiness } from './CraftingReadiness';
 import { craftingBalanceName, craftingErrorKey } from './craftingPresentation';
+import { RunewordGuide } from './RunewordGuide';
 
 const kinds = ['rune-fusion', 'gem-fusion', 'gem-dismantle', 'socket-insert', 'socket-armor', 'socket-clear', 'caster-amulet', 'salvage', 'recover-v18'] as const;
 type Kind = typeof kinds[number];
@@ -18,13 +19,15 @@ const controlClass = 'min-h-[44px] w-full min-w-0 max-w-full rounded border bord
 export function CraftingPanel() {
   const { t } = useTranslation(['inventory', 'items']);
   const id = useId();
-  const backpack = useInventoryStore(state => state.backpack);
-  const stash = useInventoryStore(state => state.stash);
-  const quarantine = useInventoryStore(state => state.socketQuarantine);
+  const [kind, setKind] = useState<Kind>('rune-fusion');
+  const needsTarget = kind !== 'rune-fusion' && kind !== 'gem-fusion' && kind !== 'gem-dismantle';
+  // Only the active action's source containers can change its target list.
+  // Switching actions reselects their current contents from the live store.
+  const backpack = useInventoryStore(state => needsTarget && kind !== 'recover-v18' ? state.backpack : null);
+  const stash = useInventoryStore(state => kind === 'salvage' ? state.stash : null);
+  const quarantine = useInventoryStore(state => kind === 'recover-v18' ? state.socketQuarantine : null);
   const materials = useInventoryStore(state => state.materials);
   const currencies = useInventoryStore(state => state.currencies);
-  const ready = useHydrationStore(state => state.status === 'ready');
-  const [kind, setKind] = useState<Kind>('rune-fusion');
   const [recipeId, setRecipeId] = useState('recipes/rune-fusion/el');
   const [materialId, setMaterialId] = useState('runes/el');
   const [selected, setSelected] = useState<readonly string[]>([]);
@@ -32,10 +35,9 @@ export function CraftingPanel() {
   const [error, setError] = useState<string | null>(null);
   const recipes = [...materialRecipes.values()].filter(recipe => recipe.kind === kind);
   const recipe = materialRecipes.get(recipeId);
-  const needsTarget = kind !== 'rune-fusion' && kind !== 'gem-fusion' && kind !== 'gem-dismantle';
   const entries = useMemo(() => {
     if (!needsTarget) return [];
-    if (kind === 'recover-v18') return quarantine.map(entry => ({
+    if (kind === 'recover-v18') return (quarantine ?? []).map(entry => ({
       item: entry.item, preservedRunes: entry.item.runes ?? [], origin: t(`quarantine.origin.${entry.origin.container}`, {
         position: 'index' in entry.origin ? entry.origin.index + 1 : undefined,
         slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined,
@@ -43,10 +45,10 @@ export function CraftingPanel() {
       })
     }));
     const backpackOrigin = t('crafting.backpack');
-    const targets = backpack.map(item => ({ item, origin: backpackOrigin }));
+    const targets = (backpack ?? []).map(item => ({ item, origin: backpackOrigin }));
     if (kind !== 'salvage') return targets;
     const stashOrigin = t('crafting.stash');
-    return [...targets, ...stash.map(item => ({ item, origin: stashOrigin }))];
+    return [...targets, ...(stash ?? []).map(item => ({ item, origin: stashOrigin }))];
   }, [needsTarget, kind, quarantine, backpack, stash, t]);
 
   function changeKind(value: string) {
@@ -80,6 +82,7 @@ export function CraftingPanel() {
             </option>)}
           </select></div>}
         <p className="text-sm text-d2-white/90">{t(`crafting.rules.${kind}`)}</p>
+        {kind === 'socket-insert' && <RunewordGuide />}
         {recipe && <div className="text-sm"><p className="font-bold text-d2-gold">{t('crafting.costs')}</p>
           <ul>{[...Object.entries(recipe.costs.materials), ...Object.entries(recipe.costs.currencies)].map(([value, count]) => <li key={value}>
             {craftingBalanceName(t, value)} × {count} · {t('crafting.owned', { quantity: materials[value] ?? currencies[value] ?? 0 })}
@@ -92,8 +95,8 @@ export function CraftingPanel() {
           </select></div>}
         {needsTarget && <CraftingTargets key={kind} entries={entries} selected={selected} multiple={kind === 'salvage'} onChange={setSelected} />}
         {error && <p role="alert">{t('crafting.previewFailed', { reason: t(error) })}</p>}
-        {!ready && <p role="status">{t('crafting.recoveryRequired')}</p>}
-        <Button type="button" disabled={!ready} className="min-h-[44px] max-w-full whitespace-normal" onClick={event => { preview(event.currentTarget); }}>{t('crafting.preview')}</Button>
+        <CraftingReadiness selection={{ recipeId, ...(needsTarget ? { itemIds: selected } : {}),
+          ...(kind === 'socket-insert' ? { materialId } : {}) }} onPreview={preview} />
       </div>
     </Panel>
     {intent && <CraftingConfirmation intent={intent} onClose={() => { setIntent(null); }} />}

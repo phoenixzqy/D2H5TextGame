@@ -199,6 +199,7 @@ export function compareP15Attempts(first: P15Attempt, second: P15Attempt) {
   assert.equal(first.seed, second.seed);
   const recording = (attempt: P15Attempt) =>
     attempt.waves.map((wave) => ({
+      ...(wave.engineInput !== undefined ? { engineInput: wave.engineInput } : {}),
       initialPlayerTeam: wave.initialPlayerTeam,
       initialEnemyTeam: wave.initialEnemyTeam,
       events: wave.events,

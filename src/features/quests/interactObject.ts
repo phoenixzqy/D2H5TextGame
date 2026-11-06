@@ -1,3 +1,5 @@
+import { act2CacheKeyForSource } from '@/engine/map/act2-cache-quests';
+import { act2CacheStatus, recoverAct2Cache } from './act2CacheRecovery';
 import { CAIN_CAGE } from '@/engine/map/cain-quest';
 import { rescueCain } from './cainQuestActions';
 import { loadQuestItems, questItemSource, type QuestEncounterItemDef, type QuestToolDef, type QuestComponentDef, type QuestDeliveryDef } from '@/data/loaders/quest-items';
@@ -13,6 +15,17 @@ import { areaQuestInsertions } from './questCrafting';
 import { areaQuestActions } from './questActions';
 import { areaAct5QuestActions } from './act5QuestActions';
 import { PRISON_QUEST } from '@/engine/map/act5-admission';
+import { NIHLATHAK } from '@/engine/map/nihlathak-quest';
+import { nihlathakRelicStatus, recoverNihlathakRelic } from './nihlathakRecovery';
+import { DROGNAN } from '@/engine/map/drognan-quest';
+import { drognanTomeStatus, recoverDrognanTome } from './drognanRecovery';
+import { loadCountedQuestItems } from '@/data/loaders/counted-quest-items';
+import { COW } from '@/engine/map/cow-quest';
+import type { PortalIngredientDef } from '@/data/loaders/quest-items';
+import { cowRecoveryStatus, recoverCowLeg } from './cowQuestActions';
+
+type AreaQuestTool = QuestToolDef | QuestComponentDef | QuestDeliveryDef | QuestEncounterItemDef |
+  Extract<PortalIngredientDef, { readonly id: 'quest/wirts_leg' }>;
 
 export { assembleQuestItem, questAssemblyStatus, areaQuestInsertions, questInsertionStatus, insertQuestItem } from './questCrafting';
 
@@ -64,10 +77,11 @@ export function interactWithAreaObject(targetId: string): ObjectActionResult {
 }
 
 /** Objective-bound tools placed at this canonical authored location. Listing grants nothing. */
-export function areaQuestTools(act: number, areaId: string): readonly (QuestToolDef | QuestComponentDef | QuestDeliveryDef | QuestEncounterItemDef)[] {
+export function areaQuestTools(act: number, areaId: string): readonly AreaQuestTool[] {
   const quests = loadQuests();
-  return loadQuestItems().filter((item): item is QuestToolDef | QuestComponentDef | QuestDeliveryDef | QuestEncounterItemDef =>
-    (item.kind === 'tool' || item.kind === 'component' || item.kind === 'delivery' || item.kind === 'encounter') &&
+  return loadQuestItems().filter((item): item is AreaQuestTool =>
+    (item.kind === 'tool' || item.kind === 'component' || item.kind === 'delivery' || item.kind === 'encounter' ||
+      item.kind === 'portalIngredient' && item.id === COW.legItemId) &&
     quests.some(quest => quest.id === item.sourceQuestId && quest.actId === `acts/act${String(act)}` &&
       quest.objectives.some(objective => objective.id === item.sourceObjectiveId && objective.areaId === areaId)));
 }
@@ -76,11 +90,17 @@ export function areaQuestTools(act: number, areaId: string): readonly (QuestTool
 export function hasAreaObjects(act: number, areaId: string): boolean {
   return areaObjectTargets(act, areaId).length > 0 || areaQuestTools(act, areaId).length > 0 ||
     areaQuestInsertions(act, areaId).length > 0 || areaQuestActions(act, areaId).length > 0 ||
-    areaAct5QuestActions(act, areaId).length > 0;
+    areaAct5QuestActions(act, areaId).length > 0 ||
+    loadCountedQuestItems().some(item => item.actId === `acts/act${String(act)}` && item.areaId === areaId);
 }
 
 /** Durable recovery availability; execution additionally checks hydration, combat and ownership guards. */
 export function questToolStatus(source: string): 'ready' | 'owned' | 'consumed' | 'unavailable' {
+  if (source === COW.legSource) return cowRecoveryStatus();
+  const cacheKey = act2CacheKeyForSource(source);
+  if (cacheKey !== undefined) return act2CacheStatus(cacheKey);
+  if (source === NIHLATHAK.source) return nihlathakRelicStatus();
+  if (source === DROGNAN.source) return drognanTomeStatus();
   const map = useMapStore.getState();
   const area = resolveSubArea(map.currentAct, map.currentSubAreaId);
   if (!area || !map.isActUnlocked(map.currentAct)) return 'unavailable';
@@ -106,6 +126,11 @@ export type RecoverToolResult = ObjectActionResult | 'already-owned' | 'claim-in
  * Failed restoration throws AggregateError; intermediate writes are observable.
  */
 export function recoverQuestTool(source: string): RecoverToolResult {
+  if (source === COW.legSource) return recoverCowLeg();
+  const cacheKey = act2CacheKeyForSource(source);
+  if (cacheKey !== undefined) return recoverAct2Cache(cacheKey);
+  if (source === NIHLATHAK.source) return recoverNihlathakRelic();
+  if (source === DROGNAN.source) return recoverDrognanTome();
   const refusal = questActionPreflight();
   if (refusal) return refusal;
   return withQuestTransaction<RecoverToolResult>(() => {

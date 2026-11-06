@@ -1,13 +1,13 @@
 import Ajv2020 from 'ajv/dist/2020';
 import document from '../endgame/worldstone-remnant.json';
-import schema from '../schema/endgame.schema.json';
+import { compileAuthoredValidator } from '../authored-validators';
 import { monsters } from '../index';
 import { loadTreasureClasses } from './loot';
 import { isMaterialLedger } from '../../engine/loot/materials';
 import { getSkill } from '../../engine/skills/registry';
 import type { EndgameDefinition } from '../../engine/endgame/types';
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<EndgameDefinition>(schema);
+const validate = compileAuthoredValidator<EndgameDefinition>(new Ajv2020({ strict: true, allErrors: true }), 'endgame');
 const monsterCatalog = new Map(monsters.map(monster => [monster.id, monster]));
 
 function deepFreeze<T>(value: T): T {

@@ -12,7 +12,6 @@
       14
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-leap"
     ],
     "attackSpeed": 110,
@@ -32,11 +31,27 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      32,
+      32
+    ],
+    "attackGrowth": [
+      5,
+      5
     ]
   },
   {
     "id": "monsters/act3.fetish",
     "undead": false,
+    "attack": [
+      35.2,
+      35.2
+    ],
+    "attackGrowth": [
+      5.5,
+      5.5
+    ],
     "name": "monsters.fetish",
     "life": [
       80,
@@ -47,7 +62,6 @@
       12
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-poison-dagger"
     ],
     "attackSpeed": 115,
@@ -74,6 +88,14 @@
   {
     "id": "monsters/act3.spider",
     "undead": false,
+    "attack": [
+      27.2,
+      27.2
+    ],
+    "attackGrowth": [
+      4.25,
+      4.25
+    ],
     "name": "monsters.spider",
     "life": [
       90,
@@ -84,7 +106,6 @@
       13
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-poison-spit"
     ],
     "attackSpeed": 100,
@@ -111,6 +132,14 @@
   {
     "id": "monsters/act3.flayer",
     "undead": false,
+    "attack": [
+      35.2,
+      35.2
+    ],
+    "attackGrowth": [
+      5.5,
+      5.5
+    ],
     "name": "monsters.flayer",
     "life": [
       110,
@@ -120,9 +149,7 @@
       11,
       15
     ],
-    "skills": [
-      "monster-strong-melee"
-    ],
+    "skills": [],
     "attackSpeed": 105,
     "defense": 28,
     "resistances": {},
@@ -155,7 +182,6 @@
       28
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-thorns-aura"
     ],
     "attackSpeed": 85,
@@ -177,11 +203,27 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
     ]
   },
   {
     "id": "monsters/act3.swamp-dweller",
     "undead": false,
+    "attack": [
+      32,
+      32
+    ],
+    "attackGrowth": [
+      5,
+      5
+    ],
     "name": "monsters.swampDweller",
     "life": [
       120,
@@ -192,7 +234,6 @@
       16
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-poison-cloud"
     ],
     "attackSpeed": 90,
@@ -229,7 +270,6 @@
       35
     ],
     "skills": [
-      "monster-strong-melee",
       "monster-charge"
     ],
     "attackSpeed": 115,
@@ -255,11 +295,27 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      40,
+      40
+    ],
+    "attackGrowth": [
+      6.25,
+      6.25
     ]
   },
   {
     "id": "monsters/act3.infector",
     "undead": false,
+    "attack": [
+      32,
+      32
+    ],
+    "attackGrowth": [
+      5,
+      5
+    ],
     "name": "monsters.infector",
     "life": [
       180,
@@ -270,7 +326,6 @@
       24
     ],
     "skills": [
-      "monster-weak-melee",
       "monster-plague-spit"
     ],
     "attackSpeed": 95,
@@ -330,10 +385,23 @@
       "spectral-hit",
       "stone-skin",
       "teleportation"
+    ],
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
     ]
   },
   {
     "id": "monsters/act3.mephisto",
+    "statusImmunities": ["poison", "plague"],
+    "damageImmunities": ["poison"],
+    "skillCooldownOverrides": {
+      "monster.frost_nova": 4
+    },
     "undead": false,
     "name": "monsters.mephisto",
     "life": [
@@ -347,7 +415,7 @@
     "skills": [
       "monster-frost-nova",
       "monster-lightning",
-      "monster-poison-cloud"
+      "monster-mephisto-poison-cloud"
     ],
     "attackSpeed": 120,
     "defense": 150,
@@ -360,6 +428,14 @@
     },
     "baseExperience": 1200,
     "canBeElite": false,
-    "canBeBoss": true
+    "canBeBoss": true,
+    "attack": [
+      13,
+      13
+    ],
+    "attackGrowth": [
+      2,
+      2
+    ]
   }
 ]

@@ -49,6 +49,7 @@ export type ComparableStatKey =
   | 'manaMax'
   | 'attack'
   | 'defense'
+  | 'magicResist'
   | 'attackSpeed'
   | 'critChance'
   | 'critDamage'
@@ -70,7 +71,7 @@ export interface CompareResult {
 }
 
 const COMPARABLE_KEYS: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
   'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
 

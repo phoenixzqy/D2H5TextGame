@@ -1,0 +1,471 @@
+{
+  "act": 2,
+  "seed": 1269830969,
+  "playerTeam": [
+    {
+      "activeBuffIds": [],
+      "basicAttackDelivery": "ranged",
+      "bonePrisonRank": 0,
+      "boneWallRank": 0,
+      "burstOfSpeedRank": 0,
+      "cloakOfShadowsRank": 0,
+      "coldArmorRanks": {
+        "chilling-armor": 0,
+        "shiver-armor": 0
+      },
+      "coldResistanceReductionPct": 0,
+      "cooldowns": {
+        "amazon.multiple_shot": 2000
+      },
+      "decoyRank": 0,
+      "enraged": false,
+      "equippedWeapon": {
+        "handedness": "twoHanded",
+        "weaponType": "bow"
+      },
+      "governedActiveRanks": {
+        "item.redemption": 0,
+        "sorceress.blaze": 0,
+        "sorceress.chain_lightning": 0,
+        "sorceress.fire_bolt": 0
+      },
+      "gridPosition": {
+        "col": 1,
+        "row": 1
+      },
+      "id": "player-1793304000000",
+      "increasedDamagePct": {
+        "fire": 0,
+        "lightning": 0
+      },
+      "kind": "hero",
+      "level": 20,
+      "life": 206,
+      "mana": 111,
+      "manaRegenBaselinePerSecond": 3,
+      "manaRegenCarry": 0.95929411764705,
+      "manaRegenCompensation": 0,
+      "manaRegenExactCarry": "0.95929411764705",
+      "manaRegenPerSecond": 3,
+      "name": "Campaign screen",
+      "periodicSpellRanks": {
+        "fire-wall": 0,
+        "inferno": 0,
+        "thunder-storm": 0
+      },
+      "physicalReflectionPct": 0,
+      "side": "player",
+      "skillLevels": {
+        "amazon.critical_strike": 1,
+        "amazon.dodge": 1,
+        "amazon.magic_arrow": 1,
+        "amazon.multiple_shot": 20
+      },
+      "skillOrder": [
+        "amazon.multiple_shot",
+        "amazon.magic_arrow"
+      ],
+      "slowMissilesRank": 0,
+      "staticFieldRank": 0,
+      "stats": {
+        "attack": 116,
+        "attackSpeed": 201,
+        "critChance": 0.060000000000000005,
+        "critDamage": 2,
+        "defense": 171,
+        "goldFind": 0,
+        "life": 140,
+        "lifeMax": 388,
+        "magicDodge": 0.09,
+        "magicFind": 0,
+        "magicResist": 36,
+        "mana": 72,
+        "manaMax": 195,
+        "physDodge": 0.332,
+        "resistances": {
+          "arcane": 16,
+          "cold": 13,
+          "fire": 20,
+          "lightning": 60,
+          "physical": 9,
+          "poison": 45
+        }
+      },
+      "statuses": [],
+      "summonGridPositions": [
+        {
+          "col": 0,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 2
+        },
+        {
+          "col": 2,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 0
+        },
+        {
+          "col": 2,
+          "row": 0
+        },
+        {
+          "col": 0,
+          "row": 1
+        },
+        {
+          "col": 2,
+          "row": 1
+        },
+        {
+          "col": 0,
+          "row": 0
+        }
+      ],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    {
+      "activeBuffIds": [],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {
+        "mskill-basic-arrow": 340,
+        "mskill-inner-sight": 2156
+      },
+      "enraged": false,
+      "equippedWeapon": {
+        "handedness": "oneHanded",
+        "weaponType": "wand"
+      },
+      "governedActiveRanks": {
+        "item.redemption": 0,
+        "sorceress.blaze": 0,
+        "sorceress.chain_lightning": 0,
+        "sorceress.fire_bolt": 0
+      },
+      "gridPosition": {
+        "col": 0,
+        "row": 0
+      },
+      "id": "merc-mercs/act1-rogue-inner-sight",
+      "increasedDamagePct": {},
+      "kind": "merc",
+      "level": 21,
+      "life": 188,
+      "mana": 286,
+      "manaRegenBaselinePerSecond": 0,
+      "manaRegenPerSecond": 0,
+      "name": "Rogue Scout \u2014 Inner Sight",
+      "physicalReflectionPct": 0,
+      "side": "player",
+      "skillOrder": [
+        "mskill-inner-sight",
+        "mskill-basic-arrow",
+        "mskill-pierce-arrow"
+      ],
+      "stats": {
+        "attack": 142,
+        "attackSpeed": 176,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "defense": 176,
+        "goldFind": 0,
+        "life": 292,
+        "lifeMax": 336,
+        "magicDodge": 0.07,
+        "magicFind": 0,
+        "magicResist": 42,
+        "mana": 79,
+        "manaMax": 286,
+        "physDodge": 0.24200000000000002,
+        "resistances": {
+          "arcane": 3,
+          "cold": 37,
+          "fire": 0,
+          "lightning": 5,
+          "physical": 5,
+          "poison": 16
+        }
+      },
+      "statuses": [
+        {
+          "appliedAtMs": -3088,
+          "damageType": "poison",
+          "dotPerStack": 1,
+          "expiresAtMs": 1912,
+          "id": "poison",
+          "remaining": 5,
+          "sourceId": "enemy-act2.claw-viper-8-b2ec",
+          "stacks": 2
+        }
+      ],
+      "summonedAdds": false,
+      "tier": "trash"
+    }
+  ],
+  "enemyTeam": [
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        219,
+        219
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 1
+      },
+      "id": "enemy-act2.radament-0-9aa7",
+      "kind": "monster",
+      "level": 22,
+      "life": 5050,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act2.radament",
+      "name": "monsters.radament A (Boss)",
+      "side": "enemy",
+      "skillOrder": [
+        "monster-poison-cloud",
+        "monster-summon-adds",
+        "monster-fire-breath"
+      ],
+      "stats": {
+        "attack": 219,
+        "attackSpeed": 100,
+        "critChance": 0.1,
+        "critDamage": 1.75,
+        "defense": 242,
+        "goldFind": 0,
+        "life": 5050,
+        "lifeMax": 5050,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 63,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 50,
+          "lightning": 0,
+          "physical": 25,
+          "poison": 75
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "boss",
+      "undead": true
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        137,
+        137
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 0
+      },
+      "id": "enemy-act2.mummy-0-60f2",
+      "kind": "monster",
+      "level": 22,
+      "life": 259,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act2.mummy",
+      "name": "monsters.mummy A",
+      "side": "enemy",
+      "skillOrder": [],
+      "stats": {
+        "attack": 137,
+        "attackSpeed": 70,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 54,
+        "goldFind": 0,
+        "life": 259,
+        "lifeMax": 259,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 21,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 25,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 0
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash",
+      "undead": true
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        137,
+        137
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 1
+      },
+      "id": "enemy-act2.mummy-1-92f5",
+      "kind": "monster",
+      "level": 22,
+      "life": 281,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act2.mummy",
+      "name": "monsters.mummy B",
+      "side": "enemy",
+      "skillOrder": [],
+      "stats": {
+        "attack": 137,
+        "attackSpeed": 70,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 54,
+        "goldFind": 0,
+        "life": 281,
+        "lifeMax": 281,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 21,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 25,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 0
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash",
+      "undead": true
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        137,
+        137
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 2,
+        "row": 1
+      },
+      "id": "enemy-act2.mummy-2-8033",
+      "kind": "monster",
+      "level": 22,
+      "life": 257,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act2.mummy",
+      "name": "monsters.mummy C",
+      "side": "enemy",
+      "skillOrder": [],
+      "stats": {
+        "attack": 137,
+        "attackSpeed": 70,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 54,
+        "goldFind": 0,
+        "life": 257,
+        "lifeMax": 257,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 21,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 25,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 0
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash",
+      "undead": true
+    },
+    {
+      "activeBuffIds": [],
+      "attackRange": [
+        137,
+        137
+      ],
+      "basicAttackDelivery": "melee",
+      "cooldowns": {},
+      "enraged": false,
+      "gridPosition": {
+        "col": 1,
+        "row": 2
+      },
+      "id": "enemy-act2.mummy-3-2d3a",
+      "kind": "monster",
+      "level": 22,
+      "life": 296,
+      "mana": 0,
+      "monsterArchetypeId": "monsters/act2.mummy",
+      "name": "monsters.mummy D",
+      "side": "enemy",
+      "skillOrder": [],
+      "stats": {
+        "attack": 137,
+        "attackSpeed": 70,
+        "critChance": 0.05,
+        "critDamage": 1.5,
+        "defense": 54,
+        "goldFind": 0,
+        "life": 296,
+        "lifeMax": 296,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 21,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 25,
+          "lightning": 0,
+          "physical": 0,
+          "poison": 0
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash",
+      "undead": true
+    }
+  ]
+}

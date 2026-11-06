@@ -124,6 +124,7 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
         baseMagicFind: player.derivedStats.magicFind
       });
 
+      const lootRng = createRng(hashSeed(`idle|${player.id}|${String(tickCount)}|${subArea?.id ?? map.currentSubAreaId ?? 'unknown'}`));
       const loot = arch ? rollKillRewards(
           {
             tier: encounter?.monsterTier ?? 'trash',
@@ -135,7 +136,8 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
             difficulty: map.selectedDifficulty
           },
           loadAwardPools(),
-          createRng(hashSeed(`idle|${player.id}|${String(tickCount)}|${subArea?.id ?? map.currentSubAreaId ?? 'unknown'}`))
+          lootRng,
+          lootRng.fork('wishstone:idle')
         ) : mergeRewards();
       const bag = mergeRewards(loot, { ...mergeRewards(), runeShards: reward.runeShards });
       const safe = (count: number): number => {

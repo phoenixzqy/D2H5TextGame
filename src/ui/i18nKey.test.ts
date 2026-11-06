@@ -5,13 +5,53 @@
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import i18n from '@/i18n';
-import { tDataKey } from './i18nKey';
+import { tDataKey, tItemName } from './i18nKey';
+import { resolveItemDisplay } from './itemDisplay';
+import { socketRunewords } from '@/data/loaders/socket-effects';
+import type { Item } from '@/engine/types/items';
 
 /** Wait for i18next to finish loading all namespaces. */
 beforeAll(async () => {
   if (!i18n.isInitialized) {
     await new Promise<void>((resolve) => { i18n.on('initialized', resolve); });
   }
+});
+
+describe.each(['en', 'zh-CN'] as const)('runeword item names %s', locale => {
+  const item: Item = { id: 'named-word', baseId: 'items/base/weapon-staff', rarity: 'runeword',
+    level: 20, identified: true, equipped: false, runewordId: 'runewords/leaf' };
+
+  it.each(socketRunewords)('identifies $id consistently in lists and detail headings', word => {
+    const t = i18n.getFixedT(locale, 'inventory');
+    const instance = { ...item, runewordId: word.id };
+    const expected = t(`items:runeword.${word.id.split('/').pop() ?? ''}`);
+    expect(expected).not.toContain('runeword.');
+    expect(tItemName(t, instance)).toBe(expected);
+    expect(resolveItemDisplay(instance, t).name).toBe(expected);
+  });
+
+  it('shows the authored Leaf name instead of its staff base or generated affixes', () => {
+    const named = { ...item, generatedName: { prefix: 'Old', suffix: 'name' } };
+    const t = i18n.getFixedT(locale, 'inventory');
+    const expected = locale === 'en' ? 'Leaf' : '叶子';
+    expect(tItemName(t, named)).toBe(expected);
+    expect(resolveItemDisplay(named, t).name).toBe(expected);
+    expect(named.generatedName).toEqual({ prefix: 'Old', suffix: 'name' });
+  });
+
+  it('preserves base and generated names for plain sockets and unknown word IDs', () => {
+    const t = i18n.getFixedT(locale, 'inventory');
+    const baseName = locale === 'en' ? 'Staff' : '法杖';
+    const { runewordId: _word, ...plain } = item;
+    const ordinary = { ...plain, rarity: 'normal' as const,
+      socketContents: [{ kind: 'rune' as const, id: 'runes/tir' }] };
+    const unknown = { ...item, runewordId: 'runewords/unknown',
+      generatedName: { prefix: 'Old', suffix: 'name' } };
+    expect(tItemName(t, ordinary)).toBe(baseName);
+    expect(resolveItemDisplay(ordinary, t).name).toBe(baseName);
+    expect(tItemName(t, unknown)).toBe(`Old ${baseName} name`);
+    expect(resolveItemDisplay(unknown, t).name).toBe(`Old ${baseName} name`);
+  });
 });
 
 describe('tDataKey', () => {

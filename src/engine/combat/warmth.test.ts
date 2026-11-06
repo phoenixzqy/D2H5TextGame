@@ -327,7 +327,7 @@ describe('P07a01d authored passive action exclusion and active/legacy boundaries
       expect(result.result.playerTeam[0]?.stats).toEqual(stats);
     });
 
-  it.each(['aura-might', 'aura-prayer'])('excludes passive mercenary %s from an imported hero order without granting its aura', id => {
+  it.each(['aura-might', 'aura-prayer', 'aura-blessed-aim'])('excludes passive mercenary %s from an imported hero order without granting its aura', id => {
     expect(getSkill(id)).toHaveProperty('trigger', 'passive');
     const result = runBattleRecorded(withHero(snapshot(), { skillOrder: [id] }));
     expect(result.events.filter(e => e.kind === 'action')).toEqual([
@@ -341,7 +341,11 @@ describe('P07a01d authored passive action exclusion and active/legacy boundaries
     expect(result.result.playerTeam[0]?.mana).toBe(8);
   });
 
-  it.each([{ id: 'aura-blessed-aim', buffId: 'blessed_aim' }])('retains the existing undefined-trigger $id stub behavior', ({ id, buffId }) => {
+  it('retains undefined-trigger buff behavior in an explicitly synthetic legacy fixture', () => {
+    const id = 'fixture.undefined_trigger_buff';
+    const buffId = 'fixture-legacy-buff';
+    registerSkill({ id, archetype: 'fixture', target: 'self', minLevel: 1, manaCost: 0, cooldown: 0,
+      isBuff: true, effects: [{ kind: 'buff', id: buffId, duration: -1 }] });
     expect(getSkill(id)).not.toHaveProperty('trigger');
     const result = runBattleRecorded(withHero(snapshot(), { skillOrder: [id] }));
     expect(result.events.filter(e => e.kind === 'action')).toEqual([

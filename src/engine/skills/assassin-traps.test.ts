@@ -6,7 +6,9 @@ loadDefaultSkills();
 it('loads eight exact finite identities and preserves the actual authored rank/payment values', () => {
   expect(ASSASSIN_TRAP_TUNING.skills).toHaveLength(8);
   expect(assassinTrapDefinition('assassin.lightning_sentry')).toMatchObject({ durationMs: 3000, intervalMs: 1000,
-    pulse: { base: [75, 110], perRank: [6, 6], damageType: 'lightning' }, skill: { manaCost: 22, cooldown: 2 } });
+    pulse: { base: [75, 110], perRank: [24, 24], damageType: 'lightning' }, skill: { manaCost: 22, cooldown: 2 } });
+  expect(assassinTrapDefinition('assassin.blade_sentinel')).toMatchObject({ durationMs: 3000, intervalMs: 1000,
+    pulse: { base: [50, 75], perRank: [120, 120], damageType: 'physical' }, skill: { manaCost: 15, cooldown: 2 } });
   expect(assassinTrapDefinition('assassin.death_sentry')).toMatchObject({ mode: 'corpse', lightning: {
     base: [85, 125], perRank: [7, 7] }, pulse: { damageType: 'fire', applyStatus: { dotPctOfDamage: .1 } } });
   expect(assassinTrapDefinition('assassin.blade_shield')).toMatchObject({ mode: 'reactive', durationMs: 6000, intervalMs: 1000 });

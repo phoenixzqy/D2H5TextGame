@@ -1,0 +1,1723 @@
+[
+  {
+    "profileId": "barbarian-double-swing",
+    "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-earned-act5-barbarian-double-swing-v1/barbarian-double-swing.json",
+    "handle": {
+      "challengeOrdinal": 104,
+      "runId": "areas/act1-burial-grounds",
+      "runSeed": 3378145492,
+      "totalWaves": 4
+    },
+    "index": 2,
+    "snapshot": {
+      "act": 1,
+      "seed": 335283655,
+      "playerTeam": [
+        {
+          "activeBuffIds": [],
+          "basicAttackDelivery": "melee",
+          "battleCommandPassives": {
+            "baseline": {
+              "increasedDamagePct": {
+                "fire": 0,
+                "lightning": 0
+              },
+              "manaRegenBaselinePerSecond": 5.2,
+              "manaRegenPerSecond": 5.2,
+              "stats": {
+                "attack": 158,
+                "attackSpeed": 141,
+                "critChance": 0.07,
+                "critDamage": 2,
+                "defense": 134.93,
+                "goldFind": 0,
+                "lifeMax": 346.08,
+                "magicDodge": 0.060000000000000005,
+                "magicFind": 0,
+                "magicResist": 0,
+                "manaMax": 195,
+                "physDodge": 0.122,
+                "resistances": {
+                  "arcane": 5,
+                  "cold": 0,
+                  "fire": 7,
+                  "lightning": 5,
+                  "physical": 5,
+                  "poison": 18
+                }
+              }
+            },
+            "boosted": {
+              "increasedDamagePct": {
+                "fire": 0,
+                "lightning": 0
+              },
+              "manaRegenBaselinePerSecond": 5.2,
+              "manaRegenPerSecond": 5.2,
+              "stats": {
+                "attack": 158,
+                "attackSpeed": 141,
+                "critChance": 0.07,
+                "critDamage": 2,
+                "defense": 138.86,
+                "goldFind": 0,
+                "lifeMax": 356.16,
+                "magicDodge": 0.060000000000000005,
+                "magicFind": 0,
+                "magicResist": 0,
+                "manaMax": 195,
+                "physDodge": 0.122,
+                "resistances": {
+                  "arcane": 5,
+                  "cold": 0,
+                  "fire": 7,
+                  "lightning": 5,
+                  "physical": 5,
+                  "poison": 18
+                }
+              }
+            }
+          },
+          "battleCommandRank": 0,
+          "bonePrisonRank": 0,
+          "boneWallRank": 0,
+          "burstOfSpeedRank": 0,
+          "cloakOfShadowsRank": 0,
+          "coldArmorRanks": {
+            "chilling-armor": 0,
+            "shiver-armor": 0
+          },
+          "coldResistanceReductionPct": 0,
+          "concentrateRank": 0,
+          "cooldowns": {
+            "barbarian.double_swing": 1000,
+            "barbarian.howl": 1628
+          },
+          "enraged": false,
+          "equippedWeapon": {
+            "handedness": "oneHanded",
+            "weaponType": "sword"
+          },
+          "frenzyRank": 0,
+          "governedActiveRanks": {
+            "item.redemption": 0,
+            "sorceress.blaze": 0,
+            "sorceress.chain_lightning": 0,
+            "sorceress.fire_bolt": 0
+          },
+          "gridPosition": {
+            "col": 1,
+            "row": 1
+          },
+          "id": "player-1793304000000",
+          "increasedDamagePct": {
+            "fire": 0,
+            "lightning": 0
+          },
+          "kind": "hero",
+          "leapRank": 0,
+          "level": 12,
+          "life": 346.08,
+          "mana": 185,
+          "manaRegenBaselinePerSecond": 5.2,
+          "manaRegenCarry": 0,
+          "manaRegenCompensation": 0,
+          "manaRegenExactCarry": "0",
+          "manaRegenPerSecond": 5.2,
+          "name": "Campaign screen",
+          "periodicSpellRanks": {
+            "fire-wall": 0,
+            "inferno": 0,
+            "thunder-storm": 0
+          },
+          "physicalReflectionPct": 0,
+          "side": "player",
+          "skillLevels": {
+            "barbarian.bash": 3,
+            "barbarian.double_swing": 9,
+            "barbarian.howl": 1,
+            "barbarian.increased_stamina": 1,
+            "barbarian.shout": 1
+          },
+          "skillOrder": [
+            "barbarian.howl",
+            "barbarian.double_swing",
+            "barbarian.bash"
+          ],
+          "slowMissilesRank": 0,
+          "staticFieldRank": 0,
+          "stats": {
+            "attack": 158,
+            "attackSpeed": 141,
+            "critChance": 0.07,
+            "critDamage": 2,
+            "defense": 134.93,
+            "goldFind": 0,
+            "life": 150,
+            "lifeMax": 346.08,
+            "magicDodge": 0.060000000000000005,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 65,
+            "manaMax": 195,
+            "physDodge": 0.122,
+            "resistances": {
+              "arcane": 5,
+              "cold": 0,
+              "fire": 7,
+              "lightning": 5,
+              "physical": 5,
+              "poison": 18
+            }
+          },
+          "statuses": [],
+          "summonGridPositions": [
+            {
+              "col": 0,
+              "row": 2
+            },
+            {
+              "col": 1,
+              "row": 2
+            },
+            {
+              "col": 2,
+              "row": 2
+            },
+            {
+              "col": 1,
+              "row": 0
+            },
+            {
+              "col": 2,
+              "row": 0
+            },
+            {
+              "col": 0,
+              "row": 1
+            },
+            {
+              "col": 2,
+              "row": 1
+            },
+            {
+              "col": 0,
+              "row": 0
+            }
+          ],
+          "summonedAdds": false,
+          "tier": "trash"
+        },
+        {
+          "activeBuffIds": [],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "equippedWeapon": {},
+          "governedActiveRanks": {
+            "item.redemption": 0,
+            "sorceress.blaze": 0,
+            "sorceress.chain_lightning": 0,
+            "sorceress.fire_bolt": 0
+          },
+          "gridPosition": {
+            "col": 0,
+            "row": 0
+          },
+          "id": "merc-mercs/act1-rogue-inner-sight",
+          "increasedDamagePct": {},
+          "kind": "merc",
+          "level": 15,
+          "life": 244,
+          "mana": 145,
+          "manaRegenBaselinePerSecond": 0,
+          "manaRegenPerSecond": 0,
+          "name": "Rogue Scout \u2014 Inner Sight",
+          "physicalReflectionPct": 0,
+          "side": "player",
+          "skillOrder": [
+            "mskill-inner-sight",
+            "mskill-basic-arrow",
+            "mskill-pierce-arrow"
+          ],
+          "stats": {
+            "attack": 67,
+            "attackSpeed": 158,
+            "critChance": 0.05,
+            "critDamage": 2,
+            "defense": 62,
+            "goldFind": 0,
+            "life": 244,
+            "lifeMax": 244,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 79,
+            "manaMax": 145,
+            "physDodge": 0.166,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash"
+        }
+      ],
+      "enemyTeam": [
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            191,
+            191
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 1
+          },
+          "id": "enemy-act1.bone-warrior-0-e8cc",
+          "kind": "monster",
+          "level": 12,
+          "life": 609,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior A",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 191,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 67,
+            "goldFind": 0,
+            "life": 609,
+            "lifeMax": 609,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 17,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 30,
+              "cold": 30,
+              "fire": 30,
+              "lightning": 30,
+              "physical": 55,
+              "poison": 30
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-elite",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            124,
+            124
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 0
+          },
+          "id": "enemy-act1.bone-warrior-1-3578",
+          "kind": "monster",
+          "level": 12,
+          "life": 381,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior B",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 124,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 59,
+            "goldFind": 0,
+            "life": 381,
+            "lifeMax": 381,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            102,
+            102
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 1
+          },
+          "id": "enemy-act1.zombie-0-0477",
+          "kind": "monster",
+          "level": 12,
+          "life": 242,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie A",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 102,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 33,
+            "goldFind": 0,
+            "life": 242,
+            "lifeMax": 242,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            102,
+            102
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 1
+          },
+          "id": "enemy-act1.zombie-1-9d4c",
+          "kind": "monster",
+          "level": 12,
+          "life": 239,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie B",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 102,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 33,
+            "goldFind": 0,
+            "life": 239,
+            "lifeMax": 239,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 2
+          },
+          "id": "enemy-act1.bone-warrior-2-51bb",
+          "kind": "monster",
+          "level": 12,
+          "life": 205,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior C",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 205,
+            "lifeMax": 205,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 0
+          },
+          "id": "enemy-act1.bone-warrior-3-0f98",
+          "kind": "monster",
+          "level": 12,
+          "life": 176,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior D",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 176,
+            "lifeMax": 176,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            78,
+            78
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 0
+          },
+          "id": "enemy-act1.zombie-2-d618",
+          "kind": "monster",
+          "level": 12,
+          "life": 119,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie C",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee"
+          ],
+          "stats": {
+            "attack": 78,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 29,
+            "goldFind": 0,
+            "life": 119,
+            "lifeMax": 119,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            78,
+            78
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 2
+          },
+          "id": "enemy-act1.zombie-3-3de2",
+          "kind": "monster",
+          "level": 12,
+          "life": 137,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie D",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee"
+          ],
+          "stats": {
+            "attack": 78,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 29,
+            "goldFind": 0,
+            "life": 137,
+            "lifeMax": 137,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 2
+          },
+          "id": "enemy-act1.bone-warrior-4-2ec8",
+          "kind": "monster",
+          "level": 12,
+          "life": 195,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior E",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 195,
+            "lifeMax": 195,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 3
+          },
+          "id": "enemy-act1.bone-warrior-5-4851",
+          "kind": "monster",
+          "level": 12,
+          "life": 186,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior F",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 186,
+            "lifeMax": 186,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        }
+      ]
+    },
+    "expected": {
+      "directDamageBySource": {
+        "enemy-act1.bone-warrior-0-e8cc": 18,
+        "enemy-act1.bone-warrior-1-3578": 7,
+        "enemy-act1.bone-warrior-2-51bb": 9,
+        "enemy-act1.bone-warrior-3-0f98": 6,
+        "enemy-act1.bone-warrior-4-2ec8": 30,
+        "enemy-act1.bone-warrior-5-4851": 16,
+        "enemy-act1.zombie-0-0477": 1,
+        "enemy-act1.zombie-1-9d4c": 5,
+        "enemy-act1.zombie-2-d618": 3,
+        "enemy-act1.zombie-3-3de2": 6,
+        "merc-mercs/act1-rogue-inner-sight": 88,
+        "player-1793304000000": 1857
+      },
+      "engineWinner": null,
+      "heroDied": false,
+      "heroEntryLife": 346.08,
+      "heroEntryMana": 185,
+      "heroLife": 338.08,
+      "heroMana": 171,
+      "livingEnemies": [
+        {
+          "id": "enemy-act1.bone-warrior-0-e8cc",
+          "life": 396
+        },
+        {
+          "id": "enemy-act1.bone-warrior-4-2ec8",
+          "life": 171
+        },
+        {
+          "id": "enemy-act1.bone-warrior-5-4851",
+          "life": 186
+        }
+      ],
+      "logicalMs": 60000,
+      "minimumObservedMana": 166,
+      "outcome": "draw",
+      "periodicDamageByTarget": {},
+      "victoryOnlyTtkMs": null,
+      "zeroManaObserved": false
+    }
+  },
+  {
+    "profileId": "barbarian-double-throw",
+    "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-earned-act5-barbarian-double-throw-v1/barbarian-double-throw.json",
+    "handle": {
+      "challengeOrdinal": 104,
+      "runId": "areas/act1-burial-grounds",
+      "runSeed": 3378145492,
+      "totalWaves": 4
+    },
+    "index": 2,
+    "snapshot": {
+      "act": 1,
+      "seed": 335283655,
+      "playerTeam": [
+        {
+          "activeBuffIds": [],
+          "basicAttackDelivery": "melee",
+          "battleCommandPassives": {
+            "baseline": {
+              "increasedDamagePct": {
+                "fire": 0,
+                "lightning": 0
+              },
+              "manaRegenBaselinePerSecond": 5.2,
+              "manaRegenPerSecond": 5.2,
+              "stats": {
+                "attack": 158,
+                "attackSpeed": 141,
+                "critChance": 0.07,
+                "critDamage": 2,
+                "defense": 134.93,
+                "goldFind": 0,
+                "lifeMax": 346.08,
+                "magicDodge": 0.060000000000000005,
+                "magicFind": 0,
+                "magicResist": 0,
+                "manaMax": 195,
+                "physDodge": 0.122,
+                "resistances": {
+                  "arcane": 5,
+                  "cold": 0,
+                  "fire": 7,
+                  "lightning": 5,
+                  "physical": 5,
+                  "poison": 18
+                }
+              }
+            },
+            "boosted": {
+              "increasedDamagePct": {
+                "fire": 0,
+                "lightning": 0
+              },
+              "manaRegenBaselinePerSecond": 5.2,
+              "manaRegenPerSecond": 5.2,
+              "stats": {
+                "attack": 158,
+                "attackSpeed": 141,
+                "critChance": 0.07,
+                "critDamage": 2,
+                "defense": 138.86,
+                "goldFind": 0,
+                "lifeMax": 356.16,
+                "magicDodge": 0.060000000000000005,
+                "magicFind": 0,
+                "magicResist": 0,
+                "manaMax": 195,
+                "physDodge": 0.122,
+                "resistances": {
+                  "arcane": 5,
+                  "cold": 0,
+                  "fire": 7,
+                  "lightning": 5,
+                  "physical": 5,
+                  "poison": 18
+                }
+              }
+            }
+          },
+          "battleCommandRank": 0,
+          "bonePrisonRank": 0,
+          "boneWallRank": 0,
+          "burstOfSpeedRank": 0,
+          "cloakOfShadowsRank": 0,
+          "coldArmorRanks": {
+            "chilling-armor": 0,
+            "shiver-armor": 0
+          },
+          "coldResistanceReductionPct": 0,
+          "concentrateRank": 0,
+          "cooldowns": {
+            "barbarian.double_throw": 1000,
+            "barbarian.howl": 256
+          },
+          "enraged": false,
+          "equippedWeapon": {
+            "handedness": "oneHanded",
+            "weaponType": "sword"
+          },
+          "frenzyRank": 0,
+          "governedActiveRanks": {
+            "item.redemption": 0,
+            "sorceress.blaze": 0,
+            "sorceress.chain_lightning": 0,
+            "sorceress.fire_bolt": 0
+          },
+          "gridPosition": {
+            "col": 1,
+            "row": 1
+          },
+          "id": "player-1793304000000",
+          "increasedDamagePct": {
+            "fire": 0,
+            "lightning": 0
+          },
+          "kind": "hero",
+          "leapRank": 0,
+          "level": 12,
+          "life": 346.08,
+          "mana": 115,
+          "manaRegenBaselinePerSecond": 5.2,
+          "manaRegenCarry": 0.952,
+          "manaRegenCompensation": 0,
+          "manaRegenExactCarry": "0.952",
+          "manaRegenPerSecond": 5.2,
+          "name": "Campaign screen",
+          "periodicSpellRanks": {
+            "fire-wall": 0,
+            "inferno": 0,
+            "thunder-storm": 0
+          },
+          "physicalReflectionPct": 0,
+          "side": "player",
+          "skillLevels": {
+            "barbarian.bash": 3,
+            "barbarian.double_swing": 1,
+            "barbarian.double_throw": 8,
+            "barbarian.howl": 1,
+            "barbarian.increased_stamina": 1,
+            "barbarian.shout": 1
+          },
+          "skillOrder": [
+            "barbarian.howl",
+            "barbarian.double_throw",
+            "barbarian.double_swing",
+            "barbarian.bash"
+          ],
+          "slowMissilesRank": 0,
+          "staticFieldRank": 0,
+          "stats": {
+            "attack": 158,
+            "attackSpeed": 141,
+            "critChance": 0.07,
+            "critDamage": 2,
+            "defense": 134.93,
+            "goldFind": 0,
+            "life": 150,
+            "lifeMax": 346.08,
+            "magicDodge": 0.060000000000000005,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 65,
+            "manaMax": 195,
+            "physDodge": 0.122,
+            "resistances": {
+              "arcane": 5,
+              "cold": 0,
+              "fire": 7,
+              "lightning": 5,
+              "physical": 5,
+              "poison": 18
+            }
+          },
+          "statuses": [],
+          "summonGridPositions": [
+            {
+              "col": 0,
+              "row": 2
+            },
+            {
+              "col": 1,
+              "row": 2
+            },
+            {
+              "col": 2,
+              "row": 2
+            },
+            {
+              "col": 1,
+              "row": 0
+            },
+            {
+              "col": 2,
+              "row": 0
+            },
+            {
+              "col": 0,
+              "row": 1
+            },
+            {
+              "col": 2,
+              "row": 1
+            },
+            {
+              "col": 0,
+              "row": 0
+            }
+          ],
+          "summonedAdds": false,
+          "tier": "trash"
+        },
+        {
+          "activeBuffIds": [],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {
+            "mskill-basic-arrow": 504,
+            "mskill-inner-sight": 2032
+          },
+          "enraged": false,
+          "equippedWeapon": {},
+          "governedActiveRanks": {
+            "item.redemption": 0,
+            "sorceress.blaze": 0,
+            "sorceress.chain_lightning": 0,
+            "sorceress.fire_bolt": 0
+          },
+          "gridPosition": {
+            "col": 0,
+            "row": 0
+          },
+          "id": "merc-mercs/act1-rogue-inner-sight",
+          "increasedDamagePct": {},
+          "kind": "merc",
+          "level": 15,
+          "life": 241,
+          "mana": 145,
+          "manaRegenBaselinePerSecond": 0,
+          "manaRegenPerSecond": 0,
+          "name": "Rogue Scout \u2014 Inner Sight",
+          "physicalReflectionPct": 0,
+          "side": "player",
+          "skillOrder": [
+            "mskill-inner-sight",
+            "mskill-basic-arrow",
+            "mskill-pierce-arrow"
+          ],
+          "stats": {
+            "attack": 67,
+            "attackSpeed": 158,
+            "critChance": 0.05,
+            "critDamage": 2,
+            "defense": 62,
+            "goldFind": 0,
+            "life": 244,
+            "lifeMax": 244,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 79,
+            "manaMax": 145,
+            "physDodge": 0.166,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash"
+        }
+      ],
+      "enemyTeam": [
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            191,
+            191
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 1
+          },
+          "id": "enemy-act1.bone-warrior-0-e8cc",
+          "kind": "monster",
+          "level": 12,
+          "life": 609,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior A",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 191,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 67,
+            "goldFind": 0,
+            "life": 609,
+            "lifeMax": 609,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 17,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 30,
+              "cold": 30,
+              "fire": 30,
+              "lightning": 30,
+              "physical": 55,
+              "poison": 30
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-elite",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            124,
+            124
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 0
+          },
+          "id": "enemy-act1.bone-warrior-1-3578",
+          "kind": "monster",
+          "level": 12,
+          "life": 381,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior B",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 124,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 59,
+            "goldFind": 0,
+            "life": 381,
+            "lifeMax": 381,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            102,
+            102
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 1
+          },
+          "id": "enemy-act1.zombie-0-0477",
+          "kind": "monster",
+          "level": 12,
+          "life": 242,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie A",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 102,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 33,
+            "goldFind": 0,
+            "life": 242,
+            "lifeMax": 242,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            102,
+            102
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 1
+          },
+          "id": "enemy-act1.zombie-1-9d4c",
+          "kind": "monster",
+          "level": 12,
+          "life": 239,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie B",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee",
+            "monster-arcane-bolt"
+          ],
+          "stats": {
+            "attack": 102,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 33,
+            "goldFind": 0,
+            "life": 239,
+            "lifeMax": 239,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "rare-minion",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 1,
+            "row": 2
+          },
+          "id": "enemy-act1.bone-warrior-2-51bb",
+          "kind": "monster",
+          "level": 12,
+          "life": 205,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior C",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 205,
+            "lifeMax": 205,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 0
+          },
+          "id": "enemy-act1.bone-warrior-3-0f98",
+          "kind": "monster",
+          "level": 12,
+          "life": 176,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior D",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 176,
+            "lifeMax": 176,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            78,
+            78
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 0
+          },
+          "id": "enemy-act1.zombie-2-d618",
+          "kind": "monster",
+          "level": 12,
+          "life": 119,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie C",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee"
+          ],
+          "stats": {
+            "attack": 78,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 29,
+            "goldFind": 0,
+            "life": 119,
+            "lifeMax": 119,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            78,
+            78
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 2
+          },
+          "id": "enemy-act1.zombie-3-3de2",
+          "kind": "monster",
+          "level": 12,
+          "life": 137,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.zombie",
+          "name": "monsters.zombie D",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-weak-melee"
+          ],
+          "stats": {
+            "attack": 78,
+            "attackSpeed": 60,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 29,
+            "goldFind": 0,
+            "life": 137,
+            "lifeMax": 137,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 25,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 0,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 2,
+            "row": 2
+          },
+          "id": "enemy-act1.bone-warrior-4-2ec8",
+          "kind": "monster",
+          "level": 12,
+          "life": 195,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior E",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 195,
+            "lifeMax": 195,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        },
+        {
+          "activeBuffIds": [],
+          "attackRange": [
+            96,
+            96
+          ],
+          "basicAttackDelivery": "melee",
+          "cooldowns": {},
+          "enraged": false,
+          "gridPosition": {
+            "col": 0,
+            "row": 3
+          },
+          "id": "enemy-act1.bone-warrior-5-4851",
+          "kind": "monster",
+          "level": 12,
+          "life": 186,
+          "mana": 0,
+          "monsterArchetypeId": "monsters/act1.bone-warrior",
+          "name": "monsters.boneWarrior F",
+          "side": "enemy",
+          "skillOrder": [
+            "monster-strong-melee"
+          ],
+          "stats": {
+            "attack": 96,
+            "attackSpeed": 90,
+            "critChance": 0.05,
+            "critDamage": 1.5,
+            "defense": 52,
+            "goldFind": 0,
+            "life": 186,
+            "lifeMax": 186,
+            "magicDodge": 0.05,
+            "magicFind": 0,
+            "magicResist": 11,
+            "mana": 0,
+            "manaMax": 0,
+            "physDodge": 0.05,
+            "resistances": {
+              "arcane": 0,
+              "cold": 0,
+              "fire": 0,
+              "lightning": 0,
+              "physical": 25,
+              "poison": 0
+            }
+          },
+          "statuses": [],
+          "summonedAdds": false,
+          "tier": "trash",
+          "undead": true
+        }
+      ]
+    },
+    "expected": {
+      "directDamageBySource": {
+        "enemy-act1.bone-warrior-0-e8cc": 19,
+        "enemy-act1.bone-warrior-1-3578": 9,
+        "enemy-act1.bone-warrior-2-51bb": 16,
+        "enemy-act1.bone-warrior-3-0f98": 20,
+        "enemy-act1.bone-warrior-4-2ec8": 25,
+        "enemy-act1.bone-warrior-5-4851": 19,
+        "enemy-act1.zombie-0-0477": 8,
+        "enemy-act1.zombie-1-9d4c": 16,
+        "enemy-act1.zombie-2-d618": 18,
+        "enemy-act1.zombie-3-3de2": 17,
+        "merc-mercs/act1-rogue-inner-sight": 31,
+        "player-1793304000000": 1150
+      },
+      "engineWinner": null,
+      "heroDied": false,
+      "heroEntryLife": 346.08,
+      "heroEntryMana": 115,
+      "heroLife": 324.08,
+      "heroMana": 58,
+      "livingEnemies": [
+        {
+          "id": "enemy-act1.bone-warrior-0-e8cc",
+          "life": 521
+        },
+        {
+          "id": "enemy-act1.bone-warrior-2-51bb",
+          "life": 95
+        },
+        {
+          "id": "enemy-act1.bone-warrior-3-0f98",
+          "life": 176
+        },
+        {
+          "id": "enemy-act1.zombie-2-d618",
+          "life": 119
+        },
+        {
+          "id": "enemy-act1.zombie-3-3de2",
+          "life": 137
+        },
+        {
+          "id": "enemy-act1.bone-warrior-4-2ec8",
+          "life": 195
+        },
+        {
+          "id": "enemy-act1.bone-warrior-5-4851",
+          "life": 186
+        }
+      ],
+      "logicalMs": 60000,
+      "minimumObservedMana": 50,
+      "outcome": "draw",
+      "periodicDamageByTarget": {},
+      "victoryOnlyTtkMs": null,
+      "zeroManaObserved": false
+    }
+  }
+]

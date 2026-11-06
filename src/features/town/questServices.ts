@@ -87,6 +87,16 @@ function eligible(item: Item, serviceId: QuestServiceId): boolean {
     && (item.socketContents?.length ?? 0) === 0 && typeof base.maxSockets === 'number' && base.maxSockets > 0;
 }
 
+/**
+ * Charge-free socket eligibility shared by Present and the existing consumer.
+ * Returns the actual uniquely owned backpack instance; callers own readiness,
+ * destination, source authority and any retained selection witness.
+ */
+export function socketItemCandidate(itemId: string): Item | undefined {
+  const item = uniqueBackpackItem(itemId);
+  return item && eligible(item, 'socket_item') ? item : undefined;
+}
+
 /** Actual current-town offerings, including historical consumed sources; never infer charges from flags. */
 export function questServicesForNpc(npcId: string): readonly NpcQuestService[] {
   if (readiness()) return [];
@@ -105,8 +115,8 @@ export function questServiceCandidates(source: string): readonly Item[] {
   const inventory = useInventoryStore.getState();
   try { validateGraph(inventory.questServices); } catch { return []; }
   const entry = Object.hasOwn(inventory.questServices, source) ? inventory.questServices[source] : undefined;
-  return entry?.state === 'available' ? inventory.backpack.filter(item => uniqueBackpackItem(item.id) === item
-    && eligible(item, entry.serviceId)) : [];
+  return entry?.state === 'available' ? inventory.backpack.filter(item => entry.serviceId === 'socket_item'
+    ? socketItemCandidate(item.id) === item : uniqueBackpackItem(item.id) === item && eligible(item, entry.serviceId)) : [];
 }
 
 /** Include legacy Map affix rolls when checking observer mutation of an otherwise identical instance. */
@@ -167,7 +177,7 @@ export function useQuestService(source: string, itemId: string): QuestServiceRes
     const entry = Object.hasOwn(inventory.questServices, source) ? inventory.questServices[source] : undefined;
     if (!entry) return 'not-eligible';
     if (entry.state === 'consumed') return 'already-consumed';
-    const item = uniqueBackpackItem(itemId);
+    const item = entry.serviceId === 'socket_item' ? socketItemCandidate(itemId) : uniqueBackpackItem(itemId);
     if (!item || !hero || !eligible(item, entry.serviceId)) return 'not-eligible';
     const characterId = hero.id, characterName = hero.name;
     const base = loadItemBases().get(item.baseId);

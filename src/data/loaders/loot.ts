@@ -21,6 +21,12 @@ import setsJson from '@/data/items/sets.json';
 import treasureClassesJson from '@/data/loot/treasure-classes.json';
 import rarityRulesJson from '@/data/items/rarity-rules.json';
 import { socketRunewords } from './socket-effects';
+import { EQUIPMENT_GUARANTEES } from './equipment-guarantees';
+import { CHAPTER_BOSS_EQUIPMENT } from './chapter-boss-equipment';
+import { CHAPTER_BOSS_UNIQUES } from './chapter-boss-uniques';
+import { CHAPTER_BOSS_FIRST_KILLS, validateChapterBossFirstKillReferences } from './chapter-boss-first-kills';
+import { NONBOSS_LOOT } from './nonboss-loot';
+import { MINIBOSS_LOOT } from './miniboss-loot';
 
 interface JsonTcEntry {
   readonly type: string;
@@ -128,15 +134,21 @@ export function loadRarityAffixRules(): RarityAffixRules {
   return cachedRarityRules;
 }
 
+/** Resolve a current unique package only for its actual concrete base. */
+export function resolveItemUnique(
+  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId'>>,
+  definitions: readonly JsonUnique[] = loadUniques()
+): JsonUnique | undefined {
+  return item.uniqueId ? definitions.find(unique => unique.id === item.uniqueId && unique.baseId === item.baseId) : undefined;
+}
+
 /** Effective equip level uses the strictest base, unique/set and completed-word requirements. */
 export function resolveItemReqLevel(
   item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId' | 'runewordId'>>,
   base: ItemBase | undefined = loadItemBases().get(item.baseId)
 ): number {
   const baseReq = base?.reqLevel ?? 1;
-  const uniqueReq = item.uniqueId
-    ? loadUniques().find((unique) => unique.id === item.uniqueId)?.reqLevel
-    : undefined;
+  const uniqueReq = resolveItemUnique(item)?.reqLevel;
   const setPieceReq = item.setPieceId
     ? loadSetPieces().find((piece) => piece.id === item.setPieceId)?.reqLevel
     : undefined;
@@ -148,12 +160,44 @@ export function resolveItemReqLevel(
 
 /** Bundle every loader call into a single award-ready data set. */
 export function loadAwardPools(): AwardDataPools {
+  const treasureClasses = loadTreasureClasses();
+  for (const row of MINIBOSS_LOOT.acts) {
+    if ([row.treasureClassId, row.equipmentSourceId, row.jewelrySourceId].some(id => !treasureClasses.has(id))) {
+      throw new Error('Unknown miniboss loot table');
+    }
+  }
+  for (const row of NONBOSS_LOOT.acts) {
+    if ([...row.tableIds, row.equipmentSourceId, row.jewelrySourceId].some(id => !treasureClasses.has(id))) {
+      throw new Error('Unknown nonboss loot table');
+    }
+  }
+  for (const tableId of CHAPTER_BOSS_UNIQUES.keys()) {
+    if (!treasureClasses.has(tableId)) throw new Error('Unknown chapter-boss unique table');
+  }
+  for (const [tableId, rule] of CHAPTER_BOSS_EQUIPMENT) {
+    if (!treasureClasses.has(tableId) || rule.groups.some(group => !treasureClasses.has(group.sourceTableId))) {
+      throw new Error('Unknown chapter-boss equipment table');
+    }
+  }
+  for (const [tableId, rules] of EQUIPMENT_GUARANTEES) {
+    if (!treasureClasses.has(tableId) || rules.some(rule => !treasureClasses.has(rule.sourceTableId))) {
+      throw new Error('Unknown equipment guarantee table');
+    }
+  }
+  const bases = loadItemBases(), uniques = loadUniques();
+  validateChapterBossFirstKillReferences(CHAPTER_BOSS_FIRST_KILLS, { bases, uniques, treasureClasses });
   return {
-    bases: loadItemBases(),
+    bases,
     affixes: loadAffixPool(),
     rarityRules: loadRarityAffixRules(),
-    treasureClasses: loadTreasureClasses(),
-    uniques: loadUniques(),
+    treasureClasses,
+    equipmentGuarantees: EQUIPMENT_GUARANTEES,
+    chapterBossEquipment: CHAPTER_BOSS_EQUIPMENT,
+    chapterBossUniques: CHAPTER_BOSS_UNIQUES,
+    chapterBossFirstKills: CHAPTER_BOSS_FIRST_KILLS,
+    nonbossLoot: NONBOSS_LOOT,
+    minibossLoot: MINIBOSS_LOOT,
+    uniques,
     setPieces: loadSetPieces()
   };
 }

@@ -99,7 +99,8 @@ describe('Zeal caps the actual resolved cross', () => {
     const out = run(fixture('zeal', rank));
     expect(hits(out).map((e) => e.target)).toEqual(['target-1', 'target-3', 'target-4']);
     expect(
-      hits(out).every((e) => e.amount >= 40 + 4 * (rank - 1) && e.amount <= 60 + 4 * (rank - 1))
+      hits(out).every((e) => e.amount >= Math.floor(40 + 4 * (rank - 1) + .2 * (rank - 1)) &&
+        e.amount <= 60 + 4 * (rank - 1) + .2 * (rank - 1))
     ).toBe(true);
     expect(out.events.filter((e) => e.kind === 'action')).toEqual([
       expect.objectContaining({ actor: 'hero', skillId: 'paladin.zeal', simClockMs: 1700 })

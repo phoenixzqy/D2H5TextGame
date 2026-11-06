@@ -87,8 +87,8 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     renderScreen();
     const blade = within(screen.getByTestId('quest-quests/act3-blade-of-the-old-religion'));
     const tome = within(screen.getByTestId('quest-quests/act3-lam-esens-tome'));
-    expect(blade.getByText(locale === 'en' ? '🎁 Unique ring' : '🎁 暗金戒指')).toBeVisible();
-    expect(tome.getByText(locale === 'en' ? '📈 +5 Stat Point' : '📈 +5 属性点')).toBeVisible();
+    expect(blade.getByText(locale === 'en' ? 'Unique ring' : '暗金戒指')).toBeVisible();
+    expect(tome.getByText(locale === 'en' ? '+5 Stat Point' : '+5 属性点')).toBeVisible();
     for (const id of ['act3-blade-of-the-old-religion', 'act3-lam-esens-tome']) {
       const card = screen.getByTestId(`quest-quests/${id}`);
       expect(card).toHaveTextContent(i18n.t(`byId.${id}.obj2`, { ns: 'quests' }));
@@ -184,22 +184,25 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
   });
 
   it('keeps an unsupported service unclaimed and displays a localized refusal on every attempt', () => {
-    const id = 'quests/side-act2-fara-favored';
-    act(() => { useMapStore.getState().completeQuest(id); });
-    renderScreen();
-    fireEvent.click(screen.getByRole('tab', { name: /支线|side/i }));
-    const claim = screen.getByTestId(`quest-claim-${id}`);
-    expect(claim).toBeEnabled();
-    const before = usePlayerStore.getState().player;
-    fireEvent.click(claim);
-    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
-    expect(usePlayerStore.getState().player).toBe(before);
-    expect(screen.getByTestId(`quest-feedback-${id}`)).toHaveTextContent(locale === 'en'
-      ? 'This reward cannot be delivered yet. Nothing was claimed.'
-      : '该奖励暂时无法发放，尚未领取。');
-    expect(claim).toBeEnabled();
-    fireEvent.click(claim);
-    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+    withDenRewards({ xp: 500, service: 'repair_discount' }, () => {
+      const id = 'quests/act1-den-of-evil';
+      act(() => { useMapStore.getState().completeQuest(id); });
+      renderScreen();
+      const claim = screen.getByTestId(`quest-claim-${id}`);
+      const states = () => [usePlayerStore.getState(), useInventoryStore.getState(), useMapStore.getState(),
+        useMercStore.getState(), useCombatStore.getState(), useMetaStore.getState(), useFormationStore.getState(), useHydrationStore.getState()];
+      const before = states(), bytes = JSON.stringify(before);
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        expect(claim).toBeEnabled();
+        fireEvent.click(claim);
+        expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+        states().forEach((state, index) => { expect(state).toBe(before[index]); });
+        expect(JSON.stringify(states())).toBe(bytes);
+        expect(screen.getByTestId(`quest-feedback-${id}`)).toHaveTextContent(locale === 'en'
+          ? 'This reward cannot be delivered yet. Nothing was claimed.'
+          : '该奖励暂时无法发放，尚未领取。');
+      }
+    });
   });
 
   it('claims real Den rewards once and disables the settled claim button', () => {
@@ -253,17 +256,21 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
 
 
 /** A temporary authored row, with the exact original reward descriptor restored. */
-function withUniquePreview(uniqueId: string, ilvl: number, check: () => void) {
+function withDenRewards(rewards: Record<string, unknown>, check: () => void) {
   const den = mainDocument.quests.find(quest => quest.id === 'quests/act1-den-of-evil');
   if (!den) throw new Error('Missing actual Den quest');
   const descriptor = Object.getOwnPropertyDescriptor(den, 'rewards');
   if (!descriptor) throw new Error('Missing actual Den rewards');
   try {
-    Object.defineProperty(den, 'rewards', { ...descriptor, value: { itemDrop: { uniqueId, ilvl } } });
+    Object.defineProperty(den, 'rewards', { ...descriptor, value: rewards });
     check();
   } finally {
     Object.defineProperty(den, 'rewards', descriptor);
   }
+}
+
+function withUniquePreview(uniqueId: string, ilvl: number, check: () => void) {
+  withDenRewards({ itemDrop: { uniqueId, ilvl } }, check);
 }
 
 describe.each(['zh-CN', 'en'] as const)('explicit unique reward preview %s', locale => {
@@ -297,7 +304,7 @@ describe.each(['zh-CN', 'en'] as const)('explicit unique reward preview %s', loc
             const view = renderScreen();
             try {
               const card = within(screen.getByTestId('quest-quests/act1-den-of-evil'));
-              const chip = card.getByText(`🎁 ${expected}`);
+              const chip = card.getByText(expected);
               expect(chip.tagName).toBe('LI');
               expect(chip.parentElement?.children).toHaveLength(1);
               expect(chip.textContent).not.toMatch(/uniqueId|ilvl|items[/.]|itemDrop|rewardLabel|[{}]/);

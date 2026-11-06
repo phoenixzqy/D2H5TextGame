@@ -6,7 +6,6 @@ import type { EliteAffixDef } from '../types/elite';
 import type { MonsterDef } from '../types/monsters';
 import * as rngModule from '../rng';
 import { getSkill, listSkills, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
-import { aliasToCanonical, MONSTER_STUB_SKILLS } from '../skills/aliases';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from '../skills/act1-lightning';
 import { DEFAULT_ELITE_CONFIG, resolveChallengeWavePlan, resolveWavePlan } from './sub-area-run';
 import { buildMonsterUnit } from './monster-factory';
@@ -66,25 +65,35 @@ beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
 afterEach(() => { vi.restoreAllMocks(); resetRegistry(); loadDefaultSkills(); });
 
 describe('Act I Lightning affix integration', () => {
-  it('registers both spell identities and preserves every shared monster stub on repeated default loads', () => {
-    const ids = [...listSkills()].sort(), originals = structuredClone(MONSTER_STUB_SKILLS);
-    const flights = new Map(missileRows.flatMap(row => 'projectileFlightMs' in row
-      ? [[aliasToCanonical(row.id), row.projectileFlightMs] as const] : []));
+  it('registers both spell identities and preserves every authored native monster skill on repeated default loads', () => {
+    const ids = [...listSkills()].sort(), source = structuredClone(missileRows);
+    const originals = missileRows.map(row => {
+      const skill = getSkill(row.id);
+      if (!skill) throw new Error(`Missing authored monster skill ${row.id}`);
+      return { authoredId: row.id, skill: structuredClone(skill) };
+    });
     expect(getSkill(id)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     expect(getSkill(canonical)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     registerSkill({ ...ACT1_LIGHTNING_AFFIX_SKILL, manaCost: 99 });
     loadDefaultSkills();
     expect(getSkill(id)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     expect([...listSkills()].sort()).toEqual(ids);
-    for (const stub of MONSTER_STUB_SKILLS) {
-      const flight = flights.get(stub.id);
-      if (flight === undefined) expect(getSkill(stub.id)).toBe(stub);
-      else expect(getSkill(stub.id)).toEqual({ ...stub, effects: stub.effects.map(effect =>
-        effect.kind === 'damage' ? { ...effect, projectileFlightMs: flight } : effect) });
+    for (const original of originals) {
+      expect(getSkill(original.authoredId)).toEqual(original.skill);
+      expect(getSkill(original.skill.id)).toEqual(original.skill);
     }
-    expect(MONSTER_STUB_SKILLS).toEqual(originals);
+    for (const row of missileRows) {
+      if (!('projectileFlightMs' in row)) continue;
+      const skill = getSkill(row.id);
+      expect(skill?.effects.filter(effect => effect.kind === 'damage')).not.toHaveLength(0);
+      for (const effect of skill?.effects ?? []) {
+        if (effect.kind === 'damage') expect(effect.projectileFlightMs).toBe(row.projectileFlightMs);
+      }
+    }
+    expect(missileRows).toEqual(source);
     expect(getSkill('monster-lightning')?.effects).toEqual([
-      { kind: 'damage', damageType: 'lightning', base: [40, 60], tags: undefined, applyStatus: undefined }
+      { kind: 'damage', damageType: 'lightning', base: [40, 60],
+        applyStatus: { id: 'paralyze', chance: 1, stacksOnApply: 1, durationMs: 1000 } }
     ]);
   });
 
@@ -93,7 +102,7 @@ describe('Act I Lightning affix integration', () => {
     const result = plan(sourceAffix, 1, mode);
     const promoted = result.waves.flatMap(wave => wave.spawns).filter(spawn => spawn.eliteAffix);
     expect(promoted.length).toBeGreaterThan(0);
-    for (const spawn of promoted) expect(spawn.eliteAffix).toEqual({ ...sourceAffix, skillId: id });
+    for (const spawn of promoted) expect(spawn.eliteAffix).toEqual({ id: sourceAffix.id, nameKey: sourceAffix.nameKey, skillId: id });
     expect([authoredArea, sourceAffix, DEFAULT_ELITE_CONFIG]).toEqual(before);
   });
 

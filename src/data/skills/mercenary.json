@@ -154,6 +154,8 @@
   },
   {
     "id": "mskill-pilfer",
+    "mercPilfer": { "currencyFindPct": 30 },
+    "cost": { "mana": 0 },
     "name": "skills.mercenary.pilfer.name",
     "description": "skills.mercenary.pilfer.desc",
     "icon": "skills/merc/pilfer.png",
@@ -203,11 +205,34 @@
     "damage": {
       "min": 22,
       "max": 36,
-      "breakdown": { "fire": 36 }
+      "breakdown": {
+        "physical": 1,
+        "fire": 0.5
+      }
     },
-    "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "damageType": "physical",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "physical",
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "attackDamagePct": 100,
+    "mercElementalArrow": {
+      "splash": {
+        "count": 2,
+        "share": 0.5
+      }
+    },
+    "statusEffect": {
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "mskill-cold-arrow",
@@ -222,11 +247,29 @@
     "damage": {
       "min": 22,
       "max": 36,
-      "breakdown": { "cold": 36 }
+      "breakdown": {
+        "physical": 0.5,
+        "cold": 0.5
+      }
     },
-    "damageType": "cold",
-    "appliesStatus": ["chill"],
-    "appliesTags": ["cold", "chill"]
+    "damageType": "physical",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "physical",
+      "cold",
+      "chill"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "attackDamagePct": 100,
+    "mercElementalArrow": {},
+    "statusEffect": {
+      "chance": 0.3,
+      "durationMs": 2000
+    }
   },
   {
     "id": "mskill-pierce-arrow",
@@ -373,7 +416,9 @@
     "target": "self",
     "cooldown": 6,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "cost": { "mana": 0 },
+    "mercFrozenArmor": { "defense": 120 }
   },
   {
     "id": "mskill-telekinesis",
@@ -496,6 +541,7 @@
   },
   {
     "id": "aura-blessed-aim",
+    "mercBlessedAim": { "weaponMissReductionPct": 30 },
     "name": "skills.mercenary.blessed-aim.name",
     "description": "skills.mercenary.blessed-aim.desc",
     "icon": "skills/merc/aura-blessed-aim.png",

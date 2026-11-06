@@ -89,7 +89,7 @@
             "set",
             "runeword"
           ],
-          "description": "Rarity for random item drops"
+          "description": "Optional fixed rarity guarantee. Omit for MF-modulated ordinary item drops."
         },
         "quantityMin": {
           "type": "integer",

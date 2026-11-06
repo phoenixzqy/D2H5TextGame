@@ -59,7 +59,8 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 4
+      "damagePerLevel": 4,
+      "attackDamagePctPerLevel": 20
     },
     "prerequisites": [
       "skills-barbarian-bash"
@@ -556,7 +557,8 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 5,
+      "attackDamagePctPerLevel": 30
     }
   },
   {

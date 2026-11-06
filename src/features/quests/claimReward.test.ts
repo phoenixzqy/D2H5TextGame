@@ -18,6 +18,7 @@ import * as rngModule from '@/engine/rng';
 import { BACKPACK_CAPACITY } from '@/stores/inventoryCapacity';
 import type { Item } from '@/engine/types/items';
 import { canClaim, claimQuestReward } from './claimReward';
+import { spendRecruitmentCurrency } from '@/stores/gachaActions';
 
 const DEN = 'quests/act1-den-of-evil';
 const CAIN = 'quests/side-act1-cains-favor';
@@ -92,6 +93,81 @@ function expectRefusal(id: string, result: string): void {
 }
 
 describe('shared quest claim safety and actual Den contract', () => {
+  it.each([99, Number.MAX_SAFE_INTEGER])('credits future quest wishes while retaining the historical plural balance %s', legacy => {
+    complete();
+    useInventoryStore.setState({ currencies: { wishstone: 3, wishstones: legacy } });
+    withRewards({ wishstones: 7 }, () => {
+      expect(claimQuestReward(DEN)).toBe('ok');
+      expect(useInventoryStore.getState().currencies).toEqual({ wishstone: 10, wishstones: legacy });
+      expect(claimQuestReward(DEN)).toBe('already-claimed');
+    });
+    expect(spendRecruitmentCurrency(10)).toBe(true);
+    expect(useInventoryStore.getState().currencies).toEqual({ wishstone: 0, wishstones: legacy });
+  });
+
+  it('authors the remaining shared main-quest wish budgets without replacing specialized rewards', () => {
+    const budget = [
+      ['act1-forgotten-tower', 15], ['act2-radaments-lair', 20], ['act2-horadric-staff', 20],
+      ['act2-tainted-sun', 15], ['act2-arcane-sanctuary', 15], ['act2-seven-tombs', 25],
+      ['act3-golden-bird', 15], ['act3-blade-of-the-old-religion', 15], ['act3-khalims-will', 20],
+      ['act3-lam-esens-tome', 15], ['act3-guardian', 25], ['act4-fallen-angel', 20],
+      ['act4-hellforge', 20], ['act4-terrors-end', 25], ['act5-siege-on-harrogath', 15],
+      ['act5-rescue-on-mount-arreat', 15], ['act5-prison-of-ice', 20],
+      ['act5-rite-of-passage', 20], ['act5-eve-of-destruction', 25]
+    ] as const;
+    for (const [id, amount] of budget)
+      expect(required(mainDocument.quests.find(quest => quest.id === `quests/${id}`)).rewards)
+        .toHaveProperty('wishstones', amount);
+  });
+
+  it.each(['currency', 'claimed'] as const)('rolls back a single wish grant overflow from the %s observer', boundary => {
+    complete();
+    withRewards({ wishstones: 7 }, () => {
+      const before = data();
+      let observed = false;
+      const overflow = () => {
+        if (observed) return;
+        observed = true;
+        useInventoryStore.getState().addCurrency('wishstone', Number.MAX_SAFE_INTEGER);
+      };
+      const stop = boundary === 'currency'
+        ? useInventoryStore.subscribe((next, previous) => { if (next.currencies !== previous.currencies) overflow(); })
+        : useMapStore.subscribe(next => { if (next.questProgress[DEN]?.rewardClaimed) overflow(); });
+      try {
+        expect(claimQuestReward(DEN)).toBe('grant-failed');
+        expect(observed).toBe(true);
+        expect(data()).toEqual(before);
+      } finally { stop(); }
+      expect(claimQuestReward(DEN)).toBe('ok');
+      expect(useInventoryStore.getState().currencies.wishstone).toBe(7);
+    });
+  });
+
+  it('preserves a valid same-wallet observer addition beside the authored wish grant', () => {
+    complete();
+    withRewards({ wishstones: 7 }, () => {
+      let observed = false;
+      const stop = useInventoryStore.subscribe((next, previous) => {
+        if (observed || next.currencies === previous.currencies) return;
+        observed = true;
+        useInventoryStore.getState().addCurrency('wishstone', 5);
+      });
+      try {
+        expect(claimQuestReward(DEN)).toBe('ok');
+        expect(useInventoryStore.getState().currencies.wishstone).toBe(12);
+      } finally { stop(); }
+    });
+  });
+
+  it('authors the explicit starter quest budget without replacing their existing rewards', () => {
+    const budget = [
+      [DEN, 15], ['quests/act1-sisters-burial-grounds', 15],
+      ['quests/act1-sisters-to-the-slaughter', 25]
+    ] as const;
+    for (const [id, amount] of budget)
+      expect(required(mainDocument.quests.find(quest => quest.id === id)).rewards).toHaveProperty('wishstones', amount);
+  });
+
   it('refuses unknown completed progress without writes', () => {
     const id = 'quests/not-authored';
     complete(id);
@@ -117,11 +193,13 @@ describe('shared quest claim safety and actual Den contract', () => {
     expectRefusal(DEN, 'no-player');
   });
 
-  it.each([JADE])('refuses the entire actual unsupported bundle %s', id => {
+  it('refuses completed Jade flags without physical trinket Give evidence', () => {
     hire();
-    complete(id);
-    expect(canClaim(id)).toBe(true);
-    expectRefusal(id, 'unsupported-rewards');
+    useMapStore.getState().updateQuestProgress(JADE, {
+      status: 'completed', rewardClaimed: false, objectives: { 'obj-deliver': true }
+    });
+    expect(canClaim(JADE)).toBe(false);
+    expectRefusal(JADE, 'not-completed');
   });
 
   it('requires actual physical rescue before the Cain permanent-entitlement Claim', () => {
@@ -153,7 +231,8 @@ describe('shared quest claim safety and actual Den contract', () => {
     expect(after.statPoints).toBe(before.statPoints + 5);
     expect(after.skillPoints).toBe(before.skillPoints + 1 + 1);
     expect(mercXp(id)).toBe(mercBefore + 375);
-    expect(useInventoryStore.getState()).toBe(inventory);
+    expect(useInventoryStore.getState()).toEqual({ ...inventory,
+      currencies: { ...inventory.currencies, wishstone: (inventory.currencies.wishstone ?? 0) + 15 } });
     expect(useMapStore.getState().questProgress[DEN]?.rewardClaimed).toBe(true);
     const settled = data();
     expect(canClaim(DEN)).toBe(false);
@@ -373,14 +452,14 @@ describe('shared quest claim safety and actual Den contract', () => {
       expect(after.skillPoints).toBe(before.skillPoints + 2);
       expect(after.statPoints).toBe(before.statPoints + 3);
       expect(playerXp()).toBe(0);
-      expect(useInventoryStore.getState().currencies).toEqual({ runes: 4, runeShards: 5, gems: 6, wishstones: 7 });
+      expect(useInventoryStore.getState().currencies).toEqual({ runes: 4, runeShards: 5, gems: 6, wishstone: 7 });
     });
   });
 
   it('refuses unsafe authored numbers and currency sums before XP is granted', () => {
     complete();
     withRewards({ xp: Number.MAX_SAFE_INTEGER + 1 }, () => { expectRefusal(DEN, 'unsupported-rewards'); });
-    useInventoryStore.setState({ currencies: { wishstones: Number.MAX_SAFE_INTEGER } });
+    useInventoryStore.setState({ currencies: { wishstone: Number.MAX_SAFE_INTEGER } });
     withRewards({ xp: 500, wishstones: 1 }, () => { expectRefusal(DEN, 'unsupported-rewards'); });
   });
 });

@@ -21,12 +21,12 @@
  *
  * Reads from `usePlayerStore` only. Pure UI; no business logic.
  */
-import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePlayerStore } from '@/stores';
 import { OfflineBonusChip } from '@/features/idle/OfflineBonusBanner';
 import type { Player } from '@/engine/types/entities';
+import { useRecoverableImage } from './useRecoverableImage';
 
 const HIDDEN_PATHS = new Set<string>(['/', '/character/new', '/character', '/combat']);
 const HIDDEN_PREFIXES = ['/dev'] as const;
@@ -71,7 +71,7 @@ export function CharacterHud() {
           hover:border-d2-gold/70 active:scale-[0.98] transition-transform
         "
       >
-        <Avatar player={player} />
+        <Avatar key={player.class} player={player} />
         <div className="flex-1 min-w-0 flex flex-col gap-0.5">
           <div className="flex items-baseline justify-between gap-1 leading-none">
             <span className="font-serif text-d2-gold text-xs md:text-sm truncate">
@@ -110,7 +110,7 @@ export function CharacterHud() {
 }
 
 function Avatar({ player }: { player: Player }) {
-  const [errored, setErrored] = useState(false);
+  const { errored, onError } = useRecoverableImage();
   const cls = player.class;
   const src = `/assets/d2/generated/class-portraits/classes.${cls}.png`;
   const initial = (cls.charAt(0) || player.name.charAt(0) || '?').toUpperCase();
@@ -132,7 +132,7 @@ function Avatar({ player }: { player: Player }) {
           src={src}
           alt=""
           className="w-full h-full object-cover object-top"
-          onError={() => { setErrored(true); }}
+          onError={onError}
           loading="lazy"
           decoding="async"
         />

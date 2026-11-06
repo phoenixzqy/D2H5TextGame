@@ -6,14 +6,32 @@
 import Dexie, { type Table } from 'dexie';
 import { type SaveCurrent } from '@/engine/types/save';
 import { type VersionedSave } from '@/engine/save';
-import { decodeSave } from '@/engine/save/validate';
-import { toJsonSafe } from '@/engine/save/serialize';
+import { decodeSave, decodeSaveJson } from '@/engine/save/validate';
+import { stringifySave } from '@/engine/save/serialize';
 
-export interface SaveRecord {
+interface SaveRecordMetadata {
   id: string; // Always "current" for single-player
   version: number;
-  data: SaveCurrent | VersionedSave;
   timestamp: number;
+}
+
+/** Physical storage encoding is independent of the logical save version. */
+export type SaveRecord = SaveRecordMetadata & (
+  | { encoding?: never; data: SaveCurrent | VersionedSave }
+  | { encoding: 'json-v1'; data: string }
+);
+
+/** Read either physical envelope; logical validation and migration follow separately. */
+function readPayload(record: SaveRecord): unknown {
+  if (!Object.hasOwn(record, 'encoding')) return record.data;
+  return JSON.parse(readJsonPayload(record)) as unknown;
+}
+
+function readJsonPayload(record: SaveRecord): string {
+  if (record.encoding !== 'json-v1' || typeof record.data !== 'string') {
+    throw new Error('Unsupported or invalid save storage encoding');
+  }
+  return record.data;
 }
 
 class SaveDatabase extends Dexie {
@@ -36,7 +54,8 @@ const db = new SaveDatabase();
 export async function loadSave(): Promise<SaveCurrent | null> {
   const record = await db.saves.get('current');
   if (!record) return null;
-  return decodeSave(record.data);
+  return Object.hasOwn(record, 'encoding')
+    ? decodeSaveJson(readJsonPayload(record)) : decodeSave(record.data);
 }
 
 /**
@@ -52,12 +71,15 @@ function enqueueWrite(write: () => Promise<void>): Promise<void> {
   return pending;
 }
 
+/** Capture immutable JSON immediately, before any asynchronous queued write. */
 export function saveSave(data: SaveCurrent): Promise<void> {
-  const snapshot = structuredClone(data);
+  const version = data.version;
+  const snapshot = stringifySave(data);
   return enqueueWrite(async () => {
     await db.saves.put({
       id: 'current',
-      version: snapshot.version,
+      version,
+      encoding: 'json-v1',
       data: snapshot,
       timestamp: Date.now()
     });
@@ -70,14 +92,14 @@ export function saveSave(data: SaveCurrent): Promise<void> {
 export async function exportSave(): Promise<string | null> {
   const record = await db.saves.get('current');
   if (!record) return null;
-  return JSON.stringify(toJsonSafe(record.data), null, 2);
+  return stringifySave(readPayload(record), 2);
 }
 
 /**
  * Import save from JSON string. Runs migrations to current version.
  */
 export async function importSave(json: string): Promise<void> {
-  await saveSave(decodeSave(JSON.parse(json) as unknown));
+  await saveSave(decodeSaveJson(json));
 }
 
 /**
@@ -90,9 +112,8 @@ export async function deleteSave(): Promise<void> {
 }
 
 /**
- * Check if a save exists
+ * Check the current key without deserializing the save payload.
  */
 export async function hasSave(): Promise<boolean> {
-  const record = await db.saves.get('current');
-  return !!record;
+  return (await db.saves.where('id').equals('current').count()) > 0;
 }

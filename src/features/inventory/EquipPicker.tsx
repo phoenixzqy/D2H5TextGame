@@ -34,7 +34,7 @@
  *   - compareEquip() for deltas
  *   - inventoryStore.equipItem() for the actual equip action
  */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { Button, GameImage, RarityText, getItemIconUrl, tItemName } from '@/ui';
@@ -56,6 +56,8 @@ interface Props {
   readonly onEquipped?: (item: Item) => void;
   readonly onEquipFailed?: (item: Item, reason: EquipFailure['reason']) => void;
 }
+
+const CANDIDATE_PAGE_SIZE = 50;
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -105,6 +107,8 @@ function CandidateRow({
   selected,
   eligible,
   reason,
+  position,
+  total,
   onSelect,
   rowRef
 }: {
@@ -112,6 +116,8 @@ function CandidateRow({
   readonly selected: boolean;
   readonly eligible: boolean;
   readonly reason: string;
+  readonly position: number;
+  readonly total: number;
   readonly onSelect: () => void;
   readonly rowRef?: (el: HTMLLIElement | null) => void;
 }) {
@@ -122,6 +128,8 @@ function CandidateRow({
       role="option"
       aria-selected={selected}
       aria-disabled={!eligible}
+      aria-posinset={position}
+      aria-setsize={total}
       tabIndex={selected ? 0 : -1}
       onClick={onSelect}
       onKeyDown={(e) => {
@@ -171,6 +179,28 @@ function CandidateList({
 }) {
   const { t } = useTranslation(['inventory', 'common']);
   const rowRefs = useRef<Map<string, HTMLLIElement>>(new Map());
+  const pendingFocus = useRef<string | null>(null);
+  const selectedIndex = Math.max(0, items.findIndex(item => item.id === selectedId));
+  const page = Math.floor(selectedIndex / CANDIDATE_PAGE_SIZE);
+  const pages = Math.ceil(items.length / CANDIDATE_PAGE_SIZE);
+  const start = page * CANDIDATE_PAGE_SIZE;
+  const visible = items.slice(start, start + CANDIDATE_PAGE_SIZE);
+
+  // Keyboard targets on another page mount before focus can move to them.
+  // Page controls keep their own focus; only list-key navigation requests it.
+  useLayoutEffect(() => {
+    if (pendingFocus.current !== null) {
+      rowRefs.current.get(pendingFocus.current)?.focus();
+      pendingFocus.current = null;
+    }
+  }, [selectedId, items]);
+
+  const changePage = (requested: number): void => {
+    if (!Number.isFinite(requested)) return;
+    const next = Math.max(0, Math.min(pages - 1, Math.trunc(requested)));
+    const target = items[next * CANDIDATE_PAGE_SIZE];
+    if (target) onSelect(target.id);
+  };
 
   const onListKey = useCallback(
     (e: React.KeyboardEvent<HTMLUListElement>) => {
@@ -185,8 +215,10 @@ function CandidateList({
       e.preventDefault();
       const target = items[next];
       if (target) {
+        const mounted = rowRefs.current.get(target.id);
+        if (mounted) mounted.focus();
+        else pendingFocus.current = target.id;
         onSelect(target.id);
-        rowRefs.current.get(target.id)?.focus();
       }
     },
     [items, selectedId, onSelect]
@@ -201,6 +233,21 @@ function CandidateList({
   }
 
   return (
+    <>
+    {pages > 1 && <nav aria-label={t('pagination.label')} className="mb-3 min-w-0 space-y-2">
+      <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
+        {t('pagination.status', { start: start + 1, end: start + visible.length, total: items.length, page: page + 1, pages })}
+      </p>
+      <div className="flex flex-wrap items-center gap-2">
+        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(0); }}>{t('pagination.first')}</Button>
+        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(page - 1); }}>{t('pagination.previous')}</Button>
+        <input type="number" min={1} max={pages} step={1} value={page + 1}
+          aria-label={t('pagination.page')} onChange={event => { changePage(event.target.valueAsNumber - 1); }}
+          className="min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
+        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(page + 1); }}>{t('pagination.next')}</Button>
+        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(pages - 1); }}>{t('pagination.last')}</Button>
+      </div>
+    </nav>}
     <ul
       className="space-y-2"
       role="listbox"
@@ -208,7 +255,7 @@ function CandidateList({
       onKeyDown={onListKey}
       data-testid="candidate-list"
     >
-      {items.map((it) => {
+      {visible.map((it, index) => {
         const elig = eligibility.get(it.id) ?? { eligible: true, reasons: [] };
         return (
           <CandidateRow
@@ -217,6 +264,8 @@ function CandidateList({
             selected={selectedId === it.id}
             eligible={elig.eligible}
             reason={formatReasons(elig, t)}
+            position={start + index + 1}
+            total={items.length}
             onSelect={() => { onSelect(it.id); }}
             rowRef={(el) => {
               if (el) rowRefs.current.set(it.id, el);
@@ -226,6 +275,7 @@ function CandidateList({
         );
       })}
     </ul>
+    </>
   );
 }
 

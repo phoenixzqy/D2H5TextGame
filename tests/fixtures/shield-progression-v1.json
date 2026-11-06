@@ -1,0 +1,342 @@
+{
+  "version": 1,
+  "decision": "docs/plans/decisions/P15-ordinary-shield-tiers-v1.md",
+  "tiers": [
+    {
+      "baseId": "items/base/sh-buckler",
+      "from": 1,
+      "to": 7
+    },
+    {
+      "baseId": "items/base/sh-kite",
+      "from": 8,
+      "to": 24
+    },
+    {
+      "baseId": "items/base/sh-aegis",
+      "from": 25,
+      "to": 34
+    },
+    {
+      "baseId": "items/base/sh-dragon-shield",
+      "from": 35,
+      "to": 49
+    },
+    {
+      "baseId": "items/base/sh-monarch",
+      "from": 50,
+      "to": 59
+    },
+    {
+      "baseId": "items/base/sh-sacred-targe",
+      "from": 60,
+      "to": 122
+    }
+  ],
+  "tables": [
+    {
+      "id": "loot/trash-act1",
+      "minLevel": 1,
+      "maxLevel": 58,
+      "weightPerFamily": 127.5,
+      "originalEntryCount": 44,
+      "additions": [
+        {
+          "baseId": "items/base/sh-aegis",
+          "from": 25,
+          "to": 34
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 35,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 50,
+          "to": 58
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act2",
+      "minLevel": 14,
+      "maxLevel": 71,
+      "weightPerFamily": 65,
+      "originalEntryCount": 38,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 35,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 71
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act3",
+      "minLevel": 26,
+      "maxLevel": 86,
+      "weightPerFamily": 43.75,
+      "originalEntryCount": 34,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 35,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 86
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act4",
+      "minLevel": 40,
+      "maxLevel": 101,
+      "weightPerFamily": 52.5,
+      "originalEntryCount": 26,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 40,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act5",
+      "minLevel": 55,
+      "maxLevel": 122,
+      "weightPerFamily": 70,
+      "originalEntryCount": 25,
+      "additions": []
+    },
+    {
+      "id": "loot/champion-act1",
+      "minLevel": 9,
+      "maxLevel": 14,
+      "weightPerFamily": 18.75,
+      "originalEntryCount": 10,
+      "additions": []
+    },
+    {
+      "id": "loot/champion-act2",
+      "minLevel": 22,
+      "maxLevel": 28,
+      "weightPerFamily": 18.75,
+      "originalEntryCount": 13,
+      "additions": [
+        {
+          "baseId": "items/base/sh-kite",
+          "from": 22,
+          "to": 24
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act3",
+      "minLevel": 38,
+      "maxLevel": 45,
+      "weightPerFamily": 15,
+      "originalEntryCount": 12,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 38,
+          "to": 45
+        }
+      ]
+    },
+    {
+      "id": "loot/champion-act5",
+      "minLevel": 57,
+      "maxLevel": 75,
+      "weightPerFamily": 18.75,
+      "originalEntryCount": 13,
+      "additions": [
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 57,
+          "to": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act1",
+      "minLevel": 10,
+      "maxLevel": 14,
+      "weightPerFamily": 15,
+      "originalEntryCount": 10,
+      "additions": []
+    },
+    {
+      "id": "loot/unique-act2",
+      "minLevel": 22,
+      "maxLevel": 28,
+      "weightPerFamily": 15,
+      "originalEntryCount": 13,
+      "additions": [
+        {
+          "baseId": "items/base/sh-kite",
+          "from": 22,
+          "to": 24
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act3",
+      "minLevel": 38,
+      "maxLevel": 45,
+      "weightPerFamily": 12.5,
+      "originalEntryCount": 12,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 38,
+          "to": 45
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act5",
+      "minLevel": 58,
+      "maxLevel": 75,
+      "weightPerFamily": 15,
+      "originalEntryCount": 13,
+      "additions": [
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 58,
+          "to": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/act1-boss",
+      "minLevel": 12,
+      "maxLevel": 59,
+      "weightPerFamily": 15,
+      "originalEntryCount": 32,
+      "additions": [
+        {
+          "baseId": "items/base/sh-aegis",
+          "from": 25,
+          "to": 34
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 35,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 50,
+          "to": 59
+        }
+      ]
+    },
+    {
+      "id": "loot/act2-boss",
+      "minLevel": 22,
+      "maxLevel": 72,
+      "weightPerFamily": 15,
+      "originalEntryCount": 34,
+      "additions": [
+        {
+          "baseId": "items/base/sh-kite",
+          "from": 22,
+          "to": 24
+        },
+        {
+          "baseId": "items/base/sh-aegis",
+          "from": 29,
+          "to": 34
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 35,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 72
+        }
+      ]
+    },
+    {
+      "id": "loot/act3-boss",
+      "minLevel": 38,
+      "maxLevel": 87,
+      "weightPerFamily": 15,
+      "originalEntryCount": 25,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 38,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 87
+        }
+      ]
+    },
+    {
+      "id": "loot/act4-boss",
+      "minLevel": 45,
+      "maxLevel": 101,
+      "weightPerFamily": 15,
+      "originalEntryCount": 26,
+      "additions": [
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "from": 45,
+          "to": 49
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "from": 56,
+          "to": 59
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "from": 60,
+          "to": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/act5-boss",
+      "minLevel": 60,
+      "maxLevel": 122,
+      "weightPerFamily": 15,
+      "originalEntryCount": 19,
+      "additions": []
+    }
+  ],
+  "predecessorJsonSha256": "40e21ca5d7eb38b878fba2d7b716ede7abf7531c470ca51ef783ecb58e3ec4e2"
+}

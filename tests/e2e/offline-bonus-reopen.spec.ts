@@ -32,10 +32,18 @@ async function readStoredSave(page: Page): Promise<SaveCurrent> {
       const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
       get.onerror = () => { db.close(); reject(new Error('Could not read committed character')); };
       get.onsuccess = () => {
-        const record = get.result as { data: SaveCurrent } | undefined;
+        const record = get.result as { encoding?: string; data: SaveCurrent | string } | undefined;
         db.close();
         if (!record) reject(new Error('No committed character'));
-        else resolve(record.data);
+        else {
+          try {
+            if (Object.hasOwn(record, 'encoding') && record.encoding !== 'json-v1') {
+              throw new Error('Unsupported storage encoding');
+            }
+            resolve(record.encoding === 'json-v1' ? JSON.parse(record.data as string) as SaveCurrent
+              : record.data as SaveCurrent);
+          } catch (error) { reject(error instanceof Error ? error : new Error(String(error))); }
+        }
       };
     };
   }));
@@ -155,6 +163,12 @@ for (const locale of ['en', 'zh-CN'] as const) {
     // checkpoint timestamp, never from an arbitrary observed save payload.
     expect(periodic).toEqual(expectedSave(atB, periodic.timestamp, multiplier,
       remainingSeconds, INITIAL_OFFLINE_TIME + 3_600_000));
+    // The chip may still show its last legal 30-second projection at this
+    // frozen minute boundary. Remount through ordinary read-only navigation
+    // before requiring the exact current text, without advancing the clock.
+    await page.getByTestId('character-hud').click();
+    await expect(page.getByTestId('offline-bonus-chip')).toHaveCount(0);
+    await navTo(page, 'settings');
     await expectChip(page, english, 4, 10);
     const atC = expectedSave(atB, C, 1.04, 600, INITIAL_OFFLINE_TIME + 3_600_000);
     await saveAndVerify(page, atC, english);

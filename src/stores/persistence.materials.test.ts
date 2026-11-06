@@ -55,7 +55,8 @@ describe('native material persistence and frozen v17/v18 exports', () => {
     const saved = { ...withoutV19Fields(snapshot()), version: 18 as const };
     const { materials: _materials, ...oldInventory } = saved.inventory;
     const historical: SaveV17 = { ...saved, version: 17, inventory: oldInventory };
-    disk.state.record = { ...record, version, data: version === 17 ? historical : saved };
+    disk.state.record = { id: record.id, timestamp: record.timestamp, version,
+      data: version === 17 ? historical : saved };
     const before = structuredClone(disk.state.record);
     const raw = await exportSave();
     if (!raw) throw new Error('Missing raw disk export');
@@ -73,7 +74,7 @@ describe('native material persistence and frozen v17/v18 exports', () => {
     useInventoryStore.getState().addMaterials(materials);
     useInventoryStore.getState().addCurrency('rune-shard', 99);
     const before = snapshot();
-    expect(before.version).toBe(24);
+    expect(before.version).toBe(33);
     expect(before.inventory.materials).toEqual(materials);
     const exported = exportCurrentSave();
     if (!exported) throw new Error('Missing export');
@@ -101,7 +102,7 @@ describe('native material persistence and frozen v17/v18 exports', () => {
     useInventoryStore.getState().addMaterials({ 'runes/ral': 1 });
     await importIntoStores(JSON.stringify(old));
     expect(snapshot().inventory).toEqual(withV19Defaults(old).inventory);
-    expect((await loadSave())?.version).toBe(24);
+    expect((await loadSave())?.version).toBe(33);
   });
 
   it.each([undefined, { 'runes/ral': 0 }, { 'runes/unknown': 1 }, { 'runes/ral': Number.MAX_SAFE_INTEGER + 1 }])(

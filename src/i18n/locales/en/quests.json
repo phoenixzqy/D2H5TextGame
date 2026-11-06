@@ -1,4 +1,49 @@
 {
+  "cow": {
+    "name": "Cow King portal",
+    "remains": "Wirt's remains",
+    "remainsDescription": "After clearing the Dark Wood on Normal, recover Wirt's Leg from the ruined-village remains. Recovery grants no reward.",
+    "recover": "Recover Wirt's Leg",
+    "receive": "Receive portal tome",
+    "transmute": "Transmute: Cow portal",
+    "enter": "Enter Cow portal",
+    "ingredients": "Transmutation consumes {{leg}} and {{tome}}. {{cube}} is retained.",
+    "used": "Consumed to open the Cow portal",
+    "retry": "Defeat or abandonment grants no Cow income. The open portal allows a free retry.",
+    "stage": {
+      "unavailable": "Cow actions are unavailable. Track the quest and return on Normal when ordinary actions are ready.",
+      "need-leg": "Recover Wirt's Leg after clearing the Dark Wood on Normal.",
+      "need-tome": "At Akara, explicitly Receive the free bound portal Tome. Talking alone grants no ingredient.",
+      "need-cube": "Recover the actual Horadric Cube through its existing quest. Cow actions do not provide a Cube.",
+      "ready-to-open": "At Akara, Transmute both owned ingredients with the retained Cube. Opening grants no XP or loot.",
+      "portal-open": "The portal is open. Defeat the Cow King before claiming the separate quest reward.",
+      "victorious": "The Cow King is defeated and the portal is closed. Return to Quests to Claim the one-time 6,000 XP reward.",
+      "claimed": "The portal is permanently closed and the fixed quest reward has already been claimed."
+    },
+    "source": {
+      "ready": "Ready",
+      "owned": "Owned",
+      "consumed": "Consumed to open the portal",
+      "unavailable": "Unavailable; follow the current quest instruction."
+    },
+    "feedback": {
+      "ok": "Done. Quest rewards remain separate.",
+      "already-owned": "This ingredient is already owned.",
+      "already-read": "This source has already been used.",
+      "already-opened": "The Cow portal has already been opened.",
+      "not-eligible": "The required source, location or quest state is not ready.",
+      "not-ready": "Wait for the save to finish loading.",
+      "no-player": "Create or continue a hero first.",
+      "combat-active": "Finish or leave the active battle first.",
+      "claim-in-progress": "Another quest action is still resolving.",
+      "locked-area": "This act is not unlocked.",
+      "unknown-area": "This location does not support the Cow action.",
+      "grant-failed": "The action failed. Check the current sources before retrying.",
+      "busy": "Wait for the current battle or save action to finish.",
+      "restoration-failed": "The action could not fully restore its changes. Check the current state before continuing.",
+      "refused": "Cow portal entry was refused. Return on Normal with a valid open portal and no active battle."
+    }
+  },
   "title": "Quests",
   "main": "Main",
   "side": "Side",
@@ -150,6 +195,30 @@
         "owned": "Hammer recovered. Bring it and Mephisto’s Soulstone to the Hellforge; shattering consumes both.",
         "consumed": "Hammer consumed together with Mephisto’s Soulstone at the Hellforge.",
         "unavailable": "Track Hell’s Forge and defeat Hephasto in the River of Flame first."
+      },
+      "sun_cult_tome": {
+        "name": "Sun-Cult Tome Cache",
+        "ready": "Recover the Sun-Cult Tome. Claim Drognan’s knowledge reward separately in Quests.",
+        "owned": "The Sun-Cult Tome is safely kept in Quest Items.",
+        "unavailable": "Track Drognan’s Tome and visit the Lost City in Normal difficulty to recover it."
+      },
+      "horazon_lockbox": {
+        "name": "Horazon's Lockbox",
+        "ready": "Recover Horazon's Lockbox. Claim XP and Manald Heal separately in Quests.",
+        "owned": "Horazon's Lockbox is safely kept in Quest Items.",
+        "unavailable": "Track Horazon's Lockbox and visit the Arcane Sanctuary on Normal difficulty to recover it."
+      },
+      "elzix_strongbox": {
+        "name": "Elzix's Strongbox",
+        "ready": "Recover Elzix's Strongbox. Claim XP and The Eye of Etlich separately in Quests.",
+        "owned": "Elzix's Strongbox is safely kept in Quest Items.",
+        "unavailable": "Track The Lost Caravan and visit the Far Oasis on Normal difficulty to recover the strongbox."
+      },
+      "nihlathak_relic": {
+        "name": "Nihlathak’s Relic Cache",
+        "ready": "Recover Nihlathak’s relic. Claim Cain’s reward separately in Quests.",
+        "owned": "Nihlathak’s relic is safely kept in Quest Items.",
+        "unavailable": "Track Nihlathak’s Treasure, free Anya and defeat Nihlathak, then recover the relic in Crystalline Passage on Normal difficulty."
       }
     },
     "objects": {
@@ -306,8 +375,8 @@
     },
     "act1-rogue-merc-unlock": {
       "name": "Kashya's Recruit",
-      "desc": "After avenging the Sisters at the Burial Grounds, Kashya offers a Rogue Scout as a mercenary.",
-      "obj1": "Hire a Rogue Scout from Kashya."
+      "desc": "Defeat Blood Raven, then return to Kashya. Enlist or re-enlist a Rogue Scout — Trainee here in Normal, then Claim one-time ensure-owned support separately in your journal.",
+      "obj1": "Enlist or re-enlist a Rogue Scout — Trainee at Kashya."
     },
     "act1-cains-favor": {
       "name": "Cain's Gratitude",
@@ -315,15 +384,15 @@
       "obj1": "Speak with Cain in the Rogue Encampment."
     },
     "act1-gheeds-gamble": {
-      "name": "Gheed's Gamble",
-      "desc": "Spend gold at Gheed's gambling stall five times for a guaranteed magical item chance.",
-      "obj1": "Gamble 5 items at Gheed's stall."
+      "name": "Gheed's Salvage Deal",
+      "desc": "Gheed sees value in five marked salvage lots in the Cold Plains. Recover each on Normal, then Claim in Quests to exchange all five for 1,000 XP and 1 Gem Shard.",
+      "obj1": "Recover 5 distinct Gheed salvage lots in the Cold Plains on Normal."
     },
     "act1-pandemonium-cow-rumor": {
       "name": "Whispers of the Cow King",
-      "desc": "Transmute Wirt's Leg with a Tome of Town Portal in the Horadric Cube to open a moo-ving portal.",
-      "obj1": "Take Wirt's Leg from Tristram.",
-      "obj2": "Open the Secret Cow Level portal."
+      "desc": "Recover Wirt's Leg after clearing the Dark Wood on Normal. At Akara, Receive a bound Portal Tome and transmute both with the retained Horadric Cube. Enter the hidden clearing for one Cow King battle, then Claim 6,000 XP separately after victory.",
+      "obj1": "Recover Wirt's Leg from his remains after clearing the Dark Wood on Normal.",
+      "obj2": "At Akara, transmute Wirt's Leg and the bound portal Tome using the retained Horadric Cube."
     },
     "act2-radaments-lair": {
       "name": "Radament's Lair",
@@ -451,48 +520,49 @@
     },
     "act2-greiz-merc-roster": {
       "name": "Greiz's Roster",
-      "desc": "Greiz, captain of the Lut Gholein guard, offers Desert Mercenaries to those who have proven themselves against the sewer dwellers.",
-      "obj1": "Hire a Desert Mercenary from Greiz."
+      "desc": "Complete Radament’s Lair and reach hero level 12. Enlist or re-enlist a Desert Merc — Blessed Aim at Greiz in Normal, then Claim one-time ensure-owned support separately. The Book of Skill need not be claimed or read.",
+      "obj1": "Enlist or re-enlist a Desert Merc — Blessed Aim at Greiz."
     },
     "act2-fara-favored": {
       "name": "Fara's Favor",
-      "desc": "Fara, the former Paladin, will repair your gear at a discount after you've cleansed Radament's filth from the sewers.",
+      "desc": "After completing Radament's Lair, speak with Fara in Lut Gholein. Claim 1 gem-shard separately in Quests. For one gem fusion, supply 3 matching gems of the same type and quality; the shard covers its catalyst cost.",
       "obj1": "Speak with Fara."
     },
     "act2-lost-caravan": {
       "name": "The Lost Caravan",
-      "desc": "Elzix's caravan was ambushed in the Far Oasis. Recover his strongbox from the bandit camp.",
-      "obj1": "Recover the strongbox in the Far Oasis."
+      "desc": "Recover Elzix's Strongbox in the Far Oasis on Normal. Keep it as a memento and claim XP and The Eye of Etlich separately in Quests.",
+      "obj1": "Recover Elzix's Strongbox in the Far Oasis."
     },
     "act2-drognan-tome": {
       "name": "Drognan's Tome",
-      "desc": "The sage Drognan asks you to recover a sun-cult tome from the Lost City. He will reward you with a tome of arcane learning.",
+      "desc": "Recover the Sun-Cult Tome in the Lost City. Drognan will share its arcane knowledge; claim XP and a skill point separately in Quests.",
       "obj1": "Find the Sun-Cult Tome."
     },
     "act2-summoners-secret": {
       "name": "Horazon's Lockbox",
-      "desc": "Rumor speaks of a hidden lockbox left by Horazon in the Arcane Sanctuary. Find it and bring its prize back to Atma.",
-      "obj1": "Locate Horazon's lockbox."
+      "desc": "Recover Horazon's Lockbox in the Arcane Sanctuary on Normal. Keep it as a memento and claim XP and Manald Heal separately in Quests.",
+      "obj1": "Recover Horazon's Lockbox in the Arcane Sanctuary."
     },
     "act3-asheara-merc": {
       "name": "Asheara's Iron Wolves",
-      "desc": "Asheara, captain of the Iron Wolves, offers her elemental mages as mercenaries to those willing to brave the Kurast jungle.",
-      "obj1": "Hire an Iron Wolf from Asheara."
+      "desc": "Unlock Act III and reach hero level 18. Enlist or re-enlist an Iron Wolf — Frozen Armor at Asheara in Normal, then Claim one-time ensure-owned support separately in your journal.",
+      "obj1": "Enlist or re-enlist an Iron Wolf — Frozen Armor at Asheara."
     },
     "act3-alkors-experiment": {
       "name": "Alkor's Experiment",
-      "desc": "Alkor wants ingredients from a giant spider in the Spider Cavern for his alchemical experiments. Bring him fresh venom glands.",
-      "obj1": "Collect 3 venom glands."
+      "desc": "Recover three distinct glands in the Spider Forest on Normal. Claim in your journal exchanges all three for XP and five unallocated stat points.",
+      "obj1": "Recover 3 venom glands in the Spider Forest."
     },
     "act3-jade-statuette": {
       "name": "Jade Figurine Buyer",
-      "desc": "Meshif's contacts in Kurast Bazaar are buying jade trinkets at a premium. Sell three jade artifacts to him for a tidy sum.",
-      "obj1": "Deliver 3 jade trinkets to Meshif."
+      "desc": "Recover three distinct trinkets in Kurast Bazaar on Normal. Give all three to Meshif, then Claim XP and rune shards separately.",
+      "obj1": "Recover 3 jade trinkets in Kurast Bazaar and Give them to Meshif."
     },
     "act3-ormus-charm": {
       "name": "Ormus's Charm",
-      "desc": "Ormus, troubled by visions, asks you to slay corrupt fetish shamans deep in the Flayer Dungeon. He grants you a small enchanted charm in return.",
-      "obj1": "Slay 10 Fetish Shamans."
+      "desc": "Clear every wave of the Flayer Jungle on Normal in a manual run, then speak with Ormus in Kurast. Claim his enchanted charm: +20 Life and +10 Mana while equipped in your charm slot.",
+      "obj1": "Clear every wave of the Flayer Jungle on Normal in a manual run.",
+      "obj2": "Return to Kurast and speak with Ormus."
     },
     "act4-tyraels-blessing": {
       "name": "Tyrael's Blessing",
@@ -501,8 +571,8 @@
     },
     "act4-jamella-trade": {
       "name": "Jamella's Stockpile",
-      "desc": "The angelic merchant Jamella will gladly trade rare gems for crafting reagents you collect from Hephasto's forge.",
-      "obj1": "Collect 5 Forge Embers."
+      "desc": "Recover five distinct embers in the River of Flame on Normal. Claim in your journal exchanges all five for XP and one perfect gem.",
+      "obj1": "Recover 5 Forge Embers in the River of Flame."
     },
     "act4-halbus-soul": {
       "name": "Halbu's Soulwork",
@@ -511,28 +581,53 @@
     },
     "act5-larzuks-sockets": {
       "name": "Larzuk's Hammer",
-      "desc": "Larzuk the smith will socket one of your items as thanks for breaking Shenk's siege.",
-      "obj1": "Bring an item to Larzuk to socket."
+      "desc": "After defeating Shenk, present eligible unsocketed backpack gear to Larzuk unchanged. Claim the side-quest socket charge in your journal, then choose gear at Larzuk to add sockets.",
+      "obj1": "Present eligible unsocketed backpack gear to Larzuk unchanged."
     },
     "act5-anyas-gift": {
       "name": "Anya's Gift",
-      "desc": "After her rescue, Anya gifts you a personalized scroll of resistances and unlocks her unique-item stock.",
-      "obj1": "Speak with Anya in Harrogath."
+      "desc": "After completing Prison of Ice and actually thawing Anya, speak with her in Harrogath. Claim permanent +10 resistance to all six damage channels and a separate personalization charge in Quests. Her two optional trades each cost 40 Scrap and 2000 Rune Shards, once per character.",
+      "obj1": "Speak with Anya in Harrogath after completing Prison of Ice and actually thawing her."
     },
     "act5-qual-kehk-merc": {
       "name": "Qual-Kehk's Warband",
-      "desc": "Qual-Kehk offers Barbarian warriors to fight at your side after the freed prisoners return to Harrogath.",
-      "obj1": "Hire a Barbarian Warrior."
+      "desc": "After freeing all three prisoner groups, visit Qual-Kehk in Normal difficulty at hero level 35 or higher. Choose and explicitly Enlist or Re-enlist a Barbarian Recruit for free, then Claim the one-time reward here. Claim keeps an owned recruit or provides one if dismissed before Claim, preserving your fielded choice.",
+      "obj1": "Choose a Barbarian Recruit and confirm Enlist or Re-enlist at Qual-Kehk."
     },
     "act5-malahs-elixir": {
       "name": "Malah's Elixir",
-      "desc": "Malah brews an elixir that permanently raises your vitality. Bring her ingredients from the Glacial Trail.",
-      "obj1": "Collect 5 Frost Lichens."
+      "desc": "Recover five distinct lichens in the Ancients' Way on Normal. Claim exchanges all five for XP and +10 effective Vitality after the ordinary soft cap, without restoring Life.",
+      "obj1": "Recover 5 Frost Lichens in the Ancients' Way."
     },
     "act5-nihlathaks-treasure": {
       "name": "Nihlathak's Treasure",
-      "desc": "Cain suspects Nihlathak hid a relic in the Pit of Acheron deep within the Halls of Anguish. Recover it.",
+      "desc": "After freeing Anya and defeating Nihlathak in Crystalline Passage, recover his hidden relic there. Keep it and claim Cain’s XP and Mara's Kaleidoscope separately in Quests.",
       "obj1": "Recover Nihlathak's relic."
+    },
+    "bounty-act1-moor-cull": {
+      "name": "Blood Moor Cull",
+      "desc": "Accept this contract, then clear every wave in Blood Moor on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "obj1": "After Accept or Repeat, complete one new Normal manual clear of Blood Moor."
+    },
+    "bounty-act2-waste-cull": {
+      "name": "Rocky Waste Cull",
+      "desc": "Accept this contract, then clear every wave in Rocky Waste on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "obj1": "After Accept or Repeat, complete one new Normal manual clear of Rocky Waste."
+    },
+    "bounty-act3-forest-cull": {
+      "name": "Spider Forest Cull",
+      "desc": "Accept this contract, then clear every wave in Spider Forest on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "obj1": "After Accept or Repeat, complete one new Normal manual clear of Spider Forest."
+    },
+    "bounty-act4-steppes-cull": {
+      "name": "Outer Steppes Cull",
+      "desc": "Accept this contract, then clear every wave in Outer Steppes on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "obj1": "After Accept or Repeat, complete one new Normal manual clear of Outer Steppes."
+    },
+    "bounty-act5-foothills-cull": {
+      "name": "Bloody Foothills Cull",
+      "desc": "Accept this contract, then clear every wave in Bloody Foothills on Normal in a new manual battle. Claim 1 Gem Shard in Quests, then choose Repeat for another cull. Battle XP and loot are separate.",
+      "obj1": "After Accept or Repeat, complete one new Normal manual clear of Bloody Foothills."
     }
   },
   "rewardLabel": {
@@ -550,7 +645,13 @@
     "rune": "Rune",
     "xp": "XP",
     "mercenaryUnlock": "Mercenary Unlock",
-    "gemShards": "Gem Shards"
+    "warbandEnsureOwned": "One-time recruitment: keep your Barbarian Recruit, or receive one if dismissed before Claim. Preserve the current fielded choice.",
+    "gemShards": "Gem Shards",
+    "townEnlistmentEnsureOwned": "One-time recruitment: keep {{name}}, or receive one if dismissed before Claim. Preserve your current fielded choice.",
+    "runeShards": "+{{count}} rune shards",
+    "perfectGem": "One perfect gem",
+    "elixirVitality": "+10 effective Vitality after the ordinary soft cap",
+    "anyaCatalog": "Optional fixed trades: {{items}}. Each costs 40 Scrap + 2000 Rune Shards, once per character; required equip level 49."
   },
   "rewardValue": {
     "socket_item": "One socket charge",
@@ -565,6 +666,12 @@
     "areas_secret_cow_level": "Secret Cow Level"
   },
   "feedback": {
+    "start": {
+      "unknown-quest": "Quest not found.",
+      "not-eligible": "This quest is already tracked or its prerequisites are incomplete.",
+      "grant-failed": "The quest could not be started. Try again.",
+      "restoration-failed": "The quest could not be restored safely. Check your journal before continuing."
+    },
     "started": "Quest added to tracking.",
     "locked": "This quest is still locked.",
     "available": "This quest can be started.",
@@ -628,5 +735,67 @@
     "name": "The Countess",
     "challenge": "Challenge the Countess",
     "refused": "This challenge is unavailable. Return to the map to choose an available encounter."
+  },
+  "counted": {
+    "find": "{{item}} — find {{number}}",
+    "recover": "Recover {{item}} {{number}}",
+    "progress": "Recovered {{recovered}}/{{total}} · Held {{held}} · Exchanged {{consumed}}",
+    "exchange": "Claim exchanges the complete ingredient set and pays the reward once.",
+    "claimed": "Reward claimed. This exchange cannot be repeated.",
+    "repair": "Earlier completion alone is insufficient. Recover the missing ingredients and complete the physical exchange before Claim.",
+    "jade": {
+      "title": "Three Jade Trinkets",
+      "description": "Give all three trinkets together. This hand-in consumes them; Claim XP and rune shards separately in your journal.",
+      "give": "Give 3 Jade Trinkets",
+      "journal": "Recover all three trinkets, Give them to Meshif in Kurast on Normal, then Claim the reward here."
+    },
+    "status": {
+      "available": "Ready for the explicit action.",
+      "owned": "Recovered and held for exchange.",
+      "consumed": "Already exchanged.",
+      "unknown-source": "This find is unavailable.",
+      "not-ready": "Wait for the save to finish loading.",
+      "no-player": "Create or continue a hero first.",
+      "combat-active": "Finish the active run first.",
+      "claim-in-progress": "Another quest action is in progress.",
+      "wrong-difficulty": "Return to Normal for this action.",
+      "wrong-location": "Visit the named area or NPC in its current town.",
+      "act-locked": "Unlock this act first.",
+      "quest-not-tracked": "Start this side quest in your journal first.",
+      "already-claimed": "This reward has already been claimed.",
+      "invalid-state": "This ingredient exchange is unavailable in the current state.",
+      "missing-items": "Recover and keep all three trinkets before giving them.",
+      "delivered": "All three trinkets delivered. Claim the reward in your journal.",
+      "grant-failed": "The action could not finish. Check your ingredients and try again.",
+      "busy": "Finish the current action first.",
+      "restoration-failed": "The exchange could not be restored. Reload your last save before continuing."
+    }
+  },
+  "regionalBounty": {
+    "accept": "Accept",
+    "repeat": "Repeat",
+    "source": "Start a new manual run on Normal after Accept or Repeat. Complete every wave in {{area}}; defeat, retreat and idle play do not complete the contract.",
+    "progress": "Clears this cycle: {{done}}/1",
+    "claims": "Rewards claimed: {{count}}",
+    "exhausted": "This contract has reached its reward limit.",
+    "unavailable": "This contract is unavailable. Check your character and save state before trying again.",
+    "stage": {
+      "never-accepted": "Choose Accept to begin a new cull. Earlier clears do not count.",
+      "active": "Contract accepted. A new complete cull is required before Claim.",
+      "completed": "Cull complete. Claim 1 Gem Shard separately.",
+      "paid": "Reward claimed. Choose Repeat to begin another cull; no new cycle starts automatically."
+    },
+    "feedback": {
+      "ok": "Contract updated.",
+      "not-eligible": "This action is unavailable for the current contract or region.",
+      "not-ready": "Wait until your character and save are ready.",
+      "no-player": "Create or continue a character first.",
+      "combat-active": "Finish or leave the current battle before changing a contract.",
+      "claim-in-progress": "Another action is still finishing. Try again when it completes.",
+      "grant-failed": "The contract could not be updated. Check its current state before retrying.",
+      "exhausted": "This contract has reached its reward limit.",
+      "busy": "Another action is still finishing. Try again when it completes.",
+      "restoration-failed": "The action could not be restored safely. Resolve the save recovery warning before trying again."
+    }
   }
 }

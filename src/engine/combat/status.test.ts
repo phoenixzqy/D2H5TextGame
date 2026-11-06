@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { createRng } from '../rng';
 import {
   applyStatus,
+  applyStatusWithResult,
   tickStatuses,
   removeStatus,
   hasStatus,
@@ -43,6 +44,32 @@ function mkUnit(over: Partial<CombatUnit> = {}): CombatUnit {
 }
 
 const rng = createRng(1);
+
+describe('authored status immunity', () => {
+  it.each([undefined, 1700])('rejects immune Freeze without changing the unit or RNG at %s', simClockMs => {
+    const input = { ...mkUnit(), statusImmunities: ['freeze'] as const };
+    const before = structuredClone(input), random = createRng(13), control = createRng(13);
+    const result = applyStatusWithResult(input, { id: 'freeze', sourceId: 'hero',
+      ...(simClockMs === undefined ? {} : { simClockMs, durationMs: 2000 }) }, random);
+    expect(result).toEqual({ unit: input, applied: false });
+    expect(result.unit).toBe(input);
+    expect(input).toEqual(before);
+    expect(random.next()).toBe(control.next());
+    expect(applyStatus(input, { id: 'chill', sourceId: 'hero' }, random).statuses)
+      .toEqual([expect.objectContaining({ id: 'chill' })]);
+  });
+
+  it.each(['boss', 'chapter-boss'] as const)('retains half-duration Freeze on unclassified %s', tier => {
+    const input = mkUnit({ tier, id: 'Duriel', name: 'Duriel', monsterArchetypeId: 'monsters/act2.duriel' });
+    const result = applyStatusWithResult(input, {
+      id: 'freeze', sourceId: 'hero', simClockMs: 100, durationMs: 2000
+    }, createRng(13));
+    expect(result.applied).toBe(true);
+    expect(result.unit.statuses).toEqual([expect.objectContaining({ id: 'freeze',
+      appliedAtMs: 100, expiresAtMs: 1100 })]);
+    expect(input.statuses).toEqual([]);
+  });
+});
 
 describe('P08a02c Amplify Damage status contract', () => {
   const record = (overrides: Partial<ActiveStatus & { physicalResistReductionPct: number }> = {}) => ({

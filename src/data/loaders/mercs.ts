@@ -6,6 +6,8 @@
 
 import mercenariesData from '../gacha/mercenaries.json';
 import bannerConfigData from '../gacha/banner-config.json';
+import type { BannerRules } from '../../engine/gacha/banner';
+import { validateRecruitmentDefinitions } from './recruitment';
 
 export interface MercBaseStats {
   strength: number;
@@ -61,7 +63,7 @@ export interface BannerPity {
   resetRules: Record<string, string[]>;
 }
 
-export interface BannerConfig {
+export interface BannerConfig extends BannerRules {
   bannerId: string;
   name: string;
   currency: string;
@@ -76,7 +78,16 @@ export interface BannerConfig {
     SR: string[];
     R: string[];
   };
-  shardConversion: Record<string, unknown>;
+  shardConversion: BannerRules['shardConversion'] & {
+    readonly shardsPerStar: number;
+    readonly maxStars: number;
+    readonly starBonuses: {
+      readonly statMultiplierPerStar: number;
+      readonly signatureSkillRankPerStar: number;
+      readonly skillRankCapAboveBase: number;
+      readonly signatureEffectPerRank: number;
+    };
+  };
   uiHistoryCap: number;
 }
 
@@ -164,15 +175,8 @@ const MERC_SKILL_LOADOUTS: Readonly<Record<string, readonly string[]>> = {
  * Load mercenary pool with banner configuration
  */
 export function loadMercPool(): MercPool {
-  const pool = mercenariesData as MercDef[];
-  const banner = bannerConfigData as BannerConfig;
-
-  return {
-    pool: Object.freeze(pool),
-    rates: banner.rates,
-    pity: banner.pity,
-    banner
-  };
+  const validated = validateRecruitmentDefinitions(mercenariesData, bannerConfigData);
+  return { ...validated, pool: Object.freeze(validated.pool) };
 }
 
 export function loadMercHireRoster(): readonly MercHireAct[] {

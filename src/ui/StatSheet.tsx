@@ -20,10 +20,10 @@
  * Pure presentational. All deltas are computed by `compareEquip()`
  * upstream — no engine logic here.
  *
- * Mobile (≤640w): the label cell uses `whitespace-normal` so long labels
- * (e.g. "Magic Dodge") may wrap to two lines, while numeric cells stay
- * `whitespace-nowrap`. Numerals use `tabular-nums` so the +/-Δ portion
- * doesn't shift the candidate value horizontally.
+ * Narrow containers: fixed table columns allow labels, complete item names
+ * and values to wrap without widening the sidebar. Deltas occupy a separate
+ * line so the value and change remain readable at 14px. Numerals use
+ * `tabular-nums` for digit alignment.
  */
 import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,7 @@ import type { Resistances } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 
 const STAT_ORDER: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
   'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
 
@@ -92,7 +92,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
   return (
     <div
       className={[
-        'bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-xs',
+        'bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-sm',
         'shadow-2xl shadow-black/70 w-full max-w-md',
         props.className ?? ''
       ].filter(Boolean).join(' ')}
@@ -101,7 +101,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       data-mode={props.mode}
     >
       <table
-        className="w-full border-collapse tabular-nums"
+        className="w-full table-fixed border-collapse tabular-nums"
         data-testid="stat-compare-table"
         data-cols={colCount}
       >
@@ -114,7 +114,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
           <tr className="align-bottom">
             <th
               scope="col"
-              className="text-left text-[10px] uppercase tracking-wide text-d2-white/60 font-normal pb-2 pr-2"
+              className="text-left text-sm uppercase tracking-wide text-d2-white/60 font-normal pb-2 pr-2"
             >
               {t('equipFlow.compare.statHeader')}
             </th>
@@ -190,7 +190,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                 </span>
                 {deltaText !== '' && (
                   <span
-                    className={`ml-1 ${deltaColorClass(stat.delta, meta.higherIsBetter)}`}
+                    className={`block ${deltaColorClass(stat.delta, meta.higherIsBetter)}`}
                     data-trend={trend}
                     data-testid="stat-delta"
                   >
@@ -255,7 +255,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                   <span className="text-d2-white">{formatResistValue(r.candidate)}</span>
                   {deltaText !== '' && (
                     <span
-                      className={`ml-1 ${deltaColorClass(r.delta, true)}`}
+                      className={`block ${deltaColorClass(r.delta, true)}`}
                       data-trend={trend}
                       data-testid="stat-delta"
                     >
@@ -288,14 +288,14 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       {props.mode === 'compare' && props.candidate.affixes && props.candidate.affixes.length > 0 && (
         <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
           {props.candidate.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
+            <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}
       {props.mode === 'single' && props.item?.affixes && props.item.affixes.length > 0 && (
         <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
           {props.item.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
+            <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}
@@ -329,10 +329,10 @@ function StatRow({
         {label}
       </th>
       {showCurrent && (
-        <td className="text-right py-0.5 pl-2 whitespace-nowrap">{currentCell}</td>
+        <td className="text-right py-0.5 pl-2 whitespace-normal break-words">{currentCell}</td>
       )}
       {showCandidate && (
-        <td className="text-right py-0.5 pl-2 whitespace-nowrap">{candidateCell}</td>
+        <td className="text-right py-0.5 pl-2 whitespace-normal break-words">{candidateCell}</td>
       )}
     </tr>
   );
@@ -368,20 +368,20 @@ function HeaderCell({
 
   return (
     <div className="min-w-0 flex flex-col items-end">
-      <span className="text-[10px] uppercase tracking-wide text-d2-white/60">
+      <span className="text-sm uppercase tracking-wide text-d2-white/60">
         {label}
       </span>
       {item ? (
         <>
           <RarityText
             rarity={item.rarity}
-            className="font-serif text-xs font-bold block truncate max-w-full"
+            className="font-serif text-sm font-bold block break-words max-w-full"
           >
             <span data-testid="header-item-name">{tItemName(t, item)}</span>
           </RarityText>
           {badge !== '' && (
             <span
-              className="text-[10px] text-d2-white/55 truncate max-w-full"
+              className="text-sm text-d2-white/70 break-words max-w-full"
               data-testid="header-item-badge"
             >
               {badge}
@@ -389,7 +389,7 @@ function HeaderCell({
           )}
         </>
       ) : (
-        <span className="text-d2-white/40 italic text-xs">
+        <span className="text-d2-white/70 italic text-sm">
           {emptyAsSlot ? t('equipFlow.compare.slotEmpty') : t('empty')}
         </span>
       )}

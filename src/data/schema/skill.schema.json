@@ -7,6 +7,375 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-summon-adds"}}}, "then": {"description": "Native startup template summon; numeric cap and body tuning belong to summons/monster. Ordinary-action monster batches retain their own contract.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "summonId"]}, "required": ["cost", "summonId"], "properties": {"trigger": {"const": "active"}, "target": {"const": "summon"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "summonId": {"const": "minion"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-fire-breath"}}}, "then": {"description": "Native generic elemental monster action; JSON owns tuning, descriptive tags add no combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect"]}, "required": ["cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "fire"}, "appliesTags": {"const": ["fire", "burn"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["fire"], "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["ignite"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["dotPctOfDamage"], "properties": {"dotPctOfDamage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-poison-spit"}}}, "then": {"description": "Native generic elemental monster action; JSON owns tuning, descriptive tags add no combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "projectileFlightMs"]}, "required": ["cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "projectileFlightMs"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "poison"}, "appliesTags": {"const": ["poison"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["poison"], "properties": {"poison": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["poison"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["stacksOnApply", "dotPctOfDamage"], "properties": {"stacksOnApply": {"type": "integer", "minimum": 1}, "dotPctOfDamage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-frost-aura"}}}, "then": {"description": "Native generic elemental monster action; JSON owns tuning, descriptive tags add no combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus"]}, "required": ["cost", "damage", "damageType", "appliesTags", "appliesStatus"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "cold"}, "appliesTags": {"const": ["cold", "chill"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["cold"], "properties": {"cold": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["chill"]}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-weak-melee", "monster-strong-melee"]}}}, "then": {"description": "Native generic monster melee; JSON owns tuning, immediate physical single-target hits without combo tags.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags"]}, "required": ["cost", "damage", "damageType", "appliesTags"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "physical"}, "appliesTags": {"const": ["physical"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["physical"], "properties": {"physical": {"type": "integer", "minimum": 0}}}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-weak-ranged"}}}, "then": {"description": "Native Weak Ranged physical projectile; JSON owns tuning, catalog tags do not add combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "projectileFlightMs"]}, "required": ["cost", "damage", "damageType", "appliesTags", "projectileFlightMs"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "physical"}, "appliesTags": {"const": ["physical"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["physical"], "properties": {"physical": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-mana-rift"}}}, "then": {"description": "Native Wraith Mana Rift; adopted all-target Mana Burn contract, numerical tuning owned by JSON.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus"]}, "required": ["cost", "damage", "damageType", "appliesTags", "appliesStatus"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "arcane"}, "appliesTags": {"const": ["arcane"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["arcane"], "properties": {"arcane": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["mana-burn"]}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-frost-bolt"}}}, "then": {"description": "Native rank-one direct monster action; JSON owns tuning, catalog tags do not add combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "projectileFlightMs", "appliesStatus"]}, "required": ["cost", "damage", "damageType", "appliesTags", "projectileFlightMs", "appliesStatus"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "cold"}, "appliesTags": {"const": ["cold", "chill"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["cold"], "properties": {"cold": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}, "appliesStatus": {"const": ["chill"]}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-bone-spirit"}}}, "then": {"description": "Native rank-one direct monster action; JSON owns tuning, catalog tags do not add combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "projectileFlightMs"]}, "required": ["cost", "damage", "damageType", "appliesTags", "projectileFlightMs"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "arcane"}, "appliesTags": {"const": ["arcane"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["arcane"], "properties": {"arcane": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-whirlwind"}}}, "then": {"description": "Native rank-one direct monster action; JSON owns tuning, catalog tags do not add combo behavior.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags"]}, "required": ["cost", "damage", "damageType", "appliesTags"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "cooldown": {"type": "number", "minimum": 1}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "physical"}, "appliesTags": {"const": ["physical"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "breakdown"], "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["physical"], "properties": {"physical": {"type": "integer", "minimum": 0}}}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-baal-frost-nova"}}}, "then": {"description": "Native Baal signature; shared targeting, status and damage integration.", "propertyNames": {"enum": ["id", "name", "description", "icon", "appliesTags", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damageType", "damage", "appliesStatus", "statusEffect", "scaling"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect", "scaling"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "cooldown": {"const": 5}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "cold"}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "required": ["cold"], "additionalProperties": false, "properties": {"cold": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["freeze"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "durationMs"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 1}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}}}, "scaling": {"type": "object", "additionalProperties": false, "required": ["monsterLevelDamageGrowth"], "properties": {"monsterLevelDamageGrowth": {"$ref": "#/properties/scaling/properties/monsterLevelDamageGrowth"}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-baal-inferno"}}}, "then": {"description": "Native Baal signature; shared targeting, status and damage integration.", "propertyNames": {"enum": ["id", "name", "description", "icon", "appliesTags", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damageType", "damage", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 3}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "fire"}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "required": ["fire"], "additionalProperties": false, "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["ignite", "armor-melt"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "durationMs", "dotPctOfDamage"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 5}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}, "dotPctOfDamage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-baal-mana-rift"}}}, "then": {"description": "Native Baal signature; shared targeting, status and damage integration.", "propertyNames": {"enum": ["id", "name", "description", "icon", "appliesTags", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damageType", "damage", "appliesStatus", "statusEffect"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "cooldown": {"const": 3}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "arcane"}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "required": ["arcane"], "additionalProperties": false, "properties": {"arcane": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["mana-burn"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 1}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-diablo-fire-breath"}}}, "then": {"description": "Native Diablo signature; existing cone targeting and finite status integration.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 5}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "fire"}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "required": ["fire"], "additionalProperties": false, "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["ignite"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "durationMs", "dotPctOfDamage"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 3}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}, "dotPctOfDamage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-diablo-lightning"}}}, "then": {"description": "Native Diablo signature; existing cone targeting and finite status integration.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect", "aoeShape", "maxTargets"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 4}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "lightning"}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "required": ["lightning"], "additionalProperties": false, "properties": {"lightning": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["paralyze"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "durationMs"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 1}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-bone-prison"}}}, "then": {"description": "Native monster prison: rank-one ordinary Arcane hit authenticates a dedicated finite private trap.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesStatus", "statusEffect"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"const": 4}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "arcane"}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["arcane"], "properties": {"arcane": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["monster-bone-prison"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["durationMs"], "properties": {"durationMs": {"description": "Duration of the dedicated monster trap in simulation milliseconds.", "type": "integer", "minimum": 1, "maximum": 60000}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-enrage", "monster-shout", "monster-teleport", "monster-thorns-aura"]}}}, "then": {"propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "monsterSelfBuff"]}, "required": ["cost", "monsterSelfBuff"], "properties": {"trigger": {"const": "active"}, "target": {"const": "self"}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "monsterSelfBuff": {"type": "object", "additionalProperties": false, "required": ["durationMs", "percent"], "properties": {"durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}, "percent": {"type": "number", "exclusiveMinimum": 0, "maximum": 100}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-enrage"}}}, "then": {"properties": {"cooldown": {"const": 6}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-shout"}}}, "then": {"properties": {"cooldown": {"const": 5}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-teleport"}}}, "then": {"properties": {"cooldown": {"const": 3}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-thorns-aura"}}}, "then": {"properties": {"cooldown": {"const": 0}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-heal"]}}}, "then": {"propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "heal"]}, "required": ["cost", "heal"], "properties": {"trigger": {"const": "active"}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cooldown": {"type": "number", "minimum": 1}, "cost": {"const": {"mana": 0}}, "target": {"const": "self"}, "heal": {"type": "object", "additionalProperties": false, "required": ["pctOfMaxLife", "target"], "properties": {"pctOfMaxLife": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}, "target": {"const": "self"}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-lightning-bolt", "monster-thunder-storm", "monster-lightning"]}}}, "then": {"propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "projectileFlightMs"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect"], "properties": {"trigger": {"const": "active"}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cooldown": {"type": "number", "minimum": 1}, "cost": {"const": {"mana": 0}}, "damageType": {"const": "lightning"}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}, "breakdown": {"type": "object", "additionalProperties": false, "required": ["lightning"], "properties": {"lightning": {"type": "integer", "minimum": 0}}}}}, "appliesStatus": {"const": ["paralyze"]}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "durationMs"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"const": 1}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-lightning-bolt"}}}, "then": {"required": ["projectileFlightMs"], "properties": {"target": {"const": "single-enemy"}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-thunder-storm"}}}, "then": {"required": [], "properties": {"target": {"const": "all-enemies"}, "projectileFlightMs": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-lightning"}}}, "then": {"required": [], "properties": {"target": {"const": "single-enemy"}, "projectileFlightMs": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-fire-bolt", "monster-fire-ball", "monster-fire-arrow", "monster-inferno", "monster-poison-cloud", "monster-poison-dagger", "monster-plague-spit", "monster-mephisto-poison-cloud"]}}}, "then": {"description": "Rank-one authored monster DoTs; finite positive potency, existing native delivery and periodic engine.", "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect", "projectileFlightMs"]}, "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect"], "properties": {"trigger": {"const": "active"}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cooldown": {"type": "number", "minimum": 1}, "cost": {"const": {"mana": 0}}, "damage": {"type": "object", "properties": {"min": {"type": "integer", "minimum": 0}, "max": {"type": "integer", "minimum": 0}}}, "statusEffect": {"type": "object", "additionalProperties": false, "required": ["chance", "stacksOnApply", "dotPctOfDamage", "durationMs"], "properties": {"chance": {"const": 1}, "stacksOnApply": {"type": "integer", "minimum": 1, "maximum": 3}, "dotPctOfDamage": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}, "durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}}}, "damageType": {"enum": ["fire", "poison"]}, "appliesStatus": {"$ref": "#/properties/appliesStatus"}}, "allOf": [{"if": {"required": ["id"], "properties": {"id": {"const": "monster-mephisto-poison-cloud"}}}, "then": {"properties": {"statusEffect": {"type": "object", "properties": {"stacksOnApply": {"const": 3}}}}}, "else": {"properties": {"statusEffect": {"type": "object", "properties": {"stacksOnApply": {"const": 1}}}}}}]}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-fire-bolt"}}}, "then": {"required": ["projectileFlightMs"], "properties": {"damageType": {"const": "fire"}, "appliesStatus": {"const": ["ignite"]}, "target": {"const": "single-enemy"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["fire"], "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-fire-ball"}}}, "then": {"required": ["projectileFlightMs"], "properties": {"damageType": {"const": "fire"}, "appliesStatus": {"const": ["ignite"]}, "target": {"const": "area-enemies"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["fire"], "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-fire-arrow"}}}, "then": {"required": ["projectileFlightMs"], "properties": {"damageType": {"const": "fire"}, "appliesStatus": {"const": ["ignite"]}, "target": {"const": "single-enemy"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["fire"], "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-inferno"}}}, "then": {"required": [], "properties": {"damageType": {"const": "fire"}, "appliesStatus": {"const": ["ignite"]}, "target": {"const": "all-enemies"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["fire"], "properties": {"fire": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"enum": ["monster-poison-cloud", "monster-mephisto-poison-cloud"]}}}, "then": {"required": [], "properties": {"damageType": {"const": "poison"}, "appliesStatus": {"const": ["poison"]}, "target": {"const": "all-enemies"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["poison"], "properties": {"poison": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-poison-dagger"}}}, "then": {"required": [], "properties": {"damageType": {"const": "poison"}, "appliesStatus": {"const": ["poison"]}, "target": {"const": "single-enemy"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["poison"], "properties": {"poison": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-plague-spit"}}}, "then": {"required": ["projectileFlightMs"], "properties": {"damageType": {"const": "poison"}, "appliesStatus": {"const": ["plague"]}, "target": {"const": "single-enemy"}, "damage": {"type": "object", "properties": {"breakdown": {"type": "object", "additionalProperties": false, "required": ["poison"], "properties": {"poison": {"type": "integer", "minimum": 0}}}}}, "projectileFlightMs": {"$ref": "#/properties/projectileFlightMs"}}}},
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "enum": [
+              "monster-charge",
+              "monster-rend",
+              "monster-leap",
+              "monster-leap-attack",
+              "monster-war-cry"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "description": "Closed rank-one monster physical payloads; tags remain catalog metadata without adding native combo behavior.",
+        "propertyNames": {
+          "enum": [
+            "id",
+            "name",
+            "description",
+            "icon",
+            "trigger",
+            "target",
+            "cooldown",
+            "cost",
+            "minLevel",
+            "maxLevel",
+            "damage",
+            "damageType",
+            "appliesTags",
+            "appliesStatus",
+            "statusEffect",
+            "attackDamagePct"
+          ]
+        },
+        "required": [
+          "cost",
+          "damage",
+          "damageType",
+          "appliesTags"
+        ],
+        "properties": {
+          "trigger": {
+            "const": "active"
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 1
+          },
+          "cost": {
+            "const": {
+              "mana": 0
+            }
+          },
+          "appliesTags": { "$ref": "#/properties/appliesTags" },
+          "damageType": {
+            "const": "physical"
+          },
+          "damage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "min",
+              "max",
+              "breakdown"
+            ],
+            "properties": {
+              "min": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "max": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "breakdown": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "physical"
+                ],
+                "properties": {
+                  "physical": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "monster-charge"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": ["attackDamagePct"],
+        "properties": {
+          "attackDamagePct": { "$ref": "#/properties/attackDamagePct" },
+          "target": {
+            "const": "single-enemy"
+          },
+          "cooldown": {
+            "const": 4
+          },
+          "appliesTags": {
+            "const": [
+              "physical"
+            ]
+          },
+          "appliesStatus": false,
+          "statusEffect": false
+        }
+      },
+      "else": {
+        "if": { "required": ["id"], "properties": { "id": { "enum": ["monster-rend", "monster-leap", "monster-leap-attack", "monster-war-cry"] } } },
+        "then": { "properties": { "attackDamagePct": false } }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "monster-rend"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "target": {
+            "const": "single-enemy"
+          },
+          "cooldown": {
+            "const": 2
+          },
+          "appliesTags": {
+            "const": [
+              "physical",
+              "bleed"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "bleed"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dotPctOfDamage",
+              "durationMs"
+            ],
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "monster-leap"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [],
+        "properties": {
+          "target": {
+            "const": "single-enemy"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "appliesTags": {
+            "const": [
+              "physical"
+            ]
+          },
+          "appliesStatus": false,
+          "statusEffect": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "monster-leap-attack"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "target": {
+            "const": "single-enemy"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "appliesTags": {
+            "const": [
+              "physical"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "stun"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "chance",
+              "durationMs"
+            ],
+            "properties": {
+              "chance": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "monster-war-cry"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 4
+          },
+          "appliesTags": {
+            "const": [
+              "physical"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "stun"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "chance",
+              "durationMs"
+            ],
+            "properties": {
+              "chance": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {"if": {"required": ["id"], "properties": {"id": {"const": "monster-panic-flee"}}}, "then": {"required": ["cost", "panicFlee"], "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "panicFlee"]}, "properties": {"trigger": {"const": "active"}, "target": {"const": "self"}, "cooldown": {"const": 5}, "minLevel": {"const": 1}, "maxLevel": {"const": 1}, "cost": {"const": {"mana": 0}}, "panicFlee": {"$ref": "#/properties/panicFlee"}}}},
+    {"if": {"required": ["panicFlee"], "properties": {"panicFlee": {}}}, "then": {"properties": {"id": {"const": "monster-panic-flee"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "mskill-fire-arrow"}}}, "then": {"required": ["cost", "damage", "damageType", "attackDamagePct", "mercElementalArrow", "appliesTags", "appliesStatus", "statusEffect"], "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "attackDamagePct", "mercElementalArrow", "appliesTags", "appliesStatus", "statusEffect"]}, "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"const": 2}, "minLevel": {"const": 1}, "maxLevel": {"const": 20}, "cost": {"const": {"mana": 0}}, "attackDamagePct": {"const": 100}, "damageType": {"const": "physical"}, "damage": {"properties": {"min": {"type": "integer"}, "max": {"type": "integer"}, "breakdown": {"const": {"physical": 1, "fire": 0.5}}}, "type": "object"}, "mercElementalArrow": {"required": ["splash"], "type": "object", "properties": {"splash": {"$ref": "#/properties/mercElementalArrow/properties/splash"}}}, "appliesTags": {"const": ["physical", "fire", "burn"]}, "appliesStatus": {"const": ["burn"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.1, "durationMs": 3000}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "mskill-cold-arrow"}}}, "then": {"required": ["cost", "damage", "damageType", "attackDamagePct", "mercElementalArrow", "appliesTags", "appliesStatus", "statusEffect"], "propertyNames": {"enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "attackDamagePct", "mercElementalArrow", "appliesTags", "appliesStatus", "statusEffect"]}, "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "cooldown": {"const": 2}, "minLevel": {"const": 1}, "maxLevel": {"const": 20}, "cost": {"const": {"mana": 0}}, "attackDamagePct": {"const": 100}, "damageType": {"const": "physical"}, "damage": {"properties": {"min": {"type": "integer"}, "max": {"type": "integer"}, "breakdown": {"const": {"physical": 0.5, "cold": 0.5}}}, "type": "object"}, "mercElementalArrow": {"maxProperties": 0, "type": "object"}, "appliesTags": {"const": ["physical", "cold", "chill"]}, "appliesStatus": {"const": ["chill"]}, "statusEffect": {"const": {"chance": 0.3, "durationMs": 2000}}}}},
+    {"if": {"required": ["mercElementalArrow"], "properties": {"mercElementalArrow": {}}}, "then": {"properties": {"id": {"enum": ["mskill-fire-arrow", "mskill-cold-arrow"]}}}},
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "mskill-telekinesis" } } },
       "then": {
@@ -189,13 +558,14 @@
     {"if": {"required": ["onHitBolts"], "properties": {"onHitBolts": {}}}, "then": {"properties": {"id": {"enum": ["skills-amazon-power-strike", "skills-amazon-charged-strike"]}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-power-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "onHitBolts", "damageComposition"], "properties": {"requiredLevel": {"const": 6}, "prerequisites": {"const": ["skills-amazon-jab"]}, "damage": {"const": {"min": 40, "max": 60, "breakdown": {"physical": 30, "lightning": 30}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 10}}, "scaling": {"const": {"damagePerLevel": 4}}, "onHitBolts": {"const": {"count": 2, "targetMode": "original", "damage": {"min": 10, "max": 15, "perRank": 1}}}, "damageComposition": {"const": "weighted-components"}, "trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "maxLevel": {"const": 20}, "cooldown": {"const": 1}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "aoeShape": false, "maxTargets": false, "appliesStatus": false, "statusEffect": false}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-charged-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "onHitBolts"], "properties": {"requiredLevel": {"const": 18}, "prerequisites": {"const": ["skills-amazon-lightning-bolt"]}, "damage": {"const": {"min": 70, "max": 100, "breakdown": {"lightning": 100}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 20}}, "scaling": {"const": {"damagePerLevel": 6}}, "onHitBolts": {"const": {"count": 2, "targetMode": "adjacent-others", "damage": {"min": 35, "max": 50, "perRank": 3}}}, "trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "aoeShape": false, "maxTargets": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false}}},
-    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-poison-javelin"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 6}, "prerequisites": {"const": ["skills-amazon-jab"]}, "damage": {"const": {"min": 20, "max": 35, "breakdown": {"poison": 35}}}, "damageType": {"const": "poison"}, "cost": {"const": {"mana": 10}}, "scaling": {"const": {"damagePerLevel": 3}}, "aoeShape": {"const": "box-3x3"}, "maxTargets": {"const": 9}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["poison"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.05}}}}},
-    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-lightning-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-charged-strike"]}, "damage": {"const": {"min": 80, "max": 110, "breakdown": {"lightning": 110}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 25}}, "scaling": {"const": {"damagePerLevel": 7}}, "aoeShape": {"const": "chain"}, "maxTargets": {"const": 5}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["paralyze"]}, "statusEffect": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-poison-javelin"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 6}, "prerequisites": {"const": ["skills-amazon-jab"]}, "damage": {"const": {"min": 20, "max": 35, "breakdown": {"poison": 35}}}, "damageType": {"const": "poison"}, "cost": {"const": {"mana": 10}}, "scaling": {"const": {"damagePerLevel": 15}}, "aoeShape": {"const": "box-3x3"}, "maxTargets": {"const": 9}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["poison"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.05}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-lightning-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-charged-strike"]}, "damage": {"const": {"min": 80, "max": 110, "breakdown": {"lightning": 110}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 25}}, "scaling": {"const": {"damagePerLevel": 75}}, "aoeShape": {"const": "chain"}, "maxTargets": {"const": 5}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["paralyze"]}, "statusEffect": false}}},
 
     {"if": {"required": ["alwaysHits"], "properties": {"alwaysHits": {}}}, "then": {"properties": {"id": {"const": "skills-amazon-guided-arrow"}}}},
-    {"if": {"required": ["aoeShape"], "properties": {"aoeShape": {"const": "cone-3"}}}, "then": {"properties": {"id": {"const": "skills-amazon-multiple-shot"}}}},
+    {"if": {"required": ["aoeShape"], "properties": {"aoeShape": {"const": "cone-3"}}}, "then": {"properties": {"id": {"enum": ["skills-amazon-multiple-shot", "monster-diablo-fire-breath", "monster-diablo-lightning", "monster-baal-inferno"]}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-guided-arrow"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "alwaysHits"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 18}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 20}}, "prerequisites": {"const": ["skills-amazon-multiple-shot"]}, "damage": {"$ref": "#/properties/damage"}, "alwaysHits": {"const": true}, "hitSequence": false, "aoeShape": false, "maxTargets": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
-    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-multiple-shot"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "aoeShape", "maxTargets"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 6}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 15}}, "prerequisites": {"const": ["skills-amazon-magic-arrow"]}, "damage": {"$ref": "#/properties/damage"}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-multiple-shot"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "aoeShape", "maxTargets", "scaling"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 6}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 15}}, "prerequisites": {"const": ["skills-amazon-magic-arrow"]}, "damage": {"$ref": "#/properties/damage"}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}, "scaling": {"type": "object", "required": ["damagePerLevel", "attackDamagePctPerLevel"], "properties": {"damagePerLevel": {"$ref": "#/properties/scaling/properties/damagePerLevel"}, "attackDamagePctPerLevel": {"$ref": "#/properties/scaling/properties/attackDamagePctPerLevel"}}}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
+    {"if": {"required": ["scaling"], "properties": {"scaling": {"type": "object", "required": ["attackDamagePctPerLevel"], "properties": {"attackDamagePctPerLevel": {}}}}}, "then": {"properties": {"id": {"enum": ["skills-amazon-multiple-shot", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-paladin-zeal"]}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-strafe"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "hitSequence"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 24}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 20}}, "prerequisites": {"const": ["skills-amazon-guided-arrow"]}, "damage": {"$ref": "#/properties/damage"}, "hitSequence": {"const": {"strikes": 2, "targetMode": "each-original"}}, "alwaysHits": false, "aoeShape": false, "maxTargets": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
     {
       "if": {
@@ -1556,7 +1926,11 @@
     },
     {
       "if": { "required": ["ignoresDefense"], "properties": { "ignoresDefense": {} } },
-      "then": { "properties": { "id": { "const": "skills-amazon-impale" } } }
+      "then": { "properties": { "id": { "enum": ["skills-amazon-impale", "skills-necromancer-corpse-explosion"] } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-necromancer-corpse-explosion" } } },
+      "then": { "required": ["ignoresDefense"] }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-amazon-impale" } } },
@@ -1605,7 +1979,7 @@
     },
     {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning", "skills-amazon-multiple-shot", "skills-amazon-poison-javelin", "skills-amazon-lightning-strike", "skills-amazon-fend", "skills-amazon-exploding-arrow", "skills-amazon-immolation-arrow", "mskill-fire-ball", "mskill-pierce-thrust"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning", "skills-amazon-multiple-shot", "skills-amazon-poison-javelin", "skills-amazon-lightning-strike", "skills-amazon-fend", "skills-amazon-exploding-arrow", "skills-amazon-immolation-arrow", "mskill-fire-ball", "mskill-pierce-thrust", "monster-diablo-fire-breath", "monster-diablo-lightning", "monster-baal-inferno"] } } }
     },
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "chain" } } },
@@ -1630,12 +2004,13 @@
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-zeal" } } },
       "then": {
-        "required": ["maxTargets", "aoeShape", "requiredLevel", "damage", "damageType"],
+        "required": ["maxTargets", "aoeShape", "requiredLevel", "damage", "damageType", "scaling"],
         "properties": {
           "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
           "aoeShape": { "const": "cross" }, "maxTargets": { "const": 3 },
           "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
           "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+        "scaling": { "type": "object", "required": ["damagePerLevel", "attackDamagePctPerLevel"], "properties": { "damagePerLevel": { "$ref": "#/properties/scaling/properties/damagePerLevel" }, "attackDamagePctPerLevel": { "$ref": "#/properties/scaling/properties/attackDamagePctPerLevel" } } },
           "onHitRecovery": false, "onHitSelfDamage": false, "hitSequence": false,
           "damageComposition": false, "ignoresMagicResist": false, "feralRage": false,
           "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false
@@ -1821,12 +2196,15 @@
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
       "then": {
-        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "hitSequence", "cost"],
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "scaling", "hitSequence", "cost"],
         "properties": {
           "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
           "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
           "prerequisites": { "const": ["skills-barbarian-double-swing"] },
           "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "scaling": { "type": "object", "required": ["damagePerLevel", "attackDamagePctPerLevel"],
+            "properties": { "damagePerLevel": { "$ref": "#/properties/scaling/properties/damagePerLevel" },
+              "attackDamagePctPerLevel": { "$ref": "#/properties/scaling/properties/attackDamagePctPerLevel" } } },
           "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2 } },
           "cost": { "const": { "mana": 12 } }, "cooldown": { "const": 1 },
           "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
@@ -1847,12 +2225,15 @@
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-swing" } } },
       "then": {
-        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "hitSequence", "aoeShape", "maxTargets", "cost"],
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "scaling", "hitSequence", "aoeShape", "maxTargets", "cost"],
         "properties": {
           "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
           "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
           "prerequisites": { "const": ["skills-barbarian-bash"] },
           "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "scaling": { "type": "object", "required": ["damagePerLevel", "attackDamagePctPerLevel"],
+            "properties": { "damagePerLevel": { "$ref": "#/properties/scaling/properties/damagePerLevel" },
+              "attackDamagePctPerLevel": { "$ref": "#/properties/scaling/properties/attackDamagePctPerLevel" } } },
           "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2, "targetMode": "each-original" } },
           "aoeShape": { "const": "cross" }, "maxTargets": { "const": 3 },
           "cost": { "const": { "mana": 10 } }, "cooldown": { "const": 1 },
@@ -4132,6 +4513,51 @@
         }
       },
       "else": { "properties": { "mercThorns": false } }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "aura-blessed-aim"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "mercBlessedAim"
+        ],
+        "properties": {
+          "name": true,
+          "description": true,
+          "icon": true,
+          "minLevel": true,
+          "maxLevel": true,
+          "id": {
+            "const": "aura-blessed-aim"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "all-allies"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "mercBlessedAim": {
+            "$ref": "#/properties/mercBlessedAim"
+          }
+        },
+        "additionalProperties": false
+      },
+      "else": {
+        "properties": {
+          "mercBlessedAim": false
+        }
+      }
     }, {
       "if": { "properties": { "id": { "const": "aura-defiance" } }, "required": ["id"] },
       "then": {
@@ -4183,6 +4609,83 @@
         }
       },
       "else": { "properties": { "mercHolyFire": false } }
+    }, {
+      "if": { "properties": { "id": { "const": "mskill-pilfer" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercPilfer", "cost", "damage", "damageType", "appliesTags"],
+        "properties": {
+          "id": { "const": "mskill-pilfer" }, "name": true, "description": true, "icon": true,
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "cooldown": { "const": 2 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "cost": { "const": { "mana": 0 } }, "damageType": { "const": "physical" },
+          "appliesTags": { "const": ["physical"] },
+          "damage": {
+            "$ref": "#/properties/damage",
+            "type": "object",
+            "properties": {
+              "min": { "type": "integer" }, "max": { "type": "integer" },
+              "breakdown": { "type": "object", "required": ["physical"], "properties": { "physical": { "type": "number", "minimum": 0 } }, "propertyNames": { "const": "physical" } }
+            }
+          },
+          "mercPilfer": { "$ref": "#/properties/mercPilfer" }
+        },
+        "additionalProperties": false
+      },
+      "else": { "properties": { "mercPilfer": false } }
+    }, {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "mskill-frozen-armor"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "mercFrozenArmor",
+          "cost"
+        ],
+        "properties": {
+          "id": {
+            "const": "mskill-frozen-armor"
+          },
+          "name": true,
+          "description": true,
+          "icon": true,
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 6
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 0
+            }
+          },
+          "mercFrozenArmor": {
+            "$ref": "#/properties/mercFrozenArmor"
+          }
+        },
+        "additionalProperties": false
+      },
+      "else": {
+        "properties": {
+          "mercFrozenArmor": false
+        }
+      }
     }, {
       "if": {
         "properties": {
@@ -4311,7 +4814,7 @@
     "then": {
       "required": ["monsterSummon", "summonId", "cost"],
       "properties": {
-        "monsterSummon": { "$ref": "#/properties/monsterSummon" },
+        "monsterSummon": { "allOf": [{ "$ref": "#/properties/monsterSummon" }, { "type": "object", "properties": { "archetypeId": { "const": "monsters/act1.zombie" } } }] },
         "summonId": { "const": "blood_raven_zombie" },
         "trigger": { "const": "active" }, "target": { "const": "summon" },
         "cooldown": { "type": "number", "minimum": 1 },
@@ -4322,7 +4825,25 @@
         "requires": false, "aoeShape": false, "appliesTags": false
       }
     },
-    "else": { "properties": { "monsterSummon": false } }
+    "else": {
+      "if": { "properties": { "id": { "const": "monster-tentacles" } }, "required": ["id"] },
+      "then": {
+        "required": ["monsterSummon", "summonId", "cost"],
+        "properties": {
+          "monsterSummon": { "const": { "archetypeId": "monsters/act5.baal-tentacle", "count": 5, "maxCount": 5, "refundOnDeath": false } },
+          "summonId": { "const": "baal_tentacle" },
+          "trigger": { "const": "active" }, "target": { "const": "summon" },
+          "minLevel": { "const": 1 }, "maxLevel": { "const": 1 },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "cost": { "type": "object", "required": ["mana"], "maxProperties": 1, "properties": { "mana": { "const": 0 } } },
+          "damage": false, "damageType": false, "scaling": false,
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "heal": false, "passive": false, "aura": false,
+          "requires": false, "aoeShape": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "monsterSummon": false } }
+    }
   }, {
     "if": { "properties": { "id": { "const": "monster-blood-raven-fire-arrow" } }, "required": ["id"] },
     "then": {
@@ -4409,7 +4930,7 @@
       }
     },
     "else": {
-      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-berserk" } } },
+      "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-barbarian-berserk", "mskill-fire-arrow", "mskill-cold-arrow", "monster-charge"] } } },
       "else": { "properties": { "attackDamagePct": false } }
     }
   }, {
@@ -4489,9 +5010,43 @@
         }
       }
     },
-    "else": { "properties": {
-      "scaling": { "type": "object", "properties": { "monsterLevelDamageGrowth": false } }
-    } }
+    "else": {
+      "if": { "properties": { "id": { "enum": ["monster-frost-nova", "monster-arcane-bolt"] } }, "required": ["id"] },
+      "then": {
+        "required": ["cost", "damage", "damageType", "scaling"],
+        "propertyNames": { "enum": [
+          "id", "name", "description", "icon", "trigger", "target", "cost", "cooldown",
+          "minLevel", "maxLevel", "damage", "damageType", "scaling", "projectileFlightMs", "appliesStatus", "appliesTags"
+        ] },
+        "properties": {
+          "trigger": { "const": "active" }, "minLevel": { "const": 1 }, "maxLevel": { "const": 1 },
+          "cost": { "type": "object", "required": ["mana"], "maxProperties": 1, "properties": { "mana": { "const": 0 } } },
+          "damage": { "type": "object", "properties": {
+            "min": { "type": "integer", "minimum": 0 }, "max": { "type": "integer", "minimum": 0 }
+          } },
+          "scaling": {
+            "type": "object", "required": ["monsterLevelDamageGrowth"], "maxProperties": 1,
+            "properties": { "monsterLevelDamageGrowth": { "$ref": "#/properties/scaling/properties/monsterLevelDamageGrowth" } }
+          }
+        },
+        "if": { "properties": { "id": { "const": "monster-frost-nova" } }, "required": ["id"] },
+        "then": {
+          "required": ["appliesStatus", "appliesTags"],
+          "properties": {
+            "target": { "const": "all-enemies" }, "cooldown": { "const": 3 }, "damageType": { "const": "cold" },
+            "appliesStatus": { "const": ["chill"] }, "appliesTags": { "const": ["cold", "chill"] }, "projectileFlightMs": false
+          }
+        },
+        "else": {
+          "required": ["projectileFlightMs", "appliesTags"],
+          "properties": {
+            "target": { "const": "single-enemy" }, "cooldown": { "const": 2 }, "damageType": { "const": "arcane" },
+            "projectileFlightMs": { "const": 500 }, "appliesTags": { "const": ["arcane"] }, "appliesStatus": false
+          }
+        }
+      },
+      "else": { "if": { "required": ["id"], "properties": { "id": { "const": "monster-baal-frost-nova" } } }, "else": { "properties": { "scaling": { "type": "object", "properties": { "monsterLevelDamageGrowth": false } } } } }
+    }
   }, {
     "if": {
       "properties": { "id": { "const": "skills-necromancer-raise-skeletal-mage" } },
@@ -6194,6 +6749,9 @@
     }
   },
   "properties": {
+    "monsterSelfBuff": {"type": "object", "additionalProperties": false, "required": ["durationMs", "percent"], "properties": {"durationMs": {"type": "integer", "minimum": 1, "maximum": 60000}, "percent": {"type": "number", "exclusiveMinimum": 0, "maximum": 100}}},
+    "panicFlee": {"type": "object", "additionalProperties": false, "required": ["durationMs", "dodgeChance"], "properties": {"durationMs": {"const": 5000}, "dodgeChance": {"const": 0.2}}, "description": "Once per original Fallen recipient per wave after an original hostile shaman death. Additive physical and magical dodge fraction for a finite window."},
+    "mercElementalArrow": {"type": "object", "additionalProperties": false, "description": "Exact mercenary elemental arrows: breakdown entries are explicit fractions of the entire rolled base plus Attack, without normalization.", "properties": {"splash": {"type": "object", "additionalProperties": false, "required": ["count", "share"], "properties": {"count": {"type": "integer", "minimum": 1, "maximum": 2}, "share": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}}}}},
     "projectileFlightMs": { "description": "Normal positive projectile flight in simulation milliseconds; no spatial range or movement stat.", "type": "number", "exclusiveMinimum": 0, "maximum": 5000 },
     "onHitBolts": {"type": "object", "additionalProperties": false, "description": "Independent Lightning attempts released by one landed paid primary;only authored Power/Charged Strike.", "required": ["count", "targetMode", "damage"], "properties": {"count": {"type": "integer", "minimum": 1, "maximum": 8}, "targetMode": {"enum": ["original", "adjacent-others"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "perRank"], "properties": {"min": {"type": "number", "minimum": 0}, "max": {"type": "number", "minimum": 0}, "perRank": {"type": "number", "minimum": 0}}}}},
     "boneWall": {
@@ -6462,7 +7020,7 @@
     "alwaysHits": { "const": true, "description": "Explicit Guided Arrow hit/dodge bypass; resistance, Defense, criticals and personal absorption still apply." },
     "ignoresDefense": {
       "const": true,
-      "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
+      "description": "Explicit Impale/player Corpse Explosion direct-hit Defense bypass; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
       "description": "Explicit bounded sequential attempts paid once. Default rotates a total attempt count within the original pool; Double Swing opts into passes across each original target.",
@@ -6651,10 +7209,10 @@
     },
     "monsterSummon": {
       "type": "object", "additionalProperties": false,
-      "description": "Reviewed Blood Raven monster-archetype summon batch and death policy.",
+      "description": "Reviewed ordinary monster-archetype summon batch and death policy; each supported skill restricts its own archetype.",
       "required": ["archetypeId", "count", "maxCount", "refundOnDeath"],
       "properties": {
-        "archetypeId": { "const": "monsters/act1.zombie" },
+        "archetypeId": { "enum": ["monsters/act1.zombie", "monsters/act5.baal-tentacle"] },
         "count": { "type": "integer", "minimum": 1, "maximum": 6 },
         "maxCount": { "type": "integer", "minimum": 1, "maximum": 6 },
         "refundOnDeath": { "const": false }
@@ -6662,7 +7220,7 @@
     },
     "attackDamagePct": {
       "type": "number", "minimum": 0,
-      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce/Jab mercenary and Berserk rows only."
+      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; explicitly opted-in mercenary, Berserk and monster Charge rows only."
     },
     "id": {
       "type": "string",
@@ -6721,7 +7279,7 @@
     },
     "trigger": {
       "type": "string",
-      "enum": ["active", "passive", "on-hit", "on-kill", "on-damaged", "on-dodge"]
+      "enum": ["active", "passive", "on-hit", "on-kill", "on-death", "on-damaged", "on-dodge"]
     },
     "target": {
       "type": "string",
@@ -6824,6 +7382,15 @@
         "physicalReflectionPct": { "type": "number", "minimum": 0, "description": "Actual physical HP lost reflected in percentage points while the native mercenary and recipient live, before attacker mitigation." }
       }
     },
+    "mercPilfer": {
+      "type": "object", "additionalProperties": false, "required": ["currencyFindPct"],
+      "description": "Nonstacking wave-local shard-find points captured after a native paid Pilfer cast.",
+      "properties": { "currencyFindPct": { "type": "number", "minimum": 0 } }
+    },
+    "mercFrozenArmor": {
+      "type": "object", "additionalProperties": false, "required": ["defense"],
+      "properties": { "defense": { "type": "number", "exclusiveMinimum": 0 } }
+    },
     "mercHolyFire": {
       "type": "object",
       "additionalProperties": false,
@@ -6842,6 +7409,21 @@
       "properties": {
         "amount": { "type": "number", "exclusiveMinimum": 0, "description": "Flat actual HP restoration capped by each living recipient's missing life." },
         "intervalMs": { "type": "integer", "minimum": 1, "maximum": 60000, "description": "Independent native pulse interval in simulation milliseconds." }
+      }
+    },
+    "mercBlessedAim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weaponMissReductionPct"
+      ],
+      "description": "Native party weapon miss probability reduction, relative to the ordinary miss chance.",
+      "properties": {
+        "weaponMissReductionPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
       }
     },
     "mercDefiance": {
@@ -7016,9 +7598,10 @@
         "monsterLevelDamageGrowth": {
           "type": "array", "minItems": 2, "maxItems": 2,
           "items": { "type": "integer", "minimum": 0 },
-          "description": "Exact Act I Lightning affix: min/max damage growth per effective monster level above one; range order is checked by the leaf adapter."
+          "description": "Opted-in monster spell min/max damage growth per monster level above one; range order is checked by the native adapter."
         },
         "damagePerLevel": { "type": "number" },
+        "attackDamagePctPerLevel": { "type": "number", "minimum": 0, "description": "Multiple Shot, Double Swing, Double Throw and Zeal: additional percentage points of snapshot Attack per allocated rank above one, per hit; rank1 adds zero." },
         "cooldownPerLevel": { "type": "number" },
         "costPerLevel": { "type": "number" },
         "summonMaxCount": {

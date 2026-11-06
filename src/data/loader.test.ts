@@ -552,7 +552,7 @@ describe('quest document validation', () => {
       q => (q as typeof quest).objectives.map(o => o.type)
     ))].sort();
     expect(kinds).toEqual([
-      'clear-area', 'collect', 'deliver', 'fetch', 'gamble', 'give', 'hire-mercenary',
+      'clear-area', 'collect', 'deliver', 'fetch', 'give', 'hire-mercenary',
       'interact', 'kill', 'kill-boss', 'kill-boss-group', 'rescue', 'survive-waves',
       'talk', 'transmute', 'use-item'
     ]);

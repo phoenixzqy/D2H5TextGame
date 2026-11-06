@@ -9,11 +9,14 @@
  * Below lg, each team keeps three formation columns and teams stack
  * vertically so complete names remain readable in the scrolling main.
  */
-import { useEffect, useMemo, useRef, useState, useCallback, type TouchEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, GameImage, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
+import { CombatLog } from './CombatLog';
 import { CombatRewardSummary } from './CombatRewardSummary';
+import { CombatDamageSummary } from './CombatDamageSummary';
+import { AttackCadenceIndicator } from './AttackCadenceIndicator';
 import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
   performCombatScreenTransition,
@@ -22,17 +25,19 @@ import {
   abortSubAreaRun,
   hasActiveSubAreaRun,
   resetIdleElitePity,
-  resolveCombatUnitDisplayName
+  resolveCombatUnitDisplayName,
+  resolveCombatUnitAffixTag,
+  resolveMonsterDisplayName
 } from '@/stores/combatHelpers';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
-import { assertRecordedWavePlaybackAllowed, RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
+import { assertRecordedWaveNewTransitionAllowed, assertRecordedWavePlaybackAllowed, RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
-import type { CombatLogEntry } from '@/stores/combatStore';
 import { recordedPlaybackBatch } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
+import { monsterSelfBuffId } from '@/engine/skills/monster-self-buffs';
 import { ASSASSIN_CHARGE_DEFINITION } from '@/engine/skills/assassin-charges';
 import { ASSASSIN_TRAP_IDS } from '@/engine/skills/assassin-traps';
 import { ASSASSIN_FLIGHT_STATUS_ID } from '@/engine/skills/assassin-flight';
@@ -40,7 +45,10 @@ import { endgameDefinition } from '@/data/loaders/endgame';
 import { readCombatRequest } from './navigation';
 import { COUNTESS } from '@/engine/map/countess-admission';
 import { canStartCountessEncounter } from '@/features/quests/countessEncounter';
+import { COW } from '@/engine/map/cow-quest';
+import { canStartCowEncounter } from '@/features/quests/cowQuestActions';
 import { checkEndgameEntry } from '@/stores/endgameActions';
+import { createIdlePlaybackClock } from '@/stores/idlePlaybackClock';
 
 const MARTIAL_CHARGE_LABELS = new Map(ASSASSIN_CHARGE_DEFINITION.builders.map(id => {
   const slug = id.slice('assassin.'.length).replaceAll('_', '-');
@@ -56,7 +64,7 @@ const SPEED_CYCLE = [1, 2, 4] as const;
 type Speed = (typeof SPEED_CYCLE)[number];
 
 interface UnitEventFx {
-  readonly kind: 'damage' | 'heal' | 'dodge' | 'status' | 'buff' | 'summon' | 'death';
+  readonly kind: 'damage' | 'heal' | 'dodge' | 'status' | 'buff' | 'summon' | 'revive' | 'death';
   readonly damageType?: string;
   readonly amount?: number;
   readonly statusId?: string;
@@ -119,21 +127,76 @@ export function CombatScreen() {
     : origin === null && request.kind === 'endgame' ? request.modifierId : null;
   const isDungeon = dungeonModifier !== null;
   const isCountess = origin?.kind === 'area' && origin.questEncounter === COUNTESS.encounter || origin === null && request.kind === 'countess';
-  const questRequest = isCountess || request.kind === 'countess' || request.kind === 'invalid' && request.target === 'questEncounter';
-  const invalidRequest = request.kind === 'invalid' || request.kind === 'countess' && origin !== null && !isCountess;
+  const isCow = origin?.kind === 'area' && origin.questEncounter === COW.encounter || origin === null && request.kind === 'cow';
+  const isQuestEncounter = isCountess || isCow;
+  const questRequest = isQuestEncounter || request.kind === 'countess' || request.kind === 'cow' || request.kind === 'invalid' && request.target === 'questEncounter';
+  const invalidRequest = request.kind === 'invalid' || request.kind === 'countess' && origin !== null && !isCountess || request.kind === 'cow' && origin !== null && !isCow;
   const recovery = readCombatTransitionRecovery();
   const transitionBlocked = invalidRequest || entryRefused || transitionFailed || recovery.kind !== 'ready' || hydrationStatus !== 'ready';
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
-  const isIdleLoop = !isDungeon && !isCountess && Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
+  const isIdleLoop = !isDungeon && !isQuestEncounter && Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
   // Explicit exits reset the store before deferred router navigation unmounts us.
   const exiting = useRef(false);
 
+  // The coordinator owns ordinary idle playback; this adapter owns its one timer.
+  const idleContext = useRef({ enabled: false, speed: 1, exiting: false, coordinated: false });
+  idleContext.current = { enabled: isIdleLoop && Boolean(player) && !transitionBlocked, speed, exiting: exiting.current, coordinated: isIdleLoop };
+  const idleClock = useRef<ReturnType<typeof createIdlePlaybackClock> | null>(null);
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const idleWake = useRef<(() => void) | null>(null);
+  const interruptIdle = useCallback((reason: Parameters<ReturnType<typeof createIdlePlaybackClock>['interrupt']>[1]) => {
+    if (idleTimer.current !== null) clearTimeout(idleTimer.current);
+    idleTimer.current = null;
+    idleClock.current?.interrupt(Date.now(), reason);
+  }, []);
+
+  useEffect(() => {
+    const clock = createIdlePlaybackClock({ readContext: () => ({ ...idleContext.current, exiting: exiting.current }) });
+    idleClock.current = clock;
+    let active = true;
+    const apply = (plan: ReturnType<typeof clock.wake>) => {
+      if (!active) return;
+      if (idleTimer.current !== null) clearTimeout(idleTimer.current);
+      idleTimer.current = null;
+      if (idleContext.current.coordinated) setNextWaveCountingDown(plan.countingDown);
+      if (plan.transitionFailed) setTransitionFailed(true);
+      if (plan.continuation !== null) {
+        const epoch = plan.continuation;
+        idleTimer.current = setTimeout(() => { apply(clock.resumeDrain(epoch)); }, 0);
+      } else if (plan.waitMs !== null) {
+        idleTimer.current = setTimeout(() => { apply(clock.wake(Date.now())); }, plan.waitMs);
+      }
+    };
+    const wake = () => { apply(clock.wake(Date.now())); };
+    const visible = () => { if (document.visibilityState === 'visible') wake(); };
+    idleWake.current = wake;
+    document.addEventListener('visibilitychange', visible);
+    window.addEventListener('pageshow', wake);
+    return () => {
+      active = false;
+      if (idleTimer.current !== null) clearTimeout(idleTimer.current);
+      idleTimer.current = null;
+      idleWake.current = null;
+      idleClock.current = null;
+      clock.dispose();
+      document.removeEventListener('visibilitychange', visible);
+      window.removeEventListener('pageshow', wake);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (idleContext.current.coordinated && !idleContext.current.enabled) interruptIdle('gate');
+    idleWake.current?.();
+  }, [interruptIdle, isIdleLoop, player, transitionBlocked, transitionRetry, speed, isPaused,
+    inCombat, recordedEvents, eventCursor, playbackComplete, runVictory, runDefeat]);
+
   // Auto-start a sub-area run if none is in flight.
   useEffect(() => {
-    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
-    if (!exiting.current && !inCombat && player && !runVictory && !runDefeat) {
+    if (isIdleLoop || transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
+    // A replayed mount effect must see any battle admitted by its first call.
+    if (!exiting.current && !useCombatStore.getState().inCombat && player && !runVictory && !runDefeat) {
       if (dungeonModifier !== null) {
         try {
           if (checkEndgameEntry(dungeonModifier) !== 'ok') { setEntryRefused(true); return; }
@@ -142,20 +205,20 @@ export function CombatScreen() {
           if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
           setTransitionFailed(true);
         }
-      } else if (isCountess) {
-        if (!canStartCountessEncounter()) { setEntryRefused(true); return; }
+      } else if (isQuestEncounter) {
+        if (!(isCow ? canStartCowEncounter() : canStartCountessEncounter())) { setEntryRefused(true); return; }
         setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: {
-          act: 1, subAreaId: COUNTESS.area, mode: 'manual', questEncounter: COUNTESS.encounter
+          act: 1, subAreaId: isCow ? COW.area : COUNTESS.area, mode: 'manual', questEncounter: isCow ? COW.encounter : COUNTESS.encounter
         } }));
       } else {
-        setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: isIdleLoop ? 'idle' : 'manual' } }));
+        setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: 'manual' } }));
       }
     }
-  }, [inCombat, isIdleLoop, isCountess, dungeonModifier, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
+  }, [inCombat, isIdleLoop, isQuestEncounter, isCow, dungeonModifier, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Schedule the same atomic timestamp group consumed by the store.
   useEffect(() => {
-    if (transitionBlocked || !inCombat || isPaused || playbackComplete) return;
+    if (isIdleLoop || transitionBlocked || !inCombat || isPaused || playbackComplete) return;
     const batch = recordedPlaybackBatch(recordedEvents, eventCursor, speed);
     if (!batch) return;
     const handle = setTimeout(() => {
@@ -167,12 +230,13 @@ export function CombatScreen() {
       }
     }, batch.delayMs);
     return () => { clearTimeout(handle); };
-  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, transitionBlocked, transitionRetry]);
+  }, [isIdleLoop, inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, transitionBlocked, transitionRetry]);
 
   // Wave completion → auto-advance to next wave (1.5s pause) OR finalize run.
   // The 1.5s pause is the recommended default per the spec; it gives the
   // player time to read the last log line before the next wave appears.
   useEffect(() => {
+    if (isIdleLoop) return;
     if (transitionBlocked || !playbackComplete) {
       setNextWaveCountingDown(false);
       return;
@@ -191,7 +255,7 @@ export function CombatScreen() {
       finally { setNextWaveCountingDown(false); }
     }, 1500);
     return () => { clearTimeout(handle); };
-  }, [playbackComplete, runVictory, runDefeat, transitionBlocked, transitionRetry]);
+  }, [isIdleLoop, playbackComplete, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Currently-acting unit id — derived by walking back from the cursor to
   // the most recent `action` event. With the timeline scheduler, turn-start
@@ -213,14 +277,16 @@ export function CombatScreen() {
   );
 
   const cycleSpeed = useCallback(() => {
+    interruptIdle('speed');
     setSpeed((cur) => {
       const idx = SPEED_CYCLE.indexOf(cur);
       const nextIdx = (idx + 1) % SPEED_CYCLE.length;
       return SPEED_CYCLE[nextIdx] ?? 1;
     });
-  }, []);
+  }, [interruptIdle]);
 
   const handleSkip = useCallback(() => {
+    interruptIdle('skip');
     try {
       assertRecordedWavePlaybackAllowed();
       // Resume if paused so advanceEvent isn't a no-op, then drain.
@@ -235,15 +301,16 @@ export function CombatScreen() {
       if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
       setTransitionFailed(error.code !== 'hydrationNotReady');
     }
-  }, []);
+  }, [interruptIdle]);
 
   const handlePause = useCallback(() => {
+    if (!useCombatStore.getState().isPaused) interruptIdle('pause');
     try { togglePause(); setTransitionFailed(false); }
     catch (error) {
       if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
       setTransitionFailed(error.code !== 'hydrationNotReady');
     }
-  }, [togglePause]);
+  }, [togglePause, interruptIdle]);
 
   // Mid-run flee: a sub-area run is in flight → bail to the world map (#21).
   // Synthetic / no-run battles fall through to the town hub as before.
@@ -257,7 +324,8 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
-    if (wasInRun && !isDungeon && !isCountess) {
+    interruptIdle('stop');
+    if (wasInRun && !isDungeon && !isQuestEncounter) {
       setIdleTarget(undefined);
       resetIdleElitePity();
     }
@@ -267,12 +335,13 @@ export function CombatScreen() {
 
   // Compute next sub-area for the post-victory CTA.
   const nextSubArea = useMemo(
-    () => isDungeon || isCountess ? null : nextSubAreaInAct(currentAct, subAreaRunId),
-    [isDungeon, isCountess, currentAct, subAreaRunId]
+    () => isDungeon || isQuestEncounter ? null : nextSubAreaInAct(currentAct, subAreaRunId),
+    [isDungeon, isQuestEncounter, currentAct, subAreaRunId]
   );
 
   const handleContinueToNext = () => {
     if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready' || !nextSubArea) return;
+    interruptIdle('stop');
     setLocation(currentAct, nextSubArea.id);
     endCombat(); // will trigger auto-start in the mount effect
   };
@@ -287,25 +356,11 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
-    if (!isDungeon && !isCountess) { setIdleTarget(undefined); resetIdleElitePity(); }
+    interruptIdle('stop');
+    if (!isDungeon && !isQuestEncounter) { setIdleTarget(undefined); resetIdleElitePity(); }
     endCombat();
     navigate(destination);
   };
-
-  useEffect(() => {
-    if (transitionBlocked || !isIdleLoop || readCombatTransitionRecovery().kind !== 'ready') return;
-    if (runDefeat) {
-      setIdleTarget(undefined);
-      resetIdleElitePity();
-      return;
-    }
-    if (!runVictory) return;
-    const handle = setTimeout(() => {
-      if (readCombatTransitionRecovery().kind !== 'ready') return;
-      endCombat();
-    }, 1500);
-    return () => { clearTimeout(handle); };
-  }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget, transitionBlocked]);
 
   const handleStopIdle = () => {
     try {
@@ -316,6 +371,7 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
+    interruptIdle('stop');
     setIdleTarget(undefined);
     resetIdleElitePity();
     endCombat();
@@ -324,10 +380,10 @@ export function CombatScreen() {
 
   const [logAutoScrollPaused, setLogAutoScrollPaused] = useState(false);
 
-  if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={<h1>{questRequest ? t('quests:byId.act1-forgotten-tower.name') : tDataKey(t, endgameDefinition.nameKey)}</h1>}>
+  if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={<h1>{questRequest ? t(isCow || request.kind === 'cow' ? 'quests:cow.name' : 'quests:byId.act1-forgotten-tower.name') : tDataKey(t, endgameDefinition.nameKey)}</h1>}>
     <Panel>
       <p role="alert" data-testid={questRequest ? 'quest-encounter-entry-refusal' : 'endgame-entry-refusal'} className="mb-3 text-d2-gold">
-        {t(questRequest ? 'quests:countess.refused' : invalidRequest ? 'endgame:combat.invalid' : 'endgame:combat.refused')}
+        {t(questRequest ? isCow || request.kind === 'cow' ? 'quests:cow.feedback.refused' : 'quests:countess.refused' : invalidRequest ? 'endgame:combat.invalid' : 'endgame:combat.refused')}
       </p>
       <Button type="button" className="min-h-11" onClick={() => { navigate('/map'); }}>{t('returnToMap')}</Button>
     </Panel>
@@ -354,7 +410,7 @@ export function CombatScreen() {
                 <>
                   {' · '}
                   <span data-testid="combat-sub-area-name" className="text-d2-gold">
-                    {isDungeon ? tDataKey(t, endgameDefinition.nameKey) : isCountess ? t('quests:countess.name') : tDataKey(t, mapSubAreaNameKey(currentSubAreaId ?? ''))}
+                    {isDungeon ? tDataKey(t, endgameDefinition.nameKey) : isCow ? t('quests:cow.name') : isCountess ? t('quests:countess.name') : tDataKey(t, mapSubAreaNameKey(currentSubAreaId ?? ''))}
                   </span>
                 </>
               )}
@@ -479,6 +535,7 @@ export function CombatScreen() {
             </div>
           </Panel>
         )}
+        <AttackCadenceIndicator />
         <CombatLog entries={recentLog} onAutoScrollPausedChange={setLogAutoScrollPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
@@ -497,7 +554,10 @@ export function CombatScreen() {
               ? t('runVictoryTitle')
               : t(outcome?.winner === null ? 'event.draw' : 'runDefeatTitle')}
           >
-            {runVictory && <CombatRewardSummary rewards={runRewards} />}
+            <CombatRewardSummary rewards={runRewards} retained={runDefeat} />
+            {runDefeat && playbackComplete && eventCursor >= recordedEvents.length && (
+              <CombatDamageSummary events={recordedEvents} team={playerTeam} />
+            )}
             <div className="flex flex-wrap gap-2 mt-2">
               {dungeonModifier !== null && <Button type="button" className="min-h-11 max-w-full whitespace-normal" disabled={transitionBlocked}
                 data-testid="endgame-new-attempt" onClick={() => {
@@ -521,7 +581,15 @@ export function CombatScreen() {
                   variant="primary"
                   className="min-h-11 text-sm"
                   onClick={() => {
-                    if (readCombatTransitionRecovery().kind === 'ready') endCombat();
+                    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
+                    try {
+                      assertRecordedWaveNewTransitionAllowed();
+                      interruptIdle('stop');
+                      endCombat();
+                    } catch (error) {
+                      if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+                      setTransitionFailed(error.code !== 'hydrationNotReady');
+                    }
                   }}
                   disabled={transitionBlocked}
                   data-testid="idle-loop-next-run"
@@ -697,7 +765,9 @@ function UnitCard({
   const kind = inferKind(unit);
   const isSummon = kind === 'summon';
   const isPlayerSide = unit.side === 'player';
-  const displayName = resolveCombatUnitDisplayName(unit);
+  const unitLabel = resolveCombatUnitDisplayName(unit);
+  const displayName = kind === 'monster' ? resolveMonsterDisplayName(unit) : unitLabel;
+  const affixTag = resolveCombatUnitAffixTag(unit);
 
   const isDead = unit.life <= 0;
   const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
@@ -776,7 +846,7 @@ function UnitCard({
           : t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
             amount: status.boneArmor?.remaining ?? 0 }),
         stacks: chargeName !== undefined || trapName !== undefined || flight ? 1 : status.stacks,
-        kind: chargeName !== undefined || trapName !== undefined || flight || status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
+        kind: monsterSelfBuffId(status.id) !== undefined || chargeName !== undefined || trapName !== undefined || flight || status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
           ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
           (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
           (status.id === 'feral-rage' && status.feralRage === true) ||
@@ -795,7 +865,7 @@ function UnitCard({
     <div
       className={`${wrapperCls} ${ringCls} relative flex h-full min-w-0 w-full flex-col rounded-md transition-opacity motion-reduce:transition-none`}
       role="group"
-      aria-label={displayName}
+      aria-label={unitLabel}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
@@ -818,7 +888,7 @@ function UnitCard({
                     ? 'border-d2-gold/60'
                     : 'border-d2-border'
           ].join(' ')}
-          title={displayName}
+          title={unitLabel}
         >
           <div className="h-16 shrink-0 overflow-hidden bg-black/30 lg:h-auto lg:min-h-0 lg:flex-1">
             <GameImage
@@ -889,6 +959,28 @@ function UnitCard({
           stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
         />
       )}
+      {affixTag ? (
+        <ul aria-label={t('eliteAffixLabel')} className="mt-1 flex w-full min-w-0 flex-wrap gap-1">
+          <li className="min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]">
+            {affixTag}
+          </li>
+        </ul>
+      ) : null}
+      {unit.damageImmunities && unit.damageImmunities.length > 0 ? (
+        <ul
+          aria-label={t('damageImmunity.label')}
+          className="mt-1 flex w-full min-w-0 flex-wrap gap-1"
+        >
+          {unit.damageImmunities.map(type => (
+            <li
+              key={type}
+              className="min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]"
+            >
+              {t('damageImmunity.type', { type: t(`damageType.${type}`) })}
+            </li>
+          ))}
+        </ul>
+      ) : null}
       {eventFx ? (
         <div
           className={[
@@ -1081,6 +1173,9 @@ function buildUnitEventFx(events: readonly RecordedBattleEvent[], cursor: number
         fx.set(ev.owner, { kind: 'summon' });
         fx.set(ev.unit.id, { kind: 'summon' });
         break;
+      case 'revive':
+        fx.set(ev.target, { kind: 'revive' });
+        break;
       case 'death':
         fx.set(ev.target, { kind: 'death' });
         break;
@@ -1097,6 +1192,7 @@ function eventFxRingClass(fx: UnitEventFx): string {
     case 'dodge':
       return damageTypeRingClass(fx.damageType);
     case 'heal':
+    case 'revive':
       return 'ring-2 ring-green-300/70';
     case 'buff':
     case 'summon':
@@ -1114,6 +1210,7 @@ function eventFxBadgeClass(fx: UnitEventFx): string {
     case 'dodge':
       return damageTypeBadgeClass(fx.damageType);
     case 'heal':
+    case 'revive':
       return 'border-green-300/70 bg-green-500/25 text-green-100';
     case 'buff':
     case 'summon':
@@ -1165,6 +1262,8 @@ function eventFxLabel(fx: UnitEventFx, t: ReturnType<typeof useTranslation>['t']
       return fx.buffId ? t(`effect.buff.${fx.buffId}`, { defaultValue: humanizeEffectId(fx.buffId) }) : t('effect.buffApplied');
     case 'summon':
       return t('effect.summon');
+    case 'revive':
+      return t('effect.revive');
     case 'death':
       return t('effect.death');
   }
@@ -1172,131 +1271,6 @@ function eventFxLabel(fx: UnitEventFx, t: ReturnType<typeof useTranslation>['t']
 
 function humanizeEffectId(id: string): string {
   return id.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
-/** Render the bounded log and follow new entries unless the reader pauses it. */
-function CombatLog({
-  entries,
-  onAutoScrollPausedChange,
-}: {
-  entries: CombatLogEntry[];
-  onAutoScrollPausedChange?: (paused: boolean) => void;
-}) {
-  const { t } = useTranslation('combat');
-  const logContainerRef = useRef<HTMLDivElement>(null);
-  const activeTouchIds = useRef(new Set<number>());
-  const scrollGesture = useRef(false);
-  const [hoverPaused, setHoverPaused] = useState(false);
-  const [touchPaused, setTouchPaused] = useState(false);
-  const [pinned, setPinned] = useState(true);
-  const paused = hoverPaused || touchPaused || !pinned;
-
-  useEffect(() => {
-    const el = logContainerRef.current;
-    if (!el) return;
-    // Observe the scroll container's native keyboard scrolling without turning
-    // the live log into a custom keyboard widget or preventing browser defaults.
-    const onKeyDown = (event: KeyboardEvent) => {
-      const up = ['ArrowUp', 'PageUp', 'Home'].includes(event.key) || (event.key === ' ' && event.shiftKey);
-      const down = ['ArrowDown', 'PageDown', 'End'].includes(event.key) || (event.key === ' ' && !event.shiftKey);
-      if (up && el.scrollTop > 0) {
-        scrollGesture.current = true;
-        setPinned(false);
-      } else if (down && el.scrollTop + el.clientHeight < el.scrollHeight) scrollGesture.current = true;
-    };
-    el.addEventListener('keydown', onKeyDown);
-    return () => { el.removeEventListener('keydown', onKeyDown); };
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
-    const el = logContainerRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [entries, paused]);
-
-  useEffect(() => {
-    onAutoScrollPausedChange?.(paused);
-  }, [paused, onAutoScrollPausedChange]);
-
-  const onScroll = () => {
-    // Row replacement can trigger native scroll anchoring during a stationary
-    // hover/touch. Only reader input should unpin that paused viewport.
-    if ((hoverPaused || touchPaused) && !scrollGesture.current) return;
-    const el = logContainerRef.current;
-    if (!el) return;
-    const distance = el.scrollHeight - el.scrollTop - el.clientHeight;
-    // Release can clear the gesture before its queued native scroll arrives.
-    // An unpinned reader still has to reach the physical bottom to follow again.
-    const atBottom = scrollGesture.current || !pinned ? distance <= 1 : distance < 24;
-    setPinned(atBottom);
-    if (distance <= 1) scrollGesture.current = false;
-  };
-
-  const endTouches = (event: TouchEvent<HTMLDivElement>) => {
-    onScroll();
-    for (const touch of Array.from(event.changedTouches)) activeTouchIds.current.delete(touch.identifier);
-    setTouchPaused(activeTouchIds.current.size > 0);
-    if (activeTouchIds.current.size === 0) scrollGesture.current = false;
-  };
-
-  return (
-    <Panel
-      title={t('log')}
-      className="flex flex-col"
-    >
-      <div
-        ref={logContainerRef}
-        onScroll={onScroll}
-        onPointerEnter={event => { if (event.pointerType !== 'touch') setHoverPaused(true); }}
-        onPointerLeave={event => {
-          if (event.pointerType !== 'touch') { onScroll(); setHoverPaused(false); scrollGesture.current = false; }
-        }}
-        onPointerCancel={event => {
-          if (event.pointerType !== 'touch') { onScroll(); setHoverPaused(false); scrollGesture.current = false; }
-        }}
-        onPointerDown={event => { if (event.pointerType !== 'touch') scrollGesture.current = true; }}
-        onPointerUp={event => { if (event.pointerType !== 'touch') { onScroll(); scrollGesture.current = false; } }}
-        onWheel={event => {
-          const el = logContainerRef.current;
-          if (!el) return;
-          // A wheel that cannot move this viewport must not make subsequent
-          // row anchoring look like an intentional scroll away.
-          if ((event.deltaY < 0 && el.scrollTop > 0) ||
-              (event.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight)) scrollGesture.current = true;
-        }}
-        onTouchStart={event => {
-          if (activeTouchIds.current.size === 0) scrollGesture.current = false;
-          for (const touch of Array.from(event.changedTouches)) activeTouchIds.current.add(touch.identifier);
-          setTouchPaused(true);
-        }}
-        onTouchMove={() => { scrollGesture.current = true; }}
-        onTouchEnd={endTouches}
-        onTouchCancel={endTouches}
-        className="max-h-[40vh] md:max-h-[28rem] overflow-y-auto [overflow-anchor:none] bg-black/40 rounded p-2
-                   font-mono text-xs leading-relaxed scrollbar-d2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
-        role="log"
-        aria-label={t('log')}
-        aria-live="polite"
-        aria-relevant="additions"
-        data-testid="combat-log"
-      >
-        {entries.length === 0 ? (
-          <p className="text-d2-white/40 italic">
-            {t('logEmpty')}
-          </p>
-        ) : (
-          entries.map((e) => (
-            <div key={e.id} className={logTypeClass(e.type)}>
-              <span className="text-d2-white/40 mr-1">
-                {new Date(e.timestamp).toLocaleTimeString([], { hour12: false })}
-              </span>
-              <span>{e.message}</span>
-            </div>
-          ))
-        )}
-      </div>
-    </Panel>
-  );
 }
 
 /**
@@ -1407,22 +1381,3 @@ function extractMonsterSlug(name: string, id: string, includeAct = false): strin
   return base.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
 }
 
-function logTypeClass(type: CombatLogEntry['type']): string {
-  switch (type) {
-    case 'damage':
-      return 'text-red-300';
-    case 'heal':
-      return 'text-green-300';
-    case 'buff':
-      return 'text-blue-300';
-    case 'debuff':
-      return 'text-purple-300';
-    case 'death':
-      return 'text-d2-rare';
-    case 'skill':
-      return 'text-d2-gold';
-    case 'system':
-    default:
-      return 'text-d2-white/80';
-  }
-}

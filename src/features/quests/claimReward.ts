@@ -1,3 +1,13 @@
+import { ANYA } from '@/engine/map/anya-quest';
+import { hasAnyaClaimCompletion, publishAnyaClaim } from './anyaClaim';
+import { act2CacheKeyForQuest } from '@/engine/map/act2-cache-quests';
+import { FARA } from '@/engine/map/fara-quest';
+import { COW } from '@/engine/map/cow-quest';
+import { findRegionalBounty } from '@/engine/map/regional-bounties';
+import { hasRegionalBountyClaimCompletion, publishRegionalBountyClaim } from './bountyClaim';
+import { hasCowClaimCompletion, publishCowClaim } from './cowClaim';
+import { hasFaraClaimCompletion, publishFaraClaim } from './faraClaim';
+import { hasAct2CacheClaimCompletion, publishAct2CacheClaim } from './act2CacheClaim';
 import { QUEST_SERVICE_SOURCES, validateQuestServiceLedger, type QuestServiceLedger } from '@/engine/services/quest-services';
 import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '@/engine/save/act5-state';
 import { hasQuestServiceSourceGraph, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
@@ -20,7 +30,7 @@ import { mergeRewards, planRewardGrant } from '@/engine/loot/reward-plan';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
 import { publishQuestItemChange, questActionPreflight, withQuestTransaction } from './questTransaction';
-import { hasQuestDeliveryCompletion } from './questDelivery';
+import { hasQuestDeliveryCompletion, questDeliveryCompletions } from './questDelivery';
 import { hasQuestAssemblyCompletion } from './questCrafting';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
@@ -36,6 +46,19 @@ import { hasCainClaimCompletion, publishCainClaim } from './cainClaim';
 import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
 import { MALUS_QUEST, MALUS_SIDE_QUEST } from '@/engine/map/malus-quest';
 import { hasImbueClaimCompletion, publishImbueClaim } from './imbueClaim';
+import { LARZUK } from '@/engine/map/larzuk-quest';
+import { hasLarzukClaimCompletion, publishLarzukClaim } from './larzukClaim';
+import { ORMUS } from '@/engine/map/ormus-quest';
+import { hasOrmusClaimCompletion, publishOrmusClaim } from './ormusClaim';
+import { WARBAND } from '@/engine/map/warband-quest';
+import { hasWarbandClaimCompletion, publishWarbandClaim } from './warbandClaim';
+import { DROGNAN } from '@/engine/map/drognan-quest';
+import { hasDrognanClaimCompletion, publishDrognanClaim } from './drognanClaim';
+import { NIHLATHAK } from '@/engine/map/nihlathak-quest';
+import { captureNihlathakClaimWitness, hasNihlathakClaimCompletion, publishNihlathakClaim } from './nihlathakClaim';
+import { hasTownEnlistmentClaimCompletion, publishTownEnlistmentClaim, townEnlistmentKeyForQuest } from './townEnlistmentClaim';
+import { sameCountedData } from './countedQuestContract';
+import { countedQuestKeyForQuest, hasCountedSourceClaimCompletion, publishCountedSourceClaim } from './countedQuestClaim';
 
 export type ClaimResult =
   | 'ok'
@@ -55,6 +78,10 @@ type NumericReward = 'xp' | 'skillPoints' | 'statPoints'
 function isNumericReward(key: string): key is NumericReward {
   return key === 'xp' || key === 'skillPoints' || key === 'statPoints'
     || key === 'runes' || key === 'runeShards' || key === 'gems' || key === 'gemShards' || key === 'wishstones';
+}
+
+function currencyKey(kind: NumericReward): string {
+  return kind === 'gemShards' ? 'gem-shard' : kind === 'wishstones' ? 'wishstone' : kind;
 }
 
 function findQuest(questId: string): QuestDef | undefined {
@@ -102,12 +129,19 @@ function hasQuestServiceCompletion(questId: string): boolean {
 
 /** Basic action availability; execution can still refuse with a retryable reason. */
 export function canClaim(questId: string): boolean {
+  if (questId === ANYA.quest) return hasAnyaClaimCompletion(questId);
+  if (findRegionalBounty(questId)) return hasRegionalBountyClaimCompletion(questId);
+  if (questId === COW.quest) return hasCowClaimCompletion(questId);
+  if (questId === FARA.quest) return hasFaraClaimCompletion(questId);
+  const cacheKey = act2CacheKeyForQuest(questId);
+  if (cacheKey !== undefined) return hasAct2CacheClaimCompletion(cacheKey);
+  if (countedQuestKeyForQuest(questId) !== undefined) return hasCountedSourceClaimCompletion(questId);
   const progress = useMapStore.getState().questProgress[questId];
   if (!progress) return false;
   if (progress.status !== 'completed') return false;
   if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
-  if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId)) return false;
+  if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId) || !hasOrmusClaimCompletion(questId) || !hasLarzukClaimCompletion(questId) || !hasWarbandClaimCompletion(questId) || !hasDrognanClaimCompletion(questId) || !hasNihlathakClaimCompletion(questId) || !hasTownEnlistmentClaimCompletion(questId)) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
     hasQuestServiceCompletion(quest.id) &&
@@ -131,7 +165,7 @@ function safeGrants(player: Player, grants: readonly { kind: NumericReward; amou
   const currencies = useInventoryStore.getState().currencies;
   for (const grant of grants) {
     if (grant.kind === 'xp' || grant.kind === 'skillPoints' || grant.kind === 'statPoints') continue;
-    const balance = currencies[grant.kind === 'gemShards' ? 'gem-shard' : grant.kind] ?? 0;
+    const balance = currencies[currencyKey(grant.kind)] ?? 0;
     if (!safeCount(balance) || !safeCount(balance + grant.amount)) return false;
   }
   const mercs = useMercStore.getState();
@@ -163,11 +197,19 @@ function safeGrants(player: Player, grants: readonly { kind: NumericReward; amou
  */
 export function claimQuestReward(questId: string): ClaimResult {
   return withQuestTransaction<ClaimResult>(() => {
+    if (questId === ANYA.quest) return publishAnyaClaim();
+    if (findRegionalBounty(questId)) return publishRegionalBountyClaim(questId);
+    if (questId === COW.quest) return publishCowClaim();
+    if (questId === FARA.quest) return publishFaraClaim();
+    const cacheKey = act2CacheKeyForQuest(questId);
+    if (cacheKey !== undefined) return publishAct2CacheClaim(cacheKey);
+    const countedKey = countedQuestKeyForQuest(questId);
+    if (countedKey !== undefined) return publishCountedSourceClaim(countedKey);
     const progress = useMapStore.getState().questProgress[questId];
     if (!progress || progress.status !== 'completed') return 'not-completed';
     if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
-    if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId)) return 'not-completed';
+    if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId) || !hasOrmusClaimCompletion(questId) || !hasLarzukClaimCompletion(questId) || !hasWarbandClaimCompletion(questId) || !hasDrognanClaimCompletion(questId) || !hasNihlathakClaimCompletion(questId) || !hasTownEnlistmentClaimCompletion(questId)) return 'not-completed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
     if (!hasQuestServiceCompletion(quest.id) || !hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
@@ -181,6 +223,15 @@ export function claimQuestReward(questId: string): ClaimResult {
     const questProgress = useMapStore.getState().questProgress;
     try { validateQuestItemLedger(inventory.questItems, questProgress, useMapStore.getState().questReceipts); }
     catch { return 'unsupported-rewards'; }
+
+    if (questId === WARBAND.quest) return publishWarbandClaim();
+    const townEnlistmentKey = townEnlistmentKeyForQuest(questId);
+    if (townEnlistmentKey !== undefined) return publishTownEnlistmentClaim(townEnlistmentKey);
+
+    if (questId === LARZUK.quest) {
+      return sameCountedData(rewards, { service: 'socket_item', wishstones: 10 })
+        ? publishLarzukClaim() : 'unsupported-rewards';
+    }
 
     const grants: { kind: NumericReward; amount: number }[] = [];
     let uniqueReward: RollUniqueItemInput | undefined;
@@ -273,13 +324,19 @@ export function claimQuestReward(questId: string): ClaimResult {
     // Refuse the exact Imbue bundle before any profile lookup or item allocation.
     if (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST) {
       if (questServices?.[serviceSource]?.serviceId !== 'imbue_item' ||
-        grants.some(grant => grant.kind !== 'xp') ||
+        grants.some(grant => grant.kind !== 'xp' && grant.kind !== 'wishstones') ||
         (grants.find(grant => grant.kind === 'xp')?.amount ?? 0) !== (questId === MALUS_QUEST ? 3500 : 0) ||
+        grants.find(grant => grant.kind === 'wishstones')?.amount !== (questId === MALUS_QUEST ? 15 : 10) ||
         uniqueReward !== undefined || uniqueProfileReward || tableReward !== undefined || questItems !== undefined ||
         resistanceReward || campaignReward || mercenaryUnlock || permanentIdentify) return 'unsupported-rewards';
     }
+    if (questId === ORMUS.quest && (grants.length !== 2 || grants.find(grant => grant.kind === 'xp')?.amount !== 5000 ||
+      grants.find(grant => grant.kind === 'wishstones')?.amount !== 10 ||
+      uniqueReward?.uniqueId !== 'items/unique/ormus-charm' || uniqueReward.ilvl !== 32 || uniqueProfileReward || tableReward !== undefined ||
+      questItems !== undefined || resistanceReward || questServices !== undefined || campaignReward || mercenaryUnlock || permanentIdentify)) return 'unsupported-rewards';
     if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward && !mercenaryUnlock && !permanentIdentify) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
+    if (questId === DROGNAN.quest) return publishDrognanClaim();
     if (uniqueProfileReward) {
       try {
         uniqueReward = resolveQuestUniqueProfile(loadQuestUniqueProfile(), loadAwardPools(), player.id, quest.id);
@@ -302,13 +359,14 @@ export function claimQuestReward(questId: string): ClaimResult {
       questItems ?? inventory.questItems, questServices ?? inventory.questServices, mapBefore.endgame); }
     catch { return 'unsupported-rewards'; }
 
+    const nihlathakWitness = questId === NIHLATHAK.quest ? captureNihlathakClaimWitness() : undefined;
     // Preparation is private: failure here must not publish rollback writes.
     const items: Item[] = [];
     let cacheRewards: KillRewards = mergeRewards();
     const currencyGrants = new Map<string, number>();
     for (const { kind, amount } of grants) {
       if (kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints') {
-        const target = kind === 'gemShards' ? 'gem-shard' : kind;
+        const target = currencyKey(kind);
         currencyGrants.set(target, (currencyGrants.get(target) ?? 0) + amount);
       }
     }
@@ -339,9 +397,16 @@ export function claimQuestReward(questId: string): ClaimResult {
     }
     const pendingCurrencies = new Map(currencyGrants);
     let pendingItems = items;
+    const verifyCurrencyBalances = (): void => {
+      const current = useInventoryStore.getState().currencies;
+      for (const target of currencyGrants.keys()) {
+        if (!safeCount(current[target] ?? 0)) throw new Error('Invalid participating quest currency');
+      }
+    };
     // Observers can change inventory during XP or an earlier grant. Recheck the
     // remaining exact bag at each add boundary without rerolling or losing writes.
     const preflightInventory = (): void => {
+      verifyCurrencyBalances();
       const destination = useInventoryStore.getState();
       const currencies = { ...destination.currencies };
       for (const [target, amount] of pendingCurrencies) {
@@ -358,16 +423,31 @@ export function claimQuestReward(questId: string): ClaimResult {
     catch { return 'unsupported-rewards'; }
 
     if (permanentIdentify) {
-      // These two authored bundles are XP + permanent Identify, or Identify alone.
+      // Exact authored wishes plus main XP and permanent Identify; no finite charge.
       // They use no selected-item charge and no other reward publication.
-      if (grants.some(grant => grant.kind !== 'xp') || questId === CAIN_SIDE_QUEST && grants.length !== 0 ||
+      if (grants.some(grant => grant.kind !== 'xp' && grant.kind !== 'wishstones') ||
+        (grants.find(grant => grant.kind === 'xp')?.amount ?? 0) !== (questId === CAIN_SIDE_QUEST ? 0 : 2500) ||
+        grants.find(grant => grant.kind === 'wishstones')?.amount !== (questId === CAIN_SIDE_QUEST ? 10 : 20) ||
         uniqueReward !== undefined || uniqueProfileReward || tableReward !== undefined || questItems !== undefined || resistanceReward || questServices !== undefined ||
         campaignReward || mercenaryUnlock) return 'unsupported-rewards';
-      return publishCainClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0);
+      return publishCainClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0,
+        grants.find(grant => grant.kind === 'wishstones')?.amount ?? 0);
     }
 
     if (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST) {
-      return publishImbueClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0);
+      return publishImbueClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0,
+        grants.find(grant => grant.kind === 'wishstones')?.amount ?? 0);
+    }
+
+    if (questId === ORMUS.quest) {
+      const item = items[0];
+      return item && items.length === 1 ? publishOrmusClaim(item, preflightInventory) : 'unsupported-rewards';
+    }
+
+    if (questId === NIHLATHAK.quest) {
+      const item = items[0];
+      return item && items.length === 1 && nihlathakWitness
+        ? publishNihlathakClaim(item, preflightInventory, nihlathakWitness) : 'unsupported-rewards';
     }
 
     const serviceEntry = questServices?.[serviceSource];
@@ -426,7 +506,9 @@ export function claimQuestReward(questId: string): ClaimResult {
           ) } };
         });
       }
+      verifyCurrencyBalances();
       useMapStore.getState().markQuestRewardClaimed(questId);
+      verifyCurrencyBalances();
       const claimed = useMapStore.getState().questProgress[questId];
       if (claimed?.id !== questId || claimed.status !== 'completed' || claimed.rewardClaimed !== true) {
         throw new Error('Quest reward claimed publication was not retained');
@@ -530,18 +612,31 @@ export type QuestRewardItemRecoveryStatus = 'ready' | 'owned' | 'consumed' | 'un
 
 /** Read-only eligibility for explicit recovery after actual hand-ins, never from legacy flags alone. */
 export function questRewardItemRecoveryStatus(questId: string): QuestRewardItemRecoveryStatus {
-  const quest = findQuest(questId);
-  const progress = useMapStore.getState().questProgress[questId];
-  if (!quest || progress?.status !== 'completed' || progress.rewardClaimed !== true ||
-    !quest.objectives.some(objective => objective.type === 'give') ||
-    !hasQuestDeliveryCompletion(quest)) return 'unavailable';
-  const definition = loadQuestItems().find(item => item.kind === undefined &&
-    item.sourceQuestId === questId && item.id === quest.rewards?.questItem);
-  if (!definition) return 'unavailable';
-  const source = questItemSource(definition);
+  return questRewardItemRecoveryStatuses([questId]).get(questId) ?? 'unavailable';
+}
+
+/** Resolve a visible reward list with fresh authored data and one delivery-ledger check. */
+export function questRewardItemRecoveryStatuses(questIds: readonly string[]): ReadonlyMap<string, QuestRewardItemRecoveryStatus> {
+  const statuses = new Map<string, QuestRewardItemRecoveryStatus>(questIds.map(id => [id, 'unavailable']));
+  if (statuses.size === 0) return statuses;
+  const progress = useMapStore.getState().questProgress;
+  const quests = loadQuests().filter(quest => statuses.has(quest.id) &&
+    progress[quest.id]?.status === 'completed' && progress[quest.id]?.rewardClaimed === true &&
+    quest.objectives.some(objective => objective.type === 'give'));
+  const completed = questDeliveryCompletions(quests);
+  if (completed.size === 0) return statuses;
+  const definitions = loadQuestItems();
   const ledger = useInventoryStore.getState().questItems;
-  if (!Object.hasOwn(ledger, source)) return 'ready';
-  return ledger[source]?.state === 'consumed' ? 'consumed' : 'owned';
+  for (const quest of quests) {
+    if (!completed.has(quest.id)) continue;
+    const definition = definitions.find(item => item.kind === undefined &&
+      item.sourceQuestId === quest.id && item.id === quest.rewards?.questItem);
+    if (!definition) continue;
+    const source = questItemSource(definition);
+    statuses.set(quest.id, !Object.hasOwn(ledger, source) ? 'ready'
+      : ledger[source]?.state === 'consumed' ? 'consumed' : 'owned');
+  }
+  return statuses;
 }
 
 /**

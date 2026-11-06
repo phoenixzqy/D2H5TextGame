@@ -6,7 +6,6 @@
       {
         "type": "item",
         "itemBase": "items/base/weapon-spear",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 1,
         "maxLevel": 58
@@ -14,7 +13,6 @@
       {
         "type": "item",
         "itemBase": "items/base/weapon-throwing-knife",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 1,
         "maxLevel": 58
@@ -22,7 +20,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-cap",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 10
@@ -30,7 +27,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 4,
         "maxLevel": 58
@@ -38,7 +34,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-quilted",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 10
@@ -46,7 +41,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 5,
         "maxLevel": 58
@@ -54,7 +48,6 @@
       {
         "type": "item",
         "itemBase": "items/base/glove-leather",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 58
@@ -62,7 +55,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-leather",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 58
@@ -70,7 +62,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-sash",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 58
@@ -78,7 +69,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-light",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 6,
         "maxLevel": 58
@@ -86,7 +76,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-short-sword",
-        "rarity": "normal",
         "weight": 125,
         "minLevel": 1,
         "maxLevel": 10
@@ -94,7 +83,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-katar",
-        "rarity": "normal",
         "weight": 125,
         "minLevel": 1,
         "maxLevel": 10
@@ -102,7 +90,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "normal",
         "weight": 75,
         "minLevel": 7,
         "maxLevel": 58
@@ -110,7 +97,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "normal",
         "weight": 75,
         "minLevel": 7,
         "maxLevel": 58
@@ -118,7 +104,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-two-handed-sword",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 1,
         "maxLevel": 10
@@ -126,7 +111,6 @@
       {
         "type": "item",
         "itemBase": "items/base/weapon-staff",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 1,
         "maxLevel": 10
@@ -134,7 +118,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-great-axe",
-        "rarity": "normal",
         "weight": 70,
         "minLevel": 7,
         "maxLevel": 58
@@ -142,7 +125,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-buckler",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 1,
         "maxLevel": 10
@@ -150,7 +132,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-kite",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 7,
         "maxLevel": 58
@@ -158,7 +139,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-iron",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 1,
         "maxLevel": 58
@@ -166,7 +146,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "normal",
         "weight": 50,
         "minLevel": 9,
         "maxLevel": 58
@@ -174,7 +153,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-tin",
-        "rarity": "normal",
         "weight": 60,
         "minLevel": 1,
         "maxLevel": 58
@@ -182,7 +160,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "normal",
         "weight": 40,
         "minLevel": 9,
         "maxLevel": 58
@@ -190,10 +167,338 @@
       {
         "type": "item",
         "itemBase": "items/base/weapon-bow-training",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 1,
         "maxLevel": 10
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 127.5,
+        "minLevel": 10,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 127.5,
+        "minLevel": 15,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 127.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 127.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 127.5,
+        "minLevel": 52,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 127.5,
+        "minLevel": 52,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 127.5,
+        "minLevel": 8,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 127.5,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 127.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 127.5,
+        "minLevel": 50,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 127.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 127.5,
+        "minLevel": 10,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 127.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 127.5,
+        "minLevel": 52,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "weight": 127.5,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 127.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 127.5,
+        "minLevel": 50,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-aegis",
+        "weight": 127.5,
+        "minLevel": 25,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 127.5,
+        "minLevel": 35,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 127.5,
+        "minLevel": 50,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-war-hat",
+        "weight": 127.5,
+        "minLevel": 22,
+        "maxLevel": 27
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 127.5,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 127.5,
+        "minLevel": 45,
+        "maxLevel": 54
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 127.5,
+        "minLevel": 55,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 127.5,
+        "minLevel": 25,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 127.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 127.5,
+        "minLevel": 50,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-heavy",
+        "weight": 127.5,
+        "minLevel": 7,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-chain",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-light-gauntlets",
+        "weight": 127.5,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-vampirebone",
+        "weight": 127.5,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-bramble-mitts",
+        "weight": 127.5,
+        "minLevel": 58,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-heavy",
+        "weight": 127.5,
+        "minLevel": 7,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-chain",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-light-plated",
+        "weight": 127.5,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-demonhide",
+        "weight": 127.5,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 127.5,
+        "minLevel": 58,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-heavy",
+        "weight": 127.5,
+        "minLevel": 22,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-plated",
+        "weight": 127.5,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-demonhide",
+        "weight": 127.5,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-mithril-coil",
+        "weight": 127.5,
+        "minLevel": 58,
+        "maxLevel": 58
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-war-pike",
+        "weight": 127.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 127.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-colossus-blade",
+        "weight": 127.5,
+        "minLevel": 52,
+        "maxLevel": 58
       }
     ]
   },
@@ -204,7 +509,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "normal",
         "weight": 300,
         "minLevel": 14,
         "maxLevel": 22
@@ -212,7 +516,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
         "maxLevel": 71
@@ -220,7 +523,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "normal",
         "weight": 300,
         "minLevel": 14,
         "maxLevel": 22
@@ -228,7 +530,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
         "maxLevel": 71
@@ -236,7 +537,6 @@
       {
         "type": "item",
         "itemBase": "items/base/glove-heavy",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 14,
         "maxLevel": 26
@@ -244,7 +544,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-heavy",
-        "rarity": "normal",
         "weight": 220,
         "minLevel": 14,
         "maxLevel": 26
@@ -252,7 +551,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-light",
-        "rarity": "normal",
         "weight": 220,
         "minLevel": 14,
         "maxLevel": 26
@@ -260,7 +558,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 14,
         "maxLevel": 22
@@ -268,7 +565,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 14,
         "maxLevel": 22
@@ -276,7 +572,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "normal",
         "weight": 35,
         "minLevel": 22,
         "maxLevel": 71
@@ -284,7 +579,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "normal",
         "weight": 35,
         "minLevel": 22,
         "maxLevel": 71
@@ -292,7 +586,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-great-axe",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 14,
         "maxLevel": 26
@@ -300,7 +593,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-kite",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 14,
         "maxLevel": 26
@@ -308,7 +600,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-aegis",
-        "rarity": "normal",
         "weight": 60,
         "minLevel": 22,
         "maxLevel": 71
@@ -316,7 +607,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 14,
         "maxLevel": 26
@@ -324,10 +614,345 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 14,
         "maxLevel": 26
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 65,
+        "minLevel": 14,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 65,
+        "minLevel": 15,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 65,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 65,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 65,
+        "minLevel": 52,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 65,
+        "minLevel": 52,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 65,
+        "minLevel": 14,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 65,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 65,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 65,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 65,
+        "minLevel": 60,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 65,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 65,
+        "minLevel": 60,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 65,
+        "minLevel": 14,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 65,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 65,
+        "minLevel": 52,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 65,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 65,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 65,
+        "minLevel": 60,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 65,
+        "minLevel": 35,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 65,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 65,
+        "minLevel": 60,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 65,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 65,
+        "minLevel": 45,
+        "maxLevel": 54
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 65,
+        "minLevel": 55,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 65,
+        "minLevel": 23,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 65,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 65,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 65,
+        "minLevel": 60,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-chain",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-light-gauntlets",
+        "weight": 65,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-vampirebone",
+        "weight": 65,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-bramble-mitts",
+        "weight": 65,
+        "minLevel": 58,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-chain",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-light-plated",
+        "weight": 65,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-demonhide",
+        "weight": 65,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 65,
+        "minLevel": 58,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-heavy",
+        "weight": 65,
+        "minLevel": 22,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-plated",
+        "weight": 65,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-demonhide",
+        "weight": 65,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-mithril-coil",
+        "weight": 65,
+        "minLevel": 58,
+        "maxLevel": 71
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-war-pike",
+        "weight": 65,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 65,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-colossus-blade",
+        "weight": 65,
+        "minLevel": 52,
+        "maxLevel": 61
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 65,
+        "minLevel": 62,
+        "maxLevel": 71
       }
     ]
   },
@@ -338,7 +963,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 26,
         "maxLevel": 38
@@ -346,7 +970,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "normal",
         "weight": 50,
         "minLevel": 38,
         "maxLevel": 86
@@ -354,7 +977,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 26,
         "maxLevel": 38
@@ -362,7 +984,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "normal",
         "weight": 40,
         "minLevel": 38,
         "maxLevel": 86
@@ -370,7 +991,6 @@
       {
         "type": "item",
         "itemBase": "items/base/glove-heavy",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 26,
         "maxLevel": 40
@@ -378,7 +998,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-heavy",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 26,
         "maxLevel": 40
@@ -386,7 +1005,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-light",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 26,
         "maxLevel": 40
@@ -394,7 +1012,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 26,
         "maxLevel": 38
@@ -402,23 +1019,20 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "normal",
-        "weight": 50.0,
+        "weight": 50,
         "minLevel": 26,
         "maxLevel": 38
       },
       {
         "type": "item",
         "itemBase": "items/base/wp1h-hand-scythe",
-        "rarity": "normal",
-        "weight": 50.0,
+        "weight": 50,
         "minLevel": 26,
         "maxLevel": 38
       },
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "normal",
         "weight": 15,
         "minLevel": 38,
         "maxLevel": 86
@@ -426,7 +1040,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "normal",
         "weight": 15,
         "minLevel": 38,
         "maxLevel": 86
@@ -434,7 +1047,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-great-axe",
-        "rarity": "normal",
         "weight": 120,
         "minLevel": 26,
         "maxLevel": 40
@@ -442,7 +1054,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-aegis",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 26,
         "maxLevel": 40
@@ -450,7 +1061,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "normal",
         "weight": 50,
         "minLevel": 38,
         "maxLevel": 86
@@ -458,7 +1068,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 26,
         "maxLevel": 40
@@ -466,10 +1075,282 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-silver",
-        "rarity": "normal",
         "weight": 60,
         "minLevel": 26,
         "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 43.75,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 43.75,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 43.75,
+        "minLevel": 52,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 43.75,
+        "minLevel": 52,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 43.75,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 43.75,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 43.75,
+        "minLevel": 60,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 43.75,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 43.75,
+        "minLevel": 60,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 43.75,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 43.75,
+        "minLevel": 52,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 43.75,
+        "minLevel": 39,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 43.75,
+        "minLevel": 60,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 43.75,
+        "minLevel": 35,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 43.75,
+        "minLevel": 60,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 43.75,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 43.75,
+        "minLevel": 55,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 43.75,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 43.75,
+        "minLevel": 60,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-chain",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-light-gauntlets",
+        "weight": 43.75,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-vampirebone",
+        "weight": 43.75,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-bramble-mitts",
+        "weight": 43.75,
+        "minLevel": 58,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-chain",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-light-plated",
+        "weight": 43.75,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-demonhide",
+        "weight": 43.75,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 43.75,
+        "minLevel": 58,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-heavy",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-plated",
+        "weight": 43.75,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-demonhide",
+        "weight": 43.75,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-mithril-coil",
+        "weight": 43.75,
+        "minLevel": 58,
+        "maxLevel": 86
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-war-pike",
+        "weight": 43.75,
+        "minLevel": 26,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 43.75,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-colossus-blade",
+        "weight": 43.75,
+        "minLevel": 52,
+        "maxLevel": 61
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 43.75,
+        "minLevel": 62,
+        "maxLevel": 86
       }
     ]
   },
@@ -480,7 +1361,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 40,
         "maxLevel": 101
@@ -488,7 +1368,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 40,
         "maxLevel": 101
@@ -496,7 +1375,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 45,
         "maxLevel": 101
@@ -504,7 +1382,6 @@
       {
         "type": "item",
         "itemBase": "items/base/glove-bramble-mitts",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
         "maxLevel": 101
@@ -512,7 +1389,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-demonhide",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
         "maxLevel": 101
@@ -520,7 +1396,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-demonhide",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
         "maxLevel": 101
@@ -528,7 +1403,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "normal",
         "weight": 90,
         "minLevel": 40,
         "maxLevel": 101
@@ -536,7 +1410,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "normal",
         "weight": 90,
         "minLevel": 40,
         "maxLevel": 101
@@ -544,7 +1417,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "normal",
         "weight": 120,
         "minLevel": 40,
         "maxLevel": 101
@@ -552,7 +1424,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-battle-scythe",
-        "rarity": "normal",
         "weight": 120,
         "minLevel": 41,
         "maxLevel": 101
@@ -560,7 +1431,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
         "maxLevel": 101
@@ -568,7 +1438,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 40,
         "maxLevel": 101
@@ -576,9 +1445,197 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "normal",
         "weight": 80,
         "minLevel": 40,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 52.5,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 52.5,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 52.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 52.5,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 52.5,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 52.5,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 52.5,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 52.5,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 52.5,
+        "minLevel": 55,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 52.5,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-light-gauntlets",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-vampirebone",
+        "weight": 52.5,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-light-plated",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 52.5,
+        "minLevel": 58,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-plated",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-mithril-coil",
+        "weight": 52.5,
+        "minLevel": 58,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 52.5,
+        "minLevel": 40,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 52.5,
+        "minLevel": 62,
         "maxLevel": 101
       }
     ]
@@ -590,7 +1647,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
         "maxLevel": 122
@@ -598,7 +1654,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-giant-conch",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
         "maxLevel": 122
@@ -606,7 +1661,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
         "maxLevel": 122
@@ -614,7 +1668,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
         "maxLevel": 122
@@ -622,7 +1675,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-archon-plate",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
         "maxLevel": 122
@@ -630,7 +1682,6 @@
       {
         "type": "item",
         "itemBase": "items/base/glove-bramble-mitts",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
         "maxLevel": 122
@@ -638,7 +1689,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-demonhide",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
         "maxLevel": 122
@@ -646,7 +1696,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-mithril-coil",
-        "rarity": "normal",
         "weight": 200,
         "minLevel": 60,
         "maxLevel": 122
@@ -654,7 +1703,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 55,
         "maxLevel": 122
@@ -662,23 +1710,20 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "normal",
-        "weight": 50.0,
+        "weight": 50,
         "minLevel": 55,
         "maxLevel": 122
       },
       {
         "type": "item",
         "itemBase": "items/base/wp1h-runic-talons",
-        "rarity": "normal",
-        "weight": 50.0,
+        "weight": 50,
         "minLevel": 55,
         "maxLevel": 122
       },
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 55,
         "maxLevel": 122
@@ -686,7 +1731,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-thunder-maul",
-        "rarity": "normal",
         "weight": 180,
         "minLevel": 62,
         "maxLevel": 122
@@ -694,7 +1738,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
         "maxLevel": 122
@@ -702,7 +1745,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-sacred-targe",
-        "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
         "maxLevel": 122
@@ -710,7 +1752,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-obsidian",
-        "rarity": "normal",
         "weight": 120,
         "minLevel": 55,
         "maxLevel": 122
@@ -718,7 +1759,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 122
@@ -726,7 +1766,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-obsidian",
-        "rarity": "normal",
         "weight": 100,
         "minLevel": 55,
         "maxLevel": 122
@@ -734,8 +1773,70 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-zircon",
-        "rarity": "normal",
         "weight": 80,
+        "minLevel": 58,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 70,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 70,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/glove-vampirebone",
+        "weight": 70,
+        "minLevel": 55,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 70,
         "minLevel": 58,
         "maxLevel": 122
       }
@@ -748,7 +1849,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 6,
         "maxLevel": 14
@@ -756,7 +1856,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 7,
         "maxLevel": 14
@@ -764,7 +1863,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 9,
         "maxLevel": 14
@@ -772,7 +1870,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 9,
         "maxLevel": 14
@@ -780,7 +1877,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-kite",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 9,
         "maxLevel": 14
@@ -788,7 +1884,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "magic",
         "weight": 80,
         "minLevel": 9,
         "maxLevel": 14
@@ -796,9 +1891,29 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "magic",
         "weight": 60,
         "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 18.75,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 18.75,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 18.75,
+        "minLevel": 10,
         "maxLevel": 14
       }
     ]
@@ -810,7 +1925,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 16,
         "maxLevel": 28
@@ -818,7 +1932,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 16,
         "maxLevel": 28
@@ -826,7 +1939,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 22,
         "maxLevel": 28
@@ -834,7 +1946,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 22,
         "maxLevel": 28
@@ -842,7 +1953,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-aegis",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 22,
         "maxLevel": 28
@@ -850,10 +1960,86 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 16,
         "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 18.75,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 18.75,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 18.75,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 18.75,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 18.75,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 18.75,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 18.75,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-kite",
+        "weight": 18.75,
+        "minLevel": 22,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-skull-cap",
+        "weight": 18.75,
+        "minLevel": 16,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 18.75,
+        "minLevel": 28,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 18.75,
+        "minLevel": 16,
+        "maxLevel": 24
       }
     ]
   },
@@ -864,7 +2050,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 28,
         "maxLevel": 45
@@ -872,7 +2057,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 28,
         "maxLevel": 45
@@ -880,7 +2064,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "magic",
         "weight": 60,
         "minLevel": 38,
         "maxLevel": 45
@@ -888,7 +2071,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "magic",
         "weight": 60,
         "minLevel": 38,
         "maxLevel": 45
@@ -896,7 +2078,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 38,
         "maxLevel": 45
@@ -904,9 +2085,78 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 28,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 15,
+        "minLevel": 28,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 32,
         "maxLevel": 45
       }
     ]
@@ -918,7 +2168,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 42,
         "maxLevel": 55
@@ -926,7 +2175,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 42,
         "maxLevel": 55
@@ -934,7 +2182,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 42,
         "maxLevel": 55
@@ -942,10 +2189,114 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 42,
         "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 15,
+        "minLevel": 55,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 15,
+        "minLevel": 42,
+        "maxLevel": 51
       }
     ]
   },
@@ -956,7 +2307,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-giant-conch",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 57,
         "maxLevel": 75
@@ -964,7 +2314,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-archon-plate",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 57,
         "maxLevel": 75
@@ -972,7 +2321,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 57,
         "maxLevel": 75
@@ -980,7 +2328,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "magic",
         "weight": 75,
         "minLevel": 57,
         "maxLevel": 75
@@ -988,7 +2335,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-sacred-targe",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 60,
         "maxLevel": 75
@@ -996,10 +2342,72 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 18.75,
+        "minLevel": 57,
+        "maxLevel": 59
       }
     ]
   },
@@ -1010,7 +2418,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 7,
         "maxLevel": 14
@@ -1018,7 +2425,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 8,
         "maxLevel": 14
@@ -1026,7 +2432,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 10,
         "maxLevel": 14
@@ -1034,7 +2439,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 10,
         "maxLevel": 14
@@ -1042,7 +2446,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-kite",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 10,
         "maxLevel": 14
@@ -1050,7 +2453,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
         "maxLevel": 14
@@ -1058,9 +2460,29 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 15,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 15,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 15,
+        "minLevel": 10,
         "maxLevel": 14
       }
     ]
@@ -1072,7 +2494,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 17,
         "maxLevel": 28
@@ -1080,7 +2501,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 17,
         "maxLevel": 28
@@ -1088,7 +2508,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
@@ -1096,7 +2515,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
@@ -1104,7 +2522,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-aegis",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 22,
         "maxLevel": 28
@@ -1112,10 +2529,86 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 17,
         "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-kite",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-skull-cap",
+        "weight": 15,
+        "minLevel": 17,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 28,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 15,
+        "minLevel": 17,
+        "maxLevel": 24
       }
     ]
   },
@@ -1126,7 +2619,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 29,
         "maxLevel": 45
@@ -1134,7 +2626,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 29,
         "maxLevel": 45
@@ -1142,7 +2633,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 38,
         "maxLevel": 45
@@ -1150,7 +2640,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 38,
         "maxLevel": 45
@@ -1158,7 +2647,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 38,
         "maxLevel": 45
@@ -1166,9 +2654,78 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 29,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 12.5,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 12.5,
+        "minLevel": 29,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 12.5,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 12.5,
+        "minLevel": 32,
         "maxLevel": 45
       }
     ]
@@ -1180,7 +2737,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 43,
         "maxLevel": 55
@@ -1188,7 +2744,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 43,
         "maxLevel": 55
@@ -1196,7 +2751,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
         "maxLevel": 55
@@ -1204,10 +2758,114 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
         "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 12.5,
+        "minLevel": 55,
+        "maxLevel": 55
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
       }
     ]
   },
@@ -1218,7 +2876,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-giant-conch",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 58,
         "maxLevel": 75
@@ -1226,7 +2883,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-archon-plate",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 58,
         "maxLevel": 75
@@ -1234,7 +2890,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 58,
         "maxLevel": 75
@@ -1242,7 +2897,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 58,
         "maxLevel": 75
@@ -1250,7 +2904,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-sacred-targe",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 60,
         "maxLevel": 75
@@ -1258,10 +2911,72 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 15,
+        "minLevel": 58,
+        "maxLevel": 59
       }
     ]
   },
@@ -1272,7 +2987,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-iron",
-        "rarity": "magic",
         "weight": 200,
         "minLevel": 1,
         "maxLevel": 14
@@ -1280,7 +2994,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 9,
         "maxLevel": 14
@@ -1288,7 +3001,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-tin",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 1,
         "maxLevel": 14
@@ -1296,7 +3008,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "magic",
         "weight": 80,
         "minLevel": 9,
         "maxLevel": 14
@@ -1310,7 +3021,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 14,
         "maxLevel": 28
@@ -1318,7 +3028,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "magic",
         "weight": 80,
         "minLevel": 23,
         "maxLevel": 32
@@ -1326,7 +3035,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 14,
         "maxLevel": 28
@@ -1334,7 +3042,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-silver",
-        "rarity": "magic",
         "weight": 70,
         "minLevel": 23,
         "maxLevel": 32
@@ -1348,7 +3055,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 26,
         "maxLevel": 45
@@ -1356,7 +3062,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "magic",
         "weight": 80,
         "minLevel": 33,
         "maxLevel": 45
@@ -1364,7 +3069,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-silver",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 26,
         "maxLevel": 45
@@ -1372,7 +3076,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "magic",
         "weight": 70,
         "minLevel": 33,
         "maxLevel": 45
@@ -1386,7 +3089,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 40,
         "maxLevel": 58
@@ -1394,7 +3096,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-obsidian",
-        "rarity": "magic",
         "weight": 80,
         "minLevel": 48,
         "maxLevel": 58
@@ -1402,7 +3103,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 40,
         "maxLevel": 58
@@ -1410,7 +3110,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-obsidian",
-        "rarity": "magic",
         "weight": 70,
         "minLevel": 48,
         "maxLevel": 58
@@ -1424,7 +3123,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-obsidian",
-        "rarity": "magic",
         "weight": 150,
         "minLevel": 55,
         "maxLevel": 75
@@ -1432,7 +3130,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 75
@@ -1440,7 +3137,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-obsidian",
-        "rarity": "magic",
         "weight": 120,
         "minLevel": 55,
         "maxLevel": 75
@@ -1448,7 +3144,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-zircon",
-        "rarity": "magic",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 75
@@ -1462,7 +3157,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 7,
         "maxLevel": 52
@@ -1470,7 +3164,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 8,
         "maxLevel": 52
@@ -1478,7 +3171,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 10,
         "maxLevel": 52
@@ -1486,7 +3178,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 10,
         "maxLevel": 52
@@ -1494,7 +3185,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
         "maxLevel": 52
@@ -1502,7 +3192,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 9,
         "maxLevel": 52
@@ -1525,6 +3214,188 @@
         "weight": 50,
         "quantityMin": 1,
         "quantityMax": 2
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 12.5,
+        "minLevel": 10,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 12.5,
+        "minLevel": 15,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 12.5,
+        "minLevel": 10,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 12.5,
+        "minLevel": 10,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-war-hat",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 27
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 12.5,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 12.5,
+        "minLevel": 45,
+        "maxLevel": 52
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 12.5,
+        "minLevel": 25,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 52
       }
     ],
     "materialPoolId": "act1-normal"
@@ -1536,7 +3407,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 17,
         "maxLevel": 28
@@ -1544,7 +3414,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 17,
         "maxLevel": 28
@@ -1552,7 +3421,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 22,
         "maxLevel": 28
@@ -1560,7 +3428,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 22,
         "maxLevel": 28
@@ -1568,7 +3435,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 23,
         "maxLevel": 68
@@ -1591,6 +3457,223 @@
         "weight": 60,
         "quantityMin": 1,
         "quantityMax": 3
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 12.5,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 12.5,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 12.5,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "weight": 12.5,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-skull-cap",
+        "weight": 12.5,
+        "minLevel": 17,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 12.5,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 12.5,
+        "minLevel": 45,
+        "maxLevel": 54
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 12.5,
+        "minLevel": 55,
+        "maxLevel": 68
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 12.5,
+        "minLevel": 17,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 12.5,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 12.5,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 68
       }
     ],
     "materialPoolId": "act2-normal"
@@ -1602,7 +3685,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 29,
         "maxLevel": 83
@@ -1610,7 +3692,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 29,
         "maxLevel": 83
@@ -1618,7 +3699,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 40,
         "minLevel": 38,
         "maxLevel": 83
@@ -1626,7 +3706,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 40,
         "minLevel": 38,
         "maxLevel": 83
@@ -1634,7 +3713,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 33,
         "maxLevel": 83
@@ -1657,6 +3735,132 @@
         "weight": 60,
         "quantityMin": 2,
         "quantityMax": 3
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 10,
+        "minLevel": 52,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 10,
+        "minLevel": 52,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 10,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 10,
+        "minLevel": 60,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 10,
+        "minLevel": 60,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 10,
+        "minLevel": 52,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 10,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 10,
+        "minLevel": 60,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 10,
+        "minLevel": 29,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 10,
+        "minLevel": 55,
+        "maxLevel": 83
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 10,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 10,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 10,
+        "minLevel": 60,
+        "maxLevel": 83
       }
     ],
     "materialPoolId": "act3-normal"
@@ -1668,7 +3872,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
         "maxLevel": 96
@@ -1676,7 +3879,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
         "maxLevel": 96
@@ -1684,7 +3886,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
         "maxLevel": 96
@@ -1692,7 +3893,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 43,
         "maxLevel": 96
@@ -1715,6 +3915,146 @@
         "weight": 60,
         "quantityMin": 2,
         "quantityMax": 3
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 12.5,
+        "minLevel": 52,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 12.5,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 12.5,
+        "minLevel": 55,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 96
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 12.5,
+        "minLevel": 43,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 12.5,
+        "minLevel": 62,
+        "maxLevel": 96
       }
     ],
     "materialPoolId": "act4-normal"
@@ -1726,7 +4066,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-giant-conch",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 115
@@ -1734,7 +4073,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-archon-plate",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 115
@@ -1742,7 +4080,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 58,
         "maxLevel": 115
@@ -1750,7 +4087,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 58,
         "maxLevel": 115
@@ -1758,7 +4094,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 58,
         "maxLevel": 115
@@ -1781,6 +4116,62 @@
         "weight": 60,
         "quantityMin": 2,
         "quantityMax": 4
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 12.5,
+        "minLevel": 58,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 12.5,
+        "minLevel": 58,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 12.5,
+        "minLevel": 58,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 12.5,
+        "minLevel": 58,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 12.5,
+        "minLevel": 60,
+        "maxLevel": 115
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 12.5,
+        "minLevel": 58,
+        "maxLevel": 59
       }
     ],
     "materialPoolId": "act5-normal"
@@ -1792,7 +4183,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-skull-cap",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 9,
         "maxLevel": 59
@@ -1800,7 +4190,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-leather",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 10,
         "maxLevel": 59
@@ -1808,7 +4197,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 12,
         "maxLevel": 59
@@ -1816,7 +4204,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-wrist-blade",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 12,
         "maxLevel": 59
@@ -1824,7 +4211,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-kite",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 12,
         "maxLevel": 59
@@ -1832,7 +4218,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-silver",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 9,
         "maxLevel": 59
@@ -1840,7 +4225,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-brass",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
         "maxLevel": 59
@@ -1877,6 +4261,216 @@
         "weight": 100,
         "quantityMin": 1500,
         "quantityMax": 4000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 15,
+        "minLevel": 12,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 15,
+        "minLevel": 15,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-balanced-knife",
+        "weight": 15,
+        "minLevel": 12,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 15,
+        "minLevel": 12,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-aegis",
+        "weight": 15,
+        "minLevel": 25,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-war-hat",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 27
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 54
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 15,
+        "minLevel": 55,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 15,
+        "minLevel": 25,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
       }
     ],
     "materialPoolId": "act1-normal"
@@ -1888,7 +4482,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-war-hat",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 19,
         "maxLevel": 28
@@ -1896,7 +4489,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-chain-mail",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 19,
         "maxLevel": 28
@@ -1904,7 +4496,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
@@ -1912,7 +4503,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-greater-claws",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
@@ -1920,7 +4510,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-aegis",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 22,
         "maxLevel": 28
@@ -1928,7 +4517,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-jade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 23,
         "maxLevel": 72
@@ -1936,7 +4524,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-silver",
-        "rarity": "rare",
         "weight": 80,
         "minLevel": 23,
         "maxLevel": 72
@@ -1973,6 +4560,258 @@
         "weight": 100,
         "quantityMin": 4000,
         "quantityMax": 9000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "weight": 15,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "weight": 15,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-kite",
+        "weight": 15,
+        "minLevel": 22,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-aegis",
+        "weight": 15,
+        "minLevel": 29,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 15,
+        "minLevel": 35,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-skull-cap",
+        "weight": 15,
+        "minLevel": 19,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-armet",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 54
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 15,
+        "minLevel": 55,
+        "maxLevel": 72
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 15,
+        "minLevel": 19,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 15,
+        "minLevel": 29,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 72
       }
     ],
     "materialPoolId": "act2-normal"
@@ -1984,7 +4823,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 31,
         "maxLevel": 87
@@ -1992,7 +4830,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 31,
         "maxLevel": 87
@@ -2000,7 +4837,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 38,
         "maxLevel": 87
@@ -2008,7 +4844,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 38,
         "maxLevel": 87
@@ -2016,7 +4851,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 38,
         "maxLevel": 87
@@ -2024,7 +4858,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 33,
         "maxLevel": 87
@@ -2032,7 +4865,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 33,
         "maxLevel": 87
@@ -2069,6 +4901,146 @@
         "weight": 100,
         "quantityMin": 9000,
         "quantityMax": 18000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-casque",
+        "weight": 15,
+        "minLevel": 31,
+        "maxLevel": 44
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 15,
+        "minLevel": 55,
+        "maxLevel": 87
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 15,
+        "minLevel": 31,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 87
       }
     ],
     "materialPoolId": "act3-normal"
@@ -2080,7 +5052,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 45,
         "maxLevel": 55
@@ -2088,7 +5059,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 45,
         "maxLevel": 55
@@ -2096,7 +5066,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-colossus-blade",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 45,
         "maxLevel": 55
@@ -2104,7 +5073,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-monarch",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 45,
         "maxLevel": 55
@@ -2112,7 +5080,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-obsidian",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 48,
         "maxLevel": 101
@@ -2120,7 +5087,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-obsidian",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 48,
         "maxLevel": 101
@@ -2165,6 +5131,174 @@
         "weight": 100,
         "quantityMin": 18000,
         "quantityMax": 35000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 52,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "weight": 15,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-dragon-shield",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-monarch",
+        "weight": 15,
+        "minLevel": 56,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/sh-sacred-targe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 15,
+        "minLevel": 55,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-dusk-shroud",
+        "weight": 15,
+        "minLevel": 56,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 101
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 15,
+        "minLevel": 45,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-colossus-blade",
+        "weight": 15,
+        "minLevel": 56,
+        "maxLevel": 61
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 15,
+        "minLevel": 62,
+        "maxLevel": 101
       }
     ],
     "materialPoolId": "act4-normal"
@@ -2176,7 +5310,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-giant-conch",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 60,
         "maxLevel": 122
@@ -2184,7 +5317,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-archon-plate",
-        "rarity": "rare",
         "weight": 120,
         "minLevel": 60,
         "maxLevel": 122
@@ -2192,7 +5324,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 60,
         "maxLevel": 122
@@ -2200,7 +5331,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 60,
         "minLevel": 60,
         "maxLevel": 122
@@ -2208,7 +5338,6 @@
       {
         "type": "item",
         "itemBase": "items/base/sh-sacred-targe",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 60,
         "maxLevel": 122
@@ -2216,7 +5345,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-zircon",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 122
@@ -2224,7 +5352,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-zircon",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
         "maxLevel": 122
@@ -2269,6 +5396,48 @@
         "weight": 100,
         "quantityMin": 35000,
         "quantityMax": 80000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "weight": 15,
+        "minLevel": 60,
+        "maxLevel": 122
       }
     ],
     "materialPoolId": "act5-normal"
@@ -2280,7 +5449,6 @@
       {
         "type": "item",
         "itemBase": "items/base/helm-armet",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 45,
         "maxLevel": 99
@@ -2288,7 +5456,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-dusk-shroud",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 50,
         "maxLevel": 99
@@ -2296,7 +5463,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 50,
         "maxLevel": 99
@@ -2304,7 +5470,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp1h-feral-claws",
-        "rarity": "rare",
         "weight": 50,
         "minLevel": 50,
         "maxLevel": 99
@@ -2312,7 +5477,6 @@
       {
         "type": "item",
         "itemBase": "items/base/ring-amber",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 35,
         "maxLevel": 99
@@ -2320,7 +5484,6 @@
       {
         "type": "item",
         "itemBase": "items/base/amu-jade",
-        "rarity": "rare",
         "weight": 100,
         "minLevel": 35,
         "maxLevel": 99
@@ -2329,7 +5492,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "unique",
-        "weight": 25.0,
+        "weight": 25,
         "minLevel": 50,
         "maxLevel": 99
       },
@@ -2796,7 +5959,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-legend-sword",
         "rarity": "unique",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 60,
         "maxLevel": 99
       },
@@ -2804,7 +5967,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "unique",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 22,
         "maxLevel": 99
       },
@@ -2812,7 +5975,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "unique",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 8,
         "maxLevel": 99
       },
@@ -2820,7 +5983,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-short-sword",
         "rarity": "unique",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 1,
         "maxLevel": 99
       },
@@ -2828,7 +5991,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-war-sword",
         "rarity": "unique",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 32,
         "maxLevel": 99
       },
@@ -2867,7 +6030,6 @@
       {
         "type": "item",
         "itemBase": "items/base/armor-quilted",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 1,
         "maxLevel": 99
@@ -2875,7 +6037,6 @@
       {
         "type": "item",
         "itemBase": "items/base/boot-leather",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 1,
         "maxLevel": 99
@@ -2883,7 +6044,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt-sash",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 1,
         "maxLevel": 99
@@ -2891,7 +6051,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-two-handed-sword",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 1,
         "maxLevel": 99
@@ -2899,7 +6058,6 @@
       {
         "type": "item",
         "itemBase": "items/base/wp2h-great-axe",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 8,
         "maxLevel": 99
@@ -2907,7 +6065,6 @@
       {
         "type": "item",
         "itemBase": "items/base/belt",
-        "rarity": "normal",
         "weight": 10,
         "minLevel": 1,
         "maxLevel": 99
@@ -3140,7 +6297,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-legend-sword",
         "rarity": "set",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 60,
         "maxLevel": 99
       },
@@ -3148,7 +6305,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "set",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 50,
         "maxLevel": 99
       },
@@ -3156,7 +6313,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "set",
-        "weight": 15.0,
+        "weight": 15,
         "minLevel": 8,
         "maxLevel": 99
       },
@@ -3165,6 +6322,139 @@
         "itemBase": "items/base/wp2h-thunder-maul",
         "rarity": "set",
         "weight": 15,
+        "minLevel": 62,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/helm-giant-conch",
+        "weight": 10,
+        "minLevel": 55,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-leather",
+        "weight": 10,
+        "minLevel": 6,
+        "maxLevel": 24
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-chain-mail",
+        "weight": 10,
+        "minLevel": 25,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-breast-plate",
+        "weight": 10,
+        "minLevel": 32,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/armor-archon-plate",
+        "weight": 10,
+        "minLevel": 60,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-heavy",
+        "weight": 10,
+        "minLevel": 7,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-chain",
+        "weight": 10,
+        "minLevel": 24,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-light-plated",
+        "weight": 10,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-demonhide",
+        "weight": 10,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/boot-myrmidon-greaves",
+        "weight": 10,
+        "minLevel": 58,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-light",
+        "weight": 10,
+        "minLevel": 7,
+        "maxLevel": 21
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-heavy",
+        "weight": 10,
+        "minLevel": 22,
+        "maxLevel": 29
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-plated",
+        "weight": 10,
+        "minLevel": 30,
+        "maxLevel": 47
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-demonhide",
+        "weight": 10,
+        "minLevel": 48,
+        "maxLevel": 57
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/belt-mithril-coil",
+        "weight": 10,
+        "minLevel": 58,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-war-pike",
+        "weight": 10,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-giant-thresher",
+        "weight": 10,
+        "minLevel": 35,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-colossus-blade",
+        "weight": 10,
+        "minLevel": 52,
+        "maxLevel": 61
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "weight": 10,
         "minLevel": 62,
         "maxLevel": 99
       }
@@ -3293,6 +6583,110 @@
         "weight": 100,
         "quantityMin": 12000,
         "quantityMax": 25000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-crossbow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-composite-bow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-heavy-crossbow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 35,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 35,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-dart",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 22,
+        "maxLevel": 31
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 32,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 32,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-trident",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-military-fork",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 24,
+        "maxLevel": 34
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 35,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "rarity": "rare",
+        "weight": 25,
+        "minLevel": 32,
+        "maxLevel": 40
       }
     ]
   },
@@ -3334,6 +6728,110 @@
         "weight": 100,
         "quantityMin": 25000,
         "quantityMax": 60000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-battle-dart",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-war-sword",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 38,
+        "maxLevel": 49
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 60
       }
     ]
   },
@@ -3418,6 +6916,94 @@
         "weight": 100,
         "quantityMin": 50000,
         "quantityMax": 120000
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-great-bow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-siege-crossbow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-ward-bow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-demon-crossbow",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-knife",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-winged-axe",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-legend-sword",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-war-fork",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-mancatcher",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 52,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 50,
+        "maxLevel": 59
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "rarity": "rare",
+        "weight": 18.75,
+        "minLevel": 60,
+        "maxLevel": 75
       }
     ]
   },

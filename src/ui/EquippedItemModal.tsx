@@ -29,7 +29,7 @@ interface Props {
 }
 
 const STAT_KEYS: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
   'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
 

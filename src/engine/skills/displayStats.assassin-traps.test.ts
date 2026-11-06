@@ -7,8 +7,8 @@ const cases = [
   ['shock-web', 'lightning', 30, 50, 3, 20],
   ['charged-bolt-sentry', 'lightning', 40, 60, 4, 13],
   ['wake-of-fire', 'fire', 60, 85, 5, 17],
-  ['blade-sentinel', 'physical', 50, 75, 5, 15],
-  ['lightning-sentry', 'lightning', 75, 110, 6, 22],
+  ['blade-sentinel', 'physical', 50, 75, 120, 15],
+  ['lightning-sentry', 'lightning', 75, 110, 24, 22],
   ['wake-of-inferno', 'fire', 90, 130, 7, 25],
   ['death-sentry', 'lightning', 85, 125, 7, 27],
   ['blade-shield', 'physical', 95, 135, 8, 30]

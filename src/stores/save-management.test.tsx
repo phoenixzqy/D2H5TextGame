@@ -394,7 +394,7 @@ describe('save management integrity', () => {
       id: 'current',
       version: 7,
       timestamp: 1,
-      data: { version: 7, player: { name: 'Broken' } } as unknown as SaveRecord['data']
+      data: { version: 7, player: { name: 'Broken' } } as unknown as SaveCurrent
     };
     expect(await hydrateFromSave()).toBe(false);
     expect(snapshotStores()?.player).toEqual(original.player);

@@ -25,5 +25,17 @@
   "version": "版本",
   "supportDev": "支持开发者",
   "bmcLink": "给我买杯咖啡",
-  "storageFailure": "进度未能保存。请重试保存，或在设置中导出备份。若已存档损坏，请先导入有效备份。"
+  "storageFailure": "进度未能保存。请重试保存，或在设置中导出备份。若已存档损坏，请先导入有效备份。",
+  "importFile": "选择备份文件",
+  "importSourceHelp": "选择已导出的 JSON 备份文件，或在下方粘贴备份内容。",
+  "importClipboard": "粘贴的备份",
+  "importPrepared": "准备导入：",
+  "importClear": "更换备份",
+  "importReading": "正在读取备份…",
+  "offlineBonusHelp": {
+    "title": "离线加成规则",
+    "noIncome": "离开游戏期间不会直接获得经验、物品或货币，而是为下次在线游玩积累经验与有效魔法寻获加成。",
+    "accrual": "每离线 1 小时积累 +8% 加成（上限 +50%）和 20 分钟加成时间（上限 2 小时）。",
+    "decay": "在线游玩时，加成会线性衰减至零。它不提高货币、符文、宝石的掉落或首次击杀奖励。"
+  }
 }

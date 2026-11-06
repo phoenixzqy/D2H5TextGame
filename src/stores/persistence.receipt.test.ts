@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 /** Real persistence/receipts; synthetic receipt fixtures and fake Dexie IO only. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveRecord } from './save-adapter';
@@ -165,7 +166,7 @@ describe('receipt phase persistence boundaries', () => {
     const holder = inspectRecordedWaves(); const before = domains.map(store => store.getState());
     const snapshot = required(snapshotStores()); const json = required(exportCurrentSave()); await flushSave();
     const ids = paid ? ['kept'] : ['selected', 'kept'];
-    for (const save of [snapshot, JSON.parse(json) as SaveCurrent, required(disk.state.record).data as SaveCurrent]) {
+    for (const save of [snapshot, JSON.parse(json) as SaveCurrent, readStoredSaveJson(disk.state.record) as SaveCurrent]) {
       expect(save.version).toBe(CURRENT_SAVE_VERSION); expect(save.inventory.backpack.map(value => value.id)).toEqual(ids);
       expect(Object.keys(save).sort()).toEqual(['endgame', 'formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
     }

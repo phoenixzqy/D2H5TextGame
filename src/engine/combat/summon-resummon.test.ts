@@ -183,10 +183,11 @@ describe('Bug #3 — re-summon after summon death', () => {
       (e): e is Extract<BattleEvent, { kind: 'summon' }> => e.kind === 'summon'
     );
 
-    expect(firstSummon?.unit.stats.lifeMax).toBe(162);
-    expect(firstSummon?.unit.life).toBe(162);
-    expect(firstSummon?.unit.stats.attack).toBe(35);
-    expect(firstSummon?.unit.stats.defense).toBe(19);
+    // Rank6 body162/35/19 plus four owner levels of30life/14Attack/4Defense.
+    expect(firstSummon?.unit.stats.lifeMax).toBe(282);
+    expect(firstSummon?.unit.life).toBe(282);
+    expect(firstSummon?.unit.stats.attack).toBe(91);
+    expect(firstSummon?.unit.stats.defense).toBe(35);
   });
 
   it('casts golem summon skills from data ids without skeletons blocking the cap', () => {

@@ -25,7 +25,8 @@
  * detail panel can be reused for backpack and stash. Each tab gets its
  * own selectedId — switching tabs preserves the per-tab selection.
  */
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { FloatingFocusManager, useFloating } from '@floating-ui/react';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import {
@@ -82,16 +83,37 @@ type DiscardConfirm =
 
 export function InventoryScreen() {
   const { t } = useTranslation(['inventory', 'common']);
+
+  return (
+    <ScreenShell testId="inventory-screen" title={t('inventory.title')}>
+      <InventoryGear>
+        <MaterialsPanel />
+        <CraftingPanel />
+        <QuestItemsPanel />
+        <LegacyGearQuarantinePanel />
+      </InventoryGear>
+    </ScreenShell>
+  );
+}
+
+interface InventoryGearProps {
+  readonly children: ReactNode;
+}
+
+// Own gear subscriptions and local state here so gear updates retain the global
+// panel elements. Each panel subscribes to its own live inputs independently.
+function InventoryGear({ children }: InventoryGearProps) {
+  const { t } = useTranslation(['inventory', 'common']);
   const backpack = useInventoryStore((s) => s.backpack);
   const stash = useInventoryStore((s) => s.stash);
   const equipped = useInventoryStore((s) => s.equipped);
+  const player = usePlayerStore((s) => s.player);
   const discardItem = useInventoryStore((s) => s.discardItem);
   const bulkDiscard = useInventoryStore((s) => s.bulkDiscard);
   const equipItem = useInventoryStore((s) => s.equipItem);
   const unequipItem = useInventoryStore((s) => s.unequipItem);
   const moveToStash = useInventoryStore((s) => s.moveToStash);
   const moveToBackpack = useInventoryStore((s) => s.moveToBackpack);
-  const player = usePlayerStore((s) => s.player);
 
   const [toast, setToast] = useState<ToastState>(null);
   const toastTimerRef = useRef<number | null>(null);
@@ -126,12 +148,9 @@ export function InventoryScreen() {
   };
 
   return (
-    <ScreenShell testId="inventory-screen" title={t('inventory.title')}>
+    <>
       <div className="max-w-6xl mx-auto">
-        <MaterialsPanel />
-        <CraftingPanel />
-        <QuestItemsPanel />
-        <LegacyGearQuarantinePanel />
+        {children}
         <Tabs
           tabs={[
             {
@@ -178,6 +197,7 @@ export function InventoryScreen() {
                 <StashTabContent
                   page={stashPage}
                   items={stash}
+                  equipped={equipped}
                   selectedId={stashSelectedId}
                   setSelectedId={setStashSelectedId}
                   player={player}
@@ -277,7 +297,7 @@ export function InventoryScreen() {
           </div>
         )}
       </Modal>
-    </ScreenShell>
+    </>
   );
 }
 
@@ -341,15 +361,13 @@ function BackpackTabContent({
       selected
     ];
   }, [equipped, selected, selectedCompare]);
-  const upgradeItemIds = useMemo(() => {
-    if (!playerForCompare || !compare) return new Set<string>();
-    const ids = new Set<string>();
-    for (const item of page.items) {
-      const result = compareBackpackItem(item, playerForCompare, equipped, bases, compare);
-      if (result && isClearNetUpgrade(result)) ids.add(item.id);
-    }
-    return ids;
-  }, [bases, equipped, page.items, playerForCompare, compare]);
+  // Each memoized cell owns its comparison. Transfers preserve unchanged item
+  // references; player, equipment and quest changes still invalidate every badge.
+  const isUpgrade = useCallback((item: Item): boolean => {
+    if (!playerForCompare || !compare) return false;
+    const result = compareBackpackItem(item, playerForCompare, equipped, bases, compare);
+    return result !== null && isClearNetUpgrade(result);
+  }, [bases, equipped, playerForCompare, compare]);
 
   return (
     <div className="flex flex-col">
@@ -361,7 +379,7 @@ function BackpackTabContent({
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
-        upgradeItemIds={upgradeItemIds}
+        isUpgrade={isUpgrade}
         detailPanel={selected && player ? (
           <ItemDetailPanel
             item={selected}
@@ -390,6 +408,7 @@ function BackpackTabContent({
 interface StashTabProps {
   readonly page: InventoryPage;
   readonly items: readonly Item[];
+  readonly equipped: Readonly<Record<string, Item | null>>;
   readonly selectedId: string | null;
   readonly setSelectedId: (id: string | null) => void;
   readonly player: ReturnType<typeof usePlayerStore.getState>['player'];
@@ -400,6 +419,7 @@ interface StashTabProps {
 function StashTabContent({
   page,
   items,
+  equipped,
   selectedId,
   setSelectedId,
   player,
@@ -408,6 +428,10 @@ function StashTabContent({
 }: StashTabProps): JSX.Element {
   const { t } = useTranslation('inventory');
   const selected = useMemo(() => items.find((i) => i.id === selectedId) ?? null, [items, selectedId]);
+  const equippedItems = useMemo(
+    () => Object.values(equipped).filter((item): item is Item => item !== null),
+    [equipped]
+  );
 
   return (
     <ItemGridLayout
@@ -423,6 +447,7 @@ function StashTabContent({
           playerLevel={player.level}
           playerCoreStats={player.coreStats}
           transferLabel={t('transfer')}
+          equippedItems={equippedItems}
           onTransfer={() => { onTransfer(selected); }}
           onDiscard={() => { onDiscardRequest(selected); }}
           onClose={() => { setSelectedId(null); }}
@@ -443,7 +468,7 @@ interface GridLayoutProps {
   readonly emptyKey: string;
   readonly selectedId: string | null;
   readonly setSelectedId: (id: string | null) => void;
-  readonly upgradeItemIds?: ReadonlySet<string> | undefined;
+  readonly isUpgrade?: ((item: Item) => boolean) | undefined;
   /** Already-rendered detail panel; null when nothing is selected. */
   readonly detailPanel: React.ReactNode | null;
 }
@@ -454,24 +479,24 @@ function ItemGridLayout({
   emptyKey,
   selectedId,
   setSelectedId,
-  upgradeItemIds,
+  isUpgrade,
   pagination,
   detailPanel
 }: GridLayoutProps): JSX.Element {
   const { t } = useTranslation('inventory');
+  const isDesktop = useIsDesktop();
 
-  // ESC dismisses on every breakpoint.
+  // The mobile dialog handles Escape locally, so only its active layer closes.
   useEffect(() => {
-    if (!selectedId) return;
+    if (!selectedId || !isDesktop) return;
     const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape') setSelectedId(null);
+      if (e.key === 'Escape' && !e.defaultPrevented) setSelectedId(null);
     };
     window.addEventListener('keydown', onKey);
     return () => { window.removeEventListener('keydown', onKey); };
-  }, [selectedId, setSelectedId]);
+  }, [selectedId, setSelectedId, isDesktop]);
 
   const open = selectedId !== null && detailPanel !== null;
-  const isDesktop = useIsDesktop();
 
   return (
     <div
@@ -495,7 +520,7 @@ function ItemGridLayout({
               capacity={capacity}
               selectedId={selectedId}
               onSelect={setSelectedId}
-              upgradeItemIds={upgradeItemIds}
+              isUpgrade={isUpgrade}
             />
         )}
       </div>
@@ -504,7 +529,7 @@ function ItemGridLayout({
           based on viewport so testids never collide between the two trees. */}
       {open && isDesktop && (
         <Panel
-          className="md:sticky md:top-20 h-fit"
+          className="h-fit"
           data-testid="inv-detail-sidebar"
         >
           {detailPanel}
@@ -543,7 +568,20 @@ function MobileBottomSheet({
   readonly children: React.ReactNode;
   readonly onClose: () => void;
 }): JSX.Element {
+  const { t } = useTranslation('inventory');
+  const opener = useRef<HTMLElement | null>(null);
+  const { refs, context } = useFloating({ open: true });
+  useLayoutEffect(() => {
+    // Keep the original card when StrictMode replays this mount after focus enters the sheet.
+    if (opener.current === null && document.activeElement instanceof HTMLElement) {
+      opener.current = document.activeElement;
+    }
+    // Move focus before background isolation, rather than its queued entry.
+    refs.floating.current?.focus({ preventScroll: true });
+  }, [refs.floating]);
+
   return (
+    <FloatingFocusManager context={context} initialFocus={refs.floating} returnFocus={opener} restoreFocus>
     <div className="md:hidden fixed inset-0 z-40" data-testid="inv-detail-sheet">
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
@@ -552,14 +590,24 @@ function MobileBottomSheet({
         aria-hidden
         data-testid="inv-detail-backdrop"
       />
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- The dialog owns Escape dismissal without making its content a control. */}
       <div
+        ref={refs.setFloating}
         className="absolute left-0 right-0 bottom-0 bg-d2-panel border-t-2 border-d2-gold rounded-t-lg p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
         role="dialog"
         aria-modal="true"
+        aria-label={t('details')}
+        tabIndex={-1}
+        onKeyDown={event => {
+          if (event.key !== 'Escape') return;
+          event.stopPropagation();
+          if (!event.defaultPrevented) onClose();
+        }}
       >
         {children}
       </div>
     </div>
+    </FloatingFocusManager>
   );
 }
 

@@ -1,5 +1,6 @@
 import type { ReplayProfileId } from '@/engine/map/replay-profile';
 import type { CountessEncounter } from '@/engine/map/countess-admission';
+import type { CowEncounter } from '@/engine/map/cow-quest';
 import type { EndgameProgress, EndgameRunContext } from '@/engine/endgame/runtime';
 import type { WavePlan } from '@/engine/combat';
 import type { CombatUnit } from '@/engine/combat/types';
@@ -13,7 +14,7 @@ import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recorded
 /** Immutable source authority shared by a native run and its exact wave receipts. */
 export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: ReplayProfileId;
   /** Explicit optional-source identity survives replay even when proof admission is stripped. */
-  questEncounter?: CountessEncounter['encounterId'] }> | EndgameRunContext;
+  questEncounter?: CountessEncounter['encounterId'] | CowEncounter['encounterId'] }> | EndgameRunContext;
 
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {

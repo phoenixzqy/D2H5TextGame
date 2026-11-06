@@ -24,6 +24,19 @@
   "lore": "Lore",
   "aura": "Aura",
   "signature": "Signature",
+  "baseAbilities": "Base abilities",
+  "stars": {
+    "title": "Star progression",
+    "signatureRank": "Signature rank {{rank}}",
+    "signatureBonus": "Signature potency +{{percent}}%. Secondary skills and fixed limits stay unchanged.",
+    "count": "Stars {{stars}} / {{max}}",
+    "shards": "Shards {{shards}} / {{cost}}",
+    "bonus": "Each star adds {{percent}}% to natural stats. Equipment bonuses are applied separately.",
+    "capped": "Maximum stars reached. Excess shards remain yours.",
+    "maxed": "Maximum stars",
+    "upgrade": "Upgrade star · {{cost}} shards",
+    "refused": "Upgrade unavailable. Finish combat or loading and try again."
+  },
   "priority": {
     "title": "Skill priority",
     "unknown": "Unrecognized skill: {{skill}}",
@@ -57,9 +70,9 @@
     "act1-rogue-trainee": { "name": "Rogue Scout — Trainee", "lore": "A fresh recruit of the Sisters of the Sightless Eye, supporting from afar with a basic shortbow." },
     "act1-rogue-inner-sight": { "name": "Rogue Scout — Inner Sight", "lore": "Sister of Akara who reveals enemy weaknesses, lowering their defense." },
     "act1-rogue-pierce": { "name": "Rogue Scout — Pierce", "lore": "A seasoned archer whose arrows pierce to back-line targets. While alive, living party members, including summons, gain +5 percentage points Critical Chance and +20 percentage points Critical Damage." },
-    "act1-rogue-fire": { "name": "Rogue Scout — Fire Arrow", "lore": "Anoints arrows with sacred flame, applying burn to all hit." },
-    "act1-rogue-cold": { "name": "Rogue Scout — Cold Arrow", "lore": "Blesses arrows with frost, chilling targets on hit." },
-    "act2-blessed-aim": { "name": "Desert Merc — Blessed Aim", "lore": "Aura: +50% attack rating for self and allies." },
+    "act1-rogue-fire": { "name": "Rogue Scout — Fire Arrow", "lore": "Keeps her arrow's full physical hit and adds 50% Fire damage, splashing up to 2 other cross-adjacent enemies and burning landed Fire targets." },
+    "act1-rogue-cold": { "name": "Rogue Scout — Cold Arrow", "lore": "Splits her arrow's damage equally between physical and cold, with a 30% chance to slow a hit target's Attack Speed by 50% for 2 seconds." },
+    "act2-blessed-aim": { "name": "Desert Merc — Blessed Aim", "lore": "While this mercenary lives, living allies' weapon attacks miss 30% less often (15% miss becomes 10.5%). Does not stack." },
     "act2-prayer": { "name": "Desert Merc — Prayer", "lore": "While this mercenary lives, living party members recover 5 HP every second, up to maximum life." },
     "act2-defiance": { "name": "Desert Merc — Defiance", "lore": "Passive: while this mercenary lives, living party members gain +30% Defense." },
     "act2-might": { "name": "Desert Merc — Might", "lore": "While alive: +30% increased direct physical damage for self and allies, including summons." },
@@ -77,7 +90,7 @@
     "act5-barbarian-recruit": { "name": "Barbarian Recruit", "lore": "A guardian of Mount Arreat, facing demons with a two-handed sword." },
     "act5-barbarian-battle-orders": { "name": "Barbarian — Battle Orders", "lore": "Passive: while this mercenary lives, living allies including summons gain +30% maximum HP and MP. Increasing capacity does not heal or refill resources." },
     "act5-barbarian-war-cry": { "name": "Barbarian — War Cry", "lore": "A thunderous shout that damages and stuns the enemy line." },
-    "tavern-thief-pickpocket": { "name": "Thief — Pickpocket", "lore": "A tavern recruit who steals gold from struck targets." },
+    "tavern-thief-pickpocket": { "name": "Thief — Pickpocket", "lore": "Casting Pilfer grants +30 percentage points to rune-shard find for this wave's victory drops, even on a miss. Does not stack." },
     "tavern-acolyte-priestess": { "name": "Acolyte Priestess", "lore": "A tavern healer who restores allies' HP each turn." }
   },
   "skillName": {

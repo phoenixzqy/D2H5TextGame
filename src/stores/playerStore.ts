@@ -4,6 +4,7 @@
  */
 
 import { create } from 'zustand';
+import { assertCountedQuestAllocationAllowed } from '@/features/quests/countedQuestAllocationGuard';
 import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
@@ -157,18 +158,23 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
   
   levelUp: () => { set((state) => {
-    if (!state.player) return state;
+    const player = state.player;
+    if (!player) return state;
+    const level = player.level + 1;
     return {
       player: {
-        ...state.player,
-        level: state.player.level + 1,
-        statPoints: state.player.statPoints + 5,
-        skillPoints: state.player.skillPoints + 1
+        ...player,
+        level,
+        statPoints: player.statPoints + 5,
+        skillPoints: player.skillPoints + 1,
+        derivedStats: deriveEquippedPlayerStats(player, level, useInventoryStore.getState().equipped,
+          useMapStore.getState().questProgress, useInventoryStore.getState().questItems,
+          useMapStore.getState().questReceipts)
       }
     };
   }); },
   
-  allocateStatPoint: (stat) => { set((state) => {
+  allocateStatPoint: (stat) => { assertCountedQuestAllocationAllowed(); set((state) => {
     const player = state.player;
     if (!player || player.statPoints < 1 || player.coreStats[stat] + 1 > CORE_STAT_HARD_CAP) return state;
     const nextPlayer: Player = {
@@ -188,6 +194,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   }); },
   
   allocateStatPoints: (deltas, expectedPlayer) => {
+    assertCountedQuestAllocationAllowed();
     const player = get().player;
     if (!player) return 'no-player';
     if (player !== expectedPlayer) return 'stale-player';
@@ -214,6 +221,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   allocateSkillPoint: (skillId) => {
+    assertCountedQuestAllocationAllowed();
     const state = get();
     const player = state.player;
     if (!player) return 'no-player';

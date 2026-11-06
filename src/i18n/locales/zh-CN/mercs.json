@@ -24,6 +24,19 @@
   "lore": "背景",
   "aura": "光环",
   "signature": "招牌技能",
+  "baseAbilities": "基础能力",
+  "stars": {
+    "title": "佣兵升星",
+    "signatureRank": "招牌技能等级 {{rank}}",
+    "signatureBonus": "招牌技能效果提高 {{percent}}%。其他技能与固定限制不变。",
+    "count": "星级 {{stars}} / {{max}}",
+    "shards": "碎片 {{shards}} / {{cost}}",
+    "bonus": "每颗星增加 {{percent}}% 自然属性，装备加成另行计算。",
+    "capped": "已达星级上限，多余碎片仍然保留。",
+    "maxed": "已达星级上限",
+    "upgrade": "升星 · {{cost}} 碎片",
+    "refused": "暂时无法升星，请结束战斗或等待加载完成后重试。"
+  },
   "priority": {
     "title": "技能优先级",
     "unknown": "未识别技能：{{skill}}",
@@ -57,9 +70,9 @@
     "act1-rogue-trainee": { "name": "罗格侦察兵 — 学徒", "lore": "刚加入罗格修女团的新兵，使用基础长弓从远处支援。" },
     "act1-rogue-inner-sight": { "name": "罗格侦察兵 — 内视", "lore": "拉肯达侯亚的姐妹，能洞察敌人的弱点，降低敌方防御。" },
     "act1-rogue-pierce": { "name": "罗格侦察兵 — 穿透", "lore": "训练有素的弓手，箭矢可穿透敌人，击中后排目标。 此佣兵存活时，包括召唤物在内的存活队友获得+5个百分点暴击率和+20个百分点暴击伤害。" },
-    "act1-rogue-fire": { "name": "罗格侦察兵 — 火焰箭", "lore": "以圣火浸染箭矢，对所有敌人附加燃烧。" },
-    "act1-rogue-cold": { "name": "罗格侦察兵 — 冰冷箭", "lore": "以寒霜祝福箭矢，命中目标减速。" },
-    "act2-blessed-aim": { "name": "沙漠佣兵 — 神圣瞄准", "lore": "光环：自身与友军命中率 +50%。" },
+    "act1-rogue-fire": { "name": "罗格侦察兵 — 火焰箭", "lore": "保留箭矢完整物理伤害并追加50%火焰伤害，火焰溅射至多2个十字相邻敌人，命中的火焰使目标燃烧。" },
+    "act1-rogue-cold": { "name": "罗格侦察兵 — 冰冷箭", "lore": "箭矢伤害平分为物理与冰冷，命中后有30%概率使目标攻击速度降低50%，持续2秒。" },
+    "act2-blessed-aim": { "name": "沙漠佣兵 — 神圣瞄准", "lore": "此佣兵存活时，存活队友的武器攻击未命中概率降低30%（如15%降至10.5%）；不可叠加。" },
     "act2-prayer": { "name": "沙漠佣兵 — 祈祷", "lore": "此佣兵存活时，存活队友每秒恢复5点生命，不超过生命上限。" },
     "act2-defiance": { "name": "沙漠佣兵 — 反抗", "lore": "被动：此佣兵存活时，存活队友获得+30%防御。" },
     "act2-might": { "name": "沙漠佣兵 — 力量", "lore": "存活时：自身与全队（包括召唤物）的直接物理伤害 +30%。" },
@@ -77,7 +90,7 @@
     "act5-barbarian-recruit": { "name": "野蛮人新兵", "lore": "亚瑞特山的守护者，以双手剑直面恶魔。" },
     "act5-barbarian-battle-orders": { "name": "野蛮人 — 战斗命令", "lore": "被动：此佣兵存活时，包括召唤物在内的存活队友获得+30%最大生命与最大法力。提高上限不会治疗或补充资源。" },
     "act5-barbarian-war-cry": { "name": "野蛮人 — 战吼", "lore": "震天战吼造成伤害并晕眩敌方阵线。" },
-    "tavern-thief-pickpocket": { "name": "盗贼 — 扒窃", "lore": "酒馆中招募的小偷，从命中目标身上窃取金币。" },
+    "tavern-thief-pickpocket": { "name": "盗贼 — 扒窃", "lore": "施放顺手牵羊后，本波胜利掉落的符文碎片寻获加成提高30个百分点，即使未命中也生效；不可叠加。" },
     "tavern-acolyte-priestess": { "name": "见习女祭司", "lore": "酒馆中招募的治疗者，定期恢复友军生命。" }
   },
   "skillName": {

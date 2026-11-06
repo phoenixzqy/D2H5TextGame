@@ -517,6 +517,16 @@ describe('resolveChallengeWavePlan', () => {
 describe('Act I bounded promoted elite groups', () => {
   const args = { fallbackArchetypeId: 'monsters/act1.fallen', fallbackLevel: 6, seed: 123, challengeOrdinal: 40 };
 
+  function expectTreasure(wave: WaveSpec | undefined) {
+    expect(wave?.spawns).toHaveLength(1);
+    expect(wave?.lootTable).toBe('loot/treasure-goblin');
+    expect(wave?.source).toEqual({ kind: 'wave', waveId: 'w4', encounterIds: ['act1-cp-w4-e1'] });
+    expect(wave?.spawns[0]).toMatchObject({
+      archetypeId: 'monsters/act1.fallen', tier: 'rare-elite', level: 9, index: 0
+    });
+    expect(wave?.spawns[0]?.eliteAffix).toBeDefined();
+  }
+
   function expectCore(wave: WaveSpec | undefined, kind: 'champion' | 'rareElite') {
     expect(wave).toBeDefined();
     const spawns = wave?.spawns ?? [];
@@ -526,8 +536,7 @@ describe('Act I bounded promoted elite groups', () => {
       : ['rare-elite', 'rare-minion', 'rare-minion', 'rare-minion'];
     expect(spawns.map((s) => s.tier)).toEqual([...tiers, ...Array<string>(spawns.length - tiers.length).fill('trash')]);
     expect(spawns[0]?.eliteAffix).toBeDefined();
-    for (const spawn of spawns.slice(0, tiers.length)) expect(spawn.eliteAffix).toEqual(spawns[0]?.eliteAffix);
-    for (const spawn of spawns.slice(tiers.length)) expect(spawn).not.toHaveProperty('eliteAffix');
+    for (const spawn of spawns.slice(1)) expect(spawn).not.toHaveProperty('eliteAffix');
     for (const id of new Set(spawns.map((s) => s.archetypeId))) {
       const members = spawns.filter((s) => s.archetypeId === id);
       expect(members.map((s) => s.index)).toEqual(members.map((_, i) => i));
@@ -539,12 +548,13 @@ describe('Act I bounded promoted elite groups', () => {
     if (!subArea) throw new Error(`Missing authored area ${id}`);
     const before = structuredClone(subArea);
     const plan = resolveChallengeWavePlan({ ...args, subArea });
-    // Identical source with a later-act identity retains the previous all-count guards.
+    // Identical later-act source preserves roster and metadata under shared group bounds.
     const control = resolveChallengeWavePlan({ ...args, subArea: { ...subArea, actId: 'acts/act2' } });
     const guards = plan.waves.filter((w) => w.presentation?.isForcedElite);
     expect(guards).toHaveLength(2);
     expectCore(guards[0], 'champion');
-    expectCore(guards[1], 'rareElite');
+    if (id.endsWith('cold-plains')) expectTreasure(guards[1]);
+    else expectCore(guards[1], 'rareElite');
     expect({ ...plan, waves: [] }).toEqual({ ...control, waves: [] });
     for (let i = 0; i < plan.waves.length; i++) {
       const wave = plan.waves[i];
@@ -559,9 +569,7 @@ describe('Act I bounded promoted elite groups', () => {
         'dark-stalker', 'dark-stalker', 'zombie', 'zombie', 'dark-stalker', 'dark-stalker',
         'zombie', 'zombie', 'dark-stalker', 'dark-stalker', 'zombie'
       ]);
-      // Authored elite:true on every fitted Fallen must not promote the filler.
-      expect(guards[1]?.spawns).toHaveLength(12);
-      expect(guards[1]?.spawns.every((s) => s.archetypeId === 'monsters/act1.fallen')).toBe(true);
+      expectTreasure(guards[1]);
     }
   });
 
@@ -647,21 +655,32 @@ describe('Act I bounded promoted elite groups', () => {
       expect(plan.waves[0]?.presentation).not.toHaveProperty('isIdleElite');
     }
     expectCore(plan.waves[2], 'champion');
-    expectCore(plan.waves[3], 'rareElite');
+    expectTreasure(plan.waves[3]);
   });
 
-  it.each([2, 3, 4, 5])('retains all-count forced and idle guards for Act%i', (act) => {
+  it.each([2, 3, 4, 5])('bounds forced and idle groups and retains rare indices for Act%i', (act) => {
     const subArea: SubAreaDef = { ...BLOOD_MOOR, actId: `acts/act${String(act)}` };
     const forced = resolveChallengeWavePlan({ ...args, subArea });
-    expect(forced.waves[0]?.spawns.every((s) => s.tier === 'champion' && s.eliteAffix !== undefined)).toBe(true);
-    expect(forced.waves[1]?.spawns.map((s) => s.tier)).toEqual(['rare-elite', ...Array<string>(9).fill('rare-minion')]);
+    expectCore(forced.waves[0], 'champion');
+    expect(forced.waves[0]?.spawns).toHaveLength(9);
+    expect(forced.waves[1]?.spawns.map((s) => s.tier)).toEqual([
+      'rare-elite', 'rare-minion', 'rare-minion', 'rare-minion', ...Array<string>(6).fill('trash')
+    ]);
+    expect(forced.waves[1]?.spawns.map((s) => s.index)).toEqual(Array.from({ length: 10 }, (_, i) => i));
+    expect(forced.waves[1]?.spawns.filter((s) => s.eliteAffix)).toHaveLength(1);
+    expect(forced.waves[1]?.spawns[0]?.eliteAffix).toBeDefined();
     const idle = resolveChallengeWavePlan({ ...args, subArea: { ...subArea, challenge: {
       monsterCount: { min: 8, max: 20 }, rotation: ['trash'], manualFinalEliteWaves: 0
     } }, mode: 'idle', idleEliteMisses: 11 });
-    expect(idle.waves[0]?.spawns.map((s) => s.tier)).toEqual(['rare-elite', ...Array<string>(8).fill('rare-minion')]);
+    expect(idle.waves[0]?.spawns.map((s) => s.tier)).toEqual([
+      'rare-elite', 'rare-minion', 'rare-minion', 'rare-minion', ...Array<string>(5).fill('trash')
+    ]);
+    expect(idle.waves[0]?.spawns.map((s) => s.index)).toEqual(Array.from({ length: 9 }, (_, i) => i));
+    expect(idle.waves[0]?.spawns.filter((s) => s.eliteAffix)).toHaveLength(1);
+    expect(idle.waves[0]?.spawns[0]?.eliteAffix).toBeDefined();
   });
 
-  it.each(['manual', 'idle'] as const)('preserves unpromoted authored flags in %s', (mode) => {
+  it.each(['manual', 'idle'] as const)('preserves unpromoted authored flags on the source core in %s', (mode) => {
     const subArea: SubAreaDef = { ...DEN_OF_EVIL, challenge: {
       monsterCount: { min: 8, max: 20 }, rotation: ['trash'], manualFinalEliteWaves: 0
     } };
@@ -669,7 +688,10 @@ describe('Act I bounded promoted elite groups', () => {
       ...DEFAULT_ELITE_CONFIG, idle: { ...DEFAULT_ELITE_CONFIG.idle, enabled: false }
     } });
     expect(plan.waves[0]?.spawns.every((s) => s.tier === 'trash')).toBe(true);
-    expect(plan.waves[1]?.spawns.every((s) => s.tier === 'elite' && s.eliteAffix === undefined)).toBe(true);
+    expect(plan.waves[1]?.spawns.map(s => s.tier)).toEqual([
+      'elite', 'elite', ...Array<string>(8).fill('trash')
+    ]);
+    expect(plan.waves[1]?.spawns.every(s => s.eliteAffix === undefined)).toBe(true);
     expect(plan.waves[2]?.spawns.map((s) => s.tier)).toEqual(['boss']);
   });
 });

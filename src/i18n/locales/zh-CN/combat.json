@@ -1,4 +1,8 @@
 {
+  "cadence": {
+    "interval": "攻击间隔：{{seconds}}秒",
+    "gear": "装备攻击速度：{{percent}}"
+  },
   "title": "战斗",
   "wave": "第 {{current}} 波 / 共 {{total}} 波",
   "waveKind": {
@@ -22,6 +26,16 @@
   "victory": "胜利",
   "defeat": "失败",
   "rewards": "战利品",
+  "retainedRewards": "已完成波次的战利品已保留。",
+  "damageSummary": {
+    "title": "英雄在最后一波受到的伤害",
+    "scope": "记录英雄经过防御减免后受到的伤害。包含过量伤害和自身造成的伤害，因此可能与实际损失的生命值不同。",
+    "dot": "持续伤害",
+    "other": "其他直接伤害",
+    "total": "记录的伤害合计",
+    "empty": "本波未记录到英雄受到伤害。",
+    "unavailable": "本波伤害详情不可用。"
+  },
   "xpGained": "获得经验: {{amount}}",
   "levelUp": "升级!",
   "runeShard": "符文碎片",
@@ -49,7 +63,8 @@
     "consumedDeathSentry": "死亡守卫消耗一具尸体，引发火焰爆炸。剩余尸体：{{count}}。",
     "consumedRedemption": "救赎消耗一具尸体。剩余尸体：{{count}}。",
     "consumedCarrion": "食尸藤消耗一具尸体恢复主人生命。剩余尸体：{{count}}。",
-    "consumedSolar": "太阳藤消耗一具尸体恢复主人法力。剩余尸体：{{count}}。"
+    "consumedSolar": "太阳藤消耗一具尸体恢复主人法力。剩余尸体：{{count}}。",
+    "consumedResurrection": "复活堕落者消耗一具尸体。剩余：{{count}}。"
   },
   "allies": "我方",
   "enemies": "敌人",
@@ -91,6 +106,7 @@
   "acting": "行动中",
   "summon": "召唤物",
   "summons": {
+    "baal_tentacle": "腐化触须",
     "decoy": "诱饵",
     "hydra": "九头海蛇",
     "spirit_of_barbs": "棘灵",
@@ -125,6 +141,12 @@
     "death": "倒下",
     "boneWallCapacity": "骨墙：{{amount}}",
     "status": {
+      "monster-bone-prison": "骨牢",
+      "monster-teleport": "传送",
+      "monster-enrage": "激怒",
+      "monster-shout": "嘶吼",
+      "monster-thorns-aura": "荆棘光环",
+      "panic_flee": "惊慌逃窜",
       "bone-wall": "骨墙",
       "bone-prison": "骨牢",
       "battle-command": "战斗指挥",
@@ -180,6 +202,11 @@
       "enchant": "附魔"
     },
     "buff": {
+      "monster-teleport": "传送",
+      "monster-enrage": "激怒",
+      "monster-shout": "嘶吼",
+      "monster-thorns-aura": "荆棘光环",
+      "panic_flee": "惊慌逃窜",
       "bone-wall": "骨墙",
       "battle-command": "战斗指挥",
       "inferno": "炼狱",
@@ -229,7 +256,8 @@
     },
     "martialCharge": "{{skill}} 蓄气 {{stacks}}/{{maxStacks}} · {{seconds}}秒",
     "assassinTrap": "{{skill}} · {{seconds}}秒",
-    "assassinFlight": "{{skill}} · {{seconds}}秒"
+    "assassinFlight": "{{skill}} · {{seconds}}秒",
+    "revive": "已复活"
   },
   "log_lines": {
     "hit": "{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害。",
@@ -270,6 +298,10 @@
     "expired": "{{target}} 的增益 {{buff}} 结束。",
     "stacked": "{{target}} 的增益 {{buff}} 提升至 {{stacks}} 层。"
   },
+  "damageImmunity": {
+    "label": "伤害免疫",
+    "type": "免疫{{type}}伤害"
+  },
   "damageType": {
     "physical": "物理",
     "fire": "火焰",
@@ -299,6 +331,7 @@
     "buffApplied": "{{target}} 获得增益：{{buff}}。",
     "statusApplied": "{{target}} 进入【{{status}}】状态。",
     "stunned": "{{target}} 被眩晕，无法行动。",
+    "enrage": "{{target}}陷入狂怒！",
     "dotTick": "{{target}} 因持续伤害受到 {{amount}} 点伤害。",
     "summon": "{{actor}} 召唤了 {{minion}}。",
     "death": "{{target}} 倒下了。",
@@ -310,14 +343,27 @@
     "bossArrives": "{{boss}} 出现了！",
     "lootGained": "获得 {{item}}。",
     "goldGained": "获得 {{amount}} 金币。",
-    "vineRecoveryAction": "{{actor}} 从尸体中汲取恢复之力。"
+    "vineRecoveryAction": "{{actor}} 从尸体中汲取恢复之力。",
+    "revive": "{{actor}}复活了{{target}}。"
   },
   "bossIntro": "令人窒息的恐惧笼罩战场——{{boss}} 现身，阻断通往下一章的道路。",
   "tier": {
+    "boss": "首领",
+    "elite": "精英",
     "champion": "冠军怪",
     "rare-elite": "稀有精英"
   },
+  "eliteAffixLabel": "精英词缀",
+  "eliteAffixTag": {
+    "fireEnchanted": "🔥 火焰强化",
+    "extraFireDamage": "🔥 额外火焰伤害",
+    "fast": "⚡ 高速",
+    "coldEnchanted": "❄️ 冰冷强化",
+    "lightningEnchanted": "⚡ 闪电强化",
+    "magicResistant": "🛡️ 魔法抵抗"
+  },
   "eliteAffix": {
+    "fireEnchanted": "火焰强化",
     "extraFireDamage": "额外火焰伤害",
     "fast": "高速",
     "coldEnchanted": "冰冷强化",

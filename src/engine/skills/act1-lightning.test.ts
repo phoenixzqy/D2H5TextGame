@@ -15,10 +15,10 @@ const fixture = () => ({
 const validate = new Ajv2020({ strict: true, allErrors: true }).compile(schema);
 
 describe('Act I Lightning affix authored contract', () => {
-  it('authors one distinct level-scaled single-target leaf without changing the shared row', () => {
+  it('keeps the dedicated level-scaled leaf distinct from the normalized shared Lightning row', () => {
     expect(monsters.filter(row => row.id === id)).toEqual([fixture()]);
     expect(monsters.find(row => row.id === 'monster-lightning')).toMatchObject({
-      target: 'all-enemies', cooldown: 3, damage: { min: 40, max: 65 },
+      target: 'single-enemy', cooldown: 2, damage: { min: 40, max: 60 },
       appliesStatus: ['paralyze'], appliesTags: ['lightning', 'shock']
     });
   });

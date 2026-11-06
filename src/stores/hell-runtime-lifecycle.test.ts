@@ -177,7 +177,7 @@ describe('native Hell run and persistence boundaries', () => {
     expect(start().challengeOrdinal).toBe(360359);
     abortSubAreaRun(); useCombatStore.getState().reset();
     const save = required(snapshotStores());
-    expect(save.version).toBe(24);
+    expect(save.version).toBe(32);
     expect(save.map.challengeOrdinals).toEqual({ normal: 7, nightmare: 11, hell: 0 });
     await importIntoStores(JSON.stringify(toJsonSafe(save)));
     expect(combatRunLifecycle.activeRun).toBeNull();

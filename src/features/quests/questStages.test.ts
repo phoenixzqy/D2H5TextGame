@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import document from '@/data/quests/main.json';
+import itemDocument from '@/data/quests/items.json';
 import { loadQuests } from '@/data/loaders/quests';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { useMapStore } from '@/stores/mapStore';
@@ -10,6 +11,7 @@ import { useHydrationStore } from '@/stores/persistence';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { recoverQuestTool, questToolStatus, assembleQuestItem, questAssemblyStatus } from './interactObject';
 import { eligibleQuestObjective } from './questTransaction';
+import { questAssemblyInventory } from './questCrafting';
 
 const questId = 'quests/act2-horadric-staff';
 const hydrationBefore = useHydrationStore.getState();
@@ -38,6 +40,40 @@ afterEach(() => {
 });
 
 describe('shared staged quest actions', () => {
+  it('projects exact visible recipes freshly through acquisition, missing input and assembly', () => {
+    expect(questAssemblyInventory().assemblies).toEqual([]);
+    for (const [objective, area] of [['obj-cube', 'areas/act2-dry-hills'],
+      ['obj-shaft', 'areas/act2-far-oasis'], ['obj-amulet', 'areas/act2-lost-city']] as const) {
+      useMapStore.getState().setCurrentLocation(2, area);
+      expect(recoverQuestTool(source(objective))).toBe('ok');
+    }
+    const read = () => questAssemblyInventory().assemblies.map(row => ({ id: row.item.id, status: row.status }));
+    expect(read()).toEqual([{ id: 'quest/horadric_staff', status: 'ready' }]);
+    const ledger = useInventoryStore.getState().questItems;
+    const { [source('obj-cube')]: _cube, ...missingTool } = ledger;
+    useInventoryStore.setState({ questItems: missingTool });
+    expect(read()).toEqual([{ id: 'quest/horadric_staff', status: 'unavailable' }]);
+    expect(assembleQuestItem(source('obj-transmute'))).toBe('not-eligible');
+    useInventoryStore.setState({ questItems: ledger });
+    expect(read()).toEqual([{ id: 'quest/horadric_staff', status: 'ready' }]);
+    expect(assembleQuestItem(source('obj-transmute'))).toBe('ok');
+    expect(read()).toEqual([{ id: 'quest/horadric_staff', status: 'owned' }]);
+    expect(questAssemblyInventory().definitions.map(row => row.id)).toContain('quest/horadric_cube');
+  });
+
+  it('rejects changed authoring after an earlier successful list read and recovers after repair', () => {
+    const item = itemDocument.items.find(row => row.id === 'quest/horadric_staff');
+    if (!item) throw new Error('Missing authored Staff');
+    const descriptor = Object.getOwnPropertyDescriptor(item, 'recipe');
+    if (!descriptor) throw new Error('Missing authored recipe');
+    expect(() => questAssemblyInventory()).not.toThrow();
+    try {
+      Object.defineProperty(item, 'recipe', { ...descriptor, value: 'invalid-after-read' });
+      expect(() => questAssemblyInventory()).toThrow();
+    } finally { Object.defineProperty(item, 'recipe', descriptor); }
+    expect(() => questAssemblyInventory()).not.toThrow();
+  });
+
   it('recovers actual peer items in reverse display order, then assembles only with every real input', () => {
     const player = usePlayerStore.getState().player;
     const locations = [['obj-amulet', 'areas/act2-lost-city'],

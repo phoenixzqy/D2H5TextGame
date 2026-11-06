@@ -103,7 +103,8 @@
               "delivery",
               "retained",
               "encounter",
-              "action"
+              "action",
+              "portalIngredient"
             ],
             "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
@@ -159,7 +160,8 @@
             "enum": [
               "actions/act3-break-compelling-orb",
               "actions/act4-shatter-soulstone",
-              "actions/act5-thaw-anya"
+              "actions/act5-thaw-anya",
+              "actions/act1-open-cow-portal"
             ]
           },
           "outputItemId": {
@@ -171,7 +173,10 @@
             "const": "objects/hellforge_hammer_cache"
           },
           "sourceActionId": {
-            "const": "actions/act5-receive-malah-potion"
+            "enum": [
+              "actions/act5-receive-malah-potion",
+              "actions/act1-receive-cow-tome"
+            ]
           }
         },
         "oneOf": [
@@ -429,6 +434,101 @@
               },
               "consumeActionId": {
                 "const": "actions/act5-thaw-anya"
+              }
+            }
+          },
+          {
+            "required": [
+              "id",
+              "kind",
+              "sourceQuestId",
+              "consumeActionId",
+              "nameKey",
+              "descKey",
+              "sourceObjectiveId",
+              "requiresAreaClear"
+            ],
+            "properties": {
+              "id": {
+                "const": "quest/wirts_leg"
+              },
+              "sourceQuestId": {
+                "const": "quests/side-act1-pandemonium-cow-rumor"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.wirtsLeg.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.wirtsLeg.desc"
+              },
+              "effect": false,
+              "kind": {
+                "const": "portalIngredient"
+              },
+              "sourceObjectiveId": {
+                "const": "obj-find-leg"
+              },
+              "consumedBy": false,
+              "requiresAreaClear": {
+                "const": true
+              },
+              "requiredActionSource": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false,
+              "consumeActionId": {
+                "const": "actions/act1-open-cow-portal"
+              },
+              "outputItemId": false,
+              "targetId": false,
+              "sourceActionId": false
+            }
+          },
+          {
+            "required": [
+              "id",
+              "kind",
+              "sourceQuestId",
+              "consumeActionId",
+              "nameKey",
+              "descKey",
+              "sourceActionId"
+            ],
+            "properties": {
+              "id": {
+                "const": "quest/cow_portal_tome"
+              },
+              "sourceQuestId": {
+                "const": "quests/side-act1-pandemonium-cow-rumor"
+              },
+              "nameKey": {
+                "const": "inventory:questItems.cowPortalTome.name"
+              },
+              "descKey": {
+                "const": "inventory:questItems.cowPortalTome.desc"
+              },
+              "effect": false,
+              "kind": {
+                "const": "portalIngredient"
+              },
+              "sourceObjectiveId": false,
+              "consumedBy": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false,
+              "consumeActionId": {
+                "const": "actions/act1-open-cow-portal"
+              },
+              "outputItemId": false,
+              "targetId": false,
+              "sourceActionId": {
+                "const": "actions/act1-receive-cow-tome"
               }
             }
           }

@@ -22,7 +22,7 @@ import {
   SKILL_ICONS
 } from './generatedAssetMaps';
 import { getImageOverride } from './imageOverrides';
-import { loadItemBases } from '@/data/loaders/loot';
+import { loadItemBases, loadUniques } from '@/data/loaders/loot';
 import type { EquipmentSlot, ItemBase, WeaponType } from '@/engine/types/items';
 
 /** Existing art categories; broader weapon families use explicit interim proxies. */
@@ -33,7 +33,7 @@ const WEAPON_ICONS: Readonly<Record<WeaponType, string>> = {
 };
 const NONWEAPON_ICONS: Readonly<Partial<Record<EquipmentSlot, string>>> = {
   head: 'helm', chest: 'armor', gloves: 'gloves', belt: 'belt', boots: 'boots',
-  amulet: 'amulet', 'ring-left': 'ring', 'ring-right': 'ring', offhand: 'shield'
+  amulet: 'amulet', 'ring-left': 'ring', 'ring-right': 'ring', offhand: 'shield', charm: 'amulet'
 };
 
 function metadataIcon(base: ItemBase): string | null {
@@ -60,6 +60,12 @@ const MERC_ARCHETYPES: Readonly<Record<string, string | undefined>> = {
   'desert-mercenary': CLASS_PORTRAITS.barbarian,
   'iron-wolf': CLASS_PORTRAITS.sorceress,
   'barbarian-warrior': CLASS_PORTRAITS.barbarian
+};
+
+/** Optional Cow archetypes reuse their existing mechanical templates' art. */
+const MONSTER_ART_PROXIES: Readonly<Record<string, string | undefined>> = {
+  'act1.hell-bovine': 'act1.brute',
+  'act1.cow-king': 'act1.treehead-woodfist'
 };
 
 /** Strip the first `<category>/` prefix segment if present. */
@@ -105,6 +111,8 @@ export function resolveMonsterArt(monsterId: string): string | null {
   const override = getImageOverride('monster', key);
   if (override) return override;
   if (key in MONSTER_ART) return MONSTER_ART[key] ?? null;
+  const proxy = MONSTER_ART_PROXIES[key];
+  if (proxy && proxy in MONSTER_ART) return MONSTER_ART[proxy] ?? null;
   warnMissing('monster', key);
   return null;
 }
@@ -207,6 +215,8 @@ export function resolveItemIcon(itemId: string, context: ItemIconContext = {}): 
     const slug = uniqueMatch[1];
     if (slug in UNIQUE_ITEM_ICONS) return UNIQUE_ITEM_ICONS[slug] ?? null;
     if (context.baseId) return resolveItemIcon(context.baseId);
+    const template = loadUniques().find(row => row.id === `items/unique/${slug}`);
+    if (template) return resolveItemIcon(template.baseId);
     return null;
   }
 

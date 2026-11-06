@@ -1,3 +1,12 @@
+import { copyLightningRetaliation, type LightningRetaliation } from './lightning-retaliation';
+import { isMonsterResurrectionId, matchesMonsterResurrection, isOriginalMonsterResurrectionSource,
+  isOriginalMonsterResurrectionBody } from '../skills/monster-resurrection';
+import { isMonsterPanicId, matchesMonsterPanic, isOriginalPanicRecipient,
+  MONSTER_PANIC_DEFINITION } from '../skills/monster-panic';
+import { MONSTER_SELF_BUFFS, MONSTER_SELF_BUFF_IDS, monsterSelfBuffId, isMonsterSelfBuffSource, matchesMonsterSelfBuff, type MonsterSelfBuffId } from '../skills/monster-self-buffs';
+import { MONSTER_BONE_PRISON, MONSTER_PRISON_STATUS_ID, isMonsterBonePrisonId, isMonsterBonePrisonSource } from '../skills/monster-bone-prison';
+import { FIRE_ENCHANTED_EXPLOSION_SKILL, isMonsterDeathExplosionId, isOriginalDeathExplosionSource,
+  isOriginalEnemyDeathSource, MONSTER_DEATH_EXPLOSION_SKILL } from '../skills/monster-death-explosion';
 import { AssassinCharges, ASSASSIN_CHARGE_DEFINITION, matchesAssassinMartialSkill,
   copyAssassinMartialRanks, composeAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
 import { ASSASSIN_FLIGHT_DEFINITION, ASSASSIN_FLIGHT_ID, ASSASSIN_FLIGHT_STATUS_ID,
@@ -45,6 +54,7 @@ import { resolveDamage, rollDamage, resolveRolledDamage, mitigateDamage, type Da
 import {
   applyStatus,
   applyStatusWithResult,
+  canApplyStatus,
   expireStatuses,
   hasStatus,
   isStunned,
@@ -52,13 +62,14 @@ import {
   activeStatusView,
   amplifyDamageReduction,
   statusActiveAt,
+  statusDotRate,
   shortenCleansingStatuses
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
 import { MANA_BURN_DEFINITION } from './mana-burn-definition';
 import { PLAGUE_DEFINITION } from './plague-definition';
 import { PlagueTracker } from './plague';
-import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
+import { MERC_INNER_SIGHT_DEFINITION, MERC_INNER_SIGHT_SKILL } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { isMercFireMasterySource, MERC_FIRE_MASTERY_DEFINITION } from '../skills/merc-fire-mastery';
@@ -79,11 +90,17 @@ import { activeSpiritOfBarbs, copySpiritOfBarbs, SPIRIT_OF_BARBS_DEFINITION, typ
 import { absorbHolyShield, activeHolyShield, HOLY_SHIELD_IDS, holyShieldDefense, holyShieldLethalBound,
   holyShieldQuota, holyShieldRank, matchesHolyShield, payHolyShield, refreshHolyShieldState } from '../skills/holy-shield';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
+import { isMercPilferSource, MERC_PILFER_DEFINITION, MERC_PILFER_SKILL } from '../skills/merc-pilfer';
+import { MERC_FROZEN_ARMOR_DEFINITION, MERC_FROZEN_ARMOR_SKILL,
+  isMercFrozenArmorSource, mercFrozenArmorDefense } from '../skills/merc-frozen-armor';
+import { getSkillDamageDelivery } from '../skills/registry';
+import { isMercBlessedAimSource, MERC_BLESSED_AIM_DEFINITION, MERC_BLESSED_AIM_SKILL } from '../skills/merc-blessed-aim';
+import type { BasicAttackDelivery } from './damage-delivery';
 import { COLD_ARMOR_IDS, coldArmorId, coldArmorRank, coldArmorBonuses, coldArmorCounterattack,
   matchesColdArmor, paidColdArmorRank, payColdArmor } from '../skills/cold-armors';
 import { PERIODIC_SPELL_IDS, PERIODIC_SPELL_DEFINITIONS, periodicSpellId, periodicSpellRank,
   matchesPeriodicSpell, paidPeriodicSpell, payPeriodicSpell, refreshPeriodicSpells,
-  nextPeriodicSpellPulse, isChanneling, type PeriodicSpellId } from '../skills/periodic-spells';
+  nextPeriodicSpellPulse, isPeriodicSpellPulse, isChanneling, type PeriodicSpellId } from '../skills/periodic-spells';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { absorbCycloneArmor, activeCycloneArmor, CYCLONE_ARMOR_IDS, cycloneArmorLethalBound,
   cycloneArmorQuota, cycloneArmorRank, cycloneArmorResistance, matchesCycloneArmor,
@@ -126,7 +143,8 @@ import {
 } from './mana-recovery';
 import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
-import { getSkill } from '../skills/registry';
+import { getSkill, isNativeMercenarySkill } from '../skills/registry';
+import { mercSignatureFactor, scaleMercSignatureEffect } from '../skills/merc-signature-rank';
 import { governedActiveId } from '../skills/runeword-actives';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
@@ -174,6 +192,27 @@ export function actionPeriodMs(attackSpeed: number): number {
   return Math.max(400, Math.min(2000, raw));
 }
 
+/**
+ * Periodic integrals since the previous dot (or periodic reset), including quiet
+ * gaps. HP-ms contributions describe rate × active overlap before personal
+ * absorption; they are not integer or post-absorption HP shares. Carry remains
+ * pooled across sources/types and may originate in an earlier emitted interval.
+ */
+export interface PeriodicDamageProvenance {
+  readonly fromMs: number;
+  readonly toMs: number;
+  readonly rawAmount: number;
+  readonly carryInHpMs: number;
+  readonly carryOutHpMs: number;
+  readonly contributions: readonly {
+    readonly source: string;
+    readonly statusId: string;
+    /** Omitted legacy status types remain unknown, never inferred from an ID. */
+    readonly damageType?: NonNullable<ActiveStatus['damageType']>;
+    readonly hpMs: number;
+  }[];
+}
+
 /** Possible combat events. */
 export type BattleEvent =
   | { readonly kind: 'message'; readonly messageKey: string; readonly params?: Readonly<Record<string, string | number>> }
@@ -202,6 +241,9 @@ export type BattleEvent =
   /** Silent complete active view; initial observations precede all gameplay. */
   | { readonly kind: 'status-state'; readonly target: string;
       readonly statuses: readonly ActiveStatus[]; readonly initial?: true }
+  /** Silent effective scheduler interval; emitted initially and on actual period changes. */
+  | { readonly kind: 'cadence-state'; readonly target: string; readonly periodMs: number;
+      readonly equipmentAttackSpeedPct?: number }
   | { readonly kind: 'buff'; readonly target: string; readonly buffId: string;
       /** Status observations own this finite buff's presentation and expiry. */
       readonly statusBacked?: true }
@@ -211,6 +253,8 @@ export type BattleEvent =
       readonly summonId: string;
       readonly unit: CombatUnit;
     }
+  /** Copied committed re-entry of an existing original enemy; never a new summon. */
+  | { readonly kind: 'revive'; readonly source: string; readonly target: string; readonly unit: CombatUnit }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
   /** Absolute passive/stat observation, including final layered capacity and unchanged resources. */
   | { readonly kind: 'stats-state'; readonly target: string;
@@ -227,6 +271,8 @@ export type BattleEvent =
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
   | { readonly kind: 'stunned'; readonly target: string }
   | { readonly kind: 'dot'; readonly target: string; readonly amount: number;
+      /** Present on new events; absent historical events have unknown provenance. */
+      readonly provenance?: PeriodicDamageProvenance;
       readonly absorbed?: number; readonly cycloneAbsorbed?: number; readonly holyShieldAbsorbed?: number; readonly wallAbsorbed?: number }
   | { readonly kind: 'end'; readonly winner: CombatSide | null };
 
@@ -283,6 +329,8 @@ export interface CombatResult {
   readonly rounds: number;
   /** Successful paid corpse searches only; privately copied before native reward publication. */
   readonly findItemFinds?: readonly FindItemFind[];
+  /** Paid native Pilfer's nonstacking wave-find points; absent until a qualifying cast. */
+  readonly mercPilferGoldFind?: number;
   /** Present only after successful registration; survives that summon's later death. */
   readonly ironGolemPreparation?: IronGolemPreparationAttestation;
 }
@@ -292,6 +340,8 @@ interface ProjectileImpact {
   readonly defenderId: string;
   readonly effect: DamageEffect;
   readonly skillLevel: number;
+  /** Private launch authority; current native identity/semantics are rechecked at impact. */
+  readonly accuracySkill?: RegisteredSkill;
 }
 
 interface PaidAssassinTrap {
@@ -311,7 +361,21 @@ interface PaidAssassinFlight {
   readonly expiresAtMs: number;
 }
 
+/** Private synchronous capability; never copied from a snapshot or skill payload. */
+interface DeathBurstGrant { readonly source: CombatUnit; readonly effect: DamageEffect }
+
 interface State {
+  readonly lightningRetaliations: Map<string, LightningRetaliation>;
+  readonly deathExplosionSources: Map<string, readonly DamageEffect[]>;
+  deathBurstGrant: DeathBurstGrant | undefined;
+  deathSettlement: (() => void)[] | undefined;
+  /** Original recipients and once-per-wave allowance; never imported from markers or a prior result. */
+  /** Paid monster windows are battle-private; observations never establish authority. */
+  readonly monsterSelfBuffs: Map<string, Map<MonsterSelfBuffId, { readonly createdAtMs: number; readonly expiresAtMs: number; readonly percent: number }>>;
+  /** Target/source private traps survive source death; observations never authenticate them. */
+  readonly monsterPrisons: Map<string, Map<string, { readonly createdAtMs: number; readonly expiresAtMs: number }>>;
+  readonly panicReactions: Map<string, { readonly triggered: boolean; readonly pending: boolean;
+    readonly expiresAtMs: number }>;
   /** Fresh per battle; visible markers never recreate a paid arrival blink. */
   readonly assassinFlights: Map<string, PaidAssassinFlight>;
   /** Actual paid instances only, in global creation order; never copied from input. */
@@ -349,10 +413,13 @@ interface State {
   readonly mercFireMasterySources: string[];
   readonly mercThornsSources: string[];
   readonly mercDefianceSources: string[];
+  readonly mercBlessedAimSources: string[];
   readonly mercPrayerSources: string[];
   nextMercPrayerAtMs?: number;
   readonly mercHolyFireSources: string[];
   nextMercHolyFireAtMs?: number;
+  /** Original enemy-monster passive schedules; never imported from saved deadlines. */
+  readonly monsterFrostAuras: Map<string, { readonly tuning: NonNullable<CombatUnit['frostAura']>; nextAtMs: number }>;
   readonly difficulty: ReplayProfileId;
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
@@ -360,6 +427,8 @@ interface State {
   readonly findPotion: Map<string, number>;
   readonly findItem: Map<string, number>;
   readonly findItemFinds: FindItemFind[];
+  /** Private paid-wave state, never imported from units or previous battle results. */
+  mercPilferGoldFind: number;
   readonly grimWard: Map<string, number>;
   readonly grimWards: Map<string, { readonly corpseId: string; readonly rank: number;
     readonly createdAtMs: number; readonly expiresAtMs: number; readonly nextPulseAtMs: number }>;
@@ -409,6 +478,11 @@ interface State {
   /** Cumulative recovery integral; only fractional MP transfers between battles. */
   manaRecovery: Map<string, ManaRecoveryIntegral>;
   deathsHandled: Set<string>;
+  /** Effective starting originals only, captured before startup entrants. */
+  readonly resurrectionSources: Set<string>;
+  readonly resurrectionBodies: Map<string, CombatUnit>;
+  /** A revived life still needs death closure, without reopening original death effects. */
+  readonly revivedLives: Set<string>;
   /** highest "turn" emitted (5s boundaries). */
   turnsEmitted: number;
   /** sticky flag — hero death = enemy victory regardless of summons. */
@@ -424,6 +498,8 @@ interface State {
 }
 
 interface PeriodicIntegral {
+  /** Reporting only; never read by damage or lethal prediction. */
+  readonly origins?: Pick<PeriodicDamageProvenance, 'fromMs' | 'carryInHpMs' | 'contributions'>;
   /** Prior periodic damage removed by Wall, excluded from subsequent mana-diversion quotas. */
   wallAbsorbed?: number;
   /** Compensated accumulated damage in HP * milliseconds. */
@@ -453,11 +529,29 @@ function sameStatusView(previous: readonly ActiveStatus[], next: readonly Active
   });
 }
 
+/** Rank applies only to the exact currently installed native skill; aura liveness is checked by its caller. */
+function mercRankFactor(state: State, sourceId: string | undefined, skillId: string): number {
+  const skill = getSkill(skillId);
+  return skill && isNativeMercenarySkill(skill) ? mercSignatureFactor(sourceId ? state.units.get(sourceId) : undefined, skillId) : 1;
+}
+
 function mercDefianceSourceId(state: State): string | undefined {
   return state.mercDefianceSources.find(id => {
     const source = state.units.get(id);
     return source !== undefined && isMercDefianceSource(source);
   });
+}
+
+/** Original player bodies alone benefit, using current living native source presence. */
+function mercBlessedAimReduction(state: State, attacker: CombatUnit): number {
+  if (attacker.side !== 'player' || effectiveSide(state, attacker) !== 'player' ||
+    !Number.isFinite(attacker.life) || !alive(attacker) ||
+    getSkill(MERC_BLESSED_AIM_SKILL.id) !== MERC_BLESSED_AIM_SKILL) return 0;
+  const sourceId = state.mercBlessedAimSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercBlessedAimSource(source) && effectiveSide(state, source) === 'player';
+  });
+  return sourceId ? MERC_BLESSED_AIM_DEFINITION.weaponMissReduction * mercRankFactor(state, sourceId, 'aura-blessed-aim') : 0;
 }
 
 function mercPrayerSourceId(state: State): string | undefined {
@@ -481,12 +575,13 @@ function mercThornsSourceId(state: State): string | undefined {
   });
 }
 
-function hasMercBattleOrders(state: State, unit: CombatUnit): boolean {
-  return unit.side === 'player' && Number.isFinite(unit.life) && alive(unit) &&
-    state.mercBattleOrdersSources.some(id => {
-      const source = state.units.get(id);
-      return source !== undefined && isMercBattleOrdersSource(source);
-    });
+function mercBattleOrdersFactor(state: State, unit: CombatUnit): number {
+  if (unit.side !== 'player' || !Number.isFinite(unit.life) || !alive(unit)) return 0;
+  const sourceId = state.mercBattleOrdersSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercBattleOrdersSource(source);
+  });
+  return sourceId ? mercRankFactor(state, sourceId, 'aura-battle-orders') : 0;
 }
 
 function mercCriticalSourceId(state: State): string | undefined {
@@ -518,7 +613,8 @@ function holyFreezeSourceId(state: State): string | undefined {
 }
 
 /** Mercenary and selected hero Freeze supply one ambient Chill, with actual source provenance. */
-function ambientChillSourceId(state: State): string | undefined {
+function ambientChillSourceId(state: State, target: CombatUnit): string | undefined {
+  if (!canApplyStatus(target, 'chill')) return undefined;
   const merc = holyFreezeSourceId(state);
   if (merc !== undefined) return merc;
   const aura = state.statAura;
@@ -544,7 +640,7 @@ function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
     active = { ...raw, statuses };
   }
   if (effectiveSide(state, unit) !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
-  const sourceId = ambientChillSourceId(state);
+  const sourceId = ambientChillSourceId(state, unit);
   return sourceId === undefined ? active : { ...active, statuses: [...active.statuses,
     { id: 'chill', stacks: 1, remaining: -1, sourceId, tags: ['cold', 'chill'] }] };
 }
@@ -556,11 +652,25 @@ const ASSASSIN_TRAP_STATUS_IDS = new Set(ASSASSIN_TRAP_IDS.map(id =>
   'trap-' + id.slice('assassin.'.length).replaceAll('_', '-')));
 
 /** Observe committed state only; clocks, raw statuses and RNG remain authoritative. */
-function observeStatuses(state: State, target: string, initial = false): void {
+function observeStatuses(state: State, target: string, initial = false, force = false): void {
   const unit = state.units.get(target);
   if (!unit) return;
   const flight = activeAssassinFlight(state, target);
+  const panic = activePanic(state, target);
   const active: ActiveStatus[] = alive(unit) ? [
+    ...activeMonsterPrisons(state, target).map(paid => ({ id: MONSTER_PRISON_STATUS_ID,
+      sourceId: paid.sourceId, stacks: 1, remaining: (paid.expiresAtMs - state.simClockMs) / SECONDS,
+      appliedAtMs: paid.createdAtMs, expiresAtMs: paid.expiresAtMs })),
+    ...MONSTER_SELF_BUFF_IDS.flatMap(id => {
+      const paid = activeMonsterSelfBuff(state, target, id);
+      return paid ? [{ id: 'monster-' + id, sourceId: target, stacks: 1,
+        remaining: (paid.expiresAtMs - state.simClockMs) / SECONDS,
+        appliedAtMs: paid.createdAtMs, expiresAtMs: paid.expiresAtMs }] : [];
+    }),
+    ...(panic ? [{ id: 'panic_flee', sourceId: target, stacks: 1,
+      remaining: (panic.expiresAtMs - state.simClockMs) / SECONDS,
+      appliedAtMs: panic.expiresAtMs - MONSTER_PANIC_DEFINITION.durationMs,
+      expiresAtMs: panic.expiresAtMs }] : []),
     ...(flight ? [{ id: ASSASSIN_FLIGHT_STATUS_ID, sourceId: target, stacks: 1,
       remaining: (flight.expiresAtMs - state.simClockMs) / SECONDS,
       appliedAtMs: flight.createdAtMs, expiresAtMs: flight.expiresAtMs }] : []),
@@ -579,7 +689,7 @@ function observeStatuses(state: State, target: string, initial = false): void {
     }))
   ] : [];
   const previous = state.observedStatuses.get(target);
-  if (!initial && previous !== undefined && sameStatusView(previous, active)) return;
+  if (!initial && !force && previous !== undefined && sameStatusView(previous, active)) return;
   const statuses = active.map(s => ({ ...s, ...(s.tags !== undefined ? { tags: [...s.tags] } : {}) }));
   state.observedStatuses.set(target, statuses);
   emit(state, { kind: 'status-state', target, statuses, ...(initial ? { initial: true as const } : {}) });
@@ -588,7 +698,7 @@ function observeStatuses(state: State, target: string, initial = false): void {
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
 function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
-    (effectiveSide(state, unit) === 'enemy' && ambientChillSourceId(state) !== undefined);
+    (effectiveSide(state, unit) === 'enemy' && ambientChillSourceId(state, unit) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
   const speedBonus = druidFormBonuses(unit).attackSpeedPct + (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
     (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
@@ -603,10 +713,19 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
     (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1) * (1 - (decrepify?.attackSpeedReductionPct ?? 0) / 100));
 }
 
+/** Observe scheduler authority without changing timing or consuming RNG. */
+function observeCadence(state: State, unit: CombatUnit, periodMs: number): void {
+  if (inferKind(unit) !== 'hero') return;
+  emit(state, { kind: 'cadence-state', target: unit.id, periodMs,
+    ...(unit.equipmentAttackSpeedPct !== undefined
+      ? { equipmentAttackSpeedPct: unit.equipmentAttackSpeedPct } : {}) });
+}
+
 /** All new attempts start one full effective period after the current clock. */
 function scheduleNextAction(state: State, unit: CombatUnit): void {
   if (unit.id === state.barbsSpiritId || state.decoys.has(unit.id)) return;
   const period = effectiveActionPeriod(state, unit);
+  if (state.actionSchedule.get(unit.id)?.period !== period) observeCadence(state, unit, period);
   state.actionSchedule.set(unit.id, { at: state.simClockMs + period, period });
 }
 
@@ -624,6 +743,7 @@ function reconcileActionPeriods(state: State): void {
     if (state.holyFreezeSources.length > 0 || state.statAura?.selectedAuraId === 'paladin.holy-freeze') observeStatuses(state, id);
     const period = effectiveActionPeriod(state, unit);
     if (period === scheduled.period) continue;
+    observeCadence(state, unit, period);
     const remaining = Math.max(0, scheduled.at - state.simClockMs);
     state.actionSchedule.set(id, {
       at: state.simClockMs + remaining * period / scheduled.period,
@@ -676,12 +796,12 @@ function aliveOf(state: State, side: CombatSide): CombatUnit[] {
   return out;
 }
 
-/** Sort enemies for targeting: summons first (taunt), then by spawn order. */
+/** Player-side summons retain priority; hostile replacements follow insertion order. */
 function targetPriority(state: State, units: readonly CombatUnit[]): CombatUnit[] {
   const arr = [...units];
   arr.sort((a, b) => {
-    const ka = inferKind(a) === 'summon' ? 0 : 1;
-    const kb = inferKind(b) === 'summon' ? 0 : 1;
+    const ka = inferKind(a) === 'summon' && effectiveSide(state, a) === 'player' ? 0 : 1;
+    const kb = inferKind(b) === 'summon' && effectiveSide(state, b) === 'player' ? 0 : 1;
     if (ka !== kb) return ka - kb;
     const ia = state.insertionIdx.get(a.id) ?? 0;
     const ib = state.insertionIdx.get(b.id) ?? 0;
@@ -716,8 +836,8 @@ function threatWeight(unit: CombatUnit): number {
  * Selection rules:
  *  - Empty input → undefined.
  *  - Singleton → that unit (no RNG churn).
- *  - Player-side attacker → first by {@link targetPriority} (deterministic,
- *    taunt-respecting; matches v1 behaviour the rest of the engine relies on).
+ *  - Effective player-side attacker → lowest current life, then original
+ *    registration order (no selection roll; explicit Taunt still wins).
  *  - Enemy-side attacker → weighted random pick using {@link threatWeight}
  *    so monsters spread aggro across hero + mercs + summons. The RNG is
  *    the seeded engine RNG so battles remain deterministic.
@@ -743,8 +863,18 @@ function pickDefender(
   if (candidates.length === 1) return candidates[0];
 
   if (effectiveSide(state, attacker) === 'player') {
-    const sorted = targetPriority(state, candidates);
-    return sorted[0];
+    let picked = candidates[0];
+    for (const candidate of candidates) {
+      const candidateTier = inferKind(candidate) === 'summon' ? 1 : 0;
+      const pickedTier = picked && inferKind(picked) === 'summon' ? 1 : 0;
+      if (!picked || candidateTier < pickedTier ||
+        (candidateTier === pickedTier && (candidate.life < picked.life ||
+          (candidate.life === picked.life &&
+            (state.insertionIdx.get(candidate.id) ?? 0) < (state.insertionIdx.get(picked.id) ?? 0))))) {
+        picked = candidate;
+      }
+    }
+    return picked;
   }
 
   let total = 0;
@@ -763,8 +893,8 @@ function registerUnit(state: State, u: CombatUnit): void {
   const traps = u.assassinTrapRanks === undefined ? u : { ...u, assassinTrapRanks: copyAssassinTrapRanks(u.assassinTrapRanks) };
   const projected = u.assassinMartialRanks === undefined ? traps : { ...traps, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
   const stripped = { ...projected, statuses: projected.statuses.filter(status =>
-    !ASSASSIN_TRAP_STATUS_IDS.has(status.id) && status.id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(status.id)),
-    activeBuffIds: projected.activeBuffIds.filter(id => id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(id)) };
+    status.id !== MONSTER_PRISON_STATUS_ID && monsterSelfBuffId(status.id) === undefined && !ASSASSIN_TRAP_STATUS_IDS.has(status.id) && status.id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(status.id)),
+    activeBuffIds: projected.activeBuffIds.filter(id => id !== MONSTER_PRISON_STATUS_ID && monsterSelfBuffId(id) === undefined && id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(id)) };
   const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(stripped));
   const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
     ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };
@@ -779,6 +909,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   if (u.mercFireMastery === true && !state.mercFireMasterySources.includes(u.id)) state.mercFireMasterySources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
   if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
+  if (u.mercBlessedAimAura === true && !state.mercBlessedAimSources.includes(u.id)) state.mercBlessedAimSources.push(u.id);
   if (u.mercPrayerAura === true && !state.mercPrayerSources.includes(u.id)) state.mercPrayerSources.push(u.id);
   if (u.mercHolyFireAura === true && !state.mercHolyFireSources.includes(u.id)) state.mercHolyFireSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
@@ -830,6 +961,7 @@ function buildDamageInput(
   const attackingCloak = activeCloakOfShadows(attacker, state.simClockMs);
   const defendingCloak = activeCloakOfShadows(defender, state.simClockMs);
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
+  const attackerMight = activeMightAura(state.mightAura, attacker.id, state.units);
   const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
   const heartRank = activeDruidAllyAuras(state.druidAllyAuras, attacker, state.units)?.heartRank ?? 0;
   const enemyAura = state.statAura && effectiveSide(state, defender) === 'enemy'
@@ -848,8 +980,11 @@ function buildDamageInput(
     cold: auraResistances.cold - lowerResist, lightning: auraResistances.lightning - lowerResist,
     arcane: auraResistances.arcane - lowerResist, poison: auraResistances.poison - lowerResist
   };
-  const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
-  const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
+  const monsterLevels = inferKind(attacker) === 'monster' ? Math.max(0, Math.floor(attacker.level) - 1) : 0;
+  const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel) +
+    monsterLevels * (effect.perMonsterLevel?.[0] ?? 0);
+  const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel) +
+    monsterLevels * (effect.perMonsterLevel?.[1] ?? 0);
   // Project source-owned penetration/curse before the existing act penalty and clamp.
   const defenderResistances = effect.damageType === 'physical'
     ? { ...resistances,
@@ -861,31 +996,37 @@ function buildDamageInput(
   const meltFactor = hasStatus(defender, METEOR_ARMOR_MELT_DEFINITION.statusId)
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
   const innerSightReduction = Math.max(activeAmazonInnerSight(defender, state.simClockMs)?.defenseReductionPct ?? 0,
-    hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId) ? MERC_INNER_SIGHT_DEFINITION.defenseReductionPct : 0);
+    hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
+      ? defender.statuses.find(status => status.id === MERC_INNER_SIGHT_DEFINITION.statusId)?.innerSight?.defenseReductionPct
+        ?? MERC_INNER_SIGHT_DEFINITION.defenseReductionPct : 0);
   const innerSightFactor = 1 - innerSightReduction / 100;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
   const nativeCritical = attacker.side === 'player' && alive(attacker) && mercCriticalSourceId(state) !== undefined
     ? MERC_CRITICAL_DEFINITION : undefined;
   const nativeDefiance = defender.side === 'player' && alive(defender) && mercDefianceSourceId(state) !== undefined
-    ? MERC_DEFIANCE_DEFINITION.defensePct : 0;
-  const armorBonus = nativeDefiance + (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
+    ? MERC_DEFIANCE_DEFINITION.defensePct * mercRankFactor(state, mercDefianceSourceId(state), 'aura-defiance') : 0;
+  const attackDamagePct = (effect.attackDamagePct ?? 0) +
+    (effect.attackDamagePctPerRank ?? 0) * Math.max(0, Math.floor(skillLevel) - 1);
+  const armorBonus = monsterSelfBuffBonus(state, defender.id, 'shout') + nativeDefiance + (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
   return {
     baseMin,
     baseMax,
-    flatBonus: baseFlatBonus + (effect.attackDamagePct
-      ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * effect.attackDamagePct / 100 : 0),
-    increasedPct: (effect.increasedDamagePct ?? 0) + (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+    flatBonus: baseFlatBonus + (attackDamagePct
+      ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + (attackerMight?.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * attackDamagePct / 100 : 0),
+    increasedPct: (effect.damageType === 'thorns' ? 0 : monsterSelfBuffBonus(state, attacker.id, 'enrage') +
+      (attacker.enraged ? (attacker.enrage?.damagePct ?? 0) / 100 : 0)) +
+      (effect.increasedDamagePct ?? 0) + (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
       (effect.damageType === 'cold' ? coldArmorBonuses(attacker).cold : 0) +
       (effect.damageType === 'physical' ? activeLeap(attacker, state.simClockMs)?.physicalDamagePct ?? 0 : 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
-      (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
+      (effect.damageType === 'physical' ? attackerMight?.physicalDamagePct ?? 0 : 0) +
       (effect.damageType === 'physical' && attacker.side === 'player' && alive(attacker) && mercMightSourceId(state) !== undefined
-        ? MERC_MIGHT_DEFINITION.physicalDamagePct : 0) +
+        ? MERC_MIGHT_DEFINITION.physicalDamagePct * mercRankFactor(state, mercMightSourceId(state), 'aura-might') : 0) +
       (effect.damageType === 'fire' && attacker.side === 'player' && alive(attacker) && mercFireMasterySourceId(state) !== undefined
-        ? MERC_FIRE_MASTERY_DEFINITION.fireDamagePct : 0) +
+        ? MERC_FIRE_MASTERY_DEFINITION.fireDamagePct * mercRankFactor(state, mercFireMasterySourceId(state), 'passive-fire-mastery') : 0) +
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
-        ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
+        ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct * mercRankFactor(state, holyFreezeSourceId(state), 'aura-holy-freeze') : 0),
     comboMult: combo,
     ...((attackingCry ?? attackingDecrepify ?? attackingWeaken) ? { outgoingDamageMultiplier:
       (1 - (attackingCry?.damageReductionPct ?? 0) / 100) * (1 - (attackingDecrepify?.damageReductionPct ?? 0) / 100) *
@@ -898,14 +1039,15 @@ function buildDamageInput(
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0) + (nativeCritical?.critChancePct ?? 0),
     critMult: stats.critDamage + (nativeCritical?.critDamagePct ?? 0),
     defenderResistances,
-    defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor * (1 - (defendingCry?.defenseReductionPct ?? 0) / 100)),
+    ...(defender.damageImmunities ? { defenderDamageImmunities: defender.damageImmunities } : {}),
+    defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, (defender.stats.defense + mercFrozenArmorDefense(defender)) * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor * (1 - (defendingCry?.defenseReductionPct ?? 0) / 100)),
     defenderMagicResist: effect.ignoresMagicResist === true ? 0 : defender.stats.magicResist,
-    defenderDodge:
+    defenderDodge: activeMonsterPrisons(state, defender.id).length > 0 ? 0 :
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
-          (defenderAura?.bonuses.physDodgePct ?? 0)
-        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0) + sorceressBuffBonus(defender, 'teleport', state.simClockMs) +
-          assassinFlightDodgeForUnit(state, defender.id),
+          (defenderAura?.bonuses.physDodgePct ?? 0) + panicDodge(state, defender.id)
+        : defender.stats.magicDodge + monsterSelfBuffBonus(state, defender.id, 'teleport') + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0) + sorceressBuffBonus(defender, 'teleport', state.simClockMs) +
+          assassinFlightDodgeForUnit(state, defender.id) + panicDodge(state, defender.id),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
 }
@@ -951,13 +1093,31 @@ function applyDamageToUnit(
   periodicSpell = false,
   projectileImpact = false,
   martialSkill?: RegisteredSkill,
-  auxiliaryHit?: 'trap' | 'martial-release'
+  auxiliaryHit?: 'trap' | 'martial-release' | 'merc-arrow-splash' | 'impact-bolt' | 'lightning-retaliation',
+  delivery?: BasicAttackDelivery,
+  projectileAccuracySkill?: RegisteredSkill,
+  deathBurst?: DeathBurstGrant
 ): void {
-  const attacker = state.units.get(attackerId);
+  const frozenSource = deathBurst !== undefined && state.deathBurstGrant === deathBurst &&
+    deathBurst.source.id === attackerId && deathBurst.effect === effect ? deathBurst.source : undefined;
+  const attacker = frozenSource ?? state.units.get(attackerId);
   const defender = state.units.get(defenderId);
-  if (!attacker || !defender || (!alive(attacker) && !armorReaction && !projectileImpact) || !alive(defender)) return;
+  if (!attacker || !defender || (!alive(attacker) && !armorReaction && !projectileImpact && !frozenSource) || !alive(defender)) return;
+  const reactionHit = armorReaction || auxiliaryHit === 'lightning-retaliation';
+  const panicHostiles = captureDeathHostiles(state);
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
+  const splash = effect.mercElementalArrow?.splash;
+  if (splash && (!Number.isInteger(splash.count) || splash.count < 1 || splash.count > 2 ||
+    !Number.isFinite(splash.share) || splash.share <= 0 || splash.share > 1))
+    throw new Error('Invalid mercenary arrow splash');
+  const splashCells = splash && isValidGridPosition(defender.gridPosition)
+    ? cellsForAoeShape(defender.gridPosition, 'cross') : [];
+  // Capture identity and the original center before a lethal carrier changes the roster.
+  const splashTargets = splash ? targetPriority(state, attackCandidates(state, attacker).filter(candidate =>
+    candidate.id !== defenderId && effectiveSide(state, candidate) !== effectiveSide(state, attacker) &&
+    splashCells.some(cell => cell.row === candidate.gridPosition?.row && cell.col === candidate.gridPosition.col)))
+    .slice(0, splash.count).map(candidate => candidate.id) : [];
   const bolts = effect.onHitBolts;
   if (bolts && (!Number.isInteger(bolts.count) || bolts.count < 1 || bolts.count > 8 ||
     !['original', 'adjacent-others'].includes(bolts.targetMode) ||
@@ -976,12 +1136,26 @@ function applyDamageToUnit(
   // Capture pre-hit eligibility: a lethal victim hit may clear its curse during settlement.
   const lifeTap = activeDamageCurse(activeDefender, state.simClockMs, 'life-tap');
   const ironMaiden = activeDamageCurse(attacker, state.simClockMs, 'iron-maiden') / 100;
-  const retaliates = !armorReaction && !periodicSpell && hasPaidFrozenArmor(activeDefender);
-  const coldReactions = !armorReaction && !auraPulse && !periodicSpell && hostileHit
+  const retaliates = !reactionHit && !periodicSpell && hasPaidFrozenArmor(activeDefender);
+  const mercRetaliates = hostileHit && delivery === 'melee' && !reactionHit && !auraPulse &&
+    !periodicSpell && !projectileImpact && auxiliaryHit === undefined && mercFrozenArmorDefense(activeDefender) > 0;
+  const coldReactions = !reactionHit && !auraPulse && !periodicSpell && hostileHit
     ? COLD_ARMOR_IDS.map(id => ({ id, rank: paidColdArmorRank(activeDefender, id) }))
       .filter(({ id, rank }) => rank > 0 && (id === 'chilling-armor' || effect.damageType === 'physical')) : [];
-  const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
-  const enchantBase = hostileHit && effect.damageType === 'physical' && !auraPulse && !armorReaction && !periodicSpell
+  // Accuracy is separate from contact: paid flights remain contact-none. A flight
+  // without original native launch authority cannot acquire it through later registration.
+  const accuracyDelivery = projectileImpact
+    ? projectileAccuracySkill && getSkillDamageDelivery(projectileAccuracySkill) : delivery;
+  const weaponAttempt = (accuracyDelivery === 'melee' || accuracyDelivery === 'ranged' ||
+    (projectileImpact && accuracyDelivery === 'primary-melee')) &&
+    !auraPulse && !reactionHit && !periodicSpell && auxiliaryHit === undefined;
+  const reduction = weaponAttempt ? mercBlessedAimReduction(state, attacker) : 0;
+  const input = { ...buildDamageInput(state, attacker, activeDefender, effect, skillLevel),
+    // A splash carries an already-rolled payload, not a rank-scaled skill base.
+    ...(auxiliaryHit === 'merc-arrow-splash'
+      ? { baseMin: effect.base[0], baseMax: effect.base[1] } : {}),
+    ...(reduction > 0 ? { weaponMissReduction: reduction } : {}) };
+  const enchantBase = hostileHit && effect.damageType === 'physical' && !auraPulse && !reactionHit && !periodicSpell
     ? sorceressBuffBonus(attacker, 'enchant', state.simClockMs) : 0;
   const sharedRoll = effect.components !== undefined || enchantBase > 0 ? rollDamage(input, state.rng) : undefined;
   const scalarOutcome = () => auraPulse
@@ -990,11 +1164,18 @@ function applyDamageToUnit(
     : sharedRoll ? resolveRolledDamage(input, sharedRoll) : resolveDamage(input, state.rng);
   // All component inputs observe the same pre-strike units and statuses. One
   // hit/base/crit decision is shared; this strike cannot combo with its own statuses.
-  const totalWeight = effect.components?.reduce((sum, component) => sum + component.weight, 0) ?? 1;
+  const totalWeight = effect.mercElementalArrow ? 1
+    : effect.components?.reduce((sum, component) => sum + component.weight, 0) ?? 1;
   const carrierHits = effect.components && sharedRoll
-    ? effect.components.map(component => ({ damageType: component.damageType,
-      outcome: resolveRolledDamage(buildDamageInput(state, attacker, activeDefender,
-        { ...effect, damageType: component.damageType }, skillLevel), sharedRoll, component.weight / totalWeight) }))
+    ? effect.components.map(component => {
+      const share = component.weight / totalWeight;
+      const componentInput = buildDamageInput(state, attacker, activeDefender,
+        { ...effect, damageType: component.damageType }, skillLevel);
+      return { damageType: component.damageType,
+        outcome: resolveRolledDamage(effect.mercElementalArrow
+          ? { ...componentInput, flatBonus: componentInput.flatBonus * share } : componentInput,
+        sharedRoll, share) };
+    })
     : [{ damageType: effect.damageType, outcome: scalarOutcome() }];
   const hits = [...carrierHits];
   if (enchantBase > 0 && sharedRoll?.hit) {
@@ -1042,6 +1223,17 @@ function applyDamageToUnit(
 
   if (outcome.dodged) return;
 
+  const prisonTarget = state.units.get(defenderId);
+  if (effect === MONSTER_BONE_PRISON.effect && martialSkill === MONSTER_BONE_PRISON.skill &&
+    isMonsterBonePrisonSource(attacker) && hostileHit && prisonTarget && alive(prisonTarget)) {
+    const traps = new Map(state.monsterPrisons.get(defenderId));
+    traps.set(attackerId, Object.freeze({ createdAtMs: state.simClockMs,
+      expiresAtMs: state.simClockMs + MONSTER_BONE_PRISON.durationMs }));
+    state.monsterPrisons.set(defenderId, traps);
+    emit(state, { kind: 'status', target: defenderId, statusId: MONSTER_PRISON_STATUS_ID });
+    observeStatuses(state, defenderId);
+  }
+
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
   for (const hit of carrierHits) {
     for (const status of statuses) {
@@ -1063,6 +1255,7 @@ function applyDamageToUnit(
               !hostileHit || !isConversionTarget(cur) || cur.life >= defender.life) continue;
             const expiresAtMs = state.simClockMs + CONVERSION_DEFINITION.durationMs;
             state.conversions.set(cur.id, { sourceId: attackerId, expiresAtMs });
+            forfeitPanic(state, cur.id, false);
             const updated: CombatUnit = { ...cur, statuses: [...cur.statuses.filter(s => s.id !== 'converted'), {
               id: 'converted', sourceId: attackerId, stacks: 1,
               remaining: CONVERSION_DEFINITION.durationMs / SECONDS,
@@ -1092,7 +1285,7 @@ function applyDamageToUnit(
             updated = application.unit;
             applied = applied || application.applied;
           }
-          const drain = status.id === 'mana-burn' && hostileHit
+          const drain = applied && status.id === 'mana-burn' && hostileHit
             ? Math.min(updated.mana, Math.floor((defender.life - newLife) * MANA_BURN_DEFINITION.drainFraction)) : 0;
           const manaEvent = drain > 0
             ? commitMana(state, cur, { ...updated, mana: updated.mana - drain }, 'mana-burn') : undefined;
@@ -1113,39 +1306,41 @@ function applyDamageToUnit(
     const dotPerStack = mitigateDamage(rawPoison, buildDamageInput(state, attacker, activeDefender, poison)).final;
     const current = state.units.get(defenderId);
     if (current) {
-      state.units.set(defenderId, applyStatus(current, { id: 'poison', sourceId: attackerId,
+      const application = applyStatusWithResult(current, { id: 'poison', sourceId: attackerId,
         ...cleansingDurationInput(state, defenderId),
         simClockMs: state.simClockMs, durationMs: ASSASSIN_SHADOW_DEFINITIONS.venom.coatingDurationMs,
-        dotPerStack, damageType: 'poison' }, state.rng));
-      emit(state, { kind: 'status', target: defenderId, statusId: 'poison' });
+        dotPerStack, damageType: 'poison' }, state.rng);
+      state.units.set(defenderId, application.unit);
+      if (application.applied) emit(state, { kind: 'status', target: defenderId, statusId: 'poison' });
       observeStatuses(state, defenderId);
     }
   }
 
   const survivingAttacker = state.units.get(attackerId);
-  if (retaliates && outcome.hit && amount > 0 && survivingAttacker && alive(survivingAttacker)) {
-    state.units.set(attackerId, applyStatus(survivingAttacker, {
+  if ((retaliates || mercRetaliates) && outcome.hit && amount > 0 && survivingAttacker && alive(survivingAttacker)) {
+    const application = applyStatusWithResult(survivingAttacker, {
       ...cleansingDurationInput(state, attackerId),
       id: 'chill', sourceId: defenderId, simClockMs: state.simClockMs
-    }, state.rng));
-    emit(state, { kind: 'status', target: attackerId, statusId: 'chill' });
+    }, state.rng);
+    state.units.set(attackerId, application.unit);
+    if (application.applied) emit(state, { kind: 'status', target: attackerId, statusId: 'chill' });
     observeStatuses(state, attackerId);
   }
 
   // Snapshot eligibility before the incoming hit, including a lethal hit on the wearer.
   // Reuse real damage/status/shield/death settlement; reaction hits cannot trigger any armor.
   if (outcome.hit && amount > 0) for (const { id, rank } of coldReactions) {
-    applyDamageToUnit(state, defenderId, attackerId, coldArmorCounterattack(id), rank, false, false, true);
+    applyDamageToUnit(state, defenderId, attackerId, coldArmorCounterattack(id), rank, false, false, true, false, false, undefined, undefined, 'none');
   }
 
   const after = state.units.get(defenderId);
-  const ordinaryReflectionPct = (after?.physicalReflectionPct ?? 0) +
+  const ordinaryReflectionPct = monsterSelfBuffBonus(state, defenderId, 'thorns-aura') + (after?.physicalReflectionPct ?? 0) +
     (after?.side === 'player' && mercThornsSourceId(state) !== undefined
-      ? MERC_THORNS_DEFINITION.physicalReflectionPct : 0) +
+      ? MERC_THORNS_DEFINITION.physicalReflectionPct * mercRankFactor(state, mercThornsSourceId(state), 'aura-thorns') : 0) +
     (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0) +
     (after ? activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, after, state.units)?.rank ?? 0 : 0) * SPIRIT_OF_BARBS_DEFINITION.thornsPerRank;
   if (after && !alive(after)) {
-    finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
+    finishDeaths(state, [activeStatusView(after, state.simClockMs)], panicHostiles);
   }
   // The curse punishes a paid attack even when its victim dies; ordinary Thorns keeps its living-wearer rule.
   const livingReflectionPct = after && alive(after) ? ordinaryReflectionPct : 0;
@@ -1166,12 +1361,25 @@ function applyDamageToUnit(
       ...(reflectionAbsorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: reflectionAbsorption.holyShieldAbsorbed } : {}),
       ...(reflectionAbsorption.wallAbsorbed > 0 ? { wallAbsorbed: reflectionAbsorption.wallAbsorbed } : {}),
       crit: false, dodged: false });
+    const reflectionPanicHostiles = captureDeathHostiles(state);
     const damaged = { ...reflectionAbsorption.unit, life: Math.max(0, target.life - reflectionAbsorption.damage) };
     const manaEvent = commitPersonalDamage(state, target, damaged);
     if (manaEvent) emit(state, manaEvent);
     if (reflectionAbsorption.absorbed > 0) observeStatuses(state, attackerId);
-    if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
+    if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)], reflectionPanicHostiles);
     recoverBloodGolem(state, defenderId, target.life - damaged.life, hostileHit);
+  }
+
+  const lightning = state.lightningRetaliations.get(defenderId);
+  const carrier = state.units.get(defenderId), struckBy = state.units.get(attackerId);
+  if (lightning && !reactionHit && !auraPulse && !periodicSpell && auxiliaryHit === undefined &&
+    deathBurst === undefined && hostileHit && outcome.hit && amount > 0 && carrier && alive(carrier) &&
+    effectiveSide(state, carrier) === 'enemy' && activeConversion(state, carrier) === undefined &&
+    struckBy && alive(struckBy) && effectiveSide(state, struckBy) !== effectiveSide(state, carrier) &&
+    lightning.chance > 0 && state.rng.chance(lightning.chance)) {
+    const bolt: DamageEffect = { kind: 'damage', damageType: 'lightning', base: lightning.damage };
+    applyDamageToUnit(state, defenderId, attackerId, bolt, 1, false, false, false, false, false,
+      undefined, 'lightning-retaliation', 'none');
   }
 
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
@@ -1180,7 +1388,7 @@ function applyDamageToUnit(
   if (auxiliaryHit !== 'trap' && hostileHit && hpRemoved > 0 && lifeTap > 0 && tappedAttacker && alive(tappedAttacker))
     commitHealing(state, tappedAttacker, Math.floor(hpRemoved * lifeTap / 100));
   const owner = state.units.get(attackerId);
-  if (!basicHit && !auraPulse && !armorReaction && !periodicSpell && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
+  if (!basicHit && !auraPulse && !reactionHit && !periodicSpell && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
     const fraction = effect.onHitRecovery?.lifeFraction;
     if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
       commitHealing(state, owner, Math.floor(hpRemoved * fraction));
@@ -1190,11 +1398,12 @@ function applyDamageToUnit(
       Number.isInteger(selfCost.minimumLifeLoss) && selfCost.minimumLifeLoss > 0) {
       // A life tradeoff, not a hostile hit: never dodge, absorb, reflect or recurse.
       const loss = Math.min(owner.life, Math.max(selfCost.minimumLifeLoss, Math.floor(hpRemoved * selfCost.lifeFraction)));
+      const selfPanicHostiles = captureDeathHostiles(state);
       const damaged = { ...owner, life: owner.life - loss };
       state.units.set(attackerId, damaged);
       emit(state, { kind: 'damage', source: attackerId, target: attackerId,
         damageType: 'physical', amount: loss, crit: false, dodged: false });
-      if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
+      if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)], selfPanicHostiles);
     }
     const current = state.units.get(attackerId);
     if (effect.feralRage === true && current) {
@@ -1216,7 +1425,7 @@ function applyDamageToUnit(
     }
   }
   const martialOwner = state.units.get(attackerId);
-  if (!auraPulse && !armorReaction && !periodicSpell && !projectileImpact && hostileHit && hpRemoved > 0 &&
+  if (!auraPulse && !reactionHit && !periodicSpell && !projectileImpact && hostileHit && hpRemoved > 0 &&
     martialOwner && alive(martialOwner)) {
     const builder = martialSkill && ASSASSIN_CHARGE_DEFINITION.builders.find(id => id === martialSkill.id);
     if (builder && authorizedMartialSkill(state, martialOwner, martialSkill)) {
@@ -1243,23 +1452,37 @@ function applyDamageToUnit(
             }
           }
         } else if (victim && alive(victim) && release.effect) {
-          applyDamageToUnit(state, attackerId, defenderId, release.effect, 1, false, false, false, false, false, undefined, 'martial-release');
+          applyDamageToUnit(state, attackerId, defenderId, release.effect, 1, false, false, false, false, false, undefined, 'martial-release', 'none');
         }
       }
     }
   }
   if (auxiliaryHit !== 'trap') recoverBloodGolem(state, attackerId, hpRemoved, hostileHit);
-  if (auxiliaryHit === undefined && !auraPulse && !armorReaction && !periodicSpell && hostileHit &&
+  if (auxiliaryHit === undefined && !auraPulse && !reactionHit && !periodicSpell && hostileHit &&
     effect.damageType === 'physical' && physicalHpRemoved > 0)
     reactBladeShield(state, defenderId, attackerId);
-  if (bolts && hostileHit && outcome.hit && !basicHit && !auraPulse && !armorReaction && !periodicSpell) {
+  if (bolts && hostileHit && outcome.hit && !basicHit && !auraPulse && !reactionHit && !periodicSpell) {
     const bolt: DamageEffect = { kind: 'damage', damageType: 'lightning',
       base: [bolts.damage.min, bolts.damage.max], perRank: [bolts.damage.perRank, bolts.damage.perRank] };
     for (const id of boltTargets) {
       const current = state.units.get(attackerId), target = state.units.get(id);
       if (!current || !alive(current)) break;
       if (target && alive(target) && effectiveSide(state, target) !== effectiveSide(state, current))
-        applyDamageToUnit(state, attackerId, id, bolt, skillLevel);
+        applyDamageToUnit(state, attackerId, id, bolt, skillLevel, false, false, false, false, false, undefined, 'impact-bolt', 'none');
+    }
+  }
+  if (splash && sharedRoll?.hit && hostileHit && !basicHit && !auraPulse && !reactionHit &&
+    !periodicSpell && !projectileImpact && auxiliaryHit === undefined) {
+    // Keep the unrounded rolled base + Attack; secondary modifiers/crit apply exactly once.
+    const raw = (sharedRoll.base + input.flatBonus) * splash.share;
+    const fire: DamageEffect = { kind: 'damage', damageType: 'fire', base: [raw, raw],
+      ...(effect.applyStatus?.damageType === 'fire' ? { applyStatus: effect.applyStatus } : {}) };
+    for (const id of splashTargets) {
+      const current = state.units.get(attackerId), target = state.units.get(id);
+      if (!current || !alive(current)) break;
+      if (target && alive(target) && effectiveSide(state, target) !== effectiveSide(state, current))
+        applyDamageToUnit(state, attackerId, id, fire, 1, false, false, false, false, false,
+          undefined, 'merc-arrow-splash', 'none');
     }
   }
 }
@@ -1272,7 +1495,7 @@ function ambientLifeBonuses(state: State, unit: CombatUnit): readonly LifeCapaci
   return [
     ...(oakRank ? [{ coefficient: DRUID_ALLY_AURA_DEFINITIONS.oak.lifePerRank, rank: oakRank }] : []),
     ...(vigor ? [{ coefficient: vigor, rank: 1 }] : []),
-    ...(hasMercBattleOrders(state, unit) ? [{ coefficient: MERC_BATTLE_ORDERS_DEFINITION.lifePct, rank: 1 }] : [])
+    ...(mercBattleOrdersFactor(state, unit) ? [{ coefficient: MERC_BATTLE_ORDERS_DEFINITION.lifePct * mercBattleOrdersFactor(state, unit), rank: 1 }] : [])
   ];
 }
 
@@ -1289,7 +1512,7 @@ function reconcileBattleCommandPassives(state: State): void {
     const next = projectManaCapacity(projectLifeCapacity({ ...base, ...profile,
       stats: { ...base.stats, ...profile.stats }, life: unit.life, mana: unit.mana },
       druidFormLifeBonus(base), ambientLifeBonuses(state, unit)),
-      hasMercBattleOrders(state, unit) ? MERC_BATTLE_ORDERS_DEFINITION.manaPct : 0);
+      mercBattleOrdersFactor(state, unit) * MERC_BATTLE_ORDERS_DEFINITION.manaPct);
     if (next.mana >= next.stats.manaMax) state.manaRecovery.delete(unit.id);
     if (boosted) state.boostedCommandPassives.add(unit.id);
     else state.boostedCommandPassives.delete(unit.id);
@@ -1318,11 +1541,11 @@ function reconcileResourceCapacities(state: State, forceFormIds: readonly string
     const ambient = ambientLifeBonuses(state, unit);
     const druid = forceFormIds.includes(unit.id) || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
     const lifePending = druid || ambient.length > 0 || unit.vigorLife !== undefined;
-    const orders = hasMercBattleOrders(state, unit);
+    const orders = mercBattleOrdersFactor(state, unit);
     const manaPending = orders || unit.manaCapacity !== undefined;
     if (!lifePending && !manaPending) continue;
     const life = lifePending ? projectLifeCapacity(unit, druidFormLifeBonus(unit), ambient) : unit;
-    const next = manaPending ? projectManaCapacity(life, orders ? MERC_BATTLE_ORDERS_DEFINITION.manaPct : 0) : life;
+    const next = manaPending ? projectManaCapacity(life, orders * MERC_BATTLE_ORDERS_DEFINITION.manaPct) : life;
     if (manaPending && next.mana >= next.stats.manaMax) state.manaRecovery.delete(unit.id);
     state.units.set(unit.id, next);
     if (unit.stats.lifeMax !== next.stats.lifeMax || unit.life !== next.life || forceFormIds.includes(unit.id)) {
@@ -1342,9 +1565,60 @@ function reconcileResourceCapacities(state: State, forceFormIds: readonly string
   }
 }
 
+/** Freeze living allegiance before lethal HP writes make Conversion ineligible. No RNG or corpse mutation. */
+function captureDeathHostiles(state: State): ReadonlySet<string> {
+  const hostile = new Set<string>();
+  if (state.panicReactions.size === 0 && state.deathExplosionSources.size === 0) return hostile;
+  for (const id of [...state.resurrectionSources, ...state.panicReactions.keys(), ...state.deathExplosionSources.keys()]) {
+    const unit = state.units.get(id);
+    if (unit && alive(unit) && effectiveSide(state, unit) === 'enemy' && activeConversion(state, unit) === undefined)
+      hostile.add(id);
+  }
+  return hostile;
+}
+
+/** Death spends any unused allowance; conversion only forfeits existing pending/active power. */
+function forfeitPanic(state: State, id: string, death: boolean): void {
+  const reaction = state.panicReactions.get(id);
+  if (reaction) state.panicReactions.set(id, { triggered: reaction.triggered || death, pending: false, expiresAtMs: 0 });
+}
+
+/** Only a genuine living source can read its paid, half-open personal window. */
+function activeMonsterSelfBuff(state: State, sourceId: string, id: MonsterSelfBuffId) {
+  const unit = state.units.get(sourceId), paid = state.monsterSelfBuffs.get(sourceId)?.get(id);
+  return paid && paid.createdAtMs <= state.simClockMs && state.simClockMs < paid.expiresAtMs &&
+    unit && isMonsterSelfBuffSource(unit, id) ? paid : undefined;
+}
+
+function monsterSelfBuffBonus(state: State, sourceId: string, id: MonsterSelfBuffId): number {
+  return (activeMonsterSelfBuff(state, sourceId, id)?.percent ?? 0) / 100;
+}
+
+/** Read only real landed, source-owned intervals on a living target. */
+function activeMonsterPrisons(state: State, targetId: string) {
+  const target = state.units.get(targetId);
+  return target && alive(target) ? [...(state.monsterPrisons.get(targetId) ?? [])]
+    .filter(([, paid]) => paid.createdAtMs <= state.simClockMs && state.simClockMs < paid.expiresAtMs)
+    .map(([sourceId, paid]) => ({ sourceId, ...paid })) : [];
+}
+
+/** Presentation markers cannot establish native dodge, and changed allegiance suspends power. */
+function activePanic(state: State, id: string) {
+  const reaction = state.panicReactions.get(id), unit = state.units.get(id);
+  return reaction && reaction.expiresAtMs > state.simClockMs && unit && alive(unit) &&
+    effectiveSide(state, unit) === 'enemy' && activeConversion(state, unit) === undefined ? reaction : undefined;
+}
+
+function panicDodge(state: State, id: string): number {
+  return activePanic(state, id) ? MONSTER_PANIC_DEFINITION.dodgeChance : 0;
+}
+
 /** Close and mark the whole death set before any spread/refund/orb side effect. */
-function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void {
-  const primary = new Map(primarySources.filter(u => !state.deathsHandled.has(u.id)).map(u => [u.id, u]));
+function finishDeaths(state: State, primarySources: readonly CombatUnit[],
+  panicHostiles: ReadonlySet<string> = new Set()): void {
+  const primary = new Map(primarySources.filter(u => !state.deathsHandled.has(u.id) || state.revivedLives.has(u.id))
+    .map(u => [u.id, u]));
+  const firstDeaths = new Set([...primary.keys()].filter(id => !state.deathsHandled.has(id)));
   const deadIds = new Set(primary.keys());
   // Ownership can be a graph; orphan-only deaths never get ordinary effects.
   let grew = true;
@@ -1358,9 +1632,20 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     }
   }
   const dead = [...state.units.values()].filter(u => deadIds.has(u.id));
+  if ([...primary.keys()].some(id => firstDeaths.has(id) && state.resurrectionSources.has(id) && panicHostiles.has(id))) {
+    for (const [id, reaction] of state.panicReactions) {
+      const unit = state.units.get(id);
+      if (reaction.triggered || deadIds.has(id) || !panicHostiles.has(id) || !unit || !alive(unit)) continue;
+      state.panicReactions.set(id, { triggered: true, pending: true, expiresAtMs: 0 });
+    }
+  }
   for (const u of dead) {
+    state.monsterPrisons.delete(u.id);
+    state.monsterSelfBuffs.delete(u.id);
+    forfeitPanic(state, u.id, true);
     state.units.set(u.id, { ...u, life: 0 });
     state.deathsHandled.add(u.id);
+    state.revivedLives.delete(u.id);
     state.actionSchedule.delete(u.id);
     state.periodic.delete(u.id);
     state.manaRecovery.delete(u.id);
@@ -1383,9 +1668,45 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
   }
   for (const u of dead) stopGrimWard(state, u.id);
+  const bursts = dead.flatMap(unit => {
+    const source = primary.get(unit.id);
+    return source && firstDeaths.has(unit.id) && state.deathExplosionSources.has(unit.id) &&
+      panicHostiles.has(unit.id) ? [source] : [];
+  });
+  const settle = () => { settleDeathEffects(state, dead, primary, firstDeaths); };
+  if (bursts.length === 0 && state.deathSettlement === undefined) { settle(); return; }
+  const owner = state.deathSettlement === undefined;
+  const pending = state.deathSettlement ?? [];
+  state.deathSettlement = pending;
+  // Enqueue before recursion: every burst closes deaths immediately, but no ordinary
+  // recovery, spread or corpse publication can interleave the original burst set.
+  pending.push(settle);
+  try {
+    for (const source of bursts) {
+      for (const effect of state.deathExplosionSources.get(source.id) ?? []) {
+        const grant: DeathBurstGrant = Object.freeze({ source: Object.freeze({ ...source, life: 0 }), effect });
+        const previous = state.deathBurstGrant;
+        state.deathBurstGrant = grant;
+        try {
+          for (const target of opponentsOf(state, grant.source)) {
+            const current = state.units.get(target.id);
+            if (current && alive(current) && effectiveSide(state, current) !== 'enemy')
+              applyDamageToUnit(state, source.id, target.id, effect, 1, false, false, false, false, false,
+                undefined, undefined, 'none', undefined, grant);
+          }
+        } finally { state.deathBurstGrant = previous; }
+      }
+    }
+    if (owner) for (const continuation of pending) continuation();
+  } finally { if (owner) state.deathSettlement = undefined; }
+}
+
+/** Existing batch tail; frozen death eligibility and current living recovery recipients. */
+function settleDeathEffects(state: State, dead: readonly CombatUnit[], primary: ReadonlyMap<string, CombatUnit>,
+  firstDeaths: ReadonlySet<string>): void {
   for (const u of dead) {
     const source = primary.get(u.id);
-    if (source) deathEffects(state, source);
+    if (source && firstDeaths.has(u.id)) deathEffects(state, source);
   }
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
@@ -1393,14 +1714,14 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   const deathSentry = getSkill('assassin.death_sentry');
   const hasDeathSentry = deathSentry !== undefined && [...state.units.values()].some(unit =>
     authorizedAssassinTrapRank(state, unit, deathSentry) > 0);
-  if (hasDeathSentry || state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 || state.grimWard.size > 0 ||
+  if (state.resurrectionSources.size > 0 || hasDeathSentry || state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 || state.grimWard.size > 0 ||
     (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
     [...state.druidSummons.keys()].some(id => {
       const bound = activeDruidSummon(state, id);
       return bound !== undefined && (bound.template === 'carrion_vine' || bound.template === 'solar_creeper');
     })) {
     for (const u of dead) {
-      if (!primary.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
+      if (!firstDeaths.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
         u.summon === true || u.ownerId !== undefined || u.summonOwnerId !== undefined) continue;
       state.corpses.push(u.id);
       emit(state, { kind: 'message', messageKey: 'combat:corpses.available', params: { count: state.corpses.length } });
@@ -1423,16 +1744,17 @@ function deathEffects(state: State, dead: CombatUnit): void {
       params: { percent: fraction * 100, targets: recipients.length } });
   }
 
-  // Bug #3 (P0) - when a summon dies, refund the parent skill's mana cost
+  // Bug #3 (P0) - when a player-owned summon dies, refund its skill's mana cost
   // on the owner so they can re-cast on their next action ("骷髅兵死后再
   // 触发技能重新召唤"). Without this, a Necromancer with raise_skeleton
   // (mana cost 15, no cooldown, no in-combat regen) hits a hard mana wall
   // at 5 lifetime summons; once their mana drains, dead skeletons are
   // never replaced.
-  if (inferKind(dead) === 'summon' && dead.summonOwnerId && dead.summonRefundOnDeath !== false &&
+  // Hostile replacements retain their authored cooldown; minion deaths cannot reset it.
+  if (dead.side === 'player' && inferKind(dead) === 'summon' && dead.summonOwnerId && dead.summonRefundOnDeath !== false &&
     !(dead.summonTemplateId && state.preparationTemplates.get(dead.summonOwnerId)?.has(dead.summonTemplateId))) {
     const owner = state.units.get(dead.summonOwnerId);
-    if (owner && alive(owner)) {
+    if (owner && owner.side === 'player' && alive(owner)) {
       const summonSkill = owner.skillOrder
         .map((id) => getSkill(id))
         .find((s): s is RegisteredSkill =>
@@ -1546,6 +1868,7 @@ function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkil
     if (governed === 'item.redemption') return 0;
   }
   if (skill.id === 'sorceress.frozen_armor') return resolveFrozenArmorRank(unit.skillLevels);
+  if (isNativeMercenarySkill(skill) && mercSignatureFactor(unit, skill.id) > 1 && unit.mercSignature) return unit.mercSignature.rank;
   const levels = unit.skillLevels;
   if (!levels) return legacyFallback;
   for (const id of skillLevelCandidates(skill)) {
@@ -1576,7 +1899,11 @@ function effectiveManaCost(skill: RegisteredSkill, skillLevel: number): number {
   return Math.max(0, Math.round(skill.manaCost + (skill.manaCostPerRank ?? 0) * Math.max(0, skillLevel - 1)));
 }
 
-function effectiveCooldown(skill: RegisteredSkill, skillLevel: number): number {
+function effectiveCooldown(skill: RegisteredSkill, skillLevel: number, unit?: CombatUnit): number {
+  const override = skill.archetype === 'monster' && unit?.monsterArchetypeId &&
+    (unit.kind === undefined || unit.kind === 'monster')
+    ? unit.skillCooldownOverrides?.[skill.id] : undefined;
+  if (override !== undefined) return override;
   if (skill.cooldown <= 0) return 0;
   return Math.max(1, Number((skill.cooldown + (skill.cooldownPerRank ?? 0) * Math.max(0, skillLevel - 1)).toFixed(1)));
 }
@@ -1645,6 +1972,13 @@ function healingTargets(state: State, actorId: string, effect: HealEffect): Comb
 }
 
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
+  if (matchesSlowMissiles(skill)) {
+    const actor = state.units.get(actorId);
+    return actor !== undefined && opponentsOf(state, actor).some(target => {
+      const paid = state.slowMissiles.get(target.id);
+      return paid === undefined || paid.expiresAtMs <= state.simClockMs;
+    });
+  }
   if (matchesStaticField(skill)) {
     const actor = state.units.get(actorId);
     return actor !== undefined && opponentsOf(state, actor)
@@ -1714,9 +2048,10 @@ function assassinFlightDodgeForUnit(state: State, sourceId: string): number {
 /** Native learned projection or this battle's committed shadow alone authorizes payment. */
 function authorizedAssassinTrapRank(state: State, unit: CombatUnit, skill: RegisteredSkill): number {
   const id = assassinTrapId(skill.id);
-  if (!id || unit.id.length === 0 || !matchesAssassinTrap(skill) || unit.side !== 'player' || effectiveSide(state, unit) !== 'player' ||
+  if (!id || unit.id.length === 0 || unit.side !== 'player' || effectiveSide(state, unit) !== 'player' ||
     !Number.isFinite(unit.life) || !alive(unit) || !Number.isInteger(unit.level) || unit.level < skill.minLevel) return 0;
   const binding = state.assassinShadows.get(unit.id), owner = binding && state.units.get(binding.ownerId);
+  if ((!binding && unit.assassinTrapRanks?.[id] === undefined) || !matchesAssassinTrap(skill)) return 0;
   if (binding) return owner && alive(owner) && unit.kind === 'summon' && unit.summon === true &&
     unit.summonOwnerId === binding.ownerId && (unit.ownerId === undefined || unit.ownerId === binding.ownerId) &&
     unit.summonTemplateId === binding.template ? binding.plan.attacks.find(row => row.id === id)?.rank ?? 0 : 0;
@@ -1738,6 +2073,42 @@ function activeAssassinTrap(state: State, paid: PaidAssassinTrap): boolean {
     (!binding || (owner !== undefined && alive(owner)));
 }
 
+/** Find the oldest available original body without consuming or reordering any token. */
+function resurrectionCorpseIndex(state: State): number {
+  return state.corpses.findIndex(id => state.resurrectionBodies.has(id) &&
+    state.deathsHandled.has(id) && !state.revivedLives.has(id) && state.units.get(id)?.life === 0);
+}
+
+/** Restore the captured configuration and current death-time resources in place, without registration. */
+function resurrectOriginal(state: State, source: string, target: string): void {
+  const original = state.resurrectionBodies.get(target), dead = state.units.get(target);
+  if (!original || !dead) return;
+  const { holyShield: _holy, cycloneArmor: _cyclone, druidForm: _form, druidFormLife: _formLife,
+    vigorLife: _vigor, manaCapacity: _capacity, coldArmors: _cold, frozenArmor: _frozen,
+    mercFrozenArmor: _mercFrozen, manaRegenCarry: _carry, manaRegenCompensation: _compensation,
+    manaRegenExactCarry: _exact, ...configuration } = structuredClone(original);
+  const restored: CombatUnit = { ...configuration, life: original.stats.lifeMax,
+    mana: Math.max(0, Math.min(original.stats.manaMax, dead.mana)), statuses: [], activeBuffIds: [],
+    enraged: dead.enraged, ...(dead.summonedAdds !== undefined ? { summonedAdds: dead.summonedAdds } : {}) };
+  state.conversions.delete(target);
+  state.periodic.delete(target);
+  state.cyclonePeriodicBaseline.delete(target);
+  state.holyShieldPeriodicBaseline.delete(target);
+  state.manaRecovery.delete(target);
+  state.slowMissiles.delete(target);
+  state.periodicSpellPulses.delete(target);
+  state.units.set(target, restored);
+  state.revivedLives.add(target);
+  refreshCooldowns(state, target);
+  const current = state.units.get(target);
+  if (!current) return;
+  scheduleNextAction(state, current);
+  emit(state, { kind: 'revive', source, target, unit: structuredClone(current) });
+  // Death observed an empty view already: re-entry must be explicit even when still empty.
+  observeStatuses(state, target, false, true);
+  reconcileResourceCapacities(state);
+}
+
 function canUseSkillForState(
   state: State,
   unit: CombatUnit,
@@ -1745,6 +2116,28 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  if (skill.trigger === 'on-death' || isMonsterDeathExplosionId(skillOrderId) ||
+    isMonsterDeathExplosionId(skill.id)) return false;
+  const monsterPrison = isMonsterBonePrisonId(skillOrderId) || isMonsterBonePrisonId(skill.id) ||
+    skill.effects.some(effect => effect === MONSTER_BONE_PRISON.effect);
+  if (monsterPrison && (skill !== MONSTER_BONE_PRISON.skill || !isMonsterBonePrisonSource(unit) ||
+    !hasEnemyTarget || !Number.isFinite(unit.mana) || unit.mana < 0 ||
+    ['monster.bone_prison', 'monster-bone-prison'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
+  const monsterBuff = monsterSelfBuffId(skillOrderId) ?? monsterSelfBuffId(skill.id);
+  if (monsterBuff && (!matchesMonsterSelfBuff(skill, monsterBuff) || !isMonsterSelfBuffSource(unit, monsterBuff) ||
+    activeMonsterSelfBuff(state, unit.id, monsterBuff) !== undefined || !Number.isFinite(unit.mana) || unit.mana < 0)) return false;
+  const panic = isMonsterPanicId(skillOrderId) || isMonsterPanicId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'monster-panic-flee');
+  if (panic && (!matchesMonsterPanic(skill) || !state.panicReactions.get(unit.id)?.pending ||
+    !alive(unit) || effectiveSide(state, unit) !== 'enemy' || activeConversion(state, unit) !== undefined ||
+    !Number.isFinite(unit.mana) || unit.mana < 0 ||
+    ['monster.panic_flee', 'monster-panic-flee'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
+  const resurrection = isMonsterResurrectionId(skillOrderId) || isMonsterResurrectionId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'monster-resurrection');
+  if (resurrection && (!matchesMonsterResurrection(skill) || !state.resurrectionSources.has(unit.id) ||
+    !alive(unit) || effectiveSide(state, unit) !== 'enemy' || activeConversion(state, unit) !== undefined ||
+    !Number.isFinite(unit.mana) || unit.mana < 0 || resurrectionCorpseIndex(state) < 0 ||
+    ['monster.resurrect_fallen', 'monster-resurrect-fallen'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const flight = isAssassinFlightId(skillOrderId) || isAssassinFlightId(skill.id);
   if (flight && (skill.id !== ASSASSIN_FLIGHT_ID || !authorizedAssassinFlight(state, unit, skill) ||
     !Number.isFinite(unit.mana) || unit.mana < 0 || !Number.isFinite(unit.stats.manaMax) || unit.mana > unit.stats.manaMax ||
@@ -1872,9 +2265,13 @@ function canUseSkillForState(
   if (armor && (skillLevel === 0 || !matchesColdArmor(skill, armor) || paidColdArmorRank(unit, armor) > 0)) return false;
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
-  if (isPaidFrozenArmorSkill(skill)) {
+  if (skill.id === MERC_PILFER_SKILL.id && (skill !== MERC_PILFER_SKILL || !isMercPilferSource(unit) ||
+    !Number.isFinite(unit.mana) || unit.mana < 0)) return false;
+  if (skill.id === MERC_FROZEN_ARMOR_SKILL.id) {
+    if (skill !== MERC_FROZEN_ARMOR_SKILL || !isMercFrozenArmorSource(unit) || mercFrozenArmorDefense(unit) > 0) return false;
+  } else if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form && !personalBuff && !wall &&
+  } else if (!monsterBuff && !armor && !burst && !cloak && !leap && !concentrate && !form && !personalBuff && !wall &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1919,7 +2316,11 @@ function applyEffect(
 ): void {
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
+  if (isNativeMercenarySkill(skill)) effect = scaleMercSignatureEffect(effect, skill.id, mercSignatureFactor(acting, skill.id));
   switch (effect.kind) {
+    case 'monster-panic-flee':
+      // Only a validated pending native reaction can commit power in castSkill.
+      break;
     case 'party-skill-ranks': {
       if (!matchesBattleCommand(skill) || battleCommandRank(acting) === 0) break;
       const duration = battleCommandDuration(skillLevel), grant = Object.freeze({ sourceId: actorId,
@@ -1982,8 +2383,13 @@ function applyEffect(
       break;
     }
     case 'damage': {
+      const delivery = getSkillDamageDelivery(skill);
+      // Bind the original first recipient before settlement; never transfer contact
+      // after a miss, death, skipped target or later hit-sequence attempt.
+      const primaryId = enemySideAlive[0]?.id;
       const strikeTarget = (target: string) => { applyDamageToUnit(state, actorId, target, effect, skillLevel,
-        false, false, false, false, false, skill); };
+        false, false, false, false, false, skill, undefined,
+        delivery === 'primary-melee' ? (target === primaryId ? 'melee' : 'none') : delivery); };
       if (effect.hitSequence !== undefined) {
         const strikes = effect.hitSequence.strikes;
         if (!Number.isInteger(strikes) || strikes < 2 || strikes > 8) {
@@ -2023,7 +2429,9 @@ function applyEffect(
       for (const t of enemySideAlive) {
         if (effect.projectileFlightMs !== undefined) {
           state.projectiles.launch(actorId, effect.projectileFlightMs,
-            { attackerId: actorId, defenderId: t.id, effect, skillLevel });
+            { attackerId: actorId, defenderId: t.id, effect, skillLevel,
+              ...((delivery === 'melee' || delivery === 'ranged' ||
+                (delivery === 'primary-melee' && t.id === primaryId)) ? { accuracySkill: skill } : {}) });
         } else strikeTarget(t.id);
       }
       break;
@@ -2031,6 +2439,14 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (skill === MERC_FROZEN_ARMOR_SKILL && effect.mercFrozenArmor === true) {
+        if (!isMercFrozenArmorSource(actor) || mercFrozenArmorDefense(actor) > 0) return;
+        state.units.set(actorId, { ...actor,
+          mercFrozenArmor: Object.freeze({ defense: MERC_FROZEN_ARMOR_DEFINITION.defense * mercRankFactor(state, actorId, skill.id) }),
+          activeBuffIds: [...actor.activeBuffIds.filter(id => id !== skill.id && id !== effect.id), effect.id] });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id });
+        break;
+      }
       if (effect.boneWall === true && matchesBoneWall(skill)) {
         state.units.set(actorId, payBoneWall(actor, skillLevel, state.simClockMs, paidRankBonus(state, actor)));
         emit(state, { kind: 'buff', target: actorId, buffId: 'bone-wall', statusBacked: true });
@@ -2163,6 +2579,7 @@ function applyEffect(
         if (!matchesSlowMissiles(skill) || slowMissilesRank(acting) === 0) break;
         const d = SLOW_MISSILES_DEFINITION, expiresAtMs = state.simClockMs + d.durationMs;
         for (const target of enemySideAlive) {
+          if (!canApplyStatus(target, 'slow-missiles')) continue;
           state.slowMissiles.set(target.id, { expiresAtMs, projectileSpeedPct: d.projectileSpeedPct });
           state.units.set(target.id, { ...target, statuses: [
             ...target.statuses.filter(status => status.id !== 'slow-missiles'),
@@ -2185,6 +2602,8 @@ function applyEffect(
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
             ...(effect.innerSight === true && effect.statusId === 'inner-sight' ? { innerSight: paidAmazonInnerSight() } : {}),
+            ...(skill === MERC_INNER_SIGHT_SKILL && effect.statusId === MERC_INNER_SIGHT_DEFINITION.statusId
+              ? { innerSight: { defenseReductionPct: MERC_INNER_SIGHT_DEFINITION.defenseReductionPct * mercRankFactor(state, actorId, skill.id) } } : {}),
             ...(effect.terror === true && effect.statusId === 'terror' ? { terror: true as const } : {}),
             ...(effect.bonePrison === true && effect.statusId === 'bone-prison' ? { bonePrison: true as const } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
@@ -2241,7 +2660,8 @@ function applyEffect(
 }
 
 /** Registration is the commit boundary; candidate building never allocates battle identity. */
-function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit, passiveSpirit = false): CombatUnit {
+function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit,
+  passiveSpirit = false, commitBody?: (body: CombatUnit) => CombatUnit): CombatUnit {
   const summon = { ...template, id: nextSummonId(state, owner.id, templateId) };
   const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
   const summonWithPreferredPosition = preferredPosition
@@ -2256,7 +2676,10 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
   reconcileResourceCapacities(state);
-  const committed = state.units.get(positionedSummon.id) ?? positionedSummon;
+  const reconciled = state.units.get(positionedSummon.id) ?? positionedSummon;
+  const committed = commitBody ? commitBody(reconciled)
+    : passiveSpirit ? { ...reconciled, basicAttackDelivery: 'none' as const } : reconciled;
+  state.units.set(committed.id, committed);
   emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: committed });
   observeStatuses(state, positionedSummon.id);
   return committed;
@@ -2264,7 +2687,8 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
 
 function castSkill(
   state: State, actorId: string, skill: RegisteredSkill,
-  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[]; readonly skillLevel?: number },
+  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[]; readonly skillLevel?: number;
+    readonly commitBody?: (body: CombatUnit) => CombatUnit },
   skillOrderId = skill.id
 ): readonly CombatUnit[] | undefined {
   const actor = state.units.get(actorId);
@@ -2281,20 +2705,25 @@ function castSkill(
     skill.effects.some(effect => effect.kind === 'corpse-search');
   const gw = isGrimWardId(skillOrderId) || isGrimWardId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-ward');
+  const resurrection = isMonsterResurrectionId(skillOrderId) || isMonsterResurrectionId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'monster-resurrection');
   const consumesCorpse = ce || pe || fp || fi || gw;
-  if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
+  const panic = isMonsterPanicId(skillOrderId) || isMonsterPanicId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'monster-panic-flee');
+  if ((consumesCorpse || resurrection || panic) && !canUseSkillForState(state, actor, skill, skillOrderId,
     opponentsOf(state, actor).length > 0)) return;
   const skillLevel = prepared?.skillLevel ?? effectiveSkillLevel(state, actor, skill);
   const rankBonus = paidRankBonus(state, actor);
   const recovery = fp ? findPotionRecovery(actor, skillLevel, rankBonus) : undefined;
   // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
-  const corpseId = consumesCorpse ? state.corpses.shift() : undefined;
+  const corpseId = resurrection ? state.corpses.splice(resurrectionCorpseIndex(state), 1)[0]
+    : consumesCorpse ? state.corpses.shift() : undefined;
   const manaCost = effectiveManaCost(skill, skillLevel);
   const newMana = Math.max(0, actor.mana - manaCost);
   const manaEvent = commitMana(state, actor, { ...actor, mana: newMana }, 'cast');
 
   // Time-based cooldown.
-  const cooldown = effectiveCooldown(skill, skillLevel);
+  const cooldown = effectiveCooldown(skill, skillLevel, actor);
   if (cooldown > 0) {
     let cdMap = state.cooldownExpiresAt.get(actorId);
     if (!cdMap) {
@@ -2306,6 +2735,34 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
+  const monsterBuff = monsterSelfBuffId(skill.id);
+  if (monsterBuff && matchesMonsterSelfBuff(skill, monsterBuff) && isMonsterSelfBuffSource(actor, monsterBuff)) {
+    const definition = MONSTER_SELF_BUFFS.find(entry => entry.definition.id === monsterBuff)?.definition;
+    if (!definition) throw new Error('Missing native monster buff definition');
+    const paid = new Map(state.monsterSelfBuffs.get(actorId));
+    paid.set(monsterBuff, Object.freeze({ createdAtMs: state.simClockMs,
+      expiresAtMs: state.simClockMs + definition.durationMs, percent: definition.percent }));
+    state.monsterSelfBuffs.set(actorId, paid);
+    emit(state, { kind: 'buff', target: actorId, buffId: 'monster-' + monsterBuff, statusBacked: true });
+    observeStatuses(state, actorId);
+    return;
+  }
+  if (panic) {
+    state.panicReactions.set(actorId, { triggered: true, pending: false,
+      expiresAtMs: state.simClockMs + MONSTER_PANIC_DEFINITION.durationMs });
+    emit(state, { kind: 'buff', target: actorId, buffId: 'panic_flee', statusBacked: true });
+    observeStatuses(state, actorId);
+    return;
+  }
+  if (resurrection && corpseId !== undefined) {
+    emit(state, { kind: 'message', messageKey: 'combat:corpses.consumedResurrection',
+      params: { count: state.corpses.length, corpseId } });
+    resurrectOriginal(state, actorId, corpseId);
+    return;
+  }
+  if (skill === MERC_PILFER_SKILL && isMercPilferSource(actor)) {
+    state.mercPilferGoldFind = MERC_PILFER_DEFINITION.currencyFindPct * mercRankFactor(state, actorId, skill.id);
+  }
   if (flight) {
     state.assassinFlights.set(actorId, Object.freeze({ rank: skillLevel, ...(rankBonus ? { rankBonus } : {}),
       createdAtMs: state.simClockMs, expiresAtMs: state.simClockMs + ASSASSIN_FLIGHT_DEFINITION.durationMs }));
@@ -2359,7 +2816,8 @@ function castSkill(
     return;
   }
   if (prepared) {
-    return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
+    return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate,
+      false, prepared.commitBody));
   }
 
   const enemiesAliveRaw = attackCandidates(state, actor);
@@ -2408,7 +2866,8 @@ function basicAttack(state: State, actorId: string): void {
       : druid?.template === 'poison_creeper' ? { applyStatus: { id: 'poison', damageType: 'poison' as const,
         dotPctOfDamage: DRUID_SUMMON_DEFINITION.poison.dotPctOfDamage } } : {})
   };
-  applyDamageToUnit(state, actorId, target.id, effect, 1, true);
+  applyDamageToUnit(state, actorId, target.id, effect, 1, true,
+    false, false, false, false, undefined, undefined, actor.basicAttackDelivery);
 }
 
 /** Revalidate paid runtime identity and its original living native owner at each ordinary hit. */
@@ -2435,7 +2894,8 @@ function attackWithHydra(state: State, body: CombatUnit): void {
     if (!current || !alive(current)) break;
     const target = pickDefender(state, current, attackCandidates(state, current));
     if (!target) break;
-    applyDamageToUnit(state, body.id, target.id, HYDRA_DEFINITION.bolt, bound.rank, true);
+    applyDamageToUnit(state, body.id, target.id, HYDRA_DEFINITION.bolt, bound.rank, true,
+      false, false, false, false, undefined, undefined, 'spell');
   }
 }
 
@@ -2479,18 +2939,20 @@ function integratePeriodic(
   unit: CombatUnit,
   from: number,
   to: number,
-  previous: PeriodicIntegral = { total: 0, compensation: 0, dealt: 0 }
+  previous: PeriodicIntegral = { total: 0, compensation: 0, dealt: 0 },
+  observe?: (status: ActiveStatus, hpMs: number) => void
 ): PeriodicIntegral {
   let { total, compensation } = previous;
   for (const status of unit.statuses) {
     const elapsed = Math.max(0, Math.min(to, status.expiresAtMs ?? Infinity) -
       Math.max(from, status.appliedAtMs ?? 0));
-    const rate = (status.dotPerStack ?? 0) * status.stacks;
+    const rate = statusDotRate(unit, status);
     if (elapsed <= 0 || rate <= 0) continue;
     const adjusted = rate * elapsed - compensation;
     const next = total + adjusted;
     compensation = (next - total) - adjusted;
     total = next;
+    observe?.(status, rate * elapsed);
   }
   return { total, compensation, dealt: Math.floor(total / SECONDS), wallAbsorbed: previous.wallAbsorbed ?? 0 };
 }
@@ -2502,7 +2964,7 @@ function periodicRecoveryShares(state: State, unit: CombatUnit, from: number, to
   for (const status of unit.statuses) {
     const elapsed = Math.max(0, Math.min(to, status.expiresAtMs ?? Infinity) -
       Math.max(from, status.appliedAtMs ?? 0));
-    const weight = elapsed * (status.dotPerStack ?? 0) * status.stacks;
+    const weight = elapsed * statusDotRate(unit, status);
     if (Number.isFinite(weight) && weight > 0) weights.set(status.sourceId, (weights.get(status.sourceId) ?? 0) + weight);
   }
   const total = [...weights.values()].reduce((sum, weight) => sum + weight, 0);
@@ -2523,38 +2985,54 @@ function periodicRecoveryShares(state: State, unit: CombatUnit, from: number, to
 /** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
 function settlePeriodic(state: State, to: number): void {
   const from = state.simClockMs;
-  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; wallAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
+  const panicHostiles = captureDeathHostiles(state);
+  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; wallAbsorbed: number; manaEvent: ManaEvent | undefined; provenance: PeriodicDamageProvenance }[] = [];
   const dead: CombatUnit[] = [];
   const recoveries: ReturnType<typeof periodicRecoveryShares> = [];
   for (const before of state.units.values()) {
     if (!alive(before)) continue;
     const previous = state.periodic.get(before.id);
-    const next = integratePeriodic(before, from, to, previous);
+    const contributions = [...previous?.origins?.contributions ?? []];
+    // Capture only committed intervals. Speculative lethal searches never call
+    // this observer, and expired fractional sources survive until the next dot.
+    const next = integratePeriodic(before, from, to, previous, (status, hpMs) => {
+      const index = contributions.findIndex(c => c.source === status.sourceId &&
+        c.statusId === status.id && c.damageType === status.damageType);
+      const prior = contributions[index];
+      if (prior) contributions[index] = { ...prior, hpMs: prior.hpMs + hpMs };
+      else contributions.push({ source: status.sourceId, statusId: status.id,
+        ...(status.damageType !== undefined ? { damageType: status.damageType } : {}), hpMs });
+    });
     const amount = next.dealt - (previous?.dealt ?? 0);
-    state.periodic.set(before.id, next);
+    const origins = { fromMs: previous?.origins?.fromMs ?? from,
+      carryInHpMs: previous?.origins?.carryInHpMs ?? 0, contributions };
+    state.periodic.set(before.id, { ...next, origins });
     if (amount <= 0) continue;
+    const carryOutHpMs = next.total - next.dealt * SECONDS;
+    const provenance = { ...origins, toMs: to, rawAmount: amount, carryOutHpMs };
     const absorption = splitPersonalDamage(before, amount, from, previous?.dealt ?? 0,
       state.cyclonePeriodicBaseline.get(before.id) ?? 0, state.holyShieldPeriodicBaseline.get(before.id) ?? 0,
       previous?.wallAbsorbed ?? 0);
-    state.periodic.set(before.id, { ...next, wallAbsorbed: (previous?.wallAbsorbed ?? 0) + absorption.wallAbsorbed });
+    state.periodic.set(before.id, { ...next, wallAbsorbed: (previous?.wallAbsorbed ?? 0) + absorption.wallAbsorbed,
+      origins: { fromMs: to, carryInHpMs: carryOutHpMs, contributions: [] } });
     const after = { ...absorption.unit, life: Math.max(0, before.life - absorption.damage) };
     recoveries.push(...periodicRecoveryShares(state, before, from, to, before.life - after.life));
     const manaEvent = commitPersonalDamage(state, before, after);
     damages.push({ unit: after, amount: absorption.damage, absorbed: absorption.absorbed,
       cycloneAbsorbed: absorption.cycloneAbsorbed, holyShieldAbsorbed: absorption.holyShieldAbsorbed,
-      wallAbsorbed: absorption.wallAbsorbed, manaEvent });
+      wallAbsorbed: absorption.wallAbsorbed, manaEvent, provenance });
     if (!alive(after)) dead.push(activeStatusView(after, from));
   }
   state.simClockMs = to;
   emitTurnBoundaries(state);
-  for (const { unit, amount, absorbed, cycloneAbsorbed, holyShieldAbsorbed, wallAbsorbed, manaEvent } of damages) {
-    emit(state, { kind: 'dot', target: unit.id, amount, ...(absorbed > 0 ? { absorbed } : {}),
+  for (const { unit, amount, absorbed, cycloneAbsorbed, holyShieldAbsorbed, wallAbsorbed, manaEvent, provenance } of damages) {
+    emit(state, { kind: 'dot', target: unit.id, amount, provenance, ...(absorbed > 0 ? { absorbed } : {}),
       ...(cycloneAbsorbed > 0 ? { cycloneAbsorbed } : {}),
       ...(wallAbsorbed > 0 ? { wallAbsorbed } : {}),
       ...(holyShieldAbsorbed > 0 ? { holyShieldAbsorbed } : {}) });
     if (manaEvent) emit(state, manaEvent);
   }
-  finishDeaths(state, dead);
+  finishDeaths(state, dead, panicHostiles);
   const expiredDecoys = [...state.decoys].flatMap(([id, binding]) => {
     const body = state.units.get(id);
     return body && alive(body) && binding.expiresAtMs <= to ? [body] : [];
@@ -2633,7 +3111,7 @@ function pulsePaidSpell(state: State, actorId: string, id: PeriodicSpellId): voi
     ? resolveAoeTargets(candidates, definition.aoeShape) : candidates;
   for (const target of targets) {
     applyDamageToUnit(state, actorId, target.id, PERIODIC_SPELL_DEFINITIONS[id].pulse,
-      paid.periodicSpell?.rank ?? 0, false, false, false, true);
+      paid.periodicSpell?.rank ?? 0, false, false, false, true, false, undefined, undefined, 'none');
   }
 }
 
@@ -2654,7 +3132,7 @@ function pulseAssassinTrap(state: State, paid: PaidAssassinTrap): void {
   for (const target of targetPriority(state, opponentsOf(state, source))) {
     if (!activeAssassinTrap(state, paid)) break;
     applyDamageToUnit(state, paid.sourceId, target.id, effect, paid.rank,
-      false, false, false, true, false, undefined, 'trap');
+      false, false, false, true, false, undefined, 'trap', 'none');
   }
 }
 
@@ -2680,7 +3158,7 @@ function reactBladeShield(state: State, defenderId: string, attackerId: string):
   const definition = assassinTrapDefinition(paid.id);
   paid.counterDeadlines.set(attackerId, state.simClockMs + definition.intervalMs);
   applyDamageToUnit(state, defenderId, attackerId, definition.pulse, paid.rank,
-    false, false, false, true, false, undefined, 'trap');
+    false, false, false, true, false, undefined, 'trap', 'none');
 }
 
 /** Periodic deaths/expiry and ambient auras precede spells; spells precede same-time ordinary actions. */
@@ -2692,8 +3170,7 @@ function settlePaidSpells(state: State): void {
     for (const id of PERIODIC_SPELL_IDS) {
       const paid = paidPeriodicSpell(actor, id, state.simClockMs);
       if (!paid) continue;
-      const age = state.simClockMs - (paid.appliedAtMs ?? 0);
-      if (age > 0 && age % PERIODIC_SPELL_DEFINITIONS[id].intervalMs === 0) {
+      if (isPeriodicSpellPulse(actor, id, state.simClockMs)) {
         pulsePaidSpell(state, actor.id, id);
         if (winnerOf(state) !== null) return;
       }
@@ -2749,7 +3226,7 @@ function settleAuraPulse(state: State): void {
     const effect: DamageEffect = { kind: 'damage', damageType: 'arcane', base: [tuning.damage, tuning.damage] };
     for (const target of state.units.values()) {
       if (effectiveSide(state, target) !== 'enemy' || target.undead !== true || !alive(target)) continue;
-      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
+      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true, false, false, false, undefined, undefined, 'none');
       const survivor = state.units.get(target.id);
       if (!survivor || !alive(survivor)) continue;
       state.units.set(target.id, applyStatus(survivor, { id: 'stun', sourceId: aura.sourceHeroId,
@@ -2781,7 +3258,7 @@ function settleAuraPulse(state: State): void {
       dotPctOfDamage: pulse.burn.dotPctOfDamage } } : {}) };
   for (const target of state.units.values()) {
     if (effectiveSide(state, target) === 'enemy' && alive(target)) {
-      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
+      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true, false, false, false, undefined, undefined, 'none');
     }
   }
 }
@@ -2790,9 +3267,10 @@ function settleAuraPulse(state: State): void {
 function settleMercPrayer(state: State): void {
   if (state.nextMercPrayerAtMs !== state.simClockMs) return;
   state.nextMercPrayerAtMs += MERC_PRAYER_DEFINITION.intervalMs;
-  if (mercPrayerSourceId(state) === undefined) return;
+  const sourceId = mercPrayerSourceId(state);
+  if (sourceId === undefined) return;
   for (const target of state.units.values()) {
-    if (target.side === 'player') commitHealing(state, target, MERC_PRAYER_DEFINITION.amount);
+    if (target.side === 'player') commitHealing(state, target, Math.floor(MERC_PRAYER_DEFINITION.amount * mercRankFactor(state, sourceId, 'aura-prayer')));
   }
 }
 
@@ -2802,13 +3280,36 @@ function settleMercHolyFire(state: State): void {
   state.nextMercHolyFireAtMs += MERC_HOLY_FIRE_DEFINITION.intervalMs;
   const sourceId = mercHolyFireSourceId(state);
   if (sourceId === undefined) return;
-  const amount = MERC_HOLY_FIRE_DEFINITION.amount;
+  const amount = MERC_HOLY_FIRE_DEFINITION.amount * mercRankFactor(state, sourceId, 'mskill-holy-fire');
   const effect: DamageEffect = { kind: 'damage', damageType: 'fire', base: [amount, amount] };
   for (const target of state.units.values()) {
     const source = state.units.get(sourceId);
     if (!source || !isMercHolyFireSource(source) || winnerOf(state) !== null) break;
     if (effectiveSide(state, target) === 'enemy' && alive(target)) {
-      applyDamageToUnit(state, sourceId, target.id, effect, 1, false, true);
+      applyDamageToUnit(state, sourceId, target.id, effect, 1, false, true, false, false, false, undefined, undefined, 'none');
+    }
+  }
+}
+
+/** Passive monster pulses use normal mitigation/status/death settlement, without an action. */
+function settleMonsterFrostAuras(state: State): void {
+  for (const [sourceId, pulse] of state.monsterFrostAuras) {
+    if (pulse.nextAtMs !== state.simClockMs) continue;
+    pulse.nextAtMs += pulse.tuning.intervalMs;
+    const original = state.units.get(sourceId);
+    if (!original || !alive(original) || effectiveSide(state, original) !== 'enemy') {
+      state.monsterFrostAuras.delete(sourceId);
+      continue;
+    }
+    const effect: DamageEffect = { kind: 'damage', damageType: 'cold',
+      base: [pulse.tuning.damage, pulse.tuning.damage],
+      applyStatus: { id: 'chill', durationMs: pulse.tuning.chillDurationMs } };
+    for (const target of state.units.values()) {
+      const source = state.units.get(sourceId);
+      if (!source || !alive(source) || effectiveSide(state, source) !== 'enemy' || winnerOf(state) !== null) break;
+      if (effectiveSide(state, target) === 'player' && alive(target)) {
+        applyDamageToUnit(state, sourceId, target.id, effect, 1, false, true, false, false, false, undefined, undefined, 'none');
+      }
     }
   }
 }
@@ -2849,6 +3350,12 @@ function projectileSpeed(state: State, sourceId: string): number {
 
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const traps of state.monsterPrisons.values()) for (const paid of traps.values())
+    if (paid.expiresAtMs > state.simClockMs) boundary = Math.min(boundary, paid.expiresAtMs);
+  for (const buffs of state.monsterSelfBuffs.values()) for (const paid of buffs.values())
+    if (paid.expiresAtMs > state.simClockMs) boundary = Math.min(boundary, paid.expiresAtMs);
+  for (const reaction of state.panicReactions.values())
+    if (reaction.expiresAtMs > state.simClockMs) boundary = Math.min(boundary, reaction.expiresAtMs);
   for (const [sourceId, paid] of state.assassinFlights) if (activeAssassinFlight(state, sourceId))
     boundary = Math.min(boundary, paid.expiresAtMs);
   for (const paid of state.assassinTraps.values()) if (activeAssassinTrap(state, paid)) {
@@ -2884,6 +3391,11 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   if (state.nextMercHolyFireAtMs !== undefined && mercHolyFireSourceId(state) !== undefined) {
     boundary = Math.min(boundary, state.nextMercHolyFireAtMs);
   }
+  for (const [id, pulse] of state.monsterFrostAuras) {
+    const source = state.units.get(id);
+    if (!source || !alive(source) || effectiveSide(state, source) !== 'enemy') state.monsterFrostAuras.delete(id);
+    else boundary = Math.min(boundary, pulse.nextAtMs);
+  }
   for (const unit of state.units.values()) {
     if (!alive(unit)) continue;
     for (const pool of state.martialCharges.peek(unit.id, state.simClockMs))
@@ -2903,7 +3415,7 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   for (const unit of state.units.values()) {
     if (!alive(unit) || boundary <= state.simClockMs) continue;
     const rate = activeStatusView(unit, state.simClockMs).statuses.reduce(
-      (sum, status) => sum + Math.max(0, (status.dotPerStack ?? 0) * status.stacks), 0);
+      (sum, status) => sum + Math.max(0, statusDotRate(unit, status)), 0);
     if (rate <= 0) continue;
     const previous = state.periodic.get(unit.id);
     const carry = (previous?.total ?? 0) / SECONDS - (previous?.dealt ?? 0);
@@ -3124,11 +3636,12 @@ function prepareHydra(state: State, owner: CombatUnit, skill: RegisteredSkill): 
   const rank = effectiveLearnedSkillRank(learnedRank, paidRankBonus(state, owner) ?? 0);
   const candidate = buildHydra(owner);
   if (!validPreparationCandidate(candidate)) return;
-  const registered = castSkill(state, owner.id, skill,
-    { summonId: 'hydra', units: [candidate], skillLevel: rank });
-  const body = registered?.[0];
-  if (registered?.length === 1 && body) state.hydras.set(body.id,
-    { ownerId: owner.id, rank, expiresAtMs: state.simClockMs + HYDRA_DEFINITION.durationMs });
+  castSkill(state, owner.id, skill,
+    { summonId: 'hydra', units: [candidate], skillLevel: rank, commitBody: body => {
+      state.hydras.set(body.id,
+        { ownerId: owner.id, rank, expiresAtMs: state.simClockMs + HYDRA_DEFINITION.durationMs });
+      return { ...body, basicAttackDelivery: 'spell' };
+    } });
 }
 
 /** Complete validation precedes one ranked payment; bare/preloaded bodies never gain authority. */
@@ -3140,14 +3653,13 @@ function prepareDecoy(state: State, owner: CombatUnit, skill: RegisteredSkill): 
   if (!Number.isFinite(cost) || owner.mana < cost) return;
   const candidate = buildDecoy(owner, rank, bonus);
   if (!validPreparationCandidate(candidate)) return;
-  const registered = castSkill(state, owner.id, skill,
-    { summonId: 'decoy', units: [candidate], skillLevel: rank });
-  const body = registered?.[0];
-  if (registered?.length === 1 && body) {
-    state.decoys.set(body.id, { ownerId: owner.id,
-      expiresAtMs: state.simClockMs + decoyDuration(rank, bonus) });
-    state.actionSchedule.delete(body.id);
-  }
+  castSkill(state, owner.id, skill,
+    { summonId: 'decoy', units: [candidate], skillLevel: rank, commitBody: body => {
+      state.decoys.set(body.id, { ownerId: owner.id,
+        expiresAtMs: state.simClockMs + decoyDuration(rank, bonus) });
+      state.actionSchedule.delete(body.id);
+      return { ...body, basicAttackDelivery: 'none' };
+    } });
 }
 
 function castSummonsOnStart(state: State, unitId: string): void {
@@ -3204,7 +3716,7 @@ function actionIsInterrupted(state: State, unit: CombatUnit): boolean {
     ? { ...active, statuses: active.statuses.filter(status => status.id !== 'stun') }
     : active;
   return isStunned(blocking) || isImmobilized(blocking) || activeTerror(blocking, state.simClockMs) ||
-    activeBonePrison(blocking, state.simClockMs);
+    activeBonePrison(blocking, state.simClockMs) || activeMonsterPrisons(state, unit.id).length > 0;
 }
 
 /** Cancel at onset, including controls shorter than the interval between pulses. */
@@ -3443,10 +3955,18 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     decoys: new Map(),
     periodicSpellPulses: new Map(),
     conversions: new Map(),
+    lightningRetaliations: new Map(),
+    deathExplosionSources: new Map(),
+    deathBurstGrant: undefined,
+    deathSettlement: undefined,
+    monsterPrisons: new Map(),
+    monsterSelfBuffs: new Map(),
+    panicReactions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
     hasTemporaryCapacity: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
       [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.mercBattleOrders === true || unit.manaCapacity !== undefined || unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
+    monsterFrostAuras: new Map(),
     holyFreezeSources: [],
     mercMightSources: [],
     mercCriticalSources: [],
@@ -3454,6 +3974,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     mercFireMasterySources: [],
     mercThornsSources: [],
     mercDefianceSources: [],
+    mercBlessedAimSources: [],
     mercPrayerSources: [],
     mercHolyFireSources: [],
     ...(statAura ? { statAura } : {}),
@@ -3469,6 +3990,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     findPotion: new Map(copyFindPotionProjections(snapshot.findPotion).map(p => [p.sourceHeroId, p.rank])),
     findItem: new Map(copyFindItemProjections(snapshot.findItem).map(p => [p.sourceHeroId, p.rank])),
     findItemFinds: [],
+    mercPilferGoldFind: 0,
     grimWard: new Map(copyGrimWardProjections(snapshot.grimWard).map(p => [p.sourceHeroId, p.rank])),
     grimWards: new Map(),
     corpses: [],
@@ -3511,6 +4033,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     holyShieldPeriodicBaseline: new Map(),
     manaRecovery: new Map(),
     deathsHandled: new Set(),
+    resurrectionSources: new Set(),
+    resurrectionBodies: new Map(),
+    revivedLives: new Set(),
     turnsEmitted: 0,
     heroDead: false,
     insertionCounter: 0,
@@ -3522,11 +4047,39 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
   // Wave-local visual markers cannot establish paid state or cross the wave boundary.
   const clearWardMarkers = (unit: CombatUnit): CombatUnit => ({ ...unit,
     statuses: unit.statuses.filter(status => status.id !== 'grim-ward' && !isGrimWardId(status.id) &&
-      status.id !== 'battle-command' && !isBattleCommandId(status.id)),
+      status.id !== 'battle-command' && !isBattleCommandId(status.id) && status.id !== 'panic_flee' && !isMonsterPanicId(status.id)),
     activeBuffIds: unit.activeBuffIds.filter(id => id !== 'grim-ward' && !isGrimWardId(id) &&
-      id !== 'battle-command' && !isBattleCommandId(id)) });
+      id !== 'battle-command' && !isBattleCommandId(id) && id !== 'panic_flee' && !isMonsterPanicId(id)) });
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, clearWardMarkers(u));
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, clearWardMarkers(u));
+  // Capture the effective map once; duplicate IDs and assigned positions have settled.
+  for (const unit of state.units.values()) {
+    const aura = unit.frostAura;
+    if (aura && unit.kind === 'monster' && unit.side === 'enemy' && alive(unit) && Number.isFinite(unit.life) &&
+      !unit.summon && unit.ownerId === undefined && unit.summonOwnerId === undefined && unit.summonTemplateId === undefined &&
+      Number.isFinite(aura.damage) && aura.damage >= 0 &&
+      Number.isInteger(aura.intervalMs) && aura.intervalMs >= 1000 &&
+      Number.isInteger(aura.chillDurationMs) && aura.chillDurationMs >= 1000) {
+      state.monsterFrostAuras.set(unit.id, { tuning: Object.freeze({ ...aura }), nextAtMs: aura.intervalMs });
+    }
+    if (unit.lightningRetaliation !== undefined && isOriginalEnemyDeathSource(unit)) {
+      const tuning = copyLightningRetaliation(unit.lightningRetaliation);
+      if (tuning) state.lightningRetaliations.set(unit.id, tuning);
+    }
+    const deathEffects: DamageEffect[] = [];
+    for (const skill of [MONSTER_DEATH_EXPLOSION_SKILL, FIRE_ENCHANTED_EXPLOSION_SKILL]) {
+      const eligible = skill === MONSTER_DEATH_EXPLOSION_SKILL
+        ? isOriginalDeathExplosionSource(unit) : isOriginalEnemyDeathSource(unit);
+      if (!eligible || !unit.skillOrder.some(id => isMonsterDeathExplosionId(id) && getSkill(id) === skill)) continue;
+      const effect = skill.effects[0];
+      if (!effect || effect.kind !== 'damage') throw new Error('Missing native death explosion');
+      deathEffects.push(effect);
+    }
+    if (deathEffects.length > 0) state.deathExplosionSources.set(unit.id, Object.freeze(deathEffects));
+    if (isOriginalMonsterResurrectionSource(unit)) state.resurrectionSources.add(unit.id);
+    if (isOriginalMonsterResurrectionBody(unit)) state.resurrectionBodies.set(unit.id, structuredClone(unit));
+    if (isOriginalPanicRecipient(unit)) state.panicReactions.set(unit.id, { triggered: false, pending: false, expiresAtMs: 0 });
+  }
   if (mercPrayerSourceId(state) !== undefined) state.nextMercPrayerAtMs = MERC_PRAYER_DEFINITION.intervalMs;
   if (mercHolyFireSourceId(state) !== undefined) state.nextMercHolyFireAtMs = MERC_HOLY_FIRE_DEFINITION.intervalMs;
   for (const unit of state.units.values()) {
@@ -3611,6 +4164,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     settleMercPrayer(state);
     settleMercHolyFire(state);
     if (winnerOf(state) !== null) break;
+    settleMonsterFrostAuras(state);
+    if (winnerOf(state) !== null) break;
     settleGrimWards(state);
     settlePaidSpells(state);
     if (winnerOf(state) !== null) break;
@@ -3620,7 +4175,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     for (const impact of impacts) {
       if (winnerOf(state) !== null) break;
       applyDamageToUnit(state, impact.attackerId, impact.defenderId, impact.effect,
-        impact.skillLevel, false, false, false, false, true);
+        impact.skillLevel, false, false, false, false, true, undefined, undefined, 'none', impact.accuracySkill);
     }
     if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
@@ -3665,6 +4220,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     enemyTeam,
     rounds: state.turnsEmitted,
     ...(state.findItemFinds.length > 0 ? { findItemFinds: Object.freeze([...state.findItemFinds]) } : {}),
+    ...(state.mercPilferGoldFind > 0 ? { mercPilferGoldFind: state.mercPilferGoldFind } : {}),
     ...(state.ironGolemPreparation ? { ironGolemPreparation: state.ironGolemPreparation } : {})
   };
   const battleCommandCarry = captureBattleCommandCarry(state);

@@ -6,16 +6,19 @@ import type { QuestProgressData } from '../types/save';
 export const ACT4_ENCOUNTERS = [
   { questId: 'quests/act4-fallen-angel', objectiveId: 'obj-kill-izual', areaId: 'areas/act4-plains-of-despair',
     proof: 'quests/act4-fallen-angel#action:izual-victory', source: { kind: 'bossEncounter', encounterId: 'act4-pod-izual' },
-    members: ['monsters/act4.izual', 'monsters/act4.oblivion-knight', 'monsters/act4.oblivion-knight'], prerequisites: [] },
+    members: ['monsters/act4.izual', 'monsters/act4.oblivion-knight', 'monsters/act4.oblivion-knight'],
+    memberTiers: ['boss', 'trash', 'trash'], prerequisites: [] },
   { questId: 'quests/act4-hellforge', objectiveId: 'obj-kill-hephasto', areaId: 'areas/act4-river-of-flame',
     proof: 'quests/act4-hellforge#action:hephasto-victory', source: { kind: 'bossEncounter', encounterId: 'act4-rof-hephasto' },
-    members: ['monsters/act4.mega-demon', 'monsters/act4.pit-lord', 'monsters/act4.pit-lord', 'monsters/act4.pit-lord'], prerequisites: [] },
+    members: ['monsters/act4.mega-demon', 'monsters/act4.pit-lord', 'monsters/act4.pit-lord', 'monsters/act4.pit-lord'],
+    memberTiers: ['boss', 'boss', 'boss', 'boss'], prerequisites: [] },
   { questId: 'quests/act4-terrors-end', objectiveId: 'obj-kill-diablo', areaId: 'areas/act4-chaos-sanctuary',
     proof: 'quests/act4-terrors-end#action:diablo-victory', source: { kind: 'chapterBoss', archetypeId: 'monsters/act4.diablo' },
-    members: ['monsters/act4.diablo'], prerequisites: ['obj-seal-1', 'obj-seal-2', 'obj-seal-3'] }
+    members: ['monsters/act4.diablo'], memberTiers: ['chapter-boss'], prerequisites: ['obj-seal-1', 'obj-seal-2', 'obj-seal-3'] }
 ] as const;
 for (const contract of ACT4_ENCOUNTERS) {
-  Object.freeze(contract.source); Object.freeze(contract.members); Object.freeze(contract.prerequisites); Object.freeze(contract);
+  Object.freeze(contract.source); Object.freeze(contract.members); Object.freeze(contract.memberTiers);
+  Object.freeze(contract.prerequisites); Object.freeze(contract);
 }
 Object.freeze(ACT4_ENCOUNTERS);
 export const HEPHASTO_PROOF = 'quests/act4-hellforge#action:hephasto-victory';
@@ -37,9 +40,8 @@ export function captureAct4Encounter(act: number, areaId: string, wave: WaveSpec
     wave.source.archetypeId !== contract.members[0]
     : wave.presentation?.isActBoss === true || wave.source.kind !== 'bossEncounter' ||
       wave.source.encounterId !== contract.source.encounterId) return undefined;
-  const tier = chapter ? 'chapter-boss' : 'boss';
   if (!contract.members.every((archetype, index) => {
-    const spawn = wave.spawns[index], unit = enemies[index];
+    const spawn = wave.spawns[index], unit = enemies[index], tier = contract.memberTiers[index];
     return spawn?.archetypeId === archetype && spawn.tier === tier &&
       (chapter ? spawn.chapterBoss?.archetypeId === archetype && spawn.encounterId === undefined
         : spawn.chapterBoss === undefined && spawn.encounterId === contract.source.encounterId) &&
@@ -60,7 +62,7 @@ export function hasOriginalAct4Victory(encounter: Act4Encounter, heroId: string,
   return encounter.originalMemberIds.every((id, index) => {
     const matches = outcome.finalEnemyTeam.filter(unit => unit.id === id), unit = matches[0];
     return matches.length === 1 && unit?.side === 'enemy' && unit.kind === 'monster' &&
-      unit.tier === (encounter.contract.source.kind === 'chapterBoss' ? 'chapter-boss' : 'boss') &&
+      unit.tier === encounter.contract.memberTiers[index] &&
       unit.monsterArchetypeId === encounter.contract.members[index] && Number.isFinite(unit.life) && unit.life <= 0;
   });
 }

@@ -7,25 +7,30 @@
     "tenPull": 90
   },
   "rates": {
-    "SSR": 0.10,
-    "SR": 0.30,
-    "R": 0.60
+    "SSR": 0.02,
+    "SR": 0.13,
+    "R": 0.85
   },
   "pity": {
     "sr": {
-      "threshold": 30,
+      "threshold": 10,
       "guaranteedTier": "SR",
-      "description": "Every 30 pulls without an SR+ guarantees the next pull is SR or higher. The SR-guaranteed slot still has a 10% upgrade chance to SSR."
+      "description": "After nine consecutive R results, the tenth draw guarantees SR or higher, retaining the base 2% SSR chance."
     },
     "ssr": {
-      "threshold": 90,
+      "threshold": 50,
       "guaranteedTier": "SSR",
-      "description": "Every 90 pulls without an SSR guarantees the next pull is SSR. Counter is independent of the SR pity counter."
+      "description": "After 49 consecutive non-SSR results, the fiftieth draw guarantees SSR. SR results do not reset this counter."
     },
     "carryAcrossSessions": true,
     "resetRules": {
-      "onSSR": ["pullsSinceSSR", "pullsSinceSR"],
-      "onSR": ["pullsSinceSR"],
+      "onSSR": [
+        "pullsSinceSSR",
+        "pullsSinceSR"
+      ],
+      "onSR": [
+        "pullsSinceSR"
+      ],
       "onR": []
     }
   },
@@ -40,7 +45,8 @@
     "starBonuses": {
       "statMultiplierPerStar": 0.08,
       "signatureSkillRankPerStar": 1,
-      "skillRankCapAboveBase": 5
+      "skillRankCapAboveBase": 5,
+      "signatureEffectPerRank": 0.12
     }
   },
   "pool": {

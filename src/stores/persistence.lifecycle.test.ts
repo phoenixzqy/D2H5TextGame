@@ -1,3 +1,4 @@
+import { readStoredSaveJson } from '../../tests/helpers/stored-save';
 /** Real persistence and adapter, with only the IndexedDB boundary faked. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -47,7 +48,7 @@ function required<T>(value: T | null | undefined): T {
   return value;
 }
 function saved(): SaveCurrent {
-  return required(disk.state.record).data as SaveCurrent;
+  return readStoredSaveJson(disk.state.record) as SaveCurrent;
 }
 function deferred() {
   let resolve: (() => void) | undefined;

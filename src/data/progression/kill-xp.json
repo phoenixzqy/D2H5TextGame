@@ -1,0 +1,7 @@
+{
+  "id": "progression/kill-xp-v1",
+  "basePerLevel": 10,
+  "minimumReward": 5,
+  "growthStartLevel": 18,
+  "growthExponent": 1.5
+}

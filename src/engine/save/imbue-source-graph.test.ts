@@ -1,4 +1,4 @@
-import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV24Fields, withCurrentReplayDefaults } from '../../../tests/helpers/save-fixtures';
 /** D11 current-only source/Present/save contracts. Constructed fixtures; no earned credit. */
 import { describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -187,7 +187,7 @@ describe('D11 exactly two current-only independently earned imbue sources', () =
         [SIDE]: row(SIDE, claimed, { 'obj-bring-item': false }) } } };
     const before = structuredClone(old), expected = { ...old, version: 23 };
     expect(validateFrozenV22Save(old)).toEqual(toJsonSafe(old)); expect(runMigrations(old, 23)).toEqual(expected);
-    expect(decodeSave(toJsonSafe(old))).toEqual(withV24Defaults(expected)); expect(old).toEqual(before);
+    expect(decodeSave(toJsonSafe(old))).toEqual(withCurrentReplayDefaults(expected)); expect(old).toEqual(before);
   });
   it.each(['present', SOURCES.main, SOURCES.side])('rejects current %s authority under literal22 before migration', kind => {
     const full = withoutV24Fields(fixture()), baseline = { ...full, version: 22 as const,

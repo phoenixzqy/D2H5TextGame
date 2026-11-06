@@ -414,6 +414,89 @@ function sourceSandbox(): string {
 }
 
 describe('actual source provenance and external report boundary', () => {
+  it.each([
+    'vite.config.ts',
+    'vitest.extra.config.js',
+    'vite.config.mts',
+    'vitest.config.cts',
+    'vite.config.mjs',
+    'vitest.config.cjs',
+    'vitest.campaign.workspace.ts',
+    'vitest.workspace.mts',
+    'tsconfig.build.json',
+    'vite.config.timestamp.ts',
+    'vitest.config.ts.timestamp-note.mjs',
+    'vitest.config.ts.timestamp-1793362201298-nothex.mjs',
+    'vite.timestamp-1793362201298-a89bf1938b17b8.mjs',
+    'vitest.config.ts.timestamp-1793362201298-a89bf1938b17b8.cjs'
+  ])('hashes real root config and non-generated lookalike add/edit/delete: %s', name => {
+    const root = sourceSandbox();
+    const baseline = collectSourceState(root);
+    const filename = path.join(root, name);
+    writeFileSync(filename, 'config input');
+    const added = collectSourceState(root);
+    expect(added.manifest.map(entry => entry.path)).toContain(name);
+    expect(added.sourceTreeHash).not.toBe(baseline.sourceTreeHash);
+    expect(added.dataHash).toBe(baseline.dataHash);
+    expect(() => { assertSourceStable(baseline, added); }).toThrow(/drift/u);
+    writeFileSync(filename, 'edited config input');
+    const edited = collectSourceState(root);
+    expect(edited.sourceTreeHash).not.toBe(added.sourceTreeHash);
+    expect(edited.dataHash).toBe(baseline.dataHash);
+    unlinkSync(filename);
+    const deleted = collectSourceState(root);
+    expect(deleted.manifest).toEqual(baseline.manifest);
+    expect(deleted.sourceTreeHash).toBe(baseline.sourceTreeHash);
+  });
+
+  it.each([
+    'vitest.config.ts.timestamp-1793362201298-a89bf1938b17b8.mjs',
+    'vite.config.mts.timestamp-1793362201298-abc012.mjs',
+    'vitest.campaign.workspace.ts.timestamp-1793362201298-0abc.mjs',
+    'vite.config.mjs.timestamp-1793362201298-.mjs'
+  ])('ignores only root Vite-generated config module add/edit/delete: %s', name => {
+    const root = sourceSandbox();
+    const baseline = collectSourceState(root);
+    const filename = path.join(root, name);
+    writeFileSync(filename, 'bundled config module');
+    const added = collectSourceState(root);
+    expect(added.manifest).toEqual(baseline.manifest);
+    expect(added.sourceTreeHash).toBe(baseline.sourceTreeHash);
+    expect(added.dataHash).toBe(baseline.dataHash);
+    expect(added.dirty.isDirty).toBe(true);
+    expect(() => { assertSourceStable(baseline, added); }).not.toThrow();
+    writeFileSync(filename, 'edited bundled config module');
+    const edited = collectSourceState(root);
+    expect(edited.manifest).toEqual(baseline.manifest);
+    expect(edited.sourceTreeHash).toBe(baseline.sourceTreeHash);
+    expect(edited.dataHash).toBe(baseline.dataHash);
+    unlinkSync(filename);
+    const deleted = collectSourceState(root);
+    expect(deleted.manifest).toEqual(baseline.manifest);
+    expect(deleted.sourceTreeHash).toBe(baseline.sourceTreeHash);
+    expect(() => { assertSourceStable(added, deleted); }).not.toThrow();
+    expect(deleted.collectionPolicy.version).toBe('production-source-v2');
+    expect(deleted.collectionPolicy.excludedRootConfigPatterns).toHaveLength(1);
+  });
+
+  it('still hashes generated-looking modules under selected source roots', () => {
+    const root = sourceSandbox();
+    const baseline = collectSourceState(root);
+    const name = 'src/vitest.config.ts.timestamp-1793362201298-a89bf1938b17b8.mjs';
+    writeFileSync(path.join(root, name), 'source input');
+    const added = collectSourceState(root);
+    expect(added.manifest.map(entry => entry.path)).toContain(name);
+    expect(added.sourceTreeHash).not.toBe(baseline.sourceTreeHash);
+    expect(added.dataHash).toBe(baseline.dataHash);
+    expect(() => { assertSourceStable(baseline, added); }).toThrow(/drift/u);
+  });
+
+  it('still fails when a required selected input is missing', () => {
+    const root = sourceSandbox();
+    unlinkSync(path.join(root, 'package-lock.json'));
+    expect(() => collectSourceState(root)).toThrow(/ENOENT/u);
+  });
+
   it('hashes tracked/untracked add edit delete bytes, records SHA/tools and excludes fixed caches', () => {
     const root = sourceSandbox();
     const a = collectSourceState(root);

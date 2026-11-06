@@ -104,7 +104,7 @@ describe('production replay profile authority', () => {
     expect(accept()).toBe('next-wave');
     expect(required(combatRunLifecycle.activeRun).recording).toHaveProperty('replayProfileId', 'nightmare');
   });
-  it('fully clears Nightmare independently and pays the captured chapter wishstones exactly once', () => {
+  it('clears Nightmare independently with captured chapter sources and a separate first-clear award', () => {
     entitlement(); strongGear(); useMapStore.setState({ selectedDifficulty: 'nightmare' });
     const initial = useMapStore.getState(), receipts = initial.questReceipts, progress = initial.questProgress;
     const total = start().totalWaves;
@@ -122,7 +122,8 @@ describe('production replay profile authority', () => {
     expect(chapterDrops.filter(drop => drop.kind === 'item').length).toBeGreaterThan(0);
     expect(chapterDrops.filter(drop => drop.kind === 'direct' && drop.currency === 'wishstones'))
       .toEqual(Array.from({ length: 2 }, () => ({ kind: 'direct', currency: 'wishstones', itemId: 'currency/wishstone', quantity: 40, ilvl: 102 })));
-    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(48 + 80);
+    // This seed misses the independent 2% kill coin; the first-clear award bypasses it.
+    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(5);
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([area]);
     expect(useMapStore.getState().clearedSubAreas).toEqual(initial.clearedSubAreas);
     expect(useMapStore.getState().questReceipts).toBe(receipts);
@@ -145,7 +146,7 @@ describe('production replay profile authority', () => {
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([shenk.areaId]);
     expect(useMapStore.getState().clearedSubAreas).not.toContain(shenk.areaId);
   });
-  it('keeps Normal chapter anchors and the existing forty-wishstone award', () => {
+  it('keeps Normal chapter anchors and ungated sources while paying first clear separately', () => {
     entitlement(); strongGear();
     const total = start({ challengeOrdinal: 0 }).totalWaves;
     const last = required(required(combatRunLifecycle.activeRun).plan.waves.at(-1)?.spawns[0]);
@@ -161,7 +162,8 @@ describe('production replay profile authority', () => {
     expect(chapterDrops.filter(drop => drop.kind === 'item').length).toBeGreaterThan(0);
     expect(chapterDrops.filter(drop => drop.kind === 'direct' && drop.currency === 'wishstones'))
       .toEqual(Array.from({ length: 2 }, () => ({ kind: 'direct', currency: 'wishstones', itemId: 'currency/wishstone', quantity: 40, ilvl: 82 })));
-    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(40 + 80);
+    // Raw chapter sources remain forty plus eighty; this seed misses the kill coin.
+    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(5);
     expect(useMapStore.getState().clearedSubAreas).toContain(area);
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([]);
   });

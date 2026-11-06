@@ -9,12 +9,12 @@
  *   ──── on pull ──── modal with rarity-tinted reveals ────
  *
  * All randomness, currency math, and roster mutation live in
- * `useMetaStore.pullGacha()` → `engine/gacha/roller.ts`. This component is
+ * `useMetaStore.pullGacha()` → `engine/gacha/recruitment-state.ts`. This component is
  * presentation only.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, Tooltip, RarityText } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, RarityText } from '@/ui';
 import type { GachaPullResult } from '@/stores/metaStore';
 import { useMetaStore, useInventoryStore } from '@/stores';
 import { recruitmentBalance } from '@/stores/gachaActions';
@@ -24,15 +24,16 @@ import type { GachaRarity } from '@/engine/gacha/roller';
 const RARITY_TO_TEXT = { R: 'magic', SR: 'rare', SSR: 'unique' } as const;
 
 export function GachaScreen() {
-  const { t } = useTranslation(['gacha', 'mercs', 'common']);
+  const { t, i18n } = useTranslation(['gacha', 'mercs', 'common']);
   const earned = useInventoryStore((s) => s.currencies.wishstone ?? 0);
   const legacy = useMetaStore((s) => s.gachaState.currency);
   const balance = recruitmentBalance(earned, legacy);
   const pity = useMetaStore((s) => s.gachaState.pityCounter);
+  const recruitment = useMetaStore((s) => s.recruitmentState);
   const addCurrency = useMetaStore((s) => s.addGachaCurrency);
   const pullGacha = useMetaStore((s) => s.pullGacha);
 
-  const [recent, setRecent] = useState<GachaPullResult[]>([]);
+  const [copyStatus, setCopyStatus] = useState<'copied' | 'copyFailed' | null>(null);
   const [resultModal, setResultModal] = useState<GachaPullResult[] | null>(null);
   const [pullFailed, setPullFailed] = useState(false);
 
@@ -47,7 +48,6 @@ export function GachaScreen() {
     try {
       const results = pullGacha(n);
       if (!results) { setPullFailed(true); return; }
-      setRecent((prev) => [...results, ...prev].slice(0, banner.banner.uiHistoryCap));
       setResultModal(results);
     } catch {
       setPullFailed(true);
@@ -56,27 +56,28 @@ export function GachaScreen() {
 
   return (
     <ScreenShell testId="gacha-screen" title={t('gacha')}>
-      <div className="max-w-3xl mx-auto space-y-4">
+      <div className="min-w-0 max-w-3xl mx-auto space-y-4">
         <Panel>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-xs text-d2-white/60">{t('banner')}</div>
-              <div className="text-lg font-serif text-d2-gold truncate">
+              <div className="text-sm text-d2-white/90">{t('banner')}</div>
+              <div className="text-lg font-serif text-d2-gold break-words">
                 {t('bannerName')}
               </div>
             </div>
             <div>
-              <div className="text-xs text-d2-white/60">{t('wishstones')}</div>
+              <div className="text-sm text-d2-white/90">{t('wishstones')}</div>
               <div className="text-2xl text-d2-gold font-serif">💠 {balance ?? 0}</div>
             </div>
-            <div className="text-right">
-              <div className="text-xs text-d2-white/60">
-                {t('pityCounter', { count: pity })}
+            <div className="min-w-0 max-w-full text-right">
+              <div className="text-sm text-d2-white/90">
+                {t('pityCounter', { count: pity, threshold: PITY_THRESHOLD })}
               </div>
               <div
-                className="w-40 h-2 bg-d2-bg border border-d2-border rounded overflow-hidden mt-1"
+                className="w-40 max-w-full h-2 bg-d2-bg border border-d2-border rounded overflow-hidden mt-1"
                 role="progressbar"
-                aria-valuenow={pity}
+                aria-label={t('nextSSR', { count: Math.max(1, PITY_THRESHOLD - pity) })}
+                aria-valuenow={Math.min(pity, PITY_THRESHOLD)}
                 aria-valuemin={0}
                 aria-valuemax={PITY_THRESHOLD}
               >
@@ -88,6 +89,12 @@ export function GachaScreen() {
                   aria-hidden
                 />
               </div>
+              <p className="text-sm text-d2-white/90 mt-2" data-testid="gacha-sr-pity">
+                {t('nextSR', { count: Math.max(1, banner.pity.sr.threshold - recruitment.srPityCounter) })}
+              </p>
+              <p className="text-sm text-d2-white/90" data-testid="gacha-ssr-pity">
+                {t('nextSSR', { count: Math.max(1, PITY_THRESHOLD - pity) })}
+              </p>
             </div>
           </div>
           {/* Dev helper: grant currency for local testing. Hidden in prod (Bug #15). */}
@@ -95,7 +102,7 @@ export function GachaScreen() {
             <div className="mt-3 text-right">
               <Button
                 variant="secondary"
-                className="min-h-[44px] text-xs"
+                className="min-h-[44px] text-sm"
                 onClick={() => { addCurrency(COST_TEN); }}
                 data-testid="gacha-add-currency"
               >
@@ -128,43 +135,43 @@ export function GachaScreen() {
 
         {pullFailed && <p role="alert" className="text-sm text-d2-white">{t('pullFailed')}</p>}
 
-        <Tooltip
-          content={
-            <div className="text-xs space-y-1">
+        <details className="border border-d2-border rounded p-3">
+          <summary className="min-h-[44px] cursor-pointer">{t('rates')}</summary>
+            <div className="text-sm space-y-2">
               <div>SSR: {(RATES.SSR * 100).toFixed(1)}%</div>
               <div>SR: {(RATES.SR * 100).toFixed(1)}%</div>
               <div>R: {(RATES.R * 100).toFixed(1)}%</div>
-              <div className="text-d2-white/60">
-                {t('pityCounter', { count: PITY_THRESHOLD })}
+              <div className="text-d2-white/90">
+                {t('pityRules', { sr: banner.pity.sr.threshold, ssr: PITY_THRESHOLD })}
               </div>
+              <p>{t('uniformPool', { ssr: banner.banner.pool.SSR.length, sr: banner.banner.pool.SR.length, r: banner.banner.pool.R.length })}</p>
             </div>
-          }
-        >
-          <button
-            type="button"
-            className="text-xs text-d2-white/70 underline-offset-2 hover:underline min-h-[44px] min-w-[44px]
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
-          >
-            ⓘ {t('rates')}
-          </button>
-        </Tooltip>
+        </details>
 
         <Panel title={t('recentPulls')}>
-          {recent.length === 0 ? (
-            <p className="text-sm text-d2-white/60 italic">{t('noRecent')}</p>
+          <Button className="min-h-[44px] mb-3" variant="secondary" disabled={recruitment.history.length === 0}
+            onClick={() => {
+              void Promise.resolve().then(() => navigator.clipboard.writeText(JSON.stringify(recruitment.history, null, 2)))
+                .then(() => { setCopyStatus('copied'); }, () => { setCopyStatus('copyFailed'); });
+            }} data-testid="gacha-copy-history">{t('copyHistory')}</Button>
+          {copyStatus && <p role="status">{t(copyStatus)}</p>}
+          {recruitment.history.length === 0 ? (
+            <p className="text-sm text-d2-white/90 italic">{t('noRecent')}</p>
           ) : (
             <ul
               className="grid grid-cols-2 sm:grid-cols-3 gap-1 text-sm"
               data-testid="gacha-recent"
             >
-              {recent.map((r, i) => (
+              {[...recruitment.history].reverse().map((r) => (
                 <li
-                  key={`${r.mercDef.id}-${String(i)}`}
-                  className="border border-d2-border rounded px-2 py-1 truncate"
+                  key={r.ordinal}
+                  className="border border-d2-border rounded px-2 py-1 break-words min-w-0"
                 >
                   <RarityText rarity={RARITY_TO_TEXT[r.rarity]}>
-                    {t(`mercs:byId.${mercSlug(r.mercDef.id)}.name`, { defaultValue: r.mercDef.name })}
+                    {t(`mercs:byId.${mercSlug(r.mercId)}.name`)}
                   </RarityText>
+                  <p className="text-sm text-d2-white/90 [overflow-wrap:anywhere]">{new Date(r.timestamp).toLocaleString(i18n.language)}</p>
+                  <p className="text-sm">{r.isNew ? t('isNew') : t('duplicateShards', { count: r.shardCount })}</p>
                 </li>
               ))}
             </ul>
@@ -176,17 +183,35 @@ export function GachaScreen() {
           onClose={() => { setResultModal(null); }}
           title={t('result')}
         >
-          {resultModal && (
-            <ul className="space-y-1" data-testid="gacha-results">
-              {resultModal.map((r, i) => (
-                <RevealRow key={`${r.mercDef.id}-${String(i)}`} result={r} index={i} />
-              ))}
-            </ul>
-          )}
+          {resultModal && <RevealResults key={recruitment.totalPulls} results={resultModal} />}
+
         </Modal>
       </div>
     </ScreenShell>
   );
+}
+
+function RevealResults({ results }: { results: readonly GachaPullResult[] }) {
+  const { t } = useTranslation('gacha');
+  const [visible, setVisible] = useState(() =>
+    typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? results.length : Math.min(1, results.length));
+  useEffect(() => {
+    if (visible >= results.length) return;
+    const timer = window.setTimeout(() => { setVisible(current => Math.min(current + 1, results.length)); }, 250);
+    return () => { window.clearTimeout(timer); };
+  }, [visible, results.length]);
+  return <div className="space-y-3">
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <p className="text-sm" aria-live="polite">{t('revealProgress', { shown: visible, total: results.length })}</p>
+      {visible < results.length && <Button variant="secondary" className="min-h-[44px]"
+        data-testid="gacha-skip-reveal" onClick={() => { setVisible(results.length); }}>{t('skipReveal')}</Button>}
+    </div>
+    <ul className="space-y-1" data-testid="gacha-results">
+      {results.slice(0, visible).map((result, index) => <RevealRow key={`${result.mercDef.id}-${String(index)}`}
+        result={result} index={index} />)}
+    </ul>
+  </div>;
 }
 
 function RevealRow({ result, index }: { result: GachaPullResult; index: number }) {
@@ -197,14 +222,14 @@ function RevealRow({ result, index }: { result: GachaPullResult; index: number }
   const tone = rarityTone(result.rarity);
   return (
     <li
-      className={`flex items-center justify-between border-b border-d2-border/50 py-1
+      className={`flex flex-wrap items-center justify-between gap-x-3 gap-y-1 min-w-0 border-b border-d2-border/50 py-1
                   motion-safe:transition-opacity ${tone}`}
       style={{ animationDelay: `${String(index * 60)}ms` }}
     >
-      <RarityText rarity={rt}>{localizedName}</RarityText>
-      <span className="text-xs text-d2-white/60">
+      <RarityText rarity={rt} className="min-w-0 [overflow-wrap:anywhere]">{localizedName}</RarityText>
+      <span className="max-w-full text-sm text-d2-white/90 [overflow-wrap:anywhere]">
         {result.rarity}
-        {result.isNew ? ` · ${t('isNew')}` : ''}
+        {` · ${result.isNew ? t('isNew') : t('duplicateShards', { count: result.shardCount })}`}
       </span>
     </li>
   );

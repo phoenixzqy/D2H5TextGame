@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "decision": "production/bugs/BUG-793-restore-ordinary-two-handed-tiers.md",
+  "predecessorJsonSha256": "6391a30f35bbe21178947eb56ea2e54999e68f2ec93088b5bd174e5f3b6f007a",
+  "tiers": [
+    {
+      "baseId": "items/base/wp2h-two-handed-sword",
+      "from": 1,
+      "to": 7
+    },
+    {
+      "baseId": "items/base/wp2h-great-axe",
+      "from": 8,
+      "to": 23
+    },
+    {
+      "baseId": "items/base/wp2h-war-pike",
+      "from": 24,
+      "to": 34
+    },
+    {
+      "baseId": "items/base/wp2h-giant-thresher",
+      "from": 35,
+      "to": 51
+    },
+    {
+      "baseId": "items/base/wp2h-colossus-blade",
+      "from": 52,
+      "to": 61
+    },
+    {
+      "baseId": "items/base/wp2h-thunder-maul",
+      "from": 62,
+      "to": 122
+    }
+  ],
+  "tables": [
+    {
+      "id": "loot/trash-act1",
+      "originalEntryCount": 68,
+      "minLevel": 1,
+      "maxLevel": 58,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-war-pike",
+          "weight": 127.5,
+          "minLevel": 24,
+          "maxLevel": 34
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 127.5,
+          "minLevel": 35,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-colossus-blade",
+          "weight": 127.5,
+          "minLevel": 52,
+          "maxLevel": 58
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act2",
+      "originalEntryCount": 60,
+      "minLevel": 14,
+      "maxLevel": 71,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-war-pike",
+          "weight": 65,
+          "minLevel": 24,
+          "maxLevel": 34
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 65,
+          "minLevel": 35,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-colossus-blade",
+          "weight": 65,
+          "minLevel": 52,
+          "maxLevel": 61
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 65,
+          "minLevel": 62,
+          "maxLevel": 71
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act3",
+      "originalEntryCount": 52,
+      "minLevel": 26,
+      "maxLevel": 86,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-war-pike",
+          "weight": 43.75,
+          "minLevel": 26,
+          "maxLevel": 34
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 43.75,
+          "minLevel": 35,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-colossus-blade",
+          "weight": 43.75,
+          "minLevel": 52,
+          "maxLevel": 61
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 43.75,
+          "minLevel": 62,
+          "maxLevel": 86
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act4",
+      "originalEntryCount": 38,
+      "minLevel": 40,
+      "maxLevel": 101,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 52.5,
+          "minLevel": 40,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 52.5,
+          "minLevel": 62,
+          "maxLevel": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/trash-act5",
+      "originalEntryCount": 28,
+      "minLevel": 55,
+      "maxLevel": 122,
+      "additions": []
+    },
+    {
+      "id": "loot/champion-act4",
+      "originalEntryCount": 18,
+      "minLevel": 42,
+      "maxLevel": 55,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 15,
+          "minLevel": 42,
+          "maxLevel": 51
+        }
+      ]
+    },
+    {
+      "id": "loot/unique-act4",
+      "originalEntryCount": 18,
+      "minLevel": 43,
+      "maxLevel": 55,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 51
+        }
+      ]
+    },
+    {
+      "id": "loot/mini-act4",
+      "originalEntryCount": 25,
+      "minLevel": 43,
+      "maxLevel": 96,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 12.5,
+          "minLevel": 43,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 12.5,
+          "minLevel": 62,
+          "maxLevel": 96
+        }
+      ]
+    },
+    {
+      "id": "loot/act4-boss",
+      "originalEntryCount": 33,
+      "minLevel": 45,
+      "maxLevel": 101,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 15,
+          "minLevel": 45,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-colossus-blade",
+          "weight": 15,
+          "minLevel": 56,
+          "maxLevel": 61
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 15,
+          "minLevel": 62,
+          "maxLevel": 101
+        }
+      ]
+    },
+    {
+      "id": "loot/treasure-goblin",
+      "originalEntryCount": 127,
+      "minLevel": 1,
+      "maxLevel": 99,
+      "additions": [
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-war-pike",
+          "weight": 10,
+          "minLevel": 24,
+          "maxLevel": 34
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-giant-thresher",
+          "weight": 10,
+          "minLevel": 35,
+          "maxLevel": 51
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-colossus-blade",
+          "weight": 10,
+          "minLevel": 52,
+          "maxLevel": 61
+        },
+        {
+          "type": "item",
+          "itemBase": "items/base/wp2h-thunder-maul",
+          "weight": 10,
+          "minLevel": 62,
+          "maxLevel": 99
+        }
+      ]
+    }
+  ]
+}

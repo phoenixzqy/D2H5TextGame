@@ -250,21 +250,26 @@ describe('authoritative absolute mana recording and playback', () => {
     expect(recorded.result.playerTeam[0]?.mana).toBe(7);
   });
 
-  function refund(mana: number, deadOwner = false, carry = false): CombatSnapshot {
+  function refund(mana: number, deadOwner = false, carry = false, side: CombatUnit['side'] = 'enemy'): CombatSnapshot {
     // Explicit legacy control: canonical Skeleton preparation has no death refund.
     const skeleton = getSkill('necromancer.raise_skeleton');
     if (!skeleton) throw new Error('Missing actual Skeleton source');
     registerSkill({ ...skeleton, id: 'fixture.legacy-refund-skeleton', archetype: 'fixture' });
-    const owner = held('owner', 'enemy', { mana, skillOrder: ['fixture.legacy-refund-skeleton'],
+    const owner = held('owner', side, { mana, skillOrder: ['fixture.legacy-refund-skeleton'],
       ...(carry ? { manaRegenCarry: 0.75, manaRegenCompensation: 0.125 } : {}),
       ...(deadOwner ? { life: 1, statuses: [hold(), bleed(2)] } : {}) });
-    return { seed: 7, playerTeam: [held('hero', 'player', { life: 1, statuses: [hold(), bleed(1)] })],
-      enemyTeam: [owner, held('child', 'enemy', { kind: 'summon', summonOwnerId: 'owner',
-        summonTemplateId: 'skeleton', life: 1, statuses: [hold(), bleed(2)] })] };
+    const child = held('child', side, { kind: 'summon', summonOwnerId: 'owner',
+      summonTemplateId: 'skeleton', life: 1, statuses: [hold(), bleed(2)] });
+    // Friendly positive controls keep the opponent alive and inert: no terminal orb can
+    // mask a missing refund or clear carry. Hostile/dead-owner controls keep their old scene.
+    return side === 'player'
+      ? { seed: 7, playerTeam: [owner, child], enemyTeam: [held('sentinel', 'enemy')] }
+      : { seed: 7, playerTeam: [held('hero', 'player', { life: 1, statuses: [hold(), bleed(1)] })],
+          enemyTeam: [owner, child] };
   }
 
   it.each([[0, 15], [98, 100]] as const)('records a living owner refund %s→%s after summon death', (mana, expected) => {
-    const input = refund(mana, false, true);
+    const input = refund(mana, false, true, 'player');
     const before = structuredClone(input);
     const recorded = runBattleRecorded(input);
     expect.soft(mpEvents(recorded)).toEqual([
@@ -272,20 +277,28 @@ describe('authoritative absolute mana recording and playback', () => {
     ]);
     const death = recorded.events.findIndex(event => event.kind === 'death' && event.target === 'child');
     expect.soft(recorded.events[death + 1]).toMatchObject({ kind: 'mana', target: 'owner', mana: expected });
-    const owner = recorded.result.enemyTeam.find(unit => unit.id === 'owner');
+    const owner = recorded.result.playerTeam.find(unit => unit.id === 'owner');
     expect.soft([owner?.manaRegenCarry, owner?.manaRegenCompensation])
       .toEqual(expected === 100 ? [0, 0] : [0.75, 0.125]);
     expectRepeatable(input, recorded, before);
   });
 
   it('clears carry on a full refund without a fake MP event and preserves absent carry shape', () => {
-    const full = runBattleRecorded(refund(100, false, true));
+    const full = runBattleRecorded(refund(100, false, true, 'player'));
     expect(mpEvents(full)).toEqual([]);
-    const owner = full.result.enemyTeam.find(unit => unit.id === 'owner');
+    const owner = full.result.playerTeam.find(unit => unit.id === 'owner');
     expect.soft([owner?.mana, owner?.manaRegenCarry, owner?.manaRegenCompensation]).toEqual([100, 0, 0]);
-    const legacy = runBattleRecorded(refund(100)).result.enemyTeam.find(unit => unit.id === 'owner');
+    const legacy = runBattleRecorded(refund(100, false, false, 'player')).result.playerTeam.find(unit => unit.id === 'owner');
     expect(legacy).not.toHaveProperty('manaRegenCarry');
     expect(legacy).not.toHaveProperty('manaRegenCompensation');
+  });
+
+  it.each([0, 98, 100])('does not refund hostile summon death at MP%s or reset its carry', mana => {
+    const recorded = runBattleRecorded(refund(mana, false, true));
+    expect(recorded.events.some(event => event.kind === 'death' && event.target === 'child')).toBe(true);
+    expect(mpEvents(recorded)).toEqual([]);
+    const owner = recorded.result.enemyTeam.find(unit => unit.id === 'owner');
+    expect([owner?.mana, owner?.manaRegenCarry, owner?.manaRegenCompensation]).toEqual([mana, .75, .125]);
   });
 
   it('cannot refund an owner in the simultaneous periodic death set', () => {

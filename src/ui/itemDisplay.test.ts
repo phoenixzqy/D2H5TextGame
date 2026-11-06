@@ -1,7 +1,46 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import i18n from '@/i18n';
-import { formatDisplayStat, resolveSocketDisplayLines } from './itemDisplay';
+import { formatDisplayStat, resolveItemDisplay, resolveSocketDisplayLines } from './itemDisplay';
 import type { Item } from '@/engine/types/items';
+
+describe.each(['en', 'zh-CN'] as const)('set activation from supplied equipment %s', locale => {
+  const gloves: Item = { id: 'iratha-gloves', baseId: 'items/base/glove-heavy', rarity: 'set',
+    level: 10, identified: true, equipped: true, setId: 'sets/iratha-finery', setPieceId: 'sets/iratha-finery/gloves' };
+  const helm: Item = { ...gloves, id: 'iratha-helm', baseId: 'items/base/helm-skull-cap',
+    equipped: false, setPieceId: 'sets/iratha-finery/helm' };
+  const bonuses = (item: Item, equipment: readonly Item[] = []) => resolveItemDisplay(
+    item, i18n.getFixedT(locale, 'inventory'), equipment
+  ).setBonuses.map(({ threshold, active }) => ({ threshold, active }));
+  const inactive = [{ threshold: 2, active: false }, { threshold: 3, active: false }, { threshold: 4, active: false }];
+  const twoPieces = [{ threshold: 2, active: true }, { threshold: 3, active: false }, { threshold: 4, active: false }];
+
+  beforeEach(async () => { await i18n.changeLanguage(locale); });
+  it('keeps a second piece in the backpack inactive while only one piece is worn', () => {
+    expect(bonuses(helm, [gloves])).toEqual(inactive);
+  });
+  it('activates only reached thresholds for actual equipment and deactivates after removal', () => {
+    const wornHelm = { ...helm, equipped: true };
+    expect(bonuses(wornHelm, [gloves, wornHelm])).toEqual(twoPieces);
+    expect(bonuses(helm, [gloves])).toEqual(inactive);
+  });
+  it('preserves prospective comparison when the supplied loadout includes the candidate', () => {
+    expect(bonuses(helm, [gloves, helm])).toEqual(twoPieces);
+    expect(helm.equipped).toBe(false);
+  });
+  it('does not count duplicate copies of a worn piece or add an unworn third piece', () => {
+    const amulet: Item = { ...gloves, id: 'iratha-amulet', baseId: 'items/base/amu-brass',
+      equipped: false, setPieceId: 'sets/iratha-finery/amulet' };
+    expect(bonuses(helm, [gloves, { ...gloves, id: 'duplicate' }])).toEqual(inactive);
+    expect(bonuses(amulet, [gloves, { ...helm, equipped: true }])).toEqual(twoPieces);
+  });
+  it('does not assume equipment from the inspected item or mutate the supplied loadout', () => {
+    const equipment = Object.freeze([Object.freeze({ ...gloves })]);
+    const before = structuredClone(equipment);
+    expect(bonuses(Object.freeze({ ...helm }), equipment)).toEqual(inactive);
+    expect(bonuses(helm)).toEqual(inactive);
+    expect(equipment).toEqual(before);
+  });
+});
 
 describe.each(['en', 'zh-CN'] as const)('item bonus units %s', locale => {
   beforeEach(async () => { await i18n.changeLanguage(locale); });

@@ -1,4 +1,4 @@
-/** Test-only ordinary-kill accounting. This module grants no campaign or earned authority. */
+/** Test-only kill/search accounting. This module grants no campaign or earned authority. */
 import { vi } from 'vitest';
 import * as award from '@/engine/loot/award';
 import * as drops from '@/engine/loot/drop-roller';
@@ -8,6 +8,7 @@ import { inferKind } from '@/engine/combat/types';
 import { mergeMaterials, type MaterialLedger } from '@/engine/loot/materials';
 import type { inspectRecordedWaves } from '@/stores/recordedWaveReceipt';
 import { materialDelta } from './material-delta';
+import { copyFindItemFinds, findItemBonusEnemies, type FindItemFind } from '@/engine/skills/find-item';
 
 type KillArgs = Parameters<typeof award.rollKillRewards>;
 interface DropObservation {
@@ -62,7 +63,7 @@ export function observeMaterialSources<T>(action: () => T): MaterialSourceCaptur
         return result;
       } finally { active = parent; }
     });
-    restorers.push(() => killSpy.mockRestore());
+    restorers.push(() => { killSpy.mockRestore(); });
     const dropSpy = vi.spyOn(drops, 'rollDrops').mockImplementation(function (this: unknown, ...args: Parameters<typeof drops.rollDrops>) {
       const result = originals.drop.apply(this, args);
       if (!active) issues.push('unscoped treasure-class call');
@@ -70,7 +71,7 @@ export function observeMaterialSources<T>(action: () => T): MaterialSourceCaptur
       else active.drops = { args, result, snapshot: structuredClone(result) };
       return result;
     });
-    restorers.push(() => dropSpy.mockRestore());
+    restorers.push(() => { dropSpy.mockRestore(); });
     const currencySpy = vi.spyOn(currency, 'rollCurrencyDrops').mockImplementation(function (this: unknown, ...args: Parameters<typeof currency.rollCurrencyDrops>) {
       const result = originals.currency.apply(this, args);
       if (!active) issues.push('unscoped independent call');
@@ -78,7 +79,7 @@ export function observeMaterialSources<T>(action: () => T): MaterialSourceCaptur
       else active.currency = { args, result, materials: structuredClone(result.materials) };
       return result;
     });
-    restorers.push(() => currencySpy.mockRestore());
+    restorers.push(() => { currencySpy.mockRestore(); });
     try {
       const value = action();
       if (value !== null && (typeof value === 'object' || typeof value === 'function') && 'then' in value)
@@ -101,13 +102,31 @@ export interface MaterialControlContext {
   readonly winner: string | null;
   readonly unsupportedSources: readonly string[];
   readonly expectedKills: readonly ExpectedKill[];
+  readonly expectedFindItemKills?: readonly { readonly find: FindItemFind; readonly input: ExpectedKill }[];
+}
+
+/** Opt in to successful native searches; ordinary-only callers retain their refusal. */
+export function findItemMaterialContext(view: NonNullable<ReturnType<typeof inspectRecordedWaves>['currentPublished']>): MaterialControlContext {
+  const context = ordinaryMaterialContext(view), { binding } = view;
+  const finds = copyFindItemFinds(binding.findItemFinds ?? []);
+  const enemies = findItemBonusEnemies(finds, binding.engineInput,
+    binding.recording.outcome.finalEnemyTeam, binding.heroId);
+  const run = binding.candidateRun;
+  const treasureClassId = run.plan.waves[binding.targetWaveIdx]?.lootTable ?? run.plan.defaultLootTable;
+  return { ...context, unsupportedSources: context.unsupportedSources.filter(source => source !== 'find-item'),
+    expectedFindItemKills: enemies.map((enemy, index) => {
+      const find = finds[index];
+      if (!find) throw new Error('Missing validated Find Item find');
+      return { find, input: { tier: enemy.tier, monsterLevel: enemy.level, treasureClassId,
+        act: run.act, difficulty: binding.replayProfileId ?? 'normal' } };
+    }) };
 }
 /** Capture from the matching native view before advancement replaces it. */
 export function ordinaryMaterialContext(view: NonNullable<ReturnType<typeof inspectRecordedWaves>['currentPublished']>): MaterialControlContext {
   const { binding, installation } = view, run = binding.candidateRun, outcome = binding.recording.outcome;
   if (!installation) throw new Error('Missing native payout identity');
   const unsupportedSources = [];
-  if (binding.endgameWave || binding.origin.kind !== 'area') unsupportedSources.push('endgame-cache');
+  if (binding.endgameWave !== undefined || binding.origin.kind !== 'area') unsupportedSources.push('endgame-cache');
   if ((binding.findItemFinds?.length ?? 0) > 0) unsupportedSources.push('find-item');
   if (run.plan.questSourceProjection) unsupportedSources.push('quest-projection');
   if (view.phase !== 'published' || binding.publication.recordedEvents !== binding.recording.events ||
@@ -162,9 +181,11 @@ interface AcceptedSettlement {
   readonly kills: ObservationSnapshot['kills'];
   readonly treasureClass: MaterialLedger;
   readonly independent: MaterialLedger;
+  readonly findItem: { readonly treasureClass: MaterialLedger; readonly independent: MaterialLedger;
+    readonly total: MaterialLedger };
 }
 interface SourceReport {
-  readonly kind: 'constructed-ordinary-kill-control';
+  readonly kind: 'constructed-kill-material-control';
   readonly highRuneEarned: false;
   readonly activeHourAcceptance: false;
   readonly opening: { readonly materials: MaterialLedger; readonly provenance: 'unknown' };
@@ -175,13 +196,13 @@ interface SourceReport {
 }
 
 /**
- * Atomic, stop-on-first-mismatch accounting for ordinary-kill controls only.
+ * Atomic, stop-on-first-mismatch accounting for ordinary kills and captured searches.
  * Signed spending/fusion remains in failure diagnostics; it never becomes a faucet.
  */
 export function createMaterialSourceJournal(opening: MaterialLedger) {
   let current = mergeMaterials(opening);
-  const receipts = new WeakSet<object>(), sources = new WeakSet<object>();
-  const report: SourceReport = { kind: 'constructed-ordinary-kill-control', highRuneEarned: false,
+  const receipts = new WeakSet(), sources = new WeakSet();
+  const report: SourceReport = { kind: 'constructed-kill-material-control', highRuneEarned: false,
     activeHourAcceptance: false, opening: { materials: current, provenance: 'unknown' },
     accepted: [], total: {}, duplicates: 0, failure: null };
   return {
@@ -206,11 +227,18 @@ export function createMaterialSourceJournal(opening: MaterialLedger) {
         }
         if (Object.values(actualDelta).some(count => !Number.isSafeInteger(count) || count < 0))
           throw new Error('Signed or unsafe inventory delta is not a reward');
-        if (capture.kills.length !== context.expectedKills.length) throw new Error('Missing or extra kill observations');
+        const searches = context.expectedFindItemKills ?? [];
+        copyFindItemFinds(searches.map(search => search.find));
+        if (capture.kills.length !== context.expectedKills.length + searches.length)
+          throw new Error('Missing or extra kill/search observations');
         const observedSources = new Set<object>();
         let treasureClass: MaterialLedger = {}, independent: MaterialLedger = {};
+        let searchTc: MaterialLedger = {}, searchIndependent: MaterialLedger = {};
         for (const [index, kill] of capture.kills.entries()) {
-          const expected = context.expectedKills[index]!;
+          const isSearch = index >= context.expectedKills.length;
+          const expected = isSearch ? searches[index - context.expectedKills.length]?.input : context.expectedKills[index];
+          if (!expected) throw new Error('Missing expected kill/search input');
+          if (isSearch && kill.input.firstKillBonus) throw new Error('Find Item cannot receive first-kill bonus');
           if (!Object.entries(expected).every(([key, value]) => Reflect.get(kill.input, key) === value))
             throw new Error('Observed kill differs from native recording');
           if (kill.hasTreasureClass !== Boolean(kill.drops) || !kill.currency) throw new Error('Missing source boundary');
@@ -228,13 +256,16 @@ export function createMaterialSourceJournal(opening: MaterialLedger) {
             kill.drops.args[1] !== args[2])) throw new Error('TC source arguments drifted');
           const tc = tcMaterials(kill.drops), secondary = mergeMaterials(kill.currency.materials);
           if (!equal(mergeMaterials(tc, secondary), kill.snapshot.materials)) throw new Error('Per-kill source mismatch');
-          treasureClass = mergeMaterials(treasureClass, tc); independent = mergeMaterials(independent, secondary);
+          if (isSearch) { searchTc = mergeMaterials(searchTc, tc); searchIndependent = mergeMaterials(searchIndependent, secondary); }
+          else { treasureClass = mergeMaterials(treasureClass, tc); independent = mergeMaterials(independent, secondary); }
         }
-        const total = mergeMaterials(treasureClass, independent);
+        const findItem = { treasureClass: searchTc, independent: searchIndependent,
+          total: mergeMaterials(searchTc, searchIndependent) };
+        const total = mergeMaterials(treasureClass, independent, findItem.total);
         if (!equal(total, observation.raw) || !equal(total, actualDelta)) throw new Error('Source/raw/inventory mismatch');
         const cumulative = mergeMaterials(report.total, total), snapshot = observationSnapshot(observation);
         const nextCurrent = mergeMaterials(observation.after);
-        report.accepted.push({ observation: snapshot, kills: snapshot.kills, treasureClass, independent });
+        report.accepted.push({ observation: snapshot, kills: snapshot.kills, treasureClass, independent, findItem });
         report.total = cumulative; current = nextCurrent;
         receipts.add(context.receipt); for (const result of observedSources) sources.add(result);
         return 'accepted';

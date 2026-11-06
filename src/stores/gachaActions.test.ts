@@ -1,7 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as mercData from '@/data/loaders/mercs';
 import { createRng } from '@/engine/rng';
-import { pickFromPool, rollMany } from '@/engine/gacha/roller';
+import { createRecruitmentState, planRecruitment } from '@/engine/gacha/recruitment-state';
+import { deriveStats } from '@/engine/progression/stats';
+import { decodeSave } from '@/engine/save/validate';
+import { toJsonSafe } from '@/engine/save/serialize';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { useMetaStore } from './metaStore';
 import { useInventoryStore } from './inventoryStore';
@@ -17,6 +20,7 @@ const NOW = 1750000000123;
 function participants() {
   const merc = useMercStore.getState();
   return { currencies: useInventoryStore.getState().currencies, gacha: useMetaStore.getState().gachaState,
+    recruitmentState: useMetaStore.getState().recruitmentState, recruitmentProgress: merc.recruitmentProgress,
     ownedMercs: merc.ownedMercs, mercEquipment: merc.mercEquipment, mercProgress: merc.mercProgress,
     fieldedMercId: merc.fieldedMercId };
 }
@@ -35,6 +39,91 @@ beforeEach(() => {
 afterEach(() => { vi.restoreAllMocks(); __resetPersistenceForTests(); });
 
 describe('earned wishstone recruitment', () => {
+  it.each([1, 70, 90])('starts new paid identities at hero level %s with L1 natural growth and exact save state', level => {
+    const hero = { ...createMockPlayer('Recruitment', 'sorceress'), level };
+    usePlayerStore.getState().setPlayer(hero);
+    fund(90);
+    const results = useMetaStore.getState().pullGacha(10);
+    expect(results).toHaveLength(10);
+    const merc = useMercStore.getState();
+    expect(merc.ownedMercs.length).toBeGreaterThan(0);
+    // Independent class gain rows; do not construct the oracle through the factory/growth helper.
+    const gains: Record<string, readonly [number, number, number, number]> = {
+      rogue: [8, 1, 3, 1], 'desert-merc': [14, 3, 1, 1], 'iron-wolf': [6, 1, 1, 4],
+      barbarian: [16, 3, 2, 0], paladin: [12, 2, 1, 1], militia: [10, 2, 1, 1],
+      thief: [7, 1, 3, 1], acolyte: [6, 1, 1, 4]
+    };
+    for (const recruit of merc.ownedMercs) {
+      const def = mercData.loadMercPool().pool.find(candidate => candidate.id === recruit.id);
+      if (!def) throw new Error('Missing paid identity');
+      const gain = gains[def.classRef];
+      if (!gain) throw new Error('Missing independent class gain');
+      expect(recruit.level).toBe(level);
+      const core = { strength: def.baseStats.strength + gain[1] * (level - 1),
+        dexterity: def.baseStats.dexterity + gain[2] * (level - 1), vitality: def.baseStats.vitality,
+        energy: def.baseStats.energy + gain[3] * (level - 1) };
+      const bare = deriveStats(core, level);
+      const lifeMax = 100 + def.baseStats.vitality * 2 + gain[0] * (level - 1);
+      expect(recruit.coreStats).toEqual(core);
+      expect(recruit.derivedStats).toEqual({ ...bare, life: lifeMax, lifeMax });
+      expect(merc.mercProgress[recruit.id]).toEqual({ experience: 0, experienceToNextLevel: mercXpForLevel(level) });
+      expect(merc.mercEquipment[recruit.id]).toEqual({});
+    }
+    expect(usePlayerStore.getState().player).toBe(hero);
+    expect(merc.fieldedMercId).toBeNull();
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(0);
+    const saved = snapshotStores();
+    expect(saved).not.toBeNull();
+    expect(decodeSave(toJsonSafe(saved)).mercs).toEqual(saved?.mercs);
+  });
+
+  it.each([0, -1, 1.5, 91, NaN, Infinity])('refuses invalid hero level %s before drawing or payment', level => {
+    usePlayerStore.getState().setPlayer({ ...createMockPlayer('Recruitment', 'sorceress'), level });
+    fund(90); const before = participants();
+    vi.mocked(Date.now).mockClear();
+    expect(useMetaStore.getState().pullGacha(10)).toBeNull();
+    expect(Date.now).not.toHaveBeenCalled();
+    expect(participants()).toEqual(before);
+  });
+
+  it('forces the next paid draw from legacy 89 misses and records the result once', () => {
+    fund(20); useMetaStore.getState().updateGachaState({ pityCounter: 89 });
+    expect(useMetaStore.getState().recruitmentState.history).toEqual([]);
+    const result = useMetaStore.getState().pullGacha(1);
+    expect(result?.[0]?.rarity).toBe('SSR');
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(10);
+    expect(useMetaStore.getState().gachaState.pityCounter).toBe(0);
+    expect(useMetaStore.getState().recruitmentState).toMatchObject({ srPityCounter: 0, totalPulls: 1 });
+    expect(useMetaStore.getState().recruitmentState.history[0]).toMatchObject({ ordinal: 1, timestamp: NOW, rarity: 'SSR' });
+  });
+  it('credits real duplicate shards without making another roster entry or upgrading automatically', () => {
+    usePlayerStore.getState().setPlayer({ ...createMockPlayer('Recruitment', 'sorceress'), level: 70 });
+    const pool = mercData.loadMercPool();
+    for (const def of pool.pool) {
+      const recruit = createMercFromDef(def);
+      useMercStore.getState().addMerc({ ...recruit, alive: false,
+        derivedStats: { ...recruit.derivedStats, life: 3, mana: 2 } });
+    }
+    const before = useMercStore.getState();
+    fund(90);
+    const results = useMetaStore.getState().pullGacha(10);
+    expect(results).toHaveLength(10);
+    expect(useMercStore.getState().ownedMercs).toHaveLength(25);
+    expect(useMercStore.getState().ownedMercs).toBe(before.ownedMercs);
+    expect(useMercStore.getState().mercEquipment).toBe(before.mercEquipment);
+    expect(useMercStore.getState().mercProgress).toBe(before.mercProgress);
+    const expected: Record<string, { shards: number; stars: number }> = {};
+    for (const result of results ?? []) {
+      expect(result.isNew).toBe(false);
+      expect(result.shardCount).toBe(pool.banner.shardConversion.perDuplicate[result.rarity]);
+      const current = expected[result.mercDef.id] ?? { shards: 0, stars: 0 };
+      expected[result.mercDef.id] = { stars: 0, shards: current.shards + result.shardCount };
+    }
+    expect(useMercStore.getState().recruitmentProgress).toEqual(expected);
+    expect(useMetaStore.getState().recruitmentState.history.map(row => row.shardCount))
+      .toEqual(results?.map(row => row.shardCount));
+    expect(snapshotStores()?.mercs.recruitmentProgress).toEqual(expected);
+  });
   it('spends the actual earned wallet instead of requiring a second balance', () => {
     fund(8790);
     expect(useMetaStore.getState().pullGacha(1)).toHaveLength(1);
@@ -64,10 +153,10 @@ describe('earned wishstone recruitment', () => {
     expect(useMetaStore.getState().pullGacha(1)).toBeNull();
     expect(useInventoryStore.getState().currencies.wishstone).toBe(5);
   });
-  it('keeps existing RNG order, pity, unique roster, equipment and progression', () => {
+  it('uses the version33 draw stream while retaining existing roster, equipment and progression', () => {
     const pool = mercData.loadMercPool(), rng = createRng((NOW ^ 89) >>> 0);
-    const rolled = rollMany(rng, pool.rates, 89, pool.pity.ssr.threshold, 10);
-    const ids = rolled.results.map(r => pickFromPool(rng, pool.banner.pool, r.rarity));
+    const rolled = planRecruitment(rng, pool.banner, createRecruitmentState(89), {}, new Set(), 10, NOW);
+    const ids = rolled.results.map(r => r.mercId);
     const existingDef = pool.pool.find(d => d.id === ids[0]);
     if (!existingDef) throw new Error('Missing actual pool definition');
     const existing = createMercFromDef(existingDef, 'earned');
@@ -92,10 +181,12 @@ describe('earned wishstone recruitment', () => {
       expect(merc.mercEquipment[recruit.id]).toEqual({});
       expect(merc.mercProgress[recruit.id]).toEqual({ experience: 0, experienceToNextLevel: mercXpForLevel(recruit.level) });
     }
-    expect(useMetaStore.getState().gachaState).toEqual({ currency: 0, pityCounter: rolled.finalPity,
+    expect(useMetaStore.getState().gachaState).toEqual({ currency: 0, pityCounter: rolled.state.pityCounter,
       ownedMercIds: merc.ownedMercs.map(m => m.id) });
     const saved = snapshotStores();
     expect(saved?.meta.gachaState).toEqual(useMetaStore.getState().gachaState);
+    expect(saved?.meta.recruitmentState).toEqual(useMetaStore.getState().recruitmentState);
+    expect(saved?.mercs.recruitmentProgress).toEqual(useMercStore.getState().recruitmentProgress);
     expect(saved?.inventory.currencies.wishstone).toBe(10);
   });
   it.each([-1, 0, 2, 9, 11, 1.5, NaN, Infinity])('refuses unsupported count %s before RNG or publication', count => {
@@ -130,6 +221,7 @@ describe('earned wishstone recruitment', () => {
 
 describe('recruitment transaction boundary', () => {
   it.each(['inventory', 'merc', 'meta'] as const)('restores all references after a %s publication observer fails', domain => {
+    usePlayerStore.getState().setPlayer({ ...createMockPlayer('Recruitment', 'sorceress'), level: 70 });
     fund(100, 5); const before = participants(); let fail = true;
     const store = domain === 'inventory' ? useInventoryStore : domain === 'merc' ? useMercStore : useMetaStore;
     const unsubscribe = store.subscribe(() => { if (fail) { fail = false; throw new Error('publication observer'); } });

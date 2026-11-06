@@ -58,10 +58,18 @@ const pools: AwardDataPools = {
 describe('award.rollKillRewards', () => {
   beforeEach(() => { __resetItemSeqForTests(); });
 
-  it.each(['chapter-boss', 'rare-elite'] as const)('pins pre-extraction %s output and following RNG', tier => {
+  it.each([
+    ['pre-extraction', 'chapter-boss'],
+    ['nonboss-v1', 'rare-elite']
+  ] as const)('pins %s %s output and following RNG', (_contract, tier) => {
     const rng = createRng(92374);
+    // Keep the chapter-boss extraction pin. BUG685 corrects rare-leader rarity
+    // weights, intentionally changing affix entropy and later currency draws.
+    // The historical rare-leader snapshot is retained with the BUG685 evidence.
+    // Pin conditional amounts; the hit/miss contract has its own suite.
+    const wishstoneHit = { ...createRng(1), chance: () => true };
     const rewards = rollKillRewards({ tier, monsterLevel: 14, treasureClassId: tc.id,
-      magicFind: 137, magicFindMultiplier: 1.4, goldFind: 51, act: 2 }, pools, rng);
+      magicFind: 137, magicFindMultiplier: 1.4, goldFind: 51, act: 2 }, pools, rng, wishstoneHit);
     const { materials, ...legacyRewards } = rewards;
     expect({ rewards: legacyRewards, following: rng.next() }).toMatchSnapshot();
     expect(materials).toEqual(tier === 'chapter-boss'
@@ -157,7 +165,7 @@ describe('award.rollKillRewards', () => {
     expect(r.items[0]).toMatchObject({ rarity: 'unique', uniqueId: 'unique.gnarled-root' });
   });
 
-  it('adds direct treasure-class rune, gem, wishstone, and gold-as-shard rewards', () => {
+  it('adds direct treasure-class rune, gem, conditional wishstone, and gold-as-shard rewards', () => {
     const rollOnly = (pick: TreasureClass['picks'][number]) => {
       const directTc: TreasureClass = {
         id: 'tc_direct',
@@ -168,7 +176,8 @@ describe('award.rollKillRewards', () => {
       return rollKillRewards(
         { tier: 'trash', monsterLevel: 5, treasureClassId: directTc.id, magicFind: 0, goldFind: 0, act: 1 },
         { ...pools, treasureClasses: new Map([[directTc.id, directTc]]) },
-        createRng(1)
+        createRng(1),
+        { ...createRng(1), chance: () => true }
       );
     };
     expect(rollOnly({ type: 'rune', itemId: 'runes/tal', weight: 1, qlvlMin: 1, qlvlMax: 20, quantityMin: 2, quantityMax: 2 }).runes)

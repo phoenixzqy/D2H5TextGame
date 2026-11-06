@@ -26,7 +26,7 @@ function gear(fire: number, cold: number): Record<string, Item> {
 describe('authored permanent Tainted Sun resistance', () => {
   it('authors the existing XP plus a closed fire/cold pair', () => {
     expect(loadQuests().find(q => q.id === SUN)?.rewards).toEqual({
-      xp: 4500, stat: { fire_resist: 30, cold_resist: 30 }
+      xp: 4500, wishstones: 15, stat: { fire_resist: 30, cold_resist: 30 }
     });
   });
   it('requires all own canonical completion and claim facts', () => {

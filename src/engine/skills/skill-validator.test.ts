@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import amazon from '../../data/skills/amazon.json';
+import necromancer from '../../data/skills/necromancer.json';
 import type { SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
 
@@ -9,6 +10,19 @@ function avoid() {
   return structuredClone(row);
 }
 describe('shared strict authored skill validation', () => {
+  it('permits the reviewed Defense bypass only for Impale and player Corpse Explosion', () => {
+    const validate = createSkillValidator<SkillDef>();
+    const ce = necromancer.find(row => row.id === 'skills-necromancer-corpse-explosion');
+    const impale = amazon.find(row => row.id === 'skills-amazon-impale');
+    const teeth = necromancer.find(row => row.id === 'skills-necromancer-teeth');
+    expect(ce).toBeDefined(); expect(impale).toBeDefined(); expect(teeth).toBeDefined();
+    expect(validate({ ...ce, ignoresDefense: true })).toBe(true);
+    expect(validate(impale)).toBe(true);
+    expect(validate({ ...teeth, ignoresDefense: true })).toBe(false);
+    expect(validate({ ...ce, id: 'skills-monster-corpse-explosion', ignoresDefense: true })).toBe(false);
+    expect(validate({ ...ce, ignoresDefense: false })).toBe(false);
+  });
+
   it('reports multiple schema errors without coercion, defaults or dropping unknown fields', () => {
     const validate = createSkillValidator<SkillDef>();
     const row = { ...avoid(), extra: true, cooldown: -1, requiredLevel: '12' };

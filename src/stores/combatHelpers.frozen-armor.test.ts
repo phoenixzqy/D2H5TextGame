@@ -6,6 +6,7 @@ import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import * as combatEngine from '@/engine/combat/combat';
+import * as recordedWaveStaging from './recordedWaveStaging';
 import {
   abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, playerToCombatUnit,
   refreshActivePlayerCombatConfig, resetIdleElitePity, startSubAreaRun
@@ -69,9 +70,18 @@ function arrange(): void {
       { kind: 'damage', damageType: 'physical', base: [100_000, 100_000] },
       { kind: 'buff', id: 'fixture.unrelated', duration: -1 }
     ] });
-  registerSkill({ id: 'monster-weak-melee', archetype: 'fixture', target: 'all-enemies',
+  const fixedFire = 'fixture.armor-enemy-fire';
+  registerSkill({ id: fixedFire, archetype: 'fixture', target: 'all-enemies',
     minLevel: 1, cooldown: 1, manaCost: 0,
     effects: [{ kind: 'damage', damageType: 'fire', base: [100, 100] }] });
+  // Assign the declared fixed attack explicitly before native recording;
+  // production ordinary monsters no longer select the old generic skill.
+  const stage = recordedWaveStaging.stageRecordedWave;
+  vi.spyOn(recordedWaveStaging, 'stageRecordedWave').mockImplementation(input => stage({
+    ...input, snapshot: { ...input.snapshot, enemyTeam: input.snapshot.enemyTeam.map(unit =>
+      ['monsters/act1.fallen', 'monsters/act1.quill-rat', 'monsters/act1.zombie'].includes(unit.monsterArchetypeId ?? '')
+        ? { ...unit, skillOrder: [fixedFire, ...unit.skillOrder] } : unit) }
+  }));
   const fresh = createMockPlayer('ArmorBoundary', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...fresh,
     coreStats: { ...fresh.coreStats, energy: 20 },
@@ -210,7 +220,7 @@ describe('native paid Frozen Armor lifetime and configuration boundaries', () =>
     expect(hero.frozenArmor).toEqual({ rank: 20, defensePct: 0.6 });
     const hits = state.recordedEvents.filter(event => event.kind === 'damage' &&
       event.target === hero.id && event.damageType === 'fire' && !event.dodged &&
-      state.enemyTeam.find(unit => unit.id === event.source)?.skillOrder[0] === 'monster-weak-melee');
+      state.enemyTeam.find(unit => unit.id === event.source)?.skillOrder[0] === 'fixture.armor-enemy-fire');
     expect(hits.length).toBeGreaterThan(0);
     for (const hit of hits) {
       if (hit.kind !== 'damage') throw new Error('Expected direct fire');

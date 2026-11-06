@@ -1,3 +1,4 @@
+import { ANYA_DOMAIN, hasAnyaEntitlement, type AnyaQuestDomain } from '../map/anya-quest';
 import { loadQuestItems } from '@/data/loaders/quest-items';
 import { RESCUE_QUEST, PRISON_QUEST } from '../map/act5-admission';
 import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '../save/act5-state';
@@ -48,7 +49,7 @@ export function resolveQuestResistanceBonus(progress: QuestProgressContext): { f
 
 /** Actual Act V sources compose once across every canonical equipment/stat projection. */
 export function resolveAct5ResistanceBonus(progress: QuestProgressContext, items: QuestItemLedger,
-  receipts: QuestActionReceipts): number {
+  receipts: QuestActionReceipts, authority?: { readonly anya?: AnyaQuestDomain }): number {
   const rescue = progress[RESCUE_QUEST];
   const direct = rescue?.rewardClaimed === true && hasAct5Completion(RESCUE_QUEST, progress, receipts, items)
     ? loadQuests().find(quest => quest.id === RESCUE_QUEST)?.rewards?.stat : undefined;
@@ -66,6 +67,13 @@ export function resolveAct5ResistanceBonus(progress: QuestProgressContext, items
     const scroll = loadQuestItems().find(item => item.id === 'items/scroll_of_resist');
     if (!scroll || scroll.kind !== undefined || scroll.effect.allResist !== 10) throw new Error('Invalid resistance scroll effect');
     amount += scroll.effect.allResist;
+  }
+  if (hasAnyaEntitlement(progress, items, receipts, authority === undefined ? ANYA_DOMAIN : authority.anya)) {
+    const reward = loadQuests().find(quest => quest.id === ANYA_DOMAIN.quest)?.rewards;
+    if (!reward || Object.keys(reward).length !== 4 || reward.wishstones !== 10 || reward.service !== 'personalize_item' ||
+      reward.vendorUnlock !== 'vendors/anya_uniques' || !reward.stat || Object.keys(reward.stat).length !== 1 ||
+      Reflect.get(reward.stat, 'all_resist') !== 10) throw new Error('Invalid Anya resistance reward');
+    amount += 10;
   }
   return amount;
 }

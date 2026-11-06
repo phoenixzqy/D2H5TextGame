@@ -20,6 +20,7 @@
  */
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
+import { GameImage } from './GameImage';
 import { getItemIconUrl } from './imageHelpers';
 import { formatAffixRoll } from './affixFormat';
 import { resolveItemDisplay, resolveSocketDisplayLines } from './itemDisplay';
@@ -56,7 +57,8 @@ const SLOT_KEYS: readonly EquipmentSlot[] = [
   'ring-left',
   'ring-right',
   'weapon',
-  'offhand'
+  'offhand',
+  'charm'
 ];
 
 /**
@@ -166,18 +168,13 @@ export function ItemTooltip({ item, className = '', legacyInspection = false, pr
 
       <div className="flex justify-center my-2">
         <div className="w-20 h-20 border border-d2-border/70 bg-d2-panel rounded flex items-center justify-center overflow-hidden">
-          {icon ? (
-            <img
-              src={icon}
-              alt={displayName}
-              loading="lazy"
-              className="w-full h-full object-contain"
-            />
-          ) : (
-            <span aria-hidden className="font-serif text-d2-border text-3xl">
-              ?
-            </span>
-          )}
+          <GameImage
+            src={icon}
+            alt={displayName}
+            size="fill"
+            className="border-0 rounded-none bg-none"
+            imageClassName="w-full h-full object-contain"
+          />
         </div>
       </div>
 

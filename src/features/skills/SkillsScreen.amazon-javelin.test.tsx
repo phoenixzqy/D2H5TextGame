@@ -13,8 +13,8 @@ import { SkillsScreen } from '@/features/skills/SkillsScreen';
 const skills = [
   { slug:'power-strike',min:40,max:60,growth:4,mana:10,cooldown:1 },
   { slug:'charged-strike',min:70,max:100,growth:6,mana:20,cooldown:2 },
-  { slug:'poison-javelin',min:20,max:35,growth:3,mana:10,cooldown:2 },
-  { slug:'lightning-strike',min:80,max:110,growth:7,mana:25,cooldown:2 }
+  { slug:'poison-javelin',min:20,max:35,growth:15,mana:10,cooldown:2 },
+  { slug:'lightning-strike',min:80,max:110,growth:75,mana:25,cooldown:2 }
 ] as const;
 beforeEach(() => { usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('ready'); });
 afterEach(() => { cleanup(); usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('idle'); });

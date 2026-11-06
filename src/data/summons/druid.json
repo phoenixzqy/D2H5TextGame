@@ -1,5 +1,42 @@
 {
   "id": "summons/druid",
+  "ownerLevelGrowth": {
+    "raven": {
+      "lifeMax": 20,
+      "attack": 10,
+      "defense": 3
+    },
+    "spirit_wolf": {
+      "lifeMax": 30,
+      "attack": 14,
+      "defense": 4
+    },
+    "dire_wolf": {
+      "lifeMax": 40,
+      "attack": 18,
+      "defense": 5
+    },
+    "grizzly": {
+      "lifeMax": 70,
+      "attack": 25,
+      "defense": 7
+    },
+    "poison_creeper": {
+      "lifeMax": 25,
+      "attack": 8,
+      "defense": 3
+    },
+    "carrion_vine": {
+      "lifeMax": 25,
+      "attack": 8,
+      "defense": 3
+    },
+    "solar_creeper": {
+      "lifeMax": 25,
+      "attack": 8,
+      "defense": 3
+    }
+  },
   "defaults": {
     "manaMax": 0,
     "defense": 10,

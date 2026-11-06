@@ -84,10 +84,17 @@
   "mercenary.title": "Mercenaries",
   "combat.title": "Combat",
   "offlineBonus": {
-    "chipText": "+{{pct}}% · {{minutes}}m",
-    "title": "+{{pct}}% XP boost",
+    "chipText": "+{{pct}}% XP/MF · {{minutes}}m",
+    "title": "+{{pct}}% XP / Magic Find",
     "remaining": "next {{minutes}} min",
-    "chipLabel": "+{{pct}}% XP for {{minutes}} min"
+    "chipLabel": "+{{pct}}% XP and Magic Find for {{minutes}} min",
+    "meterLabel": "Current XP and Magic Find bonus"
+  },
+  "idle": {
+    "returnToast": {
+      "title": "Welcome back",
+      "body": "You were away {{hours}}h {{minutes}}m. On return: +{{pct}}% XP/MF, fading over {{windowMinutes}}m {{windowSeconds}}s of online play."
+    }
   },
   "idleTicker": {
     "summary": "every {{seconds}}s: +{{xp}} XP, +{{drops}} drops",

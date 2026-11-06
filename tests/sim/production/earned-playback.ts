@@ -5,6 +5,8 @@ import { useMetaStore } from '@/stores/metaStore';
 import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun,
   startSubAreaRun } from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
+import { inspectRecordedWaves } from '@/stores/recordedWaveReceipt';
+import { combatRunLifecycle } from '@/stores/combatRunLifecycle';
 import { earnedDelta, observeEarnedState, observeStore } from './earned-state';
 
 export type EarnedRunHandle = NonNullable<ReturnType<typeof startSubAreaRun>>;
@@ -28,19 +30,36 @@ function rewardDelta(before: KillRewards, after: KillRewards): KillRewards {
   });
 }
 
-/** Drain exactly the installed native recording, then settle it once. No carry writes. */
+/**
+ * Capture the exact installed snapshot, drain its recording, then settle once.
+ * The snapshot is diagnostic data; opaque native Battle Command carry is not serialized.
+ */
 export function playEarnedWave(handle: EarnedRunHandle, index: number) {
   const opening = observeStore(useCombatStore);
   if (!hasActiveSubAreaRun() || !opening.inCombat || opening.isPaused ||
     opening.currentWave !== index + 1 || opening.totalWaves !== handle.totalWaves ||
     opening.subAreaRunId !== handle.runId || opening.eventCursor !== 0 ||
     opening.playbackComplete || !opening.outcome) throw new Error('Invalid earned wave opening');
+  const { currentPublished, pending } = inspectRecordedWaves();
+  const binding = currentPublished?.binding;
+  const live = useCombatStore.getState();
+  if (pending !== null || currentPublished?.phase !== 'published' || !binding ||
+    binding.candidateRun !== combatRunLifecycle.activeRun ||
+    binding.targetWaveIdx !== index || binding.candidateRun.waveIdx !== index ||
+    binding.candidateRun.seed !== handle.runSeed ||
+    binding.candidateRun.recording !== binding.recording ||
+    binding.recording.events !== live.recordedEvents || binding.recording.outcome !== live.outcome ||
+    binding.publication.currentWave !== opening.currentWave ||
+    binding.publication.totalWaves !== opening.totalWaves ||
+    binding.publication.subAreaRunId !== opening.subAreaRunId)
+    throw new Error('Invalid earned wave binding');
+  const engineInput = structuredClone(binding.engineInput);
   const end = opening.recordedEvents.at(-1);
   if (!end || end.kind !== 'end' || !Number.isFinite(end.simClockMs) || end.simClockMs < 0)
     throw new Error('Missing actual terminal end event');
   const recording = useCombatStore.getState().recordedEvents;
   const outcome = useCombatStore.getState().outcome;
-  for (let step = 0; step < opening.recordedEvents.length; step++) {
+  for (const _event of opening.recordedEvents) {
     const before = useCombatStore.getState();
     if (before.playbackComplete) break;
     before.advanceEvent();
@@ -64,7 +83,7 @@ export function playEarnedWave(handle: EarnedRunHandle, index: number) {
     throw new Error('Production earned run did not terminate or advance');
   }
   return {
-    index, opening, played, beforeAward, afterAward, afterAdvance, advanceResult,
+    index, engineInput, opening, played, beforeAward, afterAward, afterAdvance, advanceResult,
     terminalSimClockMs: end.simClockMs,
     rawRewardDelta: rewardDelta(played.runRewards, afterAdvance.runRewards),
     actualDelta: earnedDelta(beforeAward, afterAward)
@@ -73,11 +92,12 @@ export function playEarnedWave(handle: EarnedRunHandle, index: number) {
 export type EarnedWave = ReturnType<typeof playEarnedWave>;
 
 /** Preserve the already computed next wave, then use the UI's native flee sequence. */
-export function abandonEarnedNextWave() {
+export function abandonEarnedNextWave(expectedWave = 2) {
   const opening = observeStore(useCombatStore);
-  if (!hasActiveSubAreaRun() || opening.currentWave !== 2 ||
+  if (!Number.isInteger(expectedWave) || expectedWave < 2 || expectedWave > opening.totalWaves ||
+    !hasActiveSubAreaRun() || opening.currentWave !== expectedWave ||
     opening.eventCursor !== 0 || opening.playbackComplete || !opening.outcome)
-    throw new Error('Cannot abandon an uninstalled earned preparation W2');
+    throw new Error(`Cannot abandon an uninstalled earned preparation W${String(expectedWave)}`);
   const beforeFlee = observeEarnedState();
   abortSubAreaRun();
   useMetaStore.getState().setIdleTarget(undefined);

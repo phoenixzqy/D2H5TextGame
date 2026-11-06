@@ -10,6 +10,14 @@
   },
   "inventory.title": "Inventory",
   "questItems": {
+    "wirtsLeg": {
+      "name": "Wirt's Leg",
+      "desc": "Recovered from Wirt's remains in the Dark Wood. This bound ingredient is consumed together with the portal Tome when you Transmute at Akara. The Cube is retained."
+    },
+    "cowPortalTome": {
+      "name": "Bound Portal Tome",
+      "desc": "A free bound ritual ingredient Received explicitly from Akara after recovering Wirt's Leg. Consumed with the Leg to open one Cow King portal; it is not general scroll stock."
+    },
     "horadricMalus": {
       "name": "Horadric Malus",
       "description": "Recovered from the cache after clearing the Catacombs. Give this bound quest item to Charsi in the Rogue Encampment."
@@ -150,6 +158,46 @@
     "hellforgeHammer": {
       "name": "Hellforge Hammer",
       "desc": "Defeat Hephasto in the River of Flame while tracking Hell’s Forge, then recover this bound hammer. Shattering the Soulstone consumes both this hammer and Mephisto’s Soulstone. Claim the quest reward separately."
+    },
+    "sunCultTome": {
+      "name": "Sun-Cult Tome",
+      "description": "An ancient manuscript recovered in the Lost City. It remains with you after completion. Claim the XP and skill point separately in Quests."
+    },
+    "horazonLockbox": {
+      "name": "Horazon's Lockbox",
+      "description": "A memento recovered in the Arcane Sanctuary on Normal. It stays with you after completion; claim its XP and Manald Heal reward separately in Quests."
+    },
+    "elzixStrongbox": {
+      "name": "Elzix's Strongbox",
+      "description": "A memento recovered in the Far Oasis on Normal. It stays with you after completion; claim its XP and The Eye of Etlich reward separately in Quests."
+    },
+    "nihlathakRelic": {
+      "name": "Nihlathak’s Relic",
+      "description": "Recovered in Crystalline Passage after defeating Nihlathak. This keepsake remains with you; claim XP and Mara's Kaleidoscope separately in Quests."
+    },
+    "counted": {
+      "alkor": {
+        "name": "Venom Gland",
+        "desc": "Recover three distinct glands in the Spider Forest on Normal. Claim in your journal exchanges all three for XP and five unallocated stat points."
+      },
+      "jade": {
+        "name": "Jade Trinket",
+        "desc": "Recover three distinct trinkets in Kurast Bazaar on Normal. Give all three to Meshif, then Claim XP and rune shards separately."
+      },
+      "jamella": {
+        "name": "Forge Ember",
+        "desc": "Recover five distinct embers in the River of Flame on Normal. Claim in your journal exchanges all five for XP and one perfect gem."
+      },
+      "malah": {
+        "name": "Frost Lichen",
+        "desc": "Recover five distinct lichens in the Ancients' Way on Normal. Claim exchanges all five for XP and +10 effective Vitality after the ordinary soft cap, without restoring Life."
+      },
+      "gheed": {
+        "name": "Gheed's Salvage Lot",
+        "desc": "A marked salvage lot in the Cold Plains. Collect all five and exchange them together when you Claim in Quests. Recovering a lot grants no immediate reward."
+      },
+      "counts": "Recovered {{recovered}}/{{total}} · Held {{held}} · Exchanged {{consumed}}",
+      "bound": "Bound quest ingredients. Exchange the full set; no Read, sale or crafting action."
     }
   },
   "backpack": "Backpack",
@@ -181,7 +229,8 @@
     "ring-left": "Ring (L)",
     "ring-right": "Ring (R)",
     "weapon": "Weapon",
-    "offhand": "Offhand"
+    "offhand": "Offhand",
+    "charm": "Charm"
   },
   "capacity": "Capacity: {{current}}/{{max}}",
   "toast": {
@@ -277,7 +326,7 @@
     "noMatches": "No matching items",
     "confirmTitle": "Confirm Bulk Discard",
     "confirmBody": "Will discard {{count}} items. This cannot be undone.",
-    "exclusionNote": "Unique and set items are always preserved.",
+    "exclusionNote": "Unique, set and runeword items, and equipment with inserted runes or gems, are always preserved.",
     "andMore": "…and {{count}} more",
     "confirmAction": "Confirm Discard"
   },
@@ -316,6 +365,7 @@
         "manaMax": "Mana",
         "attack": "Attack",
         "defense": "Defense",
+        "magicResist": "Magic Resist",
         "attackSpeed": "Atk Speed",
         "critChance": "Crit Chance",
         "critDamage": "Crit Damage",
@@ -376,6 +426,36 @@
   },
   "crafting": {
     "title": "Crafting & sockets",
+    "runewordGuide": {
+      "bonuses": "Runeword bonuses",
+      "bonusNote": "Base stats and ordinary rune effects also apply. Preview an insertion to see the full item.",
+      "title": "Runeword recipes",
+      "select": "Runeword",
+      "sockets": "Normal (white) equipment with exactly {{count}} sockets.",
+      "bases": "Allowed bases (choose one)",
+      "level": "Equip level: {{level}}. The base's level and attribute requirements also apply.",
+      "order": "Insert runes in this order",
+      "ingredients": "Runes required for the full recipe",
+      "rune": "Rune",
+      "needed": "Needed",
+      "owned": "Owned",
+      "instructions": "This guide does not insert or spend anything. Select your equipment and socket material below, then preview each insertion. Existing inserts must follow the same order; a gem or a different rune order prevents a runeword.",
+      "anyWeapon": "Any weapon",
+      "or": " or ",
+      "weaponType": {
+        "staff": "Staff",
+        "polearm": "Polearm",
+        "sword": "Sword",
+        "mace": "Mace",
+        "axe": "Axe",
+        "scepter": "Scepter"
+      },
+      "armorSlot": {
+        "head": "Helm",
+        "chest": "Body armor",
+        "offhand": "Shield"
+      }
+    },
     "action": "Action",
     "recipeLabel": "Recipe",
     "material": "Socket material",
@@ -440,7 +520,10 @@
     "recoverNotice": "The preserved runeword is removed. The same item ID, base, rolls, capacity and personalization are retained. Only the listed runes are refunded.",
     "failed": "Could not complete this action. {{reason}}",
     "previewFailed": "Could not preview this action. {{reason}}",
+    "shortfall": "Need {{quantity}} more {{name}}.",
     "error": {
+      "busy": "Wait for the current action or save restoration to finish.",
+      "profile": "Unlock the selected difficulty through quest progression before crafting.",
       "idle": "Finish or leave the current battle before crafting.",
       "ready": "Wait for the character save to finish loading.",
       "materials": "You do not have enough materials or shards.",

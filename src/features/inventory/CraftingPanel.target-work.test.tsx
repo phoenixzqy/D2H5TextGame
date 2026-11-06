@@ -28,6 +28,65 @@ describe.each(['en', 'zh-CN'] as const)('crafting target preparation %s', locale
   afterEach(() => { vi.restoreAllMocks(); act(() => { for (const store of stores) store.getState().reset(); }); });
   const category = (value: string) => fireEvent.change(screen.getByLabelText(en ? 'Action' : '操作'), { target: { value } });
   const mount = () => render(<I18nextProvider i18n={i18n}><CraftingPanel /></I18nextProvider>);
+  it.each(['rune-fusion', 'gem-fusion', 'gem-dismantle'])('does not rebuild %s controls after an unrelated native gear transfer', kind => {
+    mount(); category(kind);
+    const panel = screen.getByTestId('crafting-panel');
+    const controls = panel.innerHTML;
+    const before = useInventoryStore.getState();
+    const item = before.backpack[0];
+    if (!item) throw new Error('Missing transfer item');
+    const translate = vi.spyOn(i18n, 't');
+    act(() => { expect(useInventoryStore.getState().moveToStash(item.id)).toEqual({ ok: true }); });
+    expect(useInventoryStore.getState().backpack).toEqual(before.backpack.slice(1));
+    expect(useInventoryStore.getState().stash).toEqual([...before.stash, item]);
+    expect(panel.innerHTML).toBe(controls);
+    expect(translate.mock.calls.filter(([key]) => key === 'crafting.title')).toHaveLength(0);
+  });
+  it('ignores unused stash and quarantine changes while socket targets still follow the live backpack', () => {
+    mount(); category('socket-insert');
+    const translate = vi.spyOn(i18n, 't');
+    act(() => { useInventoryStore.setState({ stash: gear('new-stash', 3), socketQuarantine: [] }); });
+    expect(translate.mock.calls.filter(([key]) => key === 'crafting.title')).toHaveLength(0);
+    act(() => { useInventoryStore.setState({ backpack: gear('new-backpack', 1) }); });
+    expect(screen.getAllByRole('checkbox')).toHaveLength(1);
+    expect(screen.getByLabelText(/#new-backpack-0\b/)).toBeInTheDocument();
+    expect(screen.queryByLabelText(/#backpack-0\b/)).not.toBeInTheDocument();
+  });
+  it('keeps salvage selection and its current source after a native transfer', () => {
+    useInventoryStore.setState({ backpack: gear('moving', 1), stash: gear('stored', 1) });
+    mount(); category('salvage');
+    fireEvent.click(screen.getByLabelText(/#moving-0\b/));
+    expect(screen.getByLabelText(/#moving-0\b/)).toBeChecked();
+    expect(screen.getByLabelText(/#moving-0\b/).closest('label')).toHaveTextContent(en ? 'Backpack' : '背包');
+    act(() => { expect(useInventoryStore.getState().moveToStash('moving-0')).toEqual({ ok: true }); });
+    expect(screen.getAllByRole('checkbox')).toHaveLength(2);
+    expect(screen.getByLabelText(/#moving-0\b/)).toBeChecked();
+    expect(screen.getByLabelText(/#moving-0\b/).closest('label')).toHaveTextContent(en ? 'Stash' : '仓库');
+  });
+  it('reads quarantine updates independently and reselects current gear when leaving recovery', () => {
+    const recovered = gear('recovered', 1)[0];
+    if (!recovered) throw new Error('Missing recovery item');
+    mount(); category('recover-v18');
+    const translate = vi.spyOn(i18n, 't');
+    act(() => { useInventoryStore.setState({ backpack: gear('latest', 1), stash: gear('latest-stash', 1) }); });
+    expect(translate.mock.calls.filter(([key]) => key === 'crafting.title')).toHaveLength(0);
+    act(() => { useInventoryStore.setState({ socketQuarantine: [{ sourceVersion: 18,
+      item: { ...recovered, rarity: 'runeword', runewordId: 'runewords/lore', runes: ['runes/ort', 'runes/sol'] },
+      origin: { container: 'stash', index: 0 } }] }); });
+    expect(screen.getByLabelText(/#recovered-0\b/)).toBeInTheDocument();
+    category('socket-insert');
+    expect(screen.getByLabelText(/#latest-0\b/)).toBeInTheDocument();
+    expect(screen.queryByLabelText(/#recovered-0\b/)).not.toBeInTheDocument();
+    category('salvage');
+    expect(screen.getByLabelText(/#latest-stash-0\b/)).toBeInTheDocument();
+  });
+  it('refreshes current material and currency balances for a material-only recipe', () => {
+    mount(); category('gem-fusion');
+    act(() => { useInventoryStore.setState({ materials: { 'gems/amethyst/chipped': 47 }, currencies: { 'gem-shard': 23 } }); });
+    const panel = screen.getByTestId('crafting-panel');
+    expect(panel).toHaveTextContent(en ? 'Owned: 47' : '持有：47');
+    expect(panel).toHaveTextContent(en ? 'Owned: 23' : '持有：23');
+  });
   it('does not localize unused gear origins for material-only operations or inventory updates', () => {
     const translate = vi.spyOn(i18n, 't'); mount(); category('gem-fusion'); category('gem-dismantle');
     act(() => { useInventoryStore.setState({ backpack: gear('replacement', 301) }); });

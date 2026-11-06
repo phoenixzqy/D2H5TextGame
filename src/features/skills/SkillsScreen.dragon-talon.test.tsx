@@ -66,10 +66,10 @@ for (const locale of ['en', 'zh-CN'] as const) {
           ])
         expect(panel).toHaveTextContent(text);
       expect(panel.textContent).not.toMatch(/\{\{|skills:|details\.strikesPerCast/);
-      const growth = 4 * Math.max(0, rank - 1);
+      const growth = 60 * Math.max(0, rank - 1);
       expect(panel).toHaveTextContent(`${String(40 + growth)} ~ ${String(60 + growth)}`);
       if (rank > 0 && rank < 20)
-        expect(panel).toHaveTextContent(`${String(44 + growth)} ~ ${String(64 + growth)}`);
+        expect(panel).toHaveTextContent(`${String(100 + growth)} ~ ${String(120 + growth)}`);
       if (rank === 20)
         expect(panel).toHaveTextContent(
           locale === 'en' ? 'Max level reached.' : '已达到最高等级。'

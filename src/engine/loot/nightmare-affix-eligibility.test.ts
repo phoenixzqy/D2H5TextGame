@@ -7,11 +7,18 @@ import { planMaterialAction, prepareMaterialAction, type MaterialActionContext, 
 import { createRng } from '../rng';
 import type { AffixRoll, ItemBase, Rarity } from '../types/items';
 import { prepareRareAffixPair, rollItem } from './rollItem';
+import rangedPolicy from '../../../tests/fixtures/ranged-progression-v1.json';
+import throwingPolicy from '../../../tests/fixtures/throwing-progression-v1.json';
+import spearPolicy from '../../../tests/fixtures/spear-progression-v1.json';
 
 const pools = loadAwardPools();
 const affixes = loadAffixPool();
 const bases = [...pools.bases.values()].filter(base => base.canHaveAffixes);
 const seed = 3286157777;
+const rangedAdditions = new Set(rangedPolicy.tiers.slice(1).flatMap(tier => [tier.bow, tier.crossbow]));
+const throwingAdditions = new Set(throwingPolicy.tiers.map(tier => tier.baseId));
+
+const spearAdditions = new Set(spearPolicy.tiers.map(tier => tier.baseId));
 
 function required<T>(value: T | undefined): T {
   if (value === undefined) throw new Error('Missing production affix content');
@@ -44,11 +51,16 @@ describe('BUG153 and D08 finite native affix eligibility', () => {
 
   for (const rarity of ['magic', 'rare'] as const) {
     it.each([99, 100, 101, 102, 103, 121, 122])(`materializes legal ${rarity} bonuses on every affixable base at%i`, ilvl => {
-      // Preserve the 76 original bases and verify the two mastery bases plus six claw tiers.
-      expect(bases.filter(base => base.weaponType !== 'claw' && !['items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id)))
+      // Preserve 76 original bases; additions are two mastery, six claw,
+      // six ranged, five throwing and four spear bases, all checked by the same affix rules.
+      expect(bases.filter(base => base.weaponType !== 'claw' && !rangedAdditions.has(base.id) &&
+        !throwingAdditions.has(base.id) && !spearAdditions.has(base.id) && !['items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id)))
         .toHaveLength(76);
       expect(bases.filter(base => base.weaponType === 'claw')).toHaveLength(6);
-      expect(bases).toHaveLength(84);
+      expect(bases.filter(base => rangedAdditions.has(base.id))).toHaveLength(6);
+      expect(bases.filter(base => throwingAdditions.has(base.id))).toHaveLength(5);
+      expect(bases.filter(base => spearAdditions.has(base.id))).toHaveLength(4);
+      expect(bases).toHaveLength(99);
       for (const base of bases) {
         const item = required(rollItem({ baseId: base.id, rarity, ilvl }, pools, createRng(seed)));
         expect(item).toMatchObject({ baseId: base.id, rarity, level: ilvl, ilvl });

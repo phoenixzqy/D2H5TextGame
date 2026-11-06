@@ -30,6 +30,60 @@ it('integrates mid-flight onset and exact expiry without changing launches', () 
  .toEqual([1700, 3400, 5100, 6800, 8500]);
  expect(out.events.filter(e => e.kind === 'mana' && e.target === 'hero' && e.reason === 'cast')).toHaveLength(1);
 });
+it.each([
+ ['amazon.slow_missiles', 1], ['amazon.slow_missiles', 20],
+ ['skills-amazon-slow-missiles', 1], ['skills-amazon-slow-missiles', 20]
+] as const)('uses offense during a paid window and pays again only at expiry: %s rank%i', (id, rank) => {
+ registerSkill({ id: 'fixture.strike', archetype: 'fixture', target: 'single-enemy', minLevel: 1, cooldown: 1, manaCost: 0,
+ effects: [{ kind: 'damage', damageType: 'physical', base: [1, 1], alwaysHits: true }] });
+ const hero = { ...unit('hero', 'player'), statuses: [], slowMissilesRank: rank,
+ skillLevels: { [id]: rank }, skillOrder: [id, 'fixture.strike'] };
+ const out = record({ seed: 7, playerTeam: [hero], enemyTeam: [unit('archer', 'enemy'),
+ { ...unit('melee', 'enemy'), skillOrder: [], statuses: [hold()] }] });
+ const actions = out.events.filter(e => e.kind === 'action' && e.actor === 'hero');
+ expect(actions.slice(0, 7).map(e => [e.simClockMs, e.kind === 'action' && e.skillId])).toEqual([
+ [2000, 'amazon.slow_missiles'], [4000, 'fixture.strike'], [6000, 'fixture.strike'], [8000, 'amazon.slow_missiles'],
+ [10000, 'fixture.strike'], [12000, 'fixture.strike'], [14000, 'amazon.slow_missiles']
+ ]);
+ const casts = actions.filter(e => e.kind === 'action' && e.skillId === 'amazon.slow_missiles');
+ expect(casts.map(e => e.simClockMs)).toEqual([2000, 8000, 14000, 20000, 26000, 32000, 38000, 44000, 50000, 56000]);
+ const cost = rank === 1 ? 10 : 8;
+ const paid = out.events.filter(e => e.kind === 'mana' && e.target === 'hero' && e.reason === 'cast' &&
+ casts.some(cast => cast.simClockMs === e.simClockMs));
+ expect(paid).toHaveLength(casts.length);
+ for (const [index, event] of paid.entries()) {
+  expect(event.kind === 'mana' && event.mana).toBeCloseTo(100 - (index + 1) * cost, 10);
+ }
+ expect(out.result.playerTeam[0]?.mana).toBeCloseTo(100 - casts.length * cost, 10);
+ for (const target of ['archer', 'melee']) {
+  expect(out.events.filter(e => e.kind === 'status' && e.target === target && e.statusId === 'slow-missiles'))
+   .toHaveLength(casts.length);
+ }
+});
+it('does not let an imported visible Slow Missiles marker suppress a paid cast', () => {
+ const archer = unit('archer', 'enemy');
+ const out = record({ ...snapshot(), enemyTeam: [{ ...archer, statuses: [
+ { id: 'slow-missiles', sourceId: 'hero', stacks: 1, remaining: 60, appliedAtMs: 0, expiresAtMs: 60000 }
+ ] }] });
+ expect(out.events.find(e => e.kind === 'action' && e.skillId === 'amazon.slow_missiles')?.simClockMs).toBe(2000);
+ expect(out.events.find(e => e.kind === 'mana' && e.reason === 'cast' && e.target === 'hero'))
+ .toMatchObject({ mana: 90, simClockMs: 2000 });
+ expect(shots(out)[0]?.simClockMs).toBe(2607);
+});
+it('covers a newly spawned opponent before the previous window expires', () => {
+ registerSkill({ id: 'fixture.spawn', archetype: 'fixture', target: 'self', minLevel: 1, cooldown: 60, manaCost: 0,
+ effects: [{ kind: 'summon', summonId: 'minion', maxCount: 1 }] });
+ const hero = { ...unit('hero', 'player'), statuses: [] };
+ const summoner = { ...unit('archer', 'enemy'), skillOrder: ['fixture.spawn'], cooldowns: { 'fixture.spawn': 3500 } };
+ const out = record({ seed: 7, playerTeam: [hero], enemyTeam: [summoner] });
+ const spawn = out.events.find(e => e.kind === 'summon');
+ expect(spawn).toMatchObject({ owner: 'archer', simClockMs: 5100 });
+ expect(out.events.filter(e => e.kind === 'action' && e.skillId === 'amazon.slow_missiles')
+ .slice(0, 3).map(e => e.simClockMs)).toEqual([2000, 6000, 12000]);
+ if (!spawn) throw new Error('Expected native spawned opponent');
+ expect(out.events.find(e => e.kind === 'status' && e.target === spawn.unit.id && e.statusId === 'slow-missiles'))
+ .toMatchObject({ simClockMs: 6000 });
+});
 it('keeps already-fired slowed shots after source death without reviving or healing it', () => {
  const input = snapshot(), archer = unit('archer', 'enemy');
  const poison: ActiveStatus = { id: 'poison', sourceId: 'fixture', stacks: 1, remaining: 3, appliedAtMs: 0, expiresAtMs: 3000, dotPerStack: 50, damageType: 'poison' };

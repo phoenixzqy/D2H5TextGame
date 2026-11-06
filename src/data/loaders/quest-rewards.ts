@@ -1,10 +1,10 @@
 import Ajv2020 from 'ajv/dist/2020';
 import profileJson from '../quest-rewards/act3-gidbinn-ring-v1.json';
-import profileSchema from '../schema/quest-unique-profile.schema.json';
+import { compileAuthoredValidator } from '../authored-validators';
 import type { QuestUniqueProfile } from '@/engine/loot/quest-unique';
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validate = ajv.compile<QuestUniqueProfile>(profileSchema);
+const validate = compileAuthoredValidator<QuestUniqueProfile>(ajv, 'questUnique');
 
 /** Load the closed v1 content profile; reject compatibility drift before selection. */
 export function loadQuestUniqueProfile(): QuestUniqueProfile {

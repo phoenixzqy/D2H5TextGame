@@ -48,7 +48,7 @@ beforeEach(() => {
   });
 });
 
-it.each([[0, 'fire', 15], [3, 'poison', 10]] as const)(
+it.each([[0, 'fire', 57], [3, 'poison', 45]] as const)(
   '%s uses resolved %s damage before capturing its DoT rate', (index, element, periodic) => {
     selected = index;
     const input = fixture(), target = input.enemyTeam[0];
@@ -56,10 +56,10 @@ it.each([[0, 'fire', 15], [3, 'poison', 10]] as const)(
     const out = record({ ...input, enemyTeam: [{ ...target,
       stats: { ...target.stats, resistances: { ...target.stats.resistances, [element]: 50 } } }] });
     expect(out.events.filter(e => e.kind === 'damage')).toEqual([
-      expect.objectContaining({ damageType: element, amount: 50, dodged: false })
+      expect.objectContaining({ damageType: element, amount: 195, dodged: false })
     ]);
     expect(out.events.filter(e => e.kind === 'dot').reduce((sum, e) => sum + e.amount, 0)).toBe(periodic);
-    expect(out.result.enemyTeam[0]?.life).toBe(950 - periodic);
+    expect(out.result.enemyTeam[0]?.life).toBe(805 - periodic);
   });
 
 it.each([0, 1, 2, 3])('a missed element%s bolt applies no status or periodic damage', index => {
@@ -98,11 +98,11 @@ it('rejects a forged enemy Bone Armor marker before settling actual HP loss', ()
     { id: 'bone-armor', sourceId: 'target', stacks: 1, remaining: -1,
       boneArmor: { rank: 1, remaining: 100 } }] }] });
   expect(out.events.filter(e => e.kind === 'damage')).toEqual([
-    expect.objectContaining({ damageType: 'fire', amount: 100, dodged: false })
+    expect.objectContaining({ damageType: 'fire', amount: 390, dodged: false })
   ]);
   expect(out.events.find(e => e.kind === 'damage')).not.toHaveProperty('absorbed');
-  expect(out.events.filter(e => e.kind === 'dot').reduce((sum, e) => sum + e.amount, 0)).toBe(30);
-  expect(out.result.enemyTeam[0]?.life).toBe(870);
+  expect(out.events.filter(e => e.kind === 'dot').reduce((sum, e) => sum + e.amount, 0)).toBe(117);
+  expect(out.result.enemyTeam[0]?.life).toBe(493);
 });
 afterEach(() => { registerSummon('skeletal_mage', original); resetRegistry(); loadDefaultSkills(); });
 
@@ -137,8 +137,8 @@ it('stacks genuine repeated poison bolts to ten while retaining the first captur
   const statuses = out.events.flatMap(e => e.kind === 'status-state' && e.target === 'target'
     ? e.statuses.filter(s => s.id === 'poison') : []);
   expect(Math.max(...statuses.map(s => s.stacks))).toBe(10);
-  expect(statuses.every(s => s.stacks <= 10 && s.dotPerStack === 5)).toBe(true);
-  expect(out.events.filter(e => e.kind === 'damage').some(e => e.amount === 250)).toBe(true);
+  expect(statuses.every(s => s.stacks <= 10 && s.dotPerStack === 19)).toBe(true);
+  expect(out.events.filter(e => e.kind === 'damage').some(e => e.amount === 975)).toBe(true);
   expect(out.events.filter(e => e.kind === 'status' && e.statusId === 'plague')).toEqual([]);
   const total = out.events.reduce((sum, e) => sum +
     ((e.kind === 'damage' || e.kind === 'dot') && e.target === 'target' ? e.amount : 0), 0);
@@ -146,16 +146,16 @@ it('stacks genuine repeated poison bolts to ten while retaining the first captur
 });
 
 it.each([
-  [0, 'burn', 'ignite', 3000, 10, 30],
+  [0, 'burn', 'ignite', 3000, 39, 117],
   [1, 'chill', 'chill', 2000, undefined, 0],
   [2, 'paralyze', 'paralyze', 1000, undefined, 0],
-  [3, 'poison', 'poison', 5000, 5, 25]
+  [3, 'poison', 'poison', 5000, 19, 95]
 ] as const)('paid %s Mage produces real %s state and periodic HP loss',
   (index, emitted, stored, duration, rate, periodicLoss) => {
     selected = index;
     const input = fixture(), before = structuredClone(input), out = record(input);
     const source = out.events.find(e => e.kind === 'damage' && e.target === 'target');
-    expect(source).toMatchObject({ kind: 'damage', amount: 100,
+    expect(source).toMatchObject({ kind: 'damage', amount: 390,
       damageType: ELEMENTS[index], dodged: false, simClockMs: 2000 });
     if (source?.kind !== 'damage') throw new Error('Missing actual Mage hit');
     expect(out.events.filter(e => e.kind === 'summon')).toHaveLength(4);
@@ -172,7 +172,7 @@ it.each([
       ...(rate === undefined ? {} : { dotPerStack: rate }) });
     const periodic = out.events.filter(e => e.kind === 'dot' && e.target === 'target');
     expect(periodic.reduce((sum, e) => sum + (e.kind === 'dot' ? e.amount : 0), 0)).toBe(periodicLoss);
-    expect(out.result.enemyTeam[0]?.life).toBe(900 - periodicLoss);
+    expect(out.result.enemyTeam[0]?.life).toBe(610 - periodicLoss);
     expect(out.result.enemyTeam[0]?.statuses.map(s => s.id)).toEqual(['stun']);
     expect(input).toEqual(before);
     expect(record(input)).toEqual(out);

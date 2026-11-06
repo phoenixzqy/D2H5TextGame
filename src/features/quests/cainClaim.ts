@@ -11,6 +11,7 @@ import { useCombatStore } from '@/stores/combatStore';
 import { hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
 import { pick, replace, sameCainData } from './cainPublication';
+import { beginQuestCurrencyPublication, endQuestCurrencyPublication, verifyQuestCurrencyPublication } from '@/stores/questCurrencyJournal';
 
 const QUESTS = [CAIN_QUEST, CAIN_SIDE_QUEST];
 const SERVICES = QUESTS.map(id => `${id}#reward:service`);
@@ -27,14 +28,15 @@ export function hasCainClaimCompletion(questId: string): boolean {
 }
 
 /**
- * Settle a preflighted Cain XP/permanent-entitlement bundle under Claim's lease.
+ * Settle a preflighted Cain XP/wishes/permanent-entitlement bundle under Claim's lease.
  * Capture the recipient before publication, check every boundary, mark claimed
  * last, and restore deep participating values while preserving unrelated writes.
  * The entitlement has no finite service entry. Failed restoration is explicit.
  */
-export function publishCainClaim(questId: string, xp: number): 'ok' | 'grant-failed' | 'unsupported-rewards' {
+export function publishCainClaim(questId: string, xp: number, wishes: number): 'ok' | 'grant-failed' | 'unsupported-rewards' {
   const hero = usePlayerStore.getState().player, map = useMapStore.getState();
   if (!hero || !QUESTS.includes(questId) || !hasCainClaimCompletion(questId)) return 'unsupported-rewards';
+  if (xp !== (questId === CAIN_QUEST ? 2500 : 0) || wishes !== (questId === CAIN_QUEST ? 20 : 10)) return 'unsupported-rewards';
   const inventory = useInventoryStore.getState(), mercs = useMercStore.getState();
   const recipient = xp > 0 ? mercs.ownedMercs.find(row => row.id === mercs.fieldedMercId) : undefined;
   const recipientId = recipient?.id;
@@ -72,8 +74,13 @@ export function publishCainClaim(questId: string, xp: number): 'ok' | 'grant-fai
   const claimedRows = structuredClone(before.rows), row = claimedRows[questId];
   if (!row) return 'unsupported-rewards';
   claimedRows[questId] = { ...row, rewardClaimed: true };
+  let currencyOwner;
+  try { currencyOwner = beginQuestCurrencyPublication(questId, 'wishstone', wishes, inventory.currencies); }
+  catch { return 'unsupported-rewards'; }
+  let grantedCurrency = false;
   const check = (claimed: boolean, grantedHero: boolean, grantedMerc: boolean, restoring = false): void => {
     const live = useMapStore.getState(), currentItems = useInventoryStore.getState();
+    verifyQuestCurrencyPublication(currencyOwner, currentItems.currencies, grantedCurrency);
     if ((!restoring && (useHydrationStore.getState().status !== 'ready' || isReplacingSave() || hasActiveSubAreaRun() ||
       useCombatStore.getState().inCombat)) || !sameCainData({ currentAct: live.currentAct,
       currentSubAreaId: live.currentSubAreaId, selectedDifficulty: live.selectedDifficulty }, before.location) ||
@@ -110,6 +117,8 @@ export function publishCainClaim(questId: string, xp: number): 'ok' | 'grant-fai
       }
       check(false, true, true);
     }
+    useInventoryStore.getState().addQuestCurrency(currencyOwner); grantedCurrency = true;
+    check(false, xp > 0, xp > 0);
     useMapStore.getState().markQuestRewardClaimed(questId); check(true, xp > 0, xp > 0);
     return 'ok';
   } catch (cause) {
@@ -128,10 +137,12 @@ export function publishCainClaim(questId: string, xp: number): 'ok' | 'grant-fai
       questItems: replace(state.questItems, structuredClone(before.items), [CAIN_SCROLL_SOURCE]),
       questServices: replace(state.questServices, structuredClone(before.services), SERVICES)
     })); });
+    restore(() => { useInventoryStore.getState().restoreQuestCurrency(currencyOwner); });
+    grantedCurrency = false;
     restore(() => { useMapStore.setState(state => ({ questProgress: replace(state.questProgress, structuredClone(before.rows), QUESTS),
       questReceipts: replace(state.questReceipts, structuredClone(before.receipts), CAIN_RECEIPTS), ...before.location })); });
     restore(() => { check(false, false, false, true); });
     if (errors.length > 0) throw new AggregateError(errors, 'Cain Claim restoration failed', { cause });
     return 'grant-failed';
-  }
+  } finally { endQuestCurrencyPublication(currencyOwner); }
 }

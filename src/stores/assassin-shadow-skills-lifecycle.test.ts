@@ -6,6 +6,7 @@ vi.mock('@/stores/save-adapter', () => ({
   saveSave: vi.fn(() => Promise.resolve(undefined)),
   deleteSave: vi.fn()
 }));
+import * as staging from '@/stores/recordedWaveStaging';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { resetRegistry, loadDefaultSkills } from '@/engine/skills/registry';
 import { toJsonSafe } from '@/engine/save';
@@ -100,6 +101,21 @@ beforeEach(() => {
   resetRegistry();
   loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
+  // Controlled lifecycle fixture: give paid native shadows eight seconds to act
+  // before the synthetic high-Attack hero or hostile attacks can remove bodies.
+  // Summon payment, copied plans, ranks, damage rolls and playback remain native.
+  const stage = staging.stageRecordedWave;
+  vi.spyOn(staging, 'stageRecordedWave').mockImplementation(input => stage({ ...input,
+    snapshot: { ...input.snapshot,
+      playerTeam: input.snapshot.playerTeam.map(unit => unit.kind === 'hero'
+        ? { ...unit, statuses: [...unit.statuses, { id: 'stun', sourceId: 'fixture.shadow-window',
+          stacks: 1, remaining: 8, appliedAtMs: 0, expiresAtMs: 8000 }] } : unit),
+      enemyTeam: input.snapshot.enemyTeam.map(unit => ({ ...unit, life: 1000,
+        stats: { ...unit.stats, lifeMax: 1000 },
+        statuses: [...unit.statuses, { id: 'stun', sourceId: 'fixture.shadow-window',
+          stacks: 1, remaining: 8, appliedAtMs: 0, expiresAtMs: 8000 }] }))
+    }
+  }));
 });
 afterEach(() => {
   reset();

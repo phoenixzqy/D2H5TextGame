@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/kill-xp.json",
+  "title": "Combat-qualified kill XP curve",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "basePerLevel", "minimumReward", "growthStartLevel", "growthExponent"],
+  "properties": {
+    "id": { "const": "progression/kill-xp-v1" },
+    "basePerLevel": { "type": "number", "exclusiveMinimum": 0, "maximum": 100, "description": "Linear early reward coefficient." },
+    "minimumReward": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Minimum reward and legacy invalid-level fallback." },
+    "growthStartLevel": { "type": "integer", "minimum": 1, "maximum": 90, "description": "Monster level through which reward remains linear." },
+    "growthExponent": { "type": "number", "minimum": 0, "maximum": 2, "description": "Additional reward exponent above the anchor." }
+  }
+}

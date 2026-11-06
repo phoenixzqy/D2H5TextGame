@@ -151,10 +151,10 @@ describe('persistence', () => {
       const incoming: SaveCurrent = { ...before, map: { ...before.map, questReceipts } };
       useMapStore.setState({ questReceipts: { 'fixture/stale-action': true } });
       // Exercise import publication separately from the production source/graph validator.
-      const decode = vi.spyOn(saveValidation, 'decodeSave').mockReturnValueOnce(incoming);
+      const decode = vi.spyOn(saveValidation, 'decodeSaveJson').mockReturnValueOnce(incoming);
       try {
         await importIntoStores(JSON.stringify(incoming));
-        expect(decode).toHaveBeenCalledWith(incoming);
+        expect(decode).toHaveBeenCalledWith(JSON.stringify(incoming));
         expect(mockSaveStore.current?.map.questReceipts).toEqual(questReceipts);
         expect(useMapStore.getState().questReceipts).toEqual(questReceipts);
         expect(useMapStore.getState().questReceipts).not.toBe(questReceipts);

@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act2/greiz",
+  "npcId": "greiz",
+  "greetings": [
+    {
+      "text": "After you complete Radament’s Lair, a hero of level 12 or higher may enlist a Blessed Aim mercenary here in Normal. Choose a companion and confirm Enlist; claim Greiz’s Roster separately in your quest journal.",
+      "textKey": "town:dialogue.greetings.act2.greiz"
+    }
+  ],
+  "services": []
+}

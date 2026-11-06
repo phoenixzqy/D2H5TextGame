@@ -140,6 +140,7 @@ describe('<CharacterCreate> — class picker (mirrors welcome-gate.spec.ts)', ()
     // Barbarian preview lands strength=30 — visible in the dl.
     const body = document.body.textContent || '';
     expect(body).toMatch(/30/);
+    expect(screen.getByText('体力', { exact: true, selector: 'dt' })).toBeVisible();
   });
 
   it('changing the selected class updates the stat preview', () => {

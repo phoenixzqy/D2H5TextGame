@@ -1,8 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import * as random from '../rng';
 import { materialRecipes } from '@/data/loaders/material-recipes';
 import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
 import type { CanonicalSocketItem } from '../items/socket-contents';
-import { prepareMaterialAction, planMaterialAction, type MaterialActionContext, type MaterialActionInventory } from './material-actions';
+import { prepareMaterialAction, planMaterialAction, validateMaterialActionSelection, MaterialActionShortageError, type MaterialActionContext, type MaterialActionInventory } from './material-actions';
 
 const context: MaterialActionContext = { characterId: 'hero', highestUnlockedAct: 5, difficulty: 'hell',
   backpackCapacity: 100, stashCapacity: 500, reservedItemIds: new Set(), otherOwnedItemIds: new Set(),
@@ -16,6 +17,41 @@ function inventory(extra: Partial<MaterialActionInventory> = {}): MaterialAction
 }
 
 describe('unified pure material action planner', () => {
+  it('reports all material and currency shortfalls without changing action state', () => {
+    const recipe = [...materialRecipes.values()].find(row => row.kind === 'gem-fusion');
+    if (!recipe) throw new Error('Missing gem fusion');
+    const source = inventory();
+    let failure: unknown;
+    try { validateMaterialActionSelection(source, context, { recipeId: recipe.id }); } catch (error) { failure = error; }
+    expect(failure).toBeInstanceOf(MaterialActionShortageError);
+    expect(failure).toMatchObject({ shortfalls: [
+      ...Object.entries(recipe.costs.materials).map(([id, missing]) => ({ kind: 'material', id, missing })),
+      ...Object.entries(recipe.costs.currencies).map(([id, missing]) => ({ kind: 'currency', id, missing }))
+    ] });
+    expect(source).toEqual(inventory());
+  });
+  it('refuses malformed participating currency before reporting ordinary material deficits', () => {
+    const recipe = [...materialRecipes.values()].find(row => row.kind === 'gem-fusion');
+    if (!recipe) throw new Error('Missing gem fusion');
+    const currency = Object.keys(recipe.costs.currencies)[0];
+    if (!currency) throw new Error('Missing gem fusion currency');
+    expect(() => { validateMaterialActionSelection(inventory({ currencies: { [currency]: NaN } }), context,
+      { recipeId: recipe.id }); }).toThrow('Invalid crafting currency balance');
+  });
+  it('checks a random transform without rolling or creating a receipt and keeps the eventual intent unchanged', () => {
+    const recipe = [...materialRecipes.values()].find(row => row.kind === 'socket-armor');
+    if (!recipe) throw new Error('Missing socket recipe');
+    const source = inventory({ backpack: [gear({ socketCapacity: 0 })], materials: recipe.costs.materials, currencies: recipe.costs.currencies });
+    const selection = { recipeId: recipe.id, itemIds: ['target'] };
+    const before = structuredClone(source), request = prepareMaterialAction(source, context, selection);
+    const rng = vi.spyOn(random, 'createRng');
+    try {
+      for (let check = 0; check < 5; check++) validateMaterialActionSelection(source, context, selection);
+      expect(rng).not.toHaveBeenCalled();
+      expect(source).toEqual(before);
+      expect(prepareMaterialAction(source, context, selection)).toEqual(request);
+    } finally { rng.mockRestore(); }
+  });
   it.each([...materialRecipes.values()])('preflights and executes $id through the same receipt boundary', recipe => {
     let item = gear();
     if (recipe.kind === 'socket-clear') item = gear({ socketContents: [{ kind: 'gem', id: 'gems/ruby/chipped' }] });
@@ -24,6 +60,8 @@ describe('unified pure material action planner', () => {
     const source = inventory({ materials: recipe.costs.materials, currencies: recipe.costs.currencies,
       backpack: 'target' in recipe ? [item] : [] });
     const before = structuredClone(source);
+    expect(() => { validateMaterialActionSelection(source, context, { recipeId: recipe.id,
+      ...('target' in recipe ? { itemIds: ['target'] } : {}) }); }).not.toThrow();
     const request = prepareMaterialAction(source, context, { recipeId: recipe.id,
       ...('target' in recipe ? { itemIds: ['target'] } : {}) });
     expect(source).toEqual(before);
@@ -76,6 +114,58 @@ describe('unified pure material action planner', () => {
     expect(plan.result).toEqual({ materials: { 'materials/scrap': 20 }, currencies: {} });
     expect(plan.next?.materials).toEqual({ 'materials/scrap': 21 });
     expect(plan.next?.backpack).toEqual([]); expect(plan.next?.stash).toEqual([]);
+  });
+  it('prepares and projects bulk salvage within a linear ownership-read budget', () => {
+    const bagItems = Array.from({ length: 128 }, (_, index) => gear({ id: `bag-${String(index)}` }));
+    const stashItems = Array.from({ length: 64 }, (_, index) => gear({ id: `stash-${String(index)}` }));
+    const keepBag = gear({ id: 'keep-bag' }), keepStash = gear({ id: 'keep-stash' });
+    const bag = [...bagItems, keepBag], stash = [...stashItems, keepStash];
+    let readsRemaining = (bag.length + stash.length) * 6;
+    const bounded = (items: CanonicalSocketItem[]) => new Proxy(items, {
+      get(target, property, receiver) {
+        if (typeof property === 'string' && /^(0|[1-9]\d*)$/u.test(property) && --readsRemaining < 0)
+          throw new Error('Bulk salvage ownership-read budget exhausted');
+        return Reflect.get(target, property, receiver) as unknown;
+      }
+    });
+    const source = inventory({ backpack: bounded(bag), stash: bounded(stash), materials: { 'materials/scrap': 12 } });
+    const selection = { recipeId: 'actions/salvage', itemIds: [...bagItems, ...stashItems].reverse().map(item => item.id) };
+    const request = prepareMaterialAction(source, context, selection);
+    expect(request.targets.map(target => target.id)).toEqual(selection.itemIds);
+    const reordered = prepareMaterialAction(inventory({ backpack: [...bag].reverse(), stash: [...stash].reverse(),
+      materials: { 'materials/scrap': 12 } }), context, selection);
+    expect(request.requestHash).toBe(reordered.requestHash);
+    const plan = planMaterialAction(source, context, request);
+    expect(plan.result).toEqual({ materials: { 'materials/scrap': 384 }, currencies: {} });
+    expect(plan.next?.materials).toEqual({ 'materials/scrap': 396 });
+    expect(plan.next?.backpack).toEqual([keepBag]); expect(plan.next?.stash).toEqual([keepStash]);
+    expect(source.backpack).toHaveLength(129); expect(source.stash).toHaveLength(65);
+    expect(source.materialActionOrdinal).toBe(0);
+    if (!plan.next) throw new Error('Missing bulk salvage projection');
+    expect(planMaterialAction(plan.next, context, request)).toEqual({ replay: true, result: plan.result });
+  });
+  it.each(['backpack', 'stash'] as const)('rejects a selected bulk salvage identity repeated in %s', holder => {
+    const item = gear(), duplicate = gear({ rarity: 'rare' });
+    const source = inventory({ backpack: holder === 'backpack' ? [item, duplicate] : [item],
+      stash: holder === 'stash' ? [duplicate] : [], materials: { 'materials/scrap': 12 } });
+    const before = structuredClone(source);
+    expect(() => prepareMaterialAction(source, context, { recipeId: 'actions/salvage', itemIds: ['target'] }))
+      .toThrow('Missing or duplicate owned material target');
+    expect(source).toEqual(before);
+  });
+  it('rechecks current bulk salvage ownership after a retained request is prepared', () => {
+    const source = inventory({ backpack: [gear()] });
+    const request = prepareMaterialAction(source, context, { recipeId: 'actions/salvage', itemIds: ['target'] });
+    expect(() => planMaterialAction({ ...source, stash: [gear()] }, context, request))
+      .toThrow('Missing or duplicate owned material target');
+    expect(source.materialActionOrdinal).toBe(0); expect(source.backpack).toHaveLength(1);
+  });
+  it('retains unrelated duplicate rows when their identity is not selected for bulk salvage', () => {
+    const unselected = gear({ id: 'unselected' });
+    const source = inventory({ backpack: [gear(), unselected], stash: [{ ...unselected }] });
+    const request = prepareMaterialAction(source, context, { recipeId: 'actions/salvage', itemIds: ['target'] });
+    const plan = planMaterialAction(source, context, request);
+    expect(plan.next?.backpack).toEqual([unselected]); expect(plan.next?.stash).toEqual([{ ...unselected }]);
   });
   it.each([
     [1, 'normal', 'runes/ral'], [2, 'hell', 'runes/hel'], [3, 'hell', 'runes/fal'],

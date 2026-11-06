@@ -1,10 +1,19 @@
 /** Constructed data/loot contracts, not earned acquisition or pacing evidence. */
 import { afterEach, describe, expect, it } from 'vitest';
-import currentTables from '@/data/loot/treasure-classes.json';
+import actualTables from '@/data/loot/treasure-classes.json';
+import { restorePreMFRarities } from '@/test/magicFindPolicy';
 import currentPrefixes from '@/data/items/affixes-prefix.json';
 import currentSuffixes from '@/data/items/affixes-suffix.json';
 import { loadAwardPools } from '@/data/loaders/loot';
 import predecessor from '../../../tests/fixtures/hell-data-predecessor.json';
+import rangedPolicy from '../../../tests/fixtures/ranged-progression-v1.json';
+import throwingPolicy from '../../../tests/fixtures/throwing-progression-v1.json';
+import swordPolicy from '../../../tests/fixtures/sword-progression-v1.json';
+import spearPolicy from '../../../tests/fixtures/spear-progression-v1.json';
+import clawPolicy from '../../../tests/fixtures/claw-progression-v1.json';
+import twoHandedPolicy from '../../../tests/fixtures/two-handed-progression-v1.json';
+import armorPolicy from '../../../tests/fixtures/armor-progression-v1.json';
+import shieldPolicy from '../../../tests/fixtures/shield-progression-v1.json';
 import type { Affix, Rarity } from '../types/items';
 import { createRng } from '../rng';
 import { rollKillRewards, type AwardDataPools } from './award';
@@ -18,6 +27,10 @@ interface RawEntry {
 }
 interface RawTable { id: string; materialPoolId?: string; entries: RawEntry[] }
 const oldTables = predecessor.files['src/data/loot/treasure-classes.json'].data as unknown as RawTable[];
+// BUG678 intentionally supersedes fixed ordinary rarity. Reconstruct only its
+// declared delta for historical D08 comparisons; production-magic-find.test.ts
+// separately verifies exact current data against the full predecessor hash.
+const currentTables = restorePreMFRarities(actualTables) as RawTable[];
 const oldPrefixes = predecessor.files['src/data/items/affixes-prefix.json'].data as unknown as Affix[];
 const oldSuffixes = predecessor.files['src/data/items/affixes-suffix.json'].data as unknown as Affix[];
 const envelopes = [
@@ -46,7 +59,66 @@ function predecessorTable(raw: RawTable): TreasureClass {
         ...(row.quantityMax === undefined ? {} : { quantityMax: row.quantityMax }) })) };
 }
 const pools = loadAwardPools();
-const oldPools: AwardDataPools = { ...pools, affixes: [...oldPrefixes, ...oldSuffixes],
+// P15 intentionally adds ranged/throwing, sword, spear, claw, shield, armor and two-handed tiers.
+// Keep D08 testable and bind current JSON to all independently declared deltas.
+const rangedDelta = new Map(rangedPolicy.tables.map(row => {
+  const entries: RawEntry[] = [];
+  for (const tier of rangedPolicy.tiers) for (const family of ['bow', 'crossbow'] as const) {
+    const minLevel = Math.max(row.minLevel, tier.from,
+      family === 'crossbow' && tier.crossbow === 'items/base/weapon-crossbow' ? 15 : 0);
+    const maxLevel = Math.min(row.maxLevel, tier.to);
+    if (minLevel <= maxLevel) entries.push({ type: 'item', itemBase: tier[family],
+      rarity: row.rarity as Rarity, weight: row.weightPerFamily, minLevel, maxLevel });
+  }
+  return [row.id, entries] as const;
+}));
+const throwingDelta = new Map(throwingPolicy.tables.map(row => {
+  const entries: RawEntry[] = [];
+  for (const tier of throwingPolicy.tiers) {
+    const minLevel = Math.max(row.minLevel, tier.from), maxLevel = Math.min(row.maxLevel, tier.to);
+    if (minLevel <= maxLevel) entries.push({ type: 'item', itemBase: tier.baseId,
+      rarity: row.rarity as Rarity, weight: row.weightPerFamily, minLevel, maxLevel });
+  }
+  return [row.id, entries] as const;
+}));
+const swordDelta = new Map(swordPolicy.tables.map(row => {
+  const entries: RawEntry[] = [];
+  for (const tier of swordPolicy.tiers) {
+    const minLevel = Math.max(row.minLevel, tier.from), maxLevel = Math.min(row.maxLevel, tier.to);
+    if (minLevel <= maxLevel) entries.push({ type: 'item', itemBase: tier.baseId,
+      rarity: row.rarity as Rarity, weight: row.weightPerFamily, minLevel, maxLevel });
+  }
+  return [row.id, entries] as const;
+}));
+const spearDelta = new Map(spearPolicy.tables.map(row => {
+  const entries: RawEntry[] = [];
+  for (const tier of spearPolicy.tiers) {
+    const minLevel = Math.max(row.minLevel, tier.from), maxLevel = Math.min(row.maxLevel, tier.to);
+    if (minLevel <= maxLevel) entries.push({ type: 'item', itemBase: tier.baseId,
+      rarity: row.rarity as Rarity, weight: row.weightPerFamily, minLevel, maxLevel });
+  }
+  return [row.id, entries] as const;
+}));
+const clawDelta = new Map(clawPolicy.tables.map(row => [row.id, row.additions.map(band => ({
+  type: 'item' as const, itemBase: band.baseId, weight: row.weightPerFamily,
+  ...(row.id.endsWith('-q') ? { rarity: 'rare' as const } : {}), minLevel: band.from, maxLevel: band.to
+}))]));
+const shieldDelta = new Map(shieldPolicy.tables.map(row => [row.id, row.additions.map(band => ({
+  type: 'item' as const, itemBase: band.baseId, weight: row.weightPerFamily, minLevel: band.from, maxLevel: band.to
+}))]));
+const twoHandedDelta = new Map(twoHandedPolicy.tables.map(row => [row.id, row.additions.map(entry => ({ ...entry, type: 'item' as const }))]));
+const armorDelta = new Map(armorPolicy.tables.map(row => [row.id, row.additions.map(entry => ({ ...entry, type: 'item' as const }))]));
+const d08Tables = (currentTables as unknown as RawTable[]).map(table => ({ ...table,
+  entries: table.entries.slice(0, table.entries.length - (rangedDelta.get(table.id)?.length ?? 0)
+    - (throwingDelta.get(table.id)?.length ?? 0) - (swordDelta.get(table.id)?.length ?? 0)
+    - (spearDelta.get(table.id)?.length ?? 0) - (clawDelta.get(table.id)?.length ?? 0)
+    - (shieldDelta.get(table.id)?.length ?? 0) - (armorDelta.get(table.id)?.length ?? 0) - (twoHandedDelta.get(table.id)?.length ?? 0)) }));
+// D09 policies intentionally change rewards and require live source levels.
+// Exclude all D09 policies from this comparison, including its synthetic level1s.
+const d08Pools: AwardDataPools = { ...pools, chapterBossEquipment: new Map(), equipmentGuarantees: new Map(), chapterBossUniques: new Map(),
+  treasureClasses: new Map(d08Tables.map(raw => [raw.id, predecessorTable(raw)])) };
+const oldPools: AwardDataPools = { ...pools, chapterBossEquipment: new Map(), equipmentGuarantees: new Map(), chapterBossUniques: new Map(),
+  affixes: [...oldPrefixes, ...oldSuffixes],
   treasureClasses: new Map(oldTables.map(raw => [raw.id, predecessorTable(raw)])) };
 function weightedEquipmentPool(table: TreasureClass, level: number) {
   return table.picks.filter(row => row.type === 'item' && row.weight > 0 && level >= row.qlvlMin && level <= row.qlvlMax)
@@ -54,7 +126,7 @@ function weightedEquipmentPool(table: TreasureClass, level: number) {
 }
 
 describe('D08 exact Hell data extension and predecessor preservation', () => {
-  it('changes exactly109 positive top-band equipment ceilings across15 tables', () => {
+  it('retains exactly109 D08 ceiling extensions plus the declared P15 ranged, throwing, sword, spear, claw, shield, armor and two-handed additions', () => {
     const expected = structuredClone(oldTables); let changed = 0;
     for (const [suffix, before, after, count] of envelopes) {
       const table = required(expected.find(row => row.id === `loot/${suffix}`));
@@ -62,7 +134,11 @@ describe('D08 exact Hell data extension and predecessor preservation', () => {
       expect(selected).toHaveLength(count);
       for (const row of selected) { row.maxLevel = after; changed++; }
     }
-    expect(changed).toBe(109); expect(currentTables).toEqual(expected);
+    expect(changed).toBe(109); expect(d08Tables).toEqual(expected);
+    for (const table of expected) table.entries.push(...rangedDelta.get(table.id) ?? [],
+      ...throwingDelta.get(table.id) ?? [], ...swordDelta.get(table.id) ?? [], ...spearDelta.get(table.id) ?? [],
+      ...clawDelta.get(table.id) ?? [], ...shieldDelta.get(table.id) ?? [], ...armorDelta.get(table.id) ?? [], ...twoHandedDelta.get(table.id) ?? []);
+    expect(currentTables).toEqual(expected);
   });
 
   it('changes only the last-tier102→122 maximum for all16 affixes', () => {
@@ -78,16 +154,16 @@ describe('D08 exact Hell data extension and predecessor preservation', () => {
     expect(currentSuffixes).toEqual(extend(oldSuffixes)); expect(changed).toBe(16);
   });
 
-  it.each(envelopes)('%s preserves complete eligible weighted pools through%i', (suffix, previousMax) => {
+  it.each(envelopes)('%s D08 component preserves complete eligible weighted pools through%i', (suffix, previousMax) => {
     const id = `loot/${suffix}`, previous = required(oldPools.treasureClasses.get(id));
-    const current = required(pools.treasureClasses.get(id));
+    const current = required(d08Pools.treasureClasses.get(id));
     for (let level = 1; level <= previousMax; level++) {
       expect(weightedEquipmentPool(current, level), `${id}/L${String(level)}`)
         .toEqual(weightedEquipmentPool(previous, level));
     }
   });
 
-  it.each(envelopes)('%s preserves seeded Normal/Nightmare reward outputs through%i', (suffix, previousMax) => {
+  it.each(envelopes)('%s D08 component preserves seeded Normal/Nightmare reward outputs through%i', (suffix, previousMax) => {
     const act = Number(required(/act([1-5])/.exec(suffix)?.[1])) as 1 | 2 | 3 | 4 | 5;
     for (const difficulty of ['normal', 'nightmare'] as const) for (const seed of [0, 3286157777]) {
       for (let monsterLevel = 1; monsterLevel <= previousMax; monsterLevel++) {
@@ -97,7 +173,7 @@ describe('D08 exact Hell data extension and predecessor preservation', () => {
         __resetRollItemSeqForTests();
         const previousReward = rollKillRewards(input, oldPools, before);
         __resetRollItemSeqForTests();
-        const currentReward = rollKillRewards(input, pools, after);
+        const currentReward = rollKillRewards(input, d08Pools, after);
         expect(currentReward).toEqual(previousReward);
         expect(after.next()).toBe(before.next());
       }

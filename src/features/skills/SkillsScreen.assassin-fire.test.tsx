@@ -13,7 +13,7 @@ import skills from '@/data/skills/assassin.json';
 const spells = [
   { slug: 'fire-blast', min: 50, max: 70, growth: 5, mana: 25, cd: 2 },
   { slug: 'fists-of-fire', min: 45, max: 70, growth: 5, mana: 5, cd: 1 },
-  { slug: 'dragon-tail', min: 70, max: 100, growth: 6, mana: 13, cd: 2 },
+  { slug: 'dragon-tail', min: 70, max: 100, growth: 120, mana: 13, cd: 2 },
   { slug: 'wake-of-fire', min: 60, max: 85, growth: 5, mana: 17, cd: 2 },
   { slug: 'wake-of-inferno', min: 90, max: 130, growth: 7, mana: 25, cd: 3 },
   { slug: 'phoenix-strike', min: 40, max: 60, growth: 4, mana: 40, cd: 3 }

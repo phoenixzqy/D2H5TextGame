@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/damage-delivery.json",
+  "title": "Native damage delivery",
+  "description": "Explicit whole-strike and basic delivery; absence is unknown, never inferred from element or timing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "skills", "weapons", "summons", "monsterBasics"],
+  "properties": {
+    "id": { "const": "combat/damage-delivery" },
+    "skills": {
+      "description": "Exact native runtime skill IDs, including explicit noncontact spell sources.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z0-9._-]+$" },
+      "additionalProperties": { "enum": ["melee", "primary-melee", "ranged", "spell"] }
+    },
+    "weapons": {
+      "description": "Ordinary weapon blows; spellcasting does not classify the weapon's basic attack.",
+      "type": "object",
+      "minProperties": 14,
+      "maxProperties": 14,
+      "propertyNames": { "enum": ["claw", "sword", "axe", "mace", "dagger", "spear", "polearm", "bow", "crossbow", "throwing", "staff", "wand", "scepter", "orb"] },
+      "additionalProperties": { "enum": ["melee", "ranged"] }
+    },
+    "summons": {
+      "description": "Built-in body basics; none applies only after authenticating a nonattacking special body.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z_]+$" },
+      "additionalProperties": { "enum": ["melee", "ranged", "spell", "none"] }
+    },
+    "monsterBasics": {
+      "description": "Exact bundled archetype basic delivery, independently of its named skills.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^monsters/[a-z0-9.-]+$" },
+      "additionalProperties": { "enum": ["melee", "ranged", "spell"] }
+    }
+  }
+}

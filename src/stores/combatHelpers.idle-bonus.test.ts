@@ -104,14 +104,8 @@ afterEach(() => { vi.restoreAllMocks(); reset(); useHydrationStore.getState().se
 
 describe('production award-time idle XP/MF bonus (BUG-025)', () => {
   it('samples one decaying multiplier per won wave, floors XP per kill and shares boosted XP with mercs', () => {
-    const realPools = loadAwardPools();
     const tcId = required(resolveSubArea(1, AREA)).lootTable;
-    // Shipped trash TCs force normal rarity. A data-only fixture makes MF observable;
-    // the production finalizer, award orchestration, RNG and item materialization stay real.
-    const unforcedTc: TreasureClass = { id: tcId, numPicks: 5, noDropChance: 0,
-      picks: [{ baseId: 'items/base/helm-cap', weight: 1, qlvlMin: 1, qlvlMax: 99 }] };
-    vi.spyOn(lootData, 'loadAwardPools').mockReturnValue({ ...realPools,
-      treasureClasses: new Map([[tcId, unforcedTc]]) });
+    // Real shipped tables: substituting an unforced fixture hid BUG678.
     start();
     const raw = useMetaStore.getState().idleState;
     const rawCopy = structuredClone(raw);
@@ -137,7 +131,7 @@ describe('production award-time idle XP/MF bonus (BUG-025)', () => {
           const input = { tier: enemy.tier, monsterLevel: enemy.level,
             treasureClassId: tcId, magicFind: 300, goldFind: 19, act: 1 as const,
             magicFindMultiplier: bonus };
-          const rewards = rollKillRewards(input, loadAwardPools(), rng);
+          const rewards = rollKillRewards(input, loadAwardPools(), rng, rng.fork(`wishstone:${enemy.id}`));
           (bonus === 1 ? baselineRarities : expectedRarities).push(...rewards.items.map((item) => item.rarity));
         }
       }
@@ -164,10 +158,17 @@ describe('production award-time idle XP/MF bonus (BUG-025)', () => {
     expect(read).toHaveBeenCalledTimes(2);
   });
 
-  it('preserves authored forced-rarity loot and currencies while XP receives the bonus', () => {
+  it('preserves explicit forced-rarity loot and currencies while XP receives the bonus', () => {
+    // An intentional fixed-rarity control, distinct from ordinary random loot.
+    const realPools = loadAwardPools();
+    const tcId = required(resolveSubArea(1, AREA)).lootTable;
+    const tc = required(realPools.treasureClasses.get(tcId));
+    const fixed: TreasureClass = { ...tc, picks: tc.picks.map(pick =>
+      pick.type === 'item' ? { ...pick, rarity: 'normal' as const } : pick) };
+    vi.spyOn(lootData, 'loadAwardPools').mockReturnValue({ ...realPools,
+      treasureClasses: new Map([[tcId, fixed]]) });
     start(); drain();
     const slain = required(useCombatStore.getState().outcome).finalEnemyTeam.filter((enemy) => enemy.life <= 0);
-    const tcId = required(resolveSubArea(1, AREA)).lootTable;
     __resetRollItemSeqForTests();
     const baseline = rollBatchRewards(slain.map((enemy) => ({ tier: enemy.tier,
       monsterLevel: enemy.level, treasureClassId: tcId, magicFind: 300, goldFind: 19, act: 1 })),

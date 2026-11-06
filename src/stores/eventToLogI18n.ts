@@ -156,6 +156,18 @@ export function eventToLocalizedLogEntry(
         message: tx('combat:event.death', { target: targetName })
       };
     }
+    case 'revive': {
+      const sourceName = getName(event.source);
+      const targetName = getName(event.target);
+      return {
+        type: 'system',
+        actorId: event.source,
+        actorName: sourceName,
+        targetId: event.target,
+        targetName,
+        message: tx('combat:event.revive', { actor: sourceName, target: targetName })
+      };
+    }
     case 'heal': {
       const targetName = getName(event.target);
       return {
@@ -195,6 +207,13 @@ export function eventToLocalizedLogEntry(
           status: statusName,
           defaultValue: `${targetName} is afflicted with ${event.statusId}`
         })
+      };
+    }
+    case 'enrage': {
+      const targetName = getName(event.target);
+      return {
+        type: 'buff', actorId: event.target, actorName: targetName,
+        message: tx('combat:event.enrage', { target: targetName })
       };
     }
     case 'stunned': {

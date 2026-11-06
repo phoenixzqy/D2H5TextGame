@@ -154,7 +154,7 @@ describe('Barbarian warcries native allocation, recording, reset and persistence
     arrange(allocations);
     const expected = playerToCombatUnit(player());
     const save = snapshotStores(); if (!save) throw new Error('Missing snapshot');
-    expect(save.version).toBe(24);
+    expect(save.version).toBe(32);
     const persisted = structuredClone(save.player);
     expect(persisted.derivedStats.lifeMax).toBeLessThan(expected.stats.lifeMax);
     await importIntoStores(JSON.stringify(toJsonSafe(save)));

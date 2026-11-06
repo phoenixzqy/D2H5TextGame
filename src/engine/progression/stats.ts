@@ -47,6 +47,8 @@ export function effectiveStatValue(raw: number): number {
 
 /** Per-stat additive contributions to derived stats from gear/buffs. */
 export interface DerivedModifiers {
+  /** Hero-only effective Vitality added after ordinary Vitality's soft cap. */
+  readonly postSoftcapVitality?: number;
   readonly flatLife?: number;
   readonly flatMana?: number;
   readonly flatAttack?: number;
@@ -92,7 +94,7 @@ export function deriveStats(
 ): DerivedStats {
   const str = effectiveStatValue(core.strength);
   const dex = effectiveStatValue(core.dexterity);
-  const vit = effectiveStatValue(core.vitality);
+  const vit = effectiveStatValue(core.vitality) + (mods.postSoftcapVitality ?? 0);
   const eng = effectiveStatValue(core.energy);
   const lvlAbove1 = Math.max(0, level - 1);
 

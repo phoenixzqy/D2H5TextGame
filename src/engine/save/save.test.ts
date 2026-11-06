@@ -5,6 +5,7 @@ import { deriveStats } from '../progression/stats';
  */
 import { describe, it, expect } from 'vitest';
 import { buildSave, runMigrations, toJsonSafe } from './index';
+import { stringifySave } from './serialize';
 import {
   CURRENT_SAVE_VERSION,
   MIGRATIONS,
@@ -124,6 +125,15 @@ describe('save round-trip', () => {
     expect(reparsed.mercs.mercEquipment).toEqual({});
     expect(reparsed.mercs.mercProgress).toEqual({});
     expect(reparsed.meta.settings.locale).toBe('zh-CN');
+  });
+
+  it('serializes nested Maps and Sets without losing contents or mutating input', () => {
+    const input = { values: new Map([['mana', 20]]), nested: { ids: new Set(['first', 'second']) } };
+    const before = structuredClone(input);
+    expect(JSON.parse(stringifySave(input))).toEqual({ values: [['mana', 20]], nested: { ids: ['first', 'second'] } });
+    expect(input).toEqual(before);
+    expect(() => stringifySave(undefined)).toThrow('cannot serialize');
+    expect(() => stringifySave(1n)).toThrow();
   });
 
   it('toJsonSafe converts Map equipment into plain arrays (defensive)', () => {

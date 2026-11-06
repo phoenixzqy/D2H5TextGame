@@ -1,0 +1,13 @@
+{
+  "equipmentPicks": 3,
+  "minimumLevelOffset": 3,
+  "jewelryPicks": 1,
+  "rarityMultipliers": { "rare": 3, "set": 4, "unique": 8 },
+  "acts": [
+    { "act": 1, "treasureClassId": "loot/mini-act1", "equipmentSourceId": "loot/trash-act1", "jewelrySourceId": "loot/jewelry-act1", "terminalLevelCap": 59 },
+    { "act": 2, "treasureClassId": "loot/mini-act2", "equipmentSourceId": "loot/trash-act2", "jewelrySourceId": "loot/jewelry-act2", "terminalLevelCap": 72 },
+    { "act": 3, "treasureClassId": "loot/mini-act3", "equipmentSourceId": "loot/trash-act3", "jewelrySourceId": "loot/jewelry-act3", "terminalLevelCap": 87 },
+    { "act": 4, "treasureClassId": "loot/mini-act4", "equipmentSourceId": "loot/trash-act4", "jewelrySourceId": "loot/jewelry-act4", "terminalLevelCap": 101 },
+    { "act": 5, "treasureClassId": "loot/mini-act5", "equipmentSourceId": "loot/trash-act5", "jewelrySourceId": "loot/jewelry-act5", "terminalLevelCap": 122 }
+  ]
+}

@@ -7,6 +7,7 @@
  *
  * @module engine/progression/xp
  */
+import { KILL_XP_POLICY } from '@/data/loaders/kill-xp';
 
 /** Hard player level cap for v1. */
 export const LEVEL_CAP = 90;
@@ -64,11 +65,14 @@ export function xpScale(playerLevel: number, monsterLevel: number): number {
 
 /**
  * XP awarded for slaying a monster of `monsterLevel`.
- * v1 baseline: `max(5, round(10 * monsterLevel))`.
+ * Shared authored curve from docs/design/kill-xp-policy.md. Resolved enemy
+ * levels may exceed the hero cap; qualification and bonus flooring are per wave.
  */
 export function xpForKill(monsterLevel: number): number {
-  if (!Number.isFinite(monsterLevel) || monsterLevel < 1) return 5;
-  return Math.max(5, Math.round(10 * monsterLevel));
+  const { minimumReward, basePerLevel, growthStartLevel, growthExponent } = KILL_XP_POLICY;
+  if (!Number.isFinite(monsterLevel) || monsterLevel < 1) return minimumReward;
+  const growth = Math.max(1, (monsterLevel / growthStartLevel) ** growthExponent);
+  return Math.max(minimumReward, Math.round(basePerLevel * monsterLevel * growth));
 }
 
 /** Result of awarding XP to a player. */

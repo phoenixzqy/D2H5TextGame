@@ -1,4 +1,6 @@
 import type { ReplayProfileId } from '@/engine/map/replay-profile';
+import { COW } from '../map/cow-quest';
+import { resolveCowEncounterPlan } from './cow-planner';
 /**
  * Wave-plan resolution for sub-area runs.
  *
@@ -131,6 +133,7 @@ export const MAX_SPAWNS_PER_WAVE = 20;
 export function resolveQuestEncounterPlan(input: {
   readonly subArea: SubAreaDef; readonly encounterId: string; readonly seed: number;
 }): WavePlan {
+  if (input.encounterId === COW.encounter) return resolveCowEncounterPlan(input);
   const { subArea, encounterId, seed } = input;
   // Preserve readonly element types before runtime array validation narrows the property.
   const encounters = subArea.questEncounters ?? [];
@@ -272,7 +275,7 @@ export function resolveWavePlan(
  * Manual challenges preserve the authored map wave structure, cycle each
  * authored/fallback non-boss wave to 8-20 monsters, force the final two non-boss
  * waves into elite guards, then append an authored map boss / chapter boss
- * after those guards when present. Act I guards contain three champions or
+ * after those guards when present. Guards contain three champions or
  * one rare leader with three minions; the remaining fitted monsters are trash.
  */
 export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): WavePlan {
@@ -295,7 +298,7 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     const forcedEliteIndex = i >= templates.length - finalEliteWaves;
     const sourceKind = template.type === 'elite' ? 'elite' : 'trash';
     const waveKind: WaveKind = forcedEliteIndex ? 'elite' : sourceKind;
-    const targetMonsterCount = resolveChallengeMonsterCount(subArea, input.challengeOrdinal, i);
+    const challengeMonsterCount = resolveChallengeMonsterCount(subArea, input.challengeOrdinal, i);
     const effectiveAreaLevel = difficulty.areaLevel + waveLevelOffset(i, templates.length);
     const sourceEncounters = template.encounters ?? [
       fallbackEncounter(fallbackArchetypeId, fallbackLevel)
@@ -307,6 +310,9 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
       effectiveAreaLevel,
       baseLevel
     );
+    // Treasure encounters retain their authored roster; fitting one goblin to an
+    // ordinary challenge pack would multiply its complete special reward bundle.
+    const targetMonsterCount = template.type === 'treasure' ? baseSpawns.length : challengeMonsterCount;
     const forcedEliteKind = forcedEliteIndex && i === templates.length - 1 ? 'rareElite' : 'champion';
     let spawns = forcedEliteIndex
       ? forceElitePack(baseSpawns, rng, eliteConfig, forcedEliteKind, targetMonsterCount, act)
@@ -424,6 +430,61 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     seed,
     difficulty
   };
+}
+
+/**
+ * Inclusive enemy levels across ordinary manual challenges, before replay offsets.
+ * Uses native count bounds and fitting rather than sampling a seed/ordinal.
+ * Optional quest encounters and the Throne quest projection are separate sources.
+ */
+export function challengeEnemyLevelRange(subArea: SubAreaDef): { readonly min: number; readonly max: number } {
+  const difficulty = resolveDifficultyContext(subArea);
+  const baseLevel = findSubAreaBaseLevel(subArea);
+  // Fallback archetype identity cannot affect a level-only projection.
+  const templates = challengeWaveTemplates(subArea, 'level-projection', subArea.areaLevel);
+  const targetCount = Math.max(
+    clampMonsterCount(subArea.challenge?.monsterCount.min ?? DEFAULT_CHALLENGE_MIN_MONSTERS),
+    clampMonsterCount(subArea.challenge?.monsterCount.max ?? DEFAULT_CHALLENGE_MAX_MONSTERS)
+  );
+  const finalEliteWaves = subArea.challenge?.manualFinalEliteWaves ?? DEFAULT_FINAL_ELITE_WAVES;
+  const act = actNumberFromSubArea(subArea);
+  const levels: number[] = [];
+  const include = (spawns: readonly MonsterSpawn[]): void => {
+    for (const spawn of spawns) levels.push(spawn.level);
+  };
+
+  for (const [index, template] of templates.entries()) {
+    const forcedElite = index >= templates.length - finalEliteWaves;
+    const tier = forcedElite || template.type === 'elite' ? 'elite' : 'trash';
+    const areaLevel = difficulty.areaLevel + waveLevelOffset(index, templates.length);
+    const encounters = template.encounters ?? [fallbackEncounter('level-projection', subArea.areaLevel)];
+    // Minimum counts expose every source that can survive the ordered caps.
+    // Larger counts only push later sources out of an ordinary fitted prefix.
+    const minimum = encountersToSpawns(encounters, tier, undefined, areaLevel, baseLevel);
+    if (act !== 1 && forcedElite && index === templates.length - 1) {
+      // Rare fitting replaces index0 with the first eligible leader, possibly
+      // beyond the fitted prefix. Maximum counts also cover a duplicated first
+      // body or removal of every eligible leader by the global source cap.
+      const maximum = expandEncounterSpawns(encounters, tier, 'maximum', areaLevel, baseLevel);
+      for (const roster of [minimum, maximum]) {
+        include(forceElitePack(roster, createRng(0), DEFAULT_ELITE_CONFIG, 'rareElite', targetCount, act));
+      }
+    } else {
+      include(fitSpawnsToMonsterCount(minimum, targetCount));
+    }
+  }
+
+  if (subArea.chapterBoss) {
+    levels.push(Math.max(1, subArea.areaLevel + difficulty.monsterLevelBonus + 5));
+  } else {
+    const authoredBoss = subArea.waves.find(wave => wave.type === 'boss' && (wave.encounters?.length ?? 0) > 0);
+    const encounters = subArea.bossEncounter ? [subArea.bossEncounter] : authoredBoss?.encounters ?? [];
+    include(encountersToSpawns(encounters, 'boss', undefined, difficulty.areaLevel + 3, baseLevel));
+  }
+  if (levels.length === 0) {
+    for (const wave of synthDefaultPlan(subArea, 'level-projection', subArea.areaLevel).waves) include(wave.spawns);
+  }
+  return { min: Math.min(...levels), max: Math.max(...levels) };
 }
 
 /** Exact finite quest-source projection; ordinary challenge fitting is unaffected. */
@@ -595,33 +656,39 @@ function forceElitePack(
     selectedAffix.id === 'elite-affix/lightning-enchanted' &&
     selectedAffix.nameKey === 'combat.eliteAffix.lightningEnchanted' &&
     selectedAffix.skillId === 'monster-lightning'
-    ? { ...selectedAffix, skillId: ACT1_LIGHTNING_AFFIX_ID }
+    ? act1LightningAffix(selectedAffix)
     : selectedAffix;
-  if (act === 1) {
-    const coreSize = forcedEliteKind === 'champion' ? 3 : 4;
-    return fitSpawnsToMonsterCount(baseSpawns, targetCount).map((spawn, i): MonsterSpawn => {
-      const { eliteAffix: _affix, ...source } = spawn;
-      if (i >= coreSize) return { ...source, tier: 'trash' };
-      return {
-        ...source,
-        tier: forcedEliteKind === 'champion' ? 'champion' : i === 0 ? 'rare-elite' : 'rare-minion',
-        eliteAffix: affix
-      };
-    });
-  }
-  if (forcedEliteKind === 'rareElite') {
+  let roster: readonly MonsterSpawn[];
+  if (act !== 1 && forcedEliteKind === 'rareElite') {
+    // Preserve later-act rare roster ordering and its global spawn indices.
     const count = clampSpawn(targetCount);
-    const pack: MonsterSpawn[] = [{ ...leader, tier: 'rare-elite', index: 0, eliteAffix: affix }];
+    const pack: MonsterSpawn[] = [{ ...leader, index: 0 }];
     for (let i = 1; i < count; i++) {
       const source = baseSpawns[i % baseSpawns.length] ?? leader;
-      pack.push({ ...source, tier: 'rare-minion', index: i, eliteAffix: affix });
+      pack.push({ ...source, index: i });
     }
-    return pack;
+    roster = pack;
+  } else {
+    roster = fitSpawnsToMonsterCount(baseSpawns, targetCount);
   }
-  return fitSpawnsToMonsterCount(
-    baseSpawns.map((spawn) => ({ ...spawn, tier: 'champion' as const, eliteAffix: affix })),
-    targetCount
-  );
+  const coreSize = forcedEliteKind === 'champion' ? 3 : 4;
+  return roster.map((spawn, i): MonsterSpawn => {
+    const { eliteAffix: _affix, ...source } = spawn;
+    if (i >= coreSize) return { ...source, tier: 'trash' };
+    return {
+      ...source,
+      tier: forcedEliteKind === 'champion' ? 'champion' : i === 0 ? 'rare-elite' : 'rare-minion',
+      ...(i === 0 ? { eliteAffix: affix } : {})
+    };
+  });
+}
+
+/** Preserve the accepted Act I active-only exception without leaking standard metadata. */
+function act1LightningAffix(affix: EliteAffixDef): EliteAffixDef {
+  const { lightningRetaliation: _reaction, resistanceBonuses, ...base } = affix;
+  const { lightning: _lightning, ...otherResistances } = resistanceBonuses ?? {};
+  return { ...base, skillId: ACT1_LIGHTNING_AFFIX_ID,
+    ...(Object.keys(otherResistances).length > 0 ? { resistanceBonuses: otherResistances } : {}) };
 }
 
 function chapterBossWave(
@@ -710,7 +777,9 @@ function fitSpawnsToMonsterCount(
     if (!source) continue;
     const idx = perArchetypeIdx.get(source.archetypeId) ?? 0;
     perArchetypeIdx.set(source.archetypeId, idx + 1);
-    out.push({ ...source, index: idx });
+    // Authored elites keep their budget; crowd fitting adds ordinary bodies.
+    const tier = i >= spawns.length && source.tier === 'elite' ? 'trash' : source.tier;
+    out.push({ ...source, tier, index: idx });
   }
 
   return out;
@@ -737,6 +806,17 @@ export function encountersToSpawns(
   areaLevel?: number,
   baseLevel?: number
 ): MonsterSpawn[] {
+  return expandEncounterSpawns(encounters, waveTier, rng, areaLevel, baseLevel);
+}
+
+/** Shared expansion; maximum counts are used only by the structural level projection. */
+function expandEncounterSpawns(
+  encounters: readonly Encounter[],
+  waveTier: WaveDef['type'],
+  rng: Rng | 'maximum' | undefined,
+  areaLevel?: number,
+  baseLevel?: number
+): MonsterSpawn[] {
   const out: MonsterSpawn[] = [];
   const perArchetypeIdx = new Map<string, number>();
   let total = 0;
@@ -760,12 +840,12 @@ export function encountersToSpawns(
       if (m.countMin !== undefined && m.countMax !== undefined) {
         const lo = Math.max(1, Math.floor(m.countMin));
         const hi = Math.max(lo, Math.floor(m.countMax));
-        rolled = rng ? rng.nextInt(lo, hi) : lo;
+        rolled = rng === 'maximum' ? hi : rng ? rng.nextInt(lo, hi) : lo;
       } else if (m.count !== undefined) {
         rolled = Math.max(1, Math.floor(m.count));
       } else {
         const [lo, hi] = defaultCountRange(waveTier);
-        rolled = rng ? rng.nextInt(lo, hi) : lo;
+        rolled = rng === 'maximum' ? hi : rng ? rng.nextInt(lo, hi) : lo;
       }
       rolled = clampSpawn(rolled);
       // Respect global per-wave cap.

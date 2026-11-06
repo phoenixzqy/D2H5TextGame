@@ -1,0 +1,6282 @@
+[
+  {
+    "id": "items/unique/pelta-lunata",
+    "name": "items.unique.pelta-lunata.name",
+    "baseId": "items/base/sh-buckler",
+    "reqLevel": 2,
+    "qlvl": 2,
+    "weight": 1,
+    "stats": {
+      "statMods": {
+        "defense": {
+          "roll": "pelta-lunata-defense",
+          "min": 20,
+          "max": 30,
+          "step": 1
+        },
+        "life": 10
+      }
+    },
+    "flavor": "items.unique.pelta-lunata.flavor"
+  },
+  {
+    "id": "items/unique/rixots-keen",
+    "name": "items.unique.rixots-keen.name",
+    "baseId": "items/base/wp1h-short-sword",
+    "reqLevel": 2,
+    "qlvl": 2,
+    "weight": 1,
+    "stats": {
+      "statMods": {
+        "attack": 40
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 2,
+        "breakdown": {
+          "physical": 2
+        }
+      }
+    },
+    "flavor": "items.unique.rixots-keen.flavor"
+  },
+  {
+    "id": "items/unique/biggin-bonnet",
+    "name": "items.unique.biggin-bonnet.name",
+    "baseId": "items/base/helm-cap",
+    "reqLevel": 3,
+    "qlvl": 3,
+    "weight": 1,
+    "stats": {
+      "coreStats": {
+        "strength": 5
+      },
+      "statMods": {
+        "life": 15,
+        "mana": 15,
+        "attack": 20
+      }
+    },
+    "flavor": "items.unique.biggin-bonnet.flavor"
+  },
+  {
+    "id": "items/unique/face-of-horror",
+    "name": "items.unique.face-of-horror.name",
+    "baseId": "items/base/helm-cap",
+    "reqLevel": 4,
+    "qlvl": 4,
+    "weight": 1,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      },
+      "statMods": {
+        "defense": 15
+      }
+    },
+    "flavor": "items.unique.face-of-horror.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 25
+      }
+    },
+    "name": "items.unique.hotspur.name",
+    "baseId": "items/base/boots",
+    "flavor": "items.unique.hotspur.flavor",
+    "reqLevel": 5,
+    "qlvl": 5,
+    "weight": 1,
+    "id": "items/unique/hotspur"
+  },
+  {
+    "id": "items/unique/the-gnasher",
+    "name": "items.unique.the-gnasher.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 5,
+    "stats": {
+      "statMods": {
+        "attack": 50,
+        "attackSpeed": 15
+      },
+      "damageBonus": {
+        "min": 2,
+        "max": 6,
+        "breakdown": {
+          "physical": 6
+        }
+      }
+    },
+    "flavor": "items.unique.the-gnasher.flavor"
+  },
+  {
+    "id": "items/unique/hand-of-broc",
+    "name": "items.unique.hand-of-broc.name",
+    "baseId": "items/base/glove-leather",
+    "reqLevel": 5,
+    "stats": {
+      "resistances": {
+        "poison": 15
+      },
+      "statMods": {
+        "defense": 10,
+        "life": 10,
+        "mana": 10
+      }
+    },
+    "flavor": "items.unique.hand-of-broc.flavor"
+  },
+  {
+    "id": "items/unique/torch-of-iros",
+    "name": "items.unique.torch-of-iros.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 6,
+    "stats": {
+      "coreStats": {
+        "energy": 5
+      },
+      "statMods": {
+        "attack": 30,
+        "mana": 20
+      },
+      "damageBonus": {
+        "min": 2,
+        "max": 6,
+        "breakdown": {
+          "fire": 6
+        }
+      }
+    },
+    "flavor": "items.unique.torch-of-iros.flavor"
+  },
+  {
+    "id": "items/unique/blood-crescent",
+    "name": "items.unique.blood-crescent.name",
+    "baseId": "items/base/wp1h-short-sword",
+    "reqLevel": 7,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 15,
+        "attack": 50,
+        "life": 15
+      }
+    },
+    "flavor": "items.unique.blood-crescent.flavor"
+  },
+  {
+    "id": "items/unique/felloak",
+    "name": "items.unique.felloak.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 7,
+    "stats": {
+      "statMods": {
+        "attack": 60
+      },
+      "damageBonus": {
+        "min": 3,
+        "max": 8,
+        "breakdown": {
+          "fire": 8
+        }
+      }
+    },
+    "flavor": "items.unique.felloak.flavor"
+  },
+  {
+    "id": "items/unique/greyform",
+    "name": "items.unique.greyform.name",
+    "baseId": "items/base/armor-leather",
+    "reqLevel": 7,
+    "stats": {
+      "coreStats": {
+        "dexterity": 5
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10
+      },
+      "statMods": {
+        "defense": 20,
+        "life": 15
+      }
+    },
+    "flavor": "items.unique.greyform.flavor"
+  },
+  {
+    "id": "items/unique/lenymo",
+    "name": "items.unique.lenymo.name",
+    "baseId": "items/base/belt-light",
+    "reqLevel": 7,
+    "stats": {
+      "resistances": {
+        "arcane": 15
+      },
+      "statMods": {
+        "mana": 30,
+        "defense": 10
+      }
+    },
+    "flavor": "items.unique.lenymo.flavor"
+  },
+  {
+    "id": "items/unique/pluckeye",
+    "name": "items.unique.pluckeye.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 7,
+    "stats": {
+      "statMods": {
+        "attack": 60,
+        "attackSpeed": 15
+      },
+      "damageBonus": {
+        "min": 3,
+        "max": 6,
+        "breakdown": {
+          "physical": 6
+        }
+      }
+    },
+    "flavor": "items.unique.pluckeye.flavor"
+  },
+  {
+    "id": "items/unique/axe-of-fechmar",
+    "name": "items.unique.axe-of-fechmar.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 8,
+    "stats": {
+      "resistances": {
+        "cold": 20
+      },
+      "statMods": {
+        "attack": 60
+      },
+      "damageBonus": {
+        "min": 3,
+        "max": 8,
+        "breakdown": {
+          "cold": 8
+        }
+      }
+    },
+    "flavor": "items.unique.axe-of-fechmar.flavor"
+  },
+  {
+    "id": "items/unique/coif-of-glory",
+    "name": "items.unique.coif-of-glory.name",
+    "baseId": "items/base/helm-skull-cap",
+    "reqLevel": 9,
+    "stats": {
+      "resistances": {
+        "lightning": 15
+      },
+      "statMods": {
+        "defense": 20,
+        "life": 10
+      }
+    },
+    "flavor": "items.unique.coif-of-glory.flavor"
+  },
+  {
+    "id": "items/unique/deathspade",
+    "name": "items.unique.deathspade.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 9,
+    "stats": {
+      "statMods": {
+        "attack": 70
+      },
+      "damageBonus": {
+        "min": 4,
+        "max": 10,
+        "breakdown": {
+          "physical": 10
+        }
+      }
+    },
+    "flavor": "items.unique.deathspade.flavor"
+  },
+  {
+    "id": "items/unique/gorefoot",
+    "name": "items.unique.gorefoot.name",
+    "baseId": "items/base/boot-heavy",
+    "reqLevel": 9,
+    "stats": {
+      "resistances": {
+        "fire": 10
+      },
+      "statMods": {
+        "defense": 15,
+        "attackSpeed": 10
+      }
+    },
+    "flavor": "items.unique.gorefoot.flavor"
+  },
+  {
+    "id": "items/unique/skewer-of-krintiz",
+    "name": "items.unique.skewer-of-krintiz.name",
+    "baseId": "items/base/wp1h-scimitar",
+    "reqLevel": 9,
+    "stats": {
+      "statMods": {
+        "attack": 70
+      },
+      "damageBonus": {
+        "min": 2,
+        "max": 6,
+        "breakdown": {
+          "physical": 6
+        }
+      }
+    },
+    "flavor": "items.unique.skewer-of-krintiz.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "goldFind": 50,
+        "magicFind": 30
+      }
+    },
+    "name": "items.unique.nagelring.name",
+    "baseId": "items/base/ring",
+    "flavor": "items.unique.nagelring.flavor",
+    "reqLevel": 10,
+    "id": "items/unique/nagelring"
+  },
+  {
+    "id": "items/unique/stoutnail",
+    "name": "items.unique.stoutnail.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 10,
+    "stats": {
+      "statMods": {
+        "attack": 70,
+        "defense": 20
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 10,
+        "breakdown": {
+          "physical": 10
+        }
+      }
+    },
+    "flavor": "items.unique.stoutnail.flavor"
+  },
+  {
+    "id": "items/unique/blinkbat-form",
+    "name": "items.unique.blinkbat-form.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 12,
+    "stats": {
+      "resistances": {
+        "fire": 15
+      },
+      "statMods": {
+        "defense": 30,
+        "attackSpeed": 10
+      }
+    },
+    "flavor": "items.unique.blinkbat-form.flavor"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 10,
+        "life": 30
+      }
+    },
+    "name": "items.unique.bloodfist.name",
+    "baseId": "items/base/gloves",
+    "flavor": "items.unique.bloodfist.flavor",
+    "reqLevel": 12,
+    "id": "items/unique/bloodfist"
+  },
+  {
+    "id": "items/unique/duskdeep",
+    "name": "items.unique.duskdeep.name",
+    "baseId": "items/base/helm-skull-cap",
+    "reqLevel": 12,
+    "stats": {
+      "resistances": {
+        "fire": 15,
+        "lightning": 15
+      },
+      "statMods": {
+        "defense": 30,
+        "life": 15
+      }
+    },
+    "flavor": "items.unique.duskdeep.flavor"
+  },
+  {
+    "id": "items/unique/shadowfang",
+    "name": "items.unique.shadowfang.name",
+    "baseId": "items/base/wp1h-scimitar",
+    "reqLevel": 12,
+    "stats": {
+      "statMods": {
+        "attack": 70,
+        "attackSpeed": 10
+      },
+      "damageBonus": {
+        "min": 3,
+        "max": 6,
+        "breakdown": {
+          "cold": 6
+        }
+      }
+    },
+    "flavor": "items.unique.shadowfang.flavor"
+  },
+  {
+    "id": "items/unique/snakecord",
+    "name": "items.unique.snakecord.name",
+    "baseId": "items/base/belt-light",
+    "reqLevel": 12,
+    "stats": {
+      "resistances": {
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 20,
+        "life": 15
+      }
+    },
+    "flavor": "items.unique.snakecord.flavor"
+  },
+  {
+    "id": "items/unique/gleamscythe",
+    "name": "items.unique.gleamscythe.name",
+    "baseId": "items/base/wp1h-scimitar",
+    "reqLevel": 13,
+    "stats": {
+      "statMods": {
+        "attack": 60,
+        "attackSpeed": 20
+      }
+    },
+    "flavor": "items.unique.gleamscythe.flavor"
+  },
+  {
+    "id": "items/unique/witherstring",
+    "name": "items.unique.witherstring.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 13,
+    "stats": {
+      "statMods": {
+        "attack": 80
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 12,
+        "breakdown": {
+          "physical": 12
+        }
+      }
+    },
+    "flavor": "items.unique.witherstring.flavor"
+  },
+  {
+    "id": "items/unique/crushflange",
+    "name": "items.unique.crushflange.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 14,
+    "stats": {
+      "statMods": {
+        "attack": 80,
+        "critChance": 0.1
+      },
+      "damageBonus": {
+        "min": 6,
+        "max": 14,
+        "breakdown": {
+          "physical": 14
+        }
+      }
+    },
+    "flavor": "items.unique.crushflange.flavor"
+  },
+  {
+    "id": "items/unique/howltusk",
+    "name": "items.unique.howltusk.name",
+    "baseId": "items/base/helm-skull-cap",
+    "reqLevel": 14,
+    "stats": {
+      "coreStats": {
+        "strength": 8
+      },
+      "statMods": {
+        "defense": 30,
+        "attack": 30
+      }
+    },
+    "flavor": "items.unique.howltusk.flavor"
+  },
+  {
+    "id": "items/unique/the-centurion",
+    "name": "items.unique.the-centurion.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 14,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 40
+      }
+    },
+    "flavor": "items.unique.the-centurion.flavor"
+  },
+  {
+    "id": "items/unique/umbral-disk",
+    "name": "items.unique.umbral-disk.name",
+    "baseId": "items/base/sh-kite",
+    "reqLevel": 14,
+    "stats": {
+      "resistances": {
+        "arcane": 20
+      },
+      "statMods": {
+        "defense": 40
+      }
+    },
+    "flavor": "items.unique.umbral-disk.flavor"
+  },
+  {
+    "id": "items/unique/bloodrise",
+    "name": "items.unique.bloodrise.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 15,
+    "stats": {
+      "statMods": {
+        "attack": 80,
+        "attackSpeed": 10
+      },
+      "damageBonus": {
+        "min": 6,
+        "max": 12,
+        "breakdown": {
+          "physical": 12
+        }
+      }
+    },
+    "flavor": "items.unique.bloodrise.flavor"
+  },
+  {
+    "id": "items/unique/chance-guards",
+    "name": "items.unique.chance-guards.name",
+    "baseId": "items/base/glove-heavy",
+    "reqLevel": 15,
+    "stats": {
+      "statMods": {
+        "magicFind": 40,
+        "goldFind": 200,
+        "defense": 20
+      }
+    },
+    "flavor": "items.unique.chance-guards.flavor"
+  },
+  {
+    "id": "items/unique/griswold-edge",
+    "name": "items.unique.griswold-edge.name",
+    "baseId": "items/base/wp1h-scimitar",
+    "reqLevel": 15,
+    "stats": {
+      "statMods": {
+        "attack": 80,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 12,
+        "breakdown": {
+          "fire": 12
+        }
+      }
+    },
+    "flavor": "items.unique.griswold-edge.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 20,
+        "life": 15
+      }
+    },
+    "name": "items.unique.manald-heal.name",
+    "baseId": "items/base/ring",
+    "flavor": "items.unique.manald-heal.flavor",
+    "reqLevel": 15,
+    "id": "items/unique/manald-heal"
+  },
+  {
+    "id": "items/unique/rasperose",
+    "name": "items.unique.rasperose.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 15,
+    "stats": {
+      "statMods": {
+        "attack": 90,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 6,
+        "max": 14,
+        "breakdown": {
+          "physical": 14
+        }
+      }
+    },
+    "flavor": "items.unique.rasperose.flavor"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "energy": 5
+      },
+      "statMods": {
+        "magicFind": 35,
+        "goldFind": 75,
+        "attack": 15
+      }
+    },
+    "name": "items.unique.tarnhelm.name",
+    "baseId": "items/base/helm-skull-cap",
+    "flavor": "items.unique.tarnhelm.flavor",
+    "reqLevel": 15,
+    "id": "items/unique/tarnhelm"
+  },
+  {
+    "id": "items/unique/eye-of-etlich",
+    "name": "items.unique.eye-of-etlich.name",
+    "baseId": "items/base/amu-brass",
+    "reqLevel": 15,
+    "stats": {
+      "resistances": {
+        "cold": 15
+      },
+      "statMods": {
+        "defense": 20,
+        "life": 15
+      }
+    },
+    "flavor": "items.unique.eye-of-etlich.flavor"
+  },
+  {
+    "id": "items/unique/treads-of-cthon",
+    "name": "items.unique.treads-of-cthon.name",
+    "baseId": "items/base/boot-heavy",
+    "reqLevel": 15,
+    "stats": {
+      "coreStats": {
+        "strength": 5
+      },
+      "statMods": {
+        "defense": 30,
+        "life": 20
+      }
+    },
+    "flavor": "items.unique.treads-of-cthon.flavor"
+  },
+  {
+    "id": "items/unique/bloodrise-2",
+    "name": "items.unique.bloodrise-2.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 16,
+    "stats": {
+      "statMods": {
+        "attack": 90
+      },
+      "damageBonus": {
+        "min": 6,
+        "max": 14,
+        "breakdown": {
+          "physical": 14
+        }
+      }
+    },
+    "flavor": "items.unique.bloodrise-2.flavor"
+  },
+  {
+    "id": "items/unique/nokozan-relic",
+    "name": "items.unique.nokozan-relic.name",
+    "baseId": "items/base/amu-brass",
+    "reqLevel": 16,
+    "stats": {
+      "resistances": {
+        "fire": 25
+      },
+      "statMods": {
+        "life": 20
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 6,
+        "breakdown": {
+          "fire": 6
+        }
+      }
+    },
+    "flavor": "items.unique.nokozan-relic.flavor"
+  },
+  {
+    "id": "items/unique/twitchthroe",
+    "name": "items.unique.twitchthroe.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 16,
+    "stats": {
+      "coreStats": {
+        "strength": 8,
+        "dexterity": 8
+      },
+      "statMods": {
+        "defense": 40,
+        "attackSpeed": 20
+      }
+    },
+    "flavor": "items.unique.twitchthroe.flavor"
+  },
+  {
+    "id": "items/unique/lance-guard",
+    "name": "items.unique.lance-guard.name",
+    "baseId": "items/base/sh-kite",
+    "reqLevel": 17,
+    "stats": {
+      "statMods": {
+        "defense": 40,
+        "attack": 40
+      }
+    },
+    "flavor": "items.unique.lance-guard.flavor"
+  },
+  {
+    "id": "items/unique/rusthandle-scepter",
+    "name": "items.unique.rusthandle-scepter.name",
+    "baseId": "items/base/weapon-scepter",
+    "reqLevel": 17,
+    "stats": {
+      "statMods": {
+        "attack": 70
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 10,
+        "breakdown": {
+          "physical": 10
+        }
+      }
+    },
+    "flavor": "items.unique.rusthandle-scepter.flavor"
+  },
+  {
+    "id": "items/unique/the-dragon-chang",
+    "name": "items.unique.the-dragon-chang.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 17,
+    "stats": {
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "fire": 20
+        }
+      }
+    },
+    "flavor": "items.unique.the-dragon-chang.flavor"
+  },
+  {
+    "id": "items/unique/doomslinger",
+    "name": "items.unique.doomslinger.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 18,
+    "stats": {
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "physical": 20
+        }
+      }
+    },
+    "flavor": "items.unique.doomslinger.flavor"
+  },
+  {
+    "id": "items/unique/maelstrom",
+    "name": "items.unique.maelstrom.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 18,
+    "stats": {
+      "coreStats": {
+        "energy": 8
+      },
+      "statMods": {
+        "attack": 50,
+        "mana": 30
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 12,
+        "breakdown": {
+          "lightning": 12
+        }
+      }
+    },
+    "flavor": "items.unique.maelstrom.flavor"
+  },
+  {
+    "id": "items/unique/hawkmail",
+    "name": "items.unique.hawkmail.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 19,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "resistances": {
+        "cold": 20
+      },
+      "statMods": {
+        "defense": 50
+      }
+    },
+    "flavor": "items.unique.hawkmail.flavor"
+  },
+  {
+    "id": "items/unique/darkglow",
+    "name": "items.unique.darkglow.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 20,
+    "stats": {
+      "resistances": {
+        "fire": 15,
+        "cold": 15,
+        "lightning": 15,
+        "poison": 15,
+        "arcane": 15
+      },
+      "statMods": {
+        "defense": 60
+      }
+    },
+    "flavor": "items.unique.darkglow.flavor"
+  },
+  {
+    "id": "items/unique/nightsmoke",
+    "name": "items.unique.nightsmoke.name",
+    "baseId": "items/base/belt-light",
+    "reqLevel": 20,
+    "stats": {
+      "resistances": {
+        "arcane": 20
+      },
+      "statMods": {
+        "defense": 30,
+        "mana": 30
+      }
+    },
+    "flavor": "items.unique.nightsmoke.flavor"
+  },
+  {
+    "id": "items/unique/rogue-bow",
+    "name": "items.unique.rogue-bow.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 20,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "attack": 110,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "physical": 20
+        }
+      }
+    },
+    "flavor": "items.unique.rogue-bow.flavor"
+  },
+  {
+    "id": "items/unique/wall-of-eyeless",
+    "name": "items.unique.wall-of-eyeless.name",
+    "baseId": "items/base/sh-kite",
+    "reqLevel": 20,
+    "stats": {
+      "coreStats": {
+        "energy": 8
+      },
+      "statMods": {
+        "defense": 50,
+        "mana": 30
+      }
+    },
+    "flavor": "items.unique.wall-of-eyeless.flavor"
+  },
+  {
+    "id": "items/unique/stormchaser",
+    "name": "items.unique.stormchaser.name",
+    "baseId": "items/base/sh-kite",
+    "reqLevel": 21,
+    "stats": {
+      "resistances": {
+        "lightning": 40
+      },
+      "statMods": {
+        "defense": 50
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 12,
+        "breakdown": {
+          "lightning": 12
+        }
+      }
+    },
+    "flavor": "items.unique.stormchaser.flavor"
+  },
+  {
+    "id": "items/unique/the-general-tan-do-li-ga",
+    "name": "items.unique.the-general-tan-do-li-ga.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 21,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "attack": 100
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "physical": 20
+        }
+      }
+    },
+    "flavor": "items.unique.the-general-tan-do-li-ga.flavor"
+  },
+  {
+    "id": "items/unique/the-general-mace",
+    "name": "items.unique.the-general-mace.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 21,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "attack": 100
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "physical": 20
+        }
+      }
+    },
+    "flavor": "items.unique.the-general-mace.flavor"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "resistances": {
+        "poison": 30
+      }
+    },
+    "name": "items.unique.wormskull.name",
+    "baseId": "items/base/helm-skull-cap",
+    "flavor": "items.unique.wormskull.flavor",
+    "reqLevel": 21,
+    "id": "items/unique/wormskull"
+  },
+  {
+    "id": "items/unique/goblin-toe",
+    "name": "items.unique.goblin-toe.name",
+    "baseId": "items/base/boot-heavy",
+    "reqLevel": 22,
+    "stats": {
+      "statMods": {
+        "defense": 30,
+        "critChance": 0.15
+      }
+    },
+    "flavor": "items.unique.goblin-toe.flavor"
+  },
+  {
+    "id": "items/unique/iceblink",
+    "name": "items.unique.iceblink.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 22,
+    "stats": {
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "defense": 70
+      }
+    },
+    "flavor": "items.unique.iceblink.flavor"
+  },
+  {
+    "id": "items/unique/soulflay",
+    "name": "items.unique.soulflay.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 22,
+    "stats": {
+      "statMods": {
+        "attack": 120
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 10,
+        "breakdown": {
+          "arcane": 10
+        }
+      }
+    },
+    "flavor": "items.unique.soulflay.flavor"
+  },
+  {
+    "id": "items/unique/knell-striker-scepter",
+    "name": "items.unique.knell-striker-scepter.name",
+    "baseId": "items/base/weapon-scepter",
+    "reqLevel": 22,
+    "stats": {
+      "statMods": {
+        "attack": 90
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "arcane": 20
+        }
+      }
+    },
+    "flavor": "items.unique.knell-striker-scepter.flavor"
+  },
+  {
+    "id": "items/unique/magefist",
+    "name": "items.unique.magefist.name",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 23,
+    "flavor": "items.unique.magefist.flavor",
+    "stats": {
+      "damageBonus": {
+        "min": 0,
+        "max": 25,
+        "breakdown": {
+          "fire": 25
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/magefist-gauntlet",
+    "name": "items.unique.magefist-gauntlet.name",
+    "baseId": "items/base/glove-heavy",
+    "reqLevel": 23,
+    "stats": {
+      "coreStats": {
+        "energy": 5
+      },
+      "statMods": {
+        "mana": 30,
+        "attack": 40
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 25,
+        "breakdown": {
+          "fire": 25
+        }
+      }
+    },
+    "flavor": "items.unique.magefist-gauntlet.flavor"
+  },
+  {
+    "id": "items/unique/sparking-mail",
+    "name": "items.unique.sparking-mail.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 23,
+    "stats": {
+      "resistances": {
+        "lightning": 30
+      },
+      "statMods": {
+        "defense": 60
+      }
+    },
+    "flavor": "items.unique.sparking-mail.flavor"
+  },
+  {
+    "id": "items/unique/stormguild",
+    "name": "items.unique.stormguild.name",
+    "baseId": "items/base/sh-kite",
+    "reqLevel": 23,
+    "stats": {
+      "resistances": {
+        "lightning": 30
+      },
+      "statMods": {
+        "defense": 60
+      }
+    },
+    "flavor": "items.unique.stormguild.flavor"
+  },
+  {
+    "id": "items/unique/jade-tan-do",
+    "name": "items.unique.jade-tan-do.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 23,
+    "stats": {
+      "resistances": {
+        "poison": 25
+      },
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 25,
+        "breakdown": {
+          "poison": 25
+        }
+      }
+    },
+    "flavor": "items.unique.jade-tan-do.flavor"
+  },
+  {
+    "id": "items/unique/heavenly-garb",
+    "name": "items.unique.heavenly-garb.name",
+    "baseId": "items/base/armor-light",
+    "reqLevel": 24,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "resistances": {
+        "arcane": 15
+      },
+      "statMods": {
+        "defense": 50,
+        "mana": 40
+      }
+    },
+    "flavor": "items.unique.heavenly-garb.flavor"
+  },
+  {
+    "id": "items/unique/gravenspine",
+    "name": "items.unique.gravenspine.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 25,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "attack": 70,
+        "mana": 40
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 16,
+        "breakdown": {
+          "arcane": 16
+        }
+      }
+    },
+    "flavor": "items.unique.gravenspine.flavor"
+  },
+  {
+    "id": "items/unique/hellplague",
+    "name": "items.unique.hellplague.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 25,
+    "stats": {
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 16,
+        "breakdown": {
+          "fire": 8,
+          "poison": 8
+        }
+      }
+    },
+    "flavor": "items.unique.hellplague.flavor"
+  },
+  {
+    "id": "items/unique/razor-stitch",
+    "name": "items.unique.razor-stitch.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 25,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "attack": 120
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 30,
+        "breakdown": {
+          "physical": 30
+        }
+      }
+    },
+    "flavor": "items.unique.razor-stitch.flavor"
+  },
+  {
+    "id": "items/unique/spectral-shard",
+    "name": "items.unique.spectral-shard.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 25,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "attack": 100,
+        "mana": 40
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "arcane": 20
+        }
+      }
+    },
+    "flavor": "items.unique.spectral-shard.flavor"
+  },
+  {
+    "id": "items/unique/stormstrike",
+    "name": "items.unique.stormstrike.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 25,
+    "stats": {
+      "statMods": {
+        "attack": 120
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "lightning": 20
+        }
+      }
+    },
+    "flavor": "items.unique.stormstrike.flavor"
+  },
+  {
+    "id": "items/unique/mahim-oak-curio",
+    "name": "items.unique.mahim-oak-curio.name",
+    "baseId": "items/base/amu-silver",
+    "reqLevel": 25,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "dexterity": 10,
+        "vitality": 10,
+        "energy": 10
+      },
+      "statMods": {
+        "defense": 20
+      }
+    },
+    "flavor": "items.unique.mahim-oak-curio.flavor"
+  },
+  {
+    "id": "items/unique/undead-crown",
+    "name": "items.unique.undead-crown.name",
+    "baseId": "items/base/helm-war-hat",
+    "reqLevel": 26,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "resistances": {
+        "poison": 15
+      },
+      "statMods": {
+        "life": 20,
+        "defense": 40
+      }
+    },
+    "flavor": "items.unique.undead-crown.flavor"
+  },
+  {
+    "id": "items/unique/venom-ward",
+    "name": "items.unique.venom-ward.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 26,
+    "stats": {
+      "resistances": {
+        "poison": 50
+      },
+      "statMods": {
+        "defense": 70
+      }
+    },
+    "flavor": "items.unique.venom-ward.flavor"
+  },
+  {
+    "id": "items/unique/wizendraw",
+    "name": "items.unique.wizendraw.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 26,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "attack": 130
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 25,
+        "breakdown": {
+          "cold": 25
+        }
+      }
+    },
+    "flavor": "items.unique.wizendraw.flavor"
+  },
+  {
+    "id": "items/unique/black-cleft",
+    "name": "items.unique.black-cleft.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 27,
+    "stats": {
+      "statMods": {
+        "attack": 100
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "cold": 20
+        }
+      }
+    },
+    "flavor": "items.unique.black-cleft.flavor"
+  },
+  {
+    "id": "items/unique/goldwrap",
+    "name": "items.unique.goldwrap.name",
+    "baseId": "items/base/belt-heavy",
+    "reqLevel": 27,
+    "stats": {
+      "statMods": {
+        "defense": 40,
+        "goldFind": 80,
+        "magicFind": 30
+      }
+    },
+    "flavor": "items.unique.goldwrap.flavor"
+  },
+  {
+    "id": "items/unique/hellclap",
+    "name": "items.unique.hellclap.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 27,
+    "stats": {
+      "statMods": {
+        "attack": 130,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 30,
+        "breakdown": {
+          "fire": 30
+        }
+      }
+    },
+    "flavor": "items.unique.hellclap.flavor"
+  },
+  {
+    "id": "items/unique/ichorsting",
+    "name": "items.unique.ichorsting.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 27,
+    "stats": {
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 16,
+        "breakdown": {
+          "poison": 16
+        }
+      }
+    },
+    "flavor": "items.unique.ichorsting.flavor"
+  },
+  {
+    "id": "items/unique/ring-of-the-leech",
+    "name": "items.unique.ring-of-the-leech.name",
+    "baseId": "items/base/ring-jade",
+    "reqLevel": 27,
+    "stats": {
+      "statMods": {
+        "life": 20,
+        "mana": 10
+      }
+    },
+    "flavor": "items.unique.ring-of-the-leech.flavor"
+  },
+  {
+    "id": "items/unique/boneflesh",
+    "name": "items.unique.boneflesh.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "defense": 80,
+        "life": 30
+      }
+    },
+    "flavor": "items.unique.boneflesh.flavor"
+  },
+  {
+    "id": "items/unique/ironstone",
+    "name": "items.unique.ironstone.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "attack": 110
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 25,
+        "breakdown": {
+          "physical": 25
+        }
+      }
+    },
+    "flavor": "items.unique.ironstone.flavor"
+  },
+  {
+    "id": "items/unique/peasant-crown",
+    "name": "items.unique.peasant-crown.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "vitality": 20
+      },
+      "statMods": {
+        "life": 30,
+        "mana": 30,
+        "defense": 50
+      }
+    },
+    "flavor": "items.unique.peasant-crown.flavor"
+  },
+  {
+    "id": "items/unique/silks-of-the-victor",
+    "name": "items.unique.silks-of-the-victor.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "defense": 80,
+        "mana": 20
+      }
+    },
+    "flavor": "items.unique.silks-of-the-victor.flavor"
+  },
+  {
+    "id": "items/unique/the-spirit-shroud",
+    "name": "items.unique.the-spirit-shroud.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "energy": 5
+      },
+      "statMods": {
+        "defense": 80,
+        "mana": 40
+      }
+    },
+    "flavor": "items.unique.the-spirit-shroud.flavor"
+  },
+  {
+    "id": "items/unique/visceratuant",
+    "name": "items.unique.visceratuant.name",
+    "baseId": "items/base/sh-aegis",
+    "reqLevel": 28,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "defense": 70,
+        "mana": 40
+      }
+    },
+    "flavor": "items.unique.visceratuant.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "mana": 40
+      }
+    },
+    "name": "items.unique.frostburn.name",
+    "baseId": "items/base/gloves",
+    "flavor": "items.unique.frostburn.flavor",
+    "reqLevel": 29,
+    "id": "items/unique/frostburn"
+  },
+  {
+    "id": "items/unique/rattlecage",
+    "name": "items.unique.rattlecage.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 29,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "defense": 90,
+        "attack": 60
+      }
+    },
+    "flavor": "items.unique.rattlecage.flavor"
+  },
+  {
+    "id": "items/unique/skin-of-vipermagi",
+    "name": "items.unique.skin-of-vipermagi.name",
+    "baseId": "items/base/armor-leather",
+    "reqLevel": 29,
+    "flavor": "items.unique.skin-of-vipermagi.flavor",
+    "stats": {
+      "resistances": {
+        "fire": 30,
+        "cold": 30,
+        "lightning": 30,
+        "poison": 30,
+        "arcane": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/stone-of-jordan",
+    "name": "items.unique.stone-of-jordan.name",
+    "baseId": "items/base/ring-silver",
+    "reqLevel": 29,
+    "flavor": "items.unique.stone-of-jordan.flavor",
+    "stats": {
+      "statMods": {
+        "mana": 20
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 12,
+        "breakdown": {
+          "lightning": 12
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/string-of-ears",
+    "name": "items.unique.string-of-ears.name",
+    "baseId": "items/base/belt-demonhide",
+    "reqLevel": 29,
+    "flavor": "items.unique.string-of-ears.flavor",
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "statMods": {
+        "defense": 75
+      }
+    }
+  },
+  {
+    "id": "items/unique/tearhaunch",
+    "name": "items.unique.tearhaunch.name",
+    "baseId": "items/base/boot-chain",
+    "reqLevel": 29,
+    "stats": {
+      "coreStats": {
+        "strength": 5,
+        "dexterity": 5
+      },
+      "statMods": {
+        "defense": 40,
+        "attackSpeed": 15
+      }
+    },
+    "flavor": "items.unique.tearhaunch.flavor"
+  },
+  {
+    "id": "items/unique/the-fetid-sprinkler",
+    "name": "items.unique.the-fetid-sprinkler.name",
+    "baseId": "items/base/weapon-scepter",
+    "reqLevel": 29,
+    "stats": {
+      "resistances": {
+        "poison": 20
+      },
+      "statMods": {
+        "attack": 120
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 30,
+        "breakdown": {
+          "poison": 30
+        }
+      }
+    },
+    "flavor": "items.unique.the-fetid-sprinkler.flavor"
+  },
+  {
+    "id": "items/unique/venom-grip",
+    "name": "items.unique.venom-grip.name",
+    "baseId": "items/base/glove-chain",
+    "reqLevel": 29,
+    "stats": {
+      "resistances": {
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 30,
+        "life": 20
+      }
+    },
+    "flavor": "items.unique.venom-grip.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20
+      },
+      "statMods": {
+        "physDodge": 0.1,
+        "defense": 80
+      }
+    },
+    "name": "items.unique.whistan-guard.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.whistan-guard.flavor",
+    "reqLevel": 29,
+    "id": "items/unique/whistan-guard"
+  },
+  {
+    "id": "items/unique/ume-lament",
+    "name": "items.unique.ume-lament.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 30,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "attack": 80,
+        "mana": 60
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "arcane": 20
+        }
+      }
+    },
+    "flavor": "items.unique.ume-lament.flavor"
+  },
+  {
+    "id": "items/unique/culwens-point",
+    "name": "items.unique.culwens-point.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "reqLevel": 31,
+    "stats": {
+      "statMods": {
+        "attack": 130,
+        "attackSpeed": 20
+      }
+    },
+    "flavor": "items.unique.culwens-point.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 25,
+        "lightning": 25,
+        "cold": 25
+      },
+      "statMods": {
+        "defense": 100
+      }
+    },
+    "name": "items.unique.moser-circle.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.moser-circle.flavor",
+    "reqLevel": 31,
+    "id": "items/unique/moser-circle"
+  },
+  {
+    "id": "items/unique/ribcracker",
+    "name": "items.unique.ribcracker.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 31,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "attack": 140,
+        "critChance": 0.1
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.ribcracker.flavor"
+  },
+  {
+    "id": "items/unique/riphook",
+    "name": "items.unique.riphook.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 31,
+    "stats": {
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 25,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.riphook.flavor"
+  },
+  {
+    "id": "items/unique/rockfleece",
+    "name": "items.unique.rockfleece.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 31,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "defense": 120
+      }
+    },
+    "flavor": "items.unique.rockfleece.flavor"
+  },
+  {
+    "id": "items/unique/rockstopper",
+    "name": "items.unique.rockstopper.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 31,
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20
+      },
+      "statMods": {
+        "defense": 80,
+        "life": 40
+      }
+    },
+    "flavor": "items.unique.rockstopper.flavor"
+  },
+  {
+    "id": "items/unique/skin-of-flayed-one",
+    "name": "items.unique.skin-of-flayed-one.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 31,
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "statMods": {
+        "defense": 100,
+        "life": 50
+      }
+    },
+    "flavor": "items.unique.skin-of-flayed-one.flavor"
+  },
+  {
+    "id": "items/unique/the-impaler",
+    "name": "items.unique.the-impaler.name",
+    "baseId": "items/base/wp2h-war-pike",
+    "reqLevel": 31,
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.the-impaler.flavor"
+  },
+  {
+    "id": "items/unique/dark-clan-crusher",
+    "name": "items.unique.dark-clan-crusher.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 32,
+    "stats": {
+      "statMods": {
+        "attack": 130
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 35,
+        "breakdown": {
+          "physical": 35
+        }
+      }
+    },
+    "flavor": "items.unique.dark-clan-crusher.flavor"
+  },
+  {
+    "id": "items/unique/kinemil-awl",
+    "name": "items.unique.kinemil-awl.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 32,
+    "stats": {
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "fire": 20
+        }
+      }
+    },
+    "flavor": "items.unique.kinemil-awl.flavor"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 30
+      }
+    },
+    "name": "items.unique.razortail.name",
+    "baseId": "items/base/belt-light",
+    "flavor": "items.unique.razortail.flavor",
+    "reqLevel": 32,
+    "id": "items/unique/razortail"
+  },
+  {
+    "id": "items/unique/iron-pelt",
+    "name": "items.unique.iron-pelt.name",
+    "baseId": "items/base/armor-breast-plate",
+    "reqLevel": 33,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "defense": 140
+      }
+    },
+    "flavor": "items.unique.iron-pelt.flavor"
+  },
+  {
+    "id": "items/unique/kelpie-snare",
+    "name": "items.unique.kelpie-snare.name",
+    "baseId": "items/base/wp2h-war-pike",
+    "reqLevel": 33,
+    "stats": {
+      "resistances": {
+        "cold": 20
+      },
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "cold": 40
+        }
+      }
+    },
+    "flavor": "items.unique.kelpie-snare.flavor"
+  },
+  {
+    "id": "items/unique/razor-tine",
+    "name": "items.unique.razor-tine.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 33,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "attack": 130,
+        "critChance": 0.1
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 30,
+        "breakdown": {
+          "physical": 30
+        }
+      }
+    },
+    "flavor": "items.unique.razor-tine.flavor"
+  },
+  {
+    "id": "items/unique/the-nokozan",
+    "name": "items.unique.the-nokozan.name",
+    "baseId": "items/base/amu-silver",
+    "reqLevel": 34,
+    "stats": {
+      "resistances": {
+        "fire": 20
+      },
+      "statMods": {
+        "life": 30,
+        "mana": 20
+      },
+      "damageBonus": {
+        "min": 2,
+        "max": 8,
+        "breakdown": {
+          "fire": 8
+        }
+      }
+    },
+    "flavor": "items.unique.the-nokozan.flavor"
+  },
+  {
+    "id": "items/unique/blacktongue",
+    "name": "items.unique.blacktongue.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 20,
+        "breakdown": {
+          "poison": 20
+        }
+      }
+    },
+    "flavor": "items.unique.blacktongue.flavor"
+  },
+  {
+    "id": "items/unique/blade-of-ali-baba",
+    "name": "items.unique.blade-of-ali-baba.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "attack": 120,
+        "magicFind": 25,
+        "goldFind": 200
+      }
+    },
+    "flavor": "items.unique.blade-of-ali-baba.flavor"
+  },
+  {
+    "id": "items/unique/blastbark",
+    "name": "items.unique.blastbark.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "attack": 150
+      },
+      "damageBonus": {
+        "min": 25,
+        "max": 40,
+        "breakdown": {
+          "fire": 40
+        }
+      }
+    },
+    "flavor": "items.unique.blastbark.flavor"
+  },
+  {
+    "id": "items/unique/greaves-of-march",
+    "name": "items.unique.greaves-of-march.name",
+    "baseId": "items/base/boot-light-plated",
+    "reqLevel": 35,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 60,
+        "attackSpeed": 15
+      }
+    },
+    "flavor": "items.unique.greaves-of-march.flavor"
+  },
+  {
+    "id": "items/unique/langer-briser",
+    "name": "items.unique.langer-briser.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.langer-briser.flavor"
+  },
+  {
+    "id": "items/unique/skystrike",
+    "name": "items.unique.skystrike.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 35,
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "lightning": 50
+        }
+      }
+    },
+    "flavor": "items.unique.skystrike.flavor"
+  },
+  {
+    "id": "items/unique/stealskull",
+    "name": "items.unique.stealskull.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "magicFind": 30,
+        "attackSpeed": 20,
+        "defense": 50
+      }
+    },
+    "flavor": "items.unique.stealskull.flavor"
+  },
+  {
+    "id": "items/unique/the-diggler",
+    "name": "items.unique.the-diggler.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 35,
+    "stats": {
+      "statMods": {
+        "attack": 140,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 35,
+        "breakdown": {
+          "physical": 35
+        }
+      }
+    },
+    "flavor": "items.unique.the-diggler.flavor"
+  },
+  {
+    "id": "items/unique/crow-caw",
+    "name": "items.unique.crow-caw.name",
+    "baseId": "items/base/armor-breast-plate",
+    "reqLevel": 36,
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "statMods": {
+        "defense": 110,
+        "attackSpeed": 20
+      }
+    },
+    "flavor": "items.unique.crow-caw.flavor"
+  },
+  {
+    "id": "items/unique/gloom-trap",
+    "name": "items.unique.gloom-trap.name",
+    "baseId": "items/base/belt-plated",
+    "reqLevel": 36,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 80,
+        "defense": 50
+      }
+    },
+    "flavor": "items.unique.gloom-trap.flavor"
+  },
+  {
+    "id": "items/unique/goldskin",
+    "name": "items.unique.goldskin.name",
+    "baseId": "items/base/armor-breast-plate",
+    "reqLevel": 36,
+    "stats": {
+      "statMods": {
+        "defense": 130,
+        "goldFind": 100,
+        "magicFind": 25
+      }
+    },
+    "flavor": "items.unique.goldskin.flavor"
+  },
+  {
+    "id": "items/unique/knell-striker",
+    "name": "items.unique.knell-striker.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 36,
+    "stats": {
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 25,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.knell-striker.flavor"
+  },
+  {
+    "id": "items/unique/ripsaw",
+    "name": "items.unique.ripsaw.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 36,
+    "stats": {
+      "statMods": {
+        "attack": 160,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 25,
+        "breakdown": {
+          "physical": 25
+        }
+      }
+    },
+    "flavor": "items.unique.ripsaw.flavor"
+  },
+  {
+    "id": "items/unique/the-meatscraper",
+    "name": "items.unique.the-meatscraper.name",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 36,
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.the-meatscraper.flavor"
+  },
+  {
+    "id": "items/unique/coldkill",
+    "name": "items.unique.coldkill.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 37,
+    "stats": {
+      "resistances": {
+        "cold": 20
+      },
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "cold": 40
+        }
+      }
+    },
+    "flavor": "items.unique.coldkill.flavor"
+  },
+  {
+    "id": "items/unique/hone-sundan",
+    "name": "items.unique.hone-sundan.name",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 37,
+    "stats": {
+      "statMods": {
+        "attack": 200,
+        "critChance": 0.1
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.hone-sundan.flavor"
+  },
+  {
+    "id": "items/unique/saracen-chance",
+    "name": "items.unique.saracen-chance.name",
+    "baseId": "items/base/amu-jade",
+    "reqLevel": 37,
+    "stats": {
+      "coreStats": {
+        "strength": 12,
+        "dexterity": 12,
+        "vitality": 12,
+        "energy": 12
+      },
+      "statMods": {
+        "magicFind": 25
+      }
+    },
+    "flavor": "items.unique.saracen-chance.flavor"
+  },
+  {
+    "id": "items/unique/blackleach-staff",
+    "name": "items.unique.blackleach-staff.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 38,
+    "stats": {
+      "statMods": {
+        "attack": 170,
+        "life": 20
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.blackleach-staff.flavor"
+  },
+  {
+    "id": "items/unique/blackleach-blade",
+    "name": "items.unique.blackleach-blade.name",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 38,
+    "stats": {
+      "statMods": {
+        "attack": 180,
+        "life": 30
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.blackleach-blade.flavor"
+  },
+  {
+    "id": "items/unique/darksight-helm",
+    "name": "items.unique.darksight-helm.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 38,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "defense": 60,
+        "magicDodge": 0.1
+      }
+    },
+    "flavor": "items.unique.darksight-helm.flavor"
+  },
+  {
+    "id": "items/unique/gravepalm",
+    "name": "items.unique.gravepalm.name",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 38,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "defense": 40,
+        "attack": 40
+      }
+    },
+    "flavor": "items.unique.gravepalm.flavor"
+  },
+  {
+    "id": "items/unique/shaftstop",
+    "name": "items.unique.shaftstop.name",
+    "baseId": "items/base/armor-breast-plate",
+    "reqLevel": 38,
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "resistances": {
+        "physical": 10
+      },
+      "statMods": {
+        "defense": 180,
+        "life": 60
+      }
+    },
+    "flavor": "items.unique.shaftstop.flavor"
+  },
+  {
+    "id": "items/unique/the-vile-husk",
+    "name": "items.unique.the-vile-husk.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 38,
+    "stats": {
+      "resistances": {
+        "poison": 20
+      },
+      "statMods": {
+        "attack": 140
+      },
+      "damageBonus": {
+        "min": 12,
+        "max": 22,
+        "breakdown": {
+          "poison": 22
+        }
+      }
+    },
+    "flavor": "items.unique.the-vile-husk.flavor"
+  },
+  {
+    "id": "items/unique/bladebuckle",
+    "name": "items.unique.bladebuckle.name",
+    "baseId": "items/base/belt-plated",
+    "reqLevel": 39,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "defense": 80,
+        "attack": 60
+      }
+    },
+    "flavor": "items.unique.bladebuckle.flavor"
+  },
+  {
+    "id": "items/unique/butcher-pupil",
+    "name": "items.unique.butcher-pupil.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 39,
+    "stats": {
+      "statMods": {
+        "attack": 160,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.butcher-pupil.flavor"
+  },
+  {
+    "id": "items/unique/the-meat-scraper-2",
+    "name": "items.unique.the-meat-scraper-2.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 39,
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.the-meat-scraper-2.flavor"
+  },
+  {
+    "id": "items/unique/the-patriarch",
+    "name": "items.unique.the-patriarch.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 39,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 30,
+        "breakdown": {
+          "physical": 30
+        }
+      }
+    },
+    "flavor": "items.unique.the-patriarch.flavor"
+  },
+  {
+    "id": "items/unique/the-scalper",
+    "name": "items.unique.the-scalper.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 39,
+    "stats": {
+      "statMods": {
+        "attack": 140,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.the-scalper.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "arcane": 30
+      },
+      "statMods": {
+        "magicDodge": 0.15,
+        "defense": 90
+      }
+    },
+    "name": "items.unique.spirit-ward.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.spirit-ward.flavor",
+    "reqLevel": 40,
+    "id": "items/unique/spirit-ward"
+  },
+  {
+    "id": "items/unique/the-atlantean",
+    "name": "items.unique.the-atlantean.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 40,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 10
+      },
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.the-atlantean.flavor"
+  },
+  {
+    "id": "items/unique/blackhorn-face",
+    "name": "items.unique.blackhorn-face.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 41,
+    "stats": {
+      "resistances": {
+        "lightning": 25,
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 80
+      }
+    },
+    "flavor": "items.unique.blackhorn-face.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 180
+      },
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20,
+        "poison": 20
+      }
+    },
+    "name": "items.unique.duriel-shell.name",
+    "baseId": "items/base/armor-heavy",
+    "flavor": "items.unique.duriel-shell.flavor",
+    "reqLevel": 41,
+    "id": "items/unique/duriel-shell"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 80,
+        "defense": 40
+      }
+    },
+    "name": "items.unique.lidless-wall.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.lidless-wall.flavor",
+    "reqLevel": 41,
+    "id": "items/unique/lidless-wall"
+  },
+  {
+    "id": "items/unique/rusthandle",
+    "name": "items.unique.rusthandle.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 41,
+    "stats": {
+      "statMods": {
+        "attack": 150
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.rusthandle.flavor"
+  },
+  {
+    "id": "items/unique/spire-of-honor",
+    "name": "items.unique.spire-of-honor.name",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 41,
+    "stats": {
+      "statMods": {
+        "attack": 210
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 90,
+        "breakdown": {
+          "physical": 90
+        }
+      }
+    },
+    "flavor": "items.unique.spire-of-honor.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 60,
+        "life": 100
+      }
+    },
+    "name": "items.unique.vampiregaze.name",
+    "baseId": "items/base/helm-casque",
+    "flavor": "items.unique.vampiregaze.flavor",
+    "reqLevel": 41,
+    "id": "items/unique/vampiregaze"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "dexterity": 10
+      },
+      "statMods": {
+        "life": 80
+      }
+    },
+    "name": "items.unique.arreat-face.name",
+    "baseId": "items/base/helm-armet",
+    "flavor": "items.unique.arreat-face.flavor",
+    "reqLevel": 42,
+    "id": "items/unique/arreat-face"
+  },
+  {
+    "id": "items/unique/bartuc-cut-throat",
+    "name": "items.unique.bartuc-cut-throat.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 150,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "physical": 40
+        }
+      }
+    },
+    "flavor": "items.unique.bartuc-cut-throat.flavor"
+  },
+  {
+    "id": "items/unique/herald-of-zakarum",
+    "name": "items.unique.herald-of-zakarum.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 10
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20
+      },
+      "statMods": {
+        "defense": 130
+      }
+    },
+    "flavor": "items.unique.herald-of-zakarum.flavor"
+  },
+  {
+    "id": "items/unique/jalal-mane",
+    "name": "items.unique.jalal-mane.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "dexterity": 10
+      },
+      "statMods": {
+        "defense": 80,
+        "life": 30
+      }
+    },
+    "flavor": "items.unique.jalal-mane.flavor"
+  },
+  {
+    "id": "items/unique/lavagout",
+    "name": "items.unique.lavagout.name",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 42,
+    "flavor": "items.unique.lavagout.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 24,
+        "breakdown": {
+          "fire": 24
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/lycanders-aim",
+    "name": "items.unique.lycanders-aim.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.lycanders-aim.flavor"
+  },
+  {
+    "id": "items/unique/lycanders-flank",
+    "name": "items.unique.lycanders-flank.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.lycanders-flank.flavor"
+  },
+  {
+    "id": "items/unique/steelclash",
+    "name": "items.unique.steelclash.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "reqLevel": 42,
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20
+      },
+      "statMods": {
+        "defense": 120
+      }
+    },
+    "flavor": "items.unique.steelclash.flavor"
+  },
+  {
+    "id": "items/unique/oculus",
+    "name": "items.unique.oculus.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 42,
+    "flavor": "items.unique.oculus.flavor",
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "magicFind": 20,
+        "mana": 50
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/the-oculus-orb",
+    "name": "items.unique.the-oculus-orb.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 70,
+        "magicFind": 20
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "arcane": 40
+        }
+      }
+    },
+    "flavor": "items.unique.the-oculus-orb.flavor"
+  },
+  {
+    "id": "items/unique/titan-revenge",
+    "name": "items.unique.titan-revenge.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 42,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 80,
+        "breakdown": {
+          "physical": 80
+        }
+      }
+    },
+    "flavor": "items.unique.titan-revenge.flavor"
+  },
+  {
+    "id": "items/unique/war-traveler",
+    "name": "items.unique.war-traveler.name",
+    "baseId": "items/base/boot-light-plated",
+    "reqLevel": 42,
+    "flavor": "items.unique.war-traveler.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "statMods": {
+        "magicFind": 50,
+        "attackSpeed": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/earth-shaker",
+    "name": "items.unique.earth-shaker.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 43,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 160,
+        "critChance": 0.1
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 60,
+        "breakdown": {
+          "physical": 60
+        }
+      }
+    },
+    "flavor": "items.unique.earth-shaker.flavor"
+  },
+  {
+    "id": "items/unique/the-collector",
+    "name": "items.unique.the-collector.name",
+    "baseId": "items/base/amu-jade",
+    "reqLevel": 43,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "vitality": 10
+      },
+      "statMods": {
+        "magicFind": 30,
+        "goldFind": 80
+      }
+    },
+    "flavor": "items.unique.the-collector.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 30,
+        "lightning": 30,
+        "cold": 30
+      },
+      "statMods": {
+        "magicDodge": 0.2,
+        "defense": 150
+      }
+    },
+    "name": "items.unique.gerke-sanctuary.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.gerke-sanctuary.flavor",
+    "reqLevel": 44,
+    "id": "items/unique/gerke-sanctuary"
+  },
+  {
+    "id": "items/unique/valkyrie-wing",
+    "name": "items.unique.valkyrie-wing.name",
+    "baseId": "items/base/helm-casque",
+    "reqLevel": 44,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "dexterity": 10
+      },
+      "statMods": {
+        "life": 20,
+        "mana": 20
+      }
+    },
+    "flavor": "items.unique.valkyrie-wing.flavor"
+  },
+  {
+    "id": "items/unique/bverrit-keep",
+    "name": "items.unique.bverrit-keep.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "reqLevel": 45,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "defense": 140
+      }
+    },
+    "flavor": "items.unique.bverrit-keep.flavor"
+  },
+  {
+    "id": "items/unique/dwarf-star",
+    "name": "items.unique.dwarf-star.name",
+    "baseId": "items/base/ring-amber",
+    "reqLevel": 45,
+    "stats": {
+      "resistances": {
+        "fire": 40
+      },
+      "statMods": {
+        "life": 40,
+        "defense": 20
+      }
+    },
+    "flavor": "items.unique.dwarf-star.flavor"
+  },
+  {
+    "id": "items/unique/pus-spitter",
+    "name": "items.unique.pus-spitter.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 45,
+    "stats": {
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "poison": 50
+        }
+      }
+    },
+    "flavor": "items.unique.pus-spitter.flavor"
+  },
+  {
+    "id": "items/unique/raven-frost",
+    "name": "items.unique.raven-frost.name",
+    "baseId": "items/base/ring-amber",
+    "reqLevel": 45,
+    "flavor": "items.unique.raven-frost.flavor",
+    "stats": {
+      "coreStats": {
+        "dexterity": 17
+      },
+      "statMods": {
+        "mana": 40
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 45,
+        "breakdown": {
+          "cold": 45
+        }
+      }
+    }
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 200,
+        "magicFind": 40,
+        "goldFind": 100
+      },
+      "coreStats": {
+        "dexterity": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "items.unique.goldstrike-arch.name",
+    "baseId": "items/base/weapon-bow",
+    "flavor": "items.unique.goldstrike-arch.flavor",
+    "reqLevel": 46,
+    "id": "items/unique/goldstrike-arch"
+  },
+  {
+    "id": "items/unique/blackhand-key",
+    "name": "items.unique.blackhand-key.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 47,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 80
+      }
+    },
+    "flavor": "items.unique.blackhand-key.flavor"
+  },
+  {
+    "id": "items/unique/ghoulhide",
+    "name": "items.unique.ghoulhide.name",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 47,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "resistances": {
+        "poison": 20
+      },
+      "statMods": {
+        "defense": 50,
+        "attack": 60
+      }
+    },
+    "flavor": "items.unique.ghoulhide.flavor"
+  },
+  {
+    "id": "items/unique/gore-riders",
+    "name": "items.unique.gore-riders.name",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 47,
+    "flavor": "items.unique.gore-riders.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/immortal-king-helm-uniq",
+    "name": "items.unique.immortal-king-helm-uniq.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 47,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 110
+      }
+    },
+    "flavor": "items.unique.immortal-king-helm-uniq.flavor"
+  },
+  {
+    "id": "items/unique/kuko-shakaku",
+    "name": "items.unique.kuko-shakaku.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 47,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.kuko-shakaku.flavor"
+  },
+  {
+    "id": "items/unique/thundergods-vigor",
+    "name": "items.unique.thundergods-vigor.name",
+    "baseId": "items/base/belt-plated",
+    "reqLevel": 47,
+    "flavor": "items.unique.thundergods-vigor.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 10,
+        "breakdown": {
+          "lightning": 10
+        }
+      }
+    }
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 30,
+        "life": 30,
+        "attack": 40
+      }
+    },
+    "name": "items.unique.soul-drainer.name",
+    "baseId": "items/base/gloves",
+    "flavor": "items.unique.soul-drainer.flavor",
+    "reqLevel": 48,
+    "id": "items/unique/soul-drainer"
+  },
+  {
+    "id": "items/unique/crown-of-thieves",
+    "name": "items.unique.crown-of-thieves.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 49,
+    "stats": {
+      "coreStats": {
+        "vitality": 25
+      },
+      "statMods": {
+        "life": 40,
+        "goldFind": 80,
+        "magicFind": 20
+      }
+    },
+    "flavor": "items.unique.crown-of-thieves.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 210,
+        "attackSpeed": 60
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 120
+        },
+        "min": 100,
+        "max": 140
+      }
+    },
+    "name": "items.unique.demon-machine.name",
+    "baseId": "items/base/weapon-crossbow",
+    "flavor": "items.unique.demon-machine.flavor",
+    "reqLevel": 49,
+    "id": "items/unique/demon-machine"
+  },
+  {
+    "id": "items/unique/frostburn-gauntlet",
+    "name": "items.unique.frostburn-gauntlet.name",
+    "baseId": "items/base/glove-vampirebone",
+    "reqLevel": 49,
+    "stats": {
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "defense": 50,
+        "mana": 40
+      }
+    },
+    "flavor": "items.unique.frostburn-gauntlet.flavor"
+  },
+  {
+    "id": "items/unique/infernostride",
+    "name": "items.unique.infernostride.name",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 49,
+    "stats": {
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "defense": 60,
+        "life": 20
+      }
+    },
+    "flavor": "items.unique.infernostride.flavor"
+  },
+  {
+    "id": "items/unique/islestrike",
+    "name": "items.unique.islestrike.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 49,
+    "stats": {
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.islestrike.flavor"
+  },
+  {
+    "id": "items/unique/spirit-forge",
+    "name": "items.unique.spirit-forge.name",
+    "baseId": "items/base/armor-heavy",
+    "reqLevel": 49,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 160,
+        "life": 50
+      }
+    },
+    "flavor": "items.unique.spirit-forge.flavor"
+  },
+  {
+    "id": "items/unique/waterwalk",
+    "name": "items.unique.waterwalk.name",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 49,
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "resistances": {
+        "fire": 20
+      },
+      "statMods": {
+        "defense": 60,
+        "life": 40
+      }
+    },
+    "flavor": "items.unique.waterwalk.flavor"
+  },
+  {
+    "id": "items/unique/crainte-vomir",
+    "name": "items.unique.crainte-vomir.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 50,
+    "stats": {
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 50,
+        "breakdown": {
+          "physical": 50
+        }
+      }
+    },
+    "flavor": "items.unique.crainte-vomir.flavor"
+  },
+  {
+    "id": "items/unique/crescent-moon",
+    "name": "items.unique.crescent-moon.name",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 50,
+    "stats": {
+      "resistances": {
+        "lightning": 30
+      },
+      "statMods": {
+        "mana": 30
+      },
+      "damageBonus": {
+        "min": 3,
+        "max": 9,
+        "breakdown": {
+          "lightning": 9
+        }
+      }
+    },
+    "flavor": "items.unique.crescent-moon.flavor"
+  },
+  {
+    "id": "items/unique/shako",
+    "name": "items.unique.shako.name",
+    "baseId": "items/base/helm-war-hat",
+    "reqLevel": 50,
+    "flavor": "items.unique.shako.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 2,
+        "dexterity": 2,
+        "vitality": 2,
+        "energy": 2
+      },
+      "statMods": {
+        "life": 75,
+        "mana": 75,
+        "magicFind": 50
+      }
+    }
+  },
+  {
+    "id": "items/unique/hellplague-greater",
+    "name": "items.unique.hellplague-greater.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 50,
+    "stats": {
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "fire": 35,
+          "poison": 35
+        }
+      }
+    },
+    "flavor": "items.unique.hellplague-greater.flavor"
+  },
+  {
+    "id": "items/unique/homunculus",
+    "name": "items.unique.homunculus.name",
+    "baseId": "items/base/sh-aegis",
+    "reqLevel": 50,
+    "flavor": "items.unique.homunculus.flavor",
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 80
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/homunculus-helm",
+    "name": "items.unique.homunculus-helm.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 50,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "defense": 80,
+        "mana": 60
+      }
+    },
+    "flavor": "items.unique.homunculus-helm.flavor"
+  },
+  {
+    "id": "items/unique/pierre-tombale-couant",
+    "name": "items.unique.pierre-tombale-couant.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 50,
+    "stats": {
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.pierre-tombale-couant.flavor"
+  },
+  {
+    "id": "items/unique/silkweave",
+    "name": "items.unique.silkweave.name",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 50,
+    "flavor": "items.unique.silkweave.flavor",
+    "stats": {
+      "statMods": {
+        "mana": 50,
+        "magicDodge": 0.2
+      }
+    }
+  },
+  {
+    "id": "items/unique/stormeye",
+    "name": "items.unique.stormeye.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 50,
+    "stats": {
+      "statMods": {
+        "attack": 170
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 60,
+        "breakdown": {
+          "lightning": 60
+        }
+      }
+    },
+    "flavor": "items.unique.stormeye.flavor"
+  },
+  {
+    "id": "items/unique/atlantean",
+    "name": "items.unique.atlantean.name",
+    "baseId": "items/base/sh-monarch",
+    "reqLevel": 50,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 10
+      },
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "defense": 160
+      }
+    },
+    "flavor": "items.unique.atlantean.flavor"
+  },
+  {
+    "id": "items/unique/cat-eye",
+    "name": "items.unique.cat-eye.name",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 50,
+    "stats": {
+      "coreStats": {
+        "dexterity": 25
+      },
+      "statMods": {
+        "attackSpeed": 20,
+        "defense": 30
+      }
+    },
+    "flavor": "items.unique.cat-eye.flavor"
+  },
+  {
+    "id": "items/unique/woestave",
+    "name": "items.unique.woestave.name",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 50,
+    "stats": {
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 80,
+        "breakdown": {
+          "cold": 40,
+          "lightning": 40
+        }
+      }
+    },
+    "flavor": "items.unique.woestave.flavor"
+  },
+  {
+    "id": "items/unique/nosferatu-coil",
+    "name": "items.unique.nosferatu-coil.name",
+    "baseId": "items/base/belt-demonhide",
+    "reqLevel": 51,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "defense": 60,
+        "attackSpeed": 10,
+        "life": 20
+      }
+    },
+    "flavor": "items.unique.nosferatu-coil.flavor"
+  },
+  {
+    "id": "items/unique/que-hegan-wisdom",
+    "name": "items.unique.que-hegan-wisdom.name",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 51,
+    "flavor": "items.unique.que-hegan-wisdom.flavor",
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 30,
+        "attackSpeed": 15
+      }
+    }
+  },
+  {
+    "id": "items/unique/black-hades",
+    "name": "items.unique.black-hades.name",
+    "baseId": "items/base/armor-dusk-shroud",
+    "reqLevel": 53,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "resistances": {
+        "fire": 25
+      },
+      "statMods": {
+        "defense": 200
+      }
+    },
+    "flavor": "items.unique.black-hades.flavor"
+  },
+  {
+    "id": "items/unique/hexfire",
+    "name": "items.unique.hexfire.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 53,
+    "stats": {
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 80,
+        "breakdown": {
+          "fire": 80
+        }
+      }
+    },
+    "flavor": "items.unique.hexfire.flavor"
+  },
+  {
+    "id": "items/unique/stoneraven",
+    "name": "items.unique.stoneraven.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 53,
+    "stats": {
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 80,
+        "breakdown": {
+          "physical": 80
+        }
+      }
+    },
+    "flavor": "items.unique.stoneraven.flavor"
+  },
+  {
+    "id": "items/unique/the-battlebranch",
+    "name": "items.unique.the-battlebranch.name",
+    "baseId": "items/base/wp2h-colossus-blade",
+    "reqLevel": 53,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "attack": 230
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.the-battlebranch.flavor"
+  },
+  {
+    "id": "items/unique/veil-of-steel",
+    "name": "items.unique.veil-of-steel.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 53,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 120
+      }
+    },
+    "flavor": "items.unique.veil-of-steel.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "breakdown": {
+          "cold": 80
+        },
+        "min": 60,
+        "max": 100
+      },
+      "resistances": {
+        "cold": 40
+      }
+    },
+    "name": "items.unique.frostwind.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "items.unique.frostwind.flavor",
+    "reqLevel": 54,
+    "id": "items/unique/frostwind"
+  },
+  {
+    "id": "items/unique/bing-sz-wang",
+    "name": "items.unique.bing-sz-wang.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 55,
+    "stats": {
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 60,
+        "breakdown": {
+          "cold": 60
+        }
+      }
+    },
+    "flavor": "items.unique.bing-sz-wang.flavor"
+  },
+  {
+    "id": "items/unique/buriza-do-kyanon-cb",
+    "name": "items.unique.buriza-do-kyanon-cb.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 55,
+    "stats": {
+      "statMods": {
+        "attack": 190,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "cold": 70
+        }
+      }
+    },
+    "flavor": "items.unique.buriza-do-kyanon-cb.flavor"
+  },
+  {
+    "id": "items/unique/corpsemourn",
+    "name": "items.unique.corpsemourn.name",
+    "baseId": "items/base/armor-dusk-shroud",
+    "reqLevel": 55,
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "resistances": {
+        "poison": 30
+      },
+      "statMods": {
+        "defense": 180,
+        "life": 70
+      }
+    },
+    "flavor": "items.unique.corpsemourn.flavor"
+  },
+  {
+    "id": "items/unique/endlesshail",
+    "name": "items.unique.endlesshail.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 55,
+    "stats": {
+      "statMods": {
+        "attack": 200,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 80,
+        "breakdown": {
+          "cold": 80
+        }
+      }
+    },
+    "flavor": "items.unique.endlesshail.flavor"
+  },
+  {
+    "id": "items/unique/gore-burnt-skull",
+    "name": "items.unique.gore-burnt-skull.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 55,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "resistances": {
+        "fire": 20
+      },
+      "statMods": {
+        "defense": 100,
+        "attack": 60
+      }
+    },
+    "flavor": "items.unique.gore-burnt-skull.flavor"
+  },
+  {
+    "id": "items/unique/snowclash",
+    "name": "items.unique.snowclash.name",
+    "baseId": "items/base/belt-demonhide",
+    "reqLevel": 55,
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "resistances": {
+        "cold": 40
+      },
+      "statMods": {
+        "defense": 80
+      }
+    },
+    "flavor": "items.unique.snowclash.flavor"
+  },
+  {
+    "id": "items/unique/string-of-ears-greater",
+    "name": "items.unique.string-of-ears-greater.name",
+    "baseId": "items/base/belt-demonhide",
+    "reqLevel": 55,
+    "stats": {
+      "coreStats": {
+        "vitality": 20
+      },
+      "resistances": {
+        "physical": 10
+      },
+      "statMods": {
+        "defense": 120,
+        "life": 40
+      }
+    },
+    "flavor": "items.unique.string-of-ears-greater.flavor"
+  },
+  {
+    "id": "items/unique/tiamat-rebuke",
+    "name": "items.unique.tiamat-rebuke.name",
+    "baseId": "items/base/sh-monarch",
+    "reqLevel": 55,
+    "stats": {
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25
+      },
+      "statMods": {
+        "defense": 160
+      }
+    },
+    "flavor": "items.unique.tiamat-rebuke.flavor"
+  },
+  {
+    "id": "items/unique/blackhorn-face-2",
+    "name": "items.unique.blackhorn-face-2.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 56,
+    "stats": {
+      "resistances": {
+        "lightning": 30,
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 120,
+        "attack": 80
+      }
+    },
+    "flavor": "items.unique.blackhorn-face-2.flavor"
+  },
+  {
+    "id": "items/unique/homunculus-orb",
+    "name": "items.unique.homunculus-orb.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 56,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 80,
+        "defense": 40
+      }
+    },
+    "flavor": "items.unique.homunculus-orb.flavor"
+  },
+  {
+    "id": "items/unique/pompe-wrath",
+    "name": "items.unique.pompe-wrath.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 56,
+    "stats": {
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 80,
+        "breakdown": {
+          "fire": 80
+        }
+      }
+    },
+    "flavor": "items.unique.pompe-wrath.flavor"
+  },
+  {
+    "id": "items/unique/the-chieftain",
+    "name": "items.unique.the-chieftain.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 56,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "physical": 70
+        }
+      }
+    },
+    "flavor": "items.unique.the-chieftain.flavor"
+  },
+  {
+    "id": "items/unique/steel-driver",
+    "name": "items.unique.steel-driver.name",
+    "baseId": "items/base/wp2h-colossus-blade",
+    "reqLevel": 57,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 220
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.steel-driver.flavor"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "statMods": {
+        "life": 50
+      }
+    },
+    "name": "items.unique.bul-kathos-wedding-band.name",
+    "baseId": "items/base/ring",
+    "flavor": "items.unique.bul-kathos-wedding-band.flavor",
+    "reqLevel": 58,
+    "id": "items/unique/bul-kathos-wedding-band"
+  },
+  {
+    "id": "items/unique/guardian-naga",
+    "name": "items.unique.guardian-naga.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 58,
+    "stats": {
+      "resistances": {
+        "poison": 30
+      },
+      "statMods": {
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "poison": 70
+        }
+      }
+    },
+    "flavor": "items.unique.guardian-naga.flavor"
+  },
+  {
+    "id": "items/unique/shadow-killer",
+    "name": "items.unique.shadow-killer.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 58,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 40
+      },
+      "damageBonus": {
+        "min": 35,
+        "max": 60,
+        "breakdown": {
+          "physical": 60
+        }
+      }
+    },
+    "flavor": "items.unique.shadow-killer.flavor"
+  },
+  {
+    "id": "items/unique/spike-thorn",
+    "name": "items.unique.spike-thorn.name",
+    "baseId": "items/base/sh-monarch",
+    "reqLevel": 58,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "resistances": {
+        "physical": 10
+      },
+      "statMods": {
+        "defense": 160
+      }
+    },
+    "flavor": "items.unique.spike-thorn.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 210,
+        "attackSpeed": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "items.unique.stormlash.name",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "items.unique.stormlash.flavor",
+    "reqLevel": 59,
+    "id": "items/unique/stormlash"
+  },
+  {
+    "id": "items/unique/andariels-visage",
+    "name": "items.unique.andariels-visage.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 60,
+    "flavor": "items.unique.andariels-visage.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30,
+        "defense": 120
+      },
+      "resistances": {
+        "fire": -30
+      }
+    }
+  },
+  {
+    "id": "items/unique/athulua-rule",
+    "name": "items.unique.athulua-rule.name",
+    "baseId": "items/base/wp2h-colossus-blade",
+    "reqLevel": 60,
+    "stats": {
+      "statMods": {
+        "attack": 220
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.athulua-rule.flavor"
+  },
+  {
+    "id": "items/unique/atmas-scarab",
+    "name": "items.unique.atmas-scarab.name",
+    "baseId": "items/base/amu-silver",
+    "reqLevel": 60,
+    "flavor": "items.unique.atmas-scarab.flavor",
+    "stats": {
+      "resistances": {
+        "poison": 75
+      },
+      "statMods": {
+        "attack": 120,
+        "magicFind": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/carrion-wind",
+    "name": "items.unique.carrion-wind.name",
+    "baseId": "items/base/ring-obsidian",
+    "reqLevel": 60,
+    "flavor": "items.unique.carrion-wind.flavor",
+    "stats": {
+      "statMods": {
+        "physDodge": 0.1
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/giant-skull",
+    "name": "items.unique.giant-skull.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 60,
+    "flavor": "items.unique.giant-skull.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 50
+      },
+      "statMods": {
+        "defense": 200
+      }
+    }
+  },
+  {
+    "id": "items/unique/the-vile-husk-armor",
+    "name": "items.unique.the-vile-husk-armor.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 60,
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "statMods": {
+        "defense": 190,
+        "life": 80
+      }
+    },
+    "flavor": "items.unique.the-vile-husk-armor.flavor"
+  },
+  {
+    "id": "items/unique/radament-sphere",
+    "name": "items.unique.radament-sphere.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 60,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "energy": 15
+      },
+      "resistances": {
+        "poison": 30
+      },
+      "statMods": {
+        "defense": 170,
+        "mana": 60
+      }
+    },
+    "flavor": "items.unique.radament-sphere.flavor"
+  },
+  {
+    "id": "items/unique/suicide-branch",
+    "name": "items.unique.suicide-branch.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 60,
+    "stats": {
+      "coreStats": {
+        "energy": 20
+      },
+      "statMods": {
+        "mana": 80
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "arcane": 40
+        }
+      }
+    },
+    "flavor": "items.unique.suicide-branch.flavor"
+  },
+  {
+    "id": "items/unique/the-vile-husk-2",
+    "name": "items.unique.the-vile-husk-2.name",
+    "baseId": "items/base/wp1h-legend-sword",
+    "reqLevel": 60,
+    "stats": {
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 60,
+        "breakdown": {
+          "poison": 60
+        }
+      }
+    },
+    "flavor": "items.unique.the-vile-husk-2.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 120
+      },
+      "coreStats": {
+        "vitality": 20
+      },
+      "resistances": {
+        "poison": 40,
+        "fire": 20
+      }
+    },
+    "name": "items.unique.blackoak-shield.name",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "items.unique.blackoak-shield.flavor",
+    "reqLevel": 61,
+    "id": "items/unique/blackoak-shield"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 190
+      },
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "damageBonus": {
+        "breakdown": {
+          "arcane": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "items.unique.heaven-light.name",
+    "baseId": "items/base/weapon-scepter",
+    "flavor": "items.unique.heaven-light.flavor",
+    "reqLevel": 61,
+    "id": "items/unique/heaven-light"
+  },
+  {
+    "id": "items/unique/hellmouth",
+    "name": "items.unique.hellmouth.name",
+    "baseId": "items/base/glove-bramble-mitts",
+    "reqLevel": 61,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "defense": 60,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 30,
+        "breakdown": {
+          "fire": 30
+        }
+      }
+    },
+    "flavor": "items.unique.hellmouth.flavor"
+  },
+  {
+    "id": "items/unique/vampire-gaze-greater",
+    "name": "items.unique.vampire-gaze-greater.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 61,
+    "stats": {
+      "statMods": {
+        "defense": 120,
+        "life": 120,
+        "attackSpeed": 10
+      }
+    },
+    "flavor": "items.unique.vampire-gaze-greater.flavor"
+  },
+  {
+    "id": "items/unique/firelizard-talon",
+    "name": "items.unique.firelizard-talon.name",
+    "baseId": "items/base/wp1h-legend-sword",
+    "reqLevel": 62,
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "fire": 70
+        }
+      }
+    },
+    "flavor": "items.unique.firelizard-talon.flavor"
+  },
+  {
+    "id": "items/unique/steel-shade",
+    "name": "items.unique.steel-shade.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 62,
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20
+      },
+      "statMods": {
+        "defense": 120,
+        "magicDodge": 0.15
+      }
+    },
+    "flavor": "items.unique.steel-shade.flavor"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20,
+        "poison": 20
+      },
+      "statMods": {
+        "physDodge": 0.15,
+        "defense": 100
+      }
+    },
+    "name": "items.unique.steelshade.name",
+    "baseId": "items/base/helm-armet",
+    "flavor": "items.unique.steelshade.flavor",
+    "reqLevel": 62,
+    "id": "items/unique/steelshade"
+  },
+  {
+    "id": "items/unique/the-redeemer",
+    "name": "items.unique.the-redeemer.name",
+    "baseId": "items/base/weapon-scepter",
+    "reqLevel": 62,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "energy": 10
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "arcane": 100
+        }
+      }
+    },
+    "flavor": "items.unique.the-redeemer.flavor"
+  },
+  {
+    "id": "items/unique/boneshade",
+    "name": "items.unique.boneshade.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 63,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 70,
+        "attack": 160
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "arcane": 70
+        }
+      }
+    },
+    "flavor": "items.unique.boneshade.flavor"
+  },
+  {
+    "id": "items/unique/demon-limb",
+    "name": "items.unique.demon-limb.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 63,
+    "stats": {
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 90,
+        "breakdown": {
+          "fire": 90
+        }
+      }
+    },
+    "flavor": "items.unique.demon-limb.flavor"
+  },
+  {
+    "id": "items/unique/verdungos-hearty",
+    "name": "items.unique.verdungos-hearty.name",
+    "baseId": "items/base/belt-mithril-coil",
+    "reqLevel": 63,
+    "flavor": "items.unique.verdungos-hearty.flavor",
+    "stats": {
+      "coreStats": {
+        "vitality": 35
+      },
+      "statMods": {
+        "mana": 100
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/bonehew",
+    "name": "items.unique.bonehew.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 64,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.bonehew.flavor"
+  },
+  {
+    "id": "items/unique/cure-all",
+    "name": "items.unique.cure-all.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 64,
+    "stats": {
+      "coreStats": {
+        "vitality": 20
+      },
+      "resistances": {
+        "poison": 40
+      },
+      "statMods": {
+        "life": 80,
+        "defense": 70
+      }
+    },
+    "flavor": "items.unique.cure-all.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 40
+      },
+      "coreStats": {
+        "strength": 10,
+        "dexterity": 10,
+        "vitality": 15
+      },
+      "resistances": {
+        "poison": 40
+      }
+    },
+    "name": "items.unique.sandstorm-trek.name",
+    "baseId": "items/base/boots",
+    "flavor": "items.unique.sandstorm-trek.flavor",
+    "reqLevel": 64,
+    "id": "items/unique/sandstorm-trek"
+  },
+  {
+    "id": "items/unique/warlord-trust",
+    "name": "items.unique.warlord-trust.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 64,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.warlord-trust.flavor"
+  },
+  {
+    "id": "items/unique/buriza-do-kyanon",
+    "name": "items.unique.buriza-do-kyanon.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 65,
+    "flavor": "items.unique.buriza-do-kyanon.flavor",
+    "stats": {
+      "statMods": {
+        "attack": 175,
+        "attackSpeed": 50,
+        "physDodge": 0.08
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 32,
+        "breakdown": {
+          "physical": 18,
+          "cold": 14
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/carin-shard",
+    "name": "items.unique.carin-shard.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 65,
+    "stats": {
+      "coreStats": {
+        "energy": 20
+      },
+      "statMods": {
+        "mana": 100,
+        "defense": 40
+      },
+      "damageBonus": {
+        "min": 20,
+        "max": 40,
+        "breakdown": {
+          "arcane": 40
+        }
+      }
+    },
+    "flavor": "items.unique.carin-shard.flavor"
+  },
+  {
+    "id": "items/unique/chains-of-honor-armor",
+    "name": "items.unique.chains-of-honor-armor.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 65,
+    "flavor": "items.unique.chains-of-honor-armor.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "statMods": {
+        "defense": 200
+      },
+      "resistances": {
+        "fire": 65,
+        "cold": 65,
+        "lightning": 65,
+        "poison": 65,
+        "arcane": 65
+      }
+    }
+  },
+  {
+    "id": "items/unique/crown-of-ages",
+    "name": "items.unique.crown-of-ages.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 65,
+    "flavor": "items.unique.crown-of-ages.flavor",
+    "stats": {
+      "statMods": {
+        "life": 50
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/djinn-slayer",
+    "name": "items.unique.djinn-slayer.name",
+    "baseId": "items/base/wp1h-legend-sword",
+    "reqLevel": 65,
+    "stats": {
+      "statMods": {
+        "attack": 190,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 80,
+        "breakdown": {
+          "fire": 80
+        }
+      }
+    },
+    "flavor": "items.unique.djinn-slayer.flavor"
+  },
+  {
+    "id": "items/unique/griffons-eye",
+    "name": "items.unique.griffons-eye.name",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 65,
+    "flavor": "items.unique.griffons-eye.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 15
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 30,
+        "breakdown": {
+          "lightning": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/griffons-strike",
+    "name": "items.unique.griffons-strike.name",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 65,
+    "flavor": "items.unique.griffons-strike.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/highlords-wrath",
+    "name": "items.unique.highlords-wrath.name",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 65,
+    "flavor": "items.unique.highlords-wrath.flavor",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 20,
+        "breakdown": {
+          "lightning": 20
+        }
+      }
+    }
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 250
+      },
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "resistances": {
+        "fire": 50,
+        "lightning": 50,
+        "cold": 50
+      }
+    },
+    "name": "items.unique.leviathan.name",
+    "baseId": "items/base/armor-heavy",
+    "flavor": "items.unique.leviathan.flavor",
+    "reqLevel": 65,
+    "id": "items/unique/leviathan"
+  },
+  {
+    "id": "items/unique/seraphs-hymn",
+    "name": "items.unique.seraphs-hymn.name",
+    "baseId": "items/base/amu-zircon",
+    "reqLevel": 65,
+    "flavor": "items.unique.seraphs-hymn.flavor",
+    "stats": {
+      "statMods": {
+        "defense": 50
+      }
+    }
+  },
+  {
+    "id": "items/unique/steel-carapace",
+    "name": "items.unique.steel-carapace.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 65,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "resistances": {
+        "physical": 15
+      },
+      "statMods": {
+        "defense": 220
+      }
+    },
+    "flavor": "items.unique.steel-carapace.flavor"
+  },
+  {
+    "id": "items/unique/steel-pillar",
+    "name": "items.unique.steel-pillar.name",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 65,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "attack": 240
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 130,
+        "breakdown": {
+          "physical": 130
+        }
+      }
+    },
+    "flavor": "items.unique.steel-pillar.flavor"
+  },
+  {
+    "id": "items/unique/rising-sun",
+    "name": "items.unique.rising-sun.name",
+    "baseId": "items/base/amu-zircon",
+    "reqLevel": 65,
+    "stats": {
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "defense": 30
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 16,
+        "breakdown": {
+          "fire": 16
+        }
+      }
+    },
+    "flavor": "items.unique.rising-sun.flavor"
+  },
+  {
+    "id": "items/unique/widowmaker",
+    "name": "items.unique.widowmaker.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 65,
+    "stats": {
+      "coreStats": {
+        "dexterity": 25
+      },
+      "statMods": {
+        "attack": 220
+      },
+      "damageBonus": {
+        "min": 70,
+        "max": 110,
+        "breakdown": {
+          "physical": 110
+        }
+      }
+    },
+    "flavor": "items.unique.widowmaker.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 240
+      },
+      "coreStats": {
+        "strength": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 150
+        },
+        "min": 120,
+        "max": 180
+      }
+    },
+    "name": "items.unique.astreon-iron-ward.name",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "items.unique.astreon-iron-ward.flavor",
+    "reqLevel": 66,
+    "id": "items/unique/astreon-iron-ward"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 120
+      },
+      "coreStats": {
+        "energy": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "poison": 80
+        },
+        "min": 60,
+        "max": 100
+      },
+      "resistances": {
+        "poison": 50
+      }
+    },
+    "name": "items.unique.death-web.name",
+    "baseId": "items/base/weapon-wand",
+    "flavor": "items.unique.death-web.flavor",
+    "reqLevel": 66,
+    "id": "items/unique/death-web"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 250
+      },
+      "coreStats": {
+        "strength": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "fire": 150
+        },
+        "min": 120,
+        "max": 180
+      }
+    },
+    "name": "items.unique.hellslayer.name",
+    "baseId": "items/base/weapon-axe",
+    "flavor": "items.unique.hellslayer.flavor",
+    "reqLevel": 66,
+    "id": "items/unique/hellslayer"
+  },
+  {
+    "id": "items/unique/jade-talon",
+    "name": "items.unique.jade-talon.name",
+    "baseId": "items/base/wp1h-legend-sword",
+    "reqLevel": 66,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "attack": 200,
+        "attackSpeed": 40
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "poison": 70
+        }
+      }
+    },
+    "flavor": "items.unique.jade-talon.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      },
+      "resistances": {
+        "lightning": 50
+      }
+    },
+    "name": "items.unique.lightsabre.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "items.unique.lightsabre.flavor",
+    "reqLevel": 66,
+    "id": "items/unique/lightsabre"
+  },
+  {
+    "id": "items/unique/marrowwalk",
+    "name": "items.unique.marrowwalk.name",
+    "baseId": "items/base/boot-myrmidon-greaves",
+    "reqLevel": 66,
+    "flavor": "items.unique.marrowwalk.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 22
+      },
+      "statMods": {
+        "attackSpeed": 20,
+        "defense": 120
+      }
+    }
+  },
+  {
+    "id": "items/unique/cerebus-bite",
+    "name": "items.unique.cerebus-bite.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "strength": 15
+      },
+      "statMods": {
+        "defense": 110,
+        "attack": 80
+      }
+    },
+    "flavor": "items.unique.cerebus-bite.flavor"
+  },
+  {
+    "id": "items/unique/darkforce-spawn",
+    "name": "items.unique.darkforce-spawn.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "energy": 15
+      },
+      "statMods": {
+        "defense": 100,
+        "mana": 60
+      }
+    },
+    "flavor": "items.unique.darkforce-spawn.flavor"
+  },
+  {
+    "id": "items/unique/darkforce-spawn-shield",
+    "name": "items.unique.darkforce-spawn-shield.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "defense": 140,
+        "mana": 60
+      }
+    },
+    "flavor": "items.unique.darkforce-spawn-shield.flavor"
+  },
+  {
+    "id": "items/unique/demonhorn-edge",
+    "name": "items.unique.demonhorn-edge.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "resistances": {
+        "fire": 20
+      },
+      "statMods": {
+        "defense": 120,
+        "attack": 80
+      }
+    },
+    "flavor": "items.unique.demonhorn-edge.flavor"
+  },
+  {
+    "id": "items/unique/dragonscale",
+    "name": "items.unique.dragonscale.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "resistances": {
+        "fire": 40
+      },
+      "statMods": {
+        "defense": 200
+      }
+    },
+    "flavor": "items.unique.dragonscale.flavor"
+  },
+  {
+    "id": "items/unique/kerke-sanctuary",
+    "name": "items.unique.kerke-sanctuary.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 67,
+    "stats": {
+      "resistances": {
+        "fire": 40,
+        "cold": 40,
+        "lightning": 40,
+        "poison": 40
+      },
+      "statMods": {
+        "defense": 200,
+        "magicDodge": 0.2
+      }
+    },
+    "flavor": "items.unique.kerke-sanctuary.flavor"
+  },
+  {
+    "id": "items/unique/mara-kaleidoscope",
+    "name": "items.unique.mara-kaleidoscope.name",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 67,
+    "flavor": "items.unique.mara-kaleidoscope.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 5,
+        "dexterity": 5,
+        "vitality": 5,
+        "energy": 5
+      },
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25,
+        "arcane": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/nightwing-veil",
+    "name": "items.unique.nightwing-veil.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10,
+        "energy": 15
+      },
+      "resistances": {
+        "cold": 15
+      },
+      "statMods": {
+        "defense": 100
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 6,
+        "breakdown": {
+          "cold": 6
+        }
+      }
+    },
+    "flavor": "items.unique.nightwing-veil.flavor"
+  },
+  {
+    "id": "items/unique/spellsteel",
+    "name": "items.unique.spellsteel.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 67,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "attack": 180,
+        "mana": 60
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 70,
+        "breakdown": {
+          "arcane": 70
+        }
+      }
+    },
+    "flavor": "items.unique.spellsteel.flavor"
+  },
+  {
+    "id": "items/unique/lacerator",
+    "name": "items.unique.lacerator.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 68,
+    "stats": {
+      "statMods": {
+        "attack": 210,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 90,
+        "breakdown": {
+          "physical": 90
+        }
+      }
+    },
+    "flavor": "items.unique.lacerator.flavor"
+  },
+  {
+    "id": "items/unique/nords-tenderizer",
+    "name": "items.unique.nords-tenderizer.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 68,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "attack": 210
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.nords-tenderizer.flavor"
+  },
+  {
+    "id": "items/unique/plague-bearer",
+    "name": "items.unique.plague-bearer.name",
+    "baseId": "items/base/wp1h-legend-sword",
+    "reqLevel": 68,
+    "stats": {
+      "resistances": {
+        "poison": 40
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 60,
+        "breakdown": {
+          "poison": 60
+        }
+      }
+    },
+    "flavor": "items.unique.plague-bearer.flavor"
+  },
+  {
+    "id": "items/unique/blackhand-key-2",
+    "name": "items.unique.blackhand-key-2.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 69,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 100,
+        "attack": 100
+      },
+      "damageBonus": {
+        "min": 40,
+        "max": 80,
+        "breakdown": {
+          "arcane": 80
+        }
+      }
+    },
+    "flavor": "items.unique.blackhand-key-2.flavor"
+  },
+  {
+    "id": "items/unique/breath-of-the-dying-uniq",
+    "name": "items.unique.breath-of-the-dying-uniq.name",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 69,
+    "flavor": "items.unique.breath-of-the-dying-uniq.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 12,
+        "dexterity": 12,
+        "vitality": 12,
+        "energy": 12
+      },
+      "statMods": {
+        "attackSpeed": 60
+      }
+    }
+  },
+  {
+    "id": "items/unique/doombringer",
+    "name": "items.unique.doombringer.name",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 69,
+    "flavor": "items.unique.doombringer.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 40,
+        "vitality": 25
+      },
+      "statMods": {
+        "attack": 250,
+        "life": 120
+      },
+      "damageBonus": {
+        "min": 12,
+        "max": 28,
+        "breakdown": {
+          "physical": 28
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/eaglehorn",
+    "name": "items.unique.eaglehorn.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 69,
+    "flavor": "items.unique.eaglehorn.flavor",
+    "stats": {
+      "statMods": {
+        "attack": 200,
+        "critChance": 0.08,
+        "magicDodge": 0.1
+      },
+      "coreStats": {
+        "dexterity": 25
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 24,
+        "breakdown": {
+          "physical": 24
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/earthshifter",
+    "name": "items.unique.earthshifter.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 69,
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "min": 70,
+        "max": 100,
+        "breakdown": {
+          "physical": 100
+        }
+      }
+    },
+    "flavor": "items.unique.earthshifter.flavor"
+  },
+  {
+    "id": "items/unique/rune-master",
+    "name": "items.unique.rune-master.name",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 69,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "attack": 220
+      },
+      "damageBonus": {
+        "min": 70,
+        "max": 110,
+        "breakdown": {
+          "arcane": 110
+        }
+      }
+    },
+    "flavor": "items.unique.rune-master.flavor"
+  },
+  {
+    "id": "items/unique/thunderstroke",
+    "name": "items.unique.thunderstroke.name",
+    "baseId": "items/base/weapon-polearm",
+    "reqLevel": 69,
+    "stats": {
+      "statMods": {
+        "attack": 210
+      },
+      "damageBonus": {
+        "min": 60,
+        "max": 100,
+        "breakdown": {
+          "lightning": 100
+        }
+      }
+    },
+    "flavor": "items.unique.thunderstroke.flavor"
+  },
+  {
+    "id": "items/unique/eschuta-temper",
+    "name": "items.unique.eschuta-temper.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 70,
+    "stats": {
+      "coreStats": {
+        "energy": 20
+      },
+      "statMods": {
+        "mana": 80,
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 90,
+        "breakdown": {
+          "fire": 90
+        }
+      }
+    },
+    "flavor": "items.unique.eschuta-temper.flavor"
+  },
+  {
+    "id": "items/unique/steelrend",
+    "name": "items.unique.steelrend.name",
+    "baseId": "items/base/glove-bramble-mitts",
+    "reqLevel": 70,
+    "flavor": "items.unique.steelrend.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "defense": 75
+      }
+    }
+  },
+  {
+    "id": "items/unique/stormrider",
+    "name": "items.unique.stormrider.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 70,
+    "stats": {
+      "statMods": {
+        "attack": 210
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 90,
+        "breakdown": {
+          "lightning": 90
+        }
+      }
+    },
+    "flavor": "items.unique.stormrider.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 270
+      },
+      "coreStats": {
+        "strength": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 125
+        },
+        "min": 100,
+        "max": 150
+      }
+    },
+    "name": "items.unique.stormspire.name",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "items.unique.stormspire.flavor",
+    "reqLevel": 70,
+    "id": "items/unique/stormspire"
+  },
+  {
+    "id": "items/unique/the-grim-reaper",
+    "name": "items.unique.the-grim-reaper.name",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 70,
+    "stats": {
+      "statMods": {
+        "attack": 260
+      },
+      "damageBonus": {
+        "min": 100,
+        "max": 160,
+        "breakdown": {
+          "physical": 160
+        }
+      }
+    },
+    "flavor": "items.unique.the-grim-reaper.flavor"
+  },
+  {
+    "id": "items/unique/shadow-dancer",
+    "name": "items.unique.shadow-dancer.name",
+    "baseId": "items/base/boot-myrmidon-greaves",
+    "reqLevel": 71,
+    "stats": {
+      "coreStats": {
+        "dexterity": 20
+      },
+      "statMods": {
+        "defense": 80,
+        "magicDodge": 0.15
+      }
+    },
+    "flavor": "items.unique.shadow-dancer.flavor"
+  },
+  {
+    "id": "items/unique/halaberd-reign",
+    "name": "items.unique.halaberd-reign.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 72,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20
+      },
+      "statMods": {
+        "defense": 150
+      }
+    },
+    "flavor": "items.unique.halaberd-reign.flavor"
+  },
+  {
+    "id": "items/unique/death-fathom",
+    "name": "items.unique.death-fathom.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 73,
+    "stats": {
+      "coreStats": {
+        "energy": 20
+      },
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "mana": 80,
+        "attack": 180
+      },
+      "damageBonus": {
+        "min": 50,
+        "max": 90,
+        "breakdown": {
+          "cold": 90
+        }
+      }
+    },
+    "flavor": "items.unique.death-fathom.flavor"
+  },
+  {
+    "id": "items/unique/stormshield",
+    "name": "items.unique.stormshield.name",
+    "baseId": "items/base/sh-monarch",
+    "reqLevel": 73,
+    "flavor": "items.unique.stormshield.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 30
+      },
+      "statMods": {
+        "defense": 60
+      },
+      "resistances": {
+        "lightning": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/the-stone-crusher",
+    "name": "items.unique.the-stone-crusher.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 73,
+    "stats": {
+      "coreStats": {
+        "strength": 30
+      },
+      "statMods": {
+        "attack": 240,
+        "critChance": 0.15
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 130,
+        "breakdown": {
+          "physical": 130
+        }
+      }
+    },
+    "flavor": "items.unique.the-stone-crusher.flavor"
+  },
+  {
+    "id": "items/unique/windforce",
+    "name": "items.unique.windforce.name",
+    "baseId": "items/base/weapon-bow",
+    "reqLevel": 73,
+    "flavor": "items.unique.windforce.flavor",
+    "stats": {
+      "statMods": {
+        "attack": 250,
+        "attackSpeed": 20,
+        "mana": 50
+      },
+      "coreStats": {
+        "dexterity": 35
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 30,
+        "breakdown": {
+          "physical": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/ondal-wisdom",
+    "name": "items.unique.ondal-wisdom.name",
+    "baseId": "items/base/weapon-wand",
+    "reqLevel": 74,
+    "stats": {
+      "coreStats": {
+        "energy": 25
+      },
+      "statMods": {
+        "mana": 100
+      },
+      "damageBonus": {
+        "min": 30,
+        "max": 60,
+        "breakdown": {
+          "arcane": 60
+        }
+      }
+    },
+    "flavor": "items.unique.ondal-wisdom.flavor"
+  },
+  {
+    "id": "items/unique/ravenlore",
+    "name": "items.unique.ravenlore.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 74,
+    "stats": {
+      "coreStats": {
+        "energy": 20
+      },
+      "statMods": {
+        "defense": 110,
+        "mana": 60
+      }
+    },
+    "flavor": "items.unique.ravenlore.flavor"
+  },
+  {
+    "id": "items/unique/templar-might",
+    "name": "items.unique.templar-might.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 74,
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "vitality": 20
+      },
+      "statMods": {
+        "defense": 240,
+        "attack": 100
+      }
+    },
+    "flavor": "items.unique.templar-might.flavor"
+  },
+  {
+    "id": "items/unique/boneslayer-blade",
+    "name": "items.unique.boneslayer-blade.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 75,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "attack": 230
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 130,
+        "breakdown": {
+          "physical": 130
+        }
+      }
+    },
+    "flavor": "items.unique.boneslayer-blade.flavor"
+  },
+  {
+    "id": "items/unique/head-hunter-glory",
+    "name": "items.unique.head-hunter-glory.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 75,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 200,
+        "life": 80
+      }
+    },
+    "flavor": "items.unique.head-hunter-glory.flavor"
+  },
+  {
+    "id": "items/unique/ormus-robes",
+    "name": "items.unique.ormus-robes.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 75,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "resistances": {
+        "arcane": 25
+      },
+      "statMods": {
+        "defense": 140,
+        "mana": 80
+      }
+    },
+    "flavor": "items.unique.ormus-robes.flavor"
+  },
+  {
+    "id": "items/unique/spirit-keeper",
+    "name": "items.unique.spirit-keeper.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 75,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "defense": 110,
+        "life": 40,
+        "mana": 40
+      }
+    },
+    "flavor": "items.unique.spirit-keeper.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 270
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 175
+        },
+        "min": 150,
+        "max": 200
+      }
+    },
+    "name": "items.unique.reaper-toll.name",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "items.unique.reaper-toll.flavor",
+    "reqLevel": 75,
+    "id": "items/unique/reaper-toll"
+  },
+  {
+    "id": "items/unique/dracs-grasp",
+    "name": "items.unique.dracs-grasp.name",
+    "baseId": "items/base/glove-vampirebone",
+    "reqLevel": 76,
+    "flavor": "items.unique.dracs-grasp.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/hellrack",
+    "name": "items.unique.hellrack.name",
+    "baseId": "items/base/weapon-crossbow",
+    "reqLevel": 76,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "attack": 240
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 130,
+        "breakdown": {
+          "fire": 130
+        }
+      }
+    },
+    "flavor": "items.unique.hellrack.flavor"
+  },
+  {
+    "id": "items/unique/wisp-projector",
+    "name": "items.unique.wisp-projector.name",
+    "baseId": "items/base/ring-zircon",
+    "reqLevel": 76,
+    "stats": {
+      "resistances": {
+        "lightning": 20
+      },
+      "statMods": {
+        "magicFind": 15
+      }
+    },
+    "flavor": "items.unique.wisp-projector.flavor"
+  },
+  {
+    "id": "items/unique/alma-negra",
+    "name": "items.unique.alma-negra.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 77,
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "energy": 15
+      },
+      "statMods": {
+        "defense": 180
+      }
+    },
+    "flavor": "items.unique.alma-negra.flavor"
+  },
+  {
+    "id": "items/unique/kira-guardian",
+    "name": "items.unique.kira-guardian.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 77,
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25,
+        "arcane": 25
+      },
+      "statMods": {
+        "defense": 140,
+        "life": 80
+      }
+    },
+    "flavor": "items.unique.kira-guardian.flavor"
+  },
+  {
+    "id": "items/unique/arreats-face-uniq",
+    "name": "items.unique.arreats-face-uniq.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 78,
+    "stats": {
+      "coreStats": {
+        "strength": 30,
+        "dexterity": 15
+      },
+      "statMods": {
+        "defense": 160,
+        "life": 100
+      }
+    },
+    "flavor": "items.unique.arreats-face-uniq.flavor"
+  },
+  {
+    "id": "items/unique/knell-striker-2",
+    "name": "items.unique.knell-striker-2.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 78,
+    "stats": {
+      "statMods": {
+        "attack": 240
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 120,
+        "breakdown": {
+          "physical": 120
+        }
+      }
+    },
+    "flavor": "items.unique.knell-striker-2.flavor"
+  },
+  {
+    "id": "items/unique/ondal-almighty",
+    "name": "items.unique.ondal-almighty.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 78,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "energy": 20
+      },
+      "statMods": {
+        "defense": 240,
+        "mana": 80
+      }
+    },
+    "flavor": "items.unique.ondal-almighty.flavor"
+  },
+  {
+    "id": "items/unique/boneflame-shield",
+    "name": "items.unique.boneflame-shield.name",
+    "baseId": "items/base/sh-sacred-targe",
+    "reqLevel": 79,
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "resistances": {
+        "fire": 30
+      },
+      "statMods": {
+        "defense": 170,
+        "mana": 80
+      }
+    },
+    "flavor": "items.unique.boneflame-shield.flavor"
+  },
+  {
+    "id": "items/unique/hand-of-blessed-light",
+    "name": "items.unique.hand-of-blessed-light.name",
+    "baseId": "items/base/weapon-scepter",
+    "reqLevel": 79,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "energy": 15
+      },
+      "statMods": {
+        "attack": 240
+      },
+      "damageBonus": {
+        "min": 80,
+        "max": 130,
+        "breakdown": {
+          "arcane": 130
+        }
+      }
+    },
+    "flavor": "items.unique.hand-of-blessed-light.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 260
+      },
+      "coreStats": {
+        "strength": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 125
+        },
+        "min": 100,
+        "max": 150
+      },
+      "resistances": {
+        "lightning": 60
+      }
+    },
+    "name": "items.unique.schaefer-hammer.name",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "items.unique.schaefer-hammer.flavor",
+    "reqLevel": 79,
+    "id": "items/unique/schaefer-hammer"
+  },
+  {
+    "id": "items/unique/wolfhowl",
+    "name": "items.unique.wolfhowl.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 79,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "dexterity": 10
+      },
+      "statMods": {
+        "defense": 140,
+        "attack": 100
+      }
+    },
+    "flavor": "items.unique.wolfhowl.flavor"
+  },
+  {
+    "id": "items/unique/arachnids-mesh",
+    "name": "items.unique.arachnids-mesh.name",
+    "baseId": "items/base/belt-mithril-coil",
+    "reqLevel": 80,
+    "flavor": "items.unique.arachnids-mesh.flavor",
+    "stats": {
+      "statMods": {
+        "mana": 25,
+        "attackSpeed": 20,
+        "magicFind": 20
+      },
+      "coreStats": {
+        "energy": 15
+      },
+      "resistances": {
+        "all": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/the-minotaur",
+    "name": "items.unique.the-minotaur.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 80,
+    "stats": {
+      "coreStats": {
+        "strength": 30,
+        "vitality": 15
+      },
+      "statMods": {
+        "attack": 250
+      },
+      "damageBonus": {
+        "min": 100,
+        "max": 160,
+        "breakdown": {
+          "physical": 160
+        }
+      }
+    },
+    "flavor": "items.unique.the-minotaur.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 280
+      },
+      "coreStats": {
+        "strength": 25,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 175
+        },
+        "min": 150,
+        "max": 200
+      }
+    },
+    "name": "items.unique.baranar-star.name",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "items.unique.baranar-star.flavor",
+    "reqLevel": 81,
+    "id": "items/unique/baranar-star"
+  },
+  {
+    "id": "items/unique/metalgrid",
+    "name": "items.unique.metalgrid.name",
+    "baseId": "items/base/amu-zircon",
+    "reqLevel": 81,
+    "stats": {
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25
+      },
+      "statMods": {
+        "defense": 200,
+        "attack": 100
+      }
+    },
+    "flavor": "items.unique.metalgrid.flavor"
+  },
+  {
+    "id": "items/unique/grandfather",
+    "name": "items.unique.grandfather.name",
+    "baseId": "items/base/wp2h-colossus-blade",
+    "reqLevel": 81,
+    "flavor": "items.unique.grandfather.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "dexterity": 20,
+        "vitality": 20,
+        "energy": 20
+      },
+      "statMods": {
+        "attackSpeed": 50
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 80,
+        "breakdown": {
+          "physical": 80
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/demonhorn-edge-2",
+    "name": "items.unique.demonhorn-edge-2.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 82,
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "defense": 160,
+        "attack": 100
+      }
+    },
+    "flavor": "items.unique.demonhorn-edge-2.flavor"
+  },
+  {
+    "id": "items/unique/halaberd-reign-2",
+    "name": "items.unique.halaberd-reign-2.name",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 84,
+    "stats": {
+      "coreStats": {
+        "strength": 30
+      },
+      "statMods": {
+        "defense": 170
+      }
+    },
+    "flavor": "items.unique.halaberd-reign-2.flavor"
+  },
+  {
+    "id": "items/unique/messerschmidt-reaver",
+    "name": "items.unique.messerschmidt-reaver.name",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 84,
+    "stats": {
+      "coreStats": {
+        "strength": 30
+      },
+      "statMods": {
+        "attack": 280
+      },
+      "damageBonus": {
+        "min": 150,
+        "max": 250,
+        "breakdown": {
+          "physical": 250
+        }
+      }
+    },
+    "flavor": "items.unique.messerschmidt-reaver.flavor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 310,
+        "magicFind": 60
+      },
+      "coreStats": {
+        "strength": 30,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 250
+        },
+        "min": 200,
+        "max": 300
+      }
+    },
+    "name": "items.unique.tomb-reaver.name",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "items.unique.tomb-reaver.flavor",
+    "reqLevel": 84,
+    "id": "items/unique/tomb-reaver"
+  },
+  {
+    "id": "items/unique/tyraels-might",
+    "name": "items.unique.tyraels-might.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 84,
+    "flavor": "items.unique.tyraels-might.flavor",
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "dexterity": 25,
+        "vitality": 25,
+        "energy": 25
+      },
+      "statMods": {
+        "magicFind": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/arkaines-valor",
+    "name": "items.unique.arkaines-valor.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 85,
+    "flavor": "items.unique.arkaines-valor.flavor",
+    "stats": {
+      "coreStats": {
+        "vitality": 30
+      },
+      "statMods": {
+        "defense": 165,
+        "life": 60
+      }
+    }
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "breakdown": {
+          "arcane": 225
+        },
+        "min": 200,
+        "max": 250
+      }
+    },
+    "name": "items.unique.azurewrath.name",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "items.unique.azurewrath.flavor",
+    "reqLevel": 85,
+    "id": "items/unique/azurewrath"
+  },
+  {
+    "id": "items/unique/ethereal-edge",
+    "name": "items.unique.ethereal-edge.name",
+    "baseId": "items/base/weapon-axe",
+    "reqLevel": 85,
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 260,
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 120,
+        "max": 180,
+        "breakdown": {
+          "physical": 180
+        }
+      }
+    },
+    "flavor": "items.unique.ethereal-edge.flavor"
+  },
+  {
+    "id": "items/unique/the-gladiator-bane",
+    "name": "items.unique.the-gladiator-bane.name",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 85,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "statMods": {
+        "defense": 250,
+        "life": 80,
+        "magicDodge": 0.15
+      }
+    },
+    "flavor": "items.unique.the-gladiator-bane.flavor"
+  },
+  {
+    "id": "items/unique/the-cranium-basher",
+    "name": "items.unique.the-cranium-basher.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 87,
+    "stats": {
+      "coreStats": {
+        "strength": 35
+      },
+      "statMods": {
+        "attack": 300,
+        "critChance": 0.2
+      },
+      "damageBonus": {
+        "min": 150,
+        "max": 240,
+        "breakdown": {
+          "physical": 240
+        }
+      }
+    },
+    "flavor": "items.unique.the-cranium-basher.flavor"
+  },
+  {
+    "id": "items/unique/the-cranium-basher-greater",
+    "name": "items.unique.the-cranium-basher-greater.name",
+    "baseId": "items/base/weapon-mace",
+    "reqLevel": 87,
+    "stats": {
+      "coreStats": {
+        "strength": 35
+      },
+      "statMods": {
+        "attack": 320,
+        "critChance": 0.25
+      },
+      "damageBonus": {
+        "min": 180,
+        "max": 280,
+        "breakdown": {
+          "physical": 280
+        }
+      }
+    },
+    "flavor": "items.unique.the-cranium-basher-greater.flavor"
+  }
+]

@@ -22,7 +22,7 @@ interface NativeSave {
 }
 const MAGE = 'skills-necromancer-raise-skeletal-mage';
 // Typecheck flags a future version bump without loading game-data imports in Node.
-const EXPECTED_SAVE_VERSION: SaveVersion = 24;
+const EXPECTED_SAVE_VERSION: SaveVersion = 33;
 const EPOCH = 1792454400000;
 const COPY = {
   en: {

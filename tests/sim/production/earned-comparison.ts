@@ -24,8 +24,9 @@ function installedRecording(opening: EarnedCombatState) {
     currentWavePresentation: opening.currentWavePresentation, unitNameMap: opening.unitNameMap,
     recordedEvents: opening.recordedEvents, outcome: opening.outcome, log: opening.log };
 }
-function recording(wave: EarnedWave) {
+function recording(wave: Omit<EarnedWave, 'engineInput'> & { engineInput?: EarnedWave['engineInput'] }) {
   return { index: wave.index, opening: installedRecording(wave.opening),
+    ...(wave.engineInput !== undefined ? { engineInput: wave.engineInput } : {}),
     played: { playerTeam: wave.played.playerTeam, enemyTeam: wave.played.enemyTeam,
       eventCursor: wave.played.eventCursor, playbackComplete: wave.played.playbackComplete },
     advanceResult: wave.advanceResult,

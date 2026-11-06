@@ -75,7 +75,11 @@ describe('paid Conversion changes targeting without changing original identity',
     registerSkill({ id: 'fixture.heal', archetype: 'fixture', target: 'all-allies', minLevel: 1,
       manaCost: 7, cooldown: 100, effects: [{ kind: 'heal', target: 'all-allies', amount: 100 }] });
     const input = fixture({ skillOrder: ['fixture.heal'] });
-    const out = run({ ...input, playerTeam: input.playerTeam.map(u => ({ ...u, life: 9000 })),
+    // Keep this support/allegiance test bound to the named conversion target,
+    // even though the wounded former ally now has lower automatic target life.
+    const out = run({ ...input, playerTeam: input.playerTeam.map(u => ({ ...u, life: 9000,
+      statuses: [...u.statuses, { id: 'taunt', sourceId: 'convert', stacks: 1, remaining: 1,
+        appliedAtMs: 0, expiresAtMs: 501 }] })),
       enemyTeam: input.enemyTeam.map(u => u.id === 'former-ally' ? { ...u, life: 9000 } : u) });
     expect(out.events.filter(e => e.kind === 'heal' && e.simClockMs === 1700)).toEqual([
       expect.objectContaining({ target: 'hero', amount: 100 }),

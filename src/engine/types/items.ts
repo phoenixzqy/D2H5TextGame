@@ -29,7 +29,8 @@ export type EquipmentSlot =
   | 'ring-left'
   | 'ring-right'
   | 'weapon'
-  | 'offhand'; // Shield or dual-wield weapon
+  | 'offhand' // Shield or dual-wield weapon
+  | 'charm';
 
 /**
  * Item base type

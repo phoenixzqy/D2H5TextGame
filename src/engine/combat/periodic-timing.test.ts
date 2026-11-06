@@ -1,3 +1,4 @@
+import { PERIODIC_SPELL_IDS, nextPeriodicSpellPulse, isPeriodicSpellPulse, payPeriodicSpell } from '../skills/periodic-spells';
 import { afterEach, describe, expect, it } from 'vitest';
 import { createRng } from '../rng';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
@@ -323,14 +324,15 @@ describe('periodic global timing contract', () => {
     expect(dots(r, 'recipient')).toBe(2);
   });
 
-  it('refunds a living owner once when its summon is independently periodic-lethal', () => {
+  it('does not refund a hostile owner when its summon is independently periodic-lethal', () => {
     const owner = unit('owner', 'enemy', { skillOrder: ['necromancer.raise_skeleton'] });
     const child = unit('child', 'enemy', { kind: 'summon', summonOwnerId: 'owner', life: 1,
       statuses: [hold, status('bleed', { dotPerStack: 2, expiresAtMs: 1000 })] });
     const r = run(owner, unit('hero', 'player', { life: 1,
       statuses: [hold, status('bleed', { dotPerStack: 1, expiresAtMs: 1000 })] }), [child]);
     expect(r.events.filter(e => e.kind === 'death' && e.target === 'child')).toHaveLength(1);
-    expect(r.result.enemyTeam.find(u => u.id === 'owner')?.mana).toBe(15);
+    expect(r.result.enemyTeam.find(u => u.id === 'owner')?.mana).toBe(0);
+    expect(r.events.filter(e => e.kind === 'mana' && e.reason === 'summon-refund')).toHaveLength(0);
   });
 
   it('runs ordinary spread for an independently lethal orphan overlap, but never orphan-only spread', () => {
@@ -419,4 +421,30 @@ describe('periodic global timing contract', () => {
     expect(runBattle(input)).toEqual(first.result);
     expect(input).toEqual(before);
   });
+});
+
+it.each(PERIODIC_SPELL_IDS)('advances %s past an exactly represented fractional pulse without replay', id => {
+  const start = 1842.9845385961391, first = start + 1000;
+  const hero = payPeriodicSpell(unit('hero', 'player'), id, 1, start);
+  expect(isPeriodicSpellPulse(hero, id, first)).toBe(true);
+  expect(isPeriodicSpellPulse(hero, id, first - .01)).toBe(false);
+  expect(isPeriodicSpellPulse(hero, id, first + .01)).toBe(false);
+  expect(isPeriodicSpellPulse(hero, id, start)).toBe(false);
+  expect(isPeriodicSpellPulse(hero, id, start + 3000)).toBe(false);
+  expect(nextPeriodicSpellPulse(hero, id, first - .01)).toBe(first);
+  expect(nextPeriodicSpellPulse(hero, id, first)).toBe(start + 2000);
+  expect(nextPeriodicSpellPulse(hero, id, first)).toBeGreaterThan(first);
+  expect(nextPeriodicSpellPulse(hero, id, start + 2000)).toBeUndefined();
+});
+
+it('refunds a living player owner once for an independently periodic-lethal summon', () => {
+  const owner = unit('owner', 'player', { skillOrder: ['necromancer.raise_skeleton'] });
+  const child = unit('child', 'player', { kind: 'summon', summonOwnerId: 'owner', life: 1,
+    statuses: [hold, status('bleed', { dotPerStack: 2, expiresAtMs: 1000 })] });
+  const enemy = unit('enemy', 'enemy'); // Stay alive so a kill orb cannot alter the refund.
+  const r = runBattleRecorded({ seed: 7, playerTeam: [owner, child], enemyTeam: [enemy] });
+  expect(r.events.filter(e => e.kind === 'death' && e.target === 'child')).toHaveLength(1);
+  expect(r.result.playerTeam.find(u => u.id === 'owner')?.mana).toBe(15);
+  expect(r.events.filter(e => e.kind === 'mana' && e.reason === 'summon-refund'))
+    .toMatchObject([{ target: 'owner', mana: 15 }]);
 });

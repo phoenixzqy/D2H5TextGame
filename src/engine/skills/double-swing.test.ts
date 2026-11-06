@@ -11,7 +11,7 @@ const complete = () => ({ ...row, aoeShape: 'cross', maxTargets: 3,
 it('authors the actual two-pass capped cross without changing original damage or eligibility', () => {
   expect(row).toMatchObject({ target: 'area-enemies', aoeShape: 'cross', maxTargets: 3,
     hitSequence: { strikes: 2, targetMode: 'each-original' }, damage: { min: 40, max: 60 },
-    scaling: { damagePerLevel: 4 }, cost: { mana: 10 }, cooldown: 1,
+    scaling: { damagePerLevel: 4, attackDamagePctPerLevel: 20 }, cost: { mana: 10 }, cooldown: 1,
     requiredLevel: 6, maxLevel: 20, prerequisites: ['skills-barbarian-bash'] });
   expect(validate(row), JSON.stringify(validate.errors)).toBe(true);
 });
@@ -46,12 +46,21 @@ it.each([0, 1, 2, 19, 20])('previews rank%i damage per attempt and attempts per 
   const before = structuredClone(row), model = computeSkillDisplayModel(row, rank);
   for (const stats of [model.current, model.next].filter(s => s !== undefined)) {
     expect(stats).toMatchObject({ strikesPerTarget: 2, maxTargets: 3, manaCost: 10, cooldown: 1,
+      additionalAttackPercent: 20 * (stats.rank - 1),
       damage: [{ type: 'physical', min: 40 + 4 * (stats.rank - 1), max: 60 + 4 * (stats.rank - 1) }] });
     expect(stats).not.toHaveProperty('strikesPerCast');
   }
   if (rank === 0) expect(model.current).toBeUndefined();
   if (rank === 20) expect(model.next).toBeUndefined();
   expect(row).toEqual(before);
+});
+it('requires finite nonnegative Attack growth and rejects moving it to an unrelated skill', () => {
+  const scaling = { ...row.scaling }; Reflect.deleteProperty(scaling, 'attackDamagePctPerLevel');
+  expect(validate({ ...row, scaling })).toBe(false);
+  for (const value of [-1, '20', null])
+    expect(validate({ ...row, scaling: { ...row.scaling, attackDamagePctPerLevel: value } })).toBe(false);
+  const bash = PLAYABLE_CLASS_SKILL_DATA.barbarian.find(skill => skill.id === 'skills-barbarian-bash');
+  expect(validate({ ...bash, scaling: { ...bash?.scaling, attackDamagePctPerLevel: 20 } })).toBe(false);
 });
 it('does not infer per-target attempts from an unrelated or incomplete sequence', () => {
   for (const patch of [{ id: 'skills-barbarian-bash' }, { trigger: 'passive' },

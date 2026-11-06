@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { StrictMode } from 'react';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -12,12 +13,14 @@ import { inspectRecordedWaves } from '@/stores/recordedWaveReceipt';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import { CombatScreen } from './CombatScreen';
 import * as combatEngine from '@/engine/combat/combat';
+import { deriveStats } from '@/engine/progression/stats';
 
 function Location() { return <output data-testid="combat-location">{useLocation().pathname}</output>; }
-function mount(query = '?endgame=glacial') {
-  return render(<MemoryRouter initialEntries={[`/combat${query}`]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+function mount(query = '?endgame=glacial', strict = false) {
+  const content = <MemoryRouter initialEntries={[`/combat${query}`]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
     <CombatScreen /><Location />
-  </MemoryRouter>);
+  </MemoryRouter>;
+  return render(strict ? <StrictMode>{content}</StrictMode> : content);
 }
 function drain() {
   act(() => {
@@ -32,10 +35,12 @@ beforeEach(async () => {
   for (const store of [useMapStore, useMetaStore, useInventoryStore, useCombatStore, usePlayerStore]) store.getState().reset();
   loadDefaultSkills();
   // Constructed UI functional fixture around real native recordings; no earned/balance assertion.
+  // Its finisher must always hit: a random miss tests challenger survival, not the UI lifecycle.
   registerSkill({ id: 'fixture.dungeon-ui', archetype: 'fixture', target: 'all-enemies', cooldown: 1,
-    manaCost: 0, minLevel: 1, effects: [{ kind: 'damage', damageType: 'physical', base: [100_000_000, 100_000_000] }] });
+    manaCost: 0, minLevel: 1, effects: [{ kind: 'damage', damageType: 'physical', alwaysHits: true, base: [100_000_000, 100_000_000] }] });
   const player = createMockPlayer('Dungeon UI', 'sorceress');
-  usePlayerStore.getState().setPlayer({ ...player, level: 99, comboOrder: ['fixture.dungeon-ui'] });
+  usePlayerStore.getState().setPlayer({ ...player, level: 99,
+    derivedStats: deriveStats(player.coreStats, 99), comboOrder: ['fixture.dungeon-ui'] });
   const campaign = campaignEvidence();
   useMapStore.setState({ questProgress: campaign.questProgress, questReceipts: campaign.questReceipts,
     questDifficulties: { 'difficulty/nightmare': true }, selectedDifficulty: 'nightmare',
@@ -49,13 +54,49 @@ afterEach(() => {
   useHydrationStore.getState().setStatus('idle'); setIdleEliteMisses(0);
 });
 describe('explicit native dungeon combat UI', () => {
-  it.each(['en', 'zh-CN'])('completes the chosen trial without idle/campaign actions, then starts a fresh attempt in %s', async locale => {
+  it.each(['ashen', 'glacial'])('admits %s once during StrictMode effect replay and permits a fresh retry', modifierId => {
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const player = createMockPlayer('Strict dungeon', 'sorceress');
+    usePlayerStore.getState().setPlayer(player);
+    mount(`?endgame=${modifierId}`, true);
+    expect(screen.queryByTestId('endgame-entry-refusal')).toBeNull();
+    expect(screen.getByTestId(`unit-card-${player.id}`)).toBeVisible();
+    expect(readCombatRunOrigin()).toMatchObject({ kind: 'endgame', modifierId, attemptOrdinal: 0 });
+    expect(useMapStore.getState().endgame.attemptOrdinal).toBe(1);
+    expect(engine).toHaveBeenCalledTimes(1);
+    drain();
+    expect(screen.getByTestId('defeat-panel')).toBeVisible();
+    fireEvent.click(screen.getByTestId('endgame-new-attempt'));
+    expect(screen.queryByTestId('endgame-entry-refusal')).toBeNull();
+    expect(screen.getByTestId(`unit-card-${player.id}`)).toBeVisible();
+    expect(readCombatRunOrigin()).toMatchObject({ kind: 'endgame', modifierId, attemptOrdinal: 1 });
+    expect(useMapStore.getState().endgame.attemptOrdinal).toBe(2);
+    expect(engine).toHaveBeenCalledTimes(2);
+  });
+  it('starts the constructed challenger with canonical level99 stats and resources', () => {
+    const player = usePlayerStore.getState().player;
+    expect(player).not.toBeNull();
+    if (!player) throw new Error('Missing dungeon UI challenger');
+    expect(player.derivedStats).toEqual(deriveStats(player.coreStats, player.level));
+  });
+  it.each([
+    ['en', 'bug457-fixture-6'], ['zh-CN', 'bug457-fixture-6'],
+    ['en', 'bug457-fixture-7'], ['zh-CN', 'bug457-fixture-7'],
+    ['en', 'bug457-fixture-24'], ['zh-CN', 'bug457-fixture-24'],
+    ['en', 'bug457-fixture-30'], ['zh-CN', 'bug457-fixture-30'],
+  ])('completes the chosen trial without idle/campaign actions, then starts a fresh attempt in %s with %s', async (locale, id) => {
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('Missing dungeon UI challenger');
+    usePlayerStore.getState().setPlayer({ ...player, id });
     await i18n.changeLanguage(locale); const map = useMapStore.getState(); mount();
     expect(readCombatRunOrigin()).toMatchObject({ kind: 'endgame', modifierId: 'glacial', attemptOrdinal: 0 });
     expect(screen.getByTestId('combat-sub-area-name')).toHaveTextContent(i18n.t('endgame:worldstoneRemnant.name'));
     expect(screen.getByTestId('combat-act-name')).toHaveTextContent(i18n.t('endgame:modifiers.glacial.name'));
     expect(screen.queryByTestId('idle-loop-panel')).toBeNull();
-    for (let wave = 0; wave < 4; wave++) drain();
+    for (let wave = 0; wave < 4; wave++) {
+      drain();
+      expect(useCombatStore.getState().runDefeat, `Unexpected fixture defeat after wave${String(wave + 1)}`).toBe(false);
+    }
     expect(screen.getByTestId('victory-panel')).toBeVisible();
     expect(screen.queryByTestId('continue-next-subarea')).toBeNull();
     expect(screen.queryByTestId('idle-loop-next-run')).toBeNull();

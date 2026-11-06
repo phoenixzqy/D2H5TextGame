@@ -30,11 +30,11 @@ const copy = {
   en: { name: 'Corpse Explosion', current: 'Current', next: 'Next Level', unlearned: 'Not Learned',
     preview: 'Learned at Lv. 1', damage: 'Fire attack', mana: 'Mana Cost', cooldown: 'Cooldown',
     status: 'Applies', ignite: 'Ignite', seconds: '2 s', maxed: 'Max level reached.', slot: 'Slot',
-    prose: (min: number, max: number) => `Requires an enemy monster to die in this wave first. Consumes one shared corpse and 20 MP to deal ${String(min)}–${String(max)} Fire damage to all remaining enemies and apply Ignite on hit. Cooldown: 2 s. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged.` },
+    prose: (min: number, max: number) => `Requires an enemy monster to die in this wave first. Consumes one shared corpse and 20 MP to deal ${String(min)}–${String(max)} Fire damage to all remaining enemies and apply Ignite on hit. The blast ignores Defense; Fire resistance, dodge and damage absorption still apply. Cooldown: 2 s. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged.` },
   'zh-CN': { name: '尸体爆炸', current: '当前', next: '下一级', unlearned: '未学习',
     preview: '学习后 Lv.1', damage: '火焰攻击', mana: '法力消耗', cooldown: '冷却',
     status: '附加', ignite: '点燃', seconds: '2 秒', maxed: '已达到最高等级。', slot: '槽位',
-    prose: (min: number, max: number) => `需先有敌方怪物在本波战斗中死亡。每次消耗1具队伍共享尸体和20点法力，对所有存活敌人造成${String(min)}–${String(max)}点火焰伤害，命中时附加点燃。冷却：2 秒。没有尸体时连招跳过此技能。尸体在每波之间清空，消耗尸体不影响原有击杀奖励。` }
+    prose: (min: number, max: number) => `需先有敌方怪物在本波战斗中死亡。每次消耗1具队伍共享尸体和20点法力，对所有存活敌人造成${String(min)}–${String(max)}点火焰伤害，命中时附加点燃。爆炸无视防御，仍受火焰抗性、闪避和伤害吸收影响。冷却：2 秒。没有尸体时连招跳过此技能。尸体在每波之间清空，消耗尸体不影响原有击杀奖励。` }
 } as const;
 function player(): Player {
   const value = usePlayerStore.getState().player;
@@ -70,7 +70,7 @@ function row(panel: HTMLElement, label: string): HTMLElement {
 }
 function stats(panel: HTMLElement, locale: keyof typeof copy, min: number, max: number, next = false): void {
   const text = copy[locale];
-  expect(row(panel, text.damage).textContent.trim()).toBe(`${String(min)} ~ ${String(max)}${next ? '(+6 ~ +6)' : ''}`);
+  expect(row(panel, text.damage).textContent.trim()).toBe(`${String(min)} ~ ${String(max)}${next ? '(+80 ~ +80)' : ''}`);
   expect(row(panel, text.mana)).toHaveTextContent(/^20$/);
   expect(row(panel, text.cooldown)).toHaveTextContent(text.seconds);
   expect(row(panel, text.status)).toHaveTextContent(text.ignite);
@@ -92,7 +92,7 @@ afterEach(async () => {
 for (const locale of ['en', 'zh-CN'] as const) {
   describe(`finite Corpse Explosion detail (${locale})`, () => {
     beforeEach(async () => { await i18n.changeLanguage(locale); });
-    it.each([[1, 50, 80], [2, 56, 86], [20, 164, 194]])(
+    it.each([[1, 50, 80], [2, 130, 160], [20, 1570, 1600]])(
       'shows literal rank%i stats and the finite corpse lifecycle', (rank, min, max) => {
         arrange({ skillLevels: { ...prerequisites, [CE]: rank } }); mount();
         const panel = detail(), text = copy[locale];
@@ -101,7 +101,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
         if (rank === 20) {
           expect(section(panel, text.next)).toHaveTextContent(text.maxed);
           expect(within(panel).getByRole('button')).toBeDisabled();
-        } else stats(section(panel, text.next), locale, min + 6, max + 6, true);
+        } else stats(section(panel, text.next), locale, min + 80, max + 80, true);
         expect(panel).toHaveTextContent(text.prose(min, max));
         expect(panel.textContent).not.toMatch(/\{\{|skills\.necromancer|damage-types:/);
       });
@@ -121,9 +121,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(panel).toHaveTextContent(text.prose(50, 80));
       fireEvent.click(button);
       expect(player().skillLevels?.[CE]).toBe(2); expect(player().skillPoints).toBe(0);
-      stats(section(panel, text.current), locale, 56, 86);
-      stats(section(panel, text.next), locale, 62, 92, true);
-      expect(panel).toHaveTextContent(text.prose(56, 86)); expect(button).toBeDisabled();
+      stats(section(panel, text.current), locale, 130, 160);
+      stats(section(panel, text.next), locale, 210, 240, true);
+      expect(panel).toHaveTextContent(text.prose(130, 160)); expect(button).toBeDisabled();
       expect(player().derivedStats).toEqual(resources); expect(player().comboOrder).toEqual([]);
     });
     it('allows a learned Corpse Explosion before Teeth through actual combo selectors', () => {
@@ -151,7 +151,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(after?.engineInput).toBe(before.engineInput); expect(after?.recording).toBe(before.recording);
       expect(after?.publication).toBe(before.publication); expect(useCombatStore.getState().recordedEvents).toBe(events);
       expect(player().derivedStats).toEqual(resources); expect(player().comboOrder).toEqual(comboOrder);
-      expect(panel).toHaveTextContent(copy[locale].prose(50 + 6 * rank, 80 + 6 * rank));
+      expect(panel).toHaveTextContent(copy[locale].prose(50 + 80 * rank, 80 + 80 * rank));
     });
   });
 }

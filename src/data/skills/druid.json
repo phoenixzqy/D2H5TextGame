@@ -132,7 +132,7 @@
       },
       "summonStatsPerLevel": {
         "lifeMax": 8,
-        "attack": 2,
+        "attack": 18,
         "defense": 1
       }
     }
@@ -369,7 +369,7 @@
       "burn"
     ],
     "scaling": {
-      "damagePerLevel": 5
+      "damagePerLevel": 400
     }
   },
   {
@@ -881,7 +881,7 @@
       },
       "summonStatsPerLevel": {
         "lifeMax": 5,
-        "attack": 2,
+        "attack": 14,
         "defense": 1
       }
     }
@@ -995,7 +995,7 @@
       "costPerLevel": -0.25,
       "summonStatsPerLevel": {
         "lifeMax": 12,
-        "attack": 3,
+        "attack": 25,
         "defense": 2
       }
     }

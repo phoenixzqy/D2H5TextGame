@@ -13,13 +13,13 @@
 
 import { create } from 'zustand';
 import i18n from '@/i18n';
-import { buildSave, toJsonSafe } from '@/engine/save';
-import { decodeSave } from '@/engine/save/validate';
+import { buildSave, stringifySave } from '@/engine/save';
+import { decodeSaveJson } from '@/engine/save/validate';
 import { resumeIdleBonus } from '@/engine/idle/persisted-bonus';
 import { clearCombatAfterRestore } from './combatRunLifecycle';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
-import { hasSave, loadSave, saveSave, deleteSave } from './save-adapter';
+import { loadSave, saveSave, deleteSave } from './save-adapter';
 import { useCombatStore } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -27,7 +27,7 @@ import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
 import { replacePlayerAfterRestore, usePlayerStore } from './playerStore';
 import { useFormationStore } from './formationStore';
-import { useHydrationStore } from './hydrationStore';
+import { useHydrationStore, type OfflineReturnNotice } from './hydrationStore';
 import { assertRecordedWaveSnapshotAllowed, reserveRecordedWaveRestore } from './recordedWaveAccess';
 import {
   deferWaveSaveIfBusy, releaseWaveRestore,
@@ -113,7 +113,8 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       ownedMercs: merc.ownedMercs,
       fieldedMercId: merc.fieldedMercId,
       mercEquipment: merc.mercEquipment,
-      mercProgress: merc.mercProgress
+      mercProgress: merc.mercProgress,
+      recruitmentProgress: merc.recruitmentProgress
     },
     map: {
       currentAct: map.currentAct,
@@ -122,6 +123,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       clearedSubAreas: map.clearedSubAreas,
       questProgress: map.questProgress,
       questReceipts: map.questReceipts,
+      bounties: map.bounties,
       questTitles: map.questTitles, questDifficulties: map.questDifficulties, selectedTitle: map.selectedTitle,
       selectedDifficulty: map.selectedDifficulty, nightmareClearedSubAreas: map.nightmareClearedSubAreas,
       hellClearedSubAreas: map.hellClearedSubAreas,
@@ -130,7 +132,8 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
     meta: {
       settings: meta.settings,
       idleState: projectBonus ? meta.readIdleBonus(now) : meta.idleState,
-      gachaState: meta.gachaState
+      gachaState: meta.gachaState,
+      recruitmentState: meta.recruitmentState
     },
     formation: {
       playerPosition: formation.playerPosition,
@@ -191,7 +194,7 @@ export function flushSave(): Promise<void> | null {
 /** Export live data without IO; throws typed ownership/receipt-phase refusals. */
 export function exportCurrentSave(): string | null {
   const snap = projectedSnapshot();
-  return snap ? JSON.stringify(toJsonSafe(snap), null, 2) : null;
+  return snap ? stringifySave(snap, 2) : null;
 }
 
 function cancelPendingSave(): void {
@@ -217,7 +220,7 @@ export function blockSavesForRecovery(): void {
  * Typed ownership/receipt-phase refusals occur before queueing or request-state changes.
  */
 export async function importIntoStores(json: string): Promise<void> {
-  const data = decodeSave(JSON.parse(json) as unknown);
+  const data = decodeSaveJson(json);
   if (replacingSave) throw new Error('Save replacement already in progress');
   const pending = enqueueRestore(async lease => {
     suppressSaves = true;
@@ -257,6 +260,7 @@ export async function deleteCurrentSave(): Promise<void> {
       useMercStore.getState().reset();
       useMetaStore.getState().reset();
       useFormationStore.getState().reset();
+      useHydrationStore.setState({ offlineReturn: null });
       writesBlocked = false;
       useSaveStatusStore.setState({ error: null });
     } catch (err) {
@@ -334,6 +338,7 @@ export function hydrateFromSave(): Promise<boolean> {
 /** An empty disk is safe only when no damaged runtime state still needs replacement. */
 function finishEmptyHydration(): void {
   if (writesBlocked) throw new Error('Stored save needs recovery before continuing');
+  useHydrationStore.setState({ offlineReturn: null });
   useHydrationStore.getState().setStatus('ready');
 }
 
@@ -348,8 +353,10 @@ async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveResto
       return false;
     }
     let reconciledAt: number | undefined;
+    let offlineReturn: OfflineReturnNotice | null = null;
     if (reconcileOffline) {
       const now = Date.now();
+      const awayMs = Math.max(0, now - Math.max(data.meta.idleState.lastOnline, data.timestamp));
       reconciledAt = now;
       data = {
         ...data,
@@ -357,6 +364,11 @@ async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveResto
         meta: { ...data.meta, idleState: resumeIdleBonus(data.meta.idleState, data.timestamp, now) }
       };
       await saveSave(data);
+      const bonus = data.meta.idleState;
+      if (awayMs >= 60_000 && bonus.activeMultiplier > 1 && bonus.multiplierSecondsRemaining > 0) {
+        offlineReturn = { awayMs, bonusPct: bonus.activeMultiplier - 1,
+          windowSeconds: bonus.multiplierSecondsRemaining };
+      }
     }
     // Bundled translations must agree with the saved preference before ready.
     await i18n.changeLanguage(data.meta.settings.locale);
@@ -368,7 +380,7 @@ async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveResto
     } finally {
       suppressSaves = false;
     }
-    useHydrationStore.getState().setStatus('ready');
+    useHydrationStore.setState({ status: 'ready', error: null, offlineReturn });
     return true;
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
@@ -401,7 +413,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     ownedMercs: [...data.mercs.ownedMercs],
     fieldedMercId: data.mercs.fieldedMercId,
     mercEquipment: { ...data.mercs.mercEquipment },
-    mercProgress: { ...data.mercs.mercProgress }
+    mercProgress: { ...data.mercs.mercProgress },
+    recruitmentProgress: { ...data.mercs.recruitmentProgress }
   });
   useMapStore.setState({
     endgame: data.endgame,
@@ -411,6 +424,7 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     clearedSubAreas: [...data.map.clearedSubAreas],
     questProgress: { ...data.map.questProgress },
     questReceipts: { ...data.map.questReceipts },
+    bounties: { ...data.map.bounties },
     questTitles: { ...data.map.questTitles }, questDifficulties: { ...data.map.questDifficulties },
     selectedTitle: data.map.selectedTitle, selectedDifficulty: data.map.selectedDifficulty,
     nightmareClearedSubAreas: [...data.map.nightmareClearedSubAreas],
@@ -420,10 +434,12 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     settings: data.meta.settings,
     idleState: data.meta.idleState,
     idleBonusAnchor,
-    gachaState: data.meta.gachaState
+    gachaState: data.meta.gachaState,
+    recruitmentState: data.meta.recruitmentState
   });
   useFormationStore.getState().hydrate(data.formation);
   seedItemSeqFromHydratedSave(data);
+  useHydrationStore.setState({ offlineReturn: null });
 }
 
 /**
@@ -466,12 +482,8 @@ async function initializePersistence(lease: WaveRestoreLease): Promise<void> {
   cancelPendingSave();
   suppressSaves = true;
   try {
-    const exists = await hasSave();
-    if (exists) {
-      await hydrateSavedCharacter(true, lease);
-    } else {
-      finishEmptyHydration();
-    }
+    // The validated load also handles missing storage; avoid a second full read.
+    await hydrateSavedCharacter(true, lease);
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     writesBlocked = true;
@@ -496,6 +508,6 @@ export function __resetPersistenceForTests(): void {
   initialization = null;
   restoreTail = Promise.resolve();
   useSaveStatusStore.setState({ error: null });
-  useHydrationStore.setState({ status: 'idle', error: null });
+  useHydrationStore.setState({ status: 'idle', error: null, offlineReturn: null });
   useFormationStore.getState().reset();
 }

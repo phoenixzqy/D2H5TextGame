@@ -7,7 +7,7 @@ import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
 import { useFormationStore } from '@/stores/formationStore';
 
-// Current D06 preparation/body literals; no new tuning or earned fixture.
+// Current D06 preparation and owner60 body literals; this is not an earned fixture.
 const cases = [
   {
     authored: 'skills-necromancer-raise-skeleton',
@@ -17,9 +17,9 @@ const cases = [
     prerequisites: {},
     caps: [1, 2, 3],
     stats: [
-      [112, 25, 14],
-      [162, 35, 19],
-      [302, 63, 33]
+      [1882, 851, 250],
+      [1932, 861, 255],
+      [2072, 889, 269]
     ]
   },
   {

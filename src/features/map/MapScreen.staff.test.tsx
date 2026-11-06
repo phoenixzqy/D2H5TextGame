@@ -40,13 +40,17 @@ describe.each(['en', 'zh-CN'])('Staff player actions %s', locale => {
   it('recovers, assembles and inserts with localized ownership/consumption, no Read on components', async () => {
     const en = locale === 'en'; await i18n.changeLanguage(locale);
     let rendered = view('areas/act2-far-oasis');
-    fireEvent.click(within(screen.getByTestId('area-object-panel')).getByRole('button', { name: en ? 'Recover' : '取回' }));
+    const shaft = within(screen.getByTestId('area-object-panel')).getByTestId('quest-recover-quest/staff_of_kings');
+    expect(shaft).toHaveAccessibleName(en ? 'Recover' : '取回');
+    fireEvent.click(shaft);
     expect(useInventoryStore.getState().questItems[source('shaft')]).toEqual({ itemId: 'quest/staff_of_kings', state: 'owned' });
     rendered.unmount(); useMapStore.getState().setCurrentLocation(2, 'areas/act2-lost-city');
     rendered = view('areas/act2-lost-city');
     const objects = screen.getByTestId('area-object-panel');
     expect(within(objects).getByRole('button', { name: en ? 'Destroy altar' : '摧毁祭坛' })).toBeDisabled();
-    fireEvent.click(within(objects).getByRole('button', { name: en ? 'Recover' : '取回' }));
+    const amulet = within(objects).getByTestId('quest-recover-quest/viper_amulet');
+    expect(amulet).toHaveAccessibleName(en ? 'Recover' : '取回');
+    fireEvent.click(amulet);
     const inventory = screen.getByTestId('quest-items-panel');
     expect(within(inventory).queryByRole('button', { name: en ? 'Read' : '阅读' })).toBeNull();
     const assemble = within(inventory).getByRole('button', { name: en ? 'Assemble Horadric Staff' : '合成赫拉迪克法杖' });

@@ -1,4 +1,9 @@
 import { afterEach, beforeEach, expect, it } from 'vitest';
+import { createElement } from 'react';
+import { act, render, screen } from '@testing-library/react';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/i18n';
+import { CraftingReadiness } from '@/features/inventory/CraftingReadiness';
 import { synthDefaultPlan } from '@/engine/combat';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { usePlayerStore } from './playerStore';
@@ -15,7 +20,7 @@ import { abandonRecordedWaves, prepareRecordedWaveInstallation, commitPreparedRe
   markRecordedWaveMetadataInstalled, recognizeRecordedWavePublication, beginRecordedWaveSettlement,
   failRecordedWaveSettlement, inspectRecordedWaves } from './recordedWaveReceipt';
 import { RecordedWaveAccessError } from './recordedWaveAccess';
-import { prepareLiveMaterialAction, previewLiveMaterialAction, executeLiveMaterialAction } from './materialActions';
+import { prepareLiveMaterialAction, previewLiveMaterialAction, executeLiveMaterialAction, validateLiveMaterialAction } from './materialActions';
 
 beforeEach(() => {
   abandonRecordedWaves();
@@ -72,6 +77,7 @@ it.each(['preparedPending', 'publicationPending', 'settling', 'settlementFailed'
     installPhase(phase);
     const receipt = inspectRecordedWaves();
     const inventory = useInventoryStore.getState(), player = usePlayerStore.getState();
+    expect(() => { validateLiveMaterialAction(selection); }).toThrow(new RecordedWaveAccessError(phase));
     expect(() => prepareLiveMaterialAction(selection)).toThrow(new RecordedWaveAccessError(phase));
     expect(() => previewLiveMaterialAction(request)).toThrow(new RecordedWaveAccessError(phase));
     expect(() => executeLiveMaterialAction(request)).toThrow(new RecordedWaveAccessError(phase));
@@ -80,3 +86,19 @@ it.each(['preparedPending', 'publicationPending', 'settling', 'settlementFailed'
     expect(inventory.materials).toEqual({ 'runes/el': 3 });
     expect(inventory.materialActionOrdinal).toBe(0); expect(inventory.latestMaterialAction).toBeNull();
   });
+
+it('refreshes eligibility when the real settlement holder changes without a store or guard change', async () => {
+  await i18n.changeLanguage('en');
+  render(createElement(I18nextProvider, { i18n }, createElement(CraftingReadiness,
+    { selection: { recipeId: 'recipes/rune-fusion/el' }, onPreview: () => { throw new Error('No preview expected'); } })));
+  const preview = () => screen.getByRole('button', { name: 'Preview action' });
+  expect(preview()).toBeEnabled();
+  await act(async () => { installPhase('settling'); await Promise.resolve(); });
+  expect(preview()).toBeDisabled();
+  expect(screen.getByTestId('crafting-readiness')).toHaveTextContent('Wait for the current action');
+  const inventory = useInventoryStore.getState(), hero = usePlayerStore.getState();
+  await act(async () => { abandonRecordedWaves(); await Promise.resolve(); });
+  expect(preview()).toBeEnabled();
+  expect(useInventoryStore.getState()).toBe(inventory); expect(usePlayerStore.getState()).toBe(hero);
+  expect(inventory.materialActionOrdinal).toBe(0); expect(inventory.latestMaterialAction).toBeNull();
+});

@@ -8,7 +8,8 @@
  * @module engine/progression/equipment-mods
  */
 
-import { loadAffixPool, loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
+import { loadAffixPool, loadItemBases, loadSetPieces, loadSets, loadUniques, resolveItemUnique } from '@/data/loaders/loot';
+import historicalUniques from '../save/frozen-v24-uniques.json';
 import { computeStats } from '@/engine/items/computeStats';
 import { resolveStatPackage } from '@/engine/items/statRolls';
 import type { DerivedModifiers } from './stats';
@@ -16,6 +17,7 @@ import type { CoreStats, Resistances } from '../types/attributes';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '../types/items';
 import { socketBonusPackages, type CanonicalSocketItem } from '../items/socket-contents';
 import { resolveEquippedRunewordGrants } from '../items/runeword-grants';
+import { baseMatchesEquipmentSlot } from '../inventory/equipValidator';
 
 /** Additive stat deltas contributed by equipped gear. */
 export interface EquipmentMods {
@@ -129,15 +131,26 @@ export function aggregateEquipmentMods(
   equipped: Readonly<Record<string, Item | null>>,
   definitionPools: EquipmentDefinitionPools = {}
 ): EquipmentMods {
-  return aggregateCanonicalEquipmentMods(equipped, definitionPools);
+  const bases = loadItemBases();
+  const active = Object.fromEntries(Object.entries(equipped).filter(([slot, item]) => {
+    if (!item) return true;
+    const base = bases.get(item.baseId);
+    if (slot === 'charm' || item.baseId === 'items/base/small-charm' || base?.type === 'charm' || base?.slot === 'charm') {
+      return slot === 'charm' && baseMatchesEquipmentSlot(base, 'charm');
+    }
+    return true;
+  }));
+  return aggregateCanonicalEquipmentMods(active,
+    { ...definitionPools, uniques: definitionPools.uniques ?? loadUniques() }, true);
 }
 
-/** Canonical v19 composition: each inserted material and completed word contributes once per candidate. */
+/** Canonical v19 composition; defaults retain historical unique packages and by-ID semantics. */
 export function aggregateCanonicalEquipmentMods(
   equipped: Readonly<Record<string, CanonicalSocketItem | null>>,
-  definitionPools: EquipmentDefinitionPools = {}
+  definitionPools: EquipmentDefinitionPools = {},
+  requireMatchingUniqueBase = false
 ): EquipmentMods {
-  const mods: MutableEquipmentMods = { ...ZERO_MODS, ...aggregateNonSocketEquipmentMods(equipped, definitionPools) };
+  const mods: MutableEquipmentMods = { ...ZERO_MODS, ...aggregateNonSocketEquipmentMods(equipped, definitionPools, requireMatchingUniqueBase) };
   const bases = loadItemBases();
   for (const item of Object.values(equipped)) {
     if (!item) continue;
@@ -166,12 +179,13 @@ export function aggregateCanonicalEquipmentMods(
 /** Pre-socket base, affix, unique and set composition, also used by historical migration. */
 export function aggregateNonSocketEquipmentMods(
   equipped: Readonly<Record<string, NonSocketEquipmentItem | null>>,
-  definitionPools: EquipmentDefinitionPools = {}
+  definitionPools: EquipmentDefinitionPools = {},
+  requireMatchingUniqueBase = false
 ): EquipmentMods {
   const mods: MutableEquipmentMods = { ...ZERO_MODS };
   const bases = loadItemBases();
   const affixMap = new Map(loadAffixPool().map((affix) => [affix.id, affix]));
-  const uniqueMap = new Map((definitionPools.uniques ?? loadUniques()).map((unique) => [unique.id, unique]));
+  const uniques = definitionPools.uniques ?? historicalUniques as readonly UniqueItemDef[];
   const setPieceMap = new Map((definitionPools.setPieces ?? loadSetPieces()).map((piece) => [piece.id, piece]));
   const setMap = new Map((definitionPools.sets ?? loadSets()).map((set) => [set.id, set]));
   const equippedSetPieces = new Map<string, Set<string>>();
@@ -192,7 +206,9 @@ export function aggregateNonSocketEquipmentMods(
       for (const [path, value] of affix.values.entries()) addStatPathValue(mods, path, value);
     }
     if (item.uniqueId) {
-      addStatPackage(mods, uniqueMap.get(item.uniqueId)?.stats, item.statRolls);
+      const unique = requireMatchingUniqueBase ? resolveItemUnique(item, uniques)
+        : uniques.find(entry => entry.id === item.uniqueId);
+      addStatPackage(mods, unique?.stats, item.statRolls);
     }
     if (item.setPieceId) {
       const piece = setPieceMap.get(item.setPieceId);

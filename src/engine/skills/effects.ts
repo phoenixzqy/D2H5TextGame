@@ -9,7 +9,7 @@
  * @module engine/skills/effects
  */
 
-import type { ComboTag, SkillTarget, SkillRequirement, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence } from '../types/skills';
+import type { ComboTag, SkillTarget, SkillRequirement, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, MercElementalArrowTuning } from '../types/skills';
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 
@@ -33,11 +33,13 @@ export interface OnHitStatus {
 /** One ordered share of a single rolled base; modifiers and mitigation remain type-specific. */
 export interface WeightedDamageComponent {
   readonly damageType: DamageType;
-  /** Positive authored weight, normalized against all components before damage modifiers. */
+  /** Positive authored weight; mercElementalArrow alone uses explicit whole-budget fractions. */
   readonly weight: number;
 }
 
 interface DamageEffectBase {
+  /** Only this adapter treats component weights as whole-budget fractions, including Attack. */
+  readonly mercElementalArrow?: MercElementalArrowTuning;
   /** Positive normal travel time; delayed impacts use the ordinary damage pipeline. */
   readonly projectileFlightMs?: number;
   /** Exact paid Conversion hit; bare converted statuses never confer allegiance. */
@@ -69,10 +71,14 @@ interface DamageEffectBase {
   readonly base: readonly [number, number];
   /** Opt-in percentage of snapshot Attack added before damage multipliers and mitigation. */
   readonly attackDamagePct?: number;
+  /** Additional percentage points of snapshot Attack per rank above one. */
+  readonly attackDamagePctPerRank?: number;
   /** Additive increased damage fraction for this direct effect only (0.5 = +50%). */
   readonly increasedDamagePct?: number;
   /** Per-rank growth [min, max]. */
   readonly perRank?: readonly [number, number];
+  /** Opt-in damage growth per monster level above one; independent of skill rank. */
+  readonly perMonsterLevel?: readonly [number, number];
   /** Tags the hit applies (combo synergies). */
   readonly tags?: readonly ComboTag[];
 }
@@ -110,6 +116,8 @@ export interface BuffEffect {
   readonly statMods?: Record<string, number>;
   /** Exact player Frozen Armor opts into an independently tuned paid combat snapshot. */
   readonly frozenArmor?: true;
+  /** Exact paid mercenary Frozen Armor; independent of the player's percentage buff. */
+  readonly mercFrozenArmor?: true;
   /** Exact paid Shiver/Chilling Armor consumer; markers alone grant no effects. */
   readonly coldArmor?: import('./cold-armors').ColdArmorId;
   /** Exact paid finite stat-buff consumer; bare markers never establish potency. */
@@ -174,6 +182,8 @@ export interface SummonEffect {
 
 /** Union of effect primitives. */
 export type SkillEffect =
+  | { readonly kind: 'monster-panic-flee' }
+  | { readonly kind: 'monster-resurrection' }
   | { readonly kind: 'decoy' }
   | { readonly kind: 'party-skill-ranks' }
   | { readonly kind: 'corpse-ward' }
@@ -192,7 +202,7 @@ export type SkillEffect =
 export interface RegisteredSkill {
   readonly id: string;
   readonly archetype: string;
-  readonly trigger?: 'active' | 'passive' | 'aura';
+  readonly trigger?: 'active' | 'passive' | 'aura' | 'on-death';
   readonly target: SkillTarget;
   /**
    * Cooldown in **seconds** (sim-time). The combat engine multiplies this by

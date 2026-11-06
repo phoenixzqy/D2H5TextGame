@@ -22,7 +22,7 @@ function show() {
     <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><MercsScreen /></MemoryRouter>
   </Suspense></I18nextProvider>);
   fireEvent.click(screen.getByTestId(`merc-equipment-${mercId}`));
-  fireEvent.click(screen.getByTestId('merc-equip-slot-head'));
+  fireEvent.click(screen.getByTestId('merc-equip-slot-head-select'));
 }
 
 beforeEach(() => {
@@ -73,10 +73,10 @@ describe.each(['en', 'zh-CN'] as const)('Mercenary equipment browsing %s', local
     fireEvent.change(search, { target: { value: 'not-an-owned-item' } });
     expect(screen.getByText(i18n.t('inventory:crafting.noMatches'))).toBeVisible();
     expect(screen.queryByRole('button', { name: locale === 'en' ? 'Equip' : '装备' })).not.toBeInTheDocument();
-    fireEvent.click(screen.getByTestId('merc-equip-slot-boots'));
+    fireEvent.click(screen.getByTestId('merc-equip-slot-boots-select'));
     expect(screen.getByRole('searchbox')).toHaveValue('');
     expect(screen.getByText(i18n.t('mercs:noCompatibleItems'))).toBeVisible();
-    fireEvent.click(screen.getByTestId('merc-equip-slot-head'));
+    fireEvent.click(screen.getByTestId('merc-equip-slot-head-select'));
     expect(screen.getByRole('searchbox')).toHaveValue('');
     expect(screen.getAllByRole('button', { name: locale === 'en' ? 'Equip' : '装备' })).toHaveLength(100);
   });

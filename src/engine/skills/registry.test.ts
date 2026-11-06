@@ -1,3 +1,7 @@
+import { MERC_ELEMENTAL_ARROWS } from './merc-elemental-arrows';
+import { MERC_BLESSED_AIM_SKILL } from './merc-blessed-aim';
+import { MERC_FROZEN_ARMOR_SKILL } from './merc-frozen-armor';
+import { MERC_PILFER_SKILL } from './merc-pilfer';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Ajv2020 from 'ajv/dist/2020';
 import skillSchema from '../../data/schema/skill.schema.json';
@@ -30,7 +34,7 @@ describe('P08a08 authored player Meteor Armor Melt', () => {
       requiredLevel: 24, target: 'all-enemies', cooldown: 4,
       cost: { mana: 50 }, damageType: 'fire', damage: { min: 100, max: 150 },
       appliesStatus: ['burn', 'armor-melt'], statusEffect: { dotPctOfDamage: 0.1 },
-      scaling: { damagePerLevel: 10 },
+      scaling: { damagePerLevel: 80 },
       additionalStatusEffects: { 'armor-melt': { chance: 1, defenseReductionPct: 30, durationMs: 3000 } }
     });
     expect(raw).not.toHaveProperty('aoeShape');
@@ -270,7 +274,11 @@ describe('P07a01b authored trigger metadata (not passive runtime behavior)', () 
     expect(getSkill(legacy.id)).toBe(legacy);
     expect(getSkill(legacy.id)).not.toHaveProperty('trigger');
     expect(legacy).toEqual(before);
-    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== 'mskill-minor-heal')) {
+    expect(getSkill('mskill-frozen-armor')).toBe(MERC_FROZEN_ARMOR_SKILL);
+    expect(getSkill('mskill-pilfer')).toBe(MERC_PILFER_SKILL);
+    expect(getSkill('aura-blessed-aim')).toBe(MERC_BLESSED_AIM_SKILL);
+    for (const arrow of MERC_ELEMENTAL_ARROWS) expect(getSkill(arrow.id)).toBe(arrow);
+    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== 'mskill-minor-heal' && skill.id !== 'mskill-frozen-armor' && skill.id !== 'mskill-pilfer' && skill.id !== 'aura-blessed-aim' && !MERC_ELEMENTAL_ARROWS.some(arrow => arrow.id === skill.id))) {
       expect(getSkill(stub.id)).toBe(stub);
       expect(getSkill(stub.id)).not.toHaveProperty('trigger');
     }
@@ -322,7 +330,11 @@ describe('P08a03a authored Minor Heal registration', () => {
   });
 
   it('preserves every unrelated merc/aura stub and adds no alternative Minor Heal identity', () => {
-    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== productionId)) {
+    expect(getSkill('mskill-frozen-armor')).toBe(MERC_FROZEN_ARMOR_SKILL);
+    expect(getSkill('mskill-pilfer')).toBe(MERC_PILFER_SKILL);
+    expect(getSkill('aura-blessed-aim')).toBe(MERC_BLESSED_AIM_SKILL);
+    for (const arrow of MERC_ELEMENTAL_ARROWS) expect(getSkill(arrow.id)).toBe(arrow);
+    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== productionId && skill.id !== 'mskill-frozen-armor' && skill.id !== 'mskill-pilfer' && skill.id !== 'aura-blessed-aim' && !MERC_ELEMENTAL_ARROWS.some(arrow => arrow.id === skill.id))) {
       expect(getSkill(stub.id)).toBe(stub);
     }
     expect(listSkills()).not.toContain('mskill.minor_heal');
@@ -565,7 +577,7 @@ describe('skill registry JSON catalog', () => {
     const fireBall = getSkill('skills-sorceress-fire-ball');
     const damage = fireBall?.effects.find((effect) => effect.kind === 'damage');
 
-    expect(damage?.kind === 'damage' ? damage.perRank : undefined).toEqual([7, 7]);
+    expect(damage?.kind === 'damage' ? damage.perRank : undefined).toEqual([120, 120]);
     expect(damage?.kind === 'damage' ? damage.applyStatus : undefined).toEqual({
       id: 'burn',
       dotPctOfDamage: 0.1

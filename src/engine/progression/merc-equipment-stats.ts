@@ -7,6 +7,7 @@ import {
   equipmentModsToDerivedModifiers
 } from './equipment-mods';
 import { deriveStats } from './stats';
+import { projectMercenaryStars } from './merc-stars';
 
 /**
  * Project canonical equipment over an owned mercenary's unequipped saved stats.
@@ -15,13 +16,16 @@ import { deriveStats } from './stats';
  */
 export function deriveEquippedMercStats(
   merc: Mercenary,
-  equipment: Readonly<Record<string, Item | null>>
+  equipment: Readonly<Record<string, Item | null>>,
+  stars = 0
 ): DerivedStats {
-  const saved = merc.derivedStats;
-  const mods = aggregateEquipmentMods(equipment);
-  const bare = deriveStats(merc.coreStats, merc.level);
+  const natural = projectMercenaryStars(merc, stars);
+  const saved = natural.derivedStats;
+  const mods = aggregateEquipmentMods(Object.fromEntries(
+    Object.entries(equipment).filter(([slot]) => slot !== 'charm')));
+  const bare = deriveStats(natural.coreStats, merc.level);
   const geared = deriveStats(
-    applyEquipmentCoreMods(merc.coreStats, mods),
+    applyEquipmentCoreMods(natural.coreStats, mods),
     merc.level,
     equipmentModsToDerivedModifiers(mods)
   );

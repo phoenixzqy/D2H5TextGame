@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -11,6 +11,7 @@ import { useCombatStore } from '@/stores/combatStore';
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { __resetPersistenceForTests } from '@/stores/persistence';
 import { materialRecipes } from '@/data/loaders/material-recipes';
+import { socketRunewords } from '@/data/loaders/socket-effects';
 import { CraftingPanel } from './CraftingPanel';
 
 const blade = { id: 'blade', baseId: 'items/base/wp1h-short-sword', rarity: 'normal' as const,
@@ -41,7 +42,103 @@ describe.each(['en', 'zh-CN'] as const)('crafting controls %s', locale => {
     for (const recipe of materialRecipes.values()) expect(i18n.exists(recipe.nameKey, { lng: locale, ns: 'inventory' }), recipe.id).toBe(true);
     expect(screen.getByText(en ? /highest unlocked act/ : /最高已解锁章节/)).toBeInTheDocument();
   });
-  it('previews exact fusion costs/result, cancels without spending, then confirms only one intent', () => {
+  it('exposes all runeword recipes beside insertion with exact Leaf requirements and rune order', () => {
+    mount();
+    expect(screen.queryByTestId('runeword-guide')).not.toBeInTheDocument();
+    category('socket-insert');
+    const inventory = useInventoryStore.getState();
+    const map = useMapStore.getState();
+    const guide = screen.getByTestId('runeword-guide');
+    fireEvent.click(within(guide).getByText(en ? 'Runeword recipes' : '符文之语配方'));
+    const select = within(guide).getByLabelText(en ? 'Runeword' : '符文之语');
+    const options = within(select).getAllByRole('option');
+    expect(options).toHaveLength(35);
+    expect(options.map(option => option.textContent)).toEqual(socketRunewords.map(word => i18n.t(word.name.replace('items.', 'items:'))));
+    fireEvent.change(select, { target: { value: 'runewords/leaf' } });
+    expect(within(guide).getByTestId('runeword-bases')).toHaveTextContent(en ? 'Staff' : '长杖');
+    expect(guide).toHaveTextContent(en ? 'Normal (white) equipment with exactly 2 sockets.' : '需要恰好有 2 个孔的普通（白色）装备。');
+    expect(guide).toHaveTextContent(en ? 'Equip level: 19' : '装备等级：19');
+    const order = within(guide).getByRole('list', { name: en ? 'Insert runes in this order' : '按此顺序镶嵌符文' });
+    expect(within(order).getAllByRole('listitem').map(item => item.textContent)).toEqual(en ? ['Tir', 'Ral'] : ['泰尔符文', '莱尔符文']);
+    expect(useInventoryStore.getState()).toBe(inventory);
+    expect(useMapStore.getState()).toBe(map);
+    category('salvage');
+    expect(screen.queryByTestId('runeword-guide')).not.toBeInTheDocument();
+  });
+  it('shows alternative runeword bases without applying weapon restrictions to armor', () => {
+    mount(); category('socket-insert');
+    const guide = screen.getByTestId('runeword-guide');
+    fireEvent.click(within(guide).getByText(en ? 'Runeword recipes' : '符文之语配方'));
+    const select = within(guide).getByLabelText(en ? 'Runeword' : '符文之语');
+    for (const [word, expected] of [
+      ['spirit', en ? ['Sword', 'Shield'] : ['剑', '盾牌']],
+      ['fortitude', en ? ['Any weapon', 'Body armor'] : ['任意武器', '胸甲']],
+      ['dream', en ? ['Helm', 'Shield'] : ['头盔', '盾牌']]
+    ] as const) {
+      fireEvent.change(select, { target: { value: `runewords/${word}` } });
+      const bases = within(guide).getByTestId('runeword-bases');
+      expect(within(bases).getAllByRole('listitem').map(item => item.textContent)).toEqual(expected);
+    }
+  });
+  it('explains word bonuses and active payment before spending without including plain rune effects', () => {
+    mount(); category('socket-insert');
+    const inventory = useInventoryStore.getState();
+    const player = usePlayerStore.getState();
+    const guide = screen.getByTestId('runeword-guide');
+    fireEvent.click(within(guide).getByText(en ? 'Runeword recipes' : '符文之语配方'));
+    const select = within(guide).getByLabelText(en ? 'Runeword' : '符文之语');
+    fireEvent.change(select, { target: { value: 'runewords/leaf' } });
+    const effects = within(guide).getByRole('list', { name: en ? 'Runeword bonuses' : '符文之语加成' });
+    expect(effects).toHaveTextContent(en ? '+33 Cold Resist' : '+33 冰冷抗性');
+    expect(effects).toHaveTextContent(en
+      ? 'While equipped: grants Fire Bolt (Rank 3), 8 Mana, 1s cooldown'
+      : '装备时：获得火弹（3级），消耗8法力，冷却1秒');
+    expect(effects).toHaveTextContent(en ? '+12% Fire Damage (self only)' : '自身火焰伤害 +12%');
+    expect(effects).not.toHaveTextContent(en ? '+2 Mana' : '+2 法力');
+    expect(guide).toHaveTextContent(en
+      ? 'Base stats and ordinary rune effects also apply. Preview an insertion to see the full item.'
+      : '底材属性与各符文的普通镶嵌效果也会生效。请预览镶嵌操作，查看完整装备效果。');
+    expect(useInventoryStore.getState()).toBe(inventory);
+    expect(usePlayerStore.getState()).toBe(player);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+  it('updates conditional healing and ratio-valued bonuses without retaining the previous recipe effects', () => {
+    mount(); category('socket-insert');
+    const guide = screen.getByTestId('runeword-guide');
+    fireEvent.click(within(guide).getByText(en ? 'Runeword recipes' : '符文之语配方'));
+    const select = within(guide).getByLabelText(en ? 'Runeword' : '符文之语');
+    fireEvent.change(select, { target: { value: 'runewords/phoenix' } });
+    const effects = () => within(guide).getByRole('list', { name: en ? 'Runeword bonuses' : '符文之语加成' });
+    expect(effects()).toHaveTextContent(en
+      ? 'While equipped: grants Redemption (Rank 1), 0 Mana, 4s cooldown'
+      : '装备时：获得救赎（1级），消耗0法力，冷却4秒');
+    expect(effects()).toHaveTextContent(en ? 'Only usable while injured.' : '仅受伤时可用。');
+    expect(effects()).toHaveTextContent(en ? '+10% to existing Mana Regeneration' : '自身已有法力回复速率 +10%');
+    fireEvent.change(select, { target: { value: 'runewords/last-wish' } });
+    expect(effects()).toHaveTextContent(en ? '+25% Crit Chance' : '+25% 暴击率');
+    expect(effects()).toHaveTextContent(en ? '+2.5% Magic Dodge' : '魔法闪避 +2.5%');
+    expect(effects()).not.toHaveTextContent(en ? 'Redemption' : '救赎');
+    expect(effects()).not.toHaveTextContent('skill-fade');
+  });
+  it('totals repeated runes and tracks live ownership while preserving the insertion selection', () => {
+    useInventoryStore.setState({ materials: { 'runes/el': 6, 'runes/jah': 1, 'runes/ber': 2 } });
+    mount(); category('socket-insert');
+    fireEvent.click(screen.getByLabelText(/#blade/));
+    const guide = screen.getByTestId('runeword-guide');
+    fireEvent.click(within(guide).getByText(en ? 'Runeword recipes' : '符文之语配方'));
+    fireEvent.change(within(guide).getByLabelText(en ? 'Runeword' : '符文之语'), { target: { value: 'runewords/last-wish' } });
+    const inventory = useInventoryStore.getState();
+    const row = () => within(guide).getByRole('row', { name: en ? /^Jah / : /^迦符文 / });
+    expect(within(row()).getAllByRole('cell').map(cell => cell.textContent)).toEqual(en ? ['Jah', '3', '1'] : ['迦符文', '3', '1']);
+    act(() => { useInventoryStore.setState({ materials: { ...inventory.materials, 'runes/jah': 4 } }); });
+    expect(within(row()).getAllByRole('cell').map(cell => cell.textContent)).toEqual(en ? ['Jah', '3', '4'] : ['迦符文', '3', '4']);
+    expect(screen.getByLabelText(/#blade/)).toBeChecked();
+    expect(screen.getByLabelText(en ? 'Socket material' : '镶嵌材料')).toHaveValue('runes/el');
+    expect(useInventoryStore.getState().backpack).toBe(inventory.backpack);
+    expect(useInventoryStore.getState().materialActionOrdinal).toBe(inventory.materialActionOrdinal);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+  it('previews exact fusion costs/result, cancels without spending, then confirms only one intent', async () => {
     mount();
     fireEvent.change(screen.getByLabelText(en ? 'Recipe' : '配方'), { target: { value: 'recipes/rune-fusion/el' } });
     const trigger = screen.getByRole('button', { name: en ? 'Preview action' : '预览操作' });
@@ -52,7 +149,8 @@ describe.each(['en', 'zh-CN'] as const)('crafting controls %s', locale => {
     expect(dialog).toHaveTextContent(en ? 'Eld × 1' : '艾尔德符文 × 1');
     expect(useInventoryStore.getState().materials).toEqual({ 'runes/el': 6 });
     fireEvent.click(within(dialog).getByRole('button', { name: en ? 'Cancel' : '取消' }));
-    expect(trigger).toHaveFocus(); expect(useInventoryStore.getState().materialActionOrdinal).toBe(0);
+    await waitFor(() => { expect(trigger).toHaveFocus(); });
+    expect(useInventoryStore.getState().materialActionOrdinal).toBe(0);
     preview(); dialog = screen.getByRole('dialog');
     fireEvent.click(confirm()); fireEvent.click(confirm());
     expect(useInventoryStore.getState().materials).toEqual({ 'runes/el': 3, 'runes/eld': 1 });
@@ -189,9 +287,10 @@ describe.each(['en', 'zh-CN'] as const)('crafting controls %s', locale => {
   it('refuses locked outputs with localized feedback and no spending or ordinal change', () => {
     useInventoryStore.setState({ materials: { 'runes/ral': 3 } });
     const before = useInventoryStore.getState();
-    mount(); fireEvent.change(screen.getByLabelText(en ? 'Recipe' : '配方'), { target: { value: 'recipes/rune-fusion/ral' } }); preview();
+    mount(); fireEvent.change(screen.getByLabelText(en ? 'Recipe' : '配方'), { target: { value: 'recipes/rune-fusion/ral' } });
+    expect(screen.getByRole('button', { name: en ? 'Preview action' : '预览操作' })).toBeDisabled();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    expect(screen.getByRole('alert')).toHaveTextContent(en ? 'not unlocked' : '尚未解锁');
+    expect(screen.getByRole('status')).toHaveTextContent(en ? 'not unlocked' : '尚未解锁');
     expect(useInventoryStore.getState()).toBe(before);
   });
   it('retains bulk choices across pages and search and limits target rendering', () => {
@@ -209,15 +308,15 @@ describe.each(['en', 'zh-CN'] as const)('crafting controls %s', locale => {
     expect(useInventoryStore.getState().backpack).toHaveLength(22);
     expect(useInventoryStore.getState().backpack.some(item => ['item-0', 'item-12', 'item-24'].includes(item.id))).toBe(false);
   });
-  it('keeps keyboard focus inside the preview and restores the trigger on Escape', () => {
+  it('starts on Cancel and restores the trigger on Escape without spending', async () => {
     mount(); const trigger = screen.getByRole('button', { name: en ? 'Preview action' : '预览操作' });
     trigger.focus(); preview();
     const cancel = screen.getByRole('button', { name: en ? 'Cancel' : '取消' });
-    expect(cancel).toHaveFocus();
-    fireEvent.keyDown(document, { key: 'Tab' }); expect(confirm()).toHaveFocus();
-    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true }); expect(cancel).toHaveFocus();
-    fireEvent.keyDown(document, { key: 'Escape' });
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument(); expect(trigger).toHaveFocus();
+    await waitFor(() => { expect(cancel).toHaveFocus(); });
+    // Native Tab/Shift+Tab traversal is verified in Chromium; jsdom has no Tab default action.
+    fireEvent.keyDown(cancel, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    await waitFor(() => { expect(trigger).toHaveFocus(); });
     expect(useInventoryStore.getState().materialActionOrdinal).toBe(0);
   });
   it('previews a completed word with plain inserts and the word package before any spend', () => {

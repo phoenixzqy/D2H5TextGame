@@ -105,8 +105,20 @@ export function nextPeriodicSpellPulse(unit: CombatUnit, id: PeriodicSpellId, at
   const paid = paidPeriodicSpell(unit, id, at);
   if (!paid) return undefined;
   const start = paid.appliedAtMs ?? 0, interval = PERIODIC_SPELL_DEFINITIONS[id].intervalMs;
-  const next = start + (Math.floor((at - start) / interval) + 1) * interval;
+  let phase = Math.floor((at - start) / interval) + 1;
+  // Subtraction can round a settled phase just below its integer quotient.
+  if (start + phase * interval <= at) phase++;
+  const next = start + phase * interval;
   return next < (paid.expiresAtMs ?? 0) ? next : undefined;
+}
+
+/** Recognize an authenticated pulse by its absolute phase, including fractional cast clocks. */
+export function isPeriodicSpellPulse(unit: CombatUnit, id: PeriodicSpellId, at: number): boolean {
+  const paid = paidPeriodicSpell(unit, id, at);
+  if (!paid) return false;
+  const start = paid.appliedAtMs ?? 0, interval = PERIODIC_SPELL_DEFINITIONS[id].intervalMs;
+  const phase = Math.round((at - start) / interval);
+  return phase > 0 && start + phase * interval === at;
 }
 
 /** A paid channel occupies caster opportunities; independent field spells never do. */

@@ -51,7 +51,7 @@ test.describe('Bug #9 + #10 — Equip picker and comparison panel @desktop-only'
     // Bug #9: click the empty weapon slot → picker opens.
     const weaponSlot = page.getByTestId('equip-slot-weapon');
     await expect(weaponSlot).toBeVisible({ timeout: 5_000 });
-    await weaponSlot.click();
+    await page.getByTestId('equip-slot-weapon-select').click();
 
     const picker = page.getByTestId('equip-picker');
     await expect(picker).toBeVisible({ timeout: 5_000 });

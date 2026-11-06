@@ -69,13 +69,26 @@ describe('combat log reading and bounded automatic scrolling', () => {
     const { log, grow } = await logFixture();
     for (let n = 0; n < 200; n++) append('Entry ' + String(n));
     expect(useCombatStore.getState().log).toHaveLength(200);
-    expect(log.children).toHaveLength(200);
+    expect(log.querySelectorAll('[data-combat-log-row]').length).toBeLessThan(80);
     expect(log).not.toHaveTextContent('First visible entry');
     grow();
     append('A new wrapped entry after the cap');
     expect(log.scrollTop).toBe(log.scrollHeight);
-    expect(log.children).toHaveLength(200);
-    expect(log.lastElementChild).toHaveTextContent('A new wrapped entry after the cap');
+    expect(log.querySelectorAll('[data-combat-log-row]').length).toBeLessThan(80);
+    expect(Array.from(log.querySelectorAll('[data-combat-log-row]')).at(-1)).toHaveTextContent('A new wrapped entry after the cap');
+  });
+
+  it('mounts older retained messages on scroll and keeps the offscreen tail unmounted', async () => {
+    const { log } = await logFixture();
+    for (let n = 0; n < 200; n++) append('Entry ' + String(n));
+    expect(log).toHaveTextContent('Entry 199');
+    expect(log).not.toHaveTextContent('Entry 0');
+    log.scrollTop = 0;
+    fireEvent.scroll(log);
+    expect(log.querySelector('[data-combat-log-row]')).toHaveTextContent('Entry 0');
+    expect(log).not.toHaveTextContent('Entry 199');
+    expect(log.querySelectorAll('[data-combat-log-row]').length).toBeLessThan(80);
+    expect(useCombatStore.getState().log).toHaveLength(200);
   });
 
   for (const locale of ['en', 'zh-CN'] as const) {

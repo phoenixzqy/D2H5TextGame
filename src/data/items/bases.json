@@ -1180,5 +1180,309 @@
     "canHaveAffixes": true,
     "weaponType": "claw",
     "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/small-charm",
+    "name": "items.base.small-charm",
+    "type": "charm",
+    "slot": "charm",
+    "reqLevel": 1,
+    "maxSockets": 0,
+    "metal": false,
+    "canHaveAffixes": false
+  },
+  {
+    "id": "items/base/weapon-composite-bow",
+    "name": "items.base.weapon-composite-bow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 22,
+      "max": 48,
+      "breakdown": {
+        "physical": 48
+      }
+    },
+    "reqLevel": 24,
+    "sockets": 3,
+    "maxSockets": 3,
+    "canHaveAffixes": true,
+    "weaponType": "bow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-heavy-crossbow",
+    "name": "items.base.weapon-heavy-crossbow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 22,
+      "max": 48,
+      "breakdown": {
+        "physical": 48
+      }
+    },
+    "reqLevel": 24,
+    "sockets": 3,
+    "maxSockets": 3,
+    "canHaveAffixes": true,
+    "weaponType": "crossbow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-great-bow",
+    "name": "items.base.weapon-great-bow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 62,
+      "breakdown": {
+        "physical": 62
+      }
+    },
+    "reqLevel": 35,
+    "sockets": 4,
+    "maxSockets": 4,
+    "canHaveAffixes": true,
+    "weaponType": "bow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-siege-crossbow",
+    "name": "items.base.weapon-siege-crossbow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 62,
+      "breakdown": {
+        "physical": 62
+      }
+    },
+    "reqLevel": 35,
+    "sockets": 4,
+    "maxSockets": 4,
+    "canHaveAffixes": true,
+    "weaponType": "crossbow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-ward-bow",
+    "name": "items.base.weapon-ward-bow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 50,
+      "max": 95,
+      "breakdown": {
+        "physical": 95
+      }
+    },
+    "reqLevel": 52,
+    "sockets": 5,
+    "maxSockets": 5,
+    "canHaveAffixes": true,
+    "weaponType": "bow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-demon-crossbow",
+    "name": "items.base.weapon-demon-crossbow",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 50,
+      "max": 95,
+      "breakdown": {
+        "physical": 95
+      }
+    },
+    "reqLevel": 52,
+    "sockets": 5,
+    "maxSockets": 5,
+    "canHaveAffixes": true,
+    "weaponType": "crossbow",
+    "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-balanced-knife",
+    "name": "items.base.weapon-balanced-knife",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 7,
+      "max": 13,
+      "breakdown": {
+        "physical": 13
+      }
+    },
+    "reqLevel": 8,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-war-dart",
+    "name": "items.base.weapon-war-dart",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 14,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    },
+    "reqLevel": 22,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-battle-dart",
+    "name": "items.base.weapon-battle-dart",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 20,
+      "max": 32,
+      "breakdown": {
+        "physical": 32
+      }
+    },
+    "reqLevel": 32,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-winged-knife",
+    "name": "items.base.weapon-winged-knife",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 32,
+      "max": 55,
+      "breakdown": {
+        "physical": 55
+      }
+    },
+    "reqLevel": 50,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-winged-axe",
+    "name": "items.base.weapon-winged-axe",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 45,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "reqLevel": 60,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-trident",
+    "name": "items.base.weapon-trident",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "spear",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 10,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    },
+    "reqLevel": 10,
+    "sockets": 2,
+    "maxSockets": 2,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-military-fork",
+    "name": "items.base.weapon-military-fork",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "spear",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 22,
+      "max": 48,
+      "breakdown": {
+        "physical": 48
+      }
+    },
+    "reqLevel": 24,
+    "sockets": 3,
+    "maxSockets": 3,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-war-fork",
+    "name": "items.base.weapon-war-fork",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "spear",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 32,
+      "max": 62,
+      "breakdown": {
+        "physical": 62
+      }
+    },
+    "reqLevel": 35,
+    "sockets": 4,
+    "maxSockets": 4,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-mancatcher",
+    "name": "items.base.weapon-mancatcher",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "spear",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 50,
+      "max": 95,
+      "breakdown": {
+        "physical": 95
+      }
+    },
+    "reqLevel": 52,
+    "sockets": 5,
+    "maxSockets": 5,
+    "metal": true,
+    "canHaveAffixes": true
   }
 ]

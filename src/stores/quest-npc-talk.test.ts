@@ -59,7 +59,9 @@ describe('ordered current-town quest talk events', () => {
     ]);
     expect(loadTownNpcs(2)).toEqual([
       { id: 'npc/atma', portraitId: 'atma', nameKey: 'town.npc.atma' },
-      { id: 'npc/drognan', portraitId: 'drognan', nameKey: 'town.npc.drognan' }
+      { id: 'npc/drognan', portraitId: 'drognan', nameKey: 'town.npc.drognan' },
+      { id: 'npc/fara', portraitId: 'fara', nameKey: 'town.npc.fara' },
+      { id: 'npc/greiz', portraitId: 'greiz', nameKey: 'town.npc.greiz' }
     ]);
     expect(loadTownNpcs(3).map((npc) => npc.id)).toEqual([
       'npc/alkor', 'npc/asheara', 'npc/cain', 'npc/hratli', 'npc/meshif', 'npc/ormus'

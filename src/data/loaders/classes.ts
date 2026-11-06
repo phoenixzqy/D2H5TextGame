@@ -1,6 +1,6 @@
 /** Schema-validated class starter recipes; preparation never grants inventory. */
 import Ajv2020 from 'ajv/dist/2020';
-import classSchema from '@/data/schema/class.schema.json';
+import { compileAuthoredValidator } from '../authored-validators';
 import amazon from '@/data/classes/amazon.json';
 import assassin from '@/data/classes/assassin.json';
 import barbarian from '@/data/classes/barbarian.json';
@@ -23,7 +23,7 @@ interface ClassStarterDocument {
 
 const documents = { amazon, assassin, barbarian, druid, necromancer, paladin, sorceress };
 const ajv = new Ajv2020({ strict: true, allErrors: true });
-const validateClass = ajv.compile<ClassStarterDocument>(classSchema);
+const validateClass = compileAuthoredValidator<ClassStarterDocument>(ajv, 'classes');
 
 /**
  * Validate the complete requested class document and weapon reference.

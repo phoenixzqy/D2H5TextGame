@@ -69,7 +69,7 @@ describe('Cain whole-bundle Claim publication', () => {
     const after = snapshot(); expect(claimQuestReward(MAIN)).toBe('already-claimed'); expect(snapshot()).toEqual(after);
   });
 
-  it('claims the side permanent entitlement without numeric income or a charge', () => {
+  it('claims the side wishes and permanent entitlement without XP or a charge', () => {
     const before = snapshot();
     const expectedProgress = structuredClone(useMapStore.getState().questProgress);
     const side = expectedProgress[SIDE];
@@ -79,6 +79,8 @@ describe('Cain whole-bundle Claim publication', () => {
     const map = before[1];
     if (!map) throw new Error('Missing map snapshot');
     Object.assign(map, { questProgress: expectedProgress });
+    const inventory = before[2]; if (!inventory) throw new Error('Missing inventory snapshot');
+    Object.assign(inventory, { currencies: { wishstone: 10 } });
     expect(snapshot()).toEqual(before);
   });
 

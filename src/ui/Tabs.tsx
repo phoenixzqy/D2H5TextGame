@@ -63,7 +63,7 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
               ${
                 activeTab === tab.id
                   ? 'text-d2-gold border-b-2 border-d2-gold -mb-0.5'
-                  : 'text-d2-border hover:text-d2-white'
+                  : 'text-d2-white/70 hover:text-d2-white'
               }
             `}
             role="tab"

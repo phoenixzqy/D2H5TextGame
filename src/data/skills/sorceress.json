@@ -193,7 +193,7 @@
       "burn"
     ],
     "scaling": {
-      "damagePerLevel": 7
+      "damagePerLevel": 120
     }
   },
   {
@@ -243,7 +243,7 @@
       "amp-damage"
     ],
     "scaling": {
-      "damagePerLevel": 10
+      "damagePerLevel": 80
     }
   },
   {
@@ -500,7 +500,7 @@
       "chill"
     ],
     "scaling": {
-      "damagePerLevel": 8
+      "damagePerLevel": 80
     }
   },
   {

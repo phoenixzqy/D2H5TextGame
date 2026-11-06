@@ -6,6 +6,8 @@ export type P15WaveInput = Pick<EarnedWave,
   'index' | 'advanceResult' | 'terminalSimClockMs' | 'rawRewardDelta' | 'actualDelta'> & {
   opening: Pick<EarnedWave['opening'], 'playerTeam' | 'enemyTeam' | 'recordedEvents' | 'currentWavePresentation'>;
   played: Pick<EarnedWave['played'], 'outcome'>;
+  /** Historical records may lack this field; never infer projections from teams. */
+  engineInput?: EarnedWave['engineInput'];
 };
 
 /** Project a settled native wave without retaining repeated inventory snapshots. */
@@ -25,15 +27,27 @@ export function observeP15Wave(wave: P15WaveInput) {
   );
   const directDamageBySource: Record<string, number> = {};
   const periodicDamageByTarget: Record<string, number> = {};
+  const hpMsBySource = new Map<string, number>(), hpMsByDamageType = new Map<string, number>();
+  let periodicEventCount = 0, missingPeriodicProvenanceCount = 0;
   for (const event of wave.opening.recordedEvents) {
     if (event.kind === 'damage' && !event.dodged)
       directDamageBySource[event.source] = (directDamageBySource[event.source] ?? 0) + event.amount;
-    if (event.kind === 'dot')
+    if (event.kind === 'dot') {
       periodicDamageByTarget[event.target] =
         (periodicDamageByTarget[event.target] ?? 0) + event.amount;
+      periodicEventCount++;
+      if (!event.provenance) missingPeriodicProvenanceCount++;
+      else for (const contribution of event.provenance.contributions) {
+        hpMsBySource.set(contribution.source,
+          (hpMsBySource.get(contribution.source) ?? 0) + contribution.hpMs);
+        const type = contribution.damageType ?? 'unknown';
+        hpMsByDamageType.set(type, (hpMsByDamageType.get(type) ?? 0) + contribution.hpMs);
+      }
+    }
   }
   return {
     index: wave.index,
+    ...(wave.engineInput !== undefined ? { engineInput: structuredClone(wave.engineInput) } : {}),
     presentation: wave.opening.currentWavePresentation,
     initialPlayerTeam: wave.opening.playerTeam,
     initialEnemyTeam: wave.opening.enemyTeam,
@@ -65,7 +79,10 @@ export function observeP15Wave(wave: P15WaveInput) {
         .filter((unit) => unit.life > 0)
         .map((unit) => ({ id: unit.id, life: unit.life })),
       directDamageBySource,
-      periodicDamageByTarget
+      periodicDamageByTarget,
+      /** Emitted-interval integrals, not post-absorption per-source HP. */
+      periodicProvenance: { eventCount: periodicEventCount, missingEventCount: missingPeriodicProvenanceCount,
+        hpMsBySource: Object.fromEntries(hpMsBySource), hpMsByDamageType: Object.fromEntries(hpMsByDamageType) }
     }
   };
 }
@@ -80,4 +97,3 @@ export function isP15CompleteVictory(waves: readonly P15Wave[], totalWaves: numb
     waves.every((wave) => wave.metrics.outcome === 'victory' && !wave.metrics.heroDied)
   );
 }
-

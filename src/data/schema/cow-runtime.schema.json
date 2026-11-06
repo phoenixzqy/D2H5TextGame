@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/cow-runtime.json",
+  "title": "Finite Cow portal source contracts",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "questId",
+    "actId",
+    "hostAreaId",
+    "encounterId",
+    "victoryReceipt",
+    "recipe",
+    "actions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "questId": {
+      "const": "quests/side-act1-pandemonium-cow-rumor",
+      "description": "Exact authored Cow questId authority."
+    },
+    "actId": {
+      "const": "acts/act1",
+      "description": "Exact authored Cow actId authority."
+    },
+    "hostAreaId": {
+      "const": "areas/act1-dark-wood",
+      "description": "Exact authored Cow hostAreaId authority."
+    },
+    "encounterId": {
+      "const": "act1-dw-cow-king",
+      "description": "Exact authored Cow encounterId authority."
+    },
+    "victoryReceipt": {
+      "const": "quests/side-act1-pandemonium-cow-rumor#action:cow-king-victory",
+      "description": "Exact authored Cow victoryReceipt authority."
+    },
+    "recipe": {
+      "const": {
+        "id": "moo_moo_portal",
+        "objectiveId": "obj-open-portal",
+        "requiredTool": {
+          "itemId": "quest/horadric_cube",
+          "source": "quests/act2-horadric-staff#objective:obj-cube"
+        },
+        "inputs": [
+          {
+            "itemId": "quest/wirts_leg",
+            "source": "quests/side-act1-pandemonium-cow-rumor#objective:obj-find-leg"
+          },
+          {
+            "itemId": "quest/cow_portal_tome",
+            "source": "quests/side-act1-pandemonium-cow-rumor#action:receive-portal-tome"
+          }
+        ]
+      },
+      "description": "Exact authored Cow recipe authority."
+    },
+    "actions": {
+      "const": {
+        "receiveTome": {
+          "id": "actions/act1-receive-cow-tome",
+          "npcId": "npc/akara",
+          "receiptSource": "quests/side-act1-pandemonium-cow-rumor#action:receive-portal-tome"
+        },
+        "openPortal": {
+          "id": "actions/act1-open-cow-portal",
+          "npcId": "npc/akara",
+          "receiptSource": "quests/side-act1-pandemonium-cow-rumor#action:open-cow-portal"
+        }
+      },
+      "description": "Exact authored Cow actions authority."
+    }
+  }
+}

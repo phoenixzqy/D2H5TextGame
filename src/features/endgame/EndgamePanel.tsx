@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useId, useState, useSyncExternalStore } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { endgameDefinition } from '@/data/loaders/endgame';
 import type { EndgameModifierId } from '@/engine/endgame/types';
-import { checkEndgameEntry, claimEndgameAchievement, readEndgamePanelModel } from '@/stores/endgameActions';
+import { checkEndgameEntry, claimEndgameAchievement, readEndgameReadiness } from '@/stores/endgameActions';
 import { useMapStore } from '@/stores/mapStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useHydrationStore } from '@/stores/hydrationStore';
+import { usePlayerStore } from '@/stores/playerStore';
+import { useCombatStore } from '@/stores/combatStore';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
-import { WaveGuardError } from '@/stores/waveTransitionGuard';
+import { inspectRecordedWaves, subscribeRecordedWaves } from '@/stores/recordedWaveReceipt';
+import { inspectWaveGuard, subscribeWaveGuard, WaveGuardError } from '@/stores/waveTransitionGuard';
 import { craftingBalanceName } from '@/features/inventory/craftingPresentation';
 import { Button, Panel, tDataKey } from '@/ui';
 
@@ -16,18 +20,22 @@ import { Button, Panel, tDataKey } from '@/ui';
 export function EndgamePanel() {
   const { t } = useTranslation('endgame');
   const navigate = useNavigate();
-  useMapStore(state => state.endgame);
-  useMapStore(state => state.questProgress);
-  useMapStore(state => state.questReceipts);
-  useMapStore(state => state.selectedTitle);
-  useInventoryStore(state => state.questItems);
-  useInventoryStore(state => state.questServices);
-  const ready = useHydrationStore(state => state.status === 'ready');
-  const model = readEndgamePanelModel();
+  useMapStore(useShallow(state => [state.endgame, state.questProgress, state.questReceipts,
+    state.selectedTitle, state.questTitles, state.questDifficulties, state.selectedDifficulty,
+    state.nightmareClearedSubAreas, state.hellClearedSubAreas, state.challengeOrdinals]));
+  useInventoryStore(useShallow(state => [state.questItems, state.questServices]));
+  usePlayerStore(state => state.player?.id);
+  useCombatStore(useShallow(state => [state.inCombat, state.subAreaRunId, state.runVictory, state.runDefeat]));
+  useHydrationStore(state => state.status);
+  useSyncExternalStore(subscribeRecordedWaves, inspectRecordedWaves, inspectRecordedWaves);
+  useSyncExternalStore(subscribeWaveGuard, inspectWaveGuard, inspectWaveGuard);
   const [modifier, setModifier] = useState<EndgameModifierId>('ashen');
   const [feedback, setFeedback] = useState<string | null>(null);
   const [failedRecovery, setFailedRecovery] = useState(false);
-  const disabled = !ready || failedRecovery || model.kind !== 'unlocked';
+  const readiness = readEndgameReadiness(modifier), { model } = readiness;
+  const entry = failedRecovery ? 'restoration-failed' : readiness.entry;
+  const claim = failedRecovery ? 'restoration-failed' : readiness.claim;
+  const entryDescription = useId(), claimDescription = useId();
   const materialsText = (materials: Readonly<Record<string, number>>) => Object.entries(materials)
     .map(([id, count]) => `${String(count)} × ${craftingBalanceName(t, id)}`).join(' · ');
   const action = (run: () => void) => {
@@ -40,8 +48,9 @@ export function EndgamePanel() {
   };
   return <Panel title={tDataKey(t, endgameDefinition.nameKey)} data-testid="endgame-panel">
     <p className="mb-3 text-sm text-d2-white/90">{t('summary', { level: endgameDefinition.monsterLevel, waves: endgameDefinition.waves.length })}</p>
-    {model.kind !== 'unlocked' && <p data-testid="endgame-lock" className="mb-3 text-sm text-d2-gold">{t(model.kind)}</p>}
-    <fieldset disabled={disabled} className="min-w-0 space-y-2">
+    {model.kind !== 'unlocked' && <p id={entry === model.kind ? entryDescription : undefined}
+      data-testid="endgame-lock" className="mb-3 text-sm text-d2-gold">{t(model.kind)}</p>}
+    <fieldset disabled={entry !== 'ok'} className="min-w-0 space-y-2">
       <legend className="mb-2 font-serif text-d2-gold">{t('choose')}</legend>
       {endgameDefinition.modifiers.map(row => <label key={row.id}
         className={`flex min-h-11 cursor-pointer items-start gap-3 rounded border p-3 focus-within:ring-2 focus-within:ring-d2-gold ${modifier === row.id ? 'border-d2-gold bg-black/30' : 'border-d2-border'}`}>
@@ -56,7 +65,10 @@ export function EndgamePanel() {
       </label>)}
     </fieldset>
     <p className="my-3 text-sm text-d2-white/80">{t('rewards')}</p>
-    <Button type="button" className="min-h-11 max-w-full whitespace-normal" disabled={disabled} data-testid="endgame-enter"
+    {entry !== 'ok' && entry !== model.kind && <p id={entryDescription} role="status" data-testid="endgame-entry-readiness"
+      className="mb-3 text-sm text-d2-gold">{t(`feedback.${entry}`)}</p>}
+    <Button type="button" className="min-h-11 max-w-full whitespace-normal" disabled={entry !== 'ok'} data-testid="endgame-enter"
+      aria-describedby={entry === 'ok' ? undefined : entryDescription}
       onClick={() => { action(() => {
         const result = checkEndgameEntry(modifier);
         if (result === 'ok') navigate(`/combat?endgame=${modifier}`);
@@ -68,8 +80,10 @@ export function EndgamePanel() {
       <p className="mt-1 text-sm text-d2-white/80">{t('achievement.reward', { materials: materialsText(endgameDefinition.achievement.reward.materials) })}</p>
       {model.kind !== 'invalid' && (model.achievement.claimed || model.achievement.available) &&
         <p className="mt-2 text-sm text-d2-set">{t(model.achievement.claimed ? 'achievement.claimed' : 'achievement.ready')}</p>}
+      {claim !== 'ok' && <p id={claimDescription} role="status" data-testid="endgame-claim-readiness"
+        className="mt-2 text-sm text-d2-gold">{t(`feedback.${claim}`)}</p>}
       <Button type="button" variant="secondary" className="mt-3 min-h-11 max-w-full whitespace-normal"
-        data-testid="endgame-claim" disabled={disabled || !model.achievement.available}
+        data-testid="endgame-claim" disabled={claim !== 'ok'} aria-describedby={claim === 'ok' ? undefined : claimDescription}
         onClick={() => { action(() => { setFeedback(claimEndgameAchievement()); }); }}>{t('achievement.claim')}</Button>
     </div>
     {feedback && <p role="status" aria-live="polite" className="mt-3 text-sm text-d2-gold">{t(`feedback.${feedback}`)}</p>}

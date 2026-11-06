@@ -1,11 +1,26 @@
 {
   "compilerOptions": {
     "composite": true,
+    "target": "ES2022",
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.node.tsbuildinfo",
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "strict": true
   },
-  "include": ["vite.config.ts", "vitest.config.ts", "vitest.workspace.ts", "vitest.diagnostics.workspace.ts", "playwright.config.ts", "playwright.iron-golem.config.ts", "playwright.skeletal-mage.config.ts", "playwright.challenge-entry.config.ts"]
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "vitest.workspace.ts",
+    "vitest.diagnostics.workspace.ts",
+    "vitest.campaign.workspace.ts",
+    "playwright.config.ts",
+    "playwright.iron-golem.config.ts",
+    "playwright.skeletal-mage.config.ts",
+    "playwright.challenge-entry.config.ts",
+    "scripts/precompile-authored-validators.ts",
+    "scripts/precompile-skill-validator.ts",
+    "scripts/precompile-save-validators.ts"
+  ]
 }

@@ -10,7 +10,7 @@ const complete = () => ({ ...row, ignoresDefense: true, statusEffect: { dotPctOf
 it('requires actual Impale to carry its explicit bypass and Bleed potency', () => {
   expect(row).toMatchObject({ ignoresDefense: true, statusEffect: { dotPctOfDamage: .1 },
     requiredLevel: 12, maxLevel: 20, cost: { mana: 10 }, cooldown: 2,
-    damage: { min: 75, max: 110 }, scaling: { damagePerLevel: 7 } });
+    damage: { min: 75, max: 110 }, scaling: { damagePerLevel: 150 } });
   expect(validate(row), JSON.stringify(validate.errors)).toBe(true);
 });
 it('preserves both capabilities in real registration without source mutation', () => {
@@ -18,7 +18,7 @@ it('preserves both capabilities in real registration without source mutation', (
   expect(row).toEqual(before);
   expect(skill).toMatchObject({ id: 'amazon.impale', manaCost: 10, cooldown: 2,
     target: 'single-enemy', effects: [{ kind: 'damage', damageType: 'physical',
-      ignoresDefense: true, base: [75, 110], perRank: [7, 7], applyStatus: { id: 'bleed', dotPctOfDamage: .1 } }] });
+      ignoresDefense: true, base: [75, 110], perRank: [150, 150], applyStatus: { id: 'bleed', dotPctOfDamage: .1 } }] });
 });
 it('requires each behavior field on the actual row', () => {
   expect(validate(complete()), JSON.stringify(validate.errors)).toBe(true);
@@ -48,8 +48,8 @@ it('shows JSON-owned bypass and shared Bleed rules at unlearned/current/next/MAX
     const model = computeSkillDisplayModel(row, rank), stats = rank === 0 ? model.next : model.current;
     expect(stats).toMatchObject({ ignoresDefense: true, periodic: {
       statusId: 'bleed', percentOfHit: 10, durationSeconds: 3, maxStacks: 1, minDps: 1 } });
-    expect(stats?.damage).toEqual([{ type: 'physical', min: 75 + 7 * Math.max(0, rank - 1),
-      max: 110 + 7 * Math.max(0, rank - 1) }]);
+    expect(stats?.damage).toEqual([{ type: 'physical', min: 75 + 150 * Math.max(0, rank - 1),
+      max: 110 + 150 * Math.max(0, rank - 1) }]);
     if (rank > 0 && rank < 20) expect(model.next).toHaveProperty('ignoresDefense', true);
     if (rank === 20) expect(model.next).toBeUndefined();
   }

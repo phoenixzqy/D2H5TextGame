@@ -1,29 +1,40 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useShallow } from 'zustand/react/shallow';
 import { Button, Panel, tDataKey } from '@/ui';
-import { loadQuestItems, questItemSource, type ReadQuestItemDef } from '@/data/loaders/quest-items';
+import { questItemSource, type ReadQuestItemDef } from '@/data/loaders/quest-items';
 import { useInventoryStore } from '@/stores/inventoryStore';
-import { readQuestItem, recoverClaimedQuestRewardItem, questRewardItemRecoveryStatus } from '@/features/quests/claimReward';
-import { assembleQuestItem, questAssemblyStatus } from '@/features/quests/questCrafting';
+import { readQuestItem, recoverClaimedQuestRewardItem, questRewardItemRecoveryStatuses } from '@/features/quests/claimReward';
+import { assembleQuestItem, questAssemblyInventory } from '@/features/quests/questCrafting';
 import { useMapStore } from '@/stores/mapStore';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
+import { allCountedQuestCounters } from '@/features/quests/countedQuestActions';
 
 /** Bound quest rewards and consumed receipts, independent of equipment capacity. */
 export function QuestItemsPanel() {
   const { t, i18n } = useTranslation('inventory');
   const ledger = useInventoryStore(state => state.questItems);
-  const progress = useMapStore(state => state.questProgress);
+  // Queries below also validate receipts and resolve act eligibility. Subscribe
+  // to those inputs directly instead of depending on incidental gear renders.
+  const { questProgress: progress } = useMapStore(useShallow(state => ({
+    questProgress: state.questProgress,
+    questReceipts: state.questReceipts,
+    clearedSubAreas: state.clearedSubAreas,
+    currentAct: state.currentAct,
+    selectedDifficulty: state.selectedDifficulty
+  })));
   const [feedback, setFeedback] = useState<{ key: string; skillPoints?: number; maxLife?: number; allResist?: number; item?: string } | null>(null);
-  const definitions = loadQuestItems();
+  const { definitions, assemblies } = questAssemblyInventory();
+  const countedItems = allCountedQuestCounters()
+    .filter(({ counts }) => counts.recovered > 0);
   const items = definitions.filter(item => {
     const source = questItemSource(item);
     return Object.hasOwn(ledger, source) && ledger[source]?.itemId === item.id;
   });
-  const assemblies = definitions.filter(item => item.kind === 'assembled' &&
-    (Object.hasOwn(ledger, questItemSource(item)) || item.ingredients.some(id => items.some(input => input.id === id))));
-  const recoveries = definitions.filter(item => item.kind === undefined &&
-    questRewardItemRecoveryStatus(item.sourceQuestId) === 'ready');
+  const rewardItems = definitions.filter(item => item.kind === undefined);
+  const recoveryStatuses = questRewardItemRecoveryStatuses(rewardItems.map(item => item.sourceQuestId));
+  const recoveries = rewardItems.filter(item => recoveryStatuses.get(item.sourceQuestId) === 'ready');
   const read = (item: ReadQuestItemDef): void => {
     try {
       const result = readQuestItem(questItemSource(item));
@@ -43,7 +54,7 @@ export function QuestItemsPanel() {
   return (
     <Panel title={t('questItems.title')} className="mb-4" data-testid="quest-items-panel">
       <p className="text-sm text-d2-white/80 mb-3">{t('questItems.bound')}</p>
-      {items.length === 0 ? (
+      {items.length === 0 && countedItems.length === 0 ? (
         <p className="text-sm text-d2-white/70">{t('questItems.empty')}</p>
       ) : (
         <ul className="space-y-3">
@@ -76,6 +87,13 @@ export function QuestItemsPanel() {
               </li>
             );
           })}
+          {countedItems.map(({ definition, counts }) => <li key={definition.key}
+            data-testid={`quest-counted-item-${definition.key}`} className="min-w-0 space-y-2 break-words">
+            <h3 className="font-serif text-d2-gold">{tDataKey(t, definition.nameKey)}</h3>
+            <p className="text-sm text-d2-white/80">{tDataKey(t, definition.descKey)}</p>
+            <p className="text-sm text-d2-gold">{t('questItems.counted.counts', { ...counts })}</p>
+            <p className="text-sm text-d2-white/80">{t('questItems.counted.bound')}</p>
+          </li>)}
         </ul>
       )}
       {recoveries.map(item => (
@@ -87,7 +105,7 @@ export function QuestItemsPanel() {
               try {
                 const result = recoverClaimedQuestRewardItem(item.sourceQuestId);
                 setFeedback({ key: result === 'ok' ? 'reward-recovered'
-                  : result === 'already-consumed' && item.kind === undefined && item.effect.maxLife !== undefined
+                  : result === 'already-consumed' && item.effect.maxLife !== undefined
                     ? 'life-already-consumed' : result });
               } catch (error) {
                 if (error instanceof AggregateError) setFeedback({ key: 'life-restoration-failed' });
@@ -97,9 +115,8 @@ export function QuestItemsPanel() {
             }}>{t('questItems.recovery.action', { item: tDataKey(t, item.nameKey) })}</Button>
         </div>
       ))}
-      {assemblies.map(item => {
-        if (item.kind !== 'assembled') return null;
-        const source = questItemSource(item), status = questAssemblyStatus(source);
+      {assemblies.map(({ item, status }) => {
+        const source = questItemSource(item);
         const feedbackStatus = status === 'owned' && progress[item.sourceQuestId]?.rewardClaimed === true ? 'claimed' : status;
         const name = tDataKey(t, item.nameKey);
         const ingredientNames = item.ingredients.map(id => {

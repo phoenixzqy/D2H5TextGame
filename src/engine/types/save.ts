@@ -10,6 +10,15 @@ import { migrateSaveV21 } from '../save/migrate-v21';
 import { migrateSaveV22 } from '../save/migrate-v22';
 import { migrateSaveV23 } from '../save/migrate-v23';
 import { migrateSaveV24 } from '../save/migrate-v24';
+import { migrateSaveV25 } from '../save/migrate-v25';
+import { migrateSaveV26 } from '../save/migrate-v26';
+import { migrateSaveV27 } from '../save/migrate-v27';
+import { migrateSaveV28 } from '../save/migrate-v28';
+import { migrateSaveV29 } from '../save/migrate-v29';
+import { migrateSaveV30 } from '../save/migrate-v30';
+import { migrateSaveV31 } from '../save/migrate-v31';
+import { migrateSaveV32 } from '../save/migrate-v32';
+import { migrateSaveV33 } from '../save/migrate-v33';
 import type { PlayerAuraId } from './auras';
 import type { RespecsRemaining } from '../progression/respec';
 import { migrateSaveV20 } from '../save/migrate-v20';
@@ -30,7 +39,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 24;
+export const CURRENT_SAVE_VERSION = 33;
 
 /**
  * Save file version (most recent).
@@ -423,7 +432,46 @@ export interface SaveV24 extends Omit<SaveV23, 'version' | 'map'> {
   readonly version: 24;
   readonly map: Native24MapSaveData;
 }
-export type SaveCurrent = SaveV24;
+/** Native25 reserves the hero charm slot and recovers predecessor key collisions. */
+export interface SaveV25 extends Omit<SaveV24, 'version'> {
+  readonly version: 25;
+}
+/** Native26 admits one source-bound Larzuk Present proof without inferring any reward. */
+export interface SaveV26 extends Omit<SaveV25, 'version'> {
+  readonly version: 26;
+}
+/** Native27 admits one durable Warband enlistment proof without inferring mercenary ownership. */
+export interface SaveV27 extends Omit<SaveV26, 'version'> {
+  readonly version: 27;
+}
+/** Native28 admits Drognan's retained physical recovery without inferring completion or rewards. */
+export interface SaveV28 extends Omit<SaveV27, 'version'> {
+  readonly version: 28;
+}
+/** Native29 admits Nihlathak's qualified physical relic without inferring recovery or rewards. */
+export interface SaveV29 extends Omit<SaveV28, 'version'> {
+  readonly version: 29;
+}
+/** Native30 admits the three finite captain enlistment proofs without inferring mercenary ownership. */
+export interface SaveV30 extends Omit<SaveV29, 'version'> {
+  readonly version: 30;
+}
+/** Native31 admits the finite counted source family without inferring recovery, consumption or rewards. */
+export interface SaveV31 extends Omit<SaveV30, 'version'> {
+  readonly version: 31;
+}
+/** P14 adds only an empty bounty ledger when upgrading accepted literal31. */
+export interface SaveV32 extends Omit<SaveV31, 'version' | 'map'> {
+  readonly version: 32;
+  readonly map: SaveV31['map'] & { readonly bounties: import('../map/regional-bounties').RegionalBountyLedger };
+}
+/** Native33 owns recruitment history/SR misses and merc-specific shard/star progress. */
+export interface SaveV33 extends Omit<SaveV32, 'version' | 'meta' | 'mercs'> {
+  readonly version: 33;
+  readonly meta: MetaSaveData & { readonly recruitmentState: import('../save/recruitment-state').RecruitmentHistoryState };
+  readonly mercs: SaveV32['mercs'] & { readonly recruitmentProgress: import('../gacha/recruitment-state').MercRecruitmentProgress };
+}
+export type SaveCurrent = SaveV33;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -636,5 +684,14 @@ export const MIGRATIONS: Record<number, Migration> = {
   21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20),
   22: (raw: unknown): SaveV22 => migrateSaveV22(raw as SaveV21),
   23: (raw: unknown): SaveV23 => migrateSaveV23(raw as SaveV22),
-  24: (raw: unknown): SaveV24 => migrateSaveV24(raw as SaveV23)
+  24: (raw: unknown): SaveV24 => migrateSaveV24(raw as SaveV23),
+  25: (raw: unknown): SaveV25 => migrateSaveV25(raw as SaveV24),
+  26: (raw: unknown): SaveV26 => migrateSaveV26(raw as SaveV25),
+  27: (raw: unknown): SaveV27 => migrateSaveV27(raw as SaveV26),
+  28: (raw: unknown): SaveV28 => migrateSaveV28(raw as SaveV27),
+  29: (raw: unknown): SaveV29 => migrateSaveV29(raw as SaveV28),
+  30: (raw: unknown): SaveV30 => migrateSaveV30(raw as SaveV29),
+  31: (raw: unknown): SaveV31 => migrateSaveV31(raw as SaveV30),
+  32: (raw: unknown): SaveV32 => migrateSaveV32(raw as SaveV31),
+  33: (raw: unknown): SaveV33 => migrateSaveV33(raw as SaveV32)
 };

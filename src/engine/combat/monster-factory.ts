@@ -1,3 +1,4 @@
+import { copyLightningRetaliation, type LightningRetaliation } from './lightning-retaliation';
 /**
  * Build a runtime {@link CombatUnit} from a data-driven {@link MonsterDef}.
  *
@@ -28,6 +29,7 @@ import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
 import type { EliteConfigDef } from '../types/elite';
 import type { MonsterDef } from '../types/monsters';
+import { nativeMonsterBasicDelivery } from './damage-delivery';
 import type { Resistances } from '../types/attributes';
 import type { CombatUnit, MonsterTier } from './types';
 
@@ -111,6 +113,8 @@ export interface BuildMonsterOpts {
   readonly id?: string;
   /** Extra skill ids appended by elite affixes. */
   readonly extraSkillIds?: readonly string[];
+  /** Authored affix multiplier applied once to base attack speed; defaults to 1. */
+  readonly attackSpeedMultiplier?: number;
   /** Full skill order override, used by chapter bosses. */
   readonly skillOrderOverride?: readonly string[];
   /** Exact stat overrides applied after tier multipliers. */
@@ -122,6 +126,12 @@ export interface BuildMonsterOpts {
   };
   /** Additive resistance bonus applied after the monster JSON resistances. */
   readonly resistanceBonus?: number;
+  /** Per-type affix bonuses added with the tier bonus before the resistance cap. */
+  readonly resistanceBonuses?: Partial<Resistances>;
+  /** Strict affix-authored receiving-hit bolt, copied before RNG. */
+  readonly lightningRetaliation?: LightningRetaliation;
+  /** Affix-authored passive aura overriding archetype metadata, copied immutably. */
+  readonly frostAura?: MonsterDef['frostAura'];
 }
 
 /**
@@ -150,8 +160,39 @@ export function scaleMonsterLevelForArea(
 
 export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const { def, level, tier, rng, index } = opts;
+  const lightningRetaliation = copyLightningRetaliation(opts.lightningRetaliation);
+  const suppliedAura: unknown = opts.frostAura;
+  if (suppliedAura !== undefined &&
+      (suppliedAura === null || typeof suppliedAura !== 'object' || Array.isArray(suppliedAura) ||
+       Object.keys(suppliedAura).some(key => !['damage', 'intervalMs', 'chillDurationMs'].includes(key)) ||
+       !('damage' in suppliedAura) || typeof suppliedAura.damage !== 'number' ||
+       !Number.isFinite(suppliedAura.damage) || suppliedAura.damage < 0 ||
+       !('intervalMs' in suppliedAura) || typeof suppliedAura.intervalMs !== 'number' ||
+       !Number.isInteger(suppliedAura.intervalMs) || suppliedAura.intervalMs < 1000 ||
+       !('chillDurationMs' in suppliedAura) || typeof suppliedAura.chillDurationMs !== 'number' ||
+       !Number.isInteger(suppliedAura.chillDurationMs) || suppliedAura.chillDurationMs < 1000)) {
+    throw new RangeError(`Invalid affix Frost Aura for ${def.id}`);
+  }
+  const frostAura = opts.frostAura ?? def.frostAura;
+  const suppliedBonuses: unknown = opts.resistanceBonuses;
+  if (suppliedBonuses !== undefined &&
+      (suppliedBonuses === null || typeof suppliedBonuses !== 'object' || Array.isArray(suppliedBonuses) ||
+       Object.entries(suppliedBonuses).some(([type, value]) =>
+         !['fire', 'cold', 'lightning', 'poison', 'arcane', 'physical'].includes(type) ||
+         !Number.isFinite(value) || value < 0 || value > 100))) {
+    throw new RangeError(`Invalid resistance bonuses for ${def.id}`);
+  }
+  const resistanceBonuses = opts.resistanceBonuses;
+  const attackSpeed = (def.attackSpeed ?? 95) * (opts.attackSpeedMultiplier ?? 1);
+  if (opts.attackSpeedMultiplier !== undefined &&
+      (!Number.isFinite(opts.attackSpeedMultiplier) || opts.attackSpeedMultiplier <= 0 || !Number.isFinite(attackSpeed))) {
+    throw new RangeError(`Invalid attack speed multiplier for ${def.id}`);
+  }
   if (!isValidMonsterAttackProgression(def)) {
     throw new Error(`Invalid attack progression for ${def.id}`);
+  }
+  if (def.critDamage !== undefined && (!Number.isFinite(def.critDamage) || def.critDamage < 1)) {
+    throw new RangeError(`Invalid critical damage multiplier for ${def.id}`);
   }
   const levelOffset = Math.max(0, level - 1);
   const tierAttack = TIER_MULTIPLIERS[tier].attack;
@@ -194,14 +235,15 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   // 4. Resistances — fill missing slots with zero so DerivedStats is total.
   const r = def.resistances ?? {};
   const bonus = opts.resistanceBonus ?? 0;
-  const clampRes = (v: number): number => Math.min(75, Math.max(-100, v + bonus));
+  const clampRes = (type: keyof Resistances): number => Math.min(75, Math.max(-100,
+    (r[type] ?? 0) + bonus + (resistanceBonuses?.[type] ?? 0)));
   const resistances: Resistances = {
-    fire: clampRes(r.fire ?? 0),
-    cold: clampRes(r.cold ?? 0),
-    lightning: clampRes(r.lightning ?? 0),
-    poison: clampRes(r.poison ?? 0),
-    arcane: clampRes(r.arcane ?? 0),
-    physical: clampRes(r.physical ?? 0)
+    fire: clampRes('fire'),
+    cold: clampRes('cold'),
+    lightning: clampRes('lightning'),
+    poison: clampRes('poison'),
+    arcane: clampRes('arcane'),
+    physical: clampRes('physical')
   };
 
   // 5. Display name with optional index suffix and tier badge.
@@ -224,7 +266,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   // 7. Crit / dodge — flat trash baseline. Tier 'boss' gets +5% crit.
   const isBossTier = tier === 'boss' || tier === 'chapter-boss';
   const critChance = isBossTier ? 0.10 : 0.05;
-  const critDamage = isBossTier ? 1.75 : 1.5;
+  const critDamage = def.critDamage ?? (isBossTier ? 1.75 : 1.5);
   const physDodge = 0.05;
   const magicDodge = 0.05;
 
@@ -232,6 +274,12 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   // one big-skill action; engine's AI policy handles cooldowns.
   const skillOrder: readonly string[] = opts.skillOrderOverride ?? appendUnique(def.skills, opts.extraSkillIds ?? []);
 
+  const basicAttackDelivery = nativeMonsterBasicDelivery(def);
+  const championImmunities = tier === 'champion' && def.championDamageImmunities?.length
+    ? def.championDamageImmunities : undefined;
+  const damageImmunities = (def.damageImmunities ?? championImmunities)
+    ? Object.freeze([...new Set([...(def.damageImmunities ?? []), ...(championImmunities ?? [])])])
+    : undefined;
   const unit: CombatUnit = {
     id,
     name,
@@ -239,7 +287,16 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     level,
     tier,
     monsterArchetypeId: def.id,
+    ...(lightningRetaliation ? { lightningRetaliation } : {}),
+    ...(basicAttackDelivery !== undefined ? { basicAttackDelivery } : {}),
     ...(def.undead === true ? { undead: true as const } : {}),
+    ...(def.statusImmunities ? { statusImmunities: Object.freeze([...def.statusImmunities]) } : {}),
+    ...(damageImmunities ? { damageImmunities } : {}),
+    ...(def.stunDurationMultiplier !== undefined ? { stunDurationMultiplier: def.stunDurationMultiplier } : {}),
+    ...(frostAura ? { frostAura: Object.freeze({ ...frostAura }) } : {}),
+    ...(def.skillCooldownOverrides
+      ? { skillCooldownOverrides: Object.freeze({ ...def.skillCooldownOverrides }) }
+      : {}),
     stats: {
       life: lifeMaxStat,
       lifeMax: lifeMaxStat,
@@ -248,7 +305,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
       attack,
       defense,
       magicResist,
-      attackSpeed: def.attackSpeed ?? 95,
+      attackSpeed,
       critChance,
       critDamage,
       physDodge,

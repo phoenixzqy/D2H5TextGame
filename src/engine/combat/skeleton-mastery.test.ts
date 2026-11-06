@@ -727,15 +727,32 @@ const LEGACY_PREPATCH = JSON.parse(JSON.stringify(PREPATCH).replaceAll(
 )) as { readonly input: CombatSnapshot; readonly actual: ReturnType<typeof runBattleRecorded> };
 
 describe('P07a05B creation-only native Skeleton Mastery', () => {
-  it('preserves every prepatch recording field except explicit synthetic skill identity with no projection and explicit rank zero', () => {
+  it('preserves prepatch costs and timing with explicit synthetic identity, owner growth and zero Mastery', () => {
     const source = getSkill('necromancer.raise_skeleton');
     if (!source) throw new Error('Missing actual Skeleton source');
     registerSkill({ ...source, id: 'fixture.mastery-skeleton', archetype: 'fixture' });
-    // BUG235 publishes the last paid1000ms cooldown at the actual1940ms end,
-    // rather than retaining the actor's stale pre-cast cache. All other fields remain golden.
-    const expected = { ...LEGACY_PREPATCH.actual, result: { ...LEGACY_PREPATCH.actual.result,
-      playerTeam: LEGACY_PREPATCH.actual.result.playerTeam.map(unit => unit.id === 'hero'
-        ? { ...unit, cooldowns: { 'fixture.mastery-skeleton': 1700 + 1000 - 1940 } } : unit) } };
+    // BUG235 publishes the last paid1000ms cooldown at the actual1940ms end.
+    // Keep the historical recording immutable. New owner24 growth changes only
+    // body power and its ordinary hit; costs, identities, positions and timing stay literal.
+    const expectedSkeleton = (unit: CombatUnit): CombatUnit =>
+      unit.id === 'hero-summon-skeleton-1' || unit.id === 'hero-summon-skeleton-2'
+        ? { ...unit, life: 852, stats: { ...unit.stats, life: 852, lifeMax: 852,
+          attack: 357, defense: 111 }, basicAttackDelivery: 'melee' } : unit;
+    const expectedEvent = (event: BattleEvent): BattleEvent => event.kind === 'summon'
+      ? { ...event, unit: expectedSkeleton(event.unit) }
+      : event.kind === 'damage' && event.source === 'hero-summon-skeleton-1'
+        ? { ...event, amount: 357 } : event;
+    const expected = {
+      ...LEGACY_PREPATCH.actual,
+      events: LEGACY_PREPATCH.actual.events.map(expectedEvent),
+      result: {
+        ...LEGACY_PREPATCH.actual.result,
+        events: LEGACY_PREPATCH.actual.result.events.map(expectedEvent),
+        playerTeam: LEGACY_PREPATCH.actual.result.playerTeam.map(unit => unit.id === 'hero'
+          ? { ...unit, cooldowns: { 'fixture.mastery-skeleton': 1700 + 1000 - 1940 } }
+          : expectedSkeleton(unit))
+      }
+    };
     expect(legacyRecording(record(LEGACY_PREPATCH.input))).toEqual(expected);
     expect(legacyRecording(record({ ...LEGACY_PREPATCH.input, skeletonMastery: projection(0) }))).toEqual(expected);
     const actual = record(LEGACY_PREPATCH.input);
@@ -753,12 +770,12 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
   });
 
   it.each([
-    { template: 'skeleton', rank: 0, life: 162, attack: 35, defense: 19 },
-    { template: 'skeleton', rank: 1, life: 168.48, attack: 35.7, defense: 19.19 },
-    { template: 'skeleton', rank: 20, life: 291.6, attack: 49, defense: 22.8 },
-    { template: 'skeletal_mage', rank: 0, life: 123, attack: 45, defense: 10 },
-    { template: 'skeletal_mage', rank: 1, life: 127.92, attack: 45.9, defense: 10.1 },
-    { template: 'skeletal_mage', rank: 20, life: 221.4, attack: 63, defense: 12 }
+    { template: 'skeleton', rank: 0, life: 852, attack: 357, defense: 111 },
+    { template: 'skeleton', rank: 1, life: 886.08, attack: 364.14, defense: 112.11 },
+    { template: 'skeleton', rank: 20, life: 1533.6, attack: 499.8, defense: 133.2 },
+    { template: 'skeletal_mage', rank: 0, life: 583, attack: 275, defense: 79 },
+    { template: 'skeletal_mage', rank: 1, life: 606.32, attack: 280.5, defense: 79.79 },
+    { template: 'skeletal_mage', rank: 20, life: 1049.4, attack: 385, defense: 94.8 }
   ])('rank6 $template Mastery$rank creates literal stats', values => {
     const active = first(record(snapshot(values.rank, values.template)));
     const control = first(record(snapshot(0, values.template)));
@@ -772,8 +789,8 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
     if (values.template === 'skeletal_mage') expect(active.stats.magicDodge).toBe(.09);
   });
 
-  it('consumes retained Attack in actual neutral basic hits49 vs35', () => {
-    for (const [rank, amount] of [[0, 35], [20, 49]] as const) {
+  it('consumes owner-grown Attack in actual neutral basic hits499 vs357', () => {
+    for (const [rank, amount] of [[0, 357], [20, 499]] as const) {
       const actual = record(snapshot(rank)); const summon = first(actual);
       const hit = actual.events.find(event => event.kind === 'damage' && event.source === summon.id &&
         event.target === 'target' && !event.dodged && !event.crit);
@@ -781,11 +798,11 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
     }
   });
 
-  it('consumes fractional Defense19.19 against neutral100 for80 and loses real life after spawning full', () => {
+  it('consumes fractional owner-grown Defense112.11 against neutral200 for87 and loses real life after spawning full', () => {
     registerSkill({ id: 'fixture.skeleton-hit', archetype: 'fixture', target: 'all-enemies',
       minLevel: 1, cooldown: 100, manaCost: 0,
-      effects: [{ kind: 'damage', damageType: 'physical', base: [100, 100] }] });
-    for (const [rank, life, amount] of [[0, 162, 81], [1, 168.48, 80]] as const) {
+      effects: [{ kind: 'damage', damageType: 'physical', base: [200, 200] }] });
+    for (const [rank, life, amount] of [[0, 852, 89], [1, 886.08, 87]] as const) {
       const base = snapshot(rank);
       const actual = record({ ...base, enemyTeam: base.enemyTeam.map(enemy => ({ ...enemy,
         statuses: [], skillOrder: ['fixture.skeleton-hit'], stats: { ...enemy.stats, attack: 0 } })) });
@@ -823,9 +840,9 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
       const spawned = summons(actual);
       expect(spawned.length).toBeGreaterThanOrEqual(2);
       for (const event of spawned) {
-        expect.soft(event.unit.stats.lifeMax).toBeCloseTo(168.48, 12);
-        expect.soft(event.unit.stats.attack).toBeCloseTo(35.7, 12);
-        expect.soft(event.unit.stats.defense).toBeCloseTo(19.19, 12);
+        expect.soft(event.unit.stats.lifeMax).toBeCloseTo(886.08, 12);
+        expect.soft(event.unit.stats.attack).toBeCloseTo(364.14, 12);
+        expect.soft(event.unit.stats.defense).toBeCloseTo(112.11, 12);
       }
     } finally { registerSummon('skeleton', factory); }
   });
