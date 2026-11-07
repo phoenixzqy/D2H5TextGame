@@ -15,17 +15,25 @@
 import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
+import { Button, Panel, Modal, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { useMapStore, useMetaStore } from '@/stores';
 import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { monsterLevelForReplay } from '@/engine/map/replay-profile';
 import { challengeEnemyLevelRange } from '@/engine/combat/sub-area-run';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
-import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
+import {
+  hasAreaObjects,
+  travelToAreaObjects,
+  type ObjectActionResult
+} from '@/features/quests/interactObject';
 import { ReplayProfileControls } from './ReplayProfileControls';
 import { COUNTESS } from '@/engine/map/countess-admission';
-import { canSelectCountessEncounter, travelToCountessEncounter } from '@/features/quests/countessEncounter';
+import {
+  canSelectCountessEncounter,
+  travelToCountessEncounter
+} from '@/features/quests/countessEncounter';
 import { EndgamePanel } from '@/features/endgame/EndgamePanel';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
 import { resolveSubArea } from '@/stores/subAreaResolver';
@@ -69,27 +77,35 @@ export function MapScreen() {
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
-  const questProgress = useMapStore(s => s.questProgress);
-  const questReceipts = useMapStore(s => s.questReceipts);
-  const selectedDifficulty = useMapStore(s => s.selectedDifficulty);
-  const clearedSubAreas = useMapStore(s => {
+  const questProgress = useMapStore((s) => s.questProgress);
+  const questReceipts = useMapStore((s) => s.questReceipts);
+  const selectedDifficulty = useMapStore((s) => s.selectedDifficulty);
+  const clearedSubAreas = useMapStore((s) => {
     switch (s.selectedDifficulty) {
-      case 'normal': return s.clearedSubAreas;
-      case 'nightmare': return s.nightmareClearedSubAreas;
-      case 'hell': return s.hellClearedSubAreas;
+      case 'normal':
+        return s.clearedSubAreas;
+      case 'nightmare':
+        return s.nightmareClearedSubAreas;
+      case 'hell':
+        return s.hellClearedSubAreas;
     }
   });
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
-  const currentAct = useMapStore(s => s.currentAct);
-  const currentAreaId = useMapStore(s => s.currentSubAreaId);
+  const currentAct = useMapStore((s) => s.currentAct);
+  const currentAreaId = useMapStore((s) => s.currentSubAreaId);
   const [selectedObjectArea, setSelectedObjectArea] = useState<string | null>(null);
-  const [objectFailure, setObjectFailure] = useState<{ areaId: string; result: ObjectActionResult | 'busy' } | null>(null);
+  const [objectFailure, setObjectFailure] = useState<{
+    areaId: string;
+    result: ObjectActionResult | 'busy';
+  } | null>(null);
   const [countessRefused, setCountessRefused] = useState(false);
   const objectTrigger = useRef<HTMLButtonElement | null>(null);
   const currentArea = resolveSubArea(currentAct, currentAreaId);
 
-  const [openAct, setOpenAct] = useState<number>(1);
+  const [openAct, setOpenAct] = useState<number>(currentAct);
+
+  const [options, setOptions] = useState<'replay' | 'endgame' | null>(null);
 
   // Build the act/sub-area tree once from the canonical data set so
   // every UI row lines up with a real id (no alias drift).
@@ -133,7 +149,9 @@ export function MapScreen() {
     setIdleTarget(subId);
     navigate('/combat');
   };
-  const stopFarming = () => { setIdleTarget(undefined); };
+  const stopFarming = () => {
+    setIdleTarget(undefined);
+  };
 
   /**
    * `clearedSubAreas` may contain either the canonical id (preferred,
@@ -167,12 +185,43 @@ export function MapScreen() {
 
   return (
     <ScreenShell testId="map-screen" title={t('worldMap')} footer={<IdleTickerStrip />}>
-      <div className="space-y-3 max-w-3xl mx-auto pb-12">
-        <ReplayProfileControls />
-        <EndgamePanel />
+      <div className="mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col gap-2">
+        <div className="flex shrink-0 flex-wrap gap-2">
+          <select
+            aria-label={t('worldMap')}
+            value={openAct}
+            onChange={(event) => {
+              setOpenAct(Number(event.target.value));
+            }}
+            className="d2-control min-h-11 min-w-0 flex-1 rounded border border-d2-border bg-d2-bg px-2 text-d2-gold"
+          >
+            {ACTS.map((act) => (
+              <option key={act.number} value={act.number}>
+                {t('act', { number: act.number })} · {tDataKey(t, act.nameKey)}
+                {isActUnlocked(act.number) ? '' : ` · ${t('locked')}`}
+              </option>
+            ))}
+          </select>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setOptions('replay');
+            }}
+          >
+            {t('replay.title')}
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setOptions('endgame');
+            }}
+          >
+            {t('common:viewport.endgame')}
+          </Button>
+        </div>
         {idleTarget && idleAreaName && (
           <div
-            className="d2-toolbar sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
+            className="d2-toolbar shrink-0 px-3 py-1
                        bg-d2-panel/95 backdrop-blur border-b border-d2-gold/40
                        text-sm text-d2-gold flex flex-wrap items-center gap-2"
             data-testid="idle-location-banner"
@@ -183,7 +232,9 @@ export function MapScreen() {
             </span>
             <button
               type="button"
-              onClick={() => { setIdleTarget(undefined); }}
+              onClick={() => {
+                setIdleTarget(undefined);
+              }}
               className="d2-control min-h-11 min-w-11 max-w-full px-2 text-sm text-d2-white/90 hover:text-d2-gold underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
               data-testid="idle-stop-button"
             >
@@ -191,237 +242,273 @@ export function MapScreen() {
             </button>
           </div>
         )}
-        {ACTS.map((act) => {
-          const isOpen = openAct === act.number;
+        {ACTS.filter((act) => act.number === openAct).map((act) => {
           const actUnlocked = isActUnlocked(act.number);
           return (
-            <Panel key={act.number} className="p-0 overflow-hidden">
-              <button
-                type="button"
-                onClick={() => { setOpenAct(isOpen ? -1 : act.number); }}
-                aria-expanded={isOpen}
-                className="d2-plaque d2-act-heading w-full flex items-center gap-3 px-3 py-2 min-h-[56px]
-                           hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold"
-              >
-                <GameImage
-                  src={getZoneArtUrl(act.number)}
-                  alt=""
-                  fallbackIcon={String(act.number)}
-                  size="lg"
-                  className="!w-16 !h-12 !rounded"
-                />
-                <span className="flex-1 min-w-0 break-words text-left text-d2-gold font-serif">
-                  {t('act', { number: act.number })} ·{' '}
-                  {tDataKey(t, act.nameKey)}
-                </span>
-                <span className="flex shrink-0 items-center gap-2 text-sm">
-                  {!actUnlocked && (
-                    <span
-                      className="text-d2-white/80"
-                      aria-label={t('defeatBossToUnlockAct', {
-                        boss: gateBossDisplayName(act.number),
-                        act: act.number
-                      })}
-                      title={t('defeatBossToUnlockAct', {
-                        boss: gateBossDisplayName(act.number),
-                        act: act.number
-                      })}
+            <Panel key={act.number} className="flex min-h-0 flex-1 flex-col !p-0">
+              <PagedList
+                key={act.number}
+                items={act.subAreas}
+                listClassName="divide-y divide-d2-border/50"
+                renderItem={(sa) => {
+                  const unlocked = actUnlocked;
+                  const cleared = isSubAreaCleared(sa);
+                  const isIdleHere = idleTarget === sa.id || idleTarget === sa.alias;
+                  const areaName = tDataKey(t, sa.nameKey);
+                  const rowCls = !unlocked ? '' : cleared ? '' : 'border-l-2 border-d2-gold/60';
+                  return (
+                    <li
+                      key={sa.id}
+                      className={`d2-map-row px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
+                      data-testid={`sub-area-row-${sa.alias}`}
+                      data-cleared={cleared || undefined}
+                      data-idle-here={isIdleHere || undefined}
                     >
-                      🔒 {t('locked')}
-                    </span>
-                  )}
-                  <span aria-hidden>{isOpen ? '▾' : '▸'}</span>
-                </span>
-              </button>
-              {isOpen && (
-                <ul className="border-t border-d2-border divide-y divide-d2-border/50">
-                  {act.subAreas.map((sa) => {
-                    const unlocked = actUnlocked;
-                    const cleared = isSubAreaCleared(sa);
-                    const isIdleHere = idleTarget === sa.id || idleTarget === sa.alias;
-                    const areaName = tDataKey(t, sa.nameKey);
-                    const rowCls = !unlocked
-                      ? ''
-                      : cleared
-                      ? ''
-                      : 'border-l-2 border-d2-gold/60';
-                    return (
-                      <li
-                        key={sa.id}
-                        className={`d2-map-row px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
-                        data-testid={`sub-area-row-${sa.alias}`}
-                        data-cleared={cleared || undefined}
-                        data-idle-here={isIdleHere || undefined}
-                      >
-                        <GameImage
-                          src={getZoneArtUrl(act.number)}
-                          alt=""
-                          fallbackIcon={String(act.number)}
-                          size="sm"
-                          className="!w-10 !h-8 !rounded"
-                        />
-                        <div className="flex-1 basis-40 min-w-0 max-w-full">
-                          <div className={`text-sm flex flex-wrap items-center gap-x-2 gap-y-1 ${cleared ? 'text-d2-white/90' : 'text-d2-white'}`}>
-                            <span className="min-w-0 max-w-full break-words">
-                              {areaName}
+                      <GameImage
+                        src={getZoneArtUrl(act.number)}
+                        alt=""
+                        fallbackIcon={String(act.number)}
+                        size="sm"
+                        className="!w-10 !h-8 !rounded"
+                      />
+                      <div className="flex-1 basis-40 min-w-0 max-w-full">
+                        <div
+                          className={`text-sm flex flex-wrap items-center gap-x-2 gap-y-1 ${cleared ? 'text-d2-white/90' : 'text-d2-white'}`}
+                        >
+                          <span className="min-w-0 max-w-full break-words">{areaName}</span>
+                          {unlocked && cleared && (
+                            <span
+                              className="d2-tag max-w-full break-words text-sm uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
+                              data-testid={`cleared-badge-${sa.alias}`}
+                            >
+                              ✓ {t('cleared')}
                             </span>
-                            {unlocked && cleared && (
-                              <span
-                                className="d2-tag max-w-full break-words text-sm uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
-                                data-testid={`cleared-badge-${sa.alias}`}
-                              >
-                                ✓ {t('cleared')}
-                              </span>
-                            )}
-                            {unlocked && !cleared && (
-                              <span
-                                className="d2-tag max-w-full break-words text-sm uppercase text-d2-gold border border-d2-gold/50 rounded px-1.5 py-0.5"
-                                data-testid={`uncleared-badge-${sa.alias}`}
-                              >
-                                {t('uncleared')}
-                              </span>
-                            )}
-                            {sa.bossArchetypeId && (
-                              <span
-                                className="d2-tag max-w-full break-words text-sm uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
-                                title={bossDisplayName(sa.bossArchetypeId, areaName)}
-                                data-testid={`boss-badge-${sa.alias}`}
-                              >
-                                {t('bossBadge')}
-                              </span>
-                            )}
-                            {sa.difficultyBand !== 'none' && (
-                              <span
-                                className="d2-tag max-w-full break-words text-sm uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
-                                data-testid={`difficulty-badge-${sa.alias}`}
-                              >
-                                {t(`difficulty.${sa.difficultyBand}`)}
-                              </span>
-                            )}
-                            {isIdleHere && (
-                              <span className="d2-tag max-w-full break-words text-sm uppercase text-d2-white/90 border border-d2-white/40 rounded px-1.5 py-0.5">
-                                {t('idleHereShort')}
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-sm text-d2-white/80">
-                            {t('enemyLevels', {
-                              min: monsterLevelForReplay(sa.enemyLevels.min, selectedDifficulty),
-                              max: monsterLevelForReplay(sa.enemyLevels.max, selectedDifficulty)
-                            })}
-                            {' · '}
-                            {t('challengeMonsters', { min: sa.challengeMonsterMin, max: sa.challengeMonsterMax })}
-                          </div>
+                          )}
+                          {unlocked && !cleared && (
+                            <span
+                              className="d2-tag max-w-full break-words text-sm uppercase text-d2-gold border border-d2-gold/50 rounded px-1.5 py-0.5"
+                              data-testid={`uncleared-badge-${sa.alias}`}
+                            >
+                              {t('uncleared')}
+                            </span>
+                          )}
+                          {sa.bossArchetypeId && (
+                            <span
+                              className="d2-tag max-w-full break-words text-sm uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
+                              title={bossDisplayName(sa.bossArchetypeId, areaName)}
+                              data-testid={`boss-badge-${sa.alias}`}
+                            >
+                              {t('bossBadge')}
+                            </span>
+                          )}
+                          {sa.difficultyBand !== 'none' && (
+                            <span
+                              className="d2-tag max-w-full break-words text-sm uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
+                              data-testid={`difficulty-badge-${sa.alias}`}
+                            >
+                              {t(`difficulty.${sa.difficultyBand}`)}
+                            </span>
+                          )}
+                          {isIdleHere && (
+                            <span className="d2-tag max-w-full break-words text-sm uppercase text-d2-white/90 border border-d2-white/40 rounded px-1.5 py-0.5">
+                              {t('idleHereShort')}
+                            </span>
+                          )}
                         </div>
-                        {!unlocked ? (
-                          <span
-                            className="text-sm text-d2-white/80"
-                            title={t('defeatBossToUnlockAct', {
-                              boss: gateBossDisplayName(act.number),
-                              act: act.number
-                            })}
-                          >
-                            🔒 {t('locked')}
-                          </span>
-                        ) : (
-                          <div className="flex max-w-full flex-wrap gap-2 [&>button]:max-w-full [&>button]:whitespace-normal [&>button]:focus-visible:outline [&>button]:focus-visible:outline-2 [&>button]:focus-visible:outline-d2-gold">
-                            {sa.id === COUNTESS.area && canSelectCountessEncounter({ selectedDifficulty, questProgress, questReceipts, isActUnlocked }) && (
-                              <Button type="button" variant="secondary" className="min-h-11 min-w-11 max-w-full whitespace-normal text-sm" data-testid="countess-challenge"
+                        <div className="text-sm text-d2-white/80">
+                          {t('enemyLevels', {
+                            min: monsterLevelForReplay(sa.enemyLevels.min, selectedDifficulty),
+                            max: monsterLevelForReplay(sa.enemyLevels.max, selectedDifficulty)
+                          })}
+                          {' · '}
+                          {t('challengeMonsters', {
+                            min: sa.challengeMonsterMin,
+                            max: sa.challengeMonsterMax
+                          })}
+                        </div>
+                      </div>
+                      {!unlocked ? (
+                        <span
+                          className="text-sm text-d2-white/80"
+                          title={t('defeatBossToUnlockAct', {
+                            boss: gateBossDisplayName(act.number),
+                            act: act.number
+                          })}
+                        >
+                          🔒 {t('locked')}
+                        </span>
+                      ) : (
+                        <div className="flex max-w-full flex-wrap gap-2 [&>button]:max-w-full [&>button]:whitespace-normal [&>button]:focus-visible:outline [&>button]:focus-visible:outline-2 [&>button]:focus-visible:outline-d2-gold">
+                          {sa.id === COUNTESS.area &&
+                            canSelectCountessEncounter({
+                              selectedDifficulty,
+                              questProgress,
+                              questReceipts,
+                              isActUnlocked
+                            }) && (
+                              <Button
+                                type="button"
+                                variant="secondary"
+                                className="min-h-11 min-w-11 max-w-full whitespace-normal text-sm"
+                                data-testid="countess-challenge"
                                 onClick={() => {
                                   try {
-                                    if (!travelToCountessEncounter()) { setCountessRefused(true); return; }
+                                    if (!travelToCountessEncounter()) {
+                                      setCountessRefused(true);
+                                      return;
+                                    }
                                     setCountessRefused(false);
                                     navigate(`/combat?questEncounter=${COUNTESS.encounter}`);
                                   } catch (error) {
-                                    if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+                                    if (
+                                      !(
+                                        error instanceof WaveGuardError ||
+                                        error instanceof RecordedWaveAccessError
+                                      )
+                                    )
+                                      throw error;
                                     setCountessRefused(true);
                                   }
-                                }}>{t('quests:countess.challenge')}</Button>
-                            )}
-                            {hasAreaObjects(act.number, sa.id) && (
-                              <button type="button"
-                                data-testid={`area-objects-${sa.alias}`}
-                                aria-expanded={selectedObjectArea === sa.id && currentArea?.id === sa.id}
-                                aria-controls="area-objects"
-                                className="d2-control min-h-[44px] min-w-[44px] rounded border border-d2-border px-3 py-2 text-sm text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
-                                onClick={event => {
-                                  objectTrigger.current = event.currentTarget;
-                                  try {
-                                    const result = travelToAreaObjects(act.number, sa.id);
-                                    if (result === 'ok') { setSelectedObjectArea(sa.id); setObjectFailure(null); }
-                                    else setObjectFailure({ areaId: sa.id, result });
-                                  } catch (error) {
-                                    if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
-                                    setObjectFailure({ areaId: sa.id, result: 'busy' });
-                                  }
-                                }}>{t('quests:areaObjects.inspect')}</button>
-                            )}
-                            {isIdleHere ? (
-                              // Bug #4 — give the row a clearly-visible
-                              // "Stop Farming" toggle so the player can
-                              // halt idle without leaving the page.
-                              <Button
-                                variant="danger"
-                                className="min-h-[44px] min-w-[44px] text-sm"
-                                onClick={stopFarming}
-                                data-testid={`stop-farming-${sa.alias}`}
-                                aria-pressed={true}
+                                }}
                               >
-                                ⏹ {t('stopFarming')}
-                              </Button>
-                            ) : !cleared ? (
-                              // Bug #5 — idle is unlocked only after the
-                              // first clear. Render disabled-with-lock so
-                              // layout stays stable.
-                              <Button
-                                variant="secondary"
-                                className="min-h-[44px] min-w-[44px] text-sm opacity-60"
-                                onClick={() => { /* disabled */ }}
-                                disabled
-                                aria-disabled={true}
-                                title={t('farmLockedHint')}
-                                aria-label={t('farmLockedHint')}
-                                data-testid={`farm-locked-${sa.alias}`}
-                              >
-                                🔒 {t('farmHere')}
-                              </Button>
-                            ) : (
-                              <Button
-                                variant="secondary"
-                                className="min-h-[44px] min-w-[44px] text-sm"
-                                onClick={() => { farmHere(act.number, sa.alias); }}
-                                data-testid={`farm-here-${sa.alias}`}
-                              >
-                                {t('farmHere')}
+                                {t('quests:countess.challenge')}
                               </Button>
                             )}
-                            <Button
-                              variant="primary"
-                              className="min-h-[44px] min-w-[44px] text-sm"
-                              onClick={() => { enterArea(act.number, sa.alias); }}
+                          {hasAreaObjects(act.number, sa.id) && (
+                            <button
+                              type="button"
+                              data-testid={`area-objects-${sa.alias}`}
+                              aria-expanded={
+                                selectedObjectArea === sa.id && currentArea?.id === sa.id
+                              }
+                              aria-controls="area-objects"
+                              className="d2-control min-h-[44px] min-w-[44px] rounded border border-d2-border px-3 py-2 text-sm text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
+                              onClick={(event) => {
+                                objectTrigger.current = event.currentTarget;
+                                try {
+                                  const result = travelToAreaObjects(act.number, sa.id);
+                                  if (result === 'ok') {
+                                    setSelectedObjectArea(sa.id);
+                                    setObjectFailure(null);
+                                  } else setObjectFailure({ areaId: sa.id, result });
+                                } catch (error) {
+                                  if (
+                                    !(
+                                      error instanceof WaveGuardError ||
+                                      error instanceof RecordedWaveAccessError
+                                    )
+                                  )
+                                    throw error;
+                                  setObjectFailure({ areaId: sa.id, result: 'busy' });
+                                }
+                              }}
                             >
-                              {t('enter')}
+                              {t('quests:areaObjects.inspect')}
+                            </button>
+                          )}
+                          {isIdleHere ? (
+                            // Bug #4 — give the row a clearly-visible
+                            // "Stop Farming" toggle so the player can
+                            // halt idle without leaving the page.
+                            <Button
+                              variant="danger"
+                              className="min-h-[44px] min-w-[44px] text-sm"
+                              onClick={stopFarming}
+                              data-testid={`stop-farming-${sa.alias}`}
+                              aria-pressed={true}
+                            >
+                              ⏹ {t('stopFarming')}
                             </Button>
-                          </div>
-                        )}
-                        {sa.id === COUNTESS.area && countessRefused && <p role="alert" className="basis-full text-sm text-d2-white/90">{t('quests:countess.refused')}</p>}
-                        {objectFailure?.areaId === sa.id && (
-                          <p role="alert" className="basis-full text-sm text-d2-white/90">{t(`quests:areaObjects.feedback.${objectFailure.result}`)}</p>
-                        )}
-                        {selectedObjectArea === sa.id && currentArea?.id === sa.id && currentAct === act.number && (
-                          <AreaObjectsPanel act={act.number} areaId={sa.id} onClose={() => {
-                            setSelectedObjectArea(null); objectTrigger.current?.focus();
-                          }} />
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
+                          ) : !cleared ? (
+                            // Bug #5 — idle is unlocked only after the
+                            // first clear. Render disabled-with-lock so
+                            // layout stays stable.
+                            <Button
+                              variant="secondary"
+                              className="min-h-[44px] min-w-[44px] text-sm opacity-60"
+                              onClick={() => {
+                                /* disabled */
+                              }}
+                              disabled
+                              aria-disabled={true}
+                              title={t('farmLockedHint')}
+                              aria-label={t('farmLockedHint')}
+                              data-testid={`farm-locked-${sa.alias}`}
+                            >
+                              🔒 {t('farmHere')}
+                            </Button>
+                          ) : (
+                            <Button
+                              variant="secondary"
+                              className="min-h-[44px] min-w-[44px] text-sm"
+                              onClick={() => {
+                                farmHere(act.number, sa.alias);
+                              }}
+                              data-testid={`farm-here-${sa.alias}`}
+                            >
+                              {t('farmHere')}
+                            </Button>
+                          )}
+                          <Button
+                            variant="primary"
+                            className="min-h-[44px] min-w-[44px] text-sm"
+                            onClick={() => {
+                              enterArea(act.number, sa.alias);
+                            }}
+                          >
+                            {t('enter')}
+                          </Button>
+                        </div>
+                      )}
+                      {sa.id === COUNTESS.area && countessRefused && (
+                        <p role="alert" className="basis-full text-sm text-d2-white/90">
+                          {t('quests:countess.refused')}
+                        </p>
+                      )}
+                      {objectFailure?.areaId === sa.id && (
+                        <p role="alert" className="basis-full text-sm text-d2-white/90">
+                          {t(`quests:areaObjects.feedback.${objectFailure.result}`)}
+                        </p>
+                      )}
+                    </li>
+                  );
+                }}
+              />
             </Panel>
           );
         })}
       </div>
+      <Modal
+        isOpen={options !== null}
+        onClose={() => {
+          setOptions(null);
+        }}
+        title={options === 'replay' ? t('replay.title') : t('common:viewport.endgame')}
+      >
+        {options === 'replay' ? (
+          <ReplayProfileControls />
+        ) : options === 'endgame' ? (
+          <EndgamePanel />
+        ) : null}
+      </Modal>
+      <Modal
+        isOpen={selectedObjectArea !== null && currentArea?.id === selectedObjectArea}
+        onClose={() => {
+          setSelectedObjectArea(null);
+        }}
+        returnFocus={objectTrigger}
+        title={t('quests:areaObjects.title')}
+      >
+        {selectedObjectArea && currentArea?.id === selectedObjectArea && (
+          <AreaObjectsPanel
+            act={currentAct}
+            areaId={selectedObjectArea}
+            onClose={() => {
+              setSelectedObjectArea(null);
+            }}
+          />
+        )}
+      </Modal>
     </ScreenShell>
   );
 }

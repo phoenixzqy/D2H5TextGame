@@ -17,7 +17,8 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
+import { Button, Panel, ScreenShell, Tabs, Modal, tDataKey } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { loadUniques } from '@/data/loaders/loot';
 import { loadQuestItems } from '@/data/loaders/quest-items';
 import { loadQuestUniqueProfile } from '@/data/loaders/quest-rewards';
@@ -68,50 +69,64 @@ export function QuestsScreen() {
 
   const byAct = useMemo(() => loadQuestsByAct(), []);
 
+  const currentAct = useMapStore((s) => s.currentAct);
+  const [selectedAct, setSelectedAct] = useState(`acts/act${String(currentAct)}`);
+  const [selectedQuest, setSelectedQuest] = useState<QuestDef | null>(null);
+
   const renderType = (type: QuestType) => {
-    const acts = ACT_ORDER.filter((actId) => byAct.has(actId));
-    const sections = acts
-      .map((actId) => {
-        const quests = (byAct.get(actId) ?? []).filter((q) => q.type === type &&
-          (!findRegionalBounty(q.id) || useMapStore.getState().isAreaUnlocked(Number(actNumber(q.actId)))));
-        return { actId, quests };
-      })
-      .filter((s) => s.quests.length > 0);
-
-    if (sections.length === 0) {
-      return (
-        <p className="text-sm text-d2-white/60 italic p-4 text-center">{t('empty')}</p>
-      );
-    }
-
+    const quests = (byAct.get(selectedAct) ?? []).filter(
+      (q) =>
+        q.type === type &&
+        (!findRegionalBounty(q.id) ||
+          useMapStore.getState().isAreaUnlocked(Number(actNumber(q.actId))))
+    );
     return (
-      <div className="space-y-4">
-        {sections.map(({ actId, quests }) => (
-          <section key={actId} aria-labelledby={`hdr-${actId}`}>
-            <h2
-              id={`hdr-${actId}`}
-              className="d2-section-title text-sm font-serif text-d2-gold/80 mb-2 border-b border-d2-border pb-1"
+      <PagedList
+        key={`${selectedAct}:${type}`}
+        items={quests}
+        empty={<p className="p-4 text-d2-white/60">{t('empty')}</p>}
+        renderItem={(q) => (
+          <li key={q.id}>
+            <button
+              type="button"
+              className="d2-plaque flex min-h-16 w-full items-center justify-between gap-3 rounded border border-d2-border p-3 text-left hover:border-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
+              onClick={() => {
+                setSelectedQuest(q);
+              }}
+              data-testid={`quest-summary-${q.id}`}
             >
-              {t(`act.${actNumber(actId)}`)}
-            </h2>
-            <ul className="space-y-2">
-              {quests.map((q) => {
-                const bounty = findRegionalBounty(q.id);
-                return <li key={q.id}>
-                  {bounty ? <RegionalBountyCard quest={q} definition={bounty} />
-                    : <QuestCard quest={q} status={resolveStatus(q, questProgress)} />}
-                </li>;
-              })}
-            </ul>
-          </section>
-        ))}
-      </div>
+              <span className="min-w-0 font-serif text-d2-gold">
+                {t(`byId.${questI18nKey(q.id)}.name`, { defaultValue: q.name })}
+              </span>
+              <StatusBadge status={resolveStatus(q, questProgress)} />
+            </button>
+          </li>
+        )}
+      />
     );
   };
 
+  const selectedBounty = selectedQuest ? findRegionalBounty(selectedQuest.id) : undefined;
   return (
     <ScreenShell testId="quests-screen" title={t('title')}>
-      <div className="max-w-3xl mx-auto">
+      <div className="mx-auto flex h-full min-h-0 w-full max-w-5xl flex-col gap-2">
+        <label className="flex shrink-0 items-center gap-3 text-d2-gold">
+          <span>{t('map:act', { number: actNumber(selectedAct) })}</span>
+          <select
+            aria-label={t('map:worldMap')}
+            value={selectedAct}
+            onChange={(event) => {
+              setSelectedAct(event.target.value);
+            }}
+            className="d2-control min-h-11 min-w-0 flex-1 rounded border border-d2-border bg-d2-bg px-3"
+          >
+            {ACT_ORDER.map((actId) => (
+              <option key={actId} value={actId}>
+                {t(`act.${actNumber(actId)}`)}
+              </option>
+            ))}
+          </select>
+        </label>
         <Tabs
           tabs={[
             { id: 'main', label: t('main'), content: renderType('main') },
@@ -121,6 +136,28 @@ export function QuestsScreen() {
           defaultTab="main"
         />
       </div>
+      <Modal
+        isOpen={selectedQuest !== null}
+        onClose={() => {
+          setSelectedQuest(null);
+        }}
+        title={t('title')}
+      >
+        {selectedQuest &&
+          (selectedBounty ? (
+            <RegionalBountyCard
+              key={selectedQuest.id}
+              quest={selectedQuest}
+              definition={selectedBounty}
+            />
+          ) : (
+            <QuestCard
+              key={selectedQuest.id}
+              quest={selectedQuest}
+              status={resolveStatus(selectedQuest, questProgress)}
+            />
+          ))}
+      </Modal>
     </ScreenShell>
   );
 }
@@ -133,9 +170,7 @@ function resolveStatus(
   if (stored) return stored.status;
   // Default: locked if a prereq isn't completed; available otherwise.
   if (quest.prerequisites && quest.prerequisites.length > 0) {
-    const allDone = quest.prerequisites.every(
-      (pid) => progress[pid]?.status === 'completed'
-    );
+    const allDone = quest.prerequisites.every((pid) => progress[pid]?.status === 'completed');
     return allDone ? 'available' : 'locked';
   }
   return 'available';
@@ -157,17 +192,32 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
   const claimable = status === 'completed' && !rewardClaimed && canClaim(quest.id);
   const counted = findCountedQuestById(quest.id);
   const counts = counted ? countedQuestCounters(counted.key) : undefined;
-  const countedComplete = counted !== undefined && (rewardClaimed || hasCountedSourceClaimCompletion(quest.id));
+  const countedComplete =
+    counted !== undefined && (rewardClaimed || hasCountedSourceClaimCompletion(quest.id));
   const startQuest = (): void => {
     try {
       const result = activateQuest(quest.id);
-      setFeedback(t(result === 'ok' ? 'feedback.started'
-        : result === 'not-eligible' || result === 'unknown-quest' || result === 'grant-failed'
-          ? `feedback.start.${result}` : `inventory:questItems.feedback.${result}`));
+      setFeedback(
+        t(
+          result === 'ok'
+            ? 'feedback.started'
+            : result === 'not-eligible' || result === 'unknown-quest' || result === 'grant-failed'
+              ? `feedback.start.${result}`
+              : `inventory:questItems.feedback.${result}`
+        )
+      );
     } catch (error) {
-      setFeedback(t(error instanceof AggregateError ? 'feedback.start.restoration-failed'
-        : `inventory:questItems.feedback.${error instanceof WaveGuardError || error instanceof RecordedWaveAccessError
-          ? 'busy' : 'action-failed'}`));
+      setFeedback(
+        t(
+          error instanceof AggregateError
+            ? 'feedback.start.restoration-failed'
+            : `inventory:questItems.feedback.${
+                error instanceof WaveGuardError || error instanceof RecordedWaveAccessError
+                  ? 'busy'
+                  : 'action-failed'
+              }`
+        )
+      );
     }
   };
   const claim = (): void => {
@@ -176,8 +226,13 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
       setFeedback(t(claimFeedbackKey(result)));
       if (result === 'ok') force((n) => n + 1);
     } catch (error) {
-      setFeedback(t(`inventory:questItems.feedback.${error instanceof AggregateError
-        ? 'restoration-failed' : 'action-failed'}`));
+      setFeedback(
+        t(
+          `inventory:questItems.feedback.${
+            error instanceof AggregateError ? 'restoration-failed' : 'action-failed'
+          }`
+        )
+      );
     }
   };
 
@@ -196,11 +251,10 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
         <ul className="list-disc list-inside space-y-0.5 mb-2">
           {quest.objectives.map((o, i) => {
             const objKey = `byId.${slug}.obj${String(i + 1)}`;
-            const done = counted ? countedComplete :
-              (quest.id !== ORMUS.quest && status === 'completed') ||
-              Boolean(
-                useMapStore.getState().questProgress[quest.id]?.objectives[o.id]
-              );
+            const done = counted
+              ? countedComplete
+              : (quest.id !== ORMUS.quest && status === 'completed') ||
+                Boolean(useMapStore.getState().questProgress[quest.id]?.objectives[o.id]);
             return (
               <li key={o.id} className={done ? 'line-through text-d2-set' : ''}>
                 {t(objKey, { defaultValue: o.description })}
@@ -210,13 +264,28 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
           })}
         </ul>
         {quest.id === COW.quest && <CowQuestActionsPanel context="journal" />}
-        {counted && counts && <div className="mb-3 space-y-1 break-words" data-testid={`counted-journal-${counted.key}`}>
-          <p role="status" aria-live="polite" className="text-sm text-d2-gold">{t('counted.progress', { ...counts })}</p>
-          <p className="text-sm text-d2-white/90">{t(rewardClaimed ? 'counted.claimed'
-            : counted.key === 'jade' ? 'counted.jade.journal' : 'counted.exchange')}</p>
-          {status === 'completed' && !rewardClaimed && !countedComplete &&
-            <p className="text-sm text-d2-white/90">{t('counted.repair')}</p>}
-        </div>}
+        {counted && counts && (
+          <div
+            className="mb-3 space-y-1 break-words"
+            data-testid={`counted-journal-${counted.key}`}
+          >
+            <p role="status" aria-live="polite" className="text-sm text-d2-gold">
+              {t('counted.progress', { ...counts })}
+            </p>
+            <p className="text-sm text-d2-white/90">
+              {t(
+                rewardClaimed
+                  ? 'counted.claimed'
+                  : counted.key === 'jade'
+                    ? 'counted.jade.journal'
+                    : 'counted.exchange'
+              )}
+            </p>
+            {status === 'completed' && !rewardClaimed && !countedComplete && (
+              <p className="text-sm text-d2-white/90">{t('counted.repair')}</p>
+            )}
+          </div>
+        )}
         {quest.rewards && Object.keys(quest.rewards).length > 0 && (
           <>
             <div className="text-d2-white/60 mb-1">{t('rewards')}</div>
@@ -225,17 +294,19 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 // Settlement ignores the legacy zero-Gold compatibility field.
                 .filter(([kind, amount]) => kind !== 'gold' || amount !== 0)
                 .map(([k, v]) => (
-                <li
-                  key={k}
-                  className="d2-tag border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
-                >
-                  <QuestRewardIcon kind={k} />
-                  {formatReward(k, v, t, quest.id)}
-                </li>
-              ))}
+                  <li
+                    key={k}
+                    className="d2-tag border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
+                  >
+                    <QuestRewardIcon kind={k} />
+                    {formatReward(k, v, t, quest.id)}
+                  </li>
+                ))}
             </ul>
             {quest.unlocks === 'difficulty/nightmare' && (
-              <p className="mb-2 text-sm text-d2-white/90">{t('rewardValue.difficulty_nightmare')}</p>
+              <p className="mb-2 text-sm text-d2-white/90">
+                {t('rewardValue.difficulty_nightmare')}
+              </p>
             )}
             <div className="flex flex-wrap gap-2">
               {status === 'available' && (
@@ -269,21 +340,23 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 </Button>
               )}
               {status === 'completed' && (
-              <Button
-                variant="primary"
-                className="min-h-[44px] text-xs"
-                disabled={!claimable}
-                onClick={claim}
-                data-testid={`quest-claim-${quest.id}`}
-              >
-                {rewardClaimed
-                  ? t('rewardClaimed')
-                  : t('claimReward')}
-              </Button>
+                <Button
+                  variant="primary"
+                  className="min-h-[44px] text-xs"
+                  disabled={!claimable}
+                  onClick={claim}
+                  data-testid={`quest-claim-${quest.id}`}
+                >
+                  {rewardClaimed ? t('rewardClaimed') : t('claimReward')}
+                </Button>
               )}
             </div>
             {feedback ? (
-              <p role="status" className="mt-2 text-xs text-d2-gold/90" data-testid={`quest-feedback-${quest.id}`}>
+              <p
+                role="status"
+                className="mt-2 text-xs text-d2-gold/90"
+                data-testid={`quest-feedback-${quest.id}`}
+              >
                 {feedback}
               </p>
             ) : null}
@@ -301,22 +374,31 @@ function formatReward(
   questId: string
 ): string {
   if (k === 'questItem') {
-    const item = loadQuestItems().find(row => row.id === v && row.sourceQuestId === questId);
+    const item = loadQuestItems().find((row) => row.id === v && row.sourceQuestId === questId);
     if (item && item.kind === undefined && item.effect.maxLife !== undefined) {
-      return t('rewardLabel.lifePotion', { item: tDataKey(t, item.nameKey), maxLife: item.effect.maxLife });
+      return t('rewardLabel.lifePotion', {
+        item: tDataKey(t, item.nameKey),
+        maxLife: item.effect.maxLife
+      });
     }
     if (item && item.kind === undefined && item.effect.allResist !== undefined) {
-      return t('rewardLabel.resistanceScroll', { item: tDataKey(t, item.nameKey), all: item.effect.allResist });
+      return t('rewardLabel.resistanceScroll', {
+        item: tDataKey(t, item.nameKey),
+        all: item.effect.allResist
+      });
     }
     return item ? tDataKey(t, item.nameKey) : t('inventory:questItems.title');
   }
-  if (k === 'xp' && typeof v === 'number')
-    return `${String(v)} ${t('rewardLabel.xp')}`;
-  if (k === 'gemShards' && typeof v === 'number') return `${String(v)} ${t('rewardLabel.gemShards')}`;
+  if (k === 'xp' && typeof v === 'number') return `${String(v)} ${t('rewardLabel.xp')}`;
+  if (k === 'gemShards' && typeof v === 'number')
+    return `${String(v)} ${t('rewardLabel.gemShards')}`;
   if (k === 'wishstones' && typeof v === 'number') return `${String(v)} ${t('gacha:wishstones')}`;
   if (k === 'vendorUnlock' && questId === ANYA.quest && v === ANYA.vendorId) {
-    return t('rewardLabel.anyaCatalog', { items: loadAnyaUniqueCatalog().entries.map(entry =>
-      t(`items:unique.${entry.id}.name`)).join(' / ') });
+    return t('rewardLabel.anyaCatalog', {
+      items: loadAnyaUniqueCatalog()
+        .entries.map((entry) => t(`items:unique.${entry.id}.name`))
+        .join(' / ')
+    });
   }
   if (k === 'runeShards' && typeof v === 'number') return t('rewardLabel.runeShards', { count: v });
   if (k === 'gold' && typeof v === 'number') return `${String(v)} ${t('rewardLabel.gold')}`;
@@ -324,19 +406,28 @@ function formatReward(
     return `+${String(v)} ${t('rewardLabel.skillPoint')}`;
   if (k === 'statPoints' && typeof v === 'number')
     return `+${String(v)} ${t('rewardLabel.statPoint')}`;
-  if (k === 'mercenaryUnlock' && questId === WARBAND.quest && v === WARBAND.mercId) return t('rewardLabel.warbandEnsureOwned');
+  if (k === 'mercenaryUnlock' && questId === WARBAND.quest && v === WARBAND.mercId)
+    return t('rewardLabel.warbandEnsureOwned');
   if (k === 'mercenaryUnlock') {
-    const contract = Object.values(TOWN_ENLISTMENTS).find(row => row.quest === questId && row.mercId === v);
-    if (contract) return t('rewardLabel.townEnlistmentEnsureOwned', {
-      name: t(`mercs:byId.${contract.mercId.slice('mercs/'.length)}.name`)
-    });
+    const contract = Object.values(TOWN_ENLISTMENTS).find(
+      (row) => row.quest === questId && row.mercId === v
+    );
+    if (contract)
+      return t('rewardLabel.townEnlistmentEnsureOwned', {
+        name: t(`mercs:byId.${contract.mercId.slice('mercs/'.length)}.name`)
+      });
   }
-  if (k === 'mercenaryUnlock' && typeof v === 'string') return `${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
+  if (k === 'mercenaryUnlock' && typeof v === 'string')
+    return `${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
   if (k === 'service' && typeof v === 'string') return formatRewardValue(v, t);
   if (k === 'title' && typeof v === 'string') return formatRewardValue(v, t);
   if (k === 'itemDrop' && typeof v === 'string') return formatRewardValue(v, t);
   if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'profileId' in v) {
-    return t(v.profileId === loadQuestUniqueProfile().id ? 'rewardLabel.uniqueRing' : 'rewardLabel.uniqueItem');
+    return t(
+      v.profileId === loadQuestUniqueProfile().id
+        ? 'rewardLabel.uniqueRing'
+        : 'rewardLabel.uniqueItem'
+    );
   }
   if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'uniqueId' in v) {
     const matches = loadUniques().filter((unique) => unique.id === v.uniqueId);
@@ -344,17 +435,27 @@ function formatReward(
     return template ? tDataKey(t, template.name) : t('rewardLabel.uniqueItem');
   }
   if (k === 'lootTable' && typeof v === 'string') return formatRewardValue(v, t);
-  if (k === 'lootTable' && typeof v === 'object' && v !== null) return t(findCountedQuestById(questId)?.key === 'jamella'
-    ? 'rewardLabel.perfectGem' : 'rewardLabel.rewardCache');
+  if (k === 'lootTable' && typeof v === 'object' && v !== null)
+    return t(
+      findCountedQuestById(questId)?.key === 'jamella'
+        ? 'rewardLabel.perfectGem'
+        : 'rewardLabel.rewardCache'
+    );
   if (k === 'areaUnlock' && typeof v === 'string') return formatRewardValue(v, t);
   if (k === 'npcUnlock' && typeof v === 'string') return formatRewardValue(v, t);
   if (k === 'stat' && isQuestResistanceReward(v))
     return t('rewardLabel.permanentResistance', { fire: v.fire_resist, cold: v.cold_resist });
-  if (k === 'stat' && findCountedQuestById(questId)?.key === 'malah') return t('rewardLabel.elixirVitality');
-  if (k === 'stat' && typeof v === 'object' && v !== null && 'all_resist' in v && typeof v.all_resist === 'number')
+  if (k === 'stat' && findCountedQuestById(questId)?.key === 'malah')
+    return t('rewardLabel.elixirVitality');
+  if (
+    k === 'stat' &&
+    typeof v === 'object' &&
+    v !== null &&
+    'all_resist' in v &&
+    typeof v.all_resist === 'number'
+  )
     return t('rewardLabel.allResistance', { all: v.all_resist });
-  if (k === 'stat' && typeof v === 'object' && v !== null)
-    return `+${JSON.stringify(v)}`;
+  if (k === 'stat' && typeof v === 'object' && v !== null) return `+${JSON.stringify(v)}`;
   return `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`;
 }
 
@@ -371,9 +472,7 @@ function claimFeedbackKey(result: ClaimResult): string {
 
 function humanizeRewardId(value: string): string {
   const lastSegment = value.split('/').pop() ?? value;
-  return lastSegment
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+  return lastSegment.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function StatusBadge({ status }: { status: QuestStatus }) {
