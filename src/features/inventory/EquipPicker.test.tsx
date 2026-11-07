@@ -135,7 +135,7 @@ describe('<EquipPicker> — Esc / auto-select / candidate change (mirrors equip-
     const onClose = vi.fn();
     render(wrap(<EquipPicker slot="weapon" onClose={onClose} />));
     expect(onClose).not.toHaveBeenCalled();
-    fireEvent.keyDown(document, { key: 'Escape' });
+    fireEvent.keyDown(screen.getByRole('dialog'), { key: 'Escape' });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
@@ -144,7 +144,7 @@ describe('<EquipPicker> — Esc / auto-select / candidate change (mirrors equip-
     seedBackpack([shortSword('only', 'magic')]);
     const onClose = vi.fn();
     render(wrap(<EquipPicker slot="weapon" onClose={onClose} />));
-    fireEvent.click(screen.getByTestId('equip-picker-close'));
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common:close') }));
     expect(onClose).toHaveBeenCalled();
   });
 

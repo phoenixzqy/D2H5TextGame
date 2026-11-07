@@ -1,7 +1,7 @@
 /**
  * Tooltip — viewport-edge-aware hover/long-press hint.
  *
- * Uses @floating-ui/react with `flip()` + `shift({ padding: 8 })` + `offset()`
+ * Uses @floating-ui/react with `flip()` + `shift({ padding: 8, crossAxis: true })` + `offset()`
  * middlewares so the tooltip never clips off-screen on small viewports
  * (Bug #8). The triggering element keeps its layout role; we render the
  * floating panel through a portal at `document.body` so transformed/clipping
@@ -53,7 +53,7 @@ export function Tooltip({ content, children, className = '', referenceClassName 
     middleware: [
       offset(8),
       flip({ padding: 8, fallbackAxisSideDirection: 'start' }),
-      shift({ padding: 8 })
+      shift({ padding: 8, crossAxis: true })
     ]
   });
 
@@ -88,7 +88,7 @@ export function Tooltip({ content, children, className = '', referenceClassName 
             style={floatingStyles}
             {...getFloatingProps()}
             className={[
-              'z-50 pointer-events-none',
+              'z-50 pointer-events-none overflow-y-auto overscroll-contain max-h-[calc(100dvh-1rem)]',
               'd2-tooltip p-3 text-sm text-d2-white whitespace-normal',
               'max-w-[min(18rem,calc(100vw-1rem))]',
               'motion-safe:animate-fadeIn',

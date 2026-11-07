@@ -12,7 +12,7 @@
  * helpers; this component only formats and wires player actions.
  */
 import { publicAssetUrl } from '@/ui/publicAssetUrl';
-import { Children, Fragment, isValidElement, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Children, Fragment, isValidElement, useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { IronGolemPanel } from './IronGolemPanel';
@@ -566,25 +566,8 @@ function SkillTreeBoard({
   readonly onPreview: (skillId: string | null) => void;
   readonly t: Translate;
 }) {
-  const [page, setPage] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [rowsPerPage, setRowsPerPage] = useState(1);
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const resize = () => { setRowsPerPage(Math.max(1, Math.floor((container.clientHeight - 52) / TREE_ROW_HEIGHT))); };
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(container);
-    return () => { observer.disconnect(); };
-  }, []);
   const maxRow = Math.max(0, ...Array.from(layout.values()).map((node) => node.row));
-  const pages = Math.max(1, Math.ceil((maxRow + 1) / rowsPerPage));
-  const currentPage = Math.min(page, pages - 1);
-  const firstRow = currentPage * rowsPerPage;
-  const visibleRows = Math.min(rowsPerPage, maxRow + 1 - firstRow);
-  const height = TREE_TOP * 2 + (visibleRows - 1) * TREE_ROW_HEIGHT;
-  const offset = firstRow * TREE_ROW_HEIGHT;
+  const height = TREE_TOP * 2 + maxRow * TREE_ROW_HEIGHT;
   const edges = buildPrerequisiteEdges(skills, layout);
   const connectorMasks = Array.from(layout.values());
   const orderedSkills = [...skills].sort((a, b) => {
@@ -595,7 +578,7 @@ function SkillTreeBoard({
     return rowDelta !== 0 ? rowDelta : aNode.column - bNode.column;
   });
   return (
-    <div ref={containerRef} className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
+    <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
     <div
       className="d2-surface d2-skill-board relative mx-auto w-[288px] max-w-full shrink-0 overflow-hidden rounded border border-d2-border/70
                  bg-[radial-gradient(circle_at_50%_0%,rgba(210,176,91,0.12),transparent_48%),linear-gradient(135deg,rgba(255,255,255,0.04)_0,transparent_40%)]
@@ -603,10 +586,10 @@ function SkillTreeBoard({
       data-testid="skill-tree-board"
       style={{ height }}
     >
-      <svg className="absolute inset-0 h-full w-full" viewBox={`0 ${String(offset)} ${String(TREE_WIDTH)} ${String(height)}`} aria-hidden="true">
+      <svg className="absolute inset-0 h-full w-full" viewBox={`0 0 ${String(TREE_WIDTH)} ${String(height)}`} aria-hidden="true">
         <defs>
           <mask id={connectorMaskId} maskUnits="userSpaceOnUse">
-            <rect x="0" y={offset} width={TREE_WIDTH} height={height} fill="white" />
+            <rect x="0" y={0} width={TREE_WIDTH} height={height} fill="white" />
             {connectorMasks.map((node) => (
               <rect
                 key={node.skillId}
@@ -647,7 +630,7 @@ function SkillTreeBoard({
 
       {orderedSkills.map((skill) => {
         const node = layout.get(skill.id);
-        if (!node || node.row < firstRow || node.row >= firstRow + visibleRows) return null;
+        if (!node) return null;
         const name = tDataKey(t, skill.name);
         const level = allocatedSkills.get(skill.id) ?? 0;
         const locked = isSkillLocked(skill, playerLevel, allocatedSkills);
@@ -684,7 +667,7 @@ function SkillTreeBoard({
                         bg-black/70 text-sm transition focus:outline-none focus-visible:ring-2
                         focus-visible:ring-d2-gold motion-safe:hover:-translate-y-0.5
                         ${nodeStateClass(level, locked, selected || previewed)}`}
-            style={{ left: node.x - SKILL_NODE_RADIUS, top: node.y - offset - SKILL_NODE_RADIUS }}
+            style={{ left: node.x - SKILL_NODE_RADIUS, top: node.y - SKILL_NODE_RADIUS }}
           >
             <SkillIcon key={skill.icon} skill={skill} label={name} />
             <span className="sr-only">{name}</span>
@@ -696,11 +679,6 @@ function SkillTreeBoard({
         );
       })}
     </div>
-    {pages > 1 && <nav aria-label={t('tab.tree')} className="flex shrink-0 items-center justify-center gap-2">
-      <Button className="!min-h-[44px] !py-1" variant="secondary" disabled={currentPage === 0} onClick={() => { setPage(currentPage - 1); }}>{t('inventory:pagination.previous')}</Button>
-      <span className="text-sm" aria-live="polite">{currentPage + 1} / {pages}</span>
-      <Button className="!min-h-[44px] !py-1" variant="secondary" disabled={currentPage + 1 === pages} onClick={() => { setPage(currentPage + 1); }}>{t('inventory:pagination.next')}</Button>
-    </nav>}
     </div>
   );
 }
@@ -813,7 +791,7 @@ function SkillDetailPanel({
         {skill.id === 'skills-necromancer-iron-golem' ? (
           <p className="text-sm text-d2-white/90">{t('ironGolem.basePreview')}</p>
         ) : null}
-</>)} pageSize={1} renderItem={node => <li>{node}</li>} /> },
+</>)} renderItem={node => <li>{node}</li>} /> },
           { id: 'current', label: t('details.current'), content:
           <StatSection
             title={current ? t('details.current') : t('details.notLearned')}

@@ -86,7 +86,7 @@ export function MercsScreen() {
               content: (
                 <PagedList
                   items={ownedMercs}
-                  pageSize={1}
+                  listClassName="grid content-start gap-2 lg:grid-cols-2"
                   empty={<p>{t('empty')}</p>}
                   renderItem={(m) => {
                     const baseId = m.id.split('#')[0] ?? m.id;
@@ -142,7 +142,7 @@ export function MercsScreen() {
                       <PagedList
                         key={hireAct}
                         items={activeAct.mercs}
-                        pageSize={1}
+                        listClassName="grid content-start gap-2 lg:grid-cols-2"
                         renderItem={(def) => {
                           const owned = ownedBaseIds.has(def.id);
                           const locked = playerLevel < activeAct.unlockReqLevel;
@@ -246,13 +246,13 @@ function MercCard({
 
   return (
     <Panel className={isFielded ? 'border-d2-gold' : ''} data-testid={`merc-card-${baseId}`}>
-      <div className="grid grid-cols-[96px_minmax(0,1fr)] gap-3 sm:grid-cols-[160px_minmax(0,1fr)]">
+      <div className="grid grid-cols-[64px_minmax(0,1fr)] gap-2 sm:grid-cols-[80px_minmax(0,1fr)]">
         <GameImage
           src={portrait}
           alt=""
           size="fill"
           fallbackIcon=""
-          className="!h-36 sm:!h-48 bg-black"
+          className="!h-24 bg-black"
           imageClassName="h-full w-full object-cover object-top"
         />
         <div className="min-w-0 space-y-2">
@@ -279,7 +279,7 @@ function MercCard({
           </div>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
         <Button
           variant={isFielded ? 'secondary' : 'primary'}
           onClick={onField}

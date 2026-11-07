@@ -46,10 +46,10 @@ function CraftingTargetRow({ entry: { item, origin, preservedRunes }, checked, o
   const { t } = useTranslation(['inventory', 'items']);
   const [expanded, setExpanded] = useState(false);
   return <li className="min-w-0">
-    <div className="flex items-center gap-2"><label className="d2-plaque flex-1 flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border px-3 py-2 has-[:checked]:border-d2-gold">
+    <div className="flex items-center gap-2"><label className="d2-plaque min-w-0 flex-1 flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border px-3 py-2 has-[:checked]:border-d2-gold">
       <input type="checkbox" checked={checked} className="h-5 w-5 shrink-0 accent-d2-gold"
         onChange={event => { onChange(event.target.checked); }} />
-      <span className="min-w-0 break-words text-sm">{tItemName(t, item)} · #{item.id}{' '}<span className="block text-d2-white/80">{origin}</span></span>
+      <span className="min-w-0 [overflow-wrap:anywhere] text-sm">{tItemName(t, item)} · #{item.id}{' '}<span className="block text-d2-white/80">{origin}</span></span>
     </label>
     <Button type="button" variant="secondary" className="min-h-[44px] shrink-0" onClick={() => { setExpanded(value => !value); }}>
       {t('details')}<span className="sr-only"> #{item.id}</span>

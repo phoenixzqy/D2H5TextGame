@@ -454,14 +454,56 @@ function ItemGridLayout({
 }: GridLayoutProps): JSX.Element {
   const { t } = useTranslation('inventory');
   const open = selectedId !== null && detailPanel !== null;
+  const [wide, setWide] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 1024px)');
+    const update = () => {
+      setWide(query.matches);
+    };
+    update();
+    query.addEventListener('change', update);
+    return () => {
+      query.removeEventListener('change', update);
+    };
+  }, []);
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-2" data-testid="inventory-layout" data-detail-open={open}>
-      <div ref={viewportRef} className="min-w-0 min-h-0 flex-1">
-        {items.length === 0 ? <p className="text-sm text-d2-white/60 italic p-4 text-center">{t(emptyKey)}</p> :
-          <BackpackGrid items={items} capacity={capacity} selectedId={selectedId} onSelect={setSelectedId} isUpgrade={isUpgrade} />}
+    <div
+      className="flex min-h-0 flex-1 gap-3"
+      data-testid="inventory-layout"
+      data-detail-open={open}
+    >
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
+        <div ref={viewportRef} className="min-w-0 min-h-0 flex-1 overflow-y-auto scrollbar-d2">
+          {items.length === 0 ? (
+            <p className="text-sm text-d2-white/60 italic p-4 text-center">{t(emptyKey)}</p>
+          ) : (
+            <BackpackGrid
+              items={items}
+              capacity={capacity}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              isUpgrade={isUpgrade}
+            />
+          )}
+        </div>
+        {pagination}
       </div>
-      {pagination}
-      <Modal isOpen={open} onClose={() => { setSelectedId(null); }} title={t('details')}>
+      {wide && open && (
+        <aside
+          key={selectedId}
+          aria-label={t('details')}
+          className="d2-surface w-[26rem] max-w-[50%] shrink-0 overflow-y-auto scrollbar-d2 p-3"
+        >
+          {detailPanel}
+        </aside>
+      )}
+      <Modal
+        isOpen={!wide && open}
+        onClose={() => {
+          setSelectedId(null);
+        }}
+        title={t('details')}
+      >
         {detailPanel}
       </Modal>
     </div>

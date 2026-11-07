@@ -1,8 +1,8 @@
-/** Equipment candidates and comparison occupy separate bounded tabs. */
+/** Browse candidates beside their complete comparison, with scrolling on small screens. */
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, GameImage, RarityText, Tabs, getItemIconUrl, tItemName } from '@/ui';
+import { Button, GameImage, RarityText, Modal, getItemIconUrl, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore, useMapStore } from '@/stores';
 import type { EquipFailure } from '@/stores/inventoryStore';
 import {
@@ -21,7 +21,6 @@ interface Props {
   readonly onEquipped?: (item: Item) => void;
   readonly onEquipFailed?: (item: Item, reason: EquipFailure['reason']) => void;
 }
-
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -114,15 +113,13 @@ function CandidateRow({
     >
       <ItemThumb item={item} />
       <div className="min-w-0 flex-1">
-        <RarityText rarity={item.rarity} className="font-serif truncate block">
+        <RarityText rarity={item.rarity} className="font-serif break-words block">
           {tItemName(t, item)}
         </RarityText>
         <div className="text-xs text-d2-white/60">
           {t('itemLevel')} {item.level}
         </div>
-        {!eligible && (
-          <div className="text-xs text-d2-red mt-0.5">{reason}</div>
-        )}
+        {!eligible && <div className="text-xs text-d2-red mt-0.5">{reason}</div>}
       </div>
     </li>
   );
@@ -144,25 +141,12 @@ function CandidateList({
   const { t } = useTranslation(['inventory', 'common']);
   const rowRefs = useRef<Map<string, HTMLLIElement>>(new Map());
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [pageSize, setPageSize] = useState(1);
-  const tallestRow = useRef(80);
-  useLayoutEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-    const measure = () => {
-      for (const row of rowRefs.current.values()) {
-        tallestRow.current = Math.max(tallestRow.current, row.getBoundingClientRect().height);
-      }
-      setPageSize(Math.max(1, Math.floor((viewport.clientHeight + 8) / (tallestRow.current + 8))));
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(viewport);
-    for (const row of rowRefs.current.values()) observer.observe(row);
-    return () => { observer.disconnect(); };
-  }, [items, selectedId, pageSize]);
+  const pageSize = 100;
   const pendingFocus = useRef<string | null>(null);
-  const selectedIndex = Math.max(0, items.findIndex(item => item.id === selectedId));
+  const selectedIndex = Math.max(
+    0,
+    items.findIndex((item) => item.id === selectedId)
+  );
   const page = Math.floor(selectedIndex / pageSize);
   const pages = Math.ceil(items.length / pageSize);
   const start = page * pageSize;
@@ -181,13 +165,19 @@ function CandidateList({
     if (!Number.isFinite(requested)) return;
     const next = Math.max(0, Math.min(pages - 1, Math.trunc(requested)));
     const target = items[next * pageSize];
-    if (target) onSelect(target.id);
+    if (target) {
+      onSelect(target.id);
+      viewportRef.current?.scrollTo({ top: 0 });
+    }
   };
 
   const onListKey = useCallback(
     (e: React.KeyboardEvent<HTMLUListElement>) => {
       if (items.length === 0) return;
-      const idx = Math.max(0, items.findIndex((i) => i.id === selectedId));
+      const idx = Math.max(
+        0,
+        items.findIndex((i) => i.id === selectedId)
+      );
       let next = idx;
       if (e.key === 'ArrowDown') next = Math.min(items.length - 1, idx + 1);
       else if (e.key === 'ArrowUp') next = Math.max(0, idx - 1);
@@ -208,7 +198,10 @@ function CandidateList({
 
   if (items.length === 0) {
     return (
-      <p className="text-sm text-d2-white/60 italic text-center py-6" data-testid="equip-picker-empty">
+      <p
+        className="text-sm text-d2-white/60 italic text-center py-6"
+        data-testid="equip-picker-empty"
+      >
         {t('equipFlow.picker.empty')}
       </p>
     );
@@ -216,47 +209,84 @@ function CandidateList({
 
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-2">
-    <nav aria-label={t('pagination.label')} className="min-w-0 shrink-0 space-y-1">
-      <p role="status" aria-live="polite" className="sr-only">
-        {t('pagination.status', { start: start + 1, end: start + visible.length, total: items.length, page: page + 1, pages })}
-      </p>
-      <div className="flex flex-wrap items-center gap-2">
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(page - 1); }}>{t('pagination.previous')}</Button>
-        <input type="number" min={1} max={pages} step={1} value={page + 1}
-          aria-label={t('pagination.page')} onChange={event => { changePage(event.target.valueAsNumber - 1); }}
-          className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(page + 1); }}>{t('pagination.next')}</Button>
+      {pages > 1 && (
+        <nav aria-label={t('pagination.label')} className="min-w-0 shrink-0 space-y-1">
+          <p role="status" aria-live="polite" className="sr-only">
+            {t('pagination.status', {
+              start: start + 1,
+              end: start + visible.length,
+              total: items.length,
+              page: page + 1,
+              pages
+            })}
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              variant="secondary"
+              className="min-h-[44px] min-w-[44px]"
+              disabled={page === 0}
+              onClick={() => {
+                changePage(page - 1);
+              }}
+            >
+              {t('pagination.previous')}
+            </Button>
+            <input
+              type="number"
+              min={1}
+              max={pages}
+              step={1}
+              value={page + 1}
+              aria-label={t('pagination.page')}
+              onChange={(event) => {
+                changePage(event.target.valueAsNumber - 1);
+              }}
+              className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
+            />
+            <Button
+              variant="secondary"
+              className="min-h-[44px] min-w-[44px]"
+              disabled={page === pages - 1}
+              onClick={() => {
+                changePage(page + 1);
+              }}
+            >
+              {t('pagination.next')}
+            </Button>
+          </div>
+        </nav>
+      )}
+      <div ref={viewportRef} className="min-h-0 flex-1 overflow-y-auto scrollbar-d2">
+        <ul
+          className="space-y-2"
+          role="listbox"
+          aria-label={slotLabel}
+          onKeyDown={onListKey}
+          data-testid="candidate-list"
+        >
+          {visible.map((it, index) => {
+            const elig = eligibility.get(it.id) ?? { eligible: true, reasons: [] };
+            return (
+              <CandidateRow
+                key={it.id}
+                item={it}
+                selected={selectedId === it.id}
+                eligible={elig.eligible}
+                reason={formatReasons(elig, t)}
+                position={start + index + 1}
+                total={items.length}
+                onSelect={() => {
+                  onSelect(it.id);
+                }}
+                rowRef={(el) => {
+                  if (el) rowRefs.current.set(it.id, el);
+                  else rowRefs.current.delete(it.id);
+                }}
+              />
+            );
+          })}
+        </ul>
       </div>
-    </nav>
-    <div ref={viewportRef} className="min-h-0 flex-1 overflow-y-auto scrollbar-d2">
-    <ul
-      className="space-y-2"
-      role="listbox"
-      aria-label={slotLabel}
-      onKeyDown={onListKey}
-      data-testid="candidate-list"
-    >
-      {visible.map((it, index) => {
-        const elig = eligibility.get(it.id) ?? { eligible: true, reasons: [] };
-        return (
-          <CandidateRow
-            key={it.id}
-            item={it}
-            selected={selectedId === it.id}
-            eligible={elig.eligible}
-            reason={formatReasons(elig, t)}
-            position={start + index + 1}
-            total={items.length}
-            onSelect={() => { onSelect(it.id); }}
-            rowRef={(el) => {
-              if (el) rowRefs.current.set(it.id, el);
-              else rowRefs.current.delete(it.id);
-            }}
-          />
-        );
-      })}
-    </ul>
-    </div>
     </div>
   );
 }
@@ -274,7 +304,7 @@ function EquipFooter({
 }) {
   const { t } = useTranslation(['inventory', 'common']);
   return (
-    <footer className="d2-toolbar border-t border-d2-border bg-d2-bg/40 p-4 space-y-2">
+    <footer className="d2-toolbar border-t border-d2-border bg-d2-bg/40 p-2 shrink-0 space-y-2">
       <div aria-live="polite" aria-atomic="true">
         {failureMessage && (
           <p className="text-sm text-d2-red text-center" data-testid="equip-picker-error">
@@ -283,10 +313,7 @@ function EquipFooter({
         )}
       </div>
       {disabledReason && (
-        <div
-          className="text-xs text-d2-red text-center"
-          data-testid="equip-picker-disabled-reason"
-        >
+        <div className="text-xs text-d2-red text-center" data-testid="equip-picker-disabled-reason">
           {disabledReason}
         </div>
       )}
@@ -320,16 +347,18 @@ function EquipFooter({
 export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props) {
   const { t } = useTranslation(['inventory', 'common']);
   const player = usePlayerStore((s) => s.player);
-  const questProgress = useMapStore(s => s.questProgress);
-  const questReceipts = useMapStore(s => s.questReceipts);
-  const questItems = useInventoryStore(s => s.questItems);
+  const questProgress = useMapStore((s) => s.questProgress);
+  const questReceipts = useMapStore((s) => s.questReceipts);
+  const questItems = useInventoryStore((s) => s.questItems);
   const backpack = useInventoryStore((s) => s.backpack);
   const equipped = useInventoryStore((s) => s.equipped);
   const equipItem = useInventoryStore((s) => s.equipItem);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [failureReason, setFailureReason] = useState<EquipFailure['reason'] | null>(null);
 
-  useEffect(() => { setFailureReason(null); }, [slot, selectedId]);
+  useEffect(() => {
+    setFailureReason(null);
+  }, [slot, selectedId]);
 
   const candidates = useMemo(() => {
     if (!slot) return [] as Item[];
@@ -351,31 +380,17 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     return m;
   }, [candidates, playerForCheck]);
 
-  // Auto-select the first eligible candidate on open / when list changes.
+  // Auto-select the first eligible candidate when the slot changes.
   useEffect(() => {
-    if (!slot) {
-      setSelectedId(null);
-      return;
-    }
-    setSelectedId((prev) => {
-      const stillThere = prev !== null && candidates.some((c) => c.id === prev);
-      if (stillThere) return prev;
-      const firstEligible = candidates.find(
-        (c) => eligibility.get(c.id)?.eligible !== false
-      );
-      return firstEligible?.id ?? candidates[0]?.id ?? null;
-    });
+    if (!slot) return;
+    setSelectedId((current) =>
+      candidates.some((item) => item.id === current)
+        ? current
+        : (candidates.find((item) => eligibility.get(item.id)?.eligible)?.id ??
+          candidates[0]?.id ??
+          null)
+    );
   }, [slot, candidates, eligibility]);
-
-  // Esc closes.
-  useEffect(() => {
-    if (!slot) return undefined;
-    const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', onKey);
-    return () => { document.removeEventListener('keydown', onKey); };
-  }, [slot, onClose]);
 
   const selected = useMemo(
     () => candidates.find((i) => i.id === selectedId) ?? null,
@@ -384,7 +399,16 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
 
   const compare = useMemo(() => {
     if (!selected || !playerForCheck || !slot) return null;
-    return compareEquip(playerForCheck, selected, slot, equipped, undefined, questProgress, questItems, questReceipts);
+    return compareEquip(
+      playerForCheck,
+      selected,
+      slot,
+      equipped,
+      undefined,
+      questProgress,
+      questItems,
+      questReceipts
+    );
   }, [selected, playerForCheck, slot, equipped, questProgress, questItems, questReceipts]);
 
   const sameAsEquipped = useMemo(() => {
@@ -396,7 +420,9 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     if (!selected || !compare) return [] as Item[];
     const currentId = compare.current?.id;
     return [
-      ...Object.values(equipped).filter((item): item is Item => item !== null && item.id !== currentId),
+      ...Object.values(equipped).filter(
+        (item): item is Item => item !== null && item.id !== currentId
+      ),
       selected
     ];
   }, [compare, equipped, selected]);
@@ -430,65 +456,48 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   })();
 
   return (
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
-    <div
-      className="d2-modal-backdrop fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/80"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="equip-picker-title"
-      data-testid="equip-picker"
+    <Modal
+      isOpen
+      onClose={onClose}
+      title={t('equipFlow.picker.title', { slot: slotLabel })}
+      className="!max-w-5xl"
     >
-      <div
-        className={[
-          'd2-dialog animate-fadeIn',
-          'w-full rounded-t-lg sm:rounded-lg h-[90dvh] max-h-[90dvh]',
-          'sm:max-w-3xl sm:w-full',
-          'flex flex-col overflow-hidden'
-        ].join(' ')}
-        onClick={(e) => { e.stopPropagation(); }}
-      >
-        <header className="d2-toolbar flex items-center justify-between p-4 border-b border-d2-border shrink-0">
-          <h2 id="equip-picker-title" className="d2-section-title text-lg sm:text-xl font-serif font-bold text-d2-gold">
-            {t('equipFlow.picker.title', { slot: slotLabel })}
-          </h2>
-          <Button
-            variant="secondary"
-            className="min-h-[44px] min-w-[44px] !px-3"
-            aria-label={t('common:close')}
-            onClick={onClose}
-            data-testid="equip-picker-close"
-          >
-            ×
-          </Button>
-        </header>
-
-        <div className="flex min-h-0 flex-1 flex-col p-3">
-          <Tabs tabs={[
-            { id: 'candidates', label: t('backpack'), content: <CandidateList
-                items={candidates}
-                selectedId={selectedId}
-                eligibility={eligibility}
-                slotLabel={slotLabel}
-                onSelect={setSelectedId}
-              /> },
-            { id: 'compare', label: t('equipFlow.compare.sectionTitle'), content: compare ? <ItemComparePanel
-                  compare={compare}
-                  isAlreadyEquipped={sameAsEquipped}
-                  selectedName={selectedName}
-                  equippedAfter={equippedAfter}
-                /> : null },
-          ]} />
+      <div data-testid="equip-picker" className="flex h-[min(75dvh,48rem)] min-h-0 flex-col gap-2">
+        <div className="grid min-h-0 flex-1 gap-3 overflow-y-auto md:grid-cols-2">
+          <div className="flex min-h-[12rem] flex-col md:min-h-0">
+            <CandidateList
+              items={candidates}
+              selectedId={selectedId}
+              eligibility={eligibility}
+              slotLabel={slotLabel}
+              onSelect={setSelectedId}
+            />{' '}
+          </div>
+          <div key={selectedId} className="min-w-0 md:overflow-y-auto scrollbar-d2">
+            {compare && (
+              <ItemComparePanel
+                compare={compare}
+                isAlreadyEquipped={sameAsEquipped}
+                selectedName={selectedName}
+                equippedAfter={equippedAfter}
+              />
+            )}
+          </div>
         </div>
 
         <EquipFooter
           onCancel={onClose}
           onEquip={handleEquip}
           disabledReason={disabledReason}
-          failureMessage={failureReason === null ? null : failureReason === 'backpack_full'
-            ? t('toast.backpackFull') : t('toast.equipFailed', { name: selectedName })}
+          failureMessage={
+            failureReason === null
+              ? null
+              : failureReason === 'backpack_full'
+                ? t('toast.backpackFull')
+                : t('toast.equipFailed', { name: selectedName })
+          }
         />
       </div>
-    </div>
+    </Modal>
   );
 }

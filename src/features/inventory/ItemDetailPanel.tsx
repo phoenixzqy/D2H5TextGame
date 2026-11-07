@@ -20,8 +20,6 @@
  * to duplicate the breakpoint check.
  */
 import { useTranslation } from 'react-i18next';
-import { Tabs } from '@/ui/Tabs';
-import { PagedList } from '@/ui/PagedList';
 import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
 import { GameImage } from '@/ui/GameImage';
@@ -148,7 +146,7 @@ export function ItemDetailPanel({
 
   return (
     <div
-      className="flex min-w-0 min-h-0 flex-1 flex-col gap-2 break-words text-sm"
+      className="flex min-w-0 flex-col gap-3 text-sm"
       data-testid="inv-detail-panel"
       data-rarity={item.rarity}
     >
@@ -169,9 +167,14 @@ export function ItemDetailPanel({
             {displayName}
           </RarityText>
           <div className="text-sm text-d2-white/70 mt-0.5">{typeLine}</div>
-          {item.personalizedBy && <div className="text-sm text-d2-gold break-words" data-testid="inv-detail-personalization">
-            {t('detail.personalizedBy', { name: item.personalizedBy.name })}
-          </div>}
+          {item.personalizedBy && (
+            <div
+              className="text-sm text-d2-gold break-words"
+              data-testid="inv-detail-personalization"
+            >
+              {t('detail.personalizedBy', { name: item.personalizedBy.name })}
+            </div>
+          )}
         </div>
         <button
           type="button"
@@ -184,139 +187,12 @@ export function ItemDetailPanel({
         </button>
       </div>
 
-      <Tabs tabs={[
-        { id: 'base', label: t('detail.baseStats'), content: <div className="space-y-2">
-      {/* Requirements */}
-      {reqRows.length > 0 && (
-        <section data-testid="inv-detail-required">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
-            {t('detail.required')}
-          </h3>
-          <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
-            {reqRows.map((r) => (
-              <li
-                key={r.key}
-                className={r.met ? 'text-d2-white/85' : 'text-d2-red font-bold'}
-                data-met={r.met}
-              >
-                {r.label}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* Base stats */}
-      {baseStatLines.length > 0 && (
-        <section data-testid="inv-detail-base-stats">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
-            {t('detail.baseStats')}
-          </h3>
-          <ul className="space-y-0.5 text-sm text-d2-white">
-            {baseStatLines.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      </div> },
-      { id: 'affixes', label: t('detail.affixes'), content: <div className="space-y-2">
-      {/* Affixes */}
-      {item.affixes && item.affixes.length > 0 && (
-        <section data-testid="inv-detail-affixes">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
-            {t('detail.affixes')}
-          </h3>
-          <ul className="space-y-0.5 text-sm">
-            {item.affixes.map((a, i) => (
-              <li key={i} className={rarityTextClass(item.rarity)} data-testid="inv-detail-affix">
-                {formatAffixRoll(a, tAffix)}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* Sockets */}
-      {socketCount > 0 && (
-        <section data-testid="inv-detail-sockets">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
-            {t('detail.sockets')}
-          </h3>
-          <div className="flex flex-wrap gap-1 text-sm font-mono text-d2-white/85">
-            {socketBoxes.map((box, i) => (
-              <span key={i}>{box}</span>
-            ))}
-          </div>
-        </section>
-      )}
-
-      </div> },
-      { id: 'special', label: t('detail.specialStats'), content: <div className="flex min-h-0 flex-1 flex-col gap-2">
-      {/* Set / unique flavor */}
-      {specialStatLines.length > 0 && (
-        <section data-testid="inv-detail-definition-stats" className="flex min-h-0 flex-1 flex-col">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
-            {t('detail.specialStats')}
-          </h3>
-          <PagedList items={specialStatLines} listClassName="space-y-0.5 text-sm" renderItem={(line, index) => (
-              <li key={`${line.key}-${String(index)}`} className={rarityTextClass(item.rarity)}>
-                {line.text}
-              </li>
-            )} />
-        </section>
-      )}
-      {item.rarity === 'set' && display.set && (
-        <section data-testid="inv-detail-set" className="flex min-h-0 flex-1 flex-col text-sm text-d2-set">
-          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
-            {t('detail.setBonus')}
-          </h3>
-          <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>
-          <PagedList items={display.setBonuses} listClassName="space-y-1" renderItem={bonus => (
-              <li
-                key={bonus.threshold}
-                data-active={bonus.active}
-                className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}
-              >
-                <div className="font-semibold">
-                  {t('detail.setBonusThreshold', { count: bonus.threshold })}
-                  {' · '}
-                  {bonus.active ? t('detail.setBonusActive') : t('detail.setBonusInactive')}
-                </div>
-                <ul className="pl-3">
-                  {bonus.lines.map((line) => (
-                    <li key={line.key}>{line.text}</li>
-                  ))}
-                </ul>
-              </li>
-            )} />
-        </section>
-      )}
-      {item.rarity === 'unique' && (display.flavor ?? !display.unique) && (
-        <section data-testid="inv-detail-unique" className="text-sm italic text-d2-unique">
-          <p>{display.flavor ?? t('detail.uniqueFlavor')}</p>
-        </section>
-      )}
-
-      </div> },
-      ...(compare ? [{ id: 'compare', label: t('equipFlow.compare.sectionTitle'), content: <>
-        <ItemComparePanel
-          compare={compare}
-          selectedName={displayName}
-          equippedAfter={equippedAfterCompare}
-          titleId={`inv-detail-compare-title-${item.id}`}
-        />
-
-      </> }] : [])
-      ]} />
-
       {/* Actions */}
       <div className="flex flex-wrap gap-2 pt-2 border-t border-d2-border/60">
         {onEquip && equipLabel && (
           <Button
             variant="primary"
-            className="min-h-[44px] flex-1"
+            className="min-h-[44px] flex-1 basis-20"
             data-testid="inv-primary-action"
             onClick={onEquip}
           >
@@ -326,7 +202,7 @@ export function ItemDetailPanel({
         {onTransfer && transferLabel && (
           <Button
             variant="secondary"
-            className="min-h-[44px] flex-1"
+            className="min-h-[44px] flex-1 basis-20"
             data-testid="inv-secondary-action"
             onClick={onTransfer}
           >
@@ -335,12 +211,142 @@ export function ItemDetailPanel({
         )}
         <Button
           variant="danger"
-          className="min-h-[44px] flex-1"
+          className="min-h-[44px] flex-1 basis-20"
           data-testid="inv-discard-action"
           onClick={onDiscard}
         >
           {t('discard')}
         </Button>
+      </div>
+
+      <div className="space-y-3 break-words">
+        {/* Requirements */}
+        {reqRows.length > 0 && (
+          <section data-testid="inv-detail-required">
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+              {t('detail.required')}
+            </h3>
+            <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
+              {reqRows.map((r) => (
+                <li
+                  key={r.key}
+                  className={r.met ? 'text-d2-white/85' : 'text-d2-red font-bold'}
+                  data-met={r.met}
+                >
+                  {r.label}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Base stats */}
+        {baseStatLines.length > 0 && (
+          <section data-testid="inv-detail-base-stats">
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+              {t('detail.baseStats')}
+            </h3>
+            <ul className="space-y-0.5 text-sm text-d2-white">
+              {baseStatLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Affixes */}
+        {item.affixes && item.affixes.length > 0 && (
+          <section data-testid="inv-detail-affixes">
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+              {t('detail.affixes')}
+            </h3>
+            <ul className="space-y-0.5 text-sm">
+              {item.affixes.map((a, i) => (
+                <li key={i} className={rarityTextClass(item.rarity)} data-testid="inv-detail-affix">
+                  {formatAffixRoll(a, tAffix)}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Sockets */}
+        {socketCount > 0 && (
+          <section data-testid="inv-detail-sockets">
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+              {t('detail.sockets')}
+            </h3>
+            <div className="flex flex-wrap gap-1 text-sm font-mono text-d2-white/85">
+              {socketBoxes.map((box, i) => (
+                <span key={i}>{box}</span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Set / unique flavor */}
+        {specialStatLines.length > 0 && (
+          <section
+            data-testid="inv-detail-definition-stats"
+            className="flex min-h-0 flex-1 flex-col"
+          >
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+              {t('detail.specialStats')}
+            </h3>
+            <ul className="space-y-0.5 text-sm">
+              {specialStatLines.map((line, index) => (
+                <li key={`${line.key}-${String(index)}`} className={rarityTextClass(item.rarity)}>
+                  {line.text}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {item.rarity === 'set' && display.set && (
+          <section
+            data-testid="inv-detail-set"
+            className="flex min-h-0 flex-1 flex-col text-sm text-d2-set"
+          >
+            <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
+              {t('detail.setBonus')}
+            </h3>
+            <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>
+            <ul className="space-y-1">
+              {display.setBonuses.map((bonus) => (
+                <li
+                  key={bonus.threshold}
+                  data-active={bonus.active}
+                  className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}
+                >
+                  <div className="font-semibold">
+                    {t('detail.setBonusThreshold', { count: bonus.threshold })}
+                    {' · '}
+                    {bonus.active ? t('detail.setBonusActive') : t('detail.setBonusInactive')}
+                  </div>
+                  <ul className="pl-3">
+                    {bonus.lines.map((line) => (
+                      <li key={line.key}>{line.text}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {item.rarity === 'unique' && (display.flavor ?? !display.unique) && (
+          <section data-testid="inv-detail-unique" className="text-sm italic text-d2-unique">
+            <p>{display.flavor ?? t('detail.uniqueFlavor')}</p>
+          </section>
+        )}
+
+        {compare && (
+          <ItemComparePanel
+            compare={compare}
+            selectedName={displayName}
+            equippedAfter={equippedAfterCompare}
+            titleId={`inv-detail-compare-title-${item.id}`}
+          />
+        )}
       </div>
     </div>
   );
@@ -348,11 +354,16 @@ export function ItemDetailPanel({
 
 function rarityTextClass(rarity: Item['rarity']): string {
   switch (rarity) {
-    case 'magic': return 'text-d2-magic';
-    case 'rare': return 'text-d2-rare';
-    case 'unique': return 'text-d2-unique';
-    case 'set': return 'text-d2-set';
-    case 'runeword': return 'text-d2-runeword';
+    case 'magic':
+      return 'text-d2-magic';
+    case 'rare':
+      return 'text-d2-rare';
+    case 'unique':
+      return 'text-d2-unique';
+    case 'set':
+      return 'text-d2-set';
+    case 'runeword':
+      return 'text-d2-runeword';
     case 'normal':
     default:
       return 'text-d2-white';

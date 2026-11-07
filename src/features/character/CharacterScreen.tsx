@@ -77,18 +77,12 @@ export function CharacterScreen() {
   return (
     <ScreenShell testId="character-screen" title={t('character:screen.title')}>
       <div className="mx-auto flex h-full min-h-0 w-full max-w-5xl flex-col gap-2">
-        <Tabs
-          keepMounted
-          tabs={[
-            {
-              id: 'hero',
-              label: t('character:screen.title'),
-              content: (
-                <div className="flex min-h-0 flex-1" data-testid="hero-strip">
+        <div className="shrink-0" data-testid="hero-strip">
                   <HeroStrip player={player} vitality={vitality} />
                 </div>
-              )
-            },
+              <Tabs
+          keepMounted
+          tabs={[
             {
               id: 'attributes',
               label: t('common:stats.title'),
@@ -130,13 +124,15 @@ function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVital
   const ds = player.derivedStats;
   const portrait = resolveClassPortrait(player.class);
   return (
-    <Panel className="!p-3 min-h-0 flex-1 flex">
-      <div className="flex min-h-0 flex-1 items-center gap-3" data-testid="hero-card">
+    <Panel className="!p-2 flex">
+      <div className="grid min-w-0 flex-1 grid-cols-[48px_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[64px_minmax(0,1fr)_minmax(120px,180px)]"
+        data-testid="hero-card"
+      >
         {portrait && (
           <img
             src={portrait}
             alt=""
-            className="h-full min-h-0 w-1/3 shrink-0 rounded object-contain"
+            className="h-16 w-12 sm:h-20 sm:w-16 rounded object-contain row-span-2 sm:row-span-1"
           />
         )}
         <div className="min-w-0 flex-1">
@@ -156,7 +152,7 @@ function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVital
             label={t('common:xp')}
           />
         </div>
-        <div className="hidden min-w-36 lg:block">
+        <div className="col-start-2 min-w-0 sm:col-start-auto">
           <StatBar
             current={ds.life}
             max={Math.max(1, ds.lifeMax)}

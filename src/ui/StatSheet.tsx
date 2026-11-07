@@ -25,7 +25,6 @@
  * line so the value and change remain readable at 14px. Numerals use
  * `tabular-nums` for digit alignment.
  */
-import { useState } from 'react';
 import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
@@ -82,7 +81,6 @@ export type StatSheetProps = SingleProps | CompareProps;
 
 export function StatSheet(props: StatSheetProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'common', 'items', 'rarity']);
-  const [selectedPage, setSelectedPage] = useState(0);
   const { t: tAffix } = useTranslation('affixes');
 
   // Compare mode always shows 3 columns (even when current is null, the
@@ -99,16 +97,11 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
     return r.current !== 0 || r.candidate !== 0;
   });
 
-  const affixes = props.mode === 'compare' ? props.candidate.affixes : props.item?.affixes;
-  const sections = [0, 1, ...(hasResist ? [2] : []), ...(affixes?.length ? [3] : [])];
-  const page = Math.min(selectedPage, sections.length - 1);
-  const section = sections[page] ?? 0;
-
   return (
     <div
       className={[
-        'd2-surface bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-sm',
-        'shadow-2xl shadow-black/70 w-full max-w-md',
+        'd2-surface bg-d2-bg/95 border-2 border-d2-gold rounded-md p-2 text-sm',
+        'shadow-2xl shadow-black/70 w-full min-w-0 shrink-0',
         props.className ?? ''
       ]
         .filter(Boolean)
@@ -117,31 +110,6 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       data-testid={props.mode === 'compare' ? 'item-compare' : 'item-stat-sheet'}
       data-mode={props.mode}
     >
-      <div className="d2-pager mb-1">
-        <button
-          type="button"
-          disabled={page === 0}
-          onClick={() => {
-            setSelectedPage(page - 1);
-          }}
-          aria-label={t('common:pagination.previous')}
-        >
-          ‹
-        </button>
-        <span aria-live="polite">
-          {t('common:pagination.page', { current: page + 1, total: sections.length })}
-        </span>
-        <button
-          type="button"
-          disabled={page === sections.length - 1}
-          onClick={() => {
-            setSelectedPage(page + 1);
-          }}
-          aria-label={t('common:pagination.next')}
-        >
-          ›
-        </button>
-      </div>
       <table
         className="d2-stat-table w-full table-fixed border-collapse tabular-nums"
         data-testid="stat-compare-table"
@@ -149,14 +117,14 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       >
         <colgroup>
           <col />
-          <col className="w-[34%] sm:w-[32%]" />
-          {showCandidate && <col className="w-[40%] sm:w-[36%]" />}
+          <col className="w-[30%]" />
+          {showCandidate && <col className="w-[32%]" />}
         </colgroup>
         <thead>
           <tr className="align-bottom">
             <th
               scope="col"
-              className="text-left text-sm uppercase tracking-wide text-d2-white/60 font-normal pb-2 pr-2"
+              className="text-left text-xs uppercase tracking-wide text-d2-white/60 font-normal pb-2 pr-2"
             >
               {t('equipFlow.compare.statHeader')}
             </th>
@@ -197,7 +165,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {(section < 2 ? STAT_ORDER.slice(section * 5, section * 5 + 5) : []).map((key) => {
+          {STAT_ORDER.map((key) => {
             const meta = STAT_META[key];
             const label = t(`equipFlow.compare.stat.${key}`);
             if (props.mode === 'single') {
@@ -265,7 +233,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
           })}
         </tbody>
 
-        {section === 2 && hasResist && (
+        {hasResist && (
           <tbody className="[&>tr:first-child>th]:border-t [&>tr:first-child>th]:border-d2-border/60 [&>tr:first-child>th]:pt-2 [&>tr:first-child>td]:border-t [&>tr:first-child>td]:border-d2-border/60 [&>tr:first-child>td]:pt-2">
             {RESIST_KEYS.map((key) => {
               const label = t(`equipFlow.compare.resist.${key}`);
@@ -322,8 +290,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
         )}
       </table>
 
-      {section === 3 &&
-        props.mode === 'compare' &&
+      {props.mode === 'compare' &&
         props.candidate.affixes &&
         props.candidate.affixes.length > 0 && (
           <ul
@@ -337,8 +304,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             ))}
           </ul>
         )}
-      {section === 3 &&
-        props.mode === 'single' &&
+      {props.mode === 'single' &&
         props.item?.affixes &&
         props.item.affixes.length > 0 && (
           <ul
@@ -421,7 +387,7 @@ function HeaderCell({
 
   return (
     <div className="min-w-0 flex flex-col items-end">
-      <span className="text-sm uppercase tracking-wide text-d2-white/60">{label}</span>
+      <span className="text-xs uppercase tracking-wide text-d2-white/60">{label}</span>
       {item ? (
         <>
           <RarityText

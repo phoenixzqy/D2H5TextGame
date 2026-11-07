@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { resolveItemDisplay, StatSheet, Tabs } from '@/ui';
+import { resolveItemDisplay, StatSheet } from '@/ui';
 import type { Item } from '@/engine/types/items';
-import { PagedList } from '@/ui/PagedList';
 import { netEquipDelta, type CompareResult } from './compareEquip';
 
 export function AlreadyEquippedBadge(): JSX.Element {
@@ -41,7 +40,7 @@ export function ItemComparePanel({
     <section
       data-testid="compare-panel"
       aria-labelledby={titleId}
-      className="d2-surface flex min-h-0 flex-1 flex-col min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-3 gap-2"
+      className="d2-surface flex flex-col min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-2 gap-2"
     >
       <h3
         id={titleId}
@@ -58,23 +57,27 @@ export function ItemComparePanel({
         <AlreadyEquippedBadge />
       ) : (
         <>
-          <Tabs tabs={[
-            { id: 'stats', label: t('details'), content: (          <StatSheet
+          <StatSheet
             mode="compare"
             current={compare.current}
             candidate={compare.candidate}
             stats={compare.stats}
             resistances={compare.resistances}
           />
-) },
-            ...(candidateDisplay.set && candidateDisplay.setBonuses.length > 0 ? [{
-              id: 'set', label: t('detail.setBonus'), content: <PagedList items={candidateDisplay.setBonuses} renderItem={bonus => (
-                <li key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}>
-                  {t('detail.setBonusThreshold', { count: bonus.threshold })}{': '}{bonus.lines.map(line => line.text).join(', ')}
+          {candidateDisplay.set && candidateDisplay.setBonuses.length > 0 && (
+            <ul className="space-y-1 text-sm">
+              {candidateDisplay.setBonuses.map((bonus) => (
+                <li
+                  key={bonus.threshold}
+                  className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}
+                >
+                  {t('detail.setBonusThreshold', { count: bonus.threshold })}
+                  {': '}
+                  {bonus.lines.map((line) => line.text).join(', ')}
                 </li>
-              )} />,
-            }] : []),
-          ]} />
+              ))}
+            </ul>
+          )}{' '}
           {net !== 0 && (
             <div
               className={`text-sm font-serif ${net > 0 ? 'text-emerald-400' : 'text-rose-400'}`}
@@ -86,7 +89,6 @@ export function ItemComparePanel({
                 : t('equipFlow.compare.netDowngrade', { n: net })}
             </div>
           )}
-
         </>
       )}
     </section>

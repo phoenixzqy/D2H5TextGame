@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   ...props
 }, ref) {
   return (
-    <button ref={ref} type="button" className={`d2-button d2-button--${variant} px-6 py-3 ${className}`} {...props}>
+    <button ref={ref} type="button" className={`d2-button d2-button--${variant} px-4 py-2 ${className}`} {...props}>
       {children}
     </button>
   );
