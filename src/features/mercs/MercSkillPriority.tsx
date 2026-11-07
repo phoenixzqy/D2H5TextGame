@@ -5,8 +5,15 @@ import type { Item } from '@/engine/types/items';
 import { useMercStore } from '@/stores/mercStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { getMercActiveProjection } from '@/stores/mercToCombatUnit';
+import { getSkillsForClass } from '@/stores/skillsHelpers';
+import { canonicalSkillIdFromData } from '@/engine/skills/dataCatalog';
+import { computeSkillDisplayModel } from '@/engine/skills/displayStats';
+import mercenarySkills from '@/data/skills/mercenary.json';
+import itemSkills from '@/data/skills/item.json';
 import { Button, tDataKey } from '@/ui';
 import { PagedList } from '@/ui/PagedList';
+
+const sorceressSkills = getSkillsForClass('sorceress');
 
 /** Ordinary controls for choosing an owned mercenary's secondary skill priority. */
 export function MercSkillPriority({ merc, equipment }: {
@@ -14,6 +21,8 @@ export function MercSkillPriority({ merc, equipment }: {
 }) {
   const { t } = useTranslation('mercs');
   const setSkillOrder = useMercStore(state => state.setSkillOrder);
+  const mercBaseId = merc.id.split('#')[0] ?? merc.id;
+  const stars = useMercStore(state => state.recruitmentProgress[mercBaseId]?.stars ?? 0);
   const locked = useCombatStore(state => state.inCombat ||
     (state.subAreaRunId !== null && !state.runVictory && !state.runDefeat));
   const [refused, setRefused] = useState(false);
@@ -39,6 +48,21 @@ export function MercSkillPriority({ merc, equipment }: {
             skill: id.replace(/^mskill-/, '').replace(/[-_/.]+/g, ' ')
           }) });
           const signature = index < firstSecondary;
+          const nativeSkill = mercenarySkills.find(skill => skill.id === id);
+          const itemSkill = id === 'item.redemption' ? itemSkills.find(skill => skill.id === 'item-redemption') : undefined;
+          const spell = governed && id !== 'item.redemption'
+            ? sorceressSkills.find(skill => canonicalSkillIdFromData(skill.id) === id) : undefined;
+          const spellStats = spell ? computeSkillDisplayModel(spell, Math.max(1, governed?.effectiveRank ?? 0)).current : undefined;
+          const damage = spellStats?.damage[0];
+          const description = nativeSkill?.description ? tDataKey(t, nativeSkill.description)
+            : itemSkill?.description ? tDataKey(t, itemSkill.description)
+            : spell?.description && spellStats ? t(spell.description.replace(/^skills\./, 'skills:'), {
+              min: damage?.min, max: damage?.max, mana: spellStats.manaCost, cooldown: spellStats.cooldown,
+              maxTargets: spellStats.maxTargets,
+              duration: spellStats.periodicSpell?.durationSeconds ?? (spellStats.control
+                ? t('skills:details.seconds', { seconds: spellStats.control.durationSeconds }) : undefined),
+              interval: spellStats.periodicSpell?.intervalSeconds, pulses: spellStats.periodicSpell?.pulses
+            }) : undefined;
           return (
             <li key={id} className="flex min-w-0 flex-wrap items-center gap-2">
               <span className="min-w-0 flex-1 break-words text-sm">{index + 1}. {governed && !governed.available
@@ -57,6 +81,11 @@ export function MercSkillPriority({ merc, equipment }: {
                   </Button>
                 </div>
               )}
+              {description && <p className="w-full break-words text-sm text-d2-white/75">
+                {governed && governed.effectiveRank === 0 && spell && <span>{t('priority.rankPreview')} </span>}
+                {description}
+                {signature && nativeSkill && stars > 0 && <span> {t('priority.signatureBaseValues')}</span>}
+              </p>}
             </li>
           );
         }} />

@@ -1462,7 +1462,7 @@
     },
     "inner-sight": {
       "name": "Inner Sight",
-      "desc": "Reveals weak points on enemies, lowering their defense."
+      "desc": "Reduce all enemies’ Defense by 25% for 8 seconds. Costs 0 MP; 5-second cooldown."
     },
     "fire-ball": {
       "name": "Fire Ball",
@@ -1478,7 +1478,7 @@
     },
     "frozen-armor": {
       "name": "Frozen Armor",
-      "desc": "Wraps the caster in icy armor that chills attackers."
+      "desc": "Gain 120 Defense and Chill living melee attackers on damaging hits. Costs 0 MP; 6-second cooldown."
     },
     "telekinesis": {
       "name": "Telekinesis",
@@ -1494,7 +1494,7 @@
     },
     "minor-heal": {
       "name": "Minor Heal",
-      "desc": "An acolyte's healing prayer that restores ally life."
+      "desc": "Restore 30–50 Life to one ally, up to maximum Life. Costs 0 MP; 4-second cooldown."
     },
     "holy-freeze": {
       "name": "Holy Freeze Aura",
@@ -1502,7 +1502,7 @@
     },
     "might": {
       "name": "Might Aura",
-      "desc": "An aura that increases physical damage of allies."
+      "desc": "While this mercenary lives, allies including summons gain +30% increased direct physical damage."
     },
     "thorns": {
       "name": "Thorns Aura",

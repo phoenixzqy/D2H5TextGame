@@ -48,6 +48,8 @@
   },
   "priority": {
     "title": "技能优先级",
+    "rankPreview": "1级预览：",
+    "signatureBaseValues": "显示基础数值；星级提升会增强招牌技能效果。",
     "unknown": "未识别技能：{{skill}}",
     "help": "优先使用最靠前且可释放的技能。招牌技能保持首位，其余技能可调整顺序，下次战斗生效。",
     "earlier": "提高{{skill}}的优先级",

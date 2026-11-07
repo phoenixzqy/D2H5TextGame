@@ -48,6 +48,8 @@
   },
   "priority": {
     "title": "Skill priority",
+    "rankPreview": "Rank 1 preview:",
+    "signatureBaseValues": "Base values shown; star progression increases signature potency.",
     "unknown": "Unrecognized skill: {{skill}}",
     "help": "The first ready skill is used. Keep the signature first and move other skills earlier or later. Applies to the next battle.",
     "earlier": "Move {{skill}} earlier",
