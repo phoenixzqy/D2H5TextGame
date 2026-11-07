@@ -51,7 +51,7 @@ import {
   synthDefaultPlan,
   type WaveSpec
 } from '@/engine/combat';
-import { loadAwardPools } from '@/data/loaders/loot';
+import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
 import { CHAPTER_BOSS_FIRST_KILLS } from '@/data/loaders/chapter-boss-first-kills';
 import { materialEconomy } from '@/data/loaders/materials';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
@@ -550,7 +550,7 @@ export function awardLootForVictory(opts: {
   const destination = { ...inv, mercEquipment: useMercStore.getState().mercEquipment };
   planRewardGrant(rawRewards, destination);
   const rewards = filterGeneratedLoot(rawRewards, useMetaStore.getState().settings.lootFilter,
-    loadAwardPools().bases).rewards;
+    loadItemBases()).rewards;
   const grant = planRewardGrant(rewards, destination);
   try { useInventoryStore.setState(grant); }
   catch (cause) {
@@ -1187,7 +1187,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           const destination = { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment };
           planRewardGrant(rawRewards, destination);
           const rewards = filterGeneratedLoot(rawRewards, useMetaStore.getState().settings.lootFilter,
-            loadAwardPools().bases).rewards;
+            loadItemBases()).rewards;
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
           planRewardGrant(rewards, destination);
