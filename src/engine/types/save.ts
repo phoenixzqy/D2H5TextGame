@@ -50,6 +50,8 @@ export type SaveVersion = typeof CURRENT_SAVE_VERSION;
  * Settings
  */
 export interface Settings {
+  /** Absent in older saves means disabled; only newly generated combat gear is filtered. */
+  readonly lootFilter?: import('../loot/filter').LootFilterSettings;
   readonly locale: 'zh-CN' | 'en';
   readonly stealthMode: boolean;
   readonly soundEnabled: boolean;

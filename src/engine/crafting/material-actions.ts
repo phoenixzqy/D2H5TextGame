@@ -1,4 +1,5 @@
 import { materialRecipes, materialRecipeRules, type CraftingBag, type MaterialRecipe } from '@/data/loaders/material-recipes';
+import { salvageYield } from './salvage-yield';
 import { materialCatalog, materialEconomy, type MaterialProfile } from '@/data/loaders/materials';
 import { mergeMaterials, type MaterialLedger } from '../loot/materials';
 import { previewSocketInsertion, previewSocketClearing, validateCanonicalSocketItem, type CanonicalSocketItem } from '../items/socket-contents';
@@ -161,8 +162,7 @@ function describe(state: MaterialActionInventory, context: MaterialActionContext
     for (const item of items) {
       const base = targetBase(item, context);
       if (base.type !== 'weapon' && base.type !== 'armor' && base.type !== 'jewelry') throw new Error('Non-gear cannot be salvaged');
-      const yieldValue = materialRecipeRules.salvage.rarityYields[item.rarity];
-      const added = yieldValue * (1 + Math.floor((sourceLevel(item) - 1) / materialRecipeRules.salvage.levelBandSize));
+      const added = salvageYield({ rarity: item.rarity, level: sourceLevel(item) });
       if (!isPositive(added) || !Number.isSafeInteger(count + added)) throw new Error('Salvage output overflow');
       count += added;
     }

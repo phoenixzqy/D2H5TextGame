@@ -7,6 +7,7 @@ import { toJsonSafe } from './serialize';
 import { buildSave } from './serialize';
 import { decodeSave, decodeSaveJson, validateSave } from './validate';
 import { deriveStats } from '../progression/stats';
+import { DEFAULT_LOOT_FILTER } from '../loot/filter';
 
 function historicalStats(stats: DerivedStats): LegacyDerivedStats {
   const { magicResist: _mr, ...old } = stats;
@@ -107,6 +108,27 @@ function sampleSave() {
 }
 
 describe('save boundary', () => {
+  it('round-trips an opt-in loot filter while accepting older current saves without one', () => {
+    const old = sampleSave();
+    expect(decodeSaveJson(JSON.stringify(toJsonSafe(old))).meta.settings.lootFilter).toBeUndefined();
+    const lootFilter = { ...DEFAULT_LOOT_FILTER, enabled: true, maxItemLevel: 25,
+      actions: { ...DEFAULT_LOOT_FILTER.actions, normal: 'salvage' as const, rare: 'discard' as const } };
+    const current = { ...old, meta: { ...old.meta, settings: { ...old.meta.settings, lootFilter } } };
+    expect(decodeSaveJson(JSON.stringify(toJsonSafe(current))).meta.settings.lootFilter).toEqual(lootFilter);
+  });
+
+  it.each([-1, 0.5, Number.MAX_SAFE_INTEGER + 1, null])('rejects invalid loot filter level %s', maxItemLevel => {
+    const old = sampleSave();
+    const settings = { ...old.meta.settings, lootFilter: { ...DEFAULT_LOOT_FILTER, maxItemLevel } };
+    expect(() => decodeSave({ ...old, meta: { ...old.meta, settings } })).toThrow('Invalid save');
+  });
+
+  it('rejects invalid loot filter actions before hydration', () => {
+    const old = sampleSave();
+    const settings = { ...old.meta.settings, lootFilter: { ...DEFAULT_LOOT_FILTER,
+      actions: { ...DEFAULT_LOOT_FILTER.actions, normal: 'sell' } } };
+    expect(() => decodeSave({ ...old, meta: { ...old.meta, settings } })).toThrow('Invalid save');
+  });
   it('uses the parser-owned JSON tree without scanning it for native object descriptors', () => {
     const save = sampleSave(), json = JSON.stringify(toJsonSafe(save));
     const ownKeys = vi.spyOn(Reflect, 'ownKeys');

@@ -192,7 +192,8 @@ const saveSchema = (
   playerOptional: Record<string, AnySchema> = {},
   inventoryProperties: Record<string, AnySchema> = {},
   mapProperties: Record<string, AnySchema> = {},
-  itemSchema: AnySchema = item
+  itemSchema: AnySchema = item,
+  settingsOptional: Record<string, AnySchema> = {}
 ): AnySchema => object({
   version,
   timestamp: number,
@@ -247,7 +248,7 @@ const saveSchema = (
       musicEnabled: bool,
       combatSpeed: number,
       autoCombat: bool
-    }),
+    }, settingsOptional),
     idleState: object(
       numbers('lastOnline offlineTime multiplierSecondsRemaining activeMultiplier'),
       { idleTarget: text }
@@ -307,7 +308,19 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 
         ? [...(version >= 32 ? [ANYA_DOMAIN.proof, ...Object.values(ANYA_DOMAIN.tradeProofs), FARA_DOMAIN.proof, COW.tomeSource, COW.openProof, COW.victoryProof] : []), ...(version >= 30 ? Object.values(TOWN_ENLISTMENTS).map(row => row.proof) : []), ...(version >= 27 ? [WARBAND.proof] : []), ...(version >= 26 ? [LARZUK.proof] : []), ...(version >= 25 ? [ORMUS.proof] : []), ...CAIN_RECEIPTS, COUNTESS.receipt, ACT1_QUEST_RECEIPTS.presentItem, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
         : [...FROZEN_V22.victories.map(row => row.proof), ...FROZEN_V22.act5.receipts,
           ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])) } }
-}, version >= 19 ? canonicalItem : item);
+}, version >= 19 ? canonicalItem : item, version === 33 && !frozen ? {
+  lootFilter: object({
+    enabled: bool,
+    maxItemLevel: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER },
+    actions: object({
+      normal: { enum: ['keep', 'salvage', 'discard'] },
+      magic: { enum: ['keep', 'salvage', 'discard'] },
+      rare: { enum: ['keep', 'salvage', 'discard'] },
+      unique: { enum: ['keep', 'salvage', 'discard'] },
+      set: { enum: ['keep', 'salvage', 'discard'] }
+    })
+  })
+} : {});
 const getValidateV17 = lazyValidator<SaveV17>(nativeSaveSchema(17));
 const getValidateV18 = lazyValidator<SaveV18>(nativeSaveSchema(18));
 const getValidateV19 = lazyValidator<SaveV19>(nativeSaveSchema(19));

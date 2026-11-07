@@ -12,6 +12,7 @@ import { addRecruitmentCurrency, executeGachaPull, spendRecruitmentCurrency } fr
 import { assertMaterialMutationAllowed } from './waveTransitionGuard';
 import { checkpointIdleBonus } from '@/engine/idle/persisted-bonus';
 import { readStartupLocale } from '@/i18n/localePreference';
+import { assertLootFilterSettings } from '@/engine/loot/filter';
 
 /** Result of a single gacha pull surfaced to the UI. */
 export interface GachaPullResult {
@@ -88,7 +89,9 @@ export const useMetaStore = create<MetaState>((set, get) => ({
   gachaState: initialGachaState,
   recruitmentState: initialRecruitmentState,
   
-  updateSettings: (settings) => { set((state) => ({
+  updateSettings: (settings) => {
+    if (settings.lootFilter !== undefined) assertLootFilterSettings(settings.lootFilter);
+    set((state) => ({
     settings: {
       ...state.settings,
       ...settings

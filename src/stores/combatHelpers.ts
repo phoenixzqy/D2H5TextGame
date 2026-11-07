@@ -42,6 +42,7 @@ import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
 import type { MonsterDef } from '@/engine/types/monsters';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
 import { mergeRewards, planRewardGrant } from '@/engine/loot/reward-plan';
+import { filterGeneratedLoot } from '@/engine/loot/filter';
 import { xpForKill } from '@/engine/progression/xp';
 import {
   buildMonsterUnit,
@@ -544,9 +545,13 @@ export function awardLootForVictory(opts: {
   readonly magicFindMultiplier?: number;
 }): KillRewards {
   assertIronGolemOwnershipMutationAllowed();
-  const rewards = prepareLootForVictory(opts);
+  const rawRewards = prepareLootForVictory(opts);
   const inv = useInventoryStore.getState();
-  const grant = planRewardGrant(rewards, { ...inv, mercEquipment: useMercStore.getState().mercEquipment });
+  const destination = { ...inv, mercEquipment: useMercStore.getState().mercEquipment };
+  planRewardGrant(rawRewards, destination);
+  const rewards = filterGeneratedLoot(rawRewards, useMetaStore.getState().settings.lootFilter,
+    loadAwardPools().bases).rewards;
+  const grant = planRewardGrant(rewards, destination);
   try { useInventoryStore.setState(grant); }
   catch (cause) {
     try { useInventoryStore.setState(inv, true); }
@@ -1177,11 +1182,15 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             ? materialEconomy.currencyRewards.wishstones.firstClearAmount : 0;
           const clearRewards = firstClearAmount > 0 ? mergeRewards(killRewards,
             { items: [], runeShards: 0, wishstones: firstClearAmount, runes: 0, gems: 0, materials: {} }) : killRewards;
-          const rewards = cache ? mergeRewards(clearRewards, { items: [], runeShards: 0, wishstones: 0,
+          const rawRewards = cache ? mergeRewards(clearRewards, { items: [], runeShards: 0, wishstones: 0,
             runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : clearRewards;
+          const destination = { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment };
+          planRewardGrant(rawRewards, destination);
+          const rewards = filterGeneratedLoot(rawRewards, useMetaStore.getState().settings.lootFilter,
+            loadAwardPools().bases).rewards;
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
-          planRewardGrant(rewards, { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment });
+          planRewardGrant(rewards, destination);
           mergeRewards(combat.runRewards, rewards);
           publishPity();
           let xpGained = 0;

@@ -20,6 +20,7 @@ import { useHydrationStore } from './hydrationStore';
 import { inspectRecordedWaves } from './recordedWaveReceipt';
 import { getIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { assertWaveSnapshotAllowed } from './waveTransitionGuard';
+import { DEFAULT_LOOT_FILTER } from '@/engine/loot/filter';
 
 const stores = [usePlayerStore, useMercStore, useInventoryStore, useMapStore, useCombatStore] as const;
 const reward = (): award.KillRewards => ({ items: [], runeShards: 3, wishstones: 2,
@@ -120,6 +121,34 @@ afterEach(() => {
 });
 
 describe('native whole-wave reward transaction', () => {
+  it('applies the selected loot rule consistently to inventory and run rewards', () => {
+    wonWave();
+    useMetaStore.getState().updateSettings({ lootFilter: { ...DEFAULT_LOOT_FILTER, enabled: true,
+      actions: { ...DEFAULT_LOOT_FILTER.actions, normal: 'salvage' } } });
+    let ordinal = 0;
+    const first = gearReward().items[0];
+    if (!first) throw new Error('Missing fixture gear');
+    vi.spyOn(award, 'rollKillRewards').mockImplementation(() => ({ ...gearReward(),
+      items: [{ ...first, id: `filtered-${String(++ordinal)}` }] }));
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(ordinal).toBeGreaterThan(0);
+    expect(useInventoryStore.getState().backpack).toEqual([]);
+    expect(useInventoryStore.getState().materials['materials/scrap']).toBe(ordinal);
+    expect(useCombatStore.getState().runRewards).toMatchObject({ items: [],
+      materials: { 'materials/scrap': ordinal } });
+  });
+
+  it('rejects salvage overflow before publishing any native wave reward', () => {
+    wonWave();
+    useMetaStore.getState().updateSettings({ lootFilter: { ...DEFAULT_LOOT_FILTER, enabled: true,
+      actions: { ...DEFAULT_LOOT_FILTER.actions, normal: 'salvage' } } });
+    useInventoryStore.setState({ materials: { 'materials/scrap': Number.MAX_SAFE_INTEGER } });
+    vi.spyOn(award, 'rollKillRewards').mockReturnValue(gearReward());
+    const before = snapshot();
+    expect(advanceWaveOrFinish).toThrow();
+    restored(before);
+  });
+
   it('publishes actual ordinary-monster rewards into inventory with at most one equipment item per kill', () => {
     wonWave(false, 'manual');
     const roll = vi.spyOn(award, 'rollKillRewards');
@@ -511,6 +540,20 @@ describe('native whole-wave reward transaction', () => {
     let stop: () => void = () => undefined;
     stop = useInventoryStore.subscribe(() => { stop(); throw cause; });
     try { expect(grant).toThrow(cause); } finally { stop(); }
+    expect(useInventoryStore.getState()).toBe(before);
+  });
+
+  it('filters a direct combat grant and still rejects a duplicate raw item', () => {
+    useMetaStore.getState().updateSettings({ lootFilter: { ...DEFAULT_LOOT_FILTER, enabled: true,
+      actions: { ...DEFAULT_LOOT_FILTER.actions, normal: 'discard' } } });
+    vi.spyOn(award, 'rollKillRewards').mockReturnValue(gearReward());
+    const grant = () => awardLootForVictory({ slainEnemies: [createSimpleEnemy(1, 0)], act: 1,
+      seed: 1, treasureClassId: 'loot/trash-act1' });
+    expect(grant().items).toEqual([]);
+    expect(useInventoryStore.getState().backpack).toEqual([]);
+    useInventoryStore.setState({ backpack: [...gearReward().items] });
+    const before = useInventoryStore.getState();
+    expect(grant).toThrow(/duplicate/i);
     expect(useInventoryStore.getState()).toBe(before);
   });
 
