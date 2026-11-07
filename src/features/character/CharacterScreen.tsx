@@ -1,25 +1,28 @@
-/**
- * CharacterScreen — character sheet with cancellable attribute allocation.
- *
- * Layout (mobile, 360w, vertical scroll):
- *   [ Header strip: portrait · name · class · level · XP bar ]
- *   [ Panel: Core attributes (Str/Dex/Vit/Energy + points to spend) ]
- *   [ Panel: Derived stats (life/mana/atk/def/dodge/crit/AS) ]
- *   [ Panel: Resistances ]
- *   [ Panel: Equipped items ]
- *
- * Attribute previews stay local until the shared Apply controller commits them.
- */
+/** Character sheet with paged sections and persistent, cancellable attribute drafts. */
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait, tItemName } from '@/ui';
+import {
+  EquippedItemModal,
+  Modal,
+  Tabs,
+  Panel,
+  ScreenShell,
+  StatBar,
+  RarityText,
+  resolveClassPortrait,
+  tItemName
+} from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
 import type { CoreStats, DamageType } from '@/engine/types/attributes';
 import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
 import { applyStatDraft, type ApplyStatDraftResult } from './applyStatDraft';
-import { composeEquippedPlayerStats, type PlayerVitalityComposition } from '@/engine/progression/equipped-stats';
+import {
+  composeEquippedPlayerStats,
+  type PlayerVitalityComposition
+} from '@/engine/progression/equipped-stats';
 
 const RESIST_KEYS: readonly Exclude<DamageType, 'thorns'>[] = [
   'fire',
@@ -27,7 +30,7 @@ const RESIST_KEYS: readonly Exclude<DamageType, 'thorns'>[] = [
   'lightning',
   'poison',
   'arcane',
-  'physical',
+  'physical'
 ];
 
 const SLOT_ORDER: readonly EquipmentSlot[] = [
@@ -41,16 +44,16 @@ const SLOT_ORDER: readonly EquipmentSlot[] = [
   'ring-right',
   'weapon',
   'offhand',
-  'charm',
+  'charm'
 ];
 
 export function CharacterScreen() {
   const { t } = useTranslation(['character', 'common', 'inventory', 'damage-types']);
   const player = usePlayerStore((s) => s.player);
   const equipped = useInventoryStore((s) => s.equipped);
-  const questItems = useInventoryStore(s => s.questItems);
-  const questProgress = useMapStore(s => s.questProgress);
-  const questReceipts = useMapStore(s => s.questReceipts);
+  const questItems = useInventoryStore((s) => s.questItems);
+  const questProgress = useMapStore((s) => s.questProgress);
+  const questReceipts = useMapStore((s) => s.questReceipts);
   const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
 
   if (!player) {
@@ -63,32 +66,59 @@ export function CharacterScreen() {
     );
   }
 
-  const vitality = composeEquippedPlayerStats(player, player.level, equipped, questProgress, questItems, questReceipts).vitality;
+  const vitality = composeEquippedPlayerStats(
+    player,
+    player.level,
+    equipped,
+    questProgress,
+    questItems,
+    questReceipts
+  ).vitality;
   return (
     <ScreenShell testId="character-screen" title={t('character:screen.title')}>
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 lg:grid-cols-2 lg:items-start">
-        <div className="contents" data-testid="char-top-row">
-          <div data-testid="hero-strip">
-            <HeroStrip player={player} vitality={vitality} />
-          </div>
-          <DerivedStatsPanel player={player} />
-        </div>
-        <div className="contents">
-          <div data-testid="core-attributes-panel">
-            <CoreAttributesPanel player={player} />
-          </div>
-          <ResistancesPanel player={player} />
-        </div>
-        <EquipmentSummaryPanel
-          equipped={equipped}
-          onSlotClick={(slot) => { setViewSlot(slot); }}
+      <div className="mx-auto flex h-full min-h-0 w-full max-w-5xl flex-col gap-2">
+        <Tabs
+          keepMounted
+          tabs={[
+            {
+              id: 'hero',
+              label: t('character:screen.title'),
+              content: (
+                <div className="flex min-h-0 flex-1" data-testid="hero-strip">
+                  <HeroStrip player={player} vitality={vitality} />
+                </div>
+              )
+            },
+            {
+              id: 'attributes',
+              label: t('common:stats.title'),
+              content: <CoreAttributesPanel player={player} />
+            },
+            {
+              id: 'derived',
+              label: t('character:screen.derived'),
+              content: <DerivedStatsPanel player={player} />
+            },
+            {
+              id: 'resistances',
+              label: t('character:screen.resistances'),
+              content: <ResistancesPanel player={player} />
+            },
+            {
+              id: 'equipment',
+              label: t('character:screen.equipment'),
+              content: <EquipmentSummaryPanel equipped={equipped} onSlotClick={setViewSlot} />
+            }
+          ]}
         />
       </div>
       <EquippedItemModal
         slot={viewSlot}
         item={viewSlot ? (equipped[viewSlot] ?? null) : null}
         derivedStats={player.derivedStats}
-        onClose={() => { setViewSlot(null); }}
+        onClose={() => {
+          setViewSlot(null);
+        }}
       />
     </ScreenShell>
   );
@@ -98,52 +128,23 @@ function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVital
   const { t } = useTranslation(['character', 'common']);
   const xpMax = Math.max(1, player.experienceToNextLevel);
   const ds = player.derivedStats;
-  const cs = player.coreStats;
   const portrait = resolveClassPortrait(player.class);
   return (
-    <Panel className="!p-3">
-      <div className="flex items-start gap-3 flex-wrap">
-        <div className="h-[26rem] w-full max-w-64 shrink-0">
-          <GameCard
-            variant="character"
-            size="lg"
-            fluid
-            className="min-w-0 [&>.border-b]:shrink-0 [&>.border-t]:shrink-0
-                       [&_.truncate]:whitespace-normal [&_.truncate]:break-words
-                       [&>.border-b_.uppercase]:text-sm [&>.border-b_.uppercase]:text-d2-white/80
-                       [&>.border-b_.uppercase]:normal-case [&>.border-b_.uppercase]:tracking-normal
-                       [&>.border-t>.grid]:grid-cols-1
-                       [&>.border-t>.grid>div]:flex-row [&>.border-t>.grid>div]:justify-between
-                       [&>.border-t>.grid>div]:gap-2
-                       [&_.text-micro]:text-sm [&_.text-micro]:text-d2-white/80
-                       [&_.text-micro]:normal-case [&_.text-micro]:tracking-normal
-                       [&_.text-micro]:leading-5"
-            name={player.name}
-            subtitle={t(`character:classes.${player.class}`)}
-            rarity="unique"
-            image={portrait ?? undefined}
-            stats={[
-              { label: t('common:stats.strength'), value: cs.strength },
-              { label: t('common:stats.dexterity'), value: cs.dexterity },
-              { label: t('common:stats.vitality'), value: vitality.sheet },
-              { label: t('common:stats.energy'), value: cs.energy }
-            ]}
-            bars={[
-              { kind: 'hp', current: ds.life, max: Math.max(1, ds.lifeMax) },
-              { kind: 'mp', current: ds.mana, max: Math.max(1, ds.manaMax) }
-            ]}
-            testId="hero-card"
+    <Panel className="!p-3 min-h-0 flex-1 flex">
+      <div className="flex min-h-0 flex-1 items-center gap-3" data-testid="hero-card">
+        {portrait && (
+          <img
+            src={portrait}
+            alt=""
+            className="h-full min-h-0 w-1/3 shrink-0 rounded object-contain"
           />
-        </div>
-        <div className="flex-1 min-w-[180px] space-y-2 mt-2">
-          <div className="font-serif text-d2-gold text-lg md:text-xl truncate" data-testid="char-name">
+        )}
+        <div className="min-w-0 flex-1">
+          <div className="font-serif text-d2-gold truncate" data-testid="char-name">
             {player.name}
           </div>
-          <div className="text-sm text-d2-white/80">
-            <span data-testid="char-class">
-              {t(`character:classes.${player.class}`)}
-            </span>
-            <span className="mx-2 text-d2-border">·</span>
+          <div className="flex flex-wrap gap-x-2 text-xs text-d2-white/80">
+            <span data-testid="char-class">{t(`character:classes.${player.class}`)}</span>
             <span data-testid="char-level">
               {t('common:level')} {player.level}
             </span>
@@ -154,6 +155,21 @@ function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVital
             color="xp"
             label={t('common:xp')}
           />
+        </div>
+        <div className="hidden min-w-36 lg:block">
+          <StatBar
+            current={ds.life}
+            max={Math.max(1, ds.lifeMax)}
+            color="hp"
+            label={t('common:life')}
+          />
+          <StatBar
+            current={ds.mana}
+            max={Math.max(1, ds.manaMax)}
+            color="mp"
+            label={t('common:mana')}
+          />
+          <span className="sr-only">{vitality.sheet}</span>
         </div>
       </div>
     </Panel>
@@ -166,11 +182,12 @@ type DraftFeedback = ApplyStatDraftResult | 'cancelled' | 'discarded';
 
 function CoreAttributesPanel({ player }: { player: Player }) {
   const { t } = useTranslation(['common', 'character']);
-  const equipped = useInventoryStore(s => s.equipped);
-  const questItems = useInventoryStore(s => s.questItems);
-  const questProgress = useMapStore(s => s.questProgress);
-  const questReceipts = useMapStore(s => s.questReceipts);
+  const equipped = useInventoryStore((s) => s.equipped);
+  const questItems = useInventoryStore((s) => s.questItems);
+  const questProgress = useMapStore((s) => s.questProgress);
+  const questReceipts = useMapStore((s) => s.questReceipts);
   const [draft, setDraft] = useState<{ basis: Player; deltas: CoreStats } | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [feedback, setFeedback] = useState<DraftFeedback | null>(null);
   const stale = draft !== null && draft.basis !== player;
   // Render fencing precedes effect cleanup: interrupted edits are never rebased.
@@ -178,27 +195,53 @@ function CoreAttributesPanel({ player }: { player: Player }) {
   const total = ATTRIBUTE_KEYS.reduce((sum, stat) => sum + deltas[stat], 0);
   const remaining = Math.max(0, Math.floor(player.statPoints)) - total;
   const message = stale ? 'discarded' : feedback;
-  const current = composeEquippedPlayerStats(player, player.level, equipped, questProgress, questItems, questReceipts);
-  const preview = composeEquippedPlayerStats({ ...player, coreStats: {
-    strength: player.coreStats.strength + deltas.strength,
-    dexterity: player.coreStats.dexterity + deltas.dexterity,
-    vitality: player.coreStats.vitality + deltas.vitality,
-    energy: player.coreStats.energy + deltas.energy
-  } }, player.level, equipped, questProgress, questItems, questReceipts);
+  const current = composeEquippedPlayerStats(
+    player,
+    player.level,
+    equipped,
+    questProgress,
+    questItems,
+    questReceipts
+  );
+  const preview = composeEquippedPlayerStats(
+    {
+      ...player,
+      coreStats: {
+        strength: player.coreStats.strength + deltas.strength,
+        dexterity: player.coreStats.dexterity + deltas.dexterity,
+        vitality: player.coreStats.vitality + deltas.vitality,
+        energy: player.coreStats.energy + deltas.energy
+      }
+    },
+    player.level,
+    equipped,
+    questProgress,
+    questItems,
+    questReceipts
+  );
   useEffect(() => {
-    if (stale) { setDraft(null); setFeedback('discarded'); }
+    if (stale) {
+      setDraft(null);
+      setFeedback('discarded');
+    }
   }, [stale]);
 
   const edit = (stat: keyof CoreStats, amount: 1 | -1) => {
-    setDraft(current => {
+    setDraft((current) => {
       const pending = current?.basis === player ? current.deltas : EMPTY_STAT_DRAFT;
-      const available = Math.max(0, Math.floor(player.statPoints))
-        - ATTRIBUTE_KEYS.reduce((sum, key) => sum + pending[key], 0);
+      const available =
+        Math.max(0, Math.floor(player.statPoints)) -
+        ATTRIBUTE_KEYS.reduce((sum, key) => sum + pending[key], 0);
       if (amount < 0 && pending[stat] === 0) return current;
-      if (amount > 0 && (available < 1
-        || player.coreStats[stat] + pending[stat] + 1 > CORE_STAT_HARD_CAP)) return current;
+      if (
+        amount > 0 &&
+        (available < 1 || player.coreStats[stat] + pending[stat] + 1 > CORE_STAT_HARD_CAP)
+      )
+        return current;
       const next = { ...pending, [stat]: pending[stat] + amount };
-      return ATTRIBUTE_KEYS.every(key => next[key] === 0) ? null : { basis: player, deltas: next };
+      return ATTRIBUTE_KEYS.every((key) => next[key] === 0)
+        ? null
+        : { basis: player, deltas: next };
     });
     setFeedback(null);
   };
@@ -208,58 +251,142 @@ function CoreAttributesPanel({ player }: { player: Player }) {
     setFeedback(result);
     if (result === 'ok') setDraft(null);
   };
-  const buttonClass = 'min-h-[44px] min-w-[44px] rounded border border-d2-border bg-d2-bg/60 text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold hover:border-d2-gold disabled:opacity-40 disabled:cursor-not-allowed';
+  const buttonClass =
+    'min-h-[44px] min-w-[44px] rounded border border-d2-border bg-d2-bg/60 text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold hover:border-d2-gold disabled:opacity-40 disabled:cursor-not-allowed';
   return (
-    <Panel title={t('common:stats.title')} className="!p-3">
-      <div data-testid="char-core-stats">
-        <p className="mb-3 text-sm text-d2-white/80">{t('character:draft.instructions')}</p>
-        <ul className="grid grid-cols-1 gap-2">
-          {ATTRIBUTE_KEYS.map(stat => (
-            <li key={stat} className="d2-plaque flex items-center gap-2 rounded border border-d2-border/60 px-3 py-2 bg-d2-bg/40">
+    <Panel className="!p-2 flex min-h-0 flex-1 flex-col" data-testid="core-attributes-panel">
+      <div
+        data-testid="char-core-stats"
+        className="flex min-h-0 flex-1 flex-col gap-2 sm:grid sm:grid-cols-2"
+      >
+        <PagedList
+          items={ATTRIBUTE_KEYS}
+          pageSize={4}
+          renderItem={(stat) => (
+            <li
+              key={stat}
+              className="d2-plaque flex items-center gap-2 rounded border border-d2-border/60 px-3 py-2 bg-d2-bg/40"
+            >
               <div className="min-w-0 flex-1">
                 <span className="block text-sm text-d2-white/80">{t(`common:stats.${stat}`)}</span>
-                <span className="text-sm font-serif text-d2-gold" data-testid={`char-draft-${stat}`}>
-                  {player.coreStats[stat]}{deltas[stat] > 0 && ` → ${String(player.coreStats[stat] + deltas[stat])}`}
+                <span
+                  className="text-sm font-serif text-d2-gold"
+                  data-testid={`char-draft-${stat}`}
+                >
+                  {player.coreStats[stat]}
+                  {deltas[stat] > 0 && ` → ${String(player.coreStats[stat] + deltas[stat])}`}
                 </span>
               </div>
-              <button type="button" className={'d2-control ' + (buttonClass)} disabled={deltas[stat] === 0}
+              <button
+                type="button"
+                className={'d2-control ' + buttonClass}
+                disabled={deltas[stat] === 0}
                 aria-label={t('character:draft.decrease', { attribute: t(`common:stats.${stat}`) })}
-                onClick={() => { edit(stat, -1); }}>−</button>
-              <button type="button" className={'d2-control ' + (buttonClass)}
-                disabled={remaining < 1 || player.coreStats[stat] + deltas[stat] + 1 > CORE_STAT_HARD_CAP}
+                onClick={() => {
+                  edit(stat, -1);
+                }}
+              >
+                −
+              </button>
+              <button
+                type="button"
+                className={'d2-control ' + buttonClass}
+                disabled={
+                  remaining < 1 || player.coreStats[stat] + deltas[stat] + 1 > CORE_STAT_HARD_CAP
+                }
                 aria-label={t('character:draft.increase', { attribute: t(`common:stats.${stat}`) })}
-                onClick={() => { edit(stat, 1); }}>+</button>
+                onClick={() => {
+                  edit(stat, 1);
+                }}
+              >
+                +
+              </button>
             </li>
-          ))}
-        </ul>
-        <div className="mt-3 space-y-1 break-words text-sm text-d2-white/90" data-testid="char-vitality-composition">
-          <p>{t('character:vitality.effective', { ...current.vitality })}</p>
-          <p>{t('character:vitality.breakdown', { ...current.vitality })}</p>
-          <p>{t('character:vitality.allocation')}</p>
-          {total > 0 && <p className="text-d2-gold" data-testid="char-vitality-preview">{t('character:vitality.preview', {
-            sheet: preview.vitality.sheet, lifeMax: preview.derivedStats.lifeMax
-          })}</p>}
+          )}
+        />
+        <div className="flex shrink-0 flex-col gap-2">
+          <button
+            type="button"
+            className="d2-control shrink-0 min-h-11 text-sm text-d2-gold"
+            onClick={() => {
+              setDetailsOpen(true);
+            }}
+          >
+            {t('common:viewport.details')}
+          </button>
+          <Modal
+            isOpen={detailsOpen}
+            onClose={() => {
+              setDetailsOpen(false);
+            }}
+            title={t('common:stats.vitality')}
+          >
+            <p className="mb-2 text-sm">{t('character:draft.instructions')}</p>
+            <div
+              className="space-y-1 break-words text-sm text-d2-white/90"
+              data-testid="char-vitality-composition"
+            >
+              <p>{t('character:vitality.effective', { ...current.vitality })}</p>
+              <p>{t('character:vitality.breakdown', { ...current.vitality })}</p>
+              <p>{t('character:vitality.allocation')}</p>
+              {total > 0 && (
+                <p className="text-d2-gold" data-testid="char-vitality-preview">
+                  {t('character:vitality.preview', {
+                    sheet: preview.vitality.sheet,
+                    lifeMax: preview.derivedStats.lifeMax
+                  })}
+                </p>
+              )}
+            </div>
+          </Modal>
+          <div className="flex shrink-0 flex-wrap gap-3 text-sm text-d2-white/80">
+            <span>
+              {t('character:screen.statPoints')}
+              {': '}
+              <span className="text-d2-gold font-bold" data-testid="char-stat-points">
+                {player.statPoints}
+              </span>
+            </span>
+            <span>
+              {t('character:screen.skillPoints')}
+              {': '}
+              <span className="text-d2-gold font-bold" data-testid="char-skill-points">
+                {player.skillPoints}
+              </span>
+            </span>
+          </div>
+          <p className="shrink-0 text-sm text-d2-white/80">
+            {t('character:draft.remaining')}
+            {': '}
+            <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">
+              {remaining}
+            </span>
+          </p>
+          <div className="shrink-0 flex gap-2">
+            <button
+              type="button"
+              className={`d2-control ${buttonClass} flex-1 px-3 text-sm`}
+              disabled={total === 0}
+              onClick={commit}
+            >
+              {t('character:draft.apply')}
+            </button>
+            <button
+              type="button"
+              className={`d2-control ${buttonClass} flex-1 px-3 text-sm`}
+              disabled={total === 0}
+              onClick={() => {
+                setDraft(null);
+                setFeedback('cancelled');
+              }}
+            >
+              {t('character:draft.cancel')}
+            </button>
+          </div>
+          <p role="status" className="shrink-0 text-sm text-d2-white/80">
+            {message ? t(`character:draft.results.${message}`) : ''}
+          </p>
         </div>
-        <div className="flex flex-wrap gap-3 mt-3 text-sm text-d2-white/80">
-          <span>{t('character:screen.statPoints')}{': '}
-            <span className="text-d2-gold font-bold" data-testid="char-stat-points">{player.statPoints}</span>
-          </span>
-          <span>{t('character:screen.skillPoints')}{': '}
-            <span className="text-d2-gold font-bold" data-testid="char-skill-points">{player.skillPoints}</span>
-          </span>
-        </div>
-        <p className="mt-3 text-sm text-d2-white/80">{t('character:draft.remaining')}{': '}
-          <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">{remaining}</span>
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <button type="button" className={`d2-control ${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
-            onClick={commit}>{t('character:draft.apply')}</button>
-          <button type="button" className={`d2-control ${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
-            onClick={() => { setDraft(null); setFeedback('cancelled'); }}>{t('character:draft.cancel')}</button>
-        </div>
-        <p role="status" className="mt-2 min-h-5 text-sm text-d2-white/80">
-          {message ? t(`character:draft.results.${message}`) : ''}
-        </p>
       </div>
     </Panel>
   );
@@ -269,10 +396,7 @@ function DerivedStatsPanel({ player }: { player: Player }) {
   const { t } = useTranslation(['common', 'character']);
   const ds = player.derivedStats;
   return (
-    <Panel
-      title={t('character:screen.derived')}
-      className="!p-3"
-    >
+    <Panel className="!p-2 flex min-h-0 flex-1 flex-col gap-2">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" data-testid="char-derived-stats">
         <StatBar
           current={ds.life}
@@ -287,36 +411,45 @@ function DerivedStatsPanel({ player }: { player: Player }) {
           label={t('common:mana')}
         />
       </div>
-      <ul className="grid grid-cols-2 gap-2 mt-3 text-sm">
-        <KvRow label={t('common:stats.attackRating')} value={ds.attack} />
-        <KvRow label={t('common:stats.defense')} value={ds.defense} />
-        <KvRow label={t('character:derived.magicResist')} value={ds.magicResist} />
-        <KvRow label={t('common:stats.attackSpeed')} value={ds.attackSpeed} />
-        <KvRow
-          label={t('common:stats.critChance')}
-          value={formatPercent(ds.critChance)}
-        />
-        <KvRow
-          label={t('common:stats.critDamage')}
-          value={`${String(Math.round(ds.critDamage * 100))}%`}
-        />
-        <KvRow
-          label={t('common:stats.physicalDodge')}
-          value={formatPercent(ds.physDodge)}
-        />
-        <KvRow
-          label={t('common:stats.magicalDodge')}
-          value={formatPercent(ds.magicDodge)}
-        />
-        <KvRow
-          label={t('common:stats.magicFind')}
-          value={`${String(Math.round(ds.magicFind))}%`}
-        />
-        <KvRow
-          label={t('common:stats.goldFind')}
-          value={`${String(Math.round(ds.goldFind))}%`}
-        />
-      </ul>
+      <PagedList
+        items={[
+          <KvRow key="14202" label={t('common:stats.attackRating')} value={ds.attack} />,
+          <KvRow key="14280" label={t('common:stats.defense')} value={ds.defense} />,
+          <KvRow key="14354" label={t('character:derived.magicResist')} value={ds.magicResist} />,
+          <KvRow key="14441" label={t('common:stats.attackSpeed')} value={ds.attackSpeed} />,
+          <KvRow
+            key="14523"
+            label={t('common:stats.critChance')}
+            value={formatPercent(ds.critChance)}
+          />,
+          <KvRow
+            key="14618"
+            label={t('common:stats.critDamage')}
+            value={`${String(Math.round(ds.critDamage * 100))}%`}
+          />,
+          <KvRow
+            key="14764"
+            label={t('common:stats.physicalDodge')}
+            value={formatPercent(ds.physDodge)}
+          />,
+          <KvRow
+            key="14861"
+            label={t('common:stats.magicalDodge')}
+            value={formatPercent(ds.magicDodge)}
+          />,
+          <KvRow
+            key="14958"
+            label={t('common:stats.magicFind')}
+            value={`${String(Math.round(ds.magicFind))}%`}
+          />,
+          <KvRow
+            key="15096"
+            label={t('common:stats.goldFind')}
+            value={`${String(Math.round(ds.goldFind))}%`}
+          />
+        ]}
+        renderItem={(row, index) => <li key={index}>{row}</li>}
+      />
     </Panel>
   );
 }
@@ -325,33 +458,31 @@ function ResistancesPanel({ player }: { player: Player }) {
   const { t } = useTranslation(['damage-types', 'character']);
   const res = player.derivedStats.resistances;
   return (
-    <Panel
-      title={t('character:screen.resistances')}
-      className="!p-3"
-    >
-      <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm" data-testid="char-resistances">
-        {RESIST_KEYS.map((k) => {
-          const v = res[k];
-          return (
-            <li
-              key={k}
-              className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
-            >
-              <span className="text-d2-white/80">
-                {t(`damage-types:resist.${k}`)}
-              </span>
-              <span className={resistClass(v)}>{String(v)}%</span>
-            </li>
-          );
-        })}
-      </ul>
+    <Panel className="!p-2 flex min-h-0 flex-1 flex-col">
+      <div className="flex min-h-0 flex-1" data-testid="char-resistances">
+        <PagedList
+          items={RESIST_KEYS}
+          renderItem={(k) => {
+            const v = res[k];
+            return (
+              <li
+                key={k}
+                className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
+              >
+                <span className="text-d2-white/80">{t(`damage-types:resist.${k}`)}</span>
+                <span className={resistClass(v)}>{String(v)}%</span>
+              </li>
+            );
+          }}
+        />
+      </div>
     </Panel>
   );
 }
 
 function EquipmentSummaryPanel({
   equipped,
-  onSlotClick,
+  onSlotClick
 }: {
   equipped: Record<string, Item | null>;
   onSlotClick: (slot: EquipmentSlot) => void;
@@ -360,41 +491,39 @@ function EquipmentSummaryPanel({
   const entries = SLOT_ORDER.map((slot) => ({ slot, item: equipped[slot] ?? null }));
   const anyEquipped = entries.some((e) => e.item !== null);
   return (
-    <Panel
-      title={t('character:screen.equipment')}
-      className="!p-3"
-    >
+    <Panel className="!p-2 flex min-h-0 flex-1 flex-col">
       {!anyEquipped ? (
-        <p className="text-sm text-d2-white/60 italic">
-          {t('character:screen.noEquipment')}
-        </p>
+        <p className="text-sm text-d2-white/60 italic">{t('character:screen.noEquipment')}</p>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" data-testid="char-equipment">
-          {entries.map(({ slot, item }) => (
-            <li key={slot}>
-              <button
-                type="button"
-                onClick={() => { onSlotClick(slot); }}
-                data-testid={`char-equip-slot-${slot}`}
-                aria-label={t(`inventory:slots.${slot}`)}
-                className="d2-slot w-full flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px] text-left hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold transition-colors"
-              >
-                <span className="text-xs text-d2-white/60 shrink-0">
-                  {t(`inventory:slots.${slot}`)}
-                </span>
-                {item ? (
-                  <RarityText rarity={item.rarity} className="font-serif truncate text-right">
-                    {tItemName(t, item)}
-                  </RarityText>
-                ) : (
-                  <span className="text-d2-white/40 italic">
-                    {t('inventory:empty')}
+        <div className="flex min-h-0 flex-1" data-testid="char-equipment">
+          <PagedList
+            items={entries}
+            renderItem={({ slot, item }) => (
+              <li key={slot}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onSlotClick(slot);
+                  }}
+                  data-testid={`char-equip-slot-${slot}`}
+                  aria-label={t(`inventory:slots.${slot}`)}
+                  className="d2-slot w-full flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px] text-left hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold transition-colors"
+                >
+                  <span className="text-xs text-d2-white/60 shrink-0">
+                    {t(`inventory:slots.${slot}`)}
                   </span>
-                )}
-              </button>
-            </li>
-          ))}
-        </ul>
+                  {item ? (
+                    <RarityText rarity={item.rarity} className="font-serif truncate text-right">
+                      {tItemName(t, item)}
+                    </RarityText>
+                  ) : (
+                    <span className="text-d2-white/40 italic">{t('inventory:empty')}</span>
+                  )}
+                </button>
+              </li>
+            )}
+          />
+        </div>
       )}
     </Panel>
   );
@@ -402,10 +531,12 @@ function EquipmentSummaryPanel({
 
 function KvRow({ label, value }: { label: string; value: number | string }) {
   return (
-    <li className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40">
+    <div className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40">
       <span className="text-d2-white/80">{label}</span>
-      <span className="font-serif text-d2-gold">{typeof value === 'number' ? Math.round(value) : value}</span>
-    </li>
+      <span className="font-serif text-d2-gold">
+        {typeof value === 'number' ? Math.round(value) : value}
+      </span>
+    </div>
   );
 }
 

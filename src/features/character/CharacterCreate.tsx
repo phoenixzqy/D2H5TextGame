@@ -1,27 +1,13 @@
-/**
- * CharacterCreate — class picker, name, gender, stat preview.
- *
- * Layout @ 360×640:
- *   [ Title: 创建角色 ]
- *   [ Class grid 2-col (7 classes) — tap to select; selected = gold border ]
- *   [ Name input (required, 1–16 chars) ]
- *   [ Gender toggle: 男 / 女 ]
- *   [ Stat preview panel (str/dex/vit/eng/life/mana) ]
- *   [ 进入 button — disabled until class+name valid ]
- */
+/** Class and identity tabs keep creation within the available viewport. */
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, GameCard, Panel, resolveClassPortrait } from '@/ui';
+import { Button, Panel, Tabs, Modal, resolveClassPortrait } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import { useHydrationStore } from '@/stores/persistence';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { createCharacter } from './createCharacter';
-import {
-  CHARACTER_CLASSES,
-  type CharacterClass,
-  getStartingStatPreview,
-} from './createMockPlayer';
+import { CHARACTER_CLASSES, type CharacterClass, getStartingStatPreview } from './createMockPlayer';
 
 export function CharacterCreate() {
   const { t } = useTranslation(['character', 'common']);
@@ -32,15 +18,21 @@ export function CharacterCreate() {
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(null);
   const [name, setName] = useState('');
   const [gender, setGender] = useState<'male' | 'female'>('male');
+  const [statsOpen, setStatsOpen] = useState(false);
   const [startFailed, setStartFailed] = useState(false);
 
   const stats = useMemo(
     () => (selectedClass ? getStartingStatPreview(selectedClass) : null),
-    [selectedClass],
+    [selectedClass]
   );
 
   const trimmedName = name.trim();
-  const canStart = hydrationReady && !player && !!selectedClass && trimmedName.length >= 1 && trimmedName.length <= 16;
+  const canStart =
+    hydrationReady &&
+    !player &&
+    !!selectedClass &&
+    trimmedName.length >= 1 &&
+    trimmedName.length <= 16;
 
   const handleStart = () => {
     if (!canStart) return;
@@ -58,16 +50,18 @@ export function CharacterCreate() {
 
   return (
     <div
-      className="d2-create min-h-[100dvh] bg-d2-bg text-d2-white px-3 py-4
+      className="d2-create h-[100dvh] bg-d2-bg text-d2-white px-3 py-4
                  pt-[max(1rem,env(safe-area-inset-top))]
-                 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-x-hidden"
+                 pb-[max(1rem,env(safe-area-inset-bottom))] overflow-hidden"
       data-testid="character-create"
     >
-      <div className="max-w-2xl mx-auto space-y-4">
-        <header className="d2-create-header flex items-center justify-between">
+      <div className="mx-auto flex h-full min-h-0 max-w-3xl flex-col gap-2">
+        <header className="d2-create-header !py-0 shrink-0 flex items-center justify-between">
           <button
             type="button"
-            onClick={() => { navigate('/'); }}
+            onClick={() => {
+              navigate('/');
+            }}
             className="d2-control px-3 text-d2-white/70 hover:text-d2-gold min-h-[44px] min-w-[44px]
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
             aria-label={t('common:back')}
@@ -78,87 +72,116 @@ export function CharacterCreate() {
           <div className="w-12" aria-hidden />
         </header>
 
-        <Panel title={t('selectClass')}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 auto-rows-[20rem] gap-3">
-            {CHARACTER_CLASSES.map((cls) => {
-              const selected = selectedClass === cls;
-              const preview = getStartingStatPreview(cls);
-              return (
-                <GameCard
-                  key={cls}
-                  variant="character"
-                  size="md"
-                  fluid
-                  className="min-w-0 [&>.border-b]:shrink-0 [&>.border-t]:shrink-0
-                             [&_.truncate]:whitespace-normal [&_.truncate]:break-words
-                             [&>.border-t>.grid]:grid-cols-1
-                             [&>.border-t>.grid>div]:flex-row [&>.border-t>.grid>div]:justify-between
-                             [&>.border-t>.grid>div]:gap-1
-                             [&_.text-micro]:text-sm [&_.text-micro]:text-d2-white/80
-                             [&_.text-micro]:normal-case [&_.text-micro]:tracking-normal
-                             [&_.text-micro]:leading-5"
-                  name={t(`classes.${cls}`)}
-                  rarity="unique"
-                  image={resolveClassPortrait(cls) ?? undefined}
-                  stats={[
-                    { label: t('strength'), value: preview.strength },
-                    { label: t('dexterity'), value: preview.dexterity },
-                    { label: t('attributes.vitality'), value: preview.vitality },
-                    { label: t('energy'), value: preview.energy }
-                  ]}
-                  bars={[
-                    { kind: 'hp', current: preview.life, max: preview.life },
-                    { kind: 'mp', current: preview.mana, max: preview.mana }
-                  ]}
-                  selected={selected}
-                  onClick={() => { setSelectedClass(cls); }}
-                  testId={`class-${cls}`}
-                />
-              );
-            })}
-          </div>
-        </Panel>
-
-        <Panel title={t('characterName')}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => { setName(e.target.value); }}
-            placeholder={t('enterName')}
-            maxLength={16}
-            className="d2-field w-full min-h-[44px] px-3 py-2 rounded
+        <Tabs
+          tabs={[
+            {
+              id: 'class',
+              label: t('selectClass'),
+              content: (
+                <div className="flex min-h-0 flex-1 flex-col gap-2">
+                  <div className="grid shrink-0 grid-cols-4 gap-1">
+                    {CHARACTER_CLASSES.map((cls) => (
+                      <button
+                        key={cls}
+                        type="button"
+                        data-testid={`class-${cls}`}
+                        aria-pressed={selectedClass === cls}
+                        className={`d2-control min-h-11 rounded border px-1 text-xs focus-visible:ring-2 focus-visible:ring-d2-gold ${selectedClass === cls ? 'border-d2-gold text-d2-gold' : 'border-d2-border text-d2-white/80'}`}
+                        onClick={() => {
+                          setSelectedClass(cls);
+                        }}
+                      >
+                        {t(`classes.${cls}`)}
+                      </button>
+                    ))}
+                  </div>
+                  {selectedClass && stats ? (
+                    <div className="flex min-h-0 flex-1 gap-3">
+                      <img
+                        src={resolveClassPortrait(selectedClass) ?? undefined}
+                        alt=""
+                        className="min-h-0 w-1/2 rounded border border-d2-border object-contain"
+                      />
+                      <div className="min-w-0 flex-1 self-center">
+                        <h2 className="mb-2 font-serif text-d2-gold">
+                          {t(`classes.${selectedClass}`)}
+                        </h2>
+                        <Button
+                          variant="secondary"
+                          onClick={() => {
+                            setStatsOpen(true);
+                          }}
+                        >
+                          {t('startingStats')}
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="m-auto text-d2-white/70">{t('selectClass')}</p>
+                  )}
+                </div>
+              )
+            },
+            {
+              id: 'identity',
+              label: t('characterName'),
+              content: (
+                <div className="grid min-h-0 gap-2 sm:grid-cols-2">
+                  <Panel title={t('characterName')}>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      placeholder={t('enterName')}
+                      maxLength={16}
+                      className="d2-field w-full min-h-[44px] px-3 py-2 rounded
                        bg-d2-bg border border-d2-border text-d2-white
                        focus:outline-none focus:border-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
-            data-testid="character-name-input"
-            aria-label={t('characterName')}
-          />
-        </Panel>
+                      data-testid="character-name-input"
+                      aria-label={t('characterName')}
+                    />
+                  </Panel>
 
-        <Panel title={t('gender')}>
-          <div className="flex gap-2">
-            {(['male', 'female'] as const).map((g) => (
-              <button
-                key={g}
-                type="button"
-                onClick={() => { setGender(g); }}
-                aria-pressed={gender === g}
-                className={[
-                  'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                  gender === g
-                    ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
-                    : 'border-d2-border bg-d2-panel text-d2-white',
-                ].join(' ')}
-              >
-                {t(g)}
-              </button>
-            ))}
-          </div>
-        </Panel>
+                  <Panel title={t('gender')}>
+                    <div className="flex gap-2">
+                      {(['male', 'female'] as const).map((g) => (
+                        <button
+                          key={g}
+                          type="button"
+                          onClick={() => {
+                            setGender(g);
+                          }}
+                          aria-pressed={gender === g}
+                          className={[
+                            'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
+                            'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
+                            gender === g
+                              ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
+                              : 'border-d2-border bg-d2-panel text-d2-white'
+                          ].join(' ')}
+                        >
+                          {t(g)}
+                        </button>
+                      ))}
+                    </div>
+                  </Panel>
+                </div>
+              )
+            }
+          ]}
+        />
 
-        {stats && (
-          <Panel title={t('startingStats')}>
-            <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+        <Modal
+          isOpen={statsOpen}
+          onClose={() => {
+            setStatsOpen(false);
+          }}
+          title={t('startingStats')}
+        >
+          {stats && (
+            <dl className="grid grid-cols-2 gap-1 text-sm">
               <StatRow label={t('strength')} value={stats.strength} />
               <StatRow label={t('dexterity')} value={stats.dexterity} />
               <StatRow label={t('attributes.vitality')} value={stats.vitality} />
@@ -166,15 +189,19 @@ export function CharacterCreate() {
               <StatRow label={t('common:life')} value={stats.life} accent="text-red-400" />
               <StatRow label={t('common:mana')} value={stats.mana} accent="text-blue-400" />
             </dl>
-          </Panel>
-        )}
+          )}
+        </Modal>
 
-        {startFailed && <p role="alert" className="text-red-400">{t('common:error')}</p>}
+        {startFailed && (
+          <p role="alert" className="text-red-400">
+            {t('common:error')}
+          </p>
+        )}
         <Button
           variant="primary"
           onClick={handleStart}
           disabled={!canStart}
-          className="w-full text-lg min-h-[52px]"
+          className="w-full shrink-0 text-lg min-h-[44px]"
           data-testid="character-start-btn"
         >
           {t('startGame')}

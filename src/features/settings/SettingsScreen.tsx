@@ -4,7 +4,8 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Button, Modal, Panel, ScreenShell } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, Tabs } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { SaveImportDialog } from './SaveImportDialog';
 import {
   useMetaStore,
@@ -32,7 +33,9 @@ export function SettingsScreen() {
 
   const [offline, setOffline] = useState(() => !navigator.onLine);
   useEffect(() => {
-    const updateConnectivity = () => { setOffline(!navigator.onLine); };
+    const updateConnectivity = () => {
+      setOffline(!navigator.onLine);
+    };
     window.addEventListener('online', updateConnectivity);
     window.addEventListener('offline', updateConnectivity);
     updateConnectivity();
@@ -128,14 +131,7 @@ export function SettingsScreen() {
 
   return (
     <ScreenShell testId="settings-screen" title={t('settings')} hideNav={!hasCharacter}>
-      <div className="max-w-2xl mx-auto space-y-4">
-        {offline && (
-          <Panel>
-            <p role="note" data-testid="offline-art-help" className="text-sm text-d2-white">
-              {t('offlineArtHelp')}
-            </p>
-          </Panel>
-        )}
+      <div className="mx-auto flex h-full min-h-0 w-full max-w-3xl flex-col gap-2">
         {!hasCharacter && (
           <Panel>
             <Button
@@ -150,123 +146,158 @@ export function SettingsScreen() {
             </Button>
           </Panel>
         )}
-        <Panel title={t('language')}>
-          <div className="flex gap-2">
-            {(['zh-CN', 'en'] as const).map((loc) => (
-              <button
-                key={loc}
-                type="button"
-                onClick={() => {
-                  handleLocale(loc);
-                }}
-                aria-pressed={settings.locale === loc}
-                className={[
-                  'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                  settings.locale === loc
-                    ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
-                    : 'border-d2-border bg-d2-panel text-d2-white'
-                ].join(' ')}
-              >
-                {/* language self-names — do not translate */}
-                {loc === 'zh-CN' ? '简体中文' : 'English'}
-              </button>
-            ))}
-          </div>
-        </Panel>
+        <Tabs
+          tabs={[
+            {
+              id: 'preferences',
+              label: t('language'),
+              content: (
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <Panel title={t('language')}>
+                    <div className="flex gap-2">
+                      {(['zh-CN', 'en'] as const).map((loc) => (
+                        <button
+                          key={loc}
+                          type="button"
+                          onClick={() => {
+                            handleLocale(loc);
+                          }}
+                          aria-pressed={settings.locale === loc}
+                          className={[
+                            'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
+                            'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
+                            settings.locale === loc
+                              ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
+                              : 'border-d2-border bg-d2-panel text-d2-white'
+                          ].join(' ')}
+                        >
+                          {/* language self-names — do not translate */}
+                          {loc === 'zh-CN' ? '简体中文' : 'English'}
+                        </button>
+                      ))}
+                    </div>
+                  </Panel>
 
-        <Panel>
-          <ToggleRow
-            label={t('stealthMode')}
-            description={t('stealthModeDesc')}
-            checked={settings.stealthMode}
-            onChange={toggleStealthMode}
-            testId="toggle-stealth"
-          />
-          <div className="border-t border-d2-border my-2" />
-          <ToggleRow label={t('sound')} checked={settings.soundEnabled} onChange={toggleSound} />
-          <div className="border-t border-d2-border my-2" />
-          <ToggleRow label={t('music')} checked={settings.musicEnabled} onChange={toggleMusic} />
-        </Panel>
-
-        <Panel title={t('saveLoad')}>
-          <div className="grid grid-cols-2 gap-2" aria-busy={busy}>
-            <Button
-              variant="secondary"
-              className="min-h-[44px]"
-              disabled={busy}
-              onClick={() => {
-                void handleSave();
-              }}
-            >
-              {t('saveNow')}
-            </Button>
-            <Button
-              variant="secondary"
-              className="min-h-[44px]"
-              onClick={() => {
-                void handleExport();
-              }}
-              data-testid="export-save-button"
-              disabled={busy}
-            >
-              {t('exportSave')}
-            </Button>
-            <Button
-              variant="secondary"
-              className="min-h-[44px]"
-              disabled={busy}
-              onClick={() => {
-                setImportOpen(true);
-              }}
-            >
-              {t('importSave')}
-            </Button>
-            <Button
-              variant="danger"
-              className="min-h-[44px]"
-              disabled={busy}
-              onClick={() => {
-                setConfirmDelete(true);
-              }}
-            >
-              {t('deleteSave')}
-            </Button>
-          </div>
-        </Panel>
-
-        <Panel>
-          <details data-testid="offline-bonus-help">
-            <summary className="d2-section-title min-h-[44px] cursor-pointer py-3 rounded text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
-              {t('offlineBonusHelp.title')}
-            </summary>
-            <div className="space-y-2 text-sm text-d2-white/80">
-              <p>{t('offlineBonusHelp.noIncome')}</p>
-              <p>{t('offlineBonusHelp.accrual')}</p>
-              <p>{t('offlineBonusHelp.decay')}</p>
-            </div>
-          </details>
-        </Panel>
-
-        <Panel className="text-center text-xs text-d2-white/60">
-          <details className="text-sm text-d2-white/80">
-            <summary className="d2-section-title min-h-[44px] cursor-pointer py-3 rounded focus-visible:ring-2 focus-visible:ring-d2-gold">
-              {t('supportDev')}
-            </summary>
-            <a
-              href="https://www.buymeacoffee.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="d2-control px-4 py-2 hover:underline focus:outline-none focus-visible:ring-2
-                         focus-visible:ring-d2-gold rounded inline-flex min-h-[44px] items-center"
-            >
-              ☕ {t('bmcLink')}
-            </a>
-          </details>
-          <div className="mt-2">
-            {t('version')}: {String(APP_VERSION)}
-          </div>
-        </Panel>
+                  <Panel>
+                    <ToggleRow
+                      label={t('stealthMode')}
+                      description={t('stealthModeDesc')}
+                      checked={settings.stealthMode}
+                      onChange={toggleStealthMode}
+                      testId="toggle-stealth"
+                    />
+                    <div className="border-t border-d2-border my-2" />
+                    <ToggleRow
+                      label={t('sound')}
+                      checked={settings.soundEnabled}
+                      onChange={toggleSound}
+                    />
+                    <div className="border-t border-d2-border my-2" />
+                    <ToggleRow
+                      label={t('music')}
+                      checked={settings.musicEnabled}
+                      onChange={toggleMusic}
+                    />
+                  </Panel>
+                </div>
+              )
+            },
+            {
+              id: 'save',
+              label: t('saveLoad'),
+              content: (
+                <Panel title={t('saveLoad')}>
+                  <div className="grid grid-cols-2 gap-2" aria-busy={busy}>
+                    <Button
+                      variant="secondary"
+                      className="min-h-[44px]"
+                      disabled={busy}
+                      onClick={() => {
+                        void handleSave();
+                      }}
+                    >
+                      {t('saveNow')}
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="min-h-[44px]"
+                      onClick={() => {
+                        void handleExport();
+                      }}
+                      data-testid="export-save-button"
+                      disabled={busy}
+                    >
+                      {t('exportSave')}
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="min-h-[44px]"
+                      disabled={busy}
+                      onClick={() => {
+                        setImportOpen(true);
+                      }}
+                    >
+                      {t('importSave')}
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className="min-h-[44px]"
+                      disabled={busy}
+                      onClick={() => {
+                        setConfirmDelete(true);
+                      }}
+                    >
+                      {t('deleteSave')}
+                    </Button>
+                  </div>
+                </Panel>
+              )
+            },
+            {
+              id: 'help',
+              label: t('offlineBonusHelp.title'),
+              content: (
+                <div className="flex min-h-0 flex-1" data-testid="offline-bonus-help">
+                  <PagedList
+                    items={
+                      offline
+                        ? ['offlineArtHelp', 'noIncome', 'accrual', 'decay']
+                        : ['noIncome', 'accrual', 'decay']
+                    }
+                    renderItem={(key) => (
+                      <li key={key} className="d2-panel p-3 text-sm text-d2-white/80">
+                        {key === 'offlineArtHelp' ? (
+                          <span data-testid="offline-art-help">{t('offlineArtHelp')}</span>
+                        ) : (
+                          t(`offlineBonusHelp.${key}`)
+                        )}
+                      </li>
+                    )}
+                  />
+                </div>
+              )
+            },
+            {
+              id: 'about',
+              label: t('supportDev'),
+              content: (
+                <Panel className="text-center text-sm text-d2-white/80">
+                  <a
+                    href="https://www.buymeacoffee.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d2-control inline-flex min-h-11 items-center rounded px-4 py-2 hover:underline focus-visible:ring-2 focus-visible:ring-d2-gold"
+                  >
+                    ☕ {t('bmcLink')}
+                  </a>
+                  <p className="mt-2">
+                    {t('version')}: {String(APP_VERSION)}
+                  </p>
+                </Panel>
+              )
+            }
+          ]}
+        />
       </div>
 
       <Modal
@@ -300,8 +331,14 @@ export function SettingsScreen() {
         </div>
       </Modal>
 
-      <SaveImportDialog isOpen={importOpen} busy={busy}
-        onClose={() => { setImportOpen(false); }} onImport={handleImport} />
+      <SaveImportDialog
+        isOpen={importOpen}
+        busy={busy}
+        onClose={() => {
+          setImportOpen(false);
+        }}
+        onImport={handleImport}
+      />
 
       {toast && !importOpen && (
         <div
