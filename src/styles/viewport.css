@@ -88,6 +88,9 @@
   border: 0;
 }
 .d2-compact-nav {
+  position: relative;
+  min-height: 0;
+  overflow-y: auto;
   padding-bottom: env(safe-area-inset-bottom);
 }
 .d2-primary-nav {

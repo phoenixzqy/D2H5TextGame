@@ -2,7 +2,7 @@
  * BottomNav — mobile-first bottom navigation; transforms to side rail at `md` breakpoint.
  * Each item is a 44px+ tap target. Strings come from i18n `common` namespace under `nav.*`.
  */
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Modal } from './Modal';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -56,7 +56,9 @@ const ITEMS: readonly NavItem[] = [
   { to: '/skills', labelKey: 'nav.skills', icon: 'skills' },
   { to: '/mercs', labelKey: 'nav.mercs', icon: 'mercs' },
   { to: '/quests', labelKey: 'nav.quests', icon: 'quests' },
-  { to: '/settings', labelKey: 'nav.settings', icon: 'settings' }
+  { to: '/settings', labelKey: 'nav.settings', icon: 'settings' },
+  { to: '/character', labelKey: 'nav.character', icon: 'mercs' },
+  { to: '/gacha', labelKey: 'nav.gacha', icon: 'skills' }
 ];
 
 const NAV_ITEMS: readonly NavItem[] = import.meta.env.DEV
@@ -67,6 +69,39 @@ export function BottomNav() {
   const { t } = useTranslation(['common', 'map']);
   const [moreOpen, setMoreOpen] = useState(false);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
+  const navRef = useRef<HTMLElement>(null);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const overflow = NAV_ITEMS.slice(visibleCount);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    const list = nav?.querySelector('ul');
+    const firstLink = list?.querySelector('a');
+    if (!nav || !list || !firstLink) return;
+    const measure = () => {
+      let count = 4;
+      if (window.matchMedia('(min-width: 768px), (max-height: 450px)').matches) {
+        const gap = parseFloat(getComputedStyle(list).rowGap) || 0;
+        const chip = nav.querySelector('[data-testid="idle-sidebar-chip"]');
+        const available = nav.clientHeight - list.offsetTop
+          - (chip?.getBoundingClientRect().height ?? 0)
+          - (parseFloat(getComputedStyle(nav).paddingBottom) || 0);
+        const capacity = Math.floor((available + gap) / (firstLink.getBoundingClientRect().height + gap));
+        count = capacity >= NAV_ITEMS.length ? NAV_ITEMS.length : Math.max(1, capacity - 1);
+      }
+      setVisibleCount(count);
+      if (count === NAV_ITEMS.length) setMoreOpen(false);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    observer.observe(firstLink);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [idleTarget]);
 
   const renderLink = (item: NavItem, close = false) => (
     <li key={item.to} className="min-w-0">
@@ -89,12 +124,13 @@ export function BottomNav() {
   return (
     <>
       <nav
+        ref={navRef}
         aria-label={t('nav.aria')}
         className="d2-nav d2-compact-nav order-last md:order-first shrink-0 border-t md:border-t-0 md:border-r border-d2-border"
       >
         <ul className="d2-primary-nav">
-          {NAV_ITEMS.slice(0, 4).map((item) => renderLink(item))}
-          <li>
+          {NAV_ITEMS.slice(0, visibleCount).map((item) => renderLink(item))}
+          {overflow.length > 0 && <li>
             <button
               type="button"
               className="d2-nav-link w-full min-h-[48px] text-xs text-d2-gold"
@@ -108,7 +144,7 @@ export function BottomNav() {
               </span>
               {t('nav.more')}
             </button>
-          </li>
+          </li>}
         </ul>
         {idleTarget && (
           <span
@@ -129,9 +165,7 @@ export function BottomNav() {
       >
         <nav aria-label={t('nav.aria')}>
           <ul className="grid grid-cols-3 gap-2">
-            {NAV_ITEMS.slice(4).map((item) => renderLink(item, true))}
-            {renderLink({ to: '/character', labelKey: 'nav.character', icon: 'mercs' }, true)}
-            {renderLink({ to: '/gacha', labelKey: 'nav.gacha', icon: 'skills' }, true)}
+            {overflow.map((item) => renderLink(item, true))}
           </ul>
         </nav>
       </Modal>

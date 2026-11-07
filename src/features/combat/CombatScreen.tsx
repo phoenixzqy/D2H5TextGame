@@ -624,26 +624,26 @@ function BattleSideGrid({ title, empty, units, side, actingActorId, unitFx, onSe
   readonly onSelect: (id: string) => void;
 }) {
   const { t } = useTranslation('common');
-  const [page, setPage] = useState(0);
-  const pageCount = Math.max(1, Math.ceil(units.length / 2));
-  const activePage = Math.min(page, pageCount - 1);
-  const visible = units.slice(activePage * 2, activePage * 2 + 2);
+  const rows = Math.max(3, ...units.map(unit => (unit.gridPosition?.row ?? 0) + 1));
+  const cells = Array.from({ length: rows * 3 }, (_, index) => ({
+    row: Math.floor(index / 3), col: index % 3
+  }));
+  const renderUnit = (unit: CombatUnit) => <button type="button" key={unit.id} className="combat-card-trigger"
+    onClick={() => { onSelect(unit.id); }} aria-label={`${resolveCombatUnitDisplayName(unit)} · ${t('viewport.details')}`}>
+    <UnitCard unit={unit} size="sm" compact acting={unit.id === actingActorId} eventFx={unitFx.get(unit.id)} />
+  </button>;
   return <section aria-label={title} className="combat-team">
     <h2 className="combat-team-title">{title} <span className="text-d2-white/60">{units.length}</span></h2>
     <div className="combat-team-cards" data-testid={side === 'player' ? 'allies-grid' : 'enemies-grid'}>
-      {visible.map(unit => <button type="button" key={unit.id} className="combat-card-trigger"
-        onClick={() => { onSelect(unit.id); }} aria-label={`${resolveCombatUnitDisplayName(unit)} · ${t('viewport.details')}`}>
-        <UnitCard unit={unit} size="sm" compact acting={unit.id === actingActorId} eventFx={unitFx.get(unit.id)} />
-      </button>)}
-      {units.length === 0 && <p className="text-xs text-d2-white/50">{empty}</p>}
+      {cells.map(cell => {
+        const occupants = units.filter(unit => sameGridPosition(unit.gridPosition, cell));
+        return <div key={`${String(cell.row)}-${String(cell.col)}`} className="combat-grid-cell"
+          data-testid={`${side}-grid-cell-${String(cell.row)}-${String(cell.col)}`}>
+          {occupants.length > 0 ? occupants.map(renderUnit) : <span className="combat-empty-cell" aria-label={empty}>—</span>}
+        </div>;
+      })}
+      {units.filter(unit => !unit.gridPosition).map(renderUnit)}
     </div>
-    {pageCount > 1 && <div className="combat-team-pages">
-      <Button variant="secondary" disabled={activePage === 0} aria-label={t('viewport.previous')}
-        onClick={() => { setPage(activePage - 1); }}>‹</Button>
-      <span className="text-xs tabular-nums" aria-live="polite">{t('viewport.page', { current: activePage + 1, total: pageCount })}</span>
-      <Button variant="secondary" disabled={activePage === pageCount - 1} aria-label={t('viewport.next')}
-        onClick={() => { setPage(activePage + 1); }}>›</Button>
-    </div>}
   </section>;
 }
 
@@ -777,7 +777,7 @@ function UnitCard({
       {compact ? (
         <div className="combat-unit-compact d2-surface" title={unitLabel}>
           <div className="combat-unit-art">
-            <GameImage src={avatarSrc ?? null} alt={unitLabel} className="h-full w-full rounded-none border-0 bg-none"
+            <GameImage src={avatarSrc ?? null} alt={unitLabel} size="fill" className="h-full w-full rounded-none border-0 bg-none"
               imageClassName="h-full w-full object-cover object-top" />
           </div>
           <div className="combat-unit-info">
