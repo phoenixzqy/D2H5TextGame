@@ -1,18 +1,13 @@
 /**
  * CombatScreen — main combat UI.
  *
- * Layout @ lg+:
- *   [ Header: act / sub-area / wave / pause / auto / flee ]
- *   [ Top row: Allies (left) | Enemies (right) ]
- *   [ Combat log (fixed bottom, scrollable) ]
- *
- * Below lg, each team keeps three formation columns and teams stack
- * vertically so complete names remain readable in the scrolling main.
+ * Occupied-unit cards share a bounded battlefield above a flexible combat log.
+ * Formation, unit details, advanced controls and rewards open in dialogs.
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, GameImage, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, GameCard, GameImage, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
 import { CombatLog } from './CombatLog';
 import { CombatRewardSummary } from './CombatRewardSummary';
 import { CombatDamageSummary } from './CombatDamageSummary';
@@ -49,6 +44,7 @@ import { COW } from '@/engine/map/cow-quest';
 import { canStartCowEncounter } from '@/features/quests/cowQuestActions';
 import { checkEndgameEntry } from '@/stores/endgameActions';
 import { createIdlePlaybackClock } from '@/stores/idlePlaybackClock';
+import './combat-viewport.css';
 
 const MARTIAL_CHARGE_LABELS = new Map(ASSASSIN_CHARGE_DEFINITION.builders.map(id => {
   const slug = id.slice('assassin.'.length).replaceAll('_', '-');
@@ -118,6 +114,8 @@ export function CombatScreen() {
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
   const [speed, setSpeed] = useState<Speed>(1);
   const [formationOpen, setFormationOpen] = useState(false);
+  const [optionsOpen, setOptionsOpen] = useState(false);
+  const [resultDismissed, setResultDismissed] = useState(false);
   const [exitFailed, setExitFailed] = useState(false);
   const [transitionFailed, setTransitionFailed] = useState(() => readCombatTransitionRecovery().kind !== 'ready');
   const [transitionRetry, setTransitionRetry] = useState(0);
@@ -379,6 +377,7 @@ export function CombatScreen() {
   };
 
   const [logAutoScrollPaused, setLogAutoScrollPaused] = useState(false);
+  useEffect(() => { setResultDismissed(false); }, [runVictory, runDefeat]);
 
   if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={<h1>{questRequest ? t(isCow || request.kind === 'cow' ? 'quests:cow.name' : 'quests:byId.act1-forgotten-tower.name') : tDataKey(t, endgameDefinition.nameKey)}</h1>}>
     <Panel>
@@ -393,7 +392,7 @@ export function CombatScreen() {
     <ScreenShell
       testId="combat-screen"
       title={
-        <div className="d2-toolbar flex w-full flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="d2-toolbar combat-toolbar">
           <div className="flex flex-col leading-tight min-w-0">
             <span aria-live="polite" data-testid="wave-counter" className="truncate">
               {t('wave', {
@@ -437,74 +436,28 @@ export function CombatScreen() {
                 : <>{t('map:act', { number: currentAct, defaultValue: `Act ${String(currentAct)}` })} · {tDataKey(t, `map.actName.${String(currentAct)}`)}</>}
             </span>
           </div>
-          <div className="flex flex-wrap items-center justify-start gap-2 lg:justify-end">
-            {logAutoScrollPaused && (
-              <span
-                className="d2-tag text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
-                data-testid="log-hover-paused-hint"
-                aria-live="polite"
-              >
-                {t('logHoverPausedHint')}
-              </span>
-            )}
-            <Button
-              variant="secondary"
-              className="min-h-11 min-w-11 px-3 text-sm"
-              onClick={() => { setFormationOpen(true); }}
-              data-testid="formation-editor-open"
-            >
-              {t('formation.edit')}
-            </Button>
-            <Button
-              variant="secondary"
-              className="min-h-11 min-w-11 px-3 text-sm"
-              onClick={handlePause}
-              aria-pressed={isPaused}
-              disabled={playbackComplete}
-            >
-              {isPaused ? t('resume') : t('pause')}
-            </Button>
-            <Button
-              variant="secondary"
-              className="min-h-11 min-w-11 px-2 text-sm tabular-nums"
-              onClick={cycleSpeed}
-              aria-label={t('speed')}
-              title={t('speed')}
-              disabled={playbackComplete}
-            >
-              {t('speedX', { x: speed })}
-            </Button>
-            <Button
-              variant="secondary"
-              className="min-h-11 min-w-11 px-3 text-sm"
-              onClick={handleSkip}
-              disabled={playbackComplete}
-              data-testid="skip-button"
-            >
-              {t('skip')}
-            </Button>
-            <label className="flex min-h-11 min-w-11 cursor-pointer items-center gap-1 text-xs">
-              <input
-                type="checkbox"
-                checked={autoMode}
-                onChange={toggleAutoMode}
-                className="w-4 h-4 accent-d2-gold"
-              />
-              {t('autoMode')}
-            </label>
-            <Button
-              variant="danger"
-              className="min-h-11 min-w-11 px-3 text-sm"
-              onClick={isIdleLoop ? handleStopIdle : handleFlee}
-            >
-              {isIdleLoop ? t('idleLoop.stop') : t('flee')}
-            </Button>
-          </div>
+          <Button variant="secondary" className="min-h-11 shrink-0 px-3 text-sm"
+            onClick={() => { setOptionsOpen(true); }}>
+            {t('common:viewport.options')}
+          </Button>
         </div>
       }
     >
+      <div className="combat-viewport">
+      <div className="combat-actions">
+        <Button variant="secondary" onClick={handlePause} aria-pressed={isPaused} disabled={playbackComplete}>
+          {isPaused ? t('resume') : t('pause')}
+        </Button>
+        <Button variant="secondary" onClick={cycleSpeed} aria-label={t('speed')} disabled={playbackComplete}>
+          {t('speedX', { x: speed })}
+        </Button>
+        <Button variant="secondary" onClick={handleSkip} disabled={playbackComplete} data-testid="skip-button">{t('skip')}</Button>
+        <Button variant="danger" onClick={isIdleLoop ? handleStopIdle : handleFlee}>
+          {isIdleLoop ? t('idleLoop.stop') : t('flee')}
+        </Button>
+      </div>
       {(exitFailed || transitionBlocked) && (
-        <div role="alert" className="mx-auto mt-3 flex max-w-6xl flex-wrap items-center gap-3 px-4 text-red-400">
+        <div role="alert" className="flex shrink-0 flex-wrap items-center gap-2 text-sm text-red-400">
           <p>{t('common:error')}</p>
           {transitionBlocked && <Button className="min-h-11 min-w-11" disabled={hydrationStatus !== 'ready' || recovery.kind === 'parked'}
             onClick={() => {
@@ -520,40 +473,32 @@ export function CombatScreen() {
         enemies={enemyTeam}
         actingActorId={actingActorId}
         unitFx={unitFx}
-        currentWave={currentWave}
-        totalWaves={totalWaves}
       />
 
-      <div className="max-w-6xl mx-auto mt-3">
-        {isIdleLoop && (
-          <Panel className="mb-3 !p-3" data-testid="idle-loop-panel">
-            <div className="flex flex-wrap items-center gap-2 text-xs text-d2-white/80">
-              <span className="d2-tag rounded border border-d2-set/60 px-2 py-1 text-d2-set">
-                {t('idleLoop.running')}
-              </span>
-              <span>{t('idleLoop.realBattles')}</span>
-            </div>
-          </Panel>
-        )}
-        <AttackCadenceIndicator />
+      <div className="combat-log-area">
+        <div className="combat-log-status">
+          <span className="text-xs text-d2-gold">{t('log')}</span>
+          {isIdleLoop && <span className="text-xs text-d2-set" data-testid="idle-loop-panel">{t('idleLoop.label')}</span>}
+          {logAutoScrollPaused && <span className="text-xs text-d2-white/70" data-testid="log-hover-paused-hint">{t('logHoverPausedHint')}</span>}
+          {(runVictory || runDefeat) && <Button variant="secondary" onClick={() => { setResultDismissed(false); }}>
+            {t(runVictory ? 'victory' : 'defeat')} · {t('rewards')}
+          </Button>}
+        </div>
         <CombatLog entries={recentLog} onAutoScrollPausedChange={setLogAutoScrollPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
         <div
-          className="max-w-5xl mx-auto mt-3 text-center text-d2-gold text-sm"
+          className="shrink-0 text-center text-d2-gold text-xs"
           data-testid="next-wave-banner"
           aria-live="polite"
         >
           {t('nextWaveIn')}
         </div>
       )}
-      {(runVictory || runDefeat) && (
-        <div className="max-w-5xl mx-auto mt-3" data-testid={runVictory ? 'victory-panel' : 'defeat-panel'}>
-          <Panel
-            title={runVictory
-              ? t('runVictoryTitle')
-              : t(outcome?.winner === null ? 'event.draw' : 'runDefeatTitle')}
-          >
+      </div>
+      <Modal isOpen={(runVictory || runDefeat) && !resultDismissed} onClose={() => { setResultDismissed(true); }}
+        title={runVictory ? t('runVictoryTitle') : t(outcome?.winner === null ? 'event.draw' : 'runDefeatTitle')}>
+        <div data-testid={runVictory ? 'victory-panel' : 'defeat-panel'}>
             <CombatRewardSummary rewards={runRewards} retained={runDefeat} />
             {runDefeat && playbackComplete && eventCursor >= recordedEvents.length && (
               <CombatDamageSummary events={recordedEvents} team={playerTeam} />
@@ -616,133 +561,84 @@ export function CombatScreen() {
                 {t('returnToTown')}
               </Button>
             </div>
-          </Panel>
         </div>
-      )}
+      </Modal>
+      <Modal isOpen={optionsOpen} onClose={() => { setOptionsOpen(false); }} title={t('common:viewport.options')}>
+        <div className="space-y-3">
+          <AttackCadenceIndicator />
+          {isIdleLoop && <p className="text-sm text-d2-white/80">{t('idleLoop.realBattles')}</p>}
+          <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm">
+            <input type="checkbox" checked={autoMode} onChange={toggleAutoMode} className="h-5 w-5 accent-d2-gold" />
+            {t('autoMode')}
+          </label>
+          <Button variant="secondary" onClick={() => { setOptionsOpen(false); setFormationOpen(true); }} data-testid="formation-editor-open">
+            {t('formation.edit')}
+          </Button>
+        </div>
+      </Modal>
       <FormationEditorModal isOpen={formationOpen} onClose={() => { setFormationOpen(false); }} />
     </ScreenShell>
   );
 }
 
-function Battlefield({
-  allies,
-  enemies,
-  actingActorId,
-  unitFx,
-  currentWave,
-  totalWaves
-}: {
+function Battlefield({ allies, enemies, actingActorId, unitFx }: {
   readonly allies: readonly CombatUnit[];
   readonly enemies: readonly CombatUnit[];
   readonly actingActorId: string | null;
   readonly unitFx: ReadonlyMap<string, UnitEventFx>;
-  readonly currentWave: number;
-  readonly totalWaves: number;
 }) {
   const { t } = useTranslation('combat');
-  const hero = allies.find(unit => unit.side === 'player' && inferKind(unit) === 'hero');
-  return (
-    <Panel title={t('battlefield.title')} className="max-w-6xl mx-auto">
-      {hero && hero.stats.manaMax > 0 && (
-        <div role="group" aria-label={t('mp')} className="mb-3">
-          <StatBar current={hero.mana} max={hero.stats.manaMax} label={t('mp')} color="mp" />
-        </div>
-      )}
-      <div
-        className="grid grid-cols-1 items-center gap-2 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
-        data-testid="combat-battlefield"
-      >
-        <BattleSideGrid
-          title={t('allies')}
-          empty={t('noAllies')}
-          units={allies}
-          side="player"
-          actingActorId={actingActorId}
-          unitFx={unitFx}
-        />
-        <div className="flex h-12 items-center justify-center gap-3 text-center lg:h-auto lg:min-h-[18rem] lg:flex-col">
-          <div className="d2-surface flex items-center gap-2 rounded-full border border-d2-gold/50 bg-black/50 px-3 py-1 shadow-lg shadow-d2-gold/10 lg:block lg:py-2">
-            <div className="text-[10px] uppercase tracking-[0.2em] text-d2-white/50">{t('battlefield.wave')}</div>
-            <div className="font-serif text-lg text-d2-gold lg:text-xl">{currentWave}/{totalWaves}</div>
-          </div>
-          <div className="hidden h-24 w-px bg-gradient-to-b from-transparent via-d2-gold/60 to-transparent lg:block" aria-hidden />
-          <div className="d2-surface rounded border border-red-400/40 bg-red-950/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
-            {t('battlefield.clash')}
-          </div>
-        </div>
-        <BattleSideGrid
-          title={t('enemies')}
-          empty={t('noEnemies')}
-          units={enemies}
-          side="enemy"
-          actingActorId={actingActorId}
-          unitFx={unitFx}
-        />
-      </div>
-    </Panel>
-  );
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = [...allies, ...enemies].find(unit => unit.id === selectedId);
+  return <>
+    <div className="combat-battlefield d2-panel" data-testid="combat-battlefield">
+      <BattleSideGrid title={t('allies')} empty={t('noAllies')} units={allies} side="player"
+        actingActorId={actingActorId} unitFx={unitFx} onSelect={setSelectedId} />
+      <BattleSideGrid title={t('enemies')} empty={t('noEnemies')} units={enemies} side="enemy"
+        actingActorId={actingActorId} unitFx={unitFx} onSelect={setSelectedId} />
+    </div>
+    <Modal isOpen={Boolean(selected)} onClose={() => { setSelectedId(null); }} title={t('common:viewport.details')}>
+      {selected && <div className="combat-unit-details">
+        <UnitCard unit={selected} size="md" eventFx={unitFx.get(selected.id)} />
+        {selected.gridPosition && <p className="mt-2 text-sm text-d2-white/70">{t('formation.cell', {
+          row: selected.gridPosition.row + 1, col: selected.gridPosition.col + 1
+        })}</p>}
+      </div>}
+    </Modal>
+  </>;
 }
 
-function BattleSideGrid({
-  title,
-  empty,
-  units,
-  side,
-  actingActorId,
-  unitFx
-}: {
+function BattleSideGrid({ title, empty, units, side, actingActorId, unitFx, onSelect }: {
   readonly title: string;
   readonly empty: string;
   readonly units: readonly CombatUnit[];
   readonly side: 'player' | 'enemy';
   readonly actingActorId: string | null;
   readonly unitFx: ReadonlyMap<string, UnitEventFx>;
+  readonly onSelect: (id: string) => void;
 }) {
-  const maxRow = Math.max(
-    2,
-    ...units.map((unit) => unit.gridPosition?.row ?? 0)
-  );
-  const cells = Array.from({ length: (maxRow + 1) * 3 }, (_, index) => {
-    const row = Math.floor(index / 3);
-    const col = index % 3;
-    return { row, col };
-  });
-  return (
-    <section aria-label={title} className="min-w-0">
-      <div className="mb-2 text-center text-xs uppercase tracking-[0.18em] text-d2-white/60">{title}</div>
-      <div
-        className="grid grid-cols-3 gap-1.5 sm:gap-2"
-        data-testid={side === 'player' ? 'allies-grid' : 'enemies-grid'}
-      >
-        {cells.map((cell) => {
-          const cellUnits = units.filter((candidate) => sameGridPosition(candidate.gridPosition, cell));
-          const unit = cellUnits[0];
-          return (
-            <div
-              key={`${String(cell.row)}-${String(cell.col)}`}
-              className="d2-slot d2-battle-slot min-h-28 rounded-lg border border-d2-border/60 bg-black/25 p-1 lg:min-h-[10.5rem]"
-              data-testid={`${side}-grid-cell-${String(cell.row)}-${String(cell.col)}`}
-            >
-              {unit ? (
-                <UnitCard
-                  unit={unit}
-                  size="sm"
-                  compact
-                  acting={unit.id === actingActorId}
-                  eventFx={unitFx.get(unit.id)}
-                  stackCount={cellUnits.length}
-                />
-              ) : (
-                <div className="d2-slot flex h-full min-h-0 items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25 lg:min-h-[9.5rem]">
-                  {empty}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+  const { t } = useTranslation('common');
+  const [page, setPage] = useState(0);
+  const pageCount = Math.max(1, Math.ceil(units.length / 2));
+  const activePage = Math.min(page, pageCount - 1);
+  const visible = units.slice(activePage * 2, activePage * 2 + 2);
+  return <section aria-label={title} className="combat-team">
+    <h2 className="combat-team-title">{title} <span className="text-d2-white/60">{units.length}</span></h2>
+    <div className="combat-team-cards" data-testid={side === 'player' ? 'allies-grid' : 'enemies-grid'}>
+      {visible.map(unit => <button type="button" key={unit.id} className="combat-card-trigger"
+        onClick={() => { onSelect(unit.id); }} aria-label={`${resolveCombatUnitDisplayName(unit)} · ${t('viewport.details')}`}>
+        <UnitCard unit={unit} size="sm" compact acting={unit.id === actingActorId} eventFx={unitFx.get(unit.id)} />
+      </button>)}
+      {units.length === 0 && <p className="text-xs text-d2-white/50">{empty}</p>}
+    </div>
+    {pageCount > 1 && <div className="combat-team-pages">
+      <Button variant="secondary" disabled={activePage === 0} aria-label={t('viewport.previous')}
+        onClick={() => { setPage(activePage - 1); }}>‹</Button>
+      <span className="text-xs tabular-nums" aria-live="polite">{t('viewport.page', { current: activePage + 1, total: pageCount })}</span>
+      <Button variant="secondary" disabled={activePage === pageCount - 1} aria-label={t('viewport.next')}
+        onClick={() => { setPage(activePage + 1); }}>›</Button>
+    </div>}
+  </section>;
 }
 
 function UnitCard({
@@ -751,14 +647,12 @@ function UnitCard({
   compact = false,
   acting = false,
   eventFx,
-  stackCount = 1,
 }: {
   unit: CombatUnit;
   size: 'sm' | 'md';
   compact?: boolean;
   acting?: boolean;
   eventFx?: UnitEventFx | undefined;
-  stackCount?: number;
 }) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
@@ -875,77 +769,30 @@ function UnitCard({
       <span className="sr-only" data-testid={sideTestId} />
       {isSummon && <span className="sr-only" data-testid="summon-badge" />}
       {compact ? (
-        <div
-          className={[
-            'relative flex min-h-[4.5rem] w-full flex-1 flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
-            rarity === 'boss'
-              ? 'border-d2-boss'
-              : rarity === 'rareElite'
-                ? 'border-d2-runeword'
-                : rarity === 'champion'
-                  ? 'border-d2-unique'
-                  : isPlayerSide
-                    ? 'border-d2-gold/60'
-                    : 'border-d2-border'
-          ].join(' ')}
-          title={unitLabel}
-        >
-          <div className="h-16 shrink-0 overflow-hidden bg-black/30 lg:h-auto lg:min-h-0 lg:flex-1">
-            <GameImage
-              src={avatarSrc ?? null}
-              alt={displayName}
-              fallbackIcon={displayName.slice(0, 2)}
-              size="fill"
-              className="rounded-none border-0 bg-none"
-              imageClassName={[
-                'h-full w-full',
-                isSummon
-                  ? 'object-cover object-top'
-                  : isPlayerSide
-                    ? 'object-contain p-2'
-                    : 'object-cover object-top'
-              ].join(' ')}
-            />
+        <div className="combat-unit-compact d2-surface" title={unitLabel}>
+          <div className="combat-unit-art">
+            <GameImage src={avatarSrc ?? null} alt={unitLabel} className="h-full w-full rounded-none border-0 bg-none"
+              imageClassName="h-full w-full object-cover object-top" />
           </div>
-          <div className="space-y-0.5 bg-black/70 px-1 py-0.5">
-            <div className="break-words text-sm leading-5 text-d2-white/80 [overflow-wrap:anywhere] lg:truncate lg:text-[10px] lg:leading-tight">{displayName}</div>
-            <div
-              className="h-1.5 rounded bg-black/60 lg:h-1"
-              role="progressbar"
-              aria-label={t('hp')}
-              aria-valuemin={0}
-              aria-valuemax={Math.max(1, unit.stats.lifeMax)}
-              aria-valuenow={Math.max(0, Math.min(unit.life, Math.max(1, unit.stats.lifeMax)))}
-            >
-              <div
-                className="h-full rounded bg-red-600"
-                style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.lifeMax)) * 100)).toFixed(2)}%` }}
-              />
+          <div className="combat-unit-info">
+            <div className="combat-unit-name">{displayName}</div>
+            <div className="combat-unit-meta">{subtitle}{unit.gridPosition ? ` · ${t('formation.cell', {
+              row: unit.gridPosition.row + 1, col: unit.gridPosition.col + 1
+            })}` : ''}</div>
+            <div className="combat-unit-health" role="progressbar" aria-label={t('hp')}
+              aria-valuemin={0} aria-valuemax={Math.max(1, unit.stats.lifeMax)}
+              aria-valuenow={Math.max(0, Math.min(unit.life, Math.max(1, unit.stats.lifeMax)))}>
+              <div className="combat-unit-health-fill" style={{ width: `${String(Math.max(0, Math.min(100, unit.life / Math.max(1, unit.stats.lifeMax) * 100)))}%` }} />
+              <span>{Math.max(0, unit.life)} / {unit.stats.lifeMax}</span>
             </div>
-            {isSummon && unit.stats.manaMax > 0 ? (
-              <div>
-                <div className="text-[10px] leading-tight text-d2-white/80">
-                  {t('mp')} {Math.max(0, Math.min(unit.mana, unit.stats.manaMax))} / {unit.stats.manaMax}
-                </div>
-                <div
-                  className="h-1.5 rounded bg-black/60 lg:h-1"
-                  role="progressbar"
-                  aria-label={t('mp')}
-                  aria-valuemin={0}
-                  aria-valuemax={unit.stats.manaMax}
-                  aria-valuenow={Math.max(0, Math.min(unit.mana, unit.stats.manaMax))}
-                >
-                  <div className="h-full rounded bg-blue-600"
-                    style={{ width: `${Math.max(0, Math.min(100, (unit.mana / unit.stats.manaMax) * 100)).toFixed(2)}%` }} />
-                </div>
-              </div>
-            ) : null}
+            {unit.stats.manaMax > 0 && <div className="combat-unit-mana" role="progressbar" aria-label={t('mp')}
+              aria-valuemin={0} aria-valuemax={unit.stats.manaMax} aria-valuenow={Math.max(0, Math.min(unit.mana, unit.stats.manaMax))}>
+              <div style={{ width: `${String(Math.max(0, Math.min(100, unit.mana / unit.stats.manaMax * 100)))}%` }} />
+            </div>}
+            {(chips.length > 0 || affixTag || unit.damageImmunities?.length) && <div className="combat-unit-effects">
+              {affixTag || `${t('effect.activeEffects')} · ${String(chips.length + (unit.damageImmunities?.length ?? 0))}`}
+            </div>}
           </div>
-          {stackCount > 1 ? (
-            <div className="d2-tag absolute left-1 top-1 rounded-full border border-d2-gold/60 bg-black/80 px-1.5 text-[10px] font-bold text-d2-gold">
-              +{stackCount - 1}
-            </div>
-          ) : null}
         </div>
       ) : (
         <GameCard
@@ -959,14 +806,14 @@ function UnitCard({
           stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
         />
       )}
-      {affixTag ? (
+      {!compact && affixTag ? (
         <ul aria-label={t('eliteAffixLabel')} className="mt-1 flex w-full min-w-0 flex-wrap gap-1">
           <li className="d2-tag min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]">
             {affixTag}
           </li>
         </ul>
       ) : null}
-      {unit.damageImmunities && unit.damageImmunities.length > 0 ? (
+      {!compact && unit.damageImmunities && unit.damageImmunities.length > 0 ? (
         <ul
           aria-label={t('damageImmunity.label')}
           className="mt-1 flex w-full min-w-0 flex-wrap gap-1"
@@ -994,7 +841,7 @@ function UnitCard({
           {eventFxLabel(eventFx, t)}
         </div>
       ) : null}
-      {chips.length > 0 ? (
+      {!compact && chips.length > 0 ? (
         <div
           className="mt-1 flex w-full min-w-0 flex-wrap gap-1"
           aria-label={t('effect.activeEffects')}
