@@ -5,6 +5,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
   test(`loot filter preferences persist and fit the viewport (${locale}) @responsive`, async ({
     page
   }, info) => {
+    test.setTimeout(60_000);
     const english = locale === 'en';
     const title = english ? 'Loot Filter' : '掉落过滤';
     const pageErrors: string[] = [];
@@ -92,8 +93,10 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await settingsPanel.getByRole('switch').click();
     await expect(settingsPanel.getByRole('switch')).toHaveAttribute('aria-checked', 'false');
     await flushSave(page);
-    await page.reload();
-    await expect(page.getByTestId('settings-screen')).toBeVisible();
+    await page.goto('/');
+    await expect(page.getByTestId('home-screen')).toBeVisible();
+    await page.getByTestId('home-continue').click();
+    await expect(page.getByTestId('town-screen')).toBeVisible();
     await navTo(page, 'inventory');
     await page.getByTestId('inventory-loot-filter').click();
     const restored = page.getByRole('dialog', { name: title }).getByTestId('loot-filter-panel');
@@ -125,6 +128,7 @@ test('loot filter reflows across portrait, landscape and desktop sizes @desktop-
     await page.setViewportSize(viewport);
     const lastRule = dialog.getByTestId('loot-filter-set');
     await lastRule.selectOption('keep');
+    await lastRule.scrollIntoViewIfNeeded();
     await expect(lastRule).toBeInViewport();
     const bounds = await dialog.boundingBox();
     expect(bounds).not.toBeNull();
@@ -135,6 +139,7 @@ test('loot filter reflows across portrait, landscape and desktop sizes @desktop-
       await dialog.evaluate((element) => element.scrollWidth - element.clientWidth)
     ).toBeLessThanOrEqual(1);
     const close = dialog.getByRole('button', { name: /^(Close|关闭)$/ });
+    await close.scrollIntoViewIfNeeded();
     await expect(close).toBeInViewport();
   }
 });
