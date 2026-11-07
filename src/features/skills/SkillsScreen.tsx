@@ -726,10 +726,10 @@ function SkillDetailPanel({
 
   return (
     <Panel
-      className="flex min-h-0 flex-1 flex-col border-d2-gold/70 bg-d2-panel/95"
+      className="min-w-0 shrink-0 border-d2-gold/70 bg-d2-panel/95"
       data-testid="skill-detail-panel"
     >
-      <div id="skill-detail-panel" aria-live="polite" className="flex min-h-0 flex-1 flex-col gap-2">
+      <div id="skill-detail-panel" aria-live="polite" className="space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
 
@@ -753,9 +753,8 @@ function SkillDetailPanel({
           </Button>
         </div>
 
-        <Tabs tabs={[
-          { id: 'overview', label: t('details.overview'), content:
-            <PagedList items={flattenPresentationRows(<>        <p className="d2-surface rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
+        <div className="space-y-2">
+          <p className="d2-surface rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
         {primaryStats?.assassinMartial ? <MartialChargeDescription stats={primaryStats.assassinMartial} t={t} /> : null}
@@ -791,8 +790,8 @@ function SkillDetailPanel({
         {skill.id === 'skills-necromancer-iron-golem' ? (
           <p className="text-sm text-d2-white/90">{t('ironGolem.basePreview')}</p>
         ) : null}
-</>)} renderItem={node => <li>{node}</li>} /> },
-          { id: 'current', label: t('details.current'), content:
+        </div>
+        <div className="grid items-start gap-3 sm:grid-cols-2">
           <StatSection
             title={current ? t('details.current') : t('details.notLearned')}
             stats={current}
@@ -800,25 +799,22 @@ function SkillDetailPanel({
             emptyText={t('details.currentEmpty')}
             t={t}
           />
-          },
-          { id: 'next', label: t('details.next'), content: <StatSection
+          <StatSection
             title={current ? t('details.next') : t('details.learnPreview')}
             stats={next}
             compare={current}
             emptyText={t('details.maxLevel')}
             t={t}
           />
-          },
-          { id: 'requirements', label: t('details.requirements'), content: <RequirementSection
+        </div>
+        <RequirementSection
             skill={skill}
             playerLevel={playerLevel}
             allocatedSkills={allocatedSkills}
             skillById={skillById}
             t={t}
           />
-          },
-          ...(extra ? [{ id: 'prepare', label: t('ironGolem.title'), content: extra }] : [])
-        ]} />
+        {extra}
       </div>
     </Panel>
   );
@@ -1201,10 +1197,10 @@ function StatSection({
           ) : null}
 </>) : [];
   return (
-    <section className="d2-surface flex min-h-0 flex-1 flex-col rounded border border-d2-border/70 bg-black/25 p-3">
+    <section className="d2-surface min-w-0 rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{title}</h3>
       {stats ? (
-        <PagedList items={rows} listClassName="space-y-1 text-sm" renderItem={node => <li><dl>{node}</dl></li>} />
+        <dl className="space-y-1 text-sm">{rows.map((node, index) => <Fragment key={index}>{node}</Fragment>)}</dl>
 
       ) : (
         <p className="text-sm text-d2-white/70">{emptyText}</p>
@@ -1249,7 +1245,7 @@ function RequirementSection({
   const requiredLevel = getSkillRequiredLevel(skill);
   const prereqs = skill.prerequisites ?? [];
   return (
-    <section className="d2-surface flex min-h-0 flex-1 flex-col rounded border border-d2-border/70 bg-black/25 p-3">
+    <section className="d2-surface min-w-0 rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{t('details.requirements')}</h3>
       <dl className="space-y-1 text-sm">
         <StatLine

@@ -1,4 +1,13 @@
 {
+  "equipmentFlow": {
+    "current": "Currently equipped",
+    "candidate": "Selected backpack item",
+    "give": "Equip on mercenary",
+    "select": "Select an item above to inspect it before equipping.",
+    "back": "Back to equipment",
+    "equipped": "Equipped: {{name}}. Replaced gear returns to your backpack.",
+    "returned": "Returned to backpack: {{name}}."
+  },
   "mercenaries": "Mercenaries",
   "owned": "Owned",
   "fielded": "Fielded",

@@ -21,7 +21,6 @@ import type { TFunction } from 'i18next';
 import {
   Button,
   EquipmentPanel,
-  EquippedItemModal,
   Modal,
   Panel,
   ScreenShell,
@@ -33,6 +32,7 @@ import {
 import { useMercStore, useInventoryStore, usePlayerStore } from '@/stores';
 import {
   MERC_EQUIPMENT_SLOTS,
+  isMercEquipmentSlotCompatible,
   type MercEquipment,
   type MercEquipmentResult
 } from '@/stores/mercStore';
@@ -407,7 +407,7 @@ function MercCard({
         }}
         title={`${localizedName} — ${t('equipment')}`}
       >
-        <MercEquipmentEditor mercId={merc.id} equipment={equipment} />
+        <MercEquipmentEditor merc={projected} equipment={equipment} />
       </Modal>
     </Panel>
   );
@@ -422,100 +422,61 @@ function MercStat({ label, value }: { label: string; value: number | string }) {
   );
 }
 
-function MercEquipmentEditor({ mercId, equipment }: { mercId: string; equipment: MercEquipment }) {
+function MercEquipmentEditor({ merc, equipment }: { merc: Mercenary; equipment: MercEquipment }) {
   const { t } = useTranslation(['mercs', 'inventory', 'common']);
   const backpack = useInventoryStore((s) => s.backpack);
   const equipOnMerc = useMercStore((s) => s.equipOnMerc);
   const unequipFromMerc = useMercStore((s) => s.unequipFromMerc);
   const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
-  const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
-  const [equipmentError, setEquipmentError] = useState<
-    (Extract<MercEquipmentResult, { ok: false }> & { item: Item | null }) | null
-  >(null);
-
+  const [feedback, setFeedback] = useState('');
   const bases = useMemo(() => loadItemBases(), []);
-
-  const candidatesForSlot = (slot: EquipmentSlot) =>
-    backpack.filter((it) => {
-      const b = bases.get(it.baseId);
-      if (!b?.slot) return false;
-      if (b.slot === slot) return true;
-      if (
-        (b.slot === 'ring-left' || b.slot === 'ring-right') &&
-        (slot === 'ring-left' || slot === 'ring-right')
-      )
-        return true;
-      return false;
-    });
-
-  const candidates = pickerSlot ? candidatesForSlot(pickerSlot) : [];
+  const candidates = pickerSlot
+    ? backpack.filter(item => isMercEquipmentSlotCompatible(bases.get(item.baseId), pickerSlot))
+    : [];
+  const selectSlot = (slot: EquipmentSlot) => {
+    setPickerSlot(slot);
+    setFeedback('');
+  };
+  const reportResult = (result: MercEquipmentResult, item: Item | null, action: 'equipped' | 'returned') => {
+    const name = item ? tItemName(t, item) : t('inventory:equipment');
+    setFeedback(result.ok ? t(`equipmentFlow.${action}`, { name })
+      : result.reason === 'backpack_full' ? t('inventory:toast.backpackFull')
+        : result.reason === 'requirements_not_met' ? t('inventory:equipFlow.footer.disabledIneligible')
+          : t('inventory:toast.equipFailed', { name }));
+    return result.ok;
+  };
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-2">
-      <EquipmentPanel
+    <div className="min-w-0 shrink-0 space-y-3">
+      <p role="status" aria-live="polite" className="sticky top-0 z-10 bg-d2-panel text-sm text-d2-gold">{feedback}</p>
+      {pickerSlot === null ? <EquipmentPanel
         equipped={equipment}
         slotOrder={MERC_EQUIPMENT_SLOTS}
         testIdPrefix="merc-equip-slot"
-        onSlotClick={(slot) => {
-          setPickerSlot(slot);
-          setEquipmentError(null);
-        }}
-        onViewSlot={setViewSlot}
+        onSlotClick={selectSlot}
+        onViewSlot={selectSlot}
         onUnequip={(slot) => {
-          const result = unequipFromMerc(mercId, slot);
-          setEquipmentError(result.ok ? null : { ...result, item: equipment[slot] ?? null });
+          reportResult(unequipFromMerc(merc.id, slot), equipment[slot] ?? null, 'returned');
         }}
-      />
-
-      {equipmentError && (
-        <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
-          {equipmentError.reason === 'backpack_full'
-            ? t('inventory:toast.backpackFull')
-            : t('inventory:toast.equipFailed', {
-                name: equipmentError.item
-                  ? tItemName(t, equipmentError.item)
-                  : t('inventory:equipment')
-              })}
-        </p>
-      )}
-
-      <Modal
-        isOpen={pickerSlot !== null}
-        onClose={() => {
-          setPickerSlot(null);
-        }}
-        title={t('inventory:equip')}
-      >
-        {pickerSlot && (
-          <>
-            <div className="flex min-h-0 flex-1 flex-col gap-2">
-              <div className="text-xs text-d2-white/60">
-                {t('selectSlotItem', { slot: t(`inventory:slots.${pickerSlot}`) })}
-              </div>
-              <MercEquipmentCandidates
-                key={pickerSlot}
-                candidates={candidates}
-                onEquip={(item) => {
-                  const result = equipOnMerc(mercId, pickerSlot, item);
-                  if (result.ok) {
-                    setPickerSlot(null);
-                    setEquipmentError(null);
-                  } else setEquipmentError({ ...result, item });
-                }}
-              />
-            </div>
-          </>
-        )}
-      </Modal>
-
-      <EquippedItemModal
-        slot={viewSlot}
-        item={viewSlot ? (equipment[viewSlot] ?? null) : null}
-        derivedStats={null}
-        onClose={() => {
-          setViewSlot(null);
-        }}
-      />
+      /> : <>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <Button variant="secondary" onClick={() => { setPickerSlot(null); setFeedback(''); }}>
+            {t('equipmentFlow.back')}
+          </Button>
+          <h3 className="font-serif text-d2-gold">{t(`inventory:slots.${pickerSlot}`)}</h3>
+          {equipment[pickerSlot] && <Button variant="secondary" onClick={() => {
+            reportResult(unequipFromMerc(merc.id, pickerSlot), equipment[pickerSlot] ?? null, 'returned');
+          }}>{t('inventory:unequip')}</Button>}
+        </div>
+        <MercEquipmentCandidates
+          key={pickerSlot}
+          candidates={candidates}
+          current={equipment[pickerSlot] ?? null}
+          merc={merc}
+          onSelect={() => { setFeedback(''); }}
+          onEquip={(item) => reportResult(equipOnMerc(merc.id, pickerSlot, item), item, 'equipped')}
+        />
+      </>}
     </div>
   );
 }

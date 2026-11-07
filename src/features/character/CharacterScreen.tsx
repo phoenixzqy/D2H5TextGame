@@ -109,7 +109,6 @@ export function CharacterScreen() {
       <EquippedItemModal
         slot={viewSlot}
         item={viewSlot ? (equipped[viewSlot] ?? null) : null}
-        derivedStats={player.derivedStats}
         onClose={() => {
           setViewSlot(null);
         }}

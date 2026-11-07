@@ -1,4 +1,13 @@
 {
+  "equipmentFlow": {
+    "current": "当前装备",
+    "candidate": "选中的背包物品",
+    "give": "交给佣兵装备",
+    "select": "选择上方物品，查看详情后再装备。",
+    "back": "返回装备栏",
+    "equipped": "已装备：{{name}}。替换下来的装备已放回背包。",
+    "returned": "已放回背包：{{name}}。"
+  },
   "mercenaries": "雇佣兵",
   "owned": "拥有",
   "fielded": "已上场",

@@ -43,10 +43,10 @@ it.each(['en', 'zh-CN'] as const)('shows a localized flat-MR gain and +2 net sum
 it.each(['en', 'zh-CN'] as const)('shows canonical MR in equipped-item inspection in %s', async locale => {
   await i18n.changeLanguage(locale);
   render(<I18nextProvider i18n={i18n}>
-    <EquippedItemModal slot="head" item={diamond} derivedStats={derivedStats} onClose={() => undefined} />
+    <EquippedItemModal slot="head" item={diamond} onClose={() => undefined} />
   </I18nextProvider>);
-  const label = locale === 'en' ? 'Magic Resist' : '魔法防御';
-  const row = screen.getByRole('rowheader', { name: label }).closest('tr');
-  if (!row) throw new Error('Missing inspected Magic Resist row');
-  expect(within(row).getByRole('cell')).toHaveTextContent(/^2$/);
+  const socketStats = screen.getByTestId('item-tooltip-socket-stats');
+  expect(socketStats).toHaveTextContent(locale === 'en' ? 'Magic Resist' : '魔法抗性');
+  expect(socketStats).toHaveTextContent('2');
+  expect(screen.queryByRole('tab')).not.toBeInTheDocument();
 });

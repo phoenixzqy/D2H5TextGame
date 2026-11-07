@@ -219,7 +219,6 @@ function InventoryGear() {
       <EquippedItemModal
         slot={viewSlot}
         item={viewSlot ? (equipped[viewSlot] ?? null) : null}
-        derivedStats={player?.derivedStats ?? null}
         onClose={() => { setViewSlot(null); }}
       />
 
