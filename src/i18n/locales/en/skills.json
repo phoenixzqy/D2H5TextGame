@@ -338,7 +338,8 @@
     "martialRelease": "{{finishers}} and basic attacks release every active pool once per cast on their first hit that removes enemy HP. Misses and full absorption keep charges. Multi-hit and area attacks release only against that first victim, with no extra action, mana or cooldown. Releases cannot build or release more charges. A dead caster receives no payoff. Finishers remain usable without charges.",
     "martialDamageRules": "Release adds {{percent}}% of each charge's captured-rank base as {{types}} damage, summed then rounded down. Examples below assume every charge has the displayed rank, before hit, critical, defenses and resistances. Release keeps the builder's damage types and status effects.",
     "martialCobraRules": "Cobra restores {{life}}% HP and {{mana}}% MP per released charge, based on the triggering hit's actual enemy HP removed; each total is rounded down. HP and MP recovery are capped independently by the caster's missing life and mana after the hit resolves. No enemy MP is required or removed. Absorption and overkill add nothing. Killing hits qualify if the caster survives. Cobra releases no extra damage.",
-    "flightDuration": "Blink duration"
+    "flightDuration": "Blink duration",
+    "overview": "Overview"
   },
   "amazon": {
     "magic-arrow": {
@@ -1211,10 +1212,10 @@
     }
   },
   "monster": {
-      "fire-enchanted-explosion": {
-        "name": "Fire Enchanted Explosion",
-        "desc": "Explodes once on death for 50 base Fire damage against living opponents. Uses no mana or corpse."
-      },
+    "fire-enchanted-explosion": {
+      "name": "Fire Enchanted Explosion",
+      "desc": "Explodes once on death for 50 base Fire damage against living opponents. Uses no mana or corpse."
+    },
     "weak-melee": {
       "name": "Weak Melee",
       "desc": "A clumsy melee swing used by trash mobs."

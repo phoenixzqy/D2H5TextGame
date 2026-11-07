@@ -3,6 +3,7 @@
  */
 
 import { useId, useLayoutEffect, useRef, type MutableRefObject, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FloatingFocusManager, useFloating } from '@floating-ui/react';
 
 interface ModalProps {
@@ -16,7 +17,16 @@ interface ModalProps {
 }
 
 /** Contain keyboard focus and restore the opener when the dialog closes. */
-export function Modal({ isOpen, onClose, title, children, className = '', initialFocus, returnFocus }: ModalProps) {
+export function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+  className = '',
+  initialFocus,
+  returnFocus
+}: ModalProps) {
+  const { t } = useTranslation('common');
   const titleId = useId();
   const opener = useRef<HTMLElement | null>(null);
   const { refs, context } = useFloating({ open: isOpen });
@@ -33,39 +43,58 @@ export function Modal({ isOpen, onClose, title, children, className = '', initia
   if (!isOpen) return null;
 
   return (
-    <FloatingFocusManager context={context} initialFocus={initialFocus ?? refs.floating}
-      returnFocus={returnFocus ?? opener} restoreFocus>
-    {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
-    <div
-      className="d2-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80"
-      onClick={onClose}
-      onKeyDown={event => {
-        if (event.key !== 'Escape') return;
-        event.stopPropagation();
-        if (!event.defaultPrevented) onClose();
-      }}
+    <FloatingFocusManager
+      context={context}
+      initialFocus={initialFocus ?? refs.floating}
+      returnFocus={returnFocus ?? opener}
+      restoreFocus
     >
+      {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */}
       <div
-        ref={refs.setFloating}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={title ? titleId : undefined}
-        tabIndex={-1}
-        className={`
-          d2-panel d2-dialog p-4 sm:p-6 max-w-2xl w-full max-h-[90dvh] overflow-y-auto scrollbar-d2
+        className="d2-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80"
+        onClick={onClose}
+        onKeyDown={(event) => {
+          if (event.key !== 'Escape') return;
+          event.stopPropagation();
+          if (!event.defaultPrevented) onClose();
+        }}
+      >
+        <div
+          ref={refs.setFloating}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={title ? titleId : undefined}
+          tabIndex={-1}
+          className={`
+          d2-panel d2-dialog p-3 sm:p-4 max-w-2xl w-full max-h-[94dvh] flex flex-col min-h-0
           motion-safe:animate-fadeIn
           ${className}
         `}
-        onClick={(e) => { e.stopPropagation(); }}
-      >
-        {title && (
-          <h2 id={titleId} className="d2-panel-title text-xl font-serif text-d2-gold mb-4 pb-3">
-            {title}
-          </h2>
-        )}
-        {children}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <div className="d2-dialog-header flex shrink-0 items-center gap-2 mb-2">
+            {title && (
+              <h2
+                id={titleId}
+                className="d2-panel-title flex-1 min-w-0 text-lg font-serif text-d2-gold"
+              >
+                {title}
+              </h2>
+            )}
+            <button
+              type="button"
+              className="ml-auto min-h-[44px] min-w-[44px] text-xl text-d2-gold"
+              aria-label={t('close')}
+              onClick={onClose}
+            >
+              ×
+            </button>
+          </div>
+          <div className="d2-dialog-body scrollbar-d2">{children}</div>
+        </div>
       </div>
-    </div>
     </FloatingFocusManager>
   );
 }

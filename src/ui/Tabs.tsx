@@ -2,7 +2,7 @@
  * Tabs component for multi-panel UIs
  */
 
-import { useState, type KeyboardEvent, type ReactNode } from 'react';
+import { useId, useState, type KeyboardEvent, type ReactNode } from 'react';
 
 export interface Tab {
   id: string;
@@ -15,10 +15,22 @@ interface TabsProps {
   defaultTab?: string;
   onChange?: (tabId: string) => void;
   className?: string;
+  fill?: boolean;
+  keepMounted?: boolean;
 }
 
-export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultTab ?? tabs[0]?.id ?? '');
+export function Tabs({
+  tabs,
+  defaultTab,
+  onChange,
+  className = '',
+  fill = true,
+  keepMounted = false
+}: TabsProps) {
+  const instanceId = useId();
+  const [selectedTab, setActiveTab] = useState(defaultTab ?? tabs[0]?.id ?? '');
+
+  const activeTab = tabs.some((tab) => tab.id === selectedTab) ? selectedTab : (tabs[0]?.id ?? '');
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
@@ -27,7 +39,7 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
 
   const focusTab = (tabId: string): void => {
     window.requestAnimationFrame(() => {
-      document.getElementById(`tab-${tabId}`)?.focus();
+      document.getElementById(`${instanceId}-tab-${tabId}`)?.focus();
     });
   };
 
@@ -46,29 +58,27 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
     focusTab(nextTab.id);
   };
 
-  const activeTabContent = tabs.find((t) => t.id === activeTab)?.content;
-
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`d2-tabs-view ${fill ? 'd2-tabs-fill' : ''} w-full ${className}`}>
       {/* Tab headers */}
-      <div className="d2-tabs flex overflow-x-auto scrollbar-d2" role="tablist">
+      <div className="d2-tabs flex flex-wrap shrink-0" role="tablist">
         {tabs.map((tab, index) => (
           <button
-            id={`tab-${tab.id}`}
+            id={`${instanceId}-tab-${tab.id}`}
             key={tab.id}
-            onClick={() => { handleTabChange(tab.id); }}
-            onKeyDown={(event) => { handleTabKeyDown(event, index); }}
+            onClick={() => {
+              handleTabChange(tab.id);
+            }}
+            onKeyDown={(event) => {
+              handleTabKeyDown(event, index);
+            }}
             className={`
-              d2-tab min-h-[44px] px-4 py-2 font-serif transition-colors whitespace-nowrap
-              ${
-                activeTab === tab.id
-                  ? 'text-d2-gold'
-                  : 'text-d2-white/70 hover:text-d2-white'
-              }
+              d2-tab min-h-[44px] min-w-[5rem] flex-1 break-words px-2 py-1 font-serif transition-colors
+              ${activeTab === tab.id ? 'text-d2-gold' : 'text-d2-white/70 hover:text-d2-white'}
             `}
             role="tab"
             aria-selected={activeTab === tab.id}
-            aria-controls={`tabpanel-${tab.id}`}
+            aria-controls={`${instanceId}-tabpanel-${tab.id}`}
             tabIndex={activeTab === tab.id ? 0 : -1}
           >
             {tab.label}
@@ -76,15 +86,18 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
         ))}
       </div>
 
-      {/* Tab content */}
-      <div
-        className="mt-4"
-        role="tabpanel"
-        id={`tabpanel-${activeTab}`}
-        aria-labelledby={`tab-${activeTab}`}
-      >
-        {activeTabContent}
-      </div>
+      {(keepMounted ? tabs : tabs.filter((tab) => tab.id === activeTab)).map((tab) => (
+        <div
+          key={tab.id}
+          className="d2-tab-content"
+          role="tabpanel"
+          hidden={tab.id !== activeTab}
+          id={`${instanceId}-tabpanel-${tab.id}`}
+          aria-labelledby={`${instanceId}-tab-${tab.id}`}
+        >
+          {tab.content}
+        </div>
+      ))}
     </div>
   );
 }

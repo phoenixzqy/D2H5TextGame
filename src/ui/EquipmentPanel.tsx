@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PagedList } from './PagedList';
 import { Button } from './Button';
 import { tItemName } from './i18nKey';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
@@ -39,8 +40,7 @@ export function EquipmentPanel({
   const descriptionId = useId();
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-      {slotOrder.map((slot) => {
+    <PagedList items={slotOrder} listClassName="grid grid-cols-2 lg:grid-cols-3 gap-2" renderItem={(slot) => {
         const item = equipped[slot] ?? null;
         const interactive = onSlotClick !== undefined;
         const SlotContent = interactive ? 'button' : 'div';
@@ -51,7 +51,7 @@ export function EquipmentPanel({
               role="group"
               data-testid={`${testIdPrefix}-${slot}`}
               aria-label={t(`slots.${slot}`)}
-              className="d2-surface w-full min-w-0 border border-d2-border rounded p-3 bg-d2-bg/40 space-y-2"
+              className="d2-surface w-full min-w-0 border border-d2-border rounded p-1 bg-d2-bg/40 space-y-1"
             >
               <SlotContent
                 type={interactive ? 'button' : undefined}
@@ -60,13 +60,13 @@ export function EquipmentPanel({
                 aria-describedby={interactive ? itemDescriptionId : undefined}
                 data-testid={`${testIdPrefix}-${slot}-select`}
                 className={[
-                  'd2-slot block w-full min-w-0 min-h-[64px] rounded p-2 text-left',
+                  'd2-slot block w-full min-w-0 min-h-[44px] rounded p-2 text-left',
                   interactive ? 'hover:bg-d2-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold' : '',
                 ].join(' ')}
               >
                 <span className="block text-sm text-d2-white/80">{t(`slots.${slot}`)}</span>
                 {item ? (
-                  <span id={itemDescriptionId} className={`block font-serif [overflow-wrap:anywhere] ${rarityTextClass(item.rarity)}`}>
+                  <span id={itemDescriptionId} className={`block font-serif text-xs [overflow-wrap:anywhere] ${rarityTextClass(item.rarity)}`}>
                     {tItemName(t, item)}
                   </span>
                 ) : (
@@ -106,8 +106,7 @@ export function EquipmentPanel({
             </div>
           </li>
         );
-      })}
-    </ul>
+      }} />
   );
 }
 

@@ -74,7 +74,9 @@
     "quests": "任务",
     "settings": "设置",
     "gacha": "招募",
-    "stats": "属性"
+    "stats": "属性",
+    "more": "更多",
+    "character": "角色"
   },
   "town.title": "营地",
   "map.title": "世界地图",
@@ -104,5 +106,24 @@
     "elite-kill": "邪气凝聚，精英怪 {{name}} 出现并被击败！",
     "pity-elite-kill": "压抑已久的邪气爆发了……{{name}} 掉落了更多战利品！",
     "idle": "选择已通关地图开始挂机刷图"
+  },
+  "pagination": {
+    "label": "分页",
+    "previous": "上一页",
+    "next": "下一页",
+    "page": "{{current}} / {{total}}"
+  },
+  "viewport": {
+    "areas": "区域",
+    "replay": "重玩",
+    "endgame": "终局",
+    "greeting": "对话",
+    "services": "服务",
+    "titles": "头衔",
+    "options": "选项",
+    "details": "详情",
+    "previous": "上一页",
+    "next": "下一页",
+    "page": "{{current}} / {{total}}"
   }
 }

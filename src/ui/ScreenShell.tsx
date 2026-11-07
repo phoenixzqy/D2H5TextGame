@@ -1,6 +1,7 @@
+import '@/styles/viewport.css';
 /**
  * ScreenShell — common layout for all in-game screens.
- * Provides safe-area-aware container, scrollable main, and slot for BottomNav.
+ * Provides safe-area-aware container, bounded main, and slot for BottomNav.
  */
 import type { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
@@ -22,8 +23,7 @@ export function ScreenShell({ children, testId, title, hideNav = false, footer }
   return (
     <div
       // Bug #10: outer shell is exactly 100dvh (fallback 100vh) and never
-      // scrolls. Children — the sidebar/nav and the main column — share
-      // its height; only `<main>` is allowed to scroll vertically.
+      // scrolls. Each screen allocates the remaining height to its active panel.
       className="d2-shell h-screen h-[100dvh] text-d2-white flex flex-col md:flex-row overflow-hidden"
       data-testid={testId}
     >
@@ -32,11 +32,11 @@ export function ScreenShell({ children, testId, title, hideNav = false, footer }
         <SaveFailureNotice />
         <header
           className="d2-header shrink-0 z-30
-                     flex flex-wrap items-center gap-x-3 gap-y-2 empty:hidden
-                     px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]"
+                     flex items-center gap-x-2 gap-y-1 empty:hidden
+                     px-3 py-1 pt-[max(0.25rem,env(safe-area-inset-top))]"
         >
           {title && (
-            <div className="d2-screen-title flex-1 basis-40 min-w-0 break-words text-d2-gold font-serif text-lg">
+            <div className="d2-screen-title flex-1 min-w-0 break-words text-d2-gold font-serif text-lg">
               {title}
             </div>
           )}
@@ -44,8 +44,8 @@ export function ScreenShell({ children, testId, title, hideNav = false, footer }
         </header>
         <main
           className={[
-            'd2-main scrollbar-d2 relative flex-1 min-w-0 min-h-0 overflow-y-auto px-3 py-4 md:px-8 md:py-7',
-            'pb-[max(1rem,env(safe-area-inset-bottom))]',
+            'd2-main relative flex flex-col flex-1 min-w-0 min-h-0 overflow-hidden px-2 py-2 md:px-4 md:py-3',
+            'pb-[max(0.5rem,env(safe-area-inset-bottom))]',
           ].join(' ')}
         >
           {children}

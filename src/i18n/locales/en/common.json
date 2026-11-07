@@ -74,7 +74,9 @@
     "quests": "Quests",
     "settings": "Settings",
     "gacha": "Recruit",
-    "stats": "Stats"
+    "stats": "Stats",
+    "more": "More",
+    "character": "Character"
   },
   "town.title": "Town",
   "map.title": "World Map",
@@ -104,5 +106,24 @@
     "elite-kill": "Dark power gathers — elite {{name}} appeared and fell!",
     "pity-elite-kill": "Stored-up darkness erupts... {{name}} dropped richer loot!",
     "idle": "Choose a cleared map to start auto farming"
+  },
+  "pagination": {
+    "label": "Pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "{{current}} / {{total}}"
+  },
+  "viewport": {
+    "areas": "Areas",
+    "replay": "Replay",
+    "endgame": "Endgame",
+    "greeting": "Greeting",
+    "services": "Services",
+    "titles": "Titles",
+    "options": "Options",
+    "details": "Details",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "{{current}} / {{total}}"
   }
 }

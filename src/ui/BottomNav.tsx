@@ -2,6 +2,8 @@
  * BottomNav — mobile-first bottom navigation; transforms to side rail at `md` breakpoint.
  * Each item is a 44px+ tap target. Strings come from i18n `common` namespace under `nav.*`.
  */
+import { useState } from 'react';
+import { Modal } from './Modal';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMetaStore } from '@/stores';
@@ -63,66 +65,76 @@ const NAV_ITEMS: readonly NavItem[] = import.meta.env.DEV
 
 export function BottomNav() {
   const { t } = useTranslation(['common', 'map']);
+  const [moreOpen, setMoreOpen] = useState(false);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
 
-  return (
-    <nav
-      aria-label={t('nav.aria')}
-      className="
-        d2-nav
-        order-last md:order-first
-        flex-shrink-0
-        border-t border-d2-border
-        pb-[env(safe-area-inset-bottom)]
-        md:border-t-0 md:border-r md:pb-0
-        md:w-24 md:h-full md:overflow-y-auto
-      "
-    >
-      <ul
-        className="
-          grid grid-cols-4 items-stretch
-          sm:flex sm:justify-around
-          md:flex-col md:items-stretch md:justify-start md:gap-1 md:p-2 md:overflow-y-auto
-        "
+  const renderLink = (item: NavItem, close = false) => (
+    <li key={item.to} className="min-w-0">
+      <NavLink
+        to={item.to}
+        onClick={() => {
+          if (close) setMoreOpen(false);
+        }}
+        className={({ isActive }) =>
+          `d2-nav-link flex min-h-[48px] flex-col items-center justify-center gap-1 px-1 py-1 text-xs ${isActive ? 'd2-nav-link--active text-d2-gold' : 'text-d2-white/70 hover:text-d2-gold'}`
+        }
       >
+        <NavIcon name={item.icon} />
+        <span className="max-w-full truncate">
+          {item.label ?? (item.labelKey ? t(item.labelKey) : '')}
+        </span>
+      </NavLink>
+    </li>
+  );
+  return (
+    <>
+      <nav
+        aria-label={t('nav.aria')}
+        className="d2-nav d2-compact-nav order-last md:order-first shrink-0 border-t md:border-t-0 md:border-r border-d2-border"
+      >
+        <ul className="d2-primary-nav">
+          {NAV_ITEMS.slice(0, 4).map((item) => renderLink(item))}
+          <li>
+            <button
+              type="button"
+              className="d2-nav-link w-full min-h-[48px] text-xs text-d2-gold"
+              onClick={() => {
+                setMoreOpen(true);
+              }}
+              aria-haspopup="dialog"
+            >
+              <span aria-hidden="true" className="block text-xl leading-5">
+                •••
+              </span>
+              {t('nav.more')}
+            </button>
+          </li>
+        </ul>
         {idleTarget && (
-          <li
-            className="hidden md:block px-1 pb-2 text-[10px] text-d2-gold/90"
+          <span
+            className="hidden md:block truncate p-1 text-center text-[10px] text-d2-gold"
             data-testid="idle-sidebar-chip"
             title={t(`map:subArea.${idleTarget}`)}
           >
-            <span className="flex items-center gap-1">
-              <NavIcon name="settings" small />
-              <span className="truncate">{t('map:idleHereShort')}</span>
-            </span>
-            <span className="block truncate text-d2-white/70">
-              {t(`map:subArea.${idleTarget}`)}
-            </span>
-          </li>
+            {t('map:idleHereShort')}
+          </span>
         )}
-        {NAV_ITEMS.map((item) => (
-          <li key={item.to} className="flex-1 min-w-0 md:flex-none">
-            <NavLink
-              to={item.to}
-              className={({ isActive }) =>
-                [
-                  'd2-nav-link flex flex-col items-center justify-center gap-1',
-                  'min-h-[56px] md:min-h-[64px] py-2 text-xs',
-                  'transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                  isActive
-                    ? 'd2-nav-link--active text-d2-gold'
-                    : 'text-d2-white/70 hover:text-d2-gold'
-                ].join(' ')
-              }
-            >
-              <NavIcon name={item.icon} />
-              <span className="text-xs leading-tight truncate max-w-full">
-                {item.label ?? (item.labelKey ? t(item.labelKey) : '')}
-              </span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </nav>
+      </nav>
+      <Modal
+        isOpen={moreOpen}
+        onClose={() => {
+          setMoreOpen(false);
+        }}
+        title={t('nav.more')}
+      >
+        <nav aria-label={t('nav.aria')}>
+          <ul className="grid grid-cols-3 gap-2">
+            {NAV_ITEMS.slice(4).map((item) => renderLink(item, true))}
+            {renderLink({ to: '/character', labelKey: 'nav.character', icon: 'mercs' }, true)}
+            {renderLink({ to: '/gacha', labelKey: 'nav.gacha', icon: 'skills' }, true)}
+          </ul>
+        </nav>
+      </Modal>
+    </>
   );
 }

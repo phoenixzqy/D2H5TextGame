@@ -12,9 +12,9 @@
  * ("show the currently equipped item's full stat sheet") while keeping
  * the component pure-presentational.
  */
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from './Button';
+import { Modal } from './Modal';
+import { Tabs } from './Tabs';
 import { StatSheet } from './StatSheet';
 import { ItemTooltip } from './ItemTooltip';
 import type { ComparableStatKey } from '@/features/inventory/compareEquip';
@@ -29,8 +29,16 @@ interface Props {
 }
 
 const STAT_KEYS: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
-  'critChance', 'critDamage', 'physDodge', 'magicDodge'
+  'lifeMax',
+  'manaMax',
+  'attack',
+  'defense',
+  'magicResist',
+  'attackSpeed',
+  'critChance',
+  'critDamage',
+  'physDodge',
+  'magicDodge'
 ];
 
 function pickStats(ds: DerivedStats): Record<ComparableStatKey, number> {
@@ -43,17 +51,13 @@ function pickResists(ds: DerivedStats): Record<keyof Resistances, number> {
   return { ...ds.resistances };
 }
 
-export function EquippedItemModal({ slot, item, derivedStats, onClose }: Props): JSX.Element | null {
+export function EquippedItemModal({
+  slot,
+  item,
+  derivedStats,
+  onClose
+}: Props): JSX.Element | null {
   const { t } = useTranslation(['inventory', 'common']);
-
-  useEffect(() => {
-    if (slot === null) return undefined;
-    const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', onKey);
-    return () => { document.removeEventListener('keydown', onKey); };
-  }, [slot, onClose]);
 
   if (slot === null) return null;
 
@@ -62,66 +66,34 @@ export function EquippedItemModal({ slot, item, derivedStats, onClose }: Props):
   const resistances = derivedStats ? pickResists(derivedStats) : null;
 
   return (
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
-    <div
-      className="d2-modal-backdrop fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/80"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="equipped-item-modal-title"
-      data-testid="equipped-item-modal"
-    >
-      <div
-        className={[
-          'd2-dialog animate-fadeIn',
-          'w-full rounded-t-lg sm:rounded-lg max-h-[85vh] sm:max-h-[90vh]',
-          'sm:max-w-md sm:w-full flex flex-col overflow-hidden'
-        ].join(' ')}
-        onClick={(e) => { e.stopPropagation(); }}
-      >
-        <header className="d2-toolbar flex items-center justify-between p-4 border-b border-d2-border">
-          <h2 id="equipped-item-modal-title" className="d2-section-title text-lg font-serif font-bold text-d2-gold">
-            {slotLabel}
-          </h2>
-          <Button
-            variant="secondary"
-            className="min-h-[44px] min-w-[44px] !px-3"
-            aria-label={t('common:close')}
-            onClick={onClose}
-            data-testid="equipped-item-modal-close"
-          >
-            ×
-          </Button>
-        </header>
-
-        <div className="flex-1 overflow-y-auto scrollbar-d2 p-4 space-y-3">
-          {item && (
-            <div className="flex justify-center">
-              <ItemTooltip item={item} />
-            </div>
-          )}
-          {stats && resistances && (
-            <StatSheet
-              mode="single"
-              item={item}
-              stats={stats}
-              resistances={resistances}
-              emptySlot={item === null}
-            />
-          )}
-        </div>
-
-        <footer className="d2-toolbar p-4 border-t border-d2-border bg-d2-bg/40">
-          <Button
-            variant="primary"
-            className="min-h-[44px] w-full"
-            onClick={onClose}
-            data-testid="equipped-item-modal-ok"
-          >
-            {t('common:close')}
-          </Button>
-        </footer>
-      </div>
-    </div>
+    <Modal isOpen onClose={onClose} title={slotLabel}>
+      <Tabs
+        tabs={[
+          {
+            id: 'item',
+            label: t('details'),
+            content: (
+              <div className="flex justify-center" data-testid="equipped-item-modal">
+                {item ? <ItemTooltip item={item} /> : <p>{t('empty')}</p>}
+              </div>
+            )
+          },
+          {
+            id: 'stats',
+            label: t('equipFlow.compare.statHeader'),
+            content:
+              stats && resistances ? (
+                <StatSheet
+                  mode="single"
+                  item={item}
+                  stats={stats}
+                  resistances={resistances}
+                  emptySlot={item === null}
+                />
+              ) : null
+          }
+        ]}
+      />
+    </Modal>
   );
 }

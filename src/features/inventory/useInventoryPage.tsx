@@ -46,12 +46,12 @@ export function useInventoryPage(items: readonly Item[], capacity: number, onCha
       <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
         {t('pagination.status', { start: items.length ? start + 1 : 0, end: start + visible.length, total: items.length, page: page + 1, pages })}
       </p>
-      <div className="flex flex-wrap items-center gap-2">
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { change(page - 1); }}>{t('pagination.previous')}</Button>
+      <div className="flex items-center justify-center gap-2">
+        <Button variant="secondary" aria-label={t('pagination.previous')} className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { change(page - 1); }}>‹</Button>
         <input type="number" min={1} max={pages} step={1} value={page + 1}
           aria-label={t('pagination.page')} onChange={event => { change(event.target.valueAsNumber - 1); }}
           className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { change(page + 1); }}>{t('pagination.next')}</Button>
+        <Button variant="secondary" aria-label={t('pagination.next')} className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { change(page + 1); }}>›</Button>
       </div>
     </nav>
   );

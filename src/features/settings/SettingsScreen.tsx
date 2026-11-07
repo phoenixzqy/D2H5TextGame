@@ -133,10 +133,10 @@ export function SettingsScreen() {
     <ScreenShell testId="settings-screen" title={t('settings')} hideNav={!hasCharacter}>
       <div className="mx-auto flex h-full min-h-0 w-full max-w-3xl flex-col gap-2">
         {!hasCharacter && (
-          <Panel>
+          <div className="shrink-0">
             <Button
               variant="secondary"
-              className="w-full min-h-[44px]"
+              className="min-h-[44px]"
               onClick={() => {
                 navigate('/');
               }}
@@ -144,7 +144,7 @@ export function SettingsScreen() {
             >
               ← {t('common:back')}
             </Button>
-          </Panel>
+          </div>
         )}
         <Tabs
           tabs={[
@@ -152,61 +152,66 @@ export function SettingsScreen() {
               id: 'preferences',
               label: t('language'),
               content: (
-                <div className="grid gap-2 sm:grid-cols-2">
-                  <Panel title={t('language')}>
-                    <div className="flex gap-2">
-                      {(['zh-CN', 'en'] as const).map((loc) => (
-                        <button
-                          key={loc}
-                          type="button"
-                          onClick={() => {
-                            handleLocale(loc);
-                          }}
-                          aria-pressed={settings.locale === loc}
-                          className={[
-                            'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
-                            'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                            settings.locale === loc
-                              ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
-                              : 'border-d2-border bg-d2-panel text-d2-white'
-                          ].join(' ')}
-                        >
-                          {/* language self-names — do not translate */}
-                          {loc === 'zh-CN' ? '简体中文' : 'English'}
-                        </button>
-                      ))}
-                    </div>
-                  </Panel>
-
-                  <Panel>
-                    <ToggleRow
-                      label={t('stealthMode')}
-                      description={t('stealthModeDesc')}
-                      checked={settings.stealthMode}
-                      onChange={toggleStealthMode}
-                      testId="toggle-stealth"
-                    />
-                    <div className="border-t border-d2-border my-2" />
-                    <ToggleRow
-                      label={t('sound')}
-                      checked={settings.soundEnabled}
-                      onChange={toggleSound}
-                    />
-                    <div className="border-t border-d2-border my-2" />
-                    <ToggleRow
-                      label={t('music')}
-                      checked={settings.musicEnabled}
-                      onChange={toggleMusic}
-                    />
-                  </Panel>
-                </div>
+                <PagedList
+                  items={[
+                    <li key="language" className="d2-panel p-3">
+                      {' '}
+                      <div className="flex gap-2">
+                        {(['zh-CN', 'en'] as const).map((loc) => (
+                          <button
+                            key={loc}
+                            type="button"
+                            onClick={() => {
+                              handleLocale(loc);
+                            }}
+                            aria-pressed={settings.locale === loc}
+                            className={[
+                              'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
+                              'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
+                              settings.locale === loc
+                                ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
+                                : 'border-d2-border bg-d2-panel text-d2-white'
+                            ].join(' ')}
+                          >
+                            {/* language self-names — do not translate */}
+                            {loc === 'zh-CN' ? '简体中文' : 'English'}
+                          </button>
+                        ))}
+                      </div>
+                    </li>,
+                    <li key="0" className="d2-panel p-3">
+                      <ToggleRow
+                        label={t('stealthMode')}
+                        description={t('stealthModeDesc')}
+                        checked={settings.stealthMode}
+                        onChange={toggleStealthMode}
+                        testId="toggle-stealth"
+                      />
+                    </li>,
+                    <li key="1" className="d2-panel p-3">
+                      <ToggleRow
+                        label={t('sound')}
+                        checked={settings.soundEnabled}
+                        onChange={toggleSound}
+                      />
+                    </li>,
+                    <li key="2" className="d2-panel p-3">
+                      <ToggleRow
+                        label={t('music')}
+                        checked={settings.musicEnabled}
+                        onChange={toggleMusic}
+                      />
+                    </li>
+                  ]}
+                  renderItem={(item) => item}
+                />
               )
             },
             {
               id: 'save',
               label: t('saveLoad'),
               content: (
-                <Panel title={t('saveLoad')}>
+                <Panel className="!p-2 min-h-0 overflow-y-auto">
                   <div className="grid grid-cols-2 gap-2" aria-busy={busy}>
                     <Button
                       variant="secondary"

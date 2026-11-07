@@ -51,7 +51,7 @@ export function CharacterHud() {
   };
 
   return (
-    <div className="ml-auto w-52 md:w-60 max-w-full shrink-0 flex flex-col items-end gap-1">
+    <div className="ml-auto w-40 md:w-52 max-w-full shrink-0 flex flex-col items-end gap-1">
       <button
         type="button"
         onClick={handleClick}
@@ -120,7 +120,7 @@ function Avatar({ player }: { player: Player }) {
     <div
       className="
         relative shrink-0
-        w-10 h-10 md:w-12 md:h-12
+        w-8 h-8 md:w-10 md:h-10
         rounded border border-d2-border
         bg-gradient-to-br from-d2-panel to-d2-bg
         overflow-hidden

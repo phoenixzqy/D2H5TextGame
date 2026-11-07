@@ -25,6 +25,7 @@
  * line so the value and change remain readable at 14px. Numerals use
  * `tabular-nums` for digit alignment.
  */
+import { useState } from 'react';
 import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
@@ -46,8 +47,16 @@ import type { Resistances } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 
 const STAT_ORDER: readonly ComparableStatKey[] = [
-  'lifeMax', 'manaMax', 'attack', 'defense', 'magicResist', 'attackSpeed',
-  'critChance', 'critDamage', 'physDodge', 'magicDodge'
+  'lifeMax',
+  'manaMax',
+  'attack',
+  'defense',
+  'magicResist',
+  'attackSpeed',
+  'critChance',
+  'critDamage',
+  'physDodge',
+  'magicDodge'
 ];
 
 interface SingleProps {
@@ -73,6 +82,7 @@ export type StatSheetProps = SingleProps | CompareProps;
 
 export function StatSheet(props: StatSheetProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'common', 'items', 'rarity']);
+  const [selectedPage, setSelectedPage] = useState(0);
   const { t: tAffix } = useTranslation('affixes');
 
   // Compare mode always shows 3 columns (even when current is null, the
@@ -89,17 +99,49 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
     return r.current !== 0 || r.candidate !== 0;
   });
 
+  const affixes = props.mode === 'compare' ? props.candidate.affixes : props.item?.affixes;
+  const sections = [0, 1, ...(hasResist ? [2] : []), ...(affixes?.length ? [3] : [])];
+  const page = Math.min(selectedPage, sections.length - 1);
+  const section = sections[page] ?? 0;
+
   return (
     <div
       className={[
         'd2-surface bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-sm',
         'shadow-2xl shadow-black/70 w-full max-w-md',
         props.className ?? ''
-      ].filter(Boolean).join(' ')}
+      ]
+        .filter(Boolean)
+        .join(' ')}
       role="group"
       data-testid={props.mode === 'compare' ? 'item-compare' : 'item-stat-sheet'}
       data-mode={props.mode}
     >
+      <div className="d2-pager mb-1">
+        <button
+          type="button"
+          disabled={page === 0}
+          onClick={() => {
+            setSelectedPage(page - 1);
+          }}
+          aria-label={t('common:pagination.previous')}
+        >
+          ‹
+        </button>
+        <span aria-live="polite">
+          {t('common:pagination.page', { current: page + 1, total: sections.length })}
+        </span>
+        <button
+          type="button"
+          disabled={page === sections.length - 1}
+          onClick={() => {
+            setSelectedPage(page + 1);
+          }}
+          aria-label={t('common:pagination.next')}
+        >
+          ›
+        </button>
+      </div>
       <table
         className="d2-stat-table w-full table-fixed border-collapse tabular-nums"
         data-testid="stat-compare-table"
@@ -124,8 +166,8 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
               data-col="current"
               data-testid="current-item-header"
               data-empty={
-                ((props.mode === 'single' && (props.emptySlot ?? false)) ||
-                  (props.mode === 'compare' && props.current === null))
+                (props.mode === 'single' && (props.emptySlot ?? false)) ||
+                (props.mode === 'compare' && props.current === null)
                   ? 'true'
                   : 'false'
               }
@@ -155,7 +197,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {STAT_ORDER.map((key) => {
+          {(section < 2 ? STAT_ORDER.slice(section * 5, section * 5 + 5) : []).map((key) => {
             const meta = STAT_META[key];
             const label = t(`equipFlow.compare.stat.${key}`);
             if (props.mode === 'single') {
@@ -165,9 +207,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                   key={key}
                   label={label}
                   currentCell={
-                    <span className="text-d2-white">
-                      {formatStatValue(meta.format, value)}
-                    </span>
+                    <span className="text-d2-white">{formatStatValue(meta.format, value)}</span>
                   }
                   showCurrent
                   showCandidate={false}
@@ -178,11 +218,12 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             const deltaText = formatStatDelta(meta.format, stat.delta);
             const trend = deltaTrend(stat.delta, meta.higherIsBetter);
             const arrow = deltaArrow(stat.delta);
-            const srKey = stat.delta > 0
-              ? 'equipFlow.compare.deltaUp'
-              : stat.delta < 0
-                ? 'equipFlow.compare.deltaDown'
-                : '';
+            const srKey =
+              stat.delta > 0
+                ? 'equipFlow.compare.deltaUp'
+                : stat.delta < 0
+                  ? 'equipFlow.compare.deltaDown'
+                  : '';
             const candidateCell = (
               <>
                 <span className="text-d2-white">
@@ -208,9 +249,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             );
             const currentCell = (
               <span className="text-d2-white/60">
-                {props.current === null
-                  ? '—'
-                  : formatStatValue(meta.format, stat.current)}
+                {props.current === null ? '—' : formatStatValue(meta.format, stat.current)}
               </span>
             );
             return (
@@ -226,7 +265,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
           })}
         </tbody>
 
-        {hasResist && (
+        {section === 2 && hasResist && (
           <tbody className="[&>tr:first-child>th]:border-t [&>tr:first-child>th]:border-d2-border/60 [&>tr:first-child>th]:pt-2 [&>tr:first-child>td]:border-t [&>tr:first-child>td]:border-d2-border/60 [&>tr:first-child>td]:pt-2">
             {RESIST_KEYS.map((key) => {
               const label = t(`equipFlow.compare.resist.${key}`);
@@ -237,9 +276,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                   <StatRow
                     key={key}
                     label={label}
-                    currentCell={
-                      <span className="text-d2-white">{formatResistValue(value)}</span>
-                    }
+                    currentCell={<span className="text-d2-white">{formatResistValue(value)}</span>}
                     showCurrent
                     showCandidate={false}
                   />
@@ -285,20 +322,36 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
         )}
       </table>
 
-      {props.mode === 'compare' && props.candidate.affixes && props.candidate.affixes.length > 0 && (
-        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
-          {props.candidate.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
-          ))}
-        </ul>
-      )}
-      {props.mode === 'single' && props.item?.affixes && props.item.affixes.length > 0 && (
-        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
-          {props.item.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
-          ))}
-        </ul>
-      )}
+      {section === 3 &&
+        props.mode === 'compare' &&
+        props.candidate.affixes &&
+        props.candidate.affixes.length > 0 && (
+          <ul
+            className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5"
+            data-testid="stat-sheet-affixes"
+          >
+            {props.candidate.affixes.map((a, i) => (
+              <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">
+                {formatAffixRoll(a, tAffix)}
+              </li>
+            ))}
+          </ul>
+        )}
+      {section === 3 &&
+        props.mode === 'single' &&
+        props.item?.affixes &&
+        props.item.affixes.length > 0 && (
+          <ul
+            className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5"
+            data-testid="stat-sheet-affixes"
+          >
+            {props.item.affixes.map((a, i) => (
+              <li key={i} className="text-d2-magic break-words" data-testid="stat-sheet-affix">
+                {formatAffixRoll(a, tAffix)}
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
   );
 }
@@ -368,9 +421,7 @@ function HeaderCell({
 
   return (
     <div className="min-w-0 flex flex-col items-end">
-      <span className="text-sm uppercase tracking-wide text-d2-white/60">
-        {label}
-      </span>
+      <span className="text-sm uppercase tracking-wide text-d2-white/60">{label}</span>
       {item ? (
         <>
           <RarityText

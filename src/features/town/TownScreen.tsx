@@ -193,7 +193,7 @@ export function TownScreen() {
           />
         </Panel>
 
-        <div className="grid shrink-0 grid-cols-3 gap-2 [&>button]:min-w-0 [&>button]:whitespace-normal [&>button]:px-2 [&>button]:text-sm">
+        <div className="grid shrink-0 grid-cols-3 [@media(max-height:450px)]:grid-cols-4 gap-2 [&>button]:min-w-0 [&>button]:whitespace-normal [&>button]:px-2 [&>button]:text-sm">
           <Button
             variant="secondary"
             className="min-h-[48px]"
@@ -221,18 +221,17 @@ export function TownScreen() {
           >
             {t('market')}
           </Button>
+          <Button
+            variant="primary"
+            className="col-span-3 [@media(max-height:450px)]:col-span-1 w-full shrink-0 text-lg min-h-[44px]"
+            onClick={() => {
+              navigate('/map');
+            }}
+            data-testid="town-set-out"
+          >
+            {t('setOut')} →
+          </Button>
         </div>
-
-        <Button
-          variant="primary"
-          className="w-full shrink-0 text-lg min-h-[44px]"
-          onClick={() => {
-            navigate('/map');
-          }}
-          data-testid="town-set-out"
-        >
-          {t('setOut')} →
-        </Button>
       </div>
       <Modal
         isOpen={selectedNpc !== undefined}

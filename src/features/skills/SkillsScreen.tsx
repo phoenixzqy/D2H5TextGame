@@ -452,7 +452,7 @@ export function SkillsScreen() {
   return (
     <ScreenShell testId="skills-screen" title={t('title')}>
       <div className="flex min-h-0 w-full max-w-7xl mx-auto flex-1 flex-col gap-2">
-        <Panel className="flex items-center justify-between">
+        <Panel className="flex shrink-0 items-center justify-between !px-2 !py-1">
           <span className="text-d2-gold">{t('pointsRemaining', { count: skillPoints })}</span>
           <span className="text-sm text-d2-white/70">
             {t('common:level')} {playerLevel}
@@ -595,7 +595,7 @@ function SkillTreeBoard({
     return rowDelta !== 0 ? rowDelta : aNode.column - bNode.column;
   });
   return (
-    <div ref={containerRef} className="flex min-h-0 flex-1 flex-col gap-2">
+    <div ref={containerRef} className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
     <div
       className="d2-surface d2-skill-board relative mx-auto w-[288px] max-w-full shrink-0 overflow-hidden rounded border border-d2-border/70
                  bg-[radial-gradient(circle_at_50%_0%,rgba(210,176,91,0.12),transparent_48%),linear-gradient(135deg,rgba(255,255,255,0.04)_0,transparent_40%)]
@@ -697,9 +697,9 @@ function SkillTreeBoard({
       })}
     </div>
     {pages > 1 && <nav aria-label={t('tab.tree')} className="flex shrink-0 items-center justify-center gap-2">
-      <Button variant="secondary" disabled={currentPage === 0} onClick={() => { setPage(currentPage - 1); }}>{t('inventory:pagination.previous')}</Button>
+      <Button className="!min-h-[44px] !py-1" variant="secondary" disabled={currentPage === 0} onClick={() => { setPage(currentPage - 1); }}>{t('inventory:pagination.previous')}</Button>
       <span className="text-sm" aria-live="polite">{currentPage + 1} / {pages}</span>
-      <Button variant="secondary" disabled={currentPage + 1 === pages} onClick={() => { setPage(currentPage + 1); }}>{t('inventory:pagination.next')}</Button>
+      <Button className="!min-h-[44px] !py-1" variant="secondary" disabled={currentPage + 1 === pages} onClick={() => { setPage(currentPage + 1); }}>{t('inventory:pagination.next')}</Button>
     </nav>}
     </div>
   );
