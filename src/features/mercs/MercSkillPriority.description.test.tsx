@@ -74,7 +74,8 @@ describe.each(['en', 'zh-CN'] as const)('skill descriptions in %s', locale => {
     const { container } = render(<I18nextProvider i18n={i18n}>
       <MercSkillPriority merc={merc} equipment={{ weapon: runeword(word, base) }} />
     </I18nextProvider>);
-    const description = i18n.t(`skills:sorceress.${skill}.desc`).split('{{')[0];
+    const description = i18n.t(`skills:sorceress.${skill}.desc`).split('{{')[0] ?? '';
+    expect(description).not.toBe('');
     expect(screen.getByText(text => text.startsWith(description))).toHaveTextContent(locale === 'en' ? damage : damage.replace('–', '～'));
     expect(container).not.toHaveTextContent('{{');
   });

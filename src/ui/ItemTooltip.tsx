@@ -95,7 +95,7 @@ function buildDefenseLine(
 
 export function ItemTooltip({ item, className = '', legacyInspection = false, preservedSocketInspection = false }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
-  const { t: tInventory } = useTranslation(['inventory', 'items']);
+  const { t: tInventory } = useTranslation(['inventory', 'items', 'rarity']);
   const { t: tAffix } = useTranslation('affixes');
   const icon = getItemIconUrl(item);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
@@ -191,7 +191,7 @@ export function ItemTooltip({ item, className = '', legacyInspection = false, pr
       )}
 
       <div className="text-d2-white/70 text-[11px] text-center mb-2">
-        {t('tooltip.ilvl', { value: item.ilvl ?? item.level })}
+        {tInventory(`rarity:tier.${item.rarity}`)} · {tInventory(item.identified ? 'identified' : 'unidentified')} · {t('tooltip.ilvl', { value: item.ilvl ?? item.level })}
         {socketCapacity ? ` · ${t('tooltip.sockets', { value: socketCapacity })}` : ''}
         {legacyInspection && !preservedSocketInspection && <div>{tInventory('quarantine.socketCapacityUnknown')}</div>}
       </div>

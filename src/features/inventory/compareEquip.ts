@@ -19,6 +19,8 @@ import type { QuestItemLedger, QuestActionReceipts } from '@/engine/types/save';
 
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import { prepareEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import { deriveEquippedMercStats } from '@/engine/progression/merc-equipment-stats';
+import type { Mercenary } from '@/engine/types/entities';
 import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
 import { baseMatchesEquipmentSlot, isTwoHanded } from '@/engine/inventory/equipValidator';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
@@ -200,21 +202,58 @@ export function prepareCompareEquip(
     const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);
     const candidateDerived = derive(candidateEquipped);
 
-    const stats = {} as Record<ComparableStatKey, StatDelta>;
-    for (const key of COMPARABLE_KEYS) {
-      const c = currentDerived[key];
-      const n = candidateDerived[key];
-      stats[key] = { current: c, candidate: n, delta: n - c };
-    }
-    const resistances = {} as Record<keyof Resistances, StatDelta>;
-    for (const key of RESIST_KEYS) {
-      const c = currentDerived.resistances[key];
-      const n = candidateDerived.resistances[key];
-      resistances[key] = { current: c, candidate: n, delta: n - c };
-    }
-
-    return { current, candidate, slot: resolved, stats, resistances };
+    return compareDerived(current, candidate, resolved, currentDerived, candidateDerived);
   };
+}
+
+/** Compare mercenary loadouts using the same single-slot replacement as the mercenary store.
+ * `merc` is already star-projected by the caller.
+ */
+export function prepareCompareMercEquip(
+  merc: Mercenary,
+  equipment: Readonly<Partial<Record<EquipmentSlot, Item | null>>>
+): (candidate: Item, slot: EquipmentSlot) => CompareResult {
+  const currentDerived = deriveEquippedMercStats(merc, equipment);
+  return (candidate, slot) => compareDerived(
+    equipment[slot] ?? null,
+    candidate,
+    slot,
+    currentDerived,
+    deriveEquippedMercStats(merc, { ...equipment, [slot]: candidate })
+  );
+}
+
+function compareDerived(
+  current: Item | null,
+  candidate: Item,
+  slot: EquipmentSlot,
+  currentDerived: DerivedStats,
+  candidateDerived: DerivedStats
+): CompareResult {
+  const stats = {} as Record<ComparableStatKey, StatDelta>;
+  for (const key of COMPARABLE_KEYS) {
+    const c = currentDerived[key];
+    const n = candidateDerived[key];
+    stats[key] = { current: c, candidate: n, delta: n - c };
+  }
+  const resistances = {} as Record<keyof Resistances, StatDelta>;
+  for (const key of RESIST_KEYS) {
+    const c = currentDerived.resistances[key];
+    const n = candidateDerived.resistances[key];
+    resistances[key] = { current: c, candidate: n, delta: n - c };
+  }
+  return { current, candidate, slot, stats, resistances };
+}
+
+/** Only classify a loadout as better or worse when no displayed stat moves the other way. */
+export function clearEquipTrend(compare: CompareResult): 'up' | 'down' | null {
+  const deltas = [
+    ...COMPARABLE_KEYS.map(key => compare.stats[key].delta),
+    ...RESIST_KEYS.map(key => compare.resistances[key].delta)
+  ];
+  if (deltas.some(delta => delta > 0) && deltas.every(delta => delta >= 0)) return 'up';
+  if (deltas.some(delta => delta < 0) && deltas.every(delta => delta <= 0)) return 'down';
+  return null;
 }
 
 export function netEquipDelta(compare: CompareResult): number {
@@ -225,16 +264,5 @@ export function netEquipDelta(compare: CompareResult): number {
 }
 
 export function isClearNetUpgrade(compare: CompareResult): boolean {
-  let hasPositive = false;
-  for (const key of COMPARABLE_KEYS) {
-    const delta = compare.stats[key].delta;
-    if (delta < 0) return false;
-    if (delta > 0) hasPositive = true;
-  }
-  for (const key of RESIST_KEYS) {
-    const delta = compare.resistances[key].delta;
-    if (delta < 0) return false;
-    if (delta > 0) hasPositive = true;
-  }
-  return hasPositive;
+  return clearEquipTrend(compare) === 'up';
 }

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { resolveItemDisplay, StatSheet } from '@/ui';
 import type { Item } from '@/engine/types/items';
-import { netEquipDelta, type CompareResult } from './compareEquip';
+import { clearEquipTrend, type CompareResult } from './compareEquip';
 
 export function AlreadyEquippedBadge(): JSX.Element {
   const { t } = useTranslation('inventory');
@@ -34,7 +34,7 @@ export function ItemComparePanel({
     () => resolveItemDisplay(compare.candidate, t, equippedAfter),
     [compare.candidate, equippedAfter, t]
   );
-  const net = useMemo(() => netEquipDelta(compare), [compare]);
+  const trend = useMemo(() => clearEquipTrend(compare), [compare]);
 
   return (
     <section
@@ -78,15 +78,13 @@ export function ItemComparePanel({
               ))}
             </ul>
           )}{' '}
-          {net !== 0 && (
+          {trend !== null && (
             <div
-              className={`text-sm font-serif ${net > 0 ? 'text-emerald-400' : 'text-rose-400'}`}
+              className={`text-sm font-serif ${trend === 'up' ? 'text-emerald-400' : 'text-rose-400'}`}
               data-testid="net-summary"
-              data-trend={net > 0 ? 'up' : 'down'}
+              data-trend={trend}
             >
-              {net > 0
-                ? t('equipFlow.compare.netUpgrade', { n: net })
-                : t('equipFlow.compare.netDowngrade', { n: net })}
+              {t(trend === 'up' ? 'equipFlow.compare.statsHigher' : 'equipFlow.compare.statsLower')}
             </div>
           )}
         </>

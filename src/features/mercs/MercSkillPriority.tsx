@@ -15,6 +15,11 @@ import { PagedList } from '@/ui/PagedList';
 
 const sorceressSkills = getSkillsForClass('sorceress');
 
+/** Translation key for a mercenary's authored skill description. */
+export function nativeMercSkillDescription(id: string): string | undefined {
+  return mercenarySkills.find(skill => skill.id === id)?.description;
+}
+
 /** Ordinary controls for choosing an owned mercenary's secondary skill priority. */
 export function MercSkillPriority({ merc, equipment }: {
   merc: Mercenary; equipment: Readonly<Record<string, Item | null>>
@@ -48,13 +53,13 @@ export function MercSkillPriority({ merc, equipment }: {
             skill: id.replace(/^mskill-/, '').replace(/[-_/.]+/g, ' ')
           }) });
           const signature = index < firstSecondary;
-          const nativeSkill = mercenarySkills.find(skill => skill.id === id);
+          const nativeDescription = nativeMercSkillDescription(id);
           const itemSkill = id === 'item.redemption' ? itemSkills.find(skill => skill.id === 'item-redemption') : undefined;
           const spell = governed && id !== 'item.redemption'
             ? sorceressSkills.find(skill => canonicalSkillIdFromData(skill.id) === id) : undefined;
           const spellStats = spell ? computeSkillDisplayModel(spell, Math.max(1, governed?.effectiveRank ?? 0)).current : undefined;
           const damage = spellStats?.damage[0];
-          const description = nativeSkill?.description ? tDataKey(t, nativeSkill.description)
+          const description = nativeDescription ? tDataKey(t, nativeDescription)
             : itemSkill?.description ? tDataKey(t, itemSkill.description)
             : spell?.description && spellStats ? t(spell.description.replace(/^skills\./, 'skills:'), {
               min: damage?.min, max: damage?.max, mana: spellStats.manaCost, cooldown: spellStats.cooldown,
@@ -84,7 +89,7 @@ export function MercSkillPriority({ merc, equipment }: {
               {description && <p className="w-full break-words text-sm text-d2-white/75">
                 {governed && governed.effectiveRank === 0 && spell && <span>{t('priority.rankPreview')} </span>}
                 {description}
-                {signature && nativeSkill && stars > 0 && <span> {t('priority.signatureBaseValues')}</span>}
+                {signature && nativeDescription && stars > 0 && <span> {t('priority.signatureBaseValues')}</span>}
               </p>}
             </li>
           );

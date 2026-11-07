@@ -218,6 +218,8 @@
   "emptyBackpack": "背包空空如也",
   "emptyStash": "仓库空空如也",
   "empty": "空",
+  "identified": "已鉴定",
+  "unidentified": "未鉴定",
   "itemLevel": "物品等级",
   "slots": {
     "head": "头部",
@@ -355,6 +357,8 @@
       "candidateHeader": "候选",
       "emptySlot": "— 空 —",
       "alreadyEquipped": "已装备",
+      "statsHigher": "比较属性更高",
+      "statsLower": "比较属性更低",
       "netUpgrade": "净提升 +{{n}}",
       "netDowngrade": "净下降 {{n}}",
       "deltaUp": "提升 {{value}}",

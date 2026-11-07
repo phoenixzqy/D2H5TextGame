@@ -21,6 +21,7 @@ import type { TFunction } from 'i18next';
 import {
   Button,
   EquipmentPanel,
+  ItemTooltip,
   Modal,
   Panel,
   ScreenShell,
@@ -45,7 +46,7 @@ import {
   resolveMercSkillLoadout,
   type MercDef
 } from '@/data/loaders/mercs';
-import { MercSkillPriority } from './MercSkillPriority';
+import { MercSkillPriority, nativeMercSkillDescription } from './MercSkillPriority';
 import { MercStarProgress } from './MercStarProgress';
 import { projectMercenaryStars } from '@/engine/progression/merc-stars';
 import { MercEquipmentCandidates } from './MercEquipmentCandidates';
@@ -237,6 +238,7 @@ function MercCard({
     100,
     Math.floor((progress.experience / Math.max(1, progress.experienceToNextLevel)) * 100)
   );
+  const signatureDescription = merc.signatureSkillId ? nativeMercSkillDescription(merc.signatureSkillId) : undefined;
   const equippedCount = MERC_EQUIPMENT_SLOTS.reduce((n, s) => n + (equipment[s] ? 1 : 0), 0);
   const equippedSlots = MERC_EQUIPMENT_SLOTS.filter((slot) => equipment[slot]);
 
@@ -333,6 +335,10 @@ function MercCard({
                       {t('signature')}: {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}
                     </p>
                   )}
+                  {signatureDescription && <p className="text-sm text-d2-white/75">
+                    {tDataKey(t, signatureDescription)}
+                    {stars > 0 && <span> {t('priority.signatureBaseValues')}</span>}
+                  </p>}
                   <p className="text-sm">{lore}</p>
                   <MercStat label="ENG" value={projected.coreStats.energy} />
                 </div>
@@ -428,39 +434,45 @@ function MercEquipmentEditor({ merc, equipment }: { merc: Mercenary; equipment: 
   const equipOnMerc = useMercStore((s) => s.equipOnMerc);
   const unequipFromMerc = useMercStore((s) => s.unequipFromMerc);
   const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
-  const [feedback, setFeedback] = useState('');
+  const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
+  const [feedback, setFeedback] = useState<{ result: MercEquipmentResult; item: Item | null; action: 'equipped' | 'returned' } | null>(null);
   const bases = useMemo(() => loadItemBases(), []);
-  const candidates = pickerSlot
+  const candidates = useMemo(() => pickerSlot
     ? backpack.filter(item => isMercEquipmentSlotCompatible(bases.get(item.baseId), pickerSlot))
-    : [];
+    : [], [backpack, bases, pickerSlot]);
   const selectSlot = (slot: EquipmentSlot) => {
     setPickerSlot(slot);
-    setFeedback('');
+    setFeedback(null);
   };
   const reportResult = (result: MercEquipmentResult, item: Item | null, action: 'equipped' | 'returned') => {
-    const name = item ? tItemName(t, item) : t('inventory:equipment');
-    setFeedback(result.ok ? t(`equipmentFlow.${action}`, { name })
-      : result.reason === 'backpack_full' ? t('inventory:toast.backpackFull')
-        : result.reason === 'requirements_not_met' ? t('inventory:equipFlow.footer.disabledIneligible')
-          : t('inventory:toast.equipFailed', { name }));
+    setFeedback({ result, item, action });
     return result.ok;
   };
+  const name = feedback?.item ? tItemName(t, feedback.item) : t('inventory:equipment');
+  const feedbackText = !feedback ? '' : feedback.result.ok ? t(`equipmentFlow.${feedback.action}`, { name })
+    : feedback.result.reason === 'backpack_full' ? t('inventory:toast.backpackFull')
+      : feedback.result.reason === 'requirements_not_met' ? t('inventory:equipFlow.footer.disabledIneligible')
+        : t('inventory:toast.equipFailed', { name });
 
   return (
     <div className="min-w-0 shrink-0 space-y-3">
-      <p role="status" aria-live="polite" className="sticky top-0 z-10 bg-d2-panel text-sm text-d2-gold">{feedback}</p>
-      {pickerSlot === null ? <EquipmentPanel
+      <p role="status" aria-live="polite" className="sticky top-0 z-10 bg-d2-panel text-sm text-d2-gold">{feedbackText}</p>
+      {viewSlot !== null ? <div className="space-y-3" data-testid="merc-equipped-item-details">
+        <Button variant="secondary" onClick={() => { setViewSlot(null); }}>{t('equipmentFlow.back')}</Button>
+        <h3 className="font-serif text-d2-gold">{t(`inventory:slots.${viewSlot}`)}</h3>
+        {equipment[viewSlot] && <ItemTooltip item={equipment[viewSlot]} className="w-full" />}
+      </div> : pickerSlot === null ? <EquipmentPanel
         equipped={equipment}
         slotOrder={MERC_EQUIPMENT_SLOTS}
         testIdPrefix="merc-equip-slot"
         onSlotClick={selectSlot}
-        onViewSlot={selectSlot}
+        onViewSlot={(slot) => { setViewSlot(slot); setFeedback(null); }}
         onUnequip={(slot) => {
           reportResult(unequipFromMerc(merc.id, slot), equipment[slot] ?? null, 'returned');
         }}
       /> : <>
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <Button variant="secondary" onClick={() => { setPickerSlot(null); setFeedback(''); }}>
+          <Button variant="secondary" onClick={() => { setPickerSlot(null); setFeedback(null); }}>
             {t('equipmentFlow.back')}
           </Button>
           <h3 className="font-serif text-d2-gold">{t(`inventory:slots.${pickerSlot}`)}</h3>
@@ -471,9 +483,10 @@ function MercEquipmentEditor({ merc, equipment }: { merc: Mercenary; equipment: 
         <MercEquipmentCandidates
           key={pickerSlot}
           candidates={candidates}
-          current={equipment[pickerSlot] ?? null}
+          equipment={equipment}
+          slot={pickerSlot}
           merc={merc}
-          onSelect={() => { setFeedback(''); }}
+          onSelect={() => { setFeedback(null); }}
           onEquip={(item) => reportResult(equipOnMerc(merc.id, pickerSlot, item), item, 'equipped')}
         />
       </>}

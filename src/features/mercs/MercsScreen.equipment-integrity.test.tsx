@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { Suspense } from 'react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { Suspense, type ReactNode } from 'react';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
@@ -11,8 +11,10 @@ import { useInventoryStore } from '@/stores/inventoryStore';
 import { createMercFromDef } from '@/stores/mercFactory';
 import { MercsScreen } from './MercsScreen';
 
+vi.mock('@/ui/ScreenShell', () => ({ ScreenShell: ({ children }: { children: ReactNode }) => <div>{children}</div> }));
+
 const source: Item = { id: 'selected', baseId: 'items/base/helm-cap', rarity: 'normal', level: 1,
-  identified: true, equipped: false };
+  identified: true, equipped: false, socketCapacity: 0 };
 let mercId: string;
 
 function show() {
@@ -43,12 +45,13 @@ describe('MercsScreen authoritative equipment transfer', () => {
     useInventoryStore.setState({ stash: [stashed] });
     useMercStore.setState({ mercEquipment: { [mercId]: { head: old } } });
     show();
-    fireEvent.click(screen.getByRole('button', { name: 'Equip' }));
+    fireEvent.click(within(screen.getByTestId('merc-equip-candidates')).getByText('#selected'));
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('mercs:equipmentFlow.give') }));
     expect(useInventoryStore.getState().stash).toEqual([stashed]);
     const { equipSlot: _slot, ...returned } = old;
     expect(useInventoryStore.getState().backpack).toEqual([{ ...returned, equipped: false }]);
     expect(useMercStore.getState().getMercEquipment(mercId).head).toEqual({ ...source, equipped: true, equipSlot: 'head' });
-    fireEvent.click(within(screen.getByTestId('merc-equip-slot-head')).getByRole('button', { name: 'Unequip' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Unequip' }));
     expect(useMercStore.getState().getMercEquipment(mercId).head).toBeNull();
     expect(useInventoryStore.getState().backpack).toEqual([{ ...returned, equipped: false }, source]);
   });
@@ -56,7 +59,8 @@ describe('MercsScreen authoritative equipment transfer', () => {
   it.each(['en', 'zh-CN'] as const)('keeps the picker after a stale candidate refuses and permits corrected retry (%s)', async locale => {
     await i18n.changeLanguage(locale);
     show();
-    const equip = screen.getByRole('button', { name: locale === 'en' ? 'Equip' : '装备' });
+    fireEvent.click(within(screen.getByTestId('merc-equip-candidates')).getByText('#selected'));
+    const equip = screen.getByRole('button', { name: i18n.t('mercs:equipmentFlow.give') });
     const changed: Item = { ...source, baseId: 'items/base/wp1h-short-sword' };
     // A real current-source change before the captured candidate handler runs.
     equip.addEventListener('click', () => { useInventoryStore.setState({ backpack: [changed] }); }, { capture: true, once: true });
@@ -66,10 +70,10 @@ describe('MercsScreen authoritative equipment transfer', () => {
     expect(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'Cannot equip' : '无法装备');
     expect(screen.getByText(locale === 'en' ? 'No compatible backpack items for this slot.' : '背包中没有可装备到该部位的物品。')).toBeVisible();
     act(() => { useInventoryStore.setState({ backpack: [source] }); });
-    fireEvent.click(screen.getByRole('button', { name: locale === 'en' ? 'Equip' : '装备' }));
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('mercs:equipmentFlow.give') }));
     expect(useInventoryStore.getState().backpack).toEqual([]);
     expect(useMercStore.getState().getMercEquipment(mercId).head?.id).toBe(source.id);
-    expect(screen.queryByRole('status')).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: locale === 'en' ? 'Equip' : '装备' })).not.toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent(i18n.t('mercs:equipmentFlow.equipped', { name: i18n.t('items:base.helm-cap') }));
+    expect(screen.queryByRole('button', { name: i18n.t('mercs:equipmentFlow.give') })).not.toBeInTheDocument();
   });
 });

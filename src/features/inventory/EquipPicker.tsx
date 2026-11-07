@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, GameImage, RarityText, Modal, getItemIconUrl, tItemName } from '@/ui';
+import { Button, Modal, tItemName } from '@/ui';
+import { EquipmentCandidateSummary } from './EquipmentCandidateSummary';
 import { useInventoryStore, usePlayerStore, useMapStore } from '@/stores';
 import type { EquipFailure } from '@/stores/inventoryStore';
 import {
@@ -54,17 +55,6 @@ function formatReasons(elig: EligibilityResult, t: TFunction): string {
 /* Sub-components                                                      */
 /* ------------------------------------------------------------------ */
 
-function ItemThumb({ item }: { readonly item: Item }) {
-  return (
-    <GameImage
-      src={getItemIconUrl(item)}
-      alt=""
-      fallbackIcon="?"
-      className="!w-12 !h-12 [&_img]:object-contain"
-    />
-  );
-}
-
 function CandidateRow({
   item,
   selected,
@@ -84,7 +74,6 @@ function CandidateRow({
   readonly onSelect: () => void;
   readonly rowRef?: (el: HTMLLIElement | null) => void;
 }) {
-  const { t } = useTranslation('inventory');
   return (
     <li
       ref={rowRef}
@@ -111,16 +100,9 @@ function CandidateRow({
         eligible ? '' : 'opacity-60'
       ].join(' ')}
     >
-      <ItemThumb item={item} />
-      <div className="min-w-0 flex-1">
-        <RarityText rarity={item.rarity} className="font-serif break-words block">
-          {tItemName(t, item)}
-        </RarityText>
-        <div className="text-xs text-d2-white/60">
-          {t('itemLevel')} {item.level}
-        </div>
+      <EquipmentCandidateSummary item={item}>
         {!eligible && <div className="text-xs text-d2-red mt-0.5">{reason}</div>}
-      </div>
+      </EquipmentCandidateSummary>
     </li>
   );
 }

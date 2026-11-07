@@ -218,6 +218,8 @@
   "emptyBackpack": "Backpack is empty",
   "emptyStash": "Stash is empty",
   "empty": "Empty",
+  "identified": "Identified",
+  "unidentified": "Unidentified",
   "itemLevel": "iLvl",
   "slots": {
     "head": "Head",
@@ -355,6 +357,8 @@
       "candidateHeader": "Candidate",
       "emptySlot": "— Empty —",
       "alreadyEquipped": "Equipped",
+      "statsHigher": "Compared stats higher",
+      "statsLower": "Compared stats lower",
       "netUpgrade": "Net upgrade +{{n}}",
       "netDowngrade": "Net downgrade {{n}}",
       "deltaUp": "Up {{value}}",

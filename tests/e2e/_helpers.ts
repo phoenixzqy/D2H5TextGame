@@ -64,6 +64,7 @@ export async function createCharacter(
   await page.getByTestId('home-new-game').click();
   await expect(page.getByTestId('character-create')).toBeVisible();
   await page.getByTestId(`class-${opts.class}`).click();
+  await page.getByRole('tab', { name: /角色名称|Character name/i }).click();
   await page.getByTestId('character-name-input').fill(opts.name);
   await page.getByTestId('character-start-btn').click();
   await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
@@ -75,6 +76,9 @@ export async function createCharacter(
  */
 export async function navTo(page: Page, route: string): Promise<void> {
   const link = page.locator(`a[href="/${route}"]`).first();
+  if (!(await link.isVisible())) {
+    await page.getByRole('button', { name: /^(More|更多)$/ }).click();
+  }
   await link.click();
 }
 
