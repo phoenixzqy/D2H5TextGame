@@ -377,7 +377,10 @@ export function CombatScreen() {
   };
 
   const [logAutoScrollPaused, setLogAutoScrollPaused] = useState(false);
-  useEffect(() => { setResultDismissed(false); }, [runVictory, runDefeat]);
+  useEffect(() => {
+    setResultDismissed(false);
+    if (runVictory || runDefeat) { setOptionsOpen(false); setFormationOpen(false); }
+  }, [runVictory, runDefeat]);
 
   if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={<h1>{questRequest ? t(isCow || request.kind === 'cow' ? 'quests:cow.name' : 'quests:byId.act1-forgotten-tower.name') : tDataKey(t, endgameDefinition.nameKey)}</h1>}>
     <Panel>
@@ -473,6 +476,7 @@ export function CombatScreen() {
         enemies={enemyTeam}
         actingActorId={actingActorId}
         unitFx={unitFx}
+        detailsEnabled={!(runVictory || runDefeat) || resultDismissed}
       />
 
       <div className="combat-log-area">
@@ -581,14 +585,16 @@ export function CombatScreen() {
   );
 }
 
-function Battlefield({ allies, enemies, actingActorId, unitFx }: {
+function Battlefield({ allies, enemies, actingActorId, unitFx, detailsEnabled }: {
   readonly allies: readonly CombatUnit[];
   readonly enemies: readonly CombatUnit[];
   readonly actingActorId: string | null;
   readonly unitFx: ReadonlyMap<string, UnitEventFx>;
+  readonly detailsEnabled: boolean;
 }) {
   const { t } = useTranslation('combat');
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  useEffect(() => { if (!detailsEnabled) setSelectedId(null); }, [detailsEnabled]);
   const selected = [...allies, ...enemies].find(unit => unit.id === selectedId);
   return <>
     <div className="combat-battlefield d2-panel" data-testid="combat-battlefield">
@@ -597,7 +603,7 @@ function Battlefield({ allies, enemies, actingActorId, unitFx }: {
       <BattleSideGrid title={t('enemies')} empty={t('noEnemies')} units={enemies} side="enemy"
         actingActorId={actingActorId} unitFx={unitFx} onSelect={setSelectedId} />
     </div>
-    <Modal isOpen={Boolean(selected)} onClose={() => { setSelectedId(null); }} title={t('common:viewport.details')}>
+    <Modal isOpen={detailsEnabled && Boolean(selected)} onClose={() => { setSelectedId(null); }} title={t('common:viewport.details')}>
       {selected && <div className="combat-unit-details">
         <UnitCard unit={selected} size="md" eventFx={unitFx.get(selected.id)} />
         {selected.gridPosition && <p className="mt-2 text-sm text-d2-white/70">{t('formation.cell', {
