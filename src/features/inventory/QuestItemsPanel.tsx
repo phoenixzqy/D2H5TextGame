@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useShallow } from 'zustand/react/shallow';
-import { Button, Panel, tDataKey } from '@/ui';
+import { Button, tDataKey } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { questItemSource, type ReadQuestItemDef } from '@/data/loaders/quest-items';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { readQuestItem, recoverClaimedQuestRewardItem, questRewardItemRecoveryStatuses } from '@/features/quests/claimReward';
@@ -52,17 +53,14 @@ export function QuestItemsPanel() {
   };
 
   return (
-    <Panel title={t('questItems.title')} className="mb-4" data-testid="quest-items-panel">
+    <section className="flex min-h-0 flex-1 flex-col gap-2" data-testid="quest-items-panel">
       <p className="text-sm text-d2-white/80 mb-3">{t('questItems.bound')}</p>
-      {items.length === 0 && countedItems.length === 0 ? (
-        <p className="text-sm text-d2-white/70">{t('questItems.empty')}</p>
-      ) : (
-        <ul className="space-y-3">
-          {items.map(item => {
+      <PagedList empty={<p className="text-sm text-d2-white/70">{t('questItems.empty')}</p>} items={[
+          ...items.map(item => {
             const source = questItemSource(item);
             const consumed = ledger[source]?.state === 'consumed';
             return (
-              <li key={source} data-testid={`quest-item-${item.id}`} className="min-w-0 flex flex-col gap-3 break-words sm:flex-row sm:items-center sm:justify-between">
+              <div key={source} data-testid={`quest-item-${item.id}`} className="min-w-0 flex flex-col gap-3 break-words sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                   <h3 className="d2-section-title font-serif text-d2-gold">{tDataKey(t, item.nameKey)}</h3>
                   <p className="text-sm text-d2-white/80">
@@ -84,19 +82,17 @@ export function QuestItemsPanel() {
                 >
                   {t(consumed ? 'questItems.consumed' : 'questItems.read')}
                 </Button>}
-              </li>
+              </div>
             );
-          })}
-          {countedItems.map(({ definition, counts }) => <li key={definition.key}
+          }),
+          ...countedItems.map(({ definition, counts }) => <div key={definition.key}
             data-testid={`quest-counted-item-${definition.key}`} className="min-w-0 space-y-2 break-words">
             <h3 className="d2-section-title font-serif text-d2-gold">{tDataKey(t, definition.nameKey)}</h3>
             <p className="text-sm text-d2-white/80">{tDataKey(t, definition.descKey)}</p>
             <p className="text-sm text-d2-gold">{t('questItems.counted.counts', { ...counts })}</p>
             <p className="text-sm text-d2-white/80">{t('questItems.counted.bound')}</p>
-          </li>)}
-        </ul>
-      )}
-      {recoveries.map(item => (
+          </div>),
+      ...recoveries.map(item => (
         <div key={questItemSource(item)} className="w-full min-w-0 mt-3 space-y-2 break-words"
           data-testid={`quest-reward-recovery-${item.sourceQuestId}`}>
           <p className="text-sm text-d2-white/90">{t('questItems.recovery.ready')}</p>
@@ -114,8 +110,8 @@ export function QuestItemsPanel() {
               }
             }}>{t('questItems.recovery.action', { item: tDataKey(t, item.nameKey) })}</Button>
         </div>
-      ))}
-      {assemblies.map(({ item, status }) => {
+      )),
+      ...assemblies.map(({ item, status }) => {
         const source = questItemSource(item);
         const feedbackStatus = status === 'owned' && progress[item.sourceQuestId]?.rewardClaimed === true ? 'claimed' : status;
         const name = tDataKey(t, item.nameKey);
@@ -142,10 +138,10 @@ export function QuestItemsPanel() {
               }
             }}>{t('questItems.recipe.action', { item: name })}</Button>
         </div>;
-      })}
+      })]} renderItem={node => <li>{node}</li>} />
       <p role="status" aria-atomic="true" className="mt-3 text-sm text-d2-gold">
         {feedback ? t(`questItems.feedback.${feedback.key}`, { skillPoints: feedback.skillPoints, maxLife: feedback.maxLife, allResist: feedback.allResist, item: feedback.item }) : ''}
       </p>
-    </Panel>
+    </section>
   );
 }

@@ -12,11 +12,12 @@
  * helpers; this component only formats and wires player actions.
  */
 import { publicAssetUrl } from '@/ui/publicAssetUrl';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Children, Fragment, isValidElement, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { IronGolemPanel } from './IronGolemPanel';
-import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { useRecoverableImage } from '@/ui/useRecoverableImage';
 import { usePlayerStore } from '@/stores';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -84,12 +85,12 @@ import {
 } from '@/engine/skills/displayStats';
 
 const COMBO_SLOTS = 9;
-const TREE_WIDTH = 320;
-const TREE_ROW_HEIGHT = 104;
-const TREE_TOP = 48;
-const TREE_COLUMNS = [48, 160, 272] as const;
-const SKILL_NODE_RADIUS = 40;
-const CONNECTOR_NODE_MASK_RADIUS = 46;
+const TREE_WIDTH = 288;
+const TREE_ROW_HEIGHT = 80;
+const TREE_TOP = 36;
+const TREE_COLUMNS = [36, 144, 252] as const;
+const SKILL_NODE_RADIUS = 32;
+const CONNECTOR_NODE_MASK_RADIUS = 36;
 
 interface SkillNodeLayout {
   readonly skillId: string;
@@ -117,6 +118,7 @@ export function SkillsScreen() {
   const selectAura = usePlayerStore((s) => s.selectAura);
   const [selectedSkillId, setSelectedSkillId] = useState('');
   const [previewSkillId, setPreviewSkillId] = useState<string | null>(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [replayRefused, setReplayRefused] = useState(false);
 
   const skillPoints = player?.skillPoints ?? 0;
@@ -380,62 +382,28 @@ export function SkillsScreen() {
     );
   }
 
-  const treePanel = (
-    <div className="space-y-4" data-testid="skills-tree-panel">
-      <div className="grid gap-4 lg:grid-cols-3" data-testid="skills-tree-grid">
-        {Array.from(skillTrees.entries()).map(([treeName, treeSkills]) => {
-          const treeSlug = treeName === 'all' ? 'all' : slugifyTreeName(treeName);
-          const treeTitle = t(`tree.${treeSlug}`, { defaultValue: treeName });
-          const layout = buildTreeLayout(treeSkills);
-          return (
-            <Panel key={treeName} title={treeTitle} className="overflow-x-auto overflow-y-hidden" data-testid={`skills-tree-column-${treeSlug}`}>
-              <p className="mb-3 text-sm text-d2-white/70">{t('details.treeSummary')}</p>
-              <SkillTreeBoard
-                skills={treeSkills}
-                layout={layout}
-                connectorMaskId={`skill-tree-connector-mask-${treeSlug}`}
-                allocatedSkills={allocatedSkills}
-                playerLevel={playerLevel}
-                selectedSkillId={selectedSkillId}
-                previewSkillId={previewSkillId}
-                onSelect={setSelectedSkillId}
-                onPreview={setPreviewSkillId}
-                t={t}
-              />
-            </Panel>
-          );
-        })}
-      </div>
-
-      {activeSkill && activeModel ? (
-        <SkillDetailPanel
-          skill={activeSkill}
-          model={activeModel}
-          playerLevel={playerLevel}
-          skillPoints={skillPoints}
-          allocatedSkills={allocatedSkills}
-          skillById={skillById}
-          locked={activeLocked}
-          canAllocate={activeCanAllocate}
-          onAllocate={allocateActiveSkill}
-          t={t}
-        />
-      ) : null}
-      {selectedSkill?.id === 'skills-necromancer-iron-golem' ? (
-        <IronGolemPanel
-          skill={selectedSkill}
-          rank={allocatedSkills.get(selectedSkill.id) ?? 0}
-        />
-      ) : null}
-    </div>
-  );
+  const treePanel = <div className="flex min-h-0 flex-1 flex-col" data-testid="skills-tree-panel">
+    <Tabs tabs={Array.from(skillTrees.entries()).map(([treeName, treeSkills]) => {
+      const treeSlug = treeName === 'all' ? 'all' : slugifyTreeName(treeName);
+      return { id: treeSlug, label: t(`tree.${treeSlug}`, { defaultValue: treeName }), content:
+        <SkillTreeBoard key={treeSlug} skills={treeSkills} layout={buildTreeLayout(treeSkills)}
+          connectorMaskId={`skill-tree-connector-mask-${treeSlug}`} allocatedSkills={allocatedSkills} playerLevel={playerLevel}
+          selectedSkillId={selectedSkillId} previewSkillId={previewSkillId}
+          onSelect={id => { setSelectedSkillId(id); setDetailsOpen(true); }} onPreview={setPreviewSkillId} t={t} /> };
+    })} />
+    <Modal isOpen={detailsOpen} onClose={() => { setDetailsOpen(false); setPreviewSkillId(null); }} title={activeSkill ? tDataKey(t, activeSkill.name) : t('title')}>
+      {activeSkill && activeModel && <SkillDetailPanel skill={activeSkill} model={activeModel} playerLevel={playerLevel}
+        skillPoints={skillPoints} allocatedSkills={allocatedSkills} skillById={skillById} locked={activeLocked}
+        canAllocate={activeCanAllocate} onAllocate={allocateActiveSkill} t={t}
+        extra={selectedSkill?.id === 'skills-necromancer-iron-golem' ? <IronGolemPanel skill={selectedSkill} rank={allocatedSkills.get(selectedSkill.id) ?? 0} /> : null} />}
+    </Modal>
+  </div>;
 
   const activePanel = (
-    <Panel title={t('activeSkills')} data-testid="skills-active-panel">
+    <div className="flex min-h-0 flex-1 flex-col gap-2" data-testid="skills-active-panel">
       <p className="text-sm text-d2-white/70 mb-2">{t('dragToReorder')}</p>
       {replayRefused ? <p role="alert" className="mb-2 text-d2-red">{t('common:error')}</p> : null}
-      <ol className="space-y-2">
-        {combo.map((id, idx) => (
+      <PagedList items={combo.map((id, idx) => ({ id, idx }))} listClassName="space-y-2" renderItem={({ id, idx }) => (
           <li
             key={idx}
             className="d2-plaque flex items-center gap-2 border border-d2-border rounded p-2 bg-d2-bg/40"
@@ -477,14 +445,13 @@ export function SkillsScreen() {
               ▼
             </button>
           </li>
-        ))}
-      </ol>
-    </Panel>
+        )} />
+    </div>
   );
 
   return (
     <ScreenShell testId="skills-screen" title={t('title')}>
-      <div className="max-w-7xl mx-auto space-y-4">
+      <div className="flex min-h-0 w-full max-w-7xl mx-auto flex-1 flex-col gap-2">
         <Panel className="flex items-center justify-between">
           <span className="text-d2-gold">{t('pointsRemaining', { count: skillPoints })}</span>
           <span className="text-sm text-d2-white/70">
@@ -492,16 +459,20 @@ export function SkillsScreen() {
           </span>
         </Panel>
 
-        {player.class === 'paladin' || player.selectedAuraId !== undefined ? (
-          <Panel>
-            <fieldset className="min-w-0 space-y-3" aria-describedby="aura-selection-timing">
+
+        <Tabs
+          tabs={[
+            { id: 'tree', label: t('tab.tree'), content: treePanel },
+            { id: 'active', label: t('tab.active'), content: activePanel },
+            ...(player.class === 'paladin' || player.selectedAuraId !== undefined ? [{ id: 'auras', label: t('auraSelection.legend'), content: <div className="flex min-h-0 flex-1 flex-col">
+            <fieldset className="flex min-h-0 flex-1 flex-col gap-2">
               <legend className="d2-section-title font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
-              <div className="grid gap-2 sm:grid-cols-3">
+              <Tabs tabs={[
+                { id: 'selection', label: t('auraSelection.legend'), content: <PagedList listClassName="grid gap-2 sm:grid-cols-3" items={flattenPresentationRows(<>
                 <label className="d2-plaque flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                   <input type="radio" name="selected-player-aura" value="none"
                     checked={!Object.hasOwn(player, 'selectedAuraId')}
                     onChange={() => { selectAura(null); }}
-                    aria-describedby="aura-selection-timing"
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.none')}</span>
                 </label>
@@ -510,7 +481,6 @@ export function SkillsScreen() {
                     checked={player.selectedAuraId === 'paladin.might'}
                     disabled={eligibleMightRank === 0}
                     onChange={() => { selectAura('paladin.might'); }}
-                    aria-describedby="aura-selection-timing aura-selection-eligibility"
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.might')}</span>
                 </label>
@@ -519,7 +489,6 @@ export function SkillsScreen() {
                     checked={player.selectedAuraId === 'paladin.meditation'}
                     disabled={eligibleMeditationRank === 0}
                     onChange={() => { selectAura('paladin.meditation'); }}
-                    aria-describedby="aura-selection-timing meditation-selection-eligibility"
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.meditation')}</span>
                 </label>
@@ -529,7 +498,7 @@ export function SkillsScreen() {
                     <input type="radio" name="selected-player-aura" value={id} aria-label={name}
                       checked={player.selectedAuraId === id} disabled={resolveEligibleStatAuraRank(player, id) === 0}
                       onChange={() => { selectAura(id); }}
-                      aria-describedby={`aura-selection-timing aura-eligibility-${id}`}
+                      aria-describedby={`aura-eligibility-${id}`}
                       className="h-5 w-5 shrink-0 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                     <span className="min-w-0">
                       <span className="block">{name}</span>
@@ -539,7 +508,8 @@ export function SkillsScreen() {
                     </span>
                   </label>;
                 })}
-              </div>
+              </>)} renderItem={node => <li>{node}</li>} /> },
+                { id: 'details', label: t('details.overview'), content: <PagedList items={flattenPresentationRows(<>
               <p role="status" aria-live="polite" className="text-d2-gold">
                 {t(player.selectedAuraId && !selectedAuraEligible ? 'auraSelection.genericUnavailable' : 'auraSelection.selected',
                   { aura: selectedAuraName })}
@@ -558,20 +528,14 @@ export function SkillsScreen() {
                     ? t('auraSelection.meditationNeedsLevel', { level: MEDITATION_DEFINITION.requiredLevel })
                     : t('auraSelection.meditationNeedsRank')}
               </p>
-              <div className="space-y-1 text-sm text-d2-white/90">
                 <p id="aura-selection-timing">{t('auraSelection.timing')}</p>
                 <p>{t('auraSelection.recipients')}</p>
                 <p>{t('auraSelection.source')}</p>
                 <p>{t('auraSelection.meditationEarned')}</p>
-              </div>
+              </>)} renderItem={node => <li className="text-sm">{node}</li>} /> }
+              ]} />
             </fieldset>
-          </Panel>
-        ) : null}
-
-        <Tabs
-          tabs={[
-            { id: 'tree', label: t('tab.tree'), content: treePanel },
-            { id: 'active', label: t('tab.active'), content: activePanel }
+          </div> }] : [])
           ]}
         />
       </div>
@@ -602,8 +566,25 @@ function SkillTreeBoard({
   readonly onPreview: (skillId: string | null) => void;
   readonly t: Translate;
 }) {
+  const [page, setPage] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [rowsPerPage, setRowsPerPage] = useState(1);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const resize = () => { setRowsPerPage(Math.max(1, Math.floor((container.clientHeight - 52) / TREE_ROW_HEIGHT))); };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
+    return () => { observer.disconnect(); };
+  }, []);
   const maxRow = Math.max(0, ...Array.from(layout.values()).map((node) => node.row));
-  const height = TREE_TOP * 2 + maxRow * TREE_ROW_HEIGHT + SKILL_NODE_RADIUS * 2;
+  const pages = Math.max(1, Math.ceil((maxRow + 1) / rowsPerPage));
+  const currentPage = Math.min(page, pages - 1);
+  const firstRow = currentPage * rowsPerPage;
+  const visibleRows = Math.min(rowsPerPage, maxRow + 1 - firstRow);
+  const height = TREE_TOP * 2 + (visibleRows - 1) * TREE_ROW_HEIGHT;
+  const offset = firstRow * TREE_ROW_HEIGHT;
   const edges = buildPrerequisiteEdges(skills, layout);
   const connectorMasks = Array.from(layout.values());
   const orderedSkills = [...skills].sort((a, b) => {
@@ -614,17 +595,18 @@ function SkillTreeBoard({
     return rowDelta !== 0 ? rowDelta : aNode.column - bNode.column;
   });
   return (
+    <div ref={containerRef} className="flex min-h-0 flex-1 flex-col gap-2">
     <div
-      className="d2-surface d2-skill-board relative mx-auto w-[320px] min-w-[320px] rounded border border-d2-border/70
+      className="d2-surface d2-skill-board relative mx-auto w-[288px] max-w-full shrink-0 overflow-hidden rounded border border-d2-border/70
                  bg-[radial-gradient(circle_at_50%_0%,rgba(210,176,91,0.12),transparent_48%),linear-gradient(135deg,rgba(255,255,255,0.04)_0,transparent_40%)]
                  shadow-inner"
       data-testid="skill-tree-board"
       style={{ height }}
     >
-      <svg className="absolute inset-0 h-full w-full" viewBox={`0 0 ${String(TREE_WIDTH)} ${String(height)}`} aria-hidden="true">
+      <svg className="absolute inset-0 h-full w-full" viewBox={`0 ${String(offset)} ${String(TREE_WIDTH)} ${String(height)}`} aria-hidden="true">
         <defs>
           <mask id={connectorMaskId} maskUnits="userSpaceOnUse">
-            <rect x="0" y="0" width={TREE_WIDTH} height={height} fill="white" />
+            <rect x="0" y={offset} width={TREE_WIDTH} height={height} fill="white" />
             {connectorMasks.map((node) => (
               <rect
                 key={node.skillId}
@@ -665,7 +647,7 @@ function SkillTreeBoard({
 
       {orderedSkills.map((skill) => {
         const node = layout.get(skill.id);
-        if (!node) return null;
+        if (!node || node.row < firstRow || node.row >= firstRow + visibleRows) return null;
         const name = tDataKey(t, skill.name);
         const level = allocatedSkills.get(skill.id) ?? 0;
         const locked = isSkillLocked(skill, playerLevel, allocatedSkills);
@@ -677,7 +659,6 @@ function SkillTreeBoard({
             type="button"
             data-testid={`skill-node-${skill.id}`}
             title={name}
-            aria-describedby="skill-detail-panel"
             aria-label={t('details.nodeAria', {
               skill: name,
               level,
@@ -699,11 +680,11 @@ function SkillTreeBoard({
             }}
             onFocus={() => { onPreview(skill.id); }}
             onBlur={() => { onPreview(null); }}
-            className={`d2-slot d2-skill-node absolute flex h-20 w-20 items-center justify-center rounded border-2
+            className={`d2-slot d2-skill-node absolute flex h-16 w-16 items-center justify-center rounded border-2
                         bg-black/70 text-sm transition focus:outline-none focus-visible:ring-2
                         focus-visible:ring-d2-gold motion-safe:hover:-translate-y-0.5
                         ${nodeStateClass(level, locked, selected || previewed)}`}
-            style={{ left: node.x - SKILL_NODE_RADIUS, top: node.y - SKILL_NODE_RADIUS }}
+            style={{ left: node.x - SKILL_NODE_RADIUS, top: node.y - offset - SKILL_NODE_RADIUS }}
           >
             <SkillIcon key={skill.icon} skill={skill} label={name} />
             <span className="sr-only">{name}</span>
@@ -714,6 +695,12 @@ function SkillTreeBoard({
           </button>
         );
       })}
+    </div>
+    {pages > 1 && <nav aria-label={t('tab.tree')} className="flex shrink-0 items-center justify-center gap-2">
+      <Button variant="secondary" disabled={currentPage === 0} onClick={() => { setPage(currentPage - 1); }}>{t('inventory:pagination.previous')}</Button>
+      <span className="text-sm" aria-live="polite">{currentPage + 1} / {pages}</span>
+      <Button variant="secondary" disabled={currentPage + 1 === pages} onClick={() => { setPage(currentPage + 1); }}>{t('inventory:pagination.next')}</Button>
+    </nav>}
     </div>
   );
 }
@@ -728,7 +715,8 @@ function SkillDetailPanel({
   locked,
   canAllocate,
   onAllocate,
-  t
+  t,
+  extra
 }: {
   readonly skill: SkillTemplate;
   readonly model: SkillDisplayModel;
@@ -739,6 +727,7 @@ function SkillDetailPanel({
   readonly locked: boolean;
   readonly canAllocate: boolean;
   readonly onAllocate: () => void;
+  readonly extra?: ReactNode;
   readonly t: Translate;
 }) {
   const name = tDataKey(t, skill.name);
@@ -759,13 +748,13 @@ function SkillDetailPanel({
 
   return (
     <Panel
-      className="h-[34rem] overflow-y-auto border-d2-gold/70 bg-d2-panel/95 shadow-[0_0_28px_rgba(210,176,91,0.16)] backdrop-blur md:h-[21rem]"
+      className="flex min-h-0 flex-1 flex-col border-d2-gold/70 bg-d2-panel/95"
       data-testid="skill-detail-panel"
     >
-      <div id="skill-detail-panel" aria-live="polite" className="space-y-3">
+      <div id="skill-detail-panel" aria-live="polite" className="flex min-h-0 flex-1 flex-col gap-2">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h2 className="d2-section-title font-serif text-2xl text-d2-gold">{name}</h2>
+
             <p className="text-sm text-d2-white/70">
               {model.allocatedLevel > 0
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
@@ -786,7 +775,9 @@ function SkillDetailPanel({
           </Button>
         </div>
 
-        <p className="d2-surface rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
+        <Tabs tabs={[
+          { id: 'overview', label: t('details.overview'), content:
+            <PagedList items={flattenPresentationRows(<>        <p className="d2-surface rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
         {primaryStats?.assassinMartial ? <MartialChargeDescription stats={primaryStats.assassinMartial} t={t} /> : null}
@@ -822,7 +813,8 @@ function SkillDetailPanel({
         {skill.id === 'skills-necromancer-iron-golem' ? (
           <p className="text-sm text-d2-white/90">{t('ironGolem.basePreview')}</p>
         ) : null}
-        <div className="grid gap-3 md:grid-cols-3">
+</>)} pageSize={1} renderItem={node => <li>{node}</li>} /> },
+          { id: 'current', label: t('details.current'), content:
           <StatSection
             title={current ? t('details.current') : t('details.notLearned')}
             stats={current}
@@ -830,21 +822,25 @@ function SkillDetailPanel({
             emptyText={t('details.currentEmpty')}
             t={t}
           />
-          <StatSection
+          },
+          { id: 'next', label: t('details.next'), content: <StatSection
             title={current ? t('details.next') : t('details.learnPreview')}
             stats={next}
             compare={current}
             emptyText={t('details.maxLevel')}
             t={t}
           />
-          <RequirementSection
+          },
+          { id: 'requirements', label: t('details.requirements'), content: <RequirementSection
             skill={skill}
             playerLevel={playerLevel}
             allocatedSkills={allocatedSkills}
             skillById={skillById}
             t={t}
           />
-        </div>
+          },
+          ...(extra ? [{ id: 'prepare', label: t('ironGolem.title'), content: extra }] : [])
+        ]} />
       </div>
     </Panel>
   );
@@ -885,11 +881,7 @@ function StatSection({
 }) {
   const summonEffect = stats?.summonUnit?.effect;
   const trap = stats?.assassinTrap;
-  return (
-    <section className="d2-surface rounded border border-d2-border/70 bg-black/25 p-3">
-      <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{title}</h3>
-      {stats ? (
-        <dl className="space-y-1 text-sm">
+  const rows = stats ? flattenPresentationRows(<>
           {stats.damage.map((row) => (
             <StatLine
               key={`damage-${row.type}`}
@@ -1229,7 +1221,13 @@ function StatSection({
                 value={String(stats.periodic.maxStacks)} />
             </>
           ) : null}
-        </dl>
+</>) : [];
+  return (
+    <section className="d2-surface flex min-h-0 flex-1 flex-col rounded border border-d2-border/70 bg-black/25 p-3">
+      <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{title}</h3>
+      {stats ? (
+        <PagedList items={rows} listClassName="space-y-1 text-sm" renderItem={node => <li><dl>{node}</dl></li>} />
+
       ) : (
         <p className="text-sm text-d2-white/70">{emptyText}</p>
       )}
@@ -1273,7 +1271,7 @@ function RequirementSection({
   const requiredLevel = getSkillRequiredLevel(skill);
   const prereqs = skill.prerequisites ?? [];
   return (
-    <section className="d2-surface rounded border border-d2-border/70 bg-black/25 p-3">
+    <section className="d2-surface flex min-h-0 flex-1 flex-col rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{t('details.requirements')}</h3>
       <dl className="space-y-1 text-sm">
         <StatLine
@@ -1308,7 +1306,7 @@ function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly l
   const iconSrc = resolveSkillIconSrc(skill.icon, skill.id);
   const fallback = (
     <span
-      className={`flex h-[72px] w-[72px] items-center justify-center rounded bg-gradient-to-br ${skillIconClass(skill)} font-serif text-sm font-bold shadow-inner`}
+      className={`flex h-14 w-14 items-center justify-center rounded bg-gradient-to-br ${skillIconClass(skill)} font-serif text-sm font-bold shadow-inner`}
       data-testid={`skill-icon-fallback-${skill.id}`}
       aria-hidden="true"
     >
@@ -1319,7 +1317,7 @@ function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly l
   if (!iconSrc || errored) return fallback;
 
   return (
-    <span className="relative flex h-[72px] w-[72px] items-center justify-center overflow-hidden rounded bg-black shadow-inner">
+    <span className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded bg-black shadow-inner">
       <img
         src={publicAssetUrl(iconSrc)}
         alt=""
@@ -2288,4 +2286,11 @@ function slugifyTreeName(name: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+/** Flatten authored fragment groups into individual presentation rows for paging. */
+function flattenPresentationRows(children: ReactNode): ReactNode[] {
+  return Children.toArray(children).flatMap(node =>
+    isValidElement<{ children?: ReactNode }>(node) && node.type === Fragment
+      ? flattenPresentationRows(node.props.children) : [node]);
 }

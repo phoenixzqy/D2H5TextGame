@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { resolveItemDisplay, StatSheet } from '@/ui';
+import { resolveItemDisplay, StatSheet, Tabs } from '@/ui';
 import type { Item } from '@/engine/types/items';
+import { PagedList } from '@/ui/PagedList';
 import { netEquipDelta, type CompareResult } from './compareEquip';
 
 export function AlreadyEquippedBadge(): JSX.Element {
@@ -40,7 +41,7 @@ export function ItemComparePanel({
     <section
       data-testid="compare-panel"
       aria-labelledby={titleId}
-      className="d2-surface min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-3 space-y-3"
+      className="d2-surface flex min-h-0 flex-1 flex-col min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-3 gap-2"
     >
       <h3
         id={titleId}
@@ -57,13 +58,23 @@ export function ItemComparePanel({
         <AlreadyEquippedBadge />
       ) : (
         <>
-          <StatSheet
+          <Tabs tabs={[
+            { id: 'stats', label: t('details'), content: (          <StatSheet
             mode="compare"
             current={compare.current}
             candidate={compare.candidate}
             stats={compare.stats}
             resistances={compare.resistances}
           />
+) },
+            ...(candidateDisplay.set && candidateDisplay.setBonuses.length > 0 ? [{
+              id: 'set', label: t('detail.setBonus'), content: <PagedList items={candidateDisplay.setBonuses} renderItem={bonus => (
+                <li key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}>
+                  {t('detail.setBonusThreshold', { count: bonus.threshold })}{': '}{bonus.lines.map(line => line.text).join(', ')}
+                </li>
+              )} />,
+            }] : []),
+          ]} />
           {net !== 0 && (
             <div
               className={`text-sm font-serif ${net > 0 ? 'text-emerald-400' : 'text-rose-400'}`}
@@ -75,18 +86,7 @@ export function ItemComparePanel({
                 : t('equipFlow.compare.netDowngrade', { n: net })}
             </div>
           )}
-          {candidateDisplay.set && candidateDisplay.setBonuses.length > 0 && (
-            <div className="d2-surface rounded border border-d2-set/40 bg-d2-set/5 p-2 text-sm" data-testid="equip-picker-set-bonuses">
-              <div className="font-serif text-d2-set">{t('detail.setBonus')}</div>
-              {candidateDisplay.setBonuses.map((bonus) => (
-                <div key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}>
-                  {t('detail.setBonusThreshold', { count: bonus.threshold })}
-                  {': '}
-                  {bonus.lines.map((line) => line.text).join(', ')}
-                </div>
-              ))}
-            </div>
-          )}
+
         </>
       )}
     </section>

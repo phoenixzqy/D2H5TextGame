@@ -20,6 +20,8 @@
  * to duplicate the breakpoint check.
  */
 import { useTranslation } from 'react-i18next';
+import { Tabs } from '@/ui/Tabs';
+import { PagedList } from '@/ui/PagedList';
 import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
 import { GameImage } from '@/ui/GameImage';
@@ -146,7 +148,7 @@ export function ItemDetailPanel({
 
   return (
     <div
-      className="flex min-w-0 flex-col gap-3 break-words text-sm"
+      className="flex min-w-0 min-h-0 flex-1 flex-col gap-2 break-words text-sm"
       data-testid="inv-detail-panel"
       data-rarity={item.rarity}
     >
@@ -182,6 +184,8 @@ export function ItemDetailPanel({
         </button>
       </div>
 
+      <Tabs tabs={[
+        { id: 'base', label: t('detail.baseStats'), content: <div className="space-y-2">
       {/* Requirements */}
       {reqRows.length > 0 && (
         <section data-testid="inv-detail-required">
@@ -216,6 +220,8 @@ export function ItemDetailPanel({
         </section>
       )}
 
+      </div> },
+      { id: 'affixes', label: t('detail.affixes'), content: <div className="space-y-2">
       {/* Affixes */}
       {item.affixes && item.affixes.length > 0 && (
         <section data-testid="inv-detail-affixes">
@@ -246,29 +252,28 @@ export function ItemDetailPanel({
         </section>
       )}
 
+      </div> },
+      { id: 'special', label: t('detail.specialStats'), content: <div className="flex min-h-0 flex-1 flex-col gap-2">
       {/* Set / unique flavor */}
       {specialStatLines.length > 0 && (
-        <section data-testid="inv-detail-definition-stats">
+        <section data-testid="inv-detail-definition-stats" className="flex min-h-0 flex-1 flex-col">
           <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.specialStats')}
           </h3>
-          <ul className="space-y-0.5 text-sm">
-            {specialStatLines.map((line, index) => (
+          <PagedList items={specialStatLines} listClassName="space-y-0.5 text-sm" renderItem={(line, index) => (
               <li key={`${line.key}-${String(index)}`} className={rarityTextClass(item.rarity)}>
                 {line.text}
               </li>
-            ))}
-          </ul>
+            )} />
         </section>
       )}
       {item.rarity === 'set' && display.set && (
-        <section data-testid="inv-detail-set" className="text-sm text-d2-set">
+        <section data-testid="inv-detail-set" className="flex min-h-0 flex-1 flex-col text-sm text-d2-set">
           <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
             {t('detail.setBonus')}
           </h3>
           <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>
-          <ul className="mt-1 space-y-1">
-            {display.setBonuses.map((bonus) => (
+          <PagedList items={display.setBonuses} listClassName="space-y-1" renderItem={bonus => (
               <li
                 key={bonus.threshold}
                 data-active={bonus.active}
@@ -285,8 +290,7 @@ export function ItemDetailPanel({
                   ))}
                 </ul>
               </li>
-            ))}
-          </ul>
+            )} />
         </section>
       )}
       {item.rarity === 'unique' && (display.flavor ?? !display.unique) && (
@@ -295,14 +299,17 @@ export function ItemDetailPanel({
         </section>
       )}
 
-      {compare ? (
+      </div> },
+      ...(compare ? [{ id: 'compare', label: t('equipFlow.compare.sectionTitle'), content: <>
         <ItemComparePanel
           compare={compare}
           selectedName={displayName}
           equippedAfter={equippedAfterCompare}
           titleId={`inv-detail-compare-title-${item.id}`}
         />
-      ) : null}
+
+      </> }] : [])
+      ]} />
 
       {/* Actions */}
       <div className="flex flex-wrap gap-2 pt-2 border-t border-d2-border/60">

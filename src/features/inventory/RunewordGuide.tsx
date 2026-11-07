@@ -1,4 +1,6 @@
 import { useId, useState } from 'react';
+import { Button, Modal, Tabs } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import { useTranslation } from 'react-i18next';
 import { socketRunewords } from '@/data/loaders/socket-effects';
 import { resolveStatPackage } from '@/engine/items/statRolls';
@@ -11,6 +13,7 @@ import { craftingBalanceName } from './craftingPresentation';
 export function RunewordGuide() {
   const { t } = useTranslation(['inventory', 'items']);
   const id = useId();
+  const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(socketRunewords[0]?.id ?? '');
   const materials = useInventoryStore(state => state.materials);
   const word = socketRunewords.find(entry => entry.id === selectedId);
@@ -32,16 +35,17 @@ export function RunewordGuide() {
     ...formatRunewordGrantLines(word.grants ?? [], t)
   ];
 
-  return <details className="d2-surface min-w-0 rounded border border-d2-border bg-d2-bg/40 text-sm" data-testid="runeword-guide">
-    <summary className="d2-section-title min-h-[44px] cursor-pointer break-words px-3 py-3 text-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
-      {t('crafting.runewordGuide.title')}
-    </summary>
-    <div className="min-w-0 space-y-3 px-3 pb-3 text-d2-white">
+  return <>
+    <Button variant="secondary" onClick={() => { setOpen(true); }}>{t('crafting.runewordGuide.title')}</Button>
+    <Modal isOpen={open} onClose={() => { setOpen(false); }} title={t('crafting.runewordGuide.title')}>
+    <div className="flex min-h-0 flex-1 flex-col gap-2 text-sm" data-testid="runeword-guide">
       <label htmlFor={id} className="block">{t('crafting.runewordGuide.select')}</label>
       <select id={id} value={selectedId} onChange={event => { setSelectedId(event.target.value); }}
         className="d2-field min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg px-3 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold">
         {socketRunewords.map(entry => <option key={entry.id} value={entry.id}>{tDataKey(t, entry.name)}</option>)}
       </select>
+      <Tabs tabs={[
+        { id: 'bases', label: t('crafting.runewordGuide.bases'), content: <div className="space-y-2">
       <p>{t('crafting.runewordGuide.sockets', { count: word.sockets })}</p>
       <div>
         <p className="font-bold text-d2-gold">{t('crafting.runewordGuide.bases')}</p>
@@ -50,13 +54,13 @@ export function RunewordGuide() {
         </ul>
       </div>
       <p>{t('crafting.runewordGuide.level', { level: word.reqLevel })}</p>
-      <div>
+      </div> },
+      { id: 'bonuses', label: t('crafting.runewordGuide.bonuses'), content: <div className="flex min-h-0 flex-1 flex-col gap-2">
         <p id={`${id}-bonuses`} className="font-bold text-d2-gold">{t('crafting.runewordGuide.bonuses')}</p>
-        <ul aria-labelledby={`${id}-bonuses`} className="list-inside list-disc break-words">
-          {bonuses.map(line => <li key={line.key}>{line.text}</li>)}
-        </ul>
+        <PagedList items={bonuses} renderItem={line => <li key={line.key}>{line.text}</li>} />
         <p className="mt-1 text-d2-white/90">{t('crafting.runewordGuide.bonusNote')}</p>
-      </div>
+      </div> },
+      { id: 'ingredients', label: t('crafting.runewordGuide.ingredients'), content: <div className="space-y-2">
       <div>
         <p className="font-bold text-d2-gold">{t('crafting.runewordGuide.order')}</p>
         <ol aria-label={t('crafting.runewordGuide.order')} className="list-inside list-decimal break-words">
@@ -76,7 +80,10 @@ export function RunewordGuide() {
           <td className="break-words py-1">{materials[rune] ?? 0}</td>
         </tr>)}</tbody>
       </table>
-      <p className="text-d2-white/90">{t('crafting.runewordGuide.instructions')}</p>
+      </div> },
+      { id: 'instructions', label: t('details'), content: <p className="text-d2-white/90">{t('crafting.runewordGuide.instructions')}</p> }
+      ]} />
     </div>
-  </details>;
+    </Modal>
+  </>;
 }

@@ -18,7 +18,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, EquipmentPanel, EquippedItemModal, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
+import { Button, EquipmentPanel, EquippedItemModal, Modal, Panel, ScreenShell, Tabs, resolveMercArt, tDataKey, tItemName } from '@/ui';
 import { useMercStore, useInventoryStore, usePlayerStore } from '@/stores';
 import { MERC_EQUIPMENT_SLOTS, type MercEquipment, type MercEquipmentResult } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
@@ -29,6 +29,7 @@ import { MercSkillPriority } from './MercSkillPriority';
 import { MercStarProgress } from './MercStarProgress';
 import { projectMercenaryStars } from '@/engine/progression/merc-stars';
 import { MercEquipmentCandidates } from './MercEquipmentCandidates';
+import { PagedList } from '@/ui/PagedList';
 import { GameImage } from '@/ui/GameImage';
 
 export function MercsScreen() {
@@ -52,105 +53,45 @@ export function MercsScreen() {
     [ownedMercs]
   );
 
-  return (
-    <ScreenShell testId="mercs-screen" title={t('mercenaries')}>
-      <div className="max-w-4xl mx-auto space-y-3">
-        <Link to="/gacha" data-testid="merc-gacha-link"
-          className="d2-control inline-flex min-h-[44px] items-center px-4 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
-          {t('gacha:openBanner')}
-        </Link>
-        <Panel title={t('hirePanelTitle')}>
-          <div className="space-y-4">
-            <p className="text-sm text-d2-white/70">{t('hirePanelBody')}</p>
-            {hireActs.map((act) => {
-              const locked = playerLevel < act.unlockReqLevel;
-              return (
-                <section key={act.id} className="space-y-2">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h2 className="d2-section-title font-serif text-d2-gold">{t(act.labelKey)}</h2>
-                    {locked && (
-                      <span className="text-sm text-d2-white/70">
-                        {t('unlockReqLevel', { level: act.unlockReqLevel })}
-                      </span>
-                    )}
-                  </div>
-                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                    {act.mercs.map((def) => {
-                      const owned = ownedBaseIds.has(def.id);
-                      const mercName = localizedMercName(t, def);
-                      const portraitSrc = resolveMercArt(def.id);
-                      return (
-                        <li
-                          key={def.id}
-                          className="d2-plaque rounded border border-d2-border bg-d2-bg/40 p-3"
-                          data-testid={`hire-merc-${def.id}`}
-                        >
-                          <div className="-mx-3 -mt-3 mb-2 overflow-hidden rounded-t">
-                            <GameImage
-                              src={portraitSrc}
-                              alt=""
-                              size="fill"
-                              fallbackIcon=""
-                              className="aspect-[3/4] rounded-t border-0 bg-none bg-black/40"
-                              imageClassName="w-full h-full object-cover object-top"
-                            />
-                          </div>
-                          <div className="font-serif text-d2-gold">{mercName}</div>
-                          <div className="text-sm text-d2-white/60">{t(`type.${def.classRef}`)} · {t('level')} {def.reqLevel}</div>
-                          <div className="mt-2 flex flex-wrap gap-1">
-                            {resolveMercSkillLoadout(def).slice(0, 3).map((skillId) => (
-                              <span key={skillId} className="d2-tag rounded border border-d2-border/70 bg-black/30 px-2 py-0.5 text-sm text-d2-white/75">
-                                {tDataKey(t, `mercs.skillName.${skillId}`)}
-                              </span>
-                            ))}
-                          </div>
-                          <Button
-                            variant={owned ? 'secondary' : 'primary'}
-                            className="mt-3 min-h-[40px] w-full text-sm"
-                            disabled={owned || locked}
-                            onClick={() => { hireMerc(def); }}
-                          >
-                            {owned ? t('owned') : t('hire')}
-                          </Button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </section>
-              );
-            })}
+  const [hireAct, setHireAct] = useState(hireActs[0]?.id ?? '');
+  const activeAct = hireActs.find(act => act.id === hireAct) ?? hireActs[0];
+  return <ScreenShell testId="mercs-screen" title={t('mercenaries')}>
+    <div className="flex min-h-0 w-full max-w-5xl mx-auto flex-1 flex-col gap-2">
+      <Tabs tabs={[
+        { id: 'owned', label: `${t('owned')} (${String(ownedMercs.length)})`, content:
+          <PagedList items={ownedMercs} pageSize={1} empty={<p>{t('empty')}</p>} renderItem={m => {
+            const baseId = m.id.split('#')[0] ?? m.id;
+            return <li key={m.id}><MercCard merc={m} def={defsById.get(baseId)} isFielded={m.id === fieldedMercId}
+              onField={() => { setFielded(m.id === fieldedMercId ? null : m.id); }} /></li>;
+          }} /> },
+        { id: 'hire', label: t('hire'), content: <div className="flex min-h-0 flex-1 flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <select value={hireAct} aria-label={t('hirePanelTitle')} onChange={event => { setHireAct(event.target.value); }}
+              className="d2-field min-h-[44px] min-w-0 flex-1 rounded border border-d2-border bg-d2-bg px-3">
+              {hireActs.map(act => <option key={act.id} value={act.id}>{t(act.labelKey)}</option>)}
+            </select>
+            <Link to="/gacha" data-testid="merc-gacha-link" className="d2-control inline-flex min-h-[44px] items-center px-3">{t('gacha:openBanner')}</Link>
           </div>
-        </Panel>
-
-        {ownedMercs.length === 0 ? (
-          <Panel>
-            <p className="text-sm text-d2-white/60 italic text-center py-6">
-              {t('empty')}
-            </p>
-          </Panel>
-        ) : (
-          <ul className="grid grid-cols-1 gap-3">
-            {ownedMercs.map((m) => {
-              const baseId = m.id.split('#')[0] ?? m.id;
-              const def = defsById.get(baseId);
-              return (
-                <li key={m.id}>
-                  <MercCard
-                    merc={m}
-                    def={def}
-                    isFielded={m.id === fieldedMercId}
-                    onField={() => {
-                      setFielded(m.id === fieldedMercId ? null : m.id);
-                    }}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-    </ScreenShell>
-  );
+          {activeAct && <>
+            {playerLevel < activeAct.unlockReqLevel && <p>{t('unlockReqLevel', { level: activeAct.unlockReqLevel })}</p>}
+            <PagedList key={hireAct} items={activeAct.mercs} pageSize={1} renderItem={def => {
+              const owned = ownedBaseIds.has(def.id);
+              const locked = playerLevel < activeAct.unlockReqLevel;
+              return <li key={def.id} className="d2-plaque flex items-center gap-3 rounded border border-d2-border p-3" data-testid={`hire-merc-${def.id}`}>
+                <GameImage src={resolveMercArt(def.id)} alt="" size="fill" fallbackIcon="" className="h-40 w-28 shrink-0 bg-black" imageClassName="object-cover object-top" />
+                <div className="min-w-0 flex-1 space-y-2">
+                  <h2 className="font-serif text-d2-gold">{localizedMercName(t, def)}</h2>
+                  <p className="text-sm">{t(`type.${def.classRef}`)} · {t('level')} {def.reqLevel}</p>
+                  <p className="text-sm text-d2-white/75">{resolveMercSkillLoadout(def).slice(0, 3).map(id => tDataKey(t, `mercs.skillName.${id}`)).join(' · ')}</p>
+                  <Button variant={owned ? 'secondary' : 'primary'} disabled={owned || locked} onClick={() => { hireMerc(def); }}>{t(owned ? 'owned' : 'hire')}</Button>
+                </div>
+              </li>;
+            }} />
+          </>}
+        </div> }
+      ]} />
+    </div>
+  </ScreenShell>;
 }
 
 function MercCard({
@@ -173,6 +114,7 @@ function MercCard({
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const baseId = merc.id.split('#')[0] ?? merc.id;
   const stars = useMercStore(state => state.recruitmentProgress[baseId]?.stars ?? 0);
@@ -198,100 +140,40 @@ function MercCard({
       className={isFielded ? 'border-d2-gold' : ''}
       data-testid={`merc-card-${baseId}`}
     >
-      <div className="grid gap-3 md:grid-cols-[minmax(240px,0.9fr)_minmax(0,1.6fr)]">
-        <div className="d2-plaque relative min-h-[260px] overflow-hidden rounded-lg border-2 border-d2-gold/60 bg-black shadow-[inset_0_0_24px_rgba(0,0,0,0.75),0_0_24px_rgba(214,176,86,0.12)]">
-          <GameImage
-            src={portrait}
-            alt=""
-            size="fill"
-            fallbackIcon=""
-            className="absolute inset-0 rounded-none border-0 bg-[radial-gradient(circle_at_50%_20%,rgba(214,176,86,0.22),rgba(0,0,0,0.88)_62%)]"
-            imageClassName="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" aria-hidden="true" />
-          <div className="absolute left-3 top-3 flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-d2-gold shadow-[0_0_10px_rgba(214,176,86,0.9)]" aria-hidden="true" />
-            <span className="d2-tag rounded border border-d2-gold/50 bg-black px-2 py-0.5 text-sm uppercase tracking-[0.22em] text-d2-gold/90">
-              {t(`rarity.${merc.rarity}`)}
-            </span>
-          </div>
-          {isFielded && (
-            <span className="d2-tag absolute right-3 top-3 rounded border border-d2-gold/70 bg-black px-2 py-1 text-sm uppercase tracking-wide text-d2-gold shadow-[0_0_12px_rgba(214,176,86,0.24)]">
-              {t('fielded')}
-            </span>
-          )}
-          <div className="absolute inset-x-0 bottom-0 space-y-1 bg-black p-3">
-            <h3 className="d2-section-title break-words font-serif text-2xl font-bold leading-tight text-d2-gold drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)]">
-              {localizedName}
-            </h3>
-            <div className="text-sm text-d2-white/75">
-              {archetype} · {t('level')} {merc.level}
-            </div>
-          </div>
-        </div>
-
-        <div className="flex min-w-0 flex-col gap-3">
-          <div className="d2-surface rounded-lg border border-d2-border/70 bg-black/25 p-3">
-            {def?.signatureSkillId && (
-              <div className="mb-2 text-sm text-d2-gold/90" title={def.signatureSkillId}>
-                <span className="text-d2-white/70">{t('signature')}: </span>
-                {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}
-              </div>
-            )}
-            {lore && (
-              <p className="text-sm italic leading-6 text-d2-white/70">
-                <span className="not-italic text-d2-white/75">{t('baseAbilities')}: </span>{lore}
-              </p>
-            )}
-          </div>
-
-          <div className="grid grid-cols-4 overflow-hidden rounded-lg border border-d2-border/80 bg-d2-bg/45 text-center">
-            <MercStat label="LVL" value={merc.level} />
+      <div className="grid grid-cols-[96px_minmax(0,1fr)] gap-3 sm:grid-cols-[160px_minmax(0,1fr)]">
+        <GameImage src={portrait} alt="" size="fill" fallbackIcon="" className="h-36 sm:h-48 bg-black" imageClassName="object-cover object-top" />
+        <div className="min-w-0 space-y-2">
+          <h2 className="font-serif text-lg text-d2-gold">{localizedName}</h2>
+          <p className="text-sm">{archetype} · {t('level')} {merc.level} · {isFielded ? t('fielded') : t(`rarity.${merc.rarity}`)}</p>
+          <p className="text-sm text-d2-gold">{t('stars.count', { stars, max: loadMercPool().banner.shardConversion.maxStars })}</p>
+          <div className="grid grid-cols-3 rounded border border-d2-border text-center">
             <MercStat label="STR" value={Number(projected.coreStats.strength.toFixed(2))} />
             <MercStat label="DEX" value={Number(projected.coreStats.dexterity.toFixed(2))} />
             <MercStat label="VIT" value={Number(projected.coreStats.vitality.toFixed(2))} />
           </div>
-
           <div data-testid={`merc-xp-${baseId}`}>
-            <div className="mb-1 flex justify-between text-sm text-d2-white/60">
-              <span>{t('xp')}</span>
-              <span>{progress.experience} / {progress.experienceToNextLevel}</span>
-            </div>
-            <div className="h-2 overflow-hidden rounded-full border border-d2-border bg-black/55">
-              <div className="h-full bg-gradient-to-r from-d2-gold/55 via-d2-gold to-amber-200" style={{ width: `${String(xpPct)}%` }} />
-            </div>
+            <p className="text-sm text-d2-white/70">{t('xp')} {progress.experience} / {progress.experienceToNextLevel}</p>
+            <div className="h-2 rounded border border-d2-border bg-black"><div className="h-full bg-d2-gold" style={{ width: `${String(xpPct)}%` }} /></div>
           </div>
-          <MercStarProgress mercId={merc.id} />
-          <MercSkillPriority merc={merc} equipment={equipment} />
         </div>
       </div>
-
-      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
-        <Button
-          variant={isFielded ? 'secondary' : 'primary'}
-          className="min-h-[44px] text-sm"
-          onClick={onField}
-          data-testid={`merc-field-${baseId}`}
-        >
-          {isFielded ? t('unfield') : t('setAsFielded')}
-        </Button>
-        <Button
-          variant="secondary"
-          className="min-h-[44px] text-sm"
-          onClick={() => { setEquipOpen(true); }}
-          data-testid={`merc-equipment-${baseId}`}
-        >
-          {t('equipment')} ({equippedCount}/{MERC_EQUIPMENT_SLOTS.length})
-        </Button>
-        <Button
-          variant="secondary"
-          className="min-h-[44px] text-sm border-red-700/60 text-red-300 hover:border-red-500"
-          onClick={() => { setConfirmOpen(true); }}
-          data-testid={`merc-dismiss-${baseId}`}
-        >
-          {t('dismiss')}
-        </Button>
+      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <Button variant={isFielded ? 'secondary' : 'primary'} onClick={onField} data-testid={`merc-field-${baseId}`}>{t(isFielded ? 'unfield' : 'setAsFielded')}</Button>
+        <Button variant="secondary" onClick={() => { setDetailsOpen(true); }}>{t('baseAbilities')}</Button>
+        <Button variant="secondary" onClick={() => { setEquipOpen(true); }} data-testid={`merc-equipment-${baseId}`}>{t('equipment')} ({equippedCount}/{MERC_EQUIPMENT_SLOTS.length})</Button>
+        <Button variant="secondary" onClick={() => { setConfirmOpen(true); }} data-testid={`merc-dismiss-${baseId}`}>{t('dismiss')}</Button>
       </div>
+      <Modal isOpen={detailsOpen} onClose={() => { setDetailsOpen(false); }} title={localizedName}>
+        <Tabs tabs={[
+          { id: 'abilities', label: t('baseAbilities'), content: <div className="space-y-3">
+            {def?.signatureSkillId && <p className="text-d2-gold">{t('signature')}: {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}</p>}
+            <p className="text-sm">{lore}</p>
+            <MercStat label="ENG" value={projected.coreStats.energy} />
+          </div> },
+          { id: 'stars', label: t('stars.title'), content: <MercStarProgress mercId={merc.id} /> },
+          { id: 'priority', label: t('priority.title'), content: <MercSkillPriority merc={merc} equipment={equipment} /> }
+        ]} />
+      </Modal>
 
       <Modal isOpen={confirmOpen} onClose={() => { setConfirmOpen(false); }} title={t('confirmDismissTitle')}>
         {equippedCount > 0 ? (
@@ -341,7 +223,7 @@ function MercStat({ label, value }: { label: string; value: number | string }) {
   return (
     <div className="border-r border-d2-border/70 px-2 py-2 last:border-r-0">
       <div className="text-sm uppercase tracking-[0.18em] text-d2-white/70">{label}</div>
-      <div className="font-serif text-2xl font-bold leading-none text-d2-gold">{value}</div>
+      <div className="font-serif text-lg font-bold leading-none text-d2-gold">{value}</div>
     </div>
   );
 }
@@ -378,7 +260,7 @@ function MercEquipmentEditor({
   const candidates = pickerSlot ? candidatesForSlot(pickerSlot) : [];
 
   return (
-    <div className="space-y-3 max-h-[70vh] overflow-y-auto pr-1">
+    <div className="flex min-h-0 flex-1 flex-col gap-2">
       <EquipmentPanel
         equipped={equipment}
         slotOrder={MERC_EQUIPMENT_SLOTS}
@@ -399,9 +281,9 @@ function MercEquipmentEditor({
           })}
       </p>}
 
-      {pickerSlot && (
-        <Panel title={t('inventory:equip')}>
-          <div className="space-y-2">
+      <Modal isOpen={pickerSlot !== null} onClose={() => { setPickerSlot(null); }} title={t('inventory:equip')}>
+        {pickerSlot && <>
+          <div className="flex min-h-0 flex-1 flex-col gap-2">
             <div className="text-xs text-d2-white/60">
               {t('selectSlotItem', { slot: t(`inventory:slots.${pickerSlot}`) })}
             </div>
@@ -411,8 +293,8 @@ function MercEquipmentEditor({
               else setEquipmentError({ ...result, item });
             }} />
           </div>
-        </Panel>
-      )}
+        </>}
+      </Modal>
 
       <EquippedItemModal
         slot={viewSlot}

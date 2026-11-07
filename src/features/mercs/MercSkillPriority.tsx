@@ -6,6 +6,7 @@ import { useMercStore } from '@/stores/mercStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { getMercActiveProjection } from '@/stores/mercToCombatUnit';
 import { Button, tDataKey } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 
 /** Ordinary controls for choosing an owned mercenary's secondary skill priority. */
 export function MercSkillPriority({ merc, equipment }: {
@@ -29,11 +30,10 @@ export function MercSkillPriority({ merc, equipment }: {
     setRefused(!setSkillOrder(merc.id, next));
   };
   return (
-    <section className="mt-3 border-t border-d2-border pt-3" aria-label={t('priority.title')}>
+    <section className="flex min-h-0 flex-1 flex-col gap-2" aria-label={t('priority.title')}>
       <h4 className="d2-section-title font-serif text-d2-gold">{t('priority.title')}</h4>
       <p className="mt-1 text-sm text-d2-white/75">{t('priority.help')}</p>
-      <ol className="mt-2 space-y-2" aria-live="polite">
-        {order.map((id, index) => {
+      <PagedList items={order} listClassName="space-y-2" renderItem={(id, index) => {
           const governed = projection.choices.find(choice => choice.id === id);
           const name = governed ? tDataKey(t, governed.nameKey) : t(`skillName.${id}`, { defaultValue: t('priority.unknown', {
             skill: id.replace(/^mskill-/, '').replace(/[-_/.]+/g, ' ')
@@ -59,8 +59,7 @@ export function MercSkillPriority({ merc, equipment }: {
               )}
             </li>
           );
-        })}
-      </ol>
+        }} />
       {locked && <p className="mt-2 text-sm text-d2-gold">{t('priority.locked')}</p>}
       {refused && <p role="alert" className="mt-2 text-sm text-red-300">{t('priority.refused')}</p>}
     </section>

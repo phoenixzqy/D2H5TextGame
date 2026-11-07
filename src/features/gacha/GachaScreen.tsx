@@ -14,7 +14,8 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, RarityText } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, RarityText, Tabs } from '@/ui';
+import { PagedList } from '@/ui/PagedList';
 import type { GachaPullResult } from '@/stores/metaStore';
 import { useMetaStore, useInventoryStore } from '@/stores';
 import { recruitmentBalance } from '@/stores/gachaActions';
@@ -35,6 +36,7 @@ export function GachaScreen() {
 
   const [copyStatus, setCopyStatus] = useState<'copied' | 'copyFailed' | null>(null);
   const [resultModal, setResultModal] = useState<GachaPullResult[] | null>(null);
+  const [ratesOpen, setRatesOpen] = useState(false);
   const [pullFailed, setPullFailed] = useState(false);
 
   const banner = useMemo(() => loadMercPool(), []);
@@ -56,7 +58,9 @@ export function GachaScreen() {
 
   return (
     <ScreenShell testId="gacha-screen" title={t('gacha')}>
-      <div className="min-w-0 max-w-3xl mx-auto space-y-4">
+      <div className="flex min-h-0 min-w-0 w-full max-w-3xl mx-auto flex-1 flex-col gap-2">
+        <Tabs tabs={[
+          { id: 'banner', label: t('banner'), content: <div className="flex min-h-0 flex-1 flex-col gap-3">
         <Panel>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
@@ -112,10 +116,10 @@ export function GachaScreen() {
           )}
         </Panel>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <Button
             variant="primary"
-            className="min-h-[64px] text-lg"
+            className="min-h-[52px] text-sm sm:text-lg"
             disabled={balance === null || balance < COST_SINGLE}
             onClick={() => { doPulls(1); }}
             data-testid="gacha-pull-1"
@@ -124,7 +128,7 @@ export function GachaScreen() {
           </Button>
           <Button
             variant="primary"
-            className="min-h-[64px] text-lg"
+            className="min-h-[52px] text-sm sm:text-lg"
             disabled={balance === null || balance < COST_TEN}
             onClick={() => { doPulls(10); }}
             data-testid="gacha-pull-10"
@@ -135,20 +139,10 @@ export function GachaScreen() {
 
         {pullFailed && <p role="alert" className="text-sm text-d2-white">{t('pullFailed')}</p>}
 
-        <details className="d2-surface border border-d2-border rounded p-3">
-          <summary className="d2-section-title min-h-[44px] cursor-pointer">{t('rates')}</summary>
-            <div className="text-sm space-y-2">
-              <div>SSR: {(RATES.SSR * 100).toFixed(1)}%</div>
-              <div>SR: {(RATES.SR * 100).toFixed(1)}%</div>
-              <div>R: {(RATES.R * 100).toFixed(1)}%</div>
-              <div className="text-d2-white/90">
-                {t('pityRules', { sr: banner.pity.sr.threshold, ssr: PITY_THRESHOLD })}
-              </div>
-              <p>{t('uniformPool', { ssr: banner.banner.pool.SSR.length, sr: banner.banner.pool.SR.length, r: banner.banner.pool.R.length })}</p>
-            </div>
-        </details>
+        <Button variant="secondary" onClick={() => { setRatesOpen(true); }}>{t('rates')}</Button>
+        </div> },
+        { id: 'history', label: t('recentPulls'), content: <div className="flex min-h-0 flex-1 flex-col gap-2">
 
-        <Panel title={t('recentPulls')}>
           <Button className="min-h-[44px] mb-3" variant="secondary" disabled={recruitment.history.length === 0}
             onClick={() => {
               void Promise.resolve().then(() => navigator.clipboard.writeText(JSON.stringify(recruitment.history, null, 2)))
@@ -158,11 +152,7 @@ export function GachaScreen() {
           {recruitment.history.length === 0 ? (
             <p className="text-sm text-d2-white/90 italic">{t('noRecent')}</p>
           ) : (
-            <ul
-              className="grid grid-cols-2 sm:grid-cols-3 gap-1 text-sm"
-              data-testid="gacha-recent"
-            >
-              {[...recruitment.history].reverse().map((r) => (
+            <PagedList items={[...recruitment.history].reverse()} listClassName="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm" renderItem={r => (
                 <li
                   key={r.ordinal}
                   className="d2-plaque border border-d2-border rounded px-2 py-1 break-words min-w-0"
@@ -173,10 +163,22 @@ export function GachaScreen() {
                   <p className="text-sm text-d2-white/90 [overflow-wrap:anywhere]">{new Date(r.timestamp).toLocaleString(i18n.language)}</p>
                   <p className="text-sm">{r.isNew ? t('isNew') : t('duplicateShards', { count: r.shardCount })}</p>
                 </li>
-              ))}
-            </ul>
+              )} />
           )}
-        </Panel>
+        </div> }
+        ]} />
+        <Modal isOpen={ratesOpen} onClose={() => { setRatesOpen(false); }} title={t('rates')}>
+            <div className="text-sm space-y-2">
+              <div>SSR: {(RATES.SSR * 100).toFixed(1)}%</div>
+              <div>SR: {(RATES.SR * 100).toFixed(1)}%</div>
+              <div>R: {(RATES.R * 100).toFixed(1)}%</div>
+              <div className="text-d2-white/90">
+                {t('pityRules', { sr: banner.pity.sr.threshold, ssr: PITY_THRESHOLD })}
+              </div>
+              <p>{t('uniformPool', { ssr: banner.banner.pool.SSR.length, sr: banner.banner.pool.SR.length, r: banner.banner.pool.R.length })}</p>
+            </div>
+        </Modal>
+
 
         <Modal
           isOpen={!!resultModal}
@@ -201,16 +203,16 @@ function RevealResults({ results }: { results: readonly GachaPullResult[] }) {
     const timer = window.setTimeout(() => { setVisible(current => Math.min(current + 1, results.length)); }, 250);
     return () => { window.clearTimeout(timer); };
   }, [visible, results.length]);
-  return <div className="space-y-3">
+  return <div className="flex min-h-0 flex-1 flex-col gap-2">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <p className="text-sm" aria-live="polite">{t('revealProgress', { shown: visible, total: results.length })}</p>
       {visible < results.length && <Button variant="secondary" className="min-h-[44px]"
         data-testid="gacha-skip-reveal" onClick={() => { setVisible(results.length); }}>{t('skipReveal')}</Button>}
     </div>
-    <ul className="space-y-1" data-testid="gacha-results">
-      {results.slice(0, visible).map((result, index) => <RevealRow key={`${result.mercDef.id}-${String(index)}`}
-        result={result} index={index} />)}
-    </ul>
+    <div data-testid="gacha-results" className="flex min-h-0 flex-1 flex-col">
+      <PagedList items={results.slice(0, visible)} listClassName="space-y-1" renderItem={(result, index) =>
+        <RevealRow key={`${result.mercDef.id}-${String(index)}`} result={result} index={index} />} />
+    </div>
   </div>;
 }
 

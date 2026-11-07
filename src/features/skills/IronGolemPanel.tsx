@@ -5,7 +5,7 @@ import type { Player } from '@/engine/types/entities';
 import { computeSkillDisplayModel, type SkillRankDisplayStats } from '@/engine/skills/displayStats';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { loadItemBases } from '@/data/loaders/loot';
-import { Button, Panel, tItemName } from '@/ui';
+import { Button, Panel, Tabs, tItemName } from '@/ui';
 import { itemBaseSlug } from '@/ui/i18nKey';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -123,13 +123,10 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
     <Panel
       title={t('ironGolem.title')}
       data-testid="iron-golem-panel"
-      className="min-w-0 space-y-4 text-sm text-d2-white"
+      className="flex min-w-0 min-h-0 flex-1 flex-col text-sm text-d2-white"
     >
-      <div className="space-y-2 text-d2-white/90">
-        <p>{t('ironGolem.rules')}</p>
-        <p>{t('ironGolem.timing')}</p>
-        <p>{t('ironGolem.attemptTiming')}</p>
-      </div>
+      <Tabs tabs={[
+        { id: 'prepare', label: t('ironGolem.choose'), content: <div className="space-y-2">
       <div className="space-y-2">
         <label htmlFor={id} className="block font-bold text-d2-gold">
           {t('ironGolem.choose')}
@@ -164,28 +161,6 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
         ) : null}
         {!model.configurationReady ? <p>{t('ironGolem.configurationUnavailable')}</p> : null}
       </div>
-      {preview && model.draft.eligible ? (
-        <section
-          aria-labelledby={`${id}-preview`}
-          className="space-y-2 border-y border-d2-border py-3"
-        >
-          <h3 id={`${id}-preview`} className="d2-section-title font-serif text-lg text-d2-gold">
-            {t('ironGolem.preview')}
-          </h3>
-          <p>
-            {t('ironGolem.bonuses', {
-              life: format(model.draft.bonuses.life),
-              attack: format(model.draft.bonuses.attack),
-              defense: format(model.draft.bonuses.defense)
-            })}
-          </p>
-          <p>{t('ironGolem.previewScope')}</p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <PreviewRank stats={preview.current} next={false} />
-            <PreviewRank stats={preview.next} next />
-          </div>
-        </section>
-      ) : null}
       <label className="d2-plaque flex min-h-[44px] cursor-pointer items-start gap-3 rounded border border-d2-gold/60 bg-d2-bg p-3">
         <input
           type="checkbox"
@@ -223,7 +198,37 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
         </Button>
       </div>
       {visibleNotice?.failed ? <p role="alert">{t(visibleNotice.key)}</p> : null}
-      <div role="status" aria-live="polite" aria-atomic="true" className="space-y-3">
+      </div> },
+      { id: 'preview', label: t('ironGolem.preview'), content: <div>      {preview && model.draft.eligible ? (
+        <section
+          aria-labelledby={`${id}-preview`}
+          className="space-y-2 border-y border-d2-border py-3"
+        >
+          <h3 id={`${id}-preview`} className="d2-section-title font-serif text-lg text-d2-gold">
+            {t('ironGolem.preview')}
+          </h3>
+          <p>
+            {t('ironGolem.bonuses', {
+              life: format(model.draft.bonuses.life),
+              attack: format(model.draft.bonuses.attack),
+              defense: format(model.draft.bonuses.defense)
+            })}
+          </p>
+          <p>{t('ironGolem.previewScope')}</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <PreviewRank stats={preview.current} next={false} />
+            <PreviewRank stats={preview.next} next />
+          </div>
+        </section>
+      ) : null}
+</div> },
+      { id: 'rules', label: t('details.overview'), content:       <div className="space-y-2 text-d2-white/90">
+        <p>{t('ironGolem.rules')}</p>
+        <p>{t('ironGolem.timing')}</p>
+        <p>{t('ironGolem.attemptTiming')}</p>
+      </div>
+ },
+      { id: 'record', label: t('ironGolem.recorded'), content:       <div role="status" aria-live="polite" aria-atomic="true" className="space-y-3">
         {visibleNotice && !visibleNotice.failed ? <p>{t(visibleNotice.key)}</p> : null}
         <p>
           {selection === null
@@ -234,6 +239,8 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
         </p>
         <RecordedAttempt attempt={model.attempt} itemName={name} />
       </div>
+ }
+      ]} />
     </Panel>
   );
 }

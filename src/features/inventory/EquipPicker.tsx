@@ -1,43 +1,8 @@
-/**
- * EquipPicker — redesigned per UX flow doc (feat/equip-picker-v3).
- *
- * Layout (mobile-first, ≥360px):
- *   ┌────────────────────────────────┐
- *   │ Header (title + close)         │  fixed
- *   ├────────────────────────────────┤
- *   │ <CandidateList>                │  scroll
- *   │  ┌ <CandidateRow>              │
- *   │  │ ↑/↓ Home/End Enter keyboard │
- *   ├────────────────────────────────┤
- *   │ <ComparePanel> (sticky on top) │
- *   │   paired headers (current|cand)│
- *   │   <StatSheet mode="compare">   │  reuses tested 3-col table
- *   │   candidate-only affix list    │  (already inside StatSheet)
- *   │   aria-live announcement       │
- *   ├────────────────────────────────┤
- *   │ <EquipFooter> [Cancel][Equip]  │  sticky bottom + disabled-reason
- *   └────────────────────────────────┘
- *
- * Desktop (≥1024px): list (1/3) and compare panel (2/3) side-by-side
- * inside a max-w-3xl modal.
- *
- * Behavior contracts (asserted by E2E):
- *   - On open with ≥1 eligible candidate, auto-select the first eligible
- *     so the compare panel is populated WITHOUT user interaction.
- *   - aria-live="polite" announces selection changes.
- *   - Same persistent item ID as currently-equipped → render an
- *     "already-equipped" badge, omit the StatSheet body, disable Equip.
- *   - Empty-slot path is handled by StatSheet (data-empty="true").
- *
- * Engine work delegated to:
- *   - slotCandidates / checkEligibility from compareEquip.ts
- *   - compareEquip() for deltas
- *   - inventoryStore.equipItem() for the actual equip action
- */
+/** Equipment candidates and comparison occupy separate bounded tabs. */
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, GameImage, RarityText, getItemIconUrl, tItemName } from '@/ui';
+import { Button, GameImage, RarityText, Tabs, getItemIconUrl, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore, useMapStore } from '@/stores';
 import type { EquipFailure } from '@/stores/inventoryStore';
 import {
@@ -57,7 +22,6 @@ interface Props {
   readonly onEquipFailed?: (item: Item, reason: EquipFailure['reason']) => void;
 }
 
-const CANDIDATE_PAGE_SIZE = 50;
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -179,12 +143,30 @@ function CandidateList({
 }) {
   const { t } = useTranslation(['inventory', 'common']);
   const rowRefs = useRef<Map<string, HTMLLIElement>>(new Map());
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [pageSize, setPageSize] = useState(1);
+  const tallestRow = useRef(80);
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const measure = () => {
+      for (const row of rowRefs.current.values()) {
+        tallestRow.current = Math.max(tallestRow.current, row.getBoundingClientRect().height);
+      }
+      setPageSize(Math.max(1, Math.floor((viewport.clientHeight + 8) / (tallestRow.current + 8))));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    for (const row of rowRefs.current.values()) observer.observe(row);
+    return () => { observer.disconnect(); };
+  }, [items, selectedId, pageSize]);
   const pendingFocus = useRef<string | null>(null);
   const selectedIndex = Math.max(0, items.findIndex(item => item.id === selectedId));
-  const page = Math.floor(selectedIndex / CANDIDATE_PAGE_SIZE);
-  const pages = Math.ceil(items.length / CANDIDATE_PAGE_SIZE);
-  const start = page * CANDIDATE_PAGE_SIZE;
-  const visible = items.slice(start, start + CANDIDATE_PAGE_SIZE);
+  const page = Math.floor(selectedIndex / pageSize);
+  const pages = Math.ceil(items.length / pageSize);
+  const start = page * pageSize;
+  const visible = items.slice(start, start + pageSize);
 
   // Keyboard targets on another page mount before focus can move to them.
   // Page controls keep their own focus; only list-key navigation requests it.
@@ -198,7 +180,7 @@ function CandidateList({
   const changePage = (requested: number): void => {
     if (!Number.isFinite(requested)) return;
     const next = Math.max(0, Math.min(pages - 1, Math.trunc(requested)));
-    const target = items[next * CANDIDATE_PAGE_SIZE];
+    const target = items[next * pageSize];
     if (target) onSelect(target.id);
   };
 
@@ -233,21 +215,20 @@ function CandidateList({
   }
 
   return (
-    <>
-    {pages > 1 && <nav aria-label={t('pagination.label')} className="mb-3 min-w-0 space-y-2">
-      <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
+    <div className="flex min-h-0 flex-1 flex-col gap-2">
+    <nav aria-label={t('pagination.label')} className="min-w-0 shrink-0 space-y-1">
+      <p role="status" aria-live="polite" className="sr-only">
         {t('pagination.status', { start: start + 1, end: start + visible.length, total: items.length, page: page + 1, pages })}
       </p>
       <div className="flex flex-wrap items-center gap-2">
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(0); }}>{t('pagination.first')}</Button>
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(page - 1); }}>{t('pagination.previous')}</Button>
         <input type="number" min={1} max={pages} step={1} value={page + 1}
           aria-label={t('pagination.page')} onChange={event => { changePage(event.target.valueAsNumber - 1); }}
           className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(page + 1); }}>{t('pagination.next')}</Button>
-        <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(pages - 1); }}>{t('pagination.last')}</Button>
       </div>
-    </nav>}
+    </nav>
+    <div ref={viewportRef} className="min-h-0 flex-1 overflow-y-auto scrollbar-d2">
     <ul
       className="space-y-2"
       role="listbox"
@@ -275,7 +256,8 @@ function CandidateList({
         );
       })}
     </ul>
-    </>
+    </div>
+    </div>
   );
 }
 
@@ -460,7 +442,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
       <div
         className={[
           'd2-dialog animate-fadeIn',
-          'w-full rounded-t-lg sm:rounded-lg max-h-[85vh] sm:max-h-[90vh]',
+          'w-full rounded-t-lg sm:rounded-lg h-[90dvh] max-h-[90dvh]',
           'sm:max-w-3xl sm:w-full',
           'flex flex-col overflow-hidden'
         ].join(' ')}
@@ -481,28 +463,22 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
           </Button>
         </header>
 
-        <div className="flex-1 overflow-y-auto scrollbar-d2 p-4">
-          <div className="lg:grid lg:grid-cols-3 lg:gap-4 space-y-4 lg:space-y-0">
-            <div className="lg:col-span-1">
-              <CandidateList
+        <div className="flex min-h-0 flex-1 flex-col p-3">
+          <Tabs tabs={[
+            { id: 'candidates', label: t('backpack'), content: <CandidateList
                 items={candidates}
                 selectedId={selectedId}
                 eligibility={eligibility}
                 slotLabel={slotLabel}
                 onSelect={setSelectedId}
-              />
-            </div>
-            <div className="lg:col-span-2">
-              {compare ? (
-                <ItemComparePanel
+              /> },
+            { id: 'compare', label: t('equipFlow.compare.sectionTitle'), content: compare ? <ItemComparePanel
                   compare={compare}
                   isAlreadyEquipped={sameAsEquipped}
                   selectedName={selectedName}
                   equippedAfter={equippedAfter}
-                />
-              ) : null}
-            </div>
-          </div>
+                /> : null },
+          ]} />
         </div>
 
         <EquipFooter

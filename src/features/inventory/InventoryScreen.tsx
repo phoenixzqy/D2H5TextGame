@@ -1,32 +1,5 @@
-/**
- * InventoryScreen — Backpack / Stash / Equipment tabs.
- *
- * Layout (Issue #1 of the inventory UX overhaul):
- *
- *   Desktop (lg ≥ 1024px):
- *     Two-column CSS grid that *resizes* the grid column when the detail
- *     panel opens — never overlaps. `grid-cols-[1fr_340px]` with
- *     `transition-all` so the grid reflow is animated.
- *
- *   Tablet (md 768–1023px):
- *     Same sidebar approach as desktop, narrower (`280px`) — keeps the
- *     two-finger reach pattern from desktop. Below `md`, falls through
- *     to the mobile sheet.
- *
- *   Mobile (< 768px):
- *     The right column is rendered as a fixed bottom sheet (slide-up)
- *     with a dimmed backdrop. Tap-outside or the explicit close button
- *     dismiss. The grid keeps its full width so the player can keep
- *     browsing while the sheet is up.
- *
- *   ESC dismisses on every breakpoint.
- *
- * Selection state is hoisted up here (not inside ItemGrid) so the same
- * detail panel can be reused for backpack and stash. Each tab gets its
- * own selectedId — switching tabs preserves the per-tab selection.
- */
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { FloatingFocusManager, useFloating } from '@floating-ui/react';
+/** Inventory collections use tabs, bounded pages, and item detail dialogs. */
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import {
@@ -34,7 +7,6 @@ import {
   EquipmentPanel,
   EquippedItemModal,
   Modal,
-  Panel,
   ScreenShell,
   Tabs,
   tItemName
@@ -86,23 +58,13 @@ export function InventoryScreen() {
 
   return (
     <ScreenShell testId="inventory-screen" title={t('inventory.title')}>
-      <InventoryGear>
-        <MaterialsPanel />
-        <CraftingPanel />
-        <QuestItemsPanel />
-        <LegacyGearQuarantinePanel />
-      </InventoryGear>
+      <InventoryGear />
     </ScreenShell>
   );
 }
 
-interface InventoryGearProps {
-  readonly children: ReactNode;
-}
-
-// Own gear subscriptions and local state here so gear updates retain the global
-// panel elements. Each panel subscribes to its own live inputs independently.
-function InventoryGear({ children }: InventoryGearProps) {
+// Each collection is a focused tab; subscriptions retain live ownership data.
+function InventoryGear() {
   const { t } = useTranslation(['inventory', 'common']);
   const backpack = useInventoryStore((s) => s.backpack);
   const stash = useInventoryStore((s) => s.stash);
@@ -149,8 +111,7 @@ function InventoryGear({ children }: InventoryGearProps) {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto">
-        {children}
+      <div className="flex min-h-0 w-full max-w-6xl flex-1 flex-col mx-auto">
         <Tabs
           tabs={[
             {
@@ -222,6 +183,10 @@ function InventoryGear({ children }: InventoryGearProps) {
                 />
               ),
             },
+            { id: 'materials', label: t('materials.title'), content: <MaterialsPanel /> },
+            { id: 'crafting', label: t('crafting.title'), content: <CraftingPanel /> },
+            { id: 'quest-items', label: t('questItems.title'), content: <QuestItemsPanel /> },
+            { id: 'quarantine', label: t('quarantine.title'), content: <LegacyGearQuarantinePanel /> },
           ]}
           defaultTab="backpack"
         />
@@ -370,12 +335,13 @@ function BackpackTabContent({
   }, [bases, equipped, playerForCompare, compare]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex min-h-0 flex-1 flex-col">
       <BulkDiscardToolbar backpack={items} equipped={equipped} onDiscard={onBulkDiscard} />
       <ItemGridLayout
         items={page.items}
         capacity={page.capacity}
         pagination={page.controls}
+        viewportRef={page.viewportRef}
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
@@ -438,6 +404,7 @@ function StashTabContent({
       items={page.items}
       capacity={page.capacity}
       pagination={page.controls}
+        viewportRef={page.viewportRef}
       emptyKey="emptyStash"
       selectedId={selectedId}
       setSelectedId={setSelectedId}
@@ -458,11 +425,12 @@ function StashTabContent({
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
-/* Two-column grid + bottom-sheet shell                                    */
+/* Item grid with detail dialog                                            */
 /* ────────────────────────────────────────────────────────────────────── */
 
 interface GridLayoutProps {
   readonly pagination: React.ReactNode;
+  readonly viewportRef: InventoryPage['viewportRef'];
   readonly items: readonly Item[];
   readonly capacity: number;
   readonly emptyKey: string;
@@ -481,133 +449,22 @@ function ItemGridLayout({
   setSelectedId,
   isUpgrade,
   pagination,
+  viewportRef,
   detailPanel
 }: GridLayoutProps): JSX.Element {
   const { t } = useTranslation('inventory');
-  const isDesktop = useIsDesktop();
-
-  // The mobile dialog handles Escape locally, so only its active layer closes.
-  useEffect(() => {
-    if (!selectedId || !isDesktop) return;
-    const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape' && !e.defaultPrevented) setSelectedId(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => { window.removeEventListener('keydown', onKey); };
-  }, [selectedId, setSelectedId, isDesktop]);
-
   const open = selectedId !== null && detailPanel !== null;
-
   return (
-    <div
-      className={[
-        'grid gap-3 transition-all duration-200',
-        // md (tablet) gets a narrower sidebar; lg+ uses 340px.
-        open ? 'md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_340px]' : 'grid-cols-1'
-      ].join(' ')}
-      data-testid="inventory-layout"
-      data-detail-open={open}
-    >
-      <div className="min-w-0">
-        {pagination}
-        {items.length === 0 ? (
-          <p className="text-sm text-d2-white/60 italic p-4 text-center">
-            {t(emptyKey)}
-          </p>
-        ) : (
-            <BackpackGrid
-              items={items}
-              capacity={capacity}
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-              isUpgrade={isUpgrade}
-            />
-        )}
+    <div className="flex min-h-0 flex-1 flex-col gap-2" data-testid="inventory-layout" data-detail-open={open}>
+      <div ref={viewportRef} className="min-w-0 min-h-0 flex-1">
+        {items.length === 0 ? <p className="text-sm text-d2-white/60 italic p-4 text-center">{t(emptyKey)}</p> :
+          <BackpackGrid items={items} capacity={capacity} selectedId={selectedId} onSelect={setSelectedId} isUpgrade={isUpgrade} />}
       </div>
-
-      {/* Desktop / tablet sidebar OR mobile bottom sheet — exclusive render
-          based on viewport so testids never collide between the two trees. */}
-      {open && isDesktop && (
-        <Panel
-          className="h-fit"
-          data-testid="inv-detail-sidebar"
-        >
-          {detailPanel}
-        </Panel>
-      )}
-      {open && !isDesktop && (
-        <MobileBottomSheet onClose={() => { setSelectedId(null); }}>
-          {detailPanel}
-        </MobileBottomSheet>
-      )}
+      {pagination}
+      <Modal isOpen={open} onClose={() => { setSelectedId(null); }} title={t('details')}>
+        {detailPanel}
+      </Modal>
     </div>
-  );
-}
-
-function useIsDesktop(): boolean {
-  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-      return true;
-    }
-    return window.matchMedia('(min-width: 768px)').matches;
-  });
-  useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return;
-    const mql = window.matchMedia('(min-width: 768px)');
-    const onChange = (e: MediaQueryListEvent): void => { setIsDesktop(e.matches); };
-    mql.addEventListener('change', onChange);
-    return () => { mql.removeEventListener('change', onChange); };
-  }, []);
-  return isDesktop;
-}
-
-function MobileBottomSheet({
-  children,
-  onClose
-}: {
-  readonly children: React.ReactNode;
-  readonly onClose: () => void;
-}): JSX.Element {
-  const { t } = useTranslation('inventory');
-  const opener = useRef<HTMLElement | null>(null);
-  const { refs, context } = useFloating({ open: true });
-  useLayoutEffect(() => {
-    // Keep the original card when StrictMode replays this mount after focus enters the sheet.
-    if (opener.current === null && document.activeElement instanceof HTMLElement) {
-      opener.current = document.activeElement;
-    }
-    // Move focus before background isolation, rather than its queued entry.
-    refs.floating.current?.focus({ preventScroll: true });
-  }, [refs.floating]);
-
-  return (
-    <FloatingFocusManager context={context} initialFocus={refs.floating} returnFocus={opener} restoreFocus>
-    <div className="d2-modal-backdrop md:hidden fixed inset-0 z-40" data-testid="inv-detail-sheet">
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-      <div
-        className="absolute inset-0 bg-black/60 motion-safe:animate-fadeIn"
-        onClick={onClose}
-        aria-hidden
-        data-testid="inv-detail-backdrop"
-      />
-      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- The dialog owns Escape dismissal without making its content a control. */}
-      <div
-        ref={refs.setFloating}
-        className="d2-dialog absolute left-0 right-0 bottom-0 p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
-        role="dialog"
-        aria-modal="true"
-        aria-label={t('details')}
-        tabIndex={-1}
-        onKeyDown={event => {
-          if (event.key !== 'Escape') return;
-          event.stopPropagation();
-          if (!event.defaultPrevented) onClose();
-        }}
-      >
-        {children}
-      </div>
-    </div>
-    </FloatingFocusManager>
   );
 }
 

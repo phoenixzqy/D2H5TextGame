@@ -4,7 +4,7 @@ import { materialRecipes } from '@/data/loaders/material-recipes';
 import { materialCatalog } from '@/data/loaders/materials';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { prepareLiveMaterialAction, previewLiveMaterialAction } from '@/stores/materialActions';
-import { Panel } from '@/ui';
+import { Tabs } from '@/ui';
 import { CraftingConfirmation, type CraftingIntent } from './CraftingConfirmation';
 import { CraftingTargets } from './CraftingTargets';
 import { CraftingReadiness } from './CraftingReadiness';
@@ -67,10 +67,9 @@ export function CraftingPanel() {
     } catch (failure) { setError(craftingErrorKey(failure)); }
   }
 
-  return <section aria-label={t('crafting.title')} className="mb-4 min-w-0">
-    <Panel title={t('crafting.title')} data-testid="crafting-panel">
-      <p className="mb-4 text-sm text-d2-white/90">{t('crafting.progression')}</p>
-      <div className="space-y-4 text-d2-white">
+  return <section aria-label={t('crafting.title')} className="flex min-h-0 flex-1 flex-col gap-2" data-testid="crafting-panel">
+      <Tabs tabs={[
+        { id: 'recipe', label: t('crafting.recipeLabel'), content: <div className="space-y-2 text-d2-white">
         <div><label htmlFor={`${id}-action`} className="mb-1 block text-sm">{t('crafting.action')}</label>
           <select id={`${id}-action`} className={'d2-field ' + (controlClass)} value={kind} onChange={event => { changeKind(event.target.value); }}>
             {kinds.map(value => <option key={value} value={value}>{t(`crafting.kind.${value}`)}</option>)}
@@ -81,8 +80,6 @@ export function CraftingPanel() {
               {'output' in entry ? ` · ${Object.keys(entry.costs.materials).map(value => craftingBalanceName(t, value)).join(', ')} → ${[...Object.keys(entry.output.materials), ...Object.keys(entry.output.currencies)].map(value => craftingBalanceName(t, value)).join(', ')}` : ''}
             </option>)}
           </select></div>}
-        <p className="text-sm text-d2-white/90">{t(`crafting.rules.${kind}`)}</p>
-        {kind === 'socket-insert' && <RunewordGuide />}
         {recipe && <div className="text-sm"><p className="font-bold text-d2-gold">{t('crafting.costs')}</p>
           <ul>{[...Object.entries(recipe.costs.materials), ...Object.entries(recipe.costs.currencies)].map(([value, count]) => <li key={value}>
             {craftingBalanceName(t, value)} × {count} · {t('crafting.owned', { quantity: materials[value] ?? currencies[value] ?? 0 })}
@@ -93,12 +90,19 @@ export function CraftingPanel() {
               {craftingBalanceName(t, value.id)} · {t('crafting.owned', { quantity: materials[value.id] ?? 0 })}
             </option>)}
           </select></div>}
-        {needsTarget && <CraftingTargets key={kind} entries={entries} selected={selected} multiple={kind === 'salvage'} onChange={setSelected} />}
+        </div> },
+        ...(needsTarget ? [{ id: 'targets', label: t('crafting.targets'), content:
+          <CraftingTargets key={kind} entries={entries} selected={selected} multiple={kind === 'salvage'} onChange={setSelected} /> }] : []),
+        { id: 'rules', label: t('details'), content: <div className="space-y-2">
+          <p className="text-sm text-d2-white/90">{t(`crafting.rules.${kind}`)}</p>
+          <p className="text-sm text-d2-white/90">{t('crafting.progression')}</p>
+          {kind === 'socket-insert' && <RunewordGuide />}
+        </div> }
+      ]} />
         {error && <p role="alert">{t('crafting.previewFailed', { reason: t(error) })}</p>}
         <CraftingReadiness selection={{ recipeId, ...(needsTarget ? { itemIds: selected } : {}),
           ...(kind === 'socket-insert' ? { materialId } : {}) }} onPreview={preview} />
-      </div>
-    </Panel>
+
     {intent && <CraftingConfirmation intent={intent} onClose={() => { setIntent(null); }} />}
   </section>;
 }

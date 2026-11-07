@@ -1,20 +1,9 @@
-/**
- * BulkDiscardToolbar — "Discard all …" actions above the backpack grid.
- *
- * Rules:
- *   - Buttons are disabled with a tooltip-style title when no items match.
- *   - All actions exclude special gear and socket investments (enforced by
- *     the shared engine protection rule through `bulkDiscard.ts`).
- *   - Each click opens a single confirm dialog showing count + the first
- *     10 affected names with "and N more" overflow.
- *
- * Mobile: the buttons collapse into a "Bulk" details/summary disclosure
- * so they don't push the grid off-screen at 360-px width.
- */
+/** Compact bulk discard selector with a paginated confirmation preview. */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/ui/Button';
 import { Modal } from '@/ui/Modal';
+import { PagedList } from '@/ui/PagedList';
 import { RarityText } from '@/ui/RarityText';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item } from '@/engine/types/items';
@@ -45,7 +34,6 @@ function selectorFor(
   }
 }
 
-const MAX_PREVIEW = 10;
 
 export function BulkDiscardToolbar({
   backpack,
@@ -54,6 +42,7 @@ export function BulkDiscardToolbar({
 }: BulkDiscardToolbarProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'items']);
   const { t: tItems } = useTranslation('items');
+  const [mode, setMode] = useState<Mode>('normal');
   const [pendingMode, setPendingMode] = useState<Mode | null>(null);
 
   const counts = useMemo(() => countBulkDiscardCandidates(backpack, equipped, loadItemBases()),
@@ -70,28 +59,14 @@ export function BulkDiscardToolbar({
 
   return (
     <>
-      <div
-        className="flex flex-wrap gap-2 mb-3"
-        data-testid="bulk-discard-toolbar"
-      >
-        {buttons.map((b) => {
-          const count = counts[b.mode];
-          const disabled = count === 0;
-          return (
-            <Button
-              key={b.mode}
-              variant="secondary"
-              className="!px-3 !py-2 min-h-[44px] text-xs leading-tight whitespace-normal text-left max-w-full"
-              disabled={disabled}
-              title={disabled ? t('bulk.noMatches') : undefined}
-              data-testid={`bulk-discard-${b.mode}`}
-              onClick={() => { setPendingMode(b.mode); }}
-            >
-              {t(b.i18n)}
-              <span className="ml-1 text-d2-white/60">({count})</span>
-            </Button>
-          );
-        })}
+      <div className="flex shrink-0 gap-2 mb-2" data-testid="bulk-discard-toolbar">
+        <select className="d2-field min-h-[44px] min-w-0 flex-1" aria-label={t('bulk.confirmTitle')}
+          value={mode} onChange={event => { setMode(event.target.value as Mode); }}>
+          {buttons.map(button => <option key={button.mode} value={button.mode}>{t(button.i18n)} ({counts[button.mode]})</option>)}
+        </select>
+        <Button variant="secondary" disabled={counts[mode] === 0}
+          title={counts[mode] === 0 ? t('bulk.noMatches') : undefined}
+          data-testid={`bulk-discard-${mode}`} onClick={() => { setPendingMode(mode); }}>{t('discard')}</Button>
       </div>
 
       <Modal
@@ -99,37 +74,18 @@ export function BulkDiscardToolbar({
         onClose={() => { setPendingMode(null); }}
         title={t('bulk.confirmTitle')}
       >
-        <div className="space-y-3 text-sm">
+        <div className="flex min-h-0 flex-1 flex-col gap-3 text-sm">
           <p className="text-d2-white">
             {t('bulk.confirmBody', { count: pending.length })}
           </p>
           <p className="text-d2-white/70 text-xs italic">
             {t('bulk.exclusionNote')}
           </p>
-          <ul
-            className="max-h-60 overflow-y-auto border border-d2-border/60 rounded p-2 space-y-0.5"
-            data-testid="bulk-discard-preview"
-          >
-            {pending.slice(0, MAX_PREVIEW).map((it, idx) => {
+          <PagedList items={pending} listClassName="space-y-1" renderItem={(it) => {
               const slug = it.baseId.split('/').pop() ?? it.baseId;
-              const baseName = tItems(`base.${slug}`);
-              const prefix = it.generatedName?.prefix?.trim();
-              const suffix = it.generatedName?.suffix?.trim();
-              const name = [prefix, baseName, suffix].filter(Boolean).join(' ');
-              return (
-                <li key={`${it.id}-${String(idx)}`}>
-                  <RarityText rarity={it.rarity} className="text-xs">
-                    {name}
-                  </RarityText>
-                </li>
-              );
-            })}
-            {pending.length > MAX_PREVIEW && (
-              <li className="text-d2-white/60 text-xs italic">
-                {t('bulk.andMore', { count: pending.length - MAX_PREVIEW })}
-              </li>
-            )}
-          </ul>
+              const name = [it.generatedName?.prefix?.trim(), tItems(`base.${slug}`), it.generatedName?.suffix?.trim()].filter(Boolean).join(' ');
+              return <li key={it.id}><RarityText rarity={it.rarity} className="text-xs">{name}</RarityText></li>;
+          }} />
           <div className="flex gap-2 pt-2">
             <Button
               variant="secondary"
