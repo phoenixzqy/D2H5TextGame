@@ -16,6 +16,7 @@ import { BACKPACK_CAPACITY, STASH_CAPACITY } from '@/stores/inventoryCapacity';
 import { EquipPicker } from './EquipPicker';
 import { ItemDetailPanel } from './ItemDetailPanel';
 import { BulkDiscardToolbar } from './BulkDiscardToolbar';
+import { LootFilterPanel } from './LootFilterPanel';
 import { BackpackGrid } from './BackpackGrid';
 import { useInventoryPage, type InventoryPage } from './useInventoryPage';
 import { LegacyGearQuarantinePanel } from './LegacyGearQuarantinePanel';
@@ -86,6 +87,7 @@ function InventoryGear() {
   const [backpackSelectedId, setBackpackSelectedId] = useState<string | null>(null);
   const [stashSelectedId, setStashSelectedId] = useState<string | null>(null);
   const [discardConfirm, setDiscardConfirm] = useState<DiscardConfirm>(null);
+  const [lootFilterOpen, setLootFilterOpen] = useState(false);
   const backpackPage = useInventoryPage(backpack, BACKPACK_CAPACITY, () => { setBackpackSelectedId(null); });
   const stashPage = useInventoryPage(stash, Math.min(STASH_CAPACITY, Math.max(60, stash.length + 20)), () => { setStashSelectedId(null); });
 
@@ -112,6 +114,16 @@ function InventoryGear() {
   return (
     <>
       <div className="flex min-h-0 w-full max-w-6xl flex-1 flex-col mx-auto">
+        <div className="mb-2 flex shrink-0 justify-end">
+          <Button
+            variant="secondary"
+            className="min-h-[44px]"
+            data-testid="inventory-loot-filter"
+            onClick={() => { setLootFilterOpen(true); }}
+          >
+            {t('lootFilter.title')}
+          </Button>
+        </div>
         <Tabs
           tabs={[
             {
@@ -221,6 +233,9 @@ function InventoryGear() {
         item={viewSlot ? (equipped[viewSlot] ?? null) : null}
         onClose={() => { setViewSlot(null); }}
       />
+      <Modal isOpen={lootFilterOpen} onClose={() => { setLootFilterOpen(false); }} title={t('lootFilter.title')}>
+        <LootFilterPanel />
+      </Modal>
 
       {/* Single-item discard confirm */}
       <Modal

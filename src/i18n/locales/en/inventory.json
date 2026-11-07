@@ -548,5 +548,33 @@
     "preservedContents": "Preserved rune order",
     "preservedWord": "Preserved word (inactive): {{name}}",
     "recoveryRequired": "Crafting is paused while the save is unavailable. If restoration failed, reload or import a verified backup before continuing."
+  },
+  "lootFilter": {
+    "title": "Loot Filter",
+    "enable": "Enable loot filter",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "immediate": "Changes apply immediately. You can prepare rules while the filter is disabled.",
+    "scope": "Applies to new combat loot only. Quest rewards, purchased items, existing inventory and equipped gear are unaffected.",
+    "maxItemLevel": "Maximum item level",
+    "levelHelp": "0 applies to all item levels. Otherwise, rules apply to items at or below this level; higher-level items are kept.",
+    "levelError": "Enter a whole number from 0 to 9,007,199,254,740,991. The previous valid limit remains active.",
+    "rarityRules": "Action by rarity",
+    "actionLabel": "{{rarity}} loot action",
+    "rarity": {
+      "normal": "Normal",
+      "magic": "Magic",
+      "rare": "Rare",
+      "unique": "Unique",
+      "set": "Set"
+    },
+    "action": {
+      "keep": "Keep",
+      "salvage": "Auto-salvage",
+      "discard": "Auto-discard"
+    },
+    "protected": "Runewords, charms, gear with inserted runes or gems, and personalized gear are always kept.",
+    "salvageHelp": "Auto-salvage grants crafting scrap. Auto-discard gives no materials. These actions permanently consume the new drop and do not award gold.",
+    "processed": "Loot filter: {{salvaged}} salvaged, {{discarded}} discarded."
   }
 }

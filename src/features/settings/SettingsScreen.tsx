@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Panel, ScreenShell, Tabs } from '@/ui';
 import { PagedList } from '@/ui/PagedList';
 import { SaveImportDialog } from './SaveImportDialog';
+import { LootFilterPanel } from '@/features/inventory/LootFilterPanel';
 import {
   useMetaStore,
   usePlayerStore,
@@ -21,7 +22,7 @@ const APP_VERSION =
   '0.1.0';
 
 export function SettingsScreen() {
-  const { t, i18n } = useTranslation(['settings', 'common']);
+  const { t, i18n } = useTranslation(['settings', 'common', 'inventory']);
   const navigate = useNavigate();
   const hasCharacter = usePlayerStore((s) => s.player !== null);
 
@@ -206,6 +207,11 @@ export function SettingsScreen() {
                   renderItem={(item) => item}
                 />
               )
+            },
+            {
+              id: 'loot-filter',
+              label: t('inventory:lootFilter.title'),
+              content: <div className="min-h-0 overflow-y-auto scrollbar-d2 p-2"><LootFilterPanel /></div>
             },
             {
               id: 'save',

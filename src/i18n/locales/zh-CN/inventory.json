@@ -548,5 +548,33 @@
     "preservedContents": "保留的符文顺序",
     "preservedWord": "保留的符文之语（未生效）：{{name}}",
     "recoveryRequired": "存档不可用时暂停制作。如恢复失败，请重新加载或导入已验证的备份后继续。"
+  },
+  "lootFilter": {
+    "title": "掉落过滤",
+    "enable": "启用掉落过滤",
+    "enabled": "已启用",
+    "disabled": "已关闭",
+    "immediate": "修改立即生效。关闭过滤时也可预先设置规则。",
+    "scope": "仅处理新获得的战斗掉落。任务奖励、购买物品、已有背包和仓库物品及已装备物品不受影响。",
+    "maxItemLevel": "物品等级上限",
+    "levelHelp": "0 表示适用于所有物品等级。其他数值表示仅处理物品等级不高于该上限的掉落，更高等级的物品会保留。",
+    "levelError": "请输入 0 至 9,007,199,254,740,991 之间的整数。此前有效的等级上限仍然生效。",
+    "rarityRules": "按稀有度设置处理方式",
+    "actionLabel": "{{rarity}}物品处理方式",
+    "rarity": {
+      "normal": "普通",
+      "magic": "魔法",
+      "rare": "稀有",
+      "unique": "暗金",
+      "set": "套装"
+    },
+    "action": {
+      "keep": "保留",
+      "salvage": "自动分解",
+      "discard": "自动丢弃"
+    },
+    "protected": "符文之语、护符、已镶嵌符文或宝石的装备及个性化装备始终保留。",
+    "salvageHelp": "自动分解会获得制作废料。自动丢弃不会获得材料。两种操作都会永久消耗新掉落的物品，且不会获得金币。",
+    "processed": "掉落过滤：已分解 {{salvaged}} 件，已丢弃 {{discarded}} 件。"
   }
 }
