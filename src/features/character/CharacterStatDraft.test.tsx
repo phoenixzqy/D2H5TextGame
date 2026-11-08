@@ -16,6 +16,7 @@ import { useFormationStore } from '@/stores/formationStore';
 import { __resetPersistenceForTests, exportCurrentSave, useHydrationStore } from '@/stores/persistence';
 import { createMockPlayer } from './createMockPlayer';
 import { CharacterScreen } from './CharacterScreen';
+import { stubMatchMedia, stubResizeObserver } from '@/test/layoutShims';
 
 function player(): Player {
   const current = usePlayerStore.getState().player;
@@ -67,6 +68,8 @@ function unchanged(observation: ReturnType<typeof observe>) {
 }
 
 beforeEach(async () => {
+  stubMatchMedia();
+  stubResizeObserver();
   __resetPersistenceForTests();
   vi.useFakeTimers({ toFake: ['Date'] });
   vi.setSystemTime(new Date('2026-10-20T12:00:00Z'));
@@ -76,9 +79,28 @@ beforeEach(async () => {
   useHydrationStore.getState().setStatus('ready');
   await i18n.changeLanguage('en');
 });
-afterEach(() => { __resetPersistenceForTests(); vi.useRealTimers(); });
+afterEach(() => { __resetPersistenceForTests(); vi.useRealTimers(); vi.unstubAllGlobals(); });
 
 describe('Character attribute draft', () => {
+  it('keeps available stat points visible before the scrollable attributes', () => {
+    render(page());
+    const balance = screen.getByTestId('char-stat-points');
+    const list = screen.getByTestId('char-core-stats');
+    expect(screen.getByTestId('core-attributes-panel')).toContainElement(balance);
+    expect(balance).toHaveTextContent('5');
+    expect(balance.compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('resolves the class portrait against a non-root deployment base', () => {
+    vi.stubEnv('BASE_URL', '/D2H5TextGame/');
+    try {
+      render(page());
+      expect(screen.getByTestId('hero-card').querySelector('img')).toHaveAttribute(
+        'src', '/D2H5TextGame/assets/d2/generated/class-portraits/classes.sorceress.png'
+      );
+    } finally { vi.unstubAllEnvs(); }
+  });
+
   it('renders four distinct localized pairs and disabled empty Apply/Cancel in English', () => {
     render(page());
     for (const stat of ['Strength', 'Dexterity', 'Vitality', 'Energy']) {

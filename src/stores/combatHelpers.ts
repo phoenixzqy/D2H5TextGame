@@ -1208,7 +1208,11 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
                 type: 'system' as const,
                 actorId: 'system',
                 actorName: i18n.t('combat:event.system'),
-                message: i18n.t('combat:levelUpToast', { level: xpResult.newLevel })
+                message: i18n.t('combat:levelUpToast', {
+                  level: xpResult.newLevel,
+                  statPoints: xpResult.statPointsGranted,
+                  skillPoints: xpResult.skillPointsGranted
+                })
               };
               if (cowSettlement) cowSettlement.addLevelUpLog(entry);
               else combat.addLogEntry(entry);

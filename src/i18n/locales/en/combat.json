@@ -41,7 +41,7 @@
   "runeShard": "Rune Shards",
   "wishstones": "Wishstones",
   "rewardLine": "+{{quantity}} {{name}}",
-  "levelUpToast": "Level up! You are now level {{level}}",
+  "levelUpToast": "Level up! You are now level {{level}}. Stat points +{{statPoints}}, skill points +{{skillPoints}}.",
   "continue": "Continue",
   "log": "Combat Log",
   "logEmpty": "Battle starting…",

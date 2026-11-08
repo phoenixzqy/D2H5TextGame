@@ -1,5 +1,5 @@
 /** BUG347: project the real native settlement log into the actual UI. No earned play. */
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Suspense } from 'react';
 import { act, cleanup, render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -18,6 +18,7 @@ import { useMetaStore } from '@/stores/metaStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { __resetPersistenceForTests, useHydrationStore } from '@/stores/persistence';
 import { CombatScreen } from '@/features/combat/CombatScreen';
+import { stubMatchMedia, stubResizeObserver } from '@/test/layoutShims';
 
 const stores = [usePlayerStore, useInventoryStore, useMercStore, useMapStore, useMetaStore, useFormationStore] as const;
 let language = 'zh-CN';
@@ -26,6 +27,8 @@ function reset() {
   for (const store of stores) store.getState().reset();
 }
 beforeEach(() => {
+  stubMatchMedia();
+  stubResizeObserver();
   language = i18n.language; reset(); loadDefaultSkills();
   // Disclosed deterministic combat control; production enemy, XP and settlement paths stay native.
   registerSkill({ id: 'fixture.level-up-log-finisher', archetype: 'fixture', target: 'all-enemies', cooldown: 1,
@@ -35,7 +38,7 @@ beforeEach(() => {
     comboOrder: ['fixture.level-up-log-finisher'] });
   useHydrationStore.getState().setStatus('ready');
 });
-afterEach(async () => { cleanup(); reset(); resetRegistry(); await i18n.changeLanguage(language); });
+afterEach(async () => { cleanup(); reset(); resetRegistry(); vi.unstubAllGlobals(); await i18n.changeLanguage(language); });
 
 describe('native level-up combat log localization', () => {
   it.each(['en', 'zh-CN'] as const)('shows the actual reached level in %s without changing earned XP', async locale => {
@@ -59,8 +62,10 @@ describe('native level-up combat log localization', () => {
     const current = usePlayerStore.getState().player; if (!current) throw new Error('Missing progressed hero');
     expect(current.level).toBeGreaterThan(hero.level);
     expect(xpTotal(current.level) + current.experience).toBe(before + expectedXp);
-    const expected = locale === 'en' ? `Level up! You are now level ${String(current.level)}`
-      : `升级！现在是 ${String(current.level)} 级`;
+    expect(current.statPoints - hero.statPoints).toBe(5 * (current.level - hero.level));
+    const expected = locale === 'en'
+      ? `Level up! You are now level ${String(current.level)}. Stat points +${String(current.statPoints - hero.statPoints)}, skill points +${String(current.skillPoints - hero.skillPoints)}.`
+      : `升级！现在是 ${String(current.level)} 级。属性点 +${String(current.statPoints - hero.statPoints)}，技能点 +${String(current.skillPoints - hero.skillPoints)}。`;
     const entry = emitted.find(row => row.type === 'system' && row.message === expected);
     expect(entry).toMatchObject({ type: 'system', actorId: 'system',
       actorName: locale === 'en' ? 'System' : '系统', message: expected });

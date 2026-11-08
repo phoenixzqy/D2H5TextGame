@@ -9,6 +9,7 @@ import {
   ScreenShell,
   StatBar,
   RarityText,
+  GameImage,
   resolveClassPortrait,
   tItemName
 } from '@/ui';
@@ -128,11 +129,16 @@ function HeroStrip({ player, vitality }: { player: Player; vitality: PlayerVital
         data-testid="hero-card"
       >
         {portrait && (
-          <img
-            src={portrait}
-            alt=""
-            className="h-16 w-12 sm:h-20 sm:w-16 rounded object-contain row-span-2 sm:row-span-1"
-          />
+          <div className="h-16 w-12 sm:h-20 sm:w-16 row-span-2 sm:row-span-1">
+            <GameImage
+              src={portrait}
+              alt=""
+              fallbackIcon={player.class.slice(0, 1).toUpperCase()}
+              size="fill"
+              imageClassName="h-full w-full object-contain"
+              className="rounded"
+            />
+          </div>
         )}
         <div className="min-w-0 flex-1">
           <div className="font-serif text-d2-gold truncate" data-testid="char-name">
@@ -250,6 +256,20 @@ function CoreAttributesPanel({ player }: { player: Player }) {
     'min-h-[44px] min-w-[44px] rounded border border-d2-border bg-d2-bg/60 text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold hover:border-d2-gold disabled:opacity-40 disabled:cursor-not-allowed';
   return (
     <Panel className="!p-2 flex min-h-0 flex-1 flex-col" data-testid="core-attributes-panel">
+      <div className="flex shrink-0 flex-wrap gap-x-4 gap-y-1 text-sm text-d2-white/80">
+        <span>
+          {t('character:screen.statPoints')}{': '}
+          <span className="font-bold text-d2-gold" data-testid="char-stat-points">{player.statPoints}</span>
+        </span>
+        <span>
+          {t('character:screen.skillPoints')}{': '}
+          <span className="font-bold text-d2-gold" data-testid="char-skill-points">{player.skillPoints}</span>
+        </span>
+        <span>
+          {t('character:draft.remaining')}{': '}
+          <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">{remaining}</span>
+        </span>
+      </div>
       <div
         data-testid="char-core-stats"
         className="flex min-h-0 flex-1 flex-col gap-2 sm:grid sm:grid-cols-2"
@@ -334,29 +354,6 @@ function CoreAttributesPanel({ player }: { player: Player }) {
               )}
             </div>
           </Modal>
-          <div className="flex shrink-0 flex-wrap gap-3 text-sm text-d2-white/80">
-            <span>
-              {t('character:screen.statPoints')}
-              {': '}
-              <span className="text-d2-gold font-bold" data-testid="char-stat-points">
-                {player.statPoints}
-              </span>
-            </span>
-            <span>
-              {t('character:screen.skillPoints')}
-              {': '}
-              <span className="text-d2-gold font-bold" data-testid="char-skill-points">
-                {player.skillPoints}
-              </span>
-            </span>
-          </div>
-          <p className="shrink-0 text-sm text-d2-white/80">
-            {t('character:draft.remaining')}
-            {': '}
-            <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">
-              {remaining}
-            </span>
-          </p>
           <div className="shrink-0 flex gap-2">
             <button
               type="button"

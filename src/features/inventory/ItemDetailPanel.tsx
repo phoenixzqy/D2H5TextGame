@@ -42,6 +42,7 @@ export interface ItemDetailPanelProps {
   readonly onEquip?: () => void;
   readonly onTransfer?: () => void;
   readonly onDiscard: () => void;
+  readonly onSalvage?: (opener: HTMLElement) => void;
   readonly onClose: () => void;
   /** Optional label override for the transfer button (Backpack ↔ Stash). */
   readonly transferLabel?: string;
@@ -61,6 +62,7 @@ export function ItemDetailPanel({
   onEquip,
   onTransfer,
   onDiscard,
+  onSalvage,
   onClose,
   transferLabel,
   equipLabel,
@@ -207,6 +209,16 @@ export function ItemDetailPanel({
             onClick={onTransfer}
           >
             {transferLabel}
+          </Button>
+        )}
+        {onSalvage && (
+          <Button
+            variant="secondary"
+            className="min-h-[44px] flex-1 basis-20"
+            data-testid="inv-salvage-action"
+            onClick={(event) => { onSalvage(event.currentTarget); }}
+          >
+            {t('salvage')}
           </Button>
         )}
         <Button

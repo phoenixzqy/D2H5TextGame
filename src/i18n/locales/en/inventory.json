@@ -426,6 +426,10 @@
       "rune": "Socketing, runewords, rune fusion and recipes.",
       "gem": "Socketing, gem fusion, dismantling and recipes.",
       "scrap": "Equipment crafting."
+    },
+    "scrapSpend": {
+      "caster": "{{action}} in Crafting & sockets ({{cost}}, plus other ingredients).",
+      "anya": "Trade with Anya in Act V for unique equipment ({{cost}} and {{shards}})."
     }
   },
   "crafting": {

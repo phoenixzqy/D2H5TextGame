@@ -23,6 +23,9 @@ import { LegacyGearQuarantinePanel } from './LegacyGearQuarantinePanel';
 import { QuestItemsPanel } from './QuestItemsPanel';
 import { MaterialsPanel } from './MaterialsPanel';
 import { CraftingPanel } from './CraftingPanel';
+import { CraftingConfirmation, type CraftingIntent } from './CraftingConfirmation';
+import { craftingErrorKey } from './craftingPresentation';
+import { prepareLiveMaterialAction, previewLiveMaterialAction } from '@/stores/materialActions';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import {
@@ -87,6 +90,7 @@ function InventoryGear() {
   const [backpackSelectedId, setBackpackSelectedId] = useState<string | null>(null);
   const [stashSelectedId, setStashSelectedId] = useState<string | null>(null);
   const [discardConfirm, setDiscardConfirm] = useState<DiscardConfirm>(null);
+  const [salvageIntent, setSalvageIntent] = useState<CraftingIntent | null>(null);
   const [lootFilterOpen, setLootFilterOpen] = useState(false);
   const backpackPage = useInventoryPage(backpack, BACKPACK_CAPACITY, () => { setBackpackSelectedId(null); });
   const stashPage = useInventoryPage(stash, Math.min(STASH_CAPACITY, Math.max(60, stash.length + 20)), () => { setStashSelectedId(null); });
@@ -108,6 +112,16 @@ function InventoryGear() {
       showToast(t('toast.unequipped', { name: itemDisplayName(item) }), 'success');
     } else if (!result.ok && result.reason === 'backpack_full') {
       showToast(t('toast.backpackFull'), 'error');
+    }
+  };
+
+  const previewSalvage = (item: Item, source: 'backpack' | 'stash', opener: HTMLElement): void => {
+    try {
+      const request = prepareLiveMaterialAction({ recipeId: 'actions/salvage', itemIds: [item.id] });
+      const plan = previewLiveMaterialAction(request);
+      setSalvageIntent({ request, plan, sources: [{ item, origin: t(`crafting.${source}`) }], opener });
+    } catch (failure) {
+      showToast(t('crafting.previewFailed', { reason: t(craftingErrorKey(failure)) }), 'error');
     }
   };
 
@@ -155,6 +169,7 @@ function InventoryGear() {
                     else showToast(t(result.reason === 'stash_full' ? 'toast.stashFull' : 'toast.transferFailed'), 'error');
                   }}
                   onDiscardRequest={(it) => { setDiscardConfirm({ kind: 'single', item: it, source: 'backpack' }); }}
+                  onSalvageRequest={(it, opener) => { previewSalvage(it, 'backpack', opener); }}
                   onBulkDiscard={(ids) => {
                     bulkDiscard(ids);
                     setBackpackSelectedId(null);
@@ -180,6 +195,7 @@ function InventoryGear() {
                     else showToast(t(result.reason === 'backpack_full' ? 'toast.backpackFull' : 'toast.transferFailed'), 'error');
                   }}
                   onDiscardRequest={(it) => { setDiscardConfirm({ kind: 'single', item: it, source: 'stash' }); }}
+                  onSalvageRequest={(it, opener) => { previewSalvage(it, 'stash', opener); }}
                 />
               ),
             },
@@ -236,6 +252,9 @@ function InventoryGear() {
       <Modal isOpen={lootFilterOpen} onClose={() => { setLootFilterOpen(false); }} title={t('lootFilter.title')}>
         <LootFilterPanel />
       </Modal>
+      {salvageIntent && (
+        <CraftingConfirmation intent={salvageIntent} onClose={() => { setSalvageIntent(null); }} />
+      )}
 
       {/* Single-item discard confirm */}
       <Modal
@@ -294,6 +313,7 @@ interface BackpackTabProps {
   readonly onEquip: (it: Item) => void;
   readonly onTransfer: (it: Item) => void;
   readonly onDiscardRequest: (it: Item) => void;
+  readonly onSalvageRequest: (it: Item, opener: HTMLElement) => void;
   readonly onBulkDiscard: (ids: readonly string[]) => void;
 }
 
@@ -307,6 +327,7 @@ function BackpackTabContent({
   onEquip,
   onTransfer,
   onDiscardRequest,
+  onSalvageRequest,
   onBulkDiscard
 }: BackpackTabProps): JSX.Element {
   const questProgress = useMapStore(s => s.questProgress);
@@ -373,6 +394,7 @@ function BackpackTabContent({
             onEquip={() => { onEquip(selected); }}
             onTransfer={() => { onTransfer(selected); }}
             onDiscard={() => { onDiscardRequest(selected); }}
+            onSalvage={(opener) => { onSalvageRequest(selected, opener); }}
             onClose={() => { setSelectedId(null); }}
           />
         ) : null}
@@ -394,6 +416,7 @@ interface StashTabProps {
   readonly player: ReturnType<typeof usePlayerStore.getState>['player'];
   readonly onTransfer: (it: Item) => void;
   readonly onDiscardRequest: (it: Item) => void;
+  readonly onSalvageRequest: (it: Item, opener: HTMLElement) => void;
 }
 
 function StashTabContent({
@@ -404,7 +427,8 @@ function StashTabContent({
   setSelectedId,
   player,
   onTransfer,
-  onDiscardRequest
+  onDiscardRequest,
+  onSalvageRequest
 }: StashTabProps): JSX.Element {
   const { t } = useTranslation('inventory');
   const selected = useMemo(() => items.find((i) => i.id === selectedId) ?? null, [items, selectedId]);
@@ -431,6 +455,7 @@ function StashTabContent({
           equippedItems={equippedItems}
           onTransfer={() => { onTransfer(selected); }}
           onDiscard={() => { onDiscardRequest(selected); }}
+          onSalvage={(opener) => { onSalvageRequest(selected, opener); }}
           onClose={() => { setSelectedId(null); }}
         />
       ) : null}

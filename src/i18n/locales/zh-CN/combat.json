@@ -41,7 +41,7 @@
   "runeShard": "符文碎片",
   "wishstones": "祈愿石",
   "rewardLine": "+{{quantity}} {{name}}",
-  "levelUpToast": "升级！现在是 {{level}} 级",
+  "levelUpToast": "升级！现在是 {{level}} 级。属性点 +{{statPoints}}，技能点 +{{skillPoints}}。",
   "continue": "继续",
   "log": "战斗日志",
   "logEmpty": "战斗即将开始…",
